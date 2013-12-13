@@ -1,0 +1,10 @@
+jam_web:
+    resource: "@JamWebBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+jam_core:
+    resource: "@JamCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
