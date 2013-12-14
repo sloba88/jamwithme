@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Jam\CoreBundle\JamCoreBundle(),
             new Jam\WebBundle\JamWebBundle(),
             new Jam\UserBundle\JamUserBundle(),
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

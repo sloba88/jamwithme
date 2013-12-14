@@ -72,3 +72,13 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Jam\UserBundle\Entity\User
+
+assetic:
+    filters:
+        less:
+            node: /usr/local/bin/node
+            node_paths: [/usr/local/lib/node_modules]
+            apply_to: "\.less$"
+        cssrewrite: ~
+braincrafted_bootstrap:
+    less_filter: less
