@@ -13,10 +13,13 @@
         {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
         <style>
+
             body {
-                min-height: 2000px;
-                padding-top: 70px;
+                background-color: #EEEEEE;
+                padding-bottom: 40px;
+                padding-top: 60px;
             }
+
         </style>
     </head>
     <body>
@@ -25,12 +28,22 @@
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Jam With Me</a>
+                <a class="navbar-brand" href="{{ path('home') }}">Jam With Me</a>
             </div>
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="{{ path('musicians') }}">Musicians</a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="{{ path('home') }}">Home</a></li>
-                    <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                    <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                    {% if is_granted("ROLE_USER") %}
+                        <li><a href="">Logged in as: {{ app.user.username }}</a></li>
+                        <li><a href="{{ path('fos_user_profile_edit') }}">My Profile</a></li>
+                        <li><a href="{{ path('start_jam') }}">Start a jam</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                    {% endif %}
                 </ul>
         </div>
     </div>
@@ -45,5 +58,53 @@
         <!-- Include all JavaScripts, compiled by Assetic -->
         <script src="{{ asset('/js/bootstrap.js') }}"></script>
         {% block javascripts %}{% endblock %}
+
+    <script>
+        var $collectionHolder;
+
+        // setup an "add a tag" link
+        var $addTagLink = $('<a href="#" class="add_instrument">Add a instrument</a>');
+        var $newLinkLi = $('<li></li>').append($addTagLink);
+
+        jQuery(document).ready(function() {
+            // Get the ul that holds the collection of tags
+            $collectionHolder = $('ul.instruments');
+
+            // add the "add a tag" anchor and li to the tags ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addTagLink.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new tag form (see next code block)
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a tag" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+    </script>
+
     </body>
 </html>

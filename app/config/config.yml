@@ -72,6 +72,12 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Jam\UserBundle\Entity\User
+    registration:
+            form:
+                type: jam_user_registration
+    profile:
+                form:
+                    type: jam_user_registration
 
 assetic:
     filters:

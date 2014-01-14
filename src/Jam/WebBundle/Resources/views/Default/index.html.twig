@@ -1,1 +1,79 @@
-Holding page!!
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+    <style>
+
+        body {
+            background-color: #EEEEEE;
+            padding-bottom: 40px;
+            padding-top: 40px;
+        }
+        .form-subscribe {
+            margin: 0 auto;
+            max-width: 330px;
+            padding: 15px;
+        }
+        .form-subscribe .form-subscribe-heading, .form-subscribe .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-subscribe .form-control {
+            -moz-box-sizing: border-box;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+            position: relative;
+        }
+        .form-subscribe .form-control:focus {
+            z-index: 2;
+        }
+        .form-subscribe input[type="email"] {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-bottom: -1px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="flash-message alert alert-success">
+            <em>{{ flashMessage }}</em>
+        </div>
+    {% endfor %}
+
+    <div style="text-align:center">
+        <h1>Subscribe</h1>
+
+        <p>Jam With Me is the new application for finding the crew for your next jam session or a band.</p>
+    </div>
+
+    {{ form_start(form, { 'attr': { 'class': 'form-subscribe'}} ) }}
+
+    {{ form_widget(form.email, { 'attr': { 'placeholder': 'Email address' }} ) }}
+
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Subscribe</button>
+
+    {{ form_end(form) }}
+
+</div>
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- Include all JavaScripts, compiled by Assetic -->
+<script src="{{ asset('/js/bootstrap.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

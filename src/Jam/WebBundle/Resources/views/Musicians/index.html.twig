@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <ul>
+        {% for m in musicians %}
+            <li>
+                {{ m.username  }}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

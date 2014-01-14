@@ -205,37 +205,4 @@ class User extends BaseUser
     {
         return $this->genres;
     }
-
-    /**
-     * Add jams
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jams
-     * @return User
-     */
-    public function addJam(\Jam\CoreBundle\Entity\Jam $jams)
-    {
-        $this->jams[] = $jams;
-
-        return $this;
-    }
-
-    /**
-     * Remove jams
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jams
-     */
-    public function removeJam(\Jam\CoreBundle\Entity\Jam $jams)
-    {
-        $this->jams->removeElement($jams);
-    }
-
-    /**
-     * Get jams
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJams()
-    {
-        return $this->jams;
-    }
 }
