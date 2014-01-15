@@ -2,6 +2,12 @@
 
 {% block body %}
 
-    {{ form(form) }}
+    <ul>
+        {% for j in jams %}
+            <li>
+                <a href="{{ path('view_jam', {'name': j.name, 'id': j.id}) }}">{{ j.name  }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

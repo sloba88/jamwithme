@@ -32,6 +32,7 @@
             </div>
                 <ul class="nav navbar-nav navbar-left">
                     <li><a href="{{ path('musicians') }}">Musicians</a></li>
+                    <li><a href="{{ path('jams') }}">Jams</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="{{ path('home') }}">Home</a></li>
@@ -49,6 +50,13 @@
     </div>
 
     <div class="container">
+
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="flash-message alert alert-success">
+                <em>{{ flashMessage }}</em>
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
         {% block fos_user_content %}
         {% endblock fos_user_content %}

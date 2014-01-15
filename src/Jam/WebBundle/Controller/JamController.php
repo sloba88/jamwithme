@@ -10,11 +10,25 @@ use Symfony\Component\HttpFoundation\Request;
 
 class JamController extends Controller
 {
+
+    /**
+     * @Route("/jams", name="jams")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        $jams = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Jam')
+            ->findAll();
+
+        return array('jams' => $jams);
+    }
+
     /**
      * @Route("/start-jam", name="start_jam")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function createAction(Request $request)
     {
         $jam = new Jam();
 
@@ -45,5 +59,20 @@ class JamController extends Controller
         }
 
         return array('form' => $form->createView());
+    }
+
+    /**
+     * @Route("/jam/{name}.{id}", name="view_jam")
+     * @Template()
+     */
+    public function viewAction($name)
+    {
+        $jam = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Jam')
+            ->findOneBy(array('name' => $name));
+
+        if(!$jam) throw $this->createNotFoundException('The jam does not exist');
+
+        return array('jam' => $jam);
     }
 }
