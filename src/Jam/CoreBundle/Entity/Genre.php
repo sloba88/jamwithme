@@ -36,6 +36,13 @@ class Genre
     private $musicians;
 
     /**
+     * @var collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="genres" )
+     */
+    private $jams;
+
+    /**
      * Get id
      *
      * @return integer 

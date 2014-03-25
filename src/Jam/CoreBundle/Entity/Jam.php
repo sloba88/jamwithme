@@ -38,11 +38,55 @@ class Jam
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jams")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jamsCreator")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=true)
      */
     private $creator;
 
+    /**
+     * @var collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jams" )
+     * @ORM\JoinTable(
+     *      name="jam_members",
+     *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     * )
+     */
+    private $members;
+
+    /**
+     * @var collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jamsRequests" )
+     * @ORM\JoinTable(
+     *      name="jam_member_requests",
+     *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     * )
+     */
+    private $memberRequests;
+
+    /**
+     * @var collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre", inversedBy="jams" )
+     * @ORM\JoinTable(
+     *      name="jam_genres",
+     *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)}
+     * )
+     */
+    private $genres;
+
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->members = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -103,10 +147,10 @@ class Jam
     /**
      * Set creator
      *
-     * @param integer $creator
+     * @param \Jam\UserBundle\Entity\User $creator
      * @return Jam
      */
-    public function setCreator($creator)
+    public function setCreator(\Jam\UserBundle\Entity\User $creator = null)
     {
         $this->creator = $creator;
 
@@ -116,10 +160,109 @@ class Jam
     /**
      * Get creator
      *
-     * @return integer 
+     * @return \Jam\UserBundle\Entity\User 
      */
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    /**
+     * Add members
+     *
+     * @param \Jam\UserBundle\Entity\User $members
+     * @return Jam
+     */
+    public function addMember(\Jam\UserBundle\Entity\User $members)
+    {
+        $this->members[] = $members;
+
+        return $this;
+    }
+
+    /**
+     * Remove members
+     *
+     * @param \Jam\UserBundle\Entity\User $members
+     */
+    public function removeMember(\Jam\UserBundle\Entity\User $members)
+    {
+        $this->members->removeElement($members);
+    }
+
+    /**
+     * Get members
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMembers()
+    {
+        return $this->members;
+    }
+
+    /**
+     * Add memberRequests
+     *
+     * @param \Jam\UserBundle\Entity\User $memberRequests
+     * @return Jam
+     */
+    public function addMemberRequest(\Jam\UserBundle\Entity\User $memberRequests)
+    {
+        $this->memberRequests[] = $memberRequests;
+
+        return $this;
+    }
+
+    /**
+     * Remove memberRequests
+     *
+     * @param \Jam\UserBundle\Entity\User $memberRequests
+     */
+    public function removeMemberRequest(\Jam\UserBundle\Entity\User $memberRequests)
+    {
+        $this->memberRequests->removeElement($memberRequests);
+    }
+
+    /**
+     * Get memberRequests
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMemberRequests()
+    {
+        return $this->memberRequests;
+    }
+
+    /**
+     * Add genres
+     *
+     * @param \Jam\CoreBundle\Entity\Genre $genres
+     * @return Jam
+     */
+    public function addGenre(\Jam\CoreBundle\Entity\Genre $genres)
+    {
+        $this->genres[] = $genres;
+
+        return $this;
+    }
+
+    /**
+     * Remove genres
+     *
+     * @param \Jam\CoreBundle\Entity\Genre $genres
+     */
+    public function removeGenre(\Jam\CoreBundle\Entity\Genre $genres)
+    {
+        $this->genres->removeElement($genres);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGenres()
+    {
+        return $this->genres;
     }
 }

@@ -57,6 +57,12 @@
             </div>
         {% endfor %}
 
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="flash-message alert alert-danger">
+                <em>{{ flashMessage }}</em>
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
         {% block fos_user_content %}
         {% endblock fos_user_content %}
@@ -76,26 +82,31 @@
 
         jQuery(document).ready(function() {
             // Get the ul that holds the collection of tags
-            $collectionHolder = $('ul.instruments');
+            $collectionHolders = [$('ul.instruments'), $('ul.genres')];
 
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
+            $.each($collectionHolders, function(index, $collectionHolder){
+                if($collectionHolder.length==0) return;
+                // add the "add a tag" anchor and li to the tags ul
+                $collectionHolder.append($newLinkLi);
 
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-            $addTagLink.on('click', function(e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
+                $addTagLink.on('click', function(e) {
+                    // prevent the link from creating a "#" on the URL
+                    e.preventDefault();
 
-                // add a new tag form (see next code block)
-                addTagForm($collectionHolder, $newLinkLi);
+                    // add a new tag form (see next code block)
+                    addTagForm($collectionHolder, $newLinkLi);
+                });
             });
+
         });
 
         function addTagForm($collectionHolder, $newLinkLi) {
             // Get the data-prototype explained earlier
+            console.log($collectionHolder);
             var prototype = $collectionHolder.data('prototype');
 
             // get the new index

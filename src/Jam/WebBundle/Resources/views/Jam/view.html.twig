@@ -7,7 +7,33 @@
     <h3>Members:</h3>
 
     <ul>
-
+        {% for m in jam.members %}
+            <li>{{ m.email }}</li>
+        {% endfor %}
     </ul>
+
+    {% if is_granted("ROLE_USER") %}
+        {% if(app.user.isjammember(jam)) %}
+        {% else %}
+            {% if(app.user.isjammemberRequested(jam)) %}
+                <a href="#">Request sent</a>
+            {% else %}
+                <a href="{{ path('join_jam_request', {'name': jam.name}) }}">Join request</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+    <br />
+    <br />
+    {% if is_granted("ROLE_USER") %}
+        {% if (app.user.id == jam.creator.id) %}
+            <p>It's my Jam!</p>
+            <p>Jam requests:</p>
+            <ul>
+                {% for m in jam.memberRequests %}
+                    <li>{{ m.username }} <a href="{{ path('jam_accept', {'name': jam.name, 'user_id': m.id}) }}">Accept</a> / <a href="">Deny</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
 
 {% endblock %}
