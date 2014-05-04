@@ -74,7 +74,7 @@
         {% block javascripts %}{% endblock %}
 
     <script>
-        var $collectionHolder;
+        var $instrumentsCollectionHolder, $genresCollectionHolder;
 
         var $addInstrumentLink = $('<a href="#" class="add_instrument">Add a instrument</a>');
         var $newInstrumentLi = $('<li></li>').append($addInstrumentLink);
@@ -109,10 +109,7 @@
         });
 
         function addTagForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
             var prototype = $collectionHolder.data('prototype');
-
-            // get the new index
             var index = $collectionHolder.data('index');
             var newForm = prototype.replace(/__name__/g, index);
 
