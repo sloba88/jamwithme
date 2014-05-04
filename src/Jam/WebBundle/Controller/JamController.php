@@ -39,7 +39,7 @@ class JamController extends Controller
             ->add('genres', 'collection', array(
                     'type' => new GenreType(),
                     'allow_add' => true,
-                    'by_reference' => false,
+                    'by_reference' => true,
                     'allow_delete' => true,
                     'label' => false,
             ))
@@ -56,6 +56,8 @@ class JamController extends Controller
             }else{
                 throw $this->createNotFoundException('This user does not exist');
             }
+
+            //TODO: persist genres to DB
 
             $jam->addMember($creator);
 

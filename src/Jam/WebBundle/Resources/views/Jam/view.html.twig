@@ -12,6 +12,14 @@
         {% endfor %}
     </ul>
 
+    <h3>Genres:</h3>
+
+    <ul>
+        {% for j in jam.genres %}
+            <li>{{ j.name }}</li>
+        {% endfor %}
+    </ul>
+
     {% if is_granted("ROLE_USER") %}
         {% if(app.user.isjammember(jam)) %}
         {% else %}
