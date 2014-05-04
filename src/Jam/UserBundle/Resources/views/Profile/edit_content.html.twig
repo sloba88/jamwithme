@@ -5,37 +5,37 @@
 
     {{ form_errors(form) }}
 
-    {{ form_row(form.username) }}
+    <div class="col-md-6">
+        {{ form_row(form.username) }}
 
-    {{ form_row(form.firstName) }}
+        {{ form_row(form.firstName) }}
 
-    {{ form_row(form.lastName) }}
+        {{ form_row(form.lastName) }}
 
-    {{ form_row(form.email) }}
+        {{ form_row(form.email) }}
 
-    {{ form_row(form.plainPassword) }}
+        {{ form_row(form.plainPassword) }}
+    </div>
 
-    <p>Instruments: </p>
+    <div class="col-md-6">
+        <p>Instruments: </p>
+        <ul class="instruments" data-prototype="{{ form_widget(form.instruments.vars.prototype)|e }}" style="list-style-type: none">
+            {% for tag in form.instruments %}
+                <li>{{ form_widget(tag) }}</li>
+            {% endfor %}
+        </ul>
 
-    <ul class="instruments" data-prototype="{{ form_widget(form.instruments.vars.prototype)|e }}" style="list-style-type: none">
-        {# iterate over each existing tag and render its only field: name #}
-        {% for tag in form.instruments %}
-            <li>{{ form_widget(tag) }}</li>
-        {% endfor %}
-    </ul>
-
-    <p>Genres: </p>
-
-    <ul class="genres" data-prototype="{{ form_widget(form.genres.vars.prototype)|e }}" style="list-style-type: none">
-        {# iterate over each existing tag and render its only field: name #}
-        {% for tag in form.genres %}
-            <li>{{ form_widget(tag.name) }}</li>
-        {% endfor %}
-    </ul>
+        <p>Genres: </p>
+        <ul class="genres" data-prototype="{{ form_widget(form.genres.vars.prototype)|e }}" style="list-style-type: none">
+            {% for tag in form.genres %}
+                <li>{{ form_widget(tag.name) }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
     {{ form_widget(form._token) }}
 
-    <div>
+    <div class="col-md-12">
         <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
     </div>
 </form>
