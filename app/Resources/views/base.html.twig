@@ -35,15 +35,15 @@
                     <li><a href="{{ path('jams') }}">Jams</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{{ path('home') }}">Home</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'home' %}class="active"{% endif %}><a href="{{ path('home') }}">Home</a></li>
                     {% if is_granted("ROLE_USER") %}
                         <li><a href="">Logged in as: {{ app.user.username }}</a></li>
-                        <li><a href="{{ path('fos_user_profile_edit') }}">My Profile</a></li>
-                        <li><a href="{{ path('start_jam') }}">Start a jam</a></li>
-                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                        <li {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}class="active"{% endif %}><a href="{{ path('fos_user_profile_edit') }}">My Profile</a></li>
+                        <li {% if app.request.attributes.get('_route') == 'start_jam' %}class="active"{% endif %}><a href="{{ path('start_jam') }}">Start a jam</a></li>
+                        <li {% if app.request.attributes.get('_route') == 'fos_user_security_logout' %}class="active"{% endif %}><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                     {% else %}
-                        <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-                        <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                        <li {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}class="active"{% endif %}><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                        <li {% if app.request.attributes.get('_route') == 'fos_user_registration_register' %}class="active"{% endif %}><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
                     {% endif %}
                 </ul>
         </div>
