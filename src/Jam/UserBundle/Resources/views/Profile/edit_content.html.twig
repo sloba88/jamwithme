@@ -29,7 +29,7 @@
     <ul class="genres" data-prototype="{{ form_widget(form.genres.vars.prototype)|e }}" style="list-style-type: none">
         {# iterate over each existing tag and render its only field: name #}
         {% for tag in form.genres %}
-            <li>{{ form_row(tag.name) }}</li>
+            <li>{{ form_widget(tag.name) }}</li>
         {% endfor %}
     </ul>
 

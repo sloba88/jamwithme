@@ -76,53 +76,64 @@
     <script>
         var $collectionHolder;
 
-        // setup an "add a tag" link
-        var $addTagLink = $('<a href="#" class="add_instrument">Add a instrument</a>');
-        var $newLinkLi = $('<li></li>').append($addTagLink);
+        var $addInstrumentLink = $('<a href="#" class="add_instrument">Add a instrument</a>');
+        var $newInstrumentLi = $('<li></li>').append($addInstrumentLink);
+
+        var $addGenreLink = $('<a href="#" class="add_genre">Add genre</a>');
+        var $newGenreLi = $('<li></li>').append($addGenreLink);
 
         jQuery(document).ready(function() {
-            // Get the ul that holds the collection of tags
-            $collectionHolders = [$('ul.instruments'), $('ul.genres')];
+            $instrumentsCollectionHolder = $('ul.instruments');
+            $instrumentsCollectionHolder.find('li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+            $instrumentsCollectionHolder.append($newInstrumentLi);
+            $instrumentsCollectionHolder.data('index', $instrumentsCollectionHolder.find(':input').length);
+            $addInstrumentLink.on('click', function(e) {
+                e.preventDefault();
+                addTagForm($instrumentsCollectionHolder, $newInstrumentLi);
+            });
 
-            $.each($collectionHolders, function(index, $collectionHolder){
-                if($collectionHolder.length==0) return;
-                // add the "add a tag" anchor and li to the tags ul
-                $collectionHolder.append($newLinkLi);
 
-                // count the current form inputs we have (e.g. 2), use that as the new
-                // index when inserting a new item (e.g. 2)
-                $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-                $addTagLink.on('click', function(e) {
-                    // prevent the link from creating a "#" on the URL
-                    e.preventDefault();
-
-                    // add a new tag form (see next code block)
-                    addTagForm($collectionHolder, $newLinkLi);
-                });
+            $genresCollectionHolder = $('ul.genres');
+            $genresCollectionHolder.find('li').each(function() {
+                addTagFormDeleteLink($(this));
+            });
+            $genresCollectionHolder.append($newGenreLi);
+            $genresCollectionHolder.data('index', $genresCollectionHolder.find(':input').length);
+            $addGenreLink.on('click', function(e) {
+                e.preventDefault();
+                addTagForm($genresCollectionHolder, $newGenreLi);
             });
 
         });
 
         function addTagForm($collectionHolder, $newLinkLi) {
             // Get the data-prototype explained earlier
-            console.log($collectionHolder);
             var prototype = $collectionHolder.data('prototype');
 
             // get the new index
             var index = $collectionHolder.data('index');
-
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
             var newForm = prototype.replace(/__name__/g, index);
 
-            // increase the index with one for the next item
             $collectionHolder.data('index', index + 1);
 
-            // Display the form in the page in an li, before the "Add a tag" link li
             var $newFormLi = $('<li></li>').append(newForm);
             $newLinkLi.before($newFormLi);
+            addTagFormDeleteLink($newFormLi);
         }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormA = $('<a href="#">remove</a>');
+            $tagFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                e.preventDefault();
+                $tagFormLi.remove();
+            });
+        }
+
+
     </script>
 
     </body>
