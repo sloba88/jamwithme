@@ -2,6 +2,7 @@
 
 namespace Jam\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -70,7 +71,7 @@ class Jam
     /**
      * @var collection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre", inversedBy="jams" )
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre", inversedBy="jams", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="jam_genres",
      *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
@@ -85,7 +86,8 @@ class Jam
      */
     public function __construct()
     {
-        $this->members = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->members = new ArrayCollection();
+        $this->genres = new ArrayCollection();
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Jam\WebBundle\Controller;
 
+use Jam\CoreBundle\Entity\Genre;
 use Jam\CoreBundle\Entity\Jam;
 use Jam\CoreBundle\Form\Type\GenreType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,6 +33,9 @@ class JamController extends Controller
     public function createAction(Request $request)
     {
         $jam = new Jam();
+        $genre = new Genre();
+        $genre->setName('bla');
+        $jam->addGenre($genre);
 
         $form = $this->createFormBuilder($jam)
             ->add('name', 'text')
@@ -39,7 +43,7 @@ class JamController extends Controller
             ->add('genres', 'collection', array(
                     'type' => new GenreType(),
                     'allow_add' => true,
-                    'by_reference' => true,
+                    'by_reference' => false,
                     'allow_delete' => true,
                     'label' => false,
             ))

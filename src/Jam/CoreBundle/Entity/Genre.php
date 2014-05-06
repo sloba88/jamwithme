@@ -2,6 +2,7 @@
 
 namespace Jam\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,7 +39,7 @@ class Genre
     /**
      * @var collection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="genres" )
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="genres")
      */
     private $jams;
 
@@ -79,7 +80,8 @@ class Genre
      */
     public function __construct()
     {
-        $this->musicians = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->musicians = new ArrayCollection();
+        $this->jams = new ArrayCollection();
     }
 
     /**
@@ -113,5 +115,38 @@ class Genre
     public function getMusicians()
     {
         return $this->musicians;
+    }
+
+    /**
+     * Add jams
+     *
+     * @param \Jam\CoreBundle\Entity\Jam $jams
+     * @return Genre
+     */
+    public function addJam(\Jam\CoreBundle\Entity\Jam $jams)
+    {
+        $this->jams[] = $jams;
+
+        return $this;
+    }
+
+    /**
+     * Remove jams
+     *
+     * @param \Jam\CoreBundle\Entity\Jam $jams
+     */
+    public function removeJam(\Jam\CoreBundle\Entity\Jam $jams)
+    {
+        $this->jams->removeElement($jams);
+    }
+
+    /**
+     * Get jams
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJams()
+    {
+        return $this->jams;
     }
 }
