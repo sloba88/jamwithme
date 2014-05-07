@@ -2,8 +2,7 @@
 
 namespace Jam\UserBundle\Form\Type;
 
-use Jam\CoreBundle\Form\Type\GenreType;
-use Jam\CoreBundle\Form\Type\InstrumentType;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
@@ -17,20 +16,22 @@ class RegistrationFormType extends BaseType
         $builder->add('firstName');
         $builder->add('lastName');
 
-        $builder->add('instruments', 'collection', array(
-            'type' => 'instrument_select',
-            'allow_add' => true,
-            'by_reference' => false,
-            'allow_delete' => true,
-            'label' => false,
+        $builder->add('instruments', 'entity', array(
+            'class' => 'JamCoreBundle:Instrument',
+            'query_builder' => function(EntityRepository $er) {
+                return $er->createQueryBuilder('u');
+            },
+            'property' => "name",
+            'multiple' => true
         ));
 
-        $builder->add('genres', 'collection', array(
-            'type' => new GenreType(),
-            'allow_add' => true,
-            'by_reference' => false,
-            'allow_delete' => true,
-            'label' => false,
+        $builder->add('genres', 'entity', array(
+            'class' => 'JamCoreBundle:Genre',
+            'query_builder' => function(EntityRepository $er) {
+                return $er->createQueryBuilder('u');
+            },
+            'property' => "name",
+            'multiple' => true
         ));
     }
 

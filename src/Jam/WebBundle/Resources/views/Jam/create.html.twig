@@ -11,11 +11,7 @@
         {{ form_row(form.members_count) }}
 
         <p>Genres: </p>
-        <ul class="genres" data-prototype="{{ form_widget(form.genres.vars.prototype)|e }}" style="list-style-type: none">
-            {% for tag in form.genres %}
-                <li>{{ form_widget(tag.name) }}</li>
-            {% endfor %}
-        </ul>
+        {{ form_row(form.genres) }}
 
         {{ form_widget(form._token) }}
         {{ form_row(form.save) }}

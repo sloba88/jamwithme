@@ -2,6 +2,7 @@
 
 namespace Jam\WebBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Entity\Genre;
 use Jam\CoreBundle\Entity\Jam;
 use Jam\CoreBundle\Form\Type\GenreType;
@@ -33,19 +34,17 @@ class JamController extends Controller
     public function createAction(Request $request)
     {
         $jam = new Jam();
-        $genre = new Genre();
-        $genre->setName('bla');
-        $jam->addGenre($genre);
 
         $form = $this->createFormBuilder($jam)
             ->add('name', 'text')
             ->add('members_count', 'text')
-            ->add('genres', 'collection', array(
-                    'type' => new GenreType(),
-                    'allow_add' => true,
-                    'by_reference' => false,
-                    'allow_delete' => true,
-                    'label' => false,
+            ->add('genres', 'entity', array(
+                'class' => 'JamCoreBundle:Genre',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u');
+                },
+                'property' => "name",
+                'multiple' => true
             ))
             ->add('save', 'submit')
             ->getForm();
@@ -57,11 +56,9 @@ class JamController extends Controller
             if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
                 $creator = $this->container->get('security.context')->getToken()->getUser();
                 $jam->setCreator($creator);
-            }else{
+            } else {
                 throw $this->createNotFoundException('This user does not exist');
             }
-
-            //TODO: persist genres to DB
 
             $jam->addMember($creator);
 
@@ -87,7 +84,7 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('name' => $name));
 
-        if(!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 
         return array('jam' => $jam);
     }
@@ -102,15 +99,15 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('name' => $name));
 
-        if(!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $musician = $this->container->get('security.context')->getToken()->getUser();
-            if ($musician->isJamMember($jam)){
+            if ($musician->isJamMember($jam)) {
                 throw $this->createNotFoundException('You are already in the jam');
-            }else{
+            } else {
 
-                if ($musician->isJamMemberRequested($jam)){
+                if ($musician->isJamMemberRequested($jam)) {
                     $this->get('session')->getFlashBag()->set('error', 'Request already sent.');
                     return $this->redirect($this->generateUrl('view_jam', array('name' => $name, 'id' => $jam->getId())));
                 }
@@ -123,7 +120,7 @@ class JamController extends Controller
 
                 $this->get('session')->getFlashBag()->set('success', 'Jam request sent successfully.');
             }
-        }else{
+        } else {
             throw $this->createNotFoundException('You shall not pass');
         }
 
@@ -144,12 +141,12 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('name' => $name));
 
-        if(!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            if ($musician->isJamMember($jam)){
+            if ($musician->isJamMember($jam)) {
                 throw $this->createNotFoundException('You are already in the jam');
-            }else{
+            } else {
 
                 $jam->removeMemberRequest($musician);
                 $jam->addMember($musician);
@@ -160,7 +157,7 @@ class JamController extends Controller
 
                 $this->get('session')->getFlashBag()->set('success', 'Jam request accepted successfully.');
             }
-        }else{
+        } else {
             throw $this->createNotFoundException('You shall not pass');
         }
 

@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
         <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ asset('/css/select2.css') }}" rel="stylesheet"/>
 
         <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
         {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
@@ -69,67 +70,22 @@
     </div>
         <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
         <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="{{ asset('/js/select2.min.js') }}"></script>
         <!-- Include all JavaScripts, compiled by Assetic -->
         <script src="{{ asset('/js/bootstrap.js') }}"></script>
         {% block javascripts %}{% endblock %}
 
     <script>
-        var $instrumentsCollectionHolder, $genresCollectionHolder;
-
-        var $addInstrumentLink = $('<a href="#" class="add_instrument">Add a instrument</a>');
-        var $newInstrumentLi = $('<li></li>').append($addInstrumentLink);
-
-        var $addGenreLink = $('<a href="#" class="add_genre">Add genre</a>');
-        var $newGenreLi = $('<li></li>').append($addGenreLink);
 
         jQuery(document).ready(function() {
-            $instrumentsCollectionHolder = $('ul.instruments');
-            $instrumentsCollectionHolder.find('li').each(function() {
-                addTagFormDeleteLink($(this));
-            });
-            $instrumentsCollectionHolder.append($newInstrumentLi);
-            $instrumentsCollectionHolder.data('index', $instrumentsCollectionHolder.find(':input').length);
-            $addInstrumentLink.on('click', function(e) {
-                e.preventDefault();
-                addTagForm($instrumentsCollectionHolder, $newInstrumentLi);
+            $("#fos_user_profile_form_instruments").select2({
+                placeholder: 'What do you play?'
             });
 
-
-            $genresCollectionHolder = $('ul.genres');
-            $genresCollectionHolder.find('li').each(function() {
-                addTagFormDeleteLink($(this));
+            $("#fos_user_profile_form_genres, #form_genres").select2({
+                placeholder: 'Whats music do you play?'
             });
-            $genresCollectionHolder.append($newGenreLi);
-            $genresCollectionHolder.data('index', $genresCollectionHolder.find(':input').length);
-            $addGenreLink.on('click', function(e) {
-                e.preventDefault();
-                addTagForm($genresCollectionHolder, $newGenreLi);
-            });
-
         });
-
-        function addTagForm($collectionHolder, $newLinkLi) {
-            var prototype = $collectionHolder.data('prototype');
-            var index = $collectionHolder.data('index');
-            var newForm = prototype.replace(/__name__/g, index);
-
-            $collectionHolder.data('index', index + 1);
-
-            var $newFormLi = $('<li></li>').append(newForm);
-            $newLinkLi.before($newFormLi);
-            addTagFormDeleteLink($newFormLi);
-        }
-
-        function addTagFormDeleteLink($tagFormLi) {
-            var $removeFormA = $('<a href="#">remove</a>');
-            $tagFormLi.append($removeFormA);
-
-            $removeFormA.on('click', function(e) {
-                e.preventDefault();
-                $tagFormLi.remove();
-            });
-        }
-
 
     </script>
 
