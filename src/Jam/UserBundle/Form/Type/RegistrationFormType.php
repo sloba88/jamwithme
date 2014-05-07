@@ -15,6 +15,8 @@ class RegistrationFormType extends BaseType
         // add your custom field
         $builder->add('firstName');
         $builder->add('lastName');
+        $builder->add('email');
+        $builder->add('username');
 
         $builder->add('instruments', 'entity', array(
             'class' => 'JamCoreBundle:Instrument',
