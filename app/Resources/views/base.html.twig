@@ -78,11 +78,11 @@
     <script>
 
         jQuery(document).ready(function() {
-            $("#fos_user_profile_form_instruments").select2({
+            $("#fos_user_profile_form_instruments, #fos_user_registration_form_instruments").select2({
                 placeholder: 'What do you play?'
             });
 
-            $("#fos_user_profile_form_genres, #form_genres").select2({
+            $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres").select2({
                 placeholder: 'Whats music do you play?'
             });
         });

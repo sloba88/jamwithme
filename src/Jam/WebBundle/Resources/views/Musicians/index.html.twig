@@ -5,7 +5,7 @@
     <ul>
         {% for m in musicians %}
             <li>
-                {{ m.username  }}
+                <a href="{{ path('musician_profile', {'username': m.username}) }}">{{ m.username }}</a>
             </li>
         {% endfor %}
     </ul>

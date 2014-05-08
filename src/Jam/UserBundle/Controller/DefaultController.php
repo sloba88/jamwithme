@@ -9,11 +9,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/m/{username}", name="musician_profile")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction($username)
     {
-        return array('name' => $name);
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        return array('user' => $user);
     }
 }

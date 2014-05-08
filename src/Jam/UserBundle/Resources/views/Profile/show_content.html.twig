@@ -2,5 +2,22 @@
 
 <div class="fos_user_user_show">
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>
+    <p>{{ 'profile.show.last_name'|trans }}: {{ user.lastName }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+
+    <p>Genres: </p>
+    <ul>
+    {% for g in user.genres %}
+        <li>{{ g.name }}</li>
+    {% endfor %}
+    </ul>
+
+    <p>Instruments: </p>
+    <ul>
+        {% for i in user.instruments %}
+            <li>{{ i.name }}</li>
+        {% endfor %}
+    </ul>
+
 </div>
