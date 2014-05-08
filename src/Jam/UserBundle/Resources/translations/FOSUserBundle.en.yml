@@ -27,6 +27,7 @@ profile:
         username: Username
         email: Email
         first_name: First Name
+        about_me: About Me
     edit:
         submit: Update
     flash:

@@ -99,6 +99,12 @@ class User extends BaseUser
     protected $jamsRequests;
 
     /**
+     * @ORM\Column(type="text")
+     *
+     */
+    protected $aboutMe;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -351,5 +357,28 @@ class User extends BaseUser
     public function getJamsRequests()
     {
         return $this->jamsRequests;
+    }
+
+    /**
+     * Set aboutMe
+     *
+     * @param string $aboutMe
+     * @return User
+     */
+    public function setAboutMe($aboutMe)
+    {
+        $this->aboutMe = $aboutMe;
+
+        return $this;
+    }
+
+    /**
+     * Get aboutMe
+     *
+     * @return string 
+     */
+    public function getAboutMe()
+    {
+        return $this->aboutMe;
     }
 }
