@@ -1,4 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
     {#{{ form_widget(form) }}#}
@@ -21,6 +22,14 @@
         {{ form_row(form.genres) }}
 
         {{ form_row(form.aboutMe) }}
+
+        <div class="form-group">
+            {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+            {{ form_errors(form.location) }}
+            <div>
+                {{ form_widget(form.location) }}
+            </div>
+        </div>
 
     </div>
 

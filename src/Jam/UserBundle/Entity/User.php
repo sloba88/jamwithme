@@ -105,6 +105,14 @@ class User extends BaseUser
     protected $aboutMe;
 
     /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"all"})
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true)
+     */
+    private $location;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -380,5 +388,28 @@ class User extends BaseUser
     public function getAboutMe()
     {
         return $this->aboutMe;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \Jam\LocationBundle\Entity\Location $location
+     * @return User
+     */
+    public function setLocation(\Jam\LocationBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \Jam\LocationBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

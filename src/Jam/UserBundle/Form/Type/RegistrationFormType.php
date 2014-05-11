@@ -3,6 +3,7 @@
 namespace Jam\UserBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
+use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 
@@ -36,6 +37,8 @@ class RegistrationFormType extends BaseType
             'property' => "name",
             'multiple' => true
         ));
+
+        $builder->add('location', new LocationType());
     }
 
     public function getName()

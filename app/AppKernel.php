@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Jam\CoreBundle\JamCoreBundle(),
             new Jam\WebBundle\JamWebBundle(),
             new Jam\UserBundle\JamUserBundle(),
+            new Jam\LocationBundle\JamLocationBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle()
         );
