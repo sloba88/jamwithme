@@ -14,6 +14,22 @@
         {{ form_row(form.lastName) }}
 
         {{ form_row(form.email) }}
+
+        <div class="form-group" >
+            {{ form_label(form.images, 'Images'|trans) }}
+            {{ form_errors(form.images) }}
+            <div>
+                <div id="user_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-index="{{ form.vars.value.images    |length }}">
+                    {% for img in form.vars.value.images %}
+                        {{ form_widget(img, {'attr': {'class': 'image-holder col-lg-4 text-center'}}) }}
+                    {% endfor %}
+                </div>
+                <div class="clear">
+                    <button type="button" class="btn btn-link" id="add_another_image"><span class="glyphicon glyphicon-plus"></span>{% trans from "buttons" %} Add another image{% endtrans %}</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="col-md-6">

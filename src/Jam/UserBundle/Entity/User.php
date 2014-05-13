@@ -113,6 +113,13 @@ class User extends BaseUser
     private $location;
 
     /**
+     * @var collection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\UserBundle\Entity\UserImage", mappedBy="user", cascade={"all"} )
+     */
+    private $images;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -411,5 +418,38 @@ class User extends BaseUser
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Jam\CoreBundle\Model\Image $images
+     * @return User
+     */
+    public function addImage(\Jam\CoreBundle\Model\Image $images)
+    {
+        $this->images[] = $images;
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Jam\CoreBundle\Model\Image $images
+     */
+    public function removeImage(\Jam\CoreBundle\Model\Image $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

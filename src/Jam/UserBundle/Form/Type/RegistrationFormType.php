@@ -39,6 +39,15 @@ class RegistrationFormType extends BaseType
         ));
 
         $builder->add('location', new LocationType());
+
+        $builder->add('images', 'collection', array(
+            'type' => new ImageType(),
+            'allow_add' => true,
+            'by_reference' => false,
+            'label' => false,
+            'allow_delete' => true
+        ));
+
     }
 
     public function getName()

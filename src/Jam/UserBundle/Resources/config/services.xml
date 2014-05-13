@@ -22,6 +22,10 @@
             <tag name="form.type" alias="jam_user_registration" />
             <argument>%fos_user.model.user.class%</argument>
         </service>
+
+        <service id="jam_user.image_type_extension" class="Jam\UserBundle\Form\Extension\ImageTypeExtension">
+            <tag name="form.type_extension" alias="file" />
+        </service>
     </services>
 
 </container>

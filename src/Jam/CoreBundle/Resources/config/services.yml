@@ -1,6 +1,1 @@
 services:
-    sfox_core.type.group_select:
-        class: Jam\CoreBundle\Form\Type\InstrumentType
-        arguments: [@doctrine.orm.entity_manager]
-        tags:
-          - { name: form.type, alias: instrument_select }
