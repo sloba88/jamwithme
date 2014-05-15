@@ -4,8 +4,12 @@
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>
     <p>{{ 'profile.show.last_name'|trans }}: {{ user.lastName }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 
+    {% for i in user.images %}
+        <img src="{{ asset('uploads/' ~ i.path) | imagine_filter('my_thumb') }}" />
+    {% endfor %}
+
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
     <p>{{ 'profile.show.about_me'|trans }}: {{ user.aboutMe }}</p>
 
     <p>Genres: </p>

@@ -92,6 +92,103 @@
             });
         });
 
+        var imagesCollectionHolder = $('#user_images');
+
+        jQuery(document).ready(function() {
+            {% if form is defined and form.vars.valid %}
+            if($("#ad_images").data('index')==0){
+                addCollectionForm(imagesCollectionHolder, 'images');
+            }
+
+            {% endif %}
+
+            $(document).on('change', "#ad_images input[type=file]", function(){
+                readURL(this);
+            });
+
+            $("#add_another_image").click(function(e){
+                e.preventDefault();
+                addCollectionForm(imagesCollectionHolder, 'images');
+            });
+
+            $(document).on('click', '.make-primary-image', function(){
+                $('.make-primary-image').attr('checked', false);
+                $(this).prop('checked', true).attr('checked', true);
+            });
+
+            $(document).on('click', '.remove-image', function(){
+                $(this).parents('.image-holder').remove();
+                imagesCollectionHolder.data('index', imagesCollectionHolder.data('index') - 1);
+                $("#add_another_image").show();
+            });
+
+            $(".price-type").click(function(){
+                $('.price-type').attr('checked', false);
+                $(this).prop('checked', true).attr('checked', true);
+                $("#ad_price").val('');
+            });
+
+            $("#ad_images .image-holder input[type=radio]").after("<span></span>");
+
+        });
+
+        function addCollectionForm(collectionHolder, type) {
+            var prototype = collectionHolder.data('prototype');
+            var index = collectionHolder.data('index');
+            if(index>=8){
+                $("#add_another_image").hide();
+                return false;
+            }
+            var newForm = prototype.replace(/__name__/g, index);
+            //for images only
+            if(type == 'images') {
+                newForm = $(newForm).addClass('image-holder col-lg-4 text-center');
+                newForm.find('.make-primary-image').parent().hide();
+                newForm.find("input[type=radio]").after("<span></span>");
+            }
+
+            // increase the index with one for the next item
+            collectionHolder.data('index', index + 1);
+            collectionHolder.append(newForm);
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                if(input.files[0].size>3000000){
+                    alert('{{ 'Photo is too big. Please upload a file that is less than 3MB'|trans }}');
+                    $(input).val(null);
+                    return false;
+                }
+                var image  = new Image();
+                var reader = new FileReader();
+                reader.readAsDataURL(input.files[0]);
+                reader.onload = function (e) {
+                    //parent parent is stupid
+
+                    image.src    = e.target.result;
+                    image.onload = function() {
+                        var w = this.width,
+                                h = this.height;
+
+                        if(w<320 || h<190){
+                            alert('{{ 'Please choose a picture larger than 320x190'|trans }}');
+                            $(input).val('');
+                            return false;
+                        }
+
+                        var image_holder = $(input).parents('.image-holder');
+                        image_holder.find('img').attr('src', e.target.result);
+                        image_holder.find('.make-primary-image').parent().show();
+                        image_holder.find('.remove-image').show();
+                        image_holder.find('.upload').hide();
+                        if($('.image-preview').length==1){
+                            image_holder.find('.make-primary-image').prop('checked', true).attr('checked', true);
+                        }
+                    };
+                }
+            }
+        }
+
     </script>
 
     </body>
