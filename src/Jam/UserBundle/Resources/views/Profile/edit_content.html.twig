@@ -22,7 +22,7 @@
                 <div id="user_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-index="{{ form.vars.value.images|length }}">
                     {% for i in form.vars.value.images %}
                         <div class="image-holder">
-                            <img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" />
+                            <img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
                             <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
                             <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                         </div>

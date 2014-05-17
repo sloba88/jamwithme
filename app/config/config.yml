@@ -100,4 +100,8 @@ liip_imagine:
         my_thumb:
             quality: 75
             filters:
-                thumbnail: { size: [120, 90], mode: outbound }
+                thumbnail: { size: [90, 90], mode: outbound }
+        my_medium:
+            quality: 75
+            filters:
+                thumbnail: { size: [500], mode: outbound }

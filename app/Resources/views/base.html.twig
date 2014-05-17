@@ -32,8 +32,8 @@
                 <a class="navbar-brand" href="{{ path('home') }}">Jam With Me</a>
             </div>
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="{{ path('musicians') }}">Musicians</a></li>
-                    <li><a href="{{ path('jams') }}">Jams</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'musicians' %}class="active"{% endif %}><a href="{{ path('musicians') }}">Musicians</a></li>
+                    <li {% if app.request.attributes.get('_route') == 'jams' %}class="active"{% endif %}><a href="{{ path('jams') }}">Jams</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li {% if app.request.attributes.get('_route') == 'home' %}class="active"{% endif %}><a href="{{ path('home') }}">Home</a></li>
@@ -175,7 +175,7 @@
                         }
 
                         var image_holder = $(input).parents('.image-holder');
-                        image_holder.append('<img src="" />');
+                        image_holder.append('<img src="" width="200" />');
                         image_holder.find('img').attr('src', e.target.result);
                         image_holder.find('.make-primary-image').parent().show();
                         image_holder.find('.remove-image').show();
