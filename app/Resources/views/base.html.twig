@@ -69,15 +69,16 @@
         {% endblock fos_user_content %}
     </div>
         <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-        <script src="https://code.jquery.com/jquery.js"></script>
+        <!--<script src="https://code.jquery.com/jquery.js"></script>-->
+        <script src="{{ asset('/js/jquery.js') }}"></script>
         <script src="{{ asset('/js/select2.min.js') }}"></script>
         <!-- Include all JavaScripts, compiled by Assetic -->
         <script src="{{ asset('/js/bootstrap.js') }}"></script>
-        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>
+        <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>-->
         <script src="{{ asset('/js/vendor/bootstrap-typeahead.js') }}"></script>
         <script src="{{ asset('/js/vendor/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('bundles/jamlocation/jquery.ui.addresspicker.js') }}"></script>
-        <script src="{{ asset('bundles/jamlocation/location.js') }}"></script>
+        <!--<script src="{{ asset('bundles/jamlocation/location.js') }}"></script>-->
         {% block javascripts %}{% endblock %}
 
     <script>
@@ -96,13 +97,13 @@
 
         jQuery(document).ready(function() {
             {% if form is defined and form.vars.valid %}
-            if($("#ad_images").data('index')==0){
+            if($("#user_images").data('index')==0){
                 addCollectionForm(imagesCollectionHolder, 'images');
             }
 
             {% endif %}
 
-            $(document).on('change', "#ad_images input[type=file]", function(){
+            $(document).on('change', "#user_images input[type=file]", function(){
                 readURL(this);
             });
 
@@ -116,7 +117,8 @@
                 $(this).prop('checked', true).attr('checked', true);
             });
 
-            $(document).on('click', '.remove-image', function(){
+            $(document).on('click', '.remove-image', function(e){
+                e.preventDefault();
                 $(this).parents('.image-holder').remove();
                 imagesCollectionHolder.data('index', imagesCollectionHolder.data('index') - 1);
                 $("#add_another_image").show();
@@ -128,21 +130,17 @@
                 $("#ad_price").val('');
             });
 
-            $("#ad_images .image-holder input[type=radio]").after("<span></span>");
+            $("#user_images .image-holder input[type=radio]").after("<span></span>");
 
         });
 
         function addCollectionForm(collectionHolder, type) {
             var prototype = collectionHolder.data('prototype');
             var index = collectionHolder.data('index');
-            if(index>=8){
-                $("#add_another_image").hide();
-                return false;
-            }
             var newForm = prototype.replace(/__name__/g, index);
             //for images only
             if(type == 'images') {
-                newForm = $(newForm).addClass('image-holder col-lg-4 text-center');
+                newForm = $(newForm).addClass('image-holder');
                 newForm.find('.make-primary-image').parent().hide();
                 newForm.find("input[type=radio]").after("<span></span>");
             }
@@ -177,6 +175,7 @@
                         }
 
                         var image_holder = $(input).parents('.image-holder');
+                        image_holder.append('<img src="" />');
                         image_holder.find('img').attr('src', e.target.result);
                         image_holder.find('.make-primary-image').parent().show();
                         image_holder.find('.remove-image').show();
