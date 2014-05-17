@@ -11,3 +11,5 @@
 /composer.phar
 .idea/*
 *.php~
+/web/media/*
+/web/uploads/*

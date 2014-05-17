@@ -27,12 +27,6 @@ class UserImage extends BaseImage
      */
     private $isDefault = false;
 
-    public function setFile(\SplFileInfo $file)
-    {
-        $this->file = $file;
-        $this->upload();
-    }
-
     /**
      * Set isDefault
      *

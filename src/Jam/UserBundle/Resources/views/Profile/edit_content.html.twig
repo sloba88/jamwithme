@@ -20,8 +20,8 @@
             {{ form_errors(form.images) }}
             <div>
                 <div id="user_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-index="{{ form.vars.value.images|length }}">
-                    {% for img in form.vars.value.images %}
-                        <img src="{{ asset('uploads/' ~ img.path) | imagine_filter('my_thumb') }}" />
+                    {% for i in form.vars.value.images %}
+                        <img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" />
                     {% endfor %}
                 </div>
                 <div class="clear">

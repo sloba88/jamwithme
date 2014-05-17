@@ -5,6 +5,7 @@ namespace Jam\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Jam\CoreBundle\Model\Image;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -421,14 +422,26 @@ class User extends BaseUser
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function hasImage(UserImage $image)
+    {
+        return $this->images->contains($image);
+    }
+
+    /**
      * Add images
      *
      * @param \Jam\CoreBundle\Model\Image $images
      * @return User
      */
-    public function addImage(\Jam\CoreBundle\Model\Image $images)
+    public function addImage(UserImage $image)
     {
-        $this->images[] = $images;
+        if (!$this->hasImage($image) && $image->getFile()!='') {
+            $image->setUser($this);
+            $this->images->add($image);
+            $image->upload();
+        }
 
         return $this;
     }
@@ -438,9 +451,10 @@ class User extends BaseUser
      *
      * @param \Jam\CoreBundle\Model\Image $images
      */
-    public function removeImage(\Jam\CoreBundle\Model\Image $images)
+    public function removeImage(UserImage $image)
     {
-        $this->images->removeElement($images);
+        $image->setUser(null);
+        $this->images->removeElement($image);
     }
 
     /**
