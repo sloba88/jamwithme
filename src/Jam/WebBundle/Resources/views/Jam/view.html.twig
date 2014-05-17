@@ -6,11 +6,16 @@
 
     <h3>Members:</h3>
 
-    <ul>
         {% for m in jam.members %}
-            <li>{{ m.email }}</li>
+            <div class="col-md-2 text-center">
+                <a href="{{ path('musician_profile', {'username': m.username}) }}">
+                    <img src="{{ asset(m.images.first.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
+                    <div>{{ m.username }}</div>
+                </a>
+            </div>
         {% endfor %}
-    </ul>
+
+    <div class="clearfix"></div>
 
     <h3>Genres:</h3>
 
