@@ -5,7 +5,7 @@
         {% for m in musicians %}
             <div class="col-md-2 text-center">
                 <a href="{{ path('musician_profile', {'username': m.username}) }}">
-                    <img src="{{ asset(m.images.first.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
+                    <img src="{{ asset(m.images.first.getWebPath|default('')) | imagine_filter('my_thumb') }}" class="img-circle" />
                     <div>{{ m.username }}</div>
                 </a>
             </div>
