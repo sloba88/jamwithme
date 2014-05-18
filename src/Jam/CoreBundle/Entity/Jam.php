@@ -80,6 +80,13 @@ class Jam
      */
     private $genres;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=1000)
+     */
+    private $description;
+
     
     /**
      * Constructor
@@ -266,5 +273,28 @@ class Jam
     public function getGenres()
     {
         return $this->genres;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Jam
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

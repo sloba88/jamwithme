@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Entity\Genre;
 use Jam\CoreBundle\Entity\Jam;
 use Jam\CoreBundle\Form\Type\GenreType;
+use Jam\CoreBundle\Form\Type\JamType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,19 +36,7 @@ class JamController extends Controller
     {
         $jam = new Jam();
 
-        $form = $this->createFormBuilder($jam)
-            ->add('name', 'text')
-            ->add('members_count', 'text')
-            ->add('genres', 'entity', array(
-                'class' => 'JamCoreBundle:Genre',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u');
-                },
-                'property' => "name",
-                'multiple' => true
-            ))
-            ->add('save', 'submit')
-            ->getForm();
+        $form = $this->createForm(new JamType());
 
         $form->handleRequest($request);
 
