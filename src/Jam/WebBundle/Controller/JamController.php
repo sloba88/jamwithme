@@ -64,7 +64,7 @@ class JamController extends Controller
     }
 
     /**
-     * @Route("/edit/{name}", name="edit_jam")
+     * @Route("/jam/edit/{name}", name="edit_jam")
      * @Template()
      */
     public function editAction($name)
