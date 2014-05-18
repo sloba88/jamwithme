@@ -4,49 +4,63 @@
 
     <h2>Jam name: {{ jam.name }}</h2>
 
-    <h3>Members:</h3>
+    <div class="col-md-6">
 
-        {% for m in jam.members %}
-            <div class="col-md-2 text-center">
-                <a href="{{ path('musician_profile', {'username': m.username}) }}">
-                    <img src="{{ asset(m.images.first.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
-                    <div>{{ m.username }}</div>
-                </a>
-            </div>
-        {% endfor %}
+        <h3>Description:</h3>
 
-    <div class="clearfix"></div>
+        <p>{{ jam.description }}</p>
 
-    <h3>Genres:</h3>
+        <h3>Members:</h3>
 
-    <ul>
-        {% for j in jam.genres %}
-            <li>{{ j.name }}</li>
-        {% endfor %}
-    </ul>
+            {% for m in jam.members %}
+                <div class="col-md-2 text-center">
+                    <a href="{{ path('musician_profile', {'username': m.username}) }}">
+                        <img src="{{ asset(m.images.first.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
+                        <div>{{ m.username }}</div>
+                    </a>
+                </div>
+            {% endfor %}
 
-    {% if is_granted("ROLE_USER") %}
-        {% if(app.user.isjammember(jam)) %}
-        {% else %}
-            {% if(app.user.isjammemberRequested(jam)) %}
-                <a href="#">Request sent</a>
+        <div class="clearfix"></div>
+
+        <h3>Genres:</h3>
+
+        <ul>
+            {% for j in jam.genres %}
+                <li>{{ j.name }}</li>
+            {% endfor %}
+        </ul>
+
+        {% if is_granted("ROLE_USER") %}
+            {% if(app.user.isjammember(jam)) %}
             {% else %}
-                <a href="{{ path('join_jam_request', {'name': jam.name}) }}">Join request</a>
+                {% if(app.user.isjammemberRequested(jam)) %}
+                    <a href="#">Request sent</a>
+                {% else %}
+                    <a href="{{ path('join_jam_request', {'name': jam.name}) }}">Join request</a>
+                {% endif %}
             {% endif %}
         {% endif %}
-    {% endif %}
-    <br />
-    <br />
-    {% if is_granted("ROLE_USER") %}
-        {% if (app.user.id == jam.creator.id) %}
-            <p>It's my Jam!</p>
-            <p>Jam requests:</p>
-            <ul>
-                {% for m in jam.memberRequests %}
-                    <li>{{ m.username }} <a href="{{ path('jam_accept', {'name': jam.name, 'user_id': m.id}) }}">Accept</a> / <a href="">Deny</a></li>
-                {% endfor %}
-            </ul>
+        <br />
+        <br />
+        {% if is_granted("ROLE_USER") %}
+            {% if (app.user.id == jam.creator.id) %}
+                <p>Jam requests:</p>
+                <ul>
+                    {% for m in jam.memberRequests %}
+                        <li>{{ m.username }} <a href="{{ path('jam_accept', {'name': jam.name, 'user_id': m.id}) }}">Accept</a> / <a href="">Deny</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         {% endif %}
-    {% endif %}
+    </div>
+
+    <div class="col-md-6">
+        {% if is_granted("ROLE_USER") %}
+            {% if (app.user.id == jam.creator.id) %}
+                <a href="{{ path('edit_jam', { 'name' : jam.name } ) }}" class="btn btn-default">Edit</a>
+            {% endif %}
+        {% endif %}
+    </div>
 
 {% endblock %}

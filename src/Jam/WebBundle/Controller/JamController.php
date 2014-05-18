@@ -64,6 +64,39 @@ class JamController extends Controller
     }
 
     /**
+     * @Route("/edit/{name}", name="edit_jam")
+     * @Template()
+     */
+    public function editAction($name)
+    {
+        $musician = $this->container->get('security.context')->getToken()->getUser();
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        $jam = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Jam')
+            ->findOneBy(array('name' => $name, 'creator' => $musician));
+
+        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+
+        $form = $this->createForm(new JamType(), $jam);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($jam);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->set('success', 'Jam updated successfully.');
+
+            return $this->redirect($this->generateUrl('home'));
+        }
+
+        return array('form' => $form->createView());
+    }
+
+    /**
      * @Route("/jam/{name}.{id}", name="view_jam")
      * @Template()
      */

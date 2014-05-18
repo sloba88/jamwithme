@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <div class="col-md-6">
+
+        {{ form_row(form.name) }}
+
+        {{ form_row(form.description) }}
+
+        {{ form_row(form.members_count) }}
+
+        {{ form_row(form.genres) }}
+
+        {{ form_widget(form._token) }}
+
+        {{ form_row(form.save) }}
+
+    </div>
+
+{% endblock %}
