@@ -12,4 +12,4 @@ Feature: Musician feature
       And I fill in first_name with "test"
       And I fill in last_name with "test"
       And I fill in about with "test"
-      Then I should see ""
+      Then I should see " "
