@@ -49,7 +49,7 @@ class JamController extends Controller
                 throw $this->createNotFoundException('This user does not exist');
             }
 
-            $jam->addMember($creator);
+            $jam->addJamMember($creator);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);
