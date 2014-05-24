@@ -14,7 +14,11 @@
 
         {{ form_row(form.genres) }}
 
+        {{ form_row(form.jamMembers) }}
+
         {{ form_widget(form._token) }}
+
+        {{ form_errors(form) }}
 
         {{ form_row(form.save) }}
 

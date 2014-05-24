@@ -55,14 +55,9 @@ class Jam
     /**
      * @var collection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jams" )
-     * @ORM\JoinTable(
-     *      name="jam_members",
-     *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
-     * )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMember", mappedBy="jam")
      */
-    private $members;
+    private $jamMembers;
 
     /**
      * @var collection
@@ -116,7 +111,7 @@ class Jam
      */
     public function __construct()
     {
-        $this->members = new ArrayCollection();
+        $this->jamMembers = new ArrayCollection();
         $this->genres = new ArrayCollection();
     }
 
@@ -197,39 +192,6 @@ class Jam
     public function getCreator()
     {
         return $this->creator;
-    }
-
-    /**
-     * Add members
-     *
-     * @param \Jam\UserBundle\Entity\User $members
-     * @return Jam
-     */
-    public function addMember(\Jam\UserBundle\Entity\User $members)
-    {
-        $this->members[] = $members;
-
-        return $this;
-    }
-
-    /**
-     * Remove members
-     *
-     * @param \Jam\UserBundle\Entity\User $members
-     */
-    public function removeMember(\Jam\UserBundle\Entity\User $members)
-    {
-        $this->members->removeElement($members);
-    }
-
-    /**
-     * Get members
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMembers()
-    {
-        return $this->members;
     }
 
     /**
@@ -388,5 +350,38 @@ class Jam
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Add jamMembers
+     *
+     * @param \Jam\CoreBundle\Entity\JamMember $jamMembers
+     * @return Jam
+     */
+    public function addJamMember(\Jam\CoreBundle\Entity\JamMember $jamMembers)
+    {
+        $this->jamMembers[] = $jamMembers;
+
+        return $this;
+    }
+
+    /**
+     * Remove jamMembers
+     *
+     * @param \Jam\CoreBundle\Entity\JamMember $jamMembers
+     */
+    public function removeJamMember(\Jam\CoreBundle\Entity\JamMember $jamMembers)
+    {
+        $this->jamMembers->removeElement($jamMembers);
+    }
+
+    /**
+     * Get jamMembers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJamMembers()
+    {
+        return $this->jamMembers;
     }
 }

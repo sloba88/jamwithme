@@ -86,11 +86,9 @@ class User extends BaseUser
     protected $jamsCreator;
 
     /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="members", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMember", mappedBy="member", cascade={"persist"})
      */
-    protected $jams;
+    protected $jamsMember;
 
     /**
      * @var collection
@@ -283,7 +281,7 @@ class User extends BaseUser
      */
     public function isJamMember(\Jam\CoreBundle\Entity\Jam $jam)
     {
-        foreach($jam->getMembers() AS $member){
+        foreach($jam->getJamMembers() AS $member){
             if($member->getId()==$this->getId()){
                 return true;
             }
@@ -465,5 +463,38 @@ class User extends BaseUser
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Add jamsMember
+     *
+     * @param \Jam\CoreBundle\Entity\JamMember $jamsMember
+     * @return User
+     */
+    public function addJamsMember(\Jam\CoreBundle\Entity\JamMember $jamsMember)
+    {
+        $this->jamsMember[] = $jamsMember;
+
+        return $this;
+    }
+
+    /**
+     * Remove jamsMember
+     *
+     * @param \Jam\CoreBundle\Entity\JamMember $jamsMember
+     */
+    public function removeJamsMember(\Jam\CoreBundle\Entity\JamMember $jamsMember)
+    {
+        $this->jamsMember->removeElement($jamsMember);
+    }
+
+    /**
+     * Get jamsMember
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getJamsMember()
+    {
+        return $this->jamsMember;
     }
 }
