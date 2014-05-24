@@ -75,7 +75,7 @@
         <script src="{{ asset('/js/select2.min.js') }}"></script>
         <!-- Include all JavaScripts, compiled by Assetic -->
         <script src="{{ asset('/js/bootstrap.js') }}"></script>
-        <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>-->
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>
         <script src="{{ asset('/js/vendor/bootstrap-typeahead.js') }}"></script>
         <script src="{{ asset('/js/vendor/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('bundles/jamlocation/jquery.ui.addresspicker.js') }}"></script>
@@ -89,7 +89,7 @@
                 placeholder: 'What do you play?'
             });
 
-            $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres").select2({
+            $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres, #jam_genres").select2({
                 placeholder: 'Whats music do you play?'
             });
         });
