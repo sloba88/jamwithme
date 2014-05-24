@@ -32,8 +32,8 @@ class Jam
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=100)
+     * @Gedmo\Slug(fields={"name"}, unique=true)
+     * @ORM\Column(name="slug", type="string", length=100, unique=true)
      */
     private $slug;
 
@@ -55,7 +55,7 @@ class Jam
     /**
      * @var collection
      *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMember", mappedBy="jam")
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMember", mappedBy="jam", cascade={"persist"})
      */
     private $jamMembers;
 
@@ -373,6 +373,19 @@ class Jam
     public function removeJamMember(\Jam\CoreBundle\Entity\JamMember $jamMembers)
     {
         $this->jamMembers->removeElement($jamMembers);
+    }
+
+    /**
+     * Set jamMembers
+     *
+     * @param \Jam\CoreBundle\Entity\JamMember $jamMembers
+     * @return Jam
+     */
+    public function setJamMembers(\Jam\CoreBundle\Entity\JamMember $jamMembers)
+    {
+        $this->jamMembers[] = $jamMembers;
+
+        return $this;
     }
 
     /**

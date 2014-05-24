@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Jam\UserBundle\JamUserBundle(),
             new Jam\LocationBundle\JamLocationBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Liip\ImagineBundle\LiipImagineBundle()
         );

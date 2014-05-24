@@ -90,6 +90,16 @@ assetic:
 braincrafted_bootstrap:
     less_filter: less
 
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            tree: true
+            sluggable: true
+            translatable: true
+            timestampable: true
+            softdeleteable: true
+
 liip_imagine:
     resolvers:
        default:

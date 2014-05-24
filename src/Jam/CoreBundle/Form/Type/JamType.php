@@ -24,7 +24,9 @@ class JamType extends AbstractType
                 'multiple' => true
             ))
             ->add('jamMembers', 'collection', array(
-                'type' => new JamMemberType()
+                'type' => new JamMemberType(),
+                'allow_add' => true,
+                'allow_delete' => true
             ))
             ->add('save', 'submit');
     }

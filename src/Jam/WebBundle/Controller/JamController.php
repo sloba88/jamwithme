@@ -5,6 +5,7 @@ namespace Jam\WebBundle\Controller;
 use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Entity\Genre;
 use Jam\CoreBundle\Entity\Jam;
+use Jam\CoreBundle\Entity\JamMember;
 use Jam\CoreBundle\Form\Type\GenreType;
 use Jam\CoreBundle\Form\Type\JamType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -36,7 +37,7 @@ class JamController extends Controller
     {
         $jam = new Jam();
 
-        $form = $this->createForm(new JamType());
+        $form = $this->createForm(new JamType(), $jam);
 
         $form->handleRequest($request);
 
@@ -49,7 +50,11 @@ class JamController extends Controller
                 throw $this->createNotFoundException('This user does not exist');
             }
 
-            $jam->addJamMember($creator);
+            $jamMember = new JamMember();
+            $jamMember->setJam($jam);
+            $jamMember->setMember($creator);
+
+            $jam->addJamMember($jamMember);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);
@@ -84,13 +89,17 @@ class JamController extends Controller
 
         if ($form->isValid()) {
 
+            foreach($jam->getJamMembers() as $j){
+                $j->setJam($jam);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);
             $em->flush();
 
             $this->get('session')->getFlashBag()->set('success', 'Jam updated successfully.');
 
-            return $this->redirect($this->generateUrl('home'));
+            //return $this->redirect($this->generateUrl('home'));
         }
 
         return array('form' => $form->createView());

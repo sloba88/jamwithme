@@ -5,12 +5,17 @@ namespace Jam\CoreBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Jam
- *
- * @ORM\Table(name="jam_members")
+ * @ORM\Table(name="jam_members",uniqueConstraints={@UniqueConstraint(name="jam_member_unique", columns={"jam_id", "user_id"})})
  * @ORM\Entity
+ * @UniqueEntity(fields={"member"})
+ * *
  */
 class JamMember
 {
@@ -27,7 +32,7 @@ class JamMember
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jamsMember")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $member;
 
@@ -35,7 +40,7 @@ class JamMember
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Jam", inversedBy="jamMembers")
-     * @ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="jam_id", referencedColumnName="id")
      */
     private $jam;
 

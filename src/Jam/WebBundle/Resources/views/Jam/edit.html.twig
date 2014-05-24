@@ -14,7 +14,16 @@
 
         {{ form_row(form.genres) }}
 
-        {{ form_row(form.jamMembers) }}
+        <ul id="jam_members" data-prototype="{{ form_widget(form.jamMembers.vars.prototype)|e }}" data-index="{{ form.jamMembers|length }}">
+            {% for jm in form.jamMembers %}
+                <li>
+                    {{ form_errors(jm) }}
+                    {{ form_widget(jm) }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="#" id="add_another_member" class="btn bnt-default">Add another member</a>
 
         {{ form_widget(form._token) }}
 
