@@ -5,12 +5,14 @@ namespace Jam\WebBundle\Controller;
 use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Entity\Genre;
 use Jam\CoreBundle\Entity\Jam;
+use Jam\CoreBundle\Entity\JamImage;
 use Jam\CoreBundle\Entity\JamMember;
 use Jam\CoreBundle\Form\Type\GenreType;
 use Jam\CoreBundle\Form\Type\JamType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class JamController extends Controller
@@ -193,5 +195,55 @@ class JamController extends Controller
         }
 
         return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
+    }
+
+    /**
+     * @Route("/jam/upload-image/{slug}", name="upload_image")
+     * @Template()
+     */
+    public function uploadImageAction($slug)
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        $jam = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Jam')
+            ->findOneBy(array('slug' => $slug));
+
+        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+
+        $file = $request->files->get('file');
+
+        $jamImage = new JamImage();
+        $jamImage->setFile($file);
+        $jam->addImage($jamImage);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($jam);
+        $em->flush();
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'files' => array(
+                'url' => $jamImage->getWebPath(),
+                'thumbnailUrl' => $jamImage->getWebPath(),
+                'name' => $jamImage->getPath(),
+                'type' => $file->getClientMimeType(),
+                'size' => $file->getClientSize(),
+                'deleteUrl' => '',
+                'deleteType' => 'DELETE'
+            )
+        ));
+
+        /*{"files":[{
+            "url":"http://jquery-file-upload.appspot.com/AMIfv94N8JSr3kEKex2xHrXhAOoQdKBA-r3MLQHoeO_Ohc-euu-7jvwMdjEKDk-s-kxyYAD4YTwSCCpzX7nNAhiGIuJJrnTAW87UzCidghvuQNGvEOcK1LtUIVa_cXtzFug5IgeV0EdIydjbUEPQhHHnyITFLiHqp45U9KWmwy2E90RoPcewDFU/998628_670369989662220_792208664_n.png",
+            "thumbnailUrl":"http://lh3.ggpht.com/uC5buMbFdxzpiroZ0KkSSD7Us8L0BIN5PpkyBYWy5eXA_T4Wvwr4OotKDkFav_rnviu7FyqqAKAtCTqQinhp1r28H4ebh-3j=s80",
+            "name":"998628_670369989662220_792208664_n.png",
+            "type":"image/png",
+            "size":655141,
+            "deleteUrl":"http://jquery-file-upload.appspot.com/AMIfv94N8JSr3kEKex2xHrXhAOoQdKBA-r3MLQHoeO_Ohc-euu-7jvwMdjEKDk-s-kxyYAD4YTwSCCpzX7nNAhiGIuJJrnTAW87UzCidghvuQNGvEOcK1LtUIVa_cXtzFug5IgeV0EdIydjbUEPQhHHnyITFLiHqp45U9KWmwy2E90RoPcewDFU/998628_670369989662220_792208664_n.png?delete=true",
+            "deleteType":"DELETE"
+        }]}*/
+
+        return $response;
     }
 }

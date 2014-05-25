@@ -105,6 +105,13 @@ class Jam
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
+
+    /**
+     * @var collection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamImage", mappedBy="jam", cascade={"all"} )
+     */
+    private $images;
     
     /**
      * Constructor
@@ -396,5 +403,50 @@ class Jam
     public function getJamMembers()
     {
         return $this->jamMembers;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasImage(JamImage $image)
+    {
+        return $this->images->contains($image);
+    }
+
+    /**
+     * Add images
+     *
+     * @param \Jam\CoreBundle\Model\Image $images
+     * @return User
+     */
+    public function addImage(JamImage $image)
+    {
+        if (!$this->hasImage($image) && $image->getFile()!='') {
+            $image->setJam($this);
+            $this->images->add($image);
+            $image->upload();
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \Jam\CoreBundle\Entity\JamImage $images
+     */
+    public function removeImage(\Jam\CoreBundle\Entity\JamImage $images)
+    {
+        $this->images->removeElement($images);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

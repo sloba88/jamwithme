@@ -57,6 +57,11 @@
     </div>
 
     <div class="col-md-6">
+
+        {% for i in jam.images %}
+            <img src="{{ asset(i.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+        {% endfor %}
+
         {% if is_granted("ROLE_USER") %}
             {% if (app.user.id == jam.creator.id) %}
                 <a href="{{ path('edit_jam', { 'slug' : jam.slug } ) }}" class="btn btn-default">Edit</a>

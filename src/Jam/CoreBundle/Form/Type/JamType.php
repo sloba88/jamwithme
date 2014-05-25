@@ -28,6 +28,13 @@ class JamType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true
             ))
+            ->add('images', 'collection', array(
+                'type' => new JamImageType(),
+                'allow_add' => true,
+                'by_reference' => false,
+                'label' => false,
+                'allow_delete' => true
+            ))
             ->add('save', 'submit');
     }
 
