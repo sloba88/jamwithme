@@ -69,17 +69,17 @@ class JamController extends Controller
     }
 
     /**
-     * @Route("/jam/edit/{name}", name="edit_jam")
+     * @Route("/jam/edit/{slug}", name="edit_jam")
      * @Template()
      */
-    public function editAction($name)
+    public function editAction($slug)
     {
         $musician = $this->container->get('security.context')->getToken()->getUser();
         $request = $this->get('request_stack')->getCurrentRequest();
 
         $jam = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('name' => $name, 'creator' => $musician));
+            ->findOneBy(array('slug' => $slug, 'creator' => $musician));
 
         if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 

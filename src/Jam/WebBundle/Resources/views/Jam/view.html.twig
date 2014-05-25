@@ -59,7 +59,7 @@
     <div class="col-md-6">
         {% if is_granted("ROLE_USER") %}
             {% if (app.user.id == jam.creator.id) %}
-                <a href="{{ path('edit_jam', { 'name' : jam.name } ) }}" class="btn btn-default">Edit</a>
+                <a href="{{ path('edit_jam', { 'slug' : jam.slug } ) }}" class="btn btn-default">Edit</a>
             {% endif %}
         {% endif %}
     </div>
