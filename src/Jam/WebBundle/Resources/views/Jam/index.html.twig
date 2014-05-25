@@ -5,7 +5,7 @@
     <ul>
         {% for j in jams %}
             <li>
-                <a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name  }}</a>
+                <a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }} ({% for g in j.genres %}{{ g.name }}{% if not loop.last %}, {% endif %}{% endfor %})</a>
             </li>
         {% endfor %}
     </ul>

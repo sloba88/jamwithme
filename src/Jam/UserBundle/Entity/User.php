@@ -282,7 +282,7 @@ class User extends BaseUser
     public function isJamMember(\Jam\CoreBundle\Entity\Jam $jam)
     {
         foreach($jam->getJamMembers() AS $member){
-            if($member->getId()==$this->getId()){
+            if($member->getMember()->getId()==$this->getId()){
                 return true;
             }
         }
