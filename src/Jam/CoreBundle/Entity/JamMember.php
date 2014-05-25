@@ -44,6 +44,13 @@ class JamMember
      */
     private $jam;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=40, nullable=true)
+     */
+    private $role;
+
 
     /**
      * Get id
@@ -99,5 +106,28 @@ class JamMember
     public function getJam()
     {
         return $this->jam;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     * @return JamMember
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string 
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

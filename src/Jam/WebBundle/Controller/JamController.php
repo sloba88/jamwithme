@@ -106,14 +106,14 @@ class JamController extends Controller
     }
 
     /**
-     * @Route("/jam/{name}.{id}", name="view_jam")
+     * @Route("/jam/{slug}", name="view_jam")
      * @Template()
      */
-    public function viewAction($name)
+    public function viewAction($slug)
     {
         $jam = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('name' => $name));
+            ->findOneBy(array('slug' => $slug));
 
         if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 

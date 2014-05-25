@@ -1,29 +1,49 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>
-    <p>{{ 'profile.show.last_name'|trans }}: {{ user.lastName }}</p>
 
-    {% for i in user.images %}
-        <img src="{{ asset(i.getWebPath()) | imagine_filter('my_thumb') }}" class="img-circle" />
-    {% endfor %}
+    <div class="col-md-6">
 
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <p>{{ 'profile.show.about_me'|trans }}: {{ user.aboutMe }}</p>
+        {% if ( user.images|length == 0 ) %}
+            <img src="{{ asset('/images/placeholder-user.jpg') | imagine_filter('my_thumb') }}" class="img-circle" />
+        {% else %}
+            {% for i in user.images %}
+                <img src="{{ asset(i.getWebPath()) | imagine_filter('my_thumb') }}" class="img-circle" />
+            {% endfor %}
+        {% endif %}
 
-    <p>Genres: </p>
-    <ul>
-    {% for g in user.genres %}
-        <li>{{ g.name }}</li>
-    {% endfor %}
-    </ul>
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>
+        <p>{{ 'profile.show.last_name'|trans }}: {{ user.lastName }}</p>
 
-    <p>Instruments: </p>
-    <ul>
-        {% for i in user.instruments %}
-            <li>{{ i.name }}</li>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        <p>{{ 'profile.show.about_me'|trans }}: {{ user.aboutMe }}</p>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <p>Genres: </p>
+        <ul>
+        {% for g in user.genres %}
+            <li>{{ g.name }}</li>
         {% endfor %}
-    </ul>
+        </ul>
+
+        <p>Instruments: </p>
+        <ul>
+            {% for i in user.instruments %}
+                <li>{{ i.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Jams: </p>
+        <ul>
+            {% for j in user.jamsMember %}
+                <li><a href="{{ path('view_jam', { 'slug': j.jam.slug } ) }}">{{ j.jam.name }}</a> ({{ j.role }})</li>
+            {% endfor %}
+        </ul>
+
+    </div>
 
 </div>

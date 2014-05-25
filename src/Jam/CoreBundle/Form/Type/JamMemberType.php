@@ -17,7 +17,8 @@ class JamMemberType extends AbstractType
                         return $er->createQueryBuilder('u');
                     },
                 'property' => "username"
-            ));
+            ))
+            ->add('role');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
