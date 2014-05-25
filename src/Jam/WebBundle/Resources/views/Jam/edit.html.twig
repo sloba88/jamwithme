@@ -78,7 +78,7 @@
     <script>
         $(function () {
 
-            var url = '{{ path('upload_image', {'slug': 'blekeri'} ) }}';
+            var url = '{{ path('upload_image', {'slug': form.vars.value.slug } ) }}';
                     uploadButton = $('<button/>')
                             .addClass('btn btn-primary')
                             .prop('disabled', true)
