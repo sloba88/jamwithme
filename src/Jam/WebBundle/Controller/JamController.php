@@ -121,14 +121,14 @@ class JamController extends Controller
     }
 
     /**
-     * @Route("/jam/{name}/join", name="join_jam_request")
+     * @Route("/jam/{slug}/join", name="join_jam_request")
      * @Template()
      */
-    public function joinJamAction($name)
+    public function joinJamAction($slug)
     {
         $jam = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('name' => $name));
+            ->findOneBy(array('slug' => $slug));
 
         if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 
@@ -140,7 +140,7 @@ class JamController extends Controller
 
                 if ($musician->isJamMemberRequested($jam)) {
                     $this->get('session')->getFlashBag()->set('error', 'Request already sent.');
-                    return $this->redirect($this->generateUrl('view_jam', array('name' => $name, 'id' => $jam->getId())));
+                    return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
                 }
 
                 $jam->addMemberRequest($musician);
@@ -155,14 +155,14 @@ class JamController extends Controller
             throw $this->createNotFoundException('You shall not pass');
         }
 
-        return $this->redirect($this->generateUrl('view_jam', array('name' => $name, 'id' => $jam->getId())));
+        return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
     }
 
     /**
-     * @Route("/jam/{name}/accept/{user_id}", name="jam_accept")
+     * @Route("/jam/{slug}/accept/{user_id}", name="jam_accept")
      * @Template()
      */
-    public function jamAcceptAction($name, $user_id)
+    public function jamAcceptAction($slug, $user_id)
     {
         $musician = $this->getDoctrine()
             ->getRepository('JamUserBundle:User')
@@ -170,7 +170,7 @@ class JamController extends Controller
 
         $jam = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('name' => $name));
+            ->findOneBy(array('slug' => $slug));
 
         if (!$jam) throw $this->createNotFoundException('The jam does not exist');
 
@@ -192,6 +192,6 @@ class JamController extends Controller
             throw $this->createNotFoundException('You shall not pass');
         }
 
-        return $this->redirect($this->generateUrl('view_jam', array('name' => $name, 'id' => $jam->getId())));
+        return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
     }
 }

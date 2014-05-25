@@ -38,7 +38,7 @@
                 {% if(app.user.isjammemberRequested(jam)) %}
                     <a href="#">Request sent</a>
                 {% else %}
-                    <a href="{{ path('join_jam_request', {'name': jam.name}) }}">Join request</a>
+                    <a href="{{ path('join_jam_request', {'slug': jam.slug}) }}">Join request</a>
                 {% endif %}
             {% endif %}
         {% endif %}
@@ -49,7 +49,7 @@
                 <p>Jam requests:</p>
                 <ul>
                     {% for m in jam.memberRequests %}
-                        <li>{{ m.username }} <a href="{{ path('jam_accept', {'name': jam.name, 'user_id': m.id}) }}">Accept</a> / <a href="">Deny</a></li>
+                        <li>{{ m.username }} <a href="{{ path('jam_accept', {'slug': jam.slug, 'user_id': m.id}) }}">Accept</a> / <a href="">Deny</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}
