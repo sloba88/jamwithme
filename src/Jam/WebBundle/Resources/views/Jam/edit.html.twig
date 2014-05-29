@@ -18,7 +18,14 @@
             {% for jm in form.jamMembers %}
                 <li>
                     {{ form_errors(jm) }}
-                    {{ form_widget(jm) }}
+                    {% if form.vars.value.jamMembers[loop.index0].member == app.user %}
+                        {{ form_label(jm.member) }}
+                        {{ form_widget(jm.member, { 'attr': { 'disabled': true } }) }}
+                        {{ form_label(jm.role) }}
+                        {{ form_widget(jm.role) }}
+                    {% else %}
+                        {{ form_widget(jm) }}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
