@@ -198,9 +198,9 @@ class JamController extends Controller
     }
 
     /**
- * @Route("/jam/image/add/{slug}", name="upload_image")
- * @Template()
- */
+     * @Route("/jam/image/add/{slug}", name="upload_image")
+     * @Template()
+     */
     public function uploadImageAction($slug)
     {
         $request = $this->get('request_stack')->getCurrentRequest();

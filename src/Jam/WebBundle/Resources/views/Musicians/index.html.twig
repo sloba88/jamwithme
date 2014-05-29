@@ -11,4 +11,51 @@
             </div>
         {% endfor %}
 
+
+    <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat }}" data-lng="{{ app.user.location.lng }}"></div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script>
+        var map;
+        var $map = $('#map-canvas');
+
+        function initialize() {
+            var mapOptions = {
+                zoom: 14
+            };
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+        }
+
+        $(function() {
+            initialize();
+
+            var url = $map.data('url');
+            $.ajax({
+                url: url
+            }).done(function( result ) {
+                if (result.status == 'success'){
+                    $.each(result.data, function(k, v){
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(v.lat, v.lng),
+                            map: map,
+                            title: v.username
+                        });
+                    });
+                }
+            });
+
+            map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+        });
+
+
+
+
+
+    </script>
+
 {% endblock %}
