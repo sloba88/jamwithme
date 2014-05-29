@@ -48,7 +48,8 @@ class MusiciansController extends Controller
                'username' => $m->getUsername(),
                'lat' => $m->getLocation()->getLat(),
                'lng' => $m->getLocation()->getLng(),
-               'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb')
+               'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
+               'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername()))
             ));
         }
 

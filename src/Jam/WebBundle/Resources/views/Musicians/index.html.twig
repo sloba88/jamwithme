@@ -76,7 +76,7 @@
                             title: v.username
                         });
 
-                        var contentString = '<div id="content"><img src="'+ v.image +'" /></div>';
+                        var contentString = '<div id="content"><a href="'+ v.url +'"><img src="'+ v.image +'" /><p>'+ v.username +'</p></a></div>';
 
                         var infowindow = new google.maps.InfoWindow({
                             content: contentString
