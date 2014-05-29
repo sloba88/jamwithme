@@ -37,10 +37,18 @@ class MusiciansController extends Controller
         $musicians_data = array();
 
         foreach($musicians AS $m){
+
+            if ($m->getImages()->first()){
+                $image = $m->getImages()->first()->getWebPath();
+            } else{
+                $image = '/images/placeholder-user.jpg';
+            }
+
             array_push($musicians_data, array(
                'username' => $m->getUsername(),
                'lat' => $m->getLocation()->getLat(),
-               'lng' => $m->getLocation()->getLng()
+               'lng' => $m->getLocation()->getLng(),
+               'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb')
             ));
         }
 

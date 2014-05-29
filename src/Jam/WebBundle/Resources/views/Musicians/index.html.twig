@@ -12,7 +12,7 @@
         {% endfor %}
 
 
-    <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat }}" data-lng="{{ app.user.location.lng }}"></div>
+    <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
 {% endblock %}
 
@@ -31,6 +31,36 @@
                     mapOptions);
         }
 
+        function getLocation(){
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            }else{
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+        function showPosition(position){
+            map.setCenter(new google.maps.LatLng(parseFloat(position.coords.latitude), position.coords.longitude));
+        }
+
+        function showError(error)
+        {
+            switch(error.code)
+            {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
         $(function() {
             initialize();
 
@@ -45,11 +75,27 @@
                             map: map,
                             title: v.username
                         });
+
+                        var contentString = '<div id="content"><img src="'+ v.image +'" /></div>';
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.open(map,marker);
+                        });
+
                     });
                 }
             });
 
-            map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+            if ($map.data('lat') == ''){
+                getLocation();
+            }else{
+                map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+            }
+
         });
 
 
