@@ -109,7 +109,7 @@ class Jam
     /**
      * @var collection
      *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamImage", mappedBy="jam", cascade={"all"} )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamImage", mappedBy="jam", cascade={"persist", "remove"}, orphanRemoval=true )
      */
     private $images;
     

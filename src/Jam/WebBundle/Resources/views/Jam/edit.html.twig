@@ -32,8 +32,8 @@
 
             {% for i in form.vars.value.images %}
                 <div class="image-holder">
-                    <img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
-                    <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                    <a href="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" /></a>
+                    <a href="#" class="remove-image-ajax" data-url="{{ path('remove_image', {slug : form.vars.value.slug, id: i.id}) }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                     <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                 </div>
             {% endfor %}
@@ -41,12 +41,11 @@
 
             <input type="file" accept="image/*" name="file" id="jam_images_images_0_file" multiple>
 
-            <div id="progress">
-                <div class="bar" style="width: 0%;"></div>
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
             </div>
 
             <div id="files" class="files"></div>
-
 
         </ul>
     </div>

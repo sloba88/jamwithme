@@ -145,6 +145,20 @@
 
             $("#user_images .image-holder input[type=radio]").after("<span></span>");
 
+            $(".remove-image-ajax").on('click', function(e){
+                e.preventDefault();
+                var url = $(this).data('url');
+                var image = $(this).parents('.image-holder');
+                $.ajax({
+                    url: url
+                })
+                .done(function( result ) {
+                    if (result.status == 'success'){
+                        image.remove();
+                    }
+                });
+            });
+
         });
 
         function addCollectionForm(collectionHolder, type) {

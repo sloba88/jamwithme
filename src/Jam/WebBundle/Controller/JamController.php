@@ -101,7 +101,7 @@ class JamController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', 'Jam updated successfully.');
 
-            //return $this->redirect($this->generateUrl('home'));
+            return $this->redirect($this->generateUrl('home'));
         }
 
         return array('form' => $form->createView());
@@ -198,9 +198,9 @@ class JamController extends Controller
     }
 
     /**
-     * @Route("/jam/upload-image/{slug}", name="upload_image")
-     * @Template()
-     */
+ * @Route("/jam/image/add/{slug}", name="upload_image")
+ * @Template()
+ */
     public function uploadImageAction($slug)
     {
         $request = $this->get('request_stack')->getCurrentRequest();
@@ -210,6 +210,16 @@ class JamController extends Controller
             ->findOneBy(array('slug' => $slug));
 
         if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+
+        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+        }else{
+            throw $this->createNotFoundException('You shall not pass');
+        }
+
+        if(!$user->isJamMember($jam)){
+            throw $this->createNotFoundException('You are not this jam member.');
+        }
 
         $file = $request->files->get('file');
 
@@ -243,6 +253,50 @@ class JamController extends Controller
             "deleteUrl":"http://jquery-file-upload.appspot.com/AMIfv94N8JSr3kEKex2xHrXhAOoQdKBA-r3MLQHoeO_Ohc-euu-7jvwMdjEKDk-s-kxyYAD4YTwSCCpzX7nNAhiGIuJJrnTAW87UzCidghvuQNGvEOcK1LtUIVa_cXtzFug5IgeV0EdIydjbUEPQhHHnyITFLiHqp45U9KWmwy2E90RoPcewDFU/998628_670369989662220_792208664_n.png?delete=true",
             "deleteType":"DELETE"
         }]}*/
+
+        return $response;
+    }
+
+    /**
+     * @Route("/jam/{slug}/image/remove/{id}", name="remove_image")
+     * @Template()
+     */
+    public function removeImageAction($slug, $id)
+    {
+        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+        }else{
+            throw $this->createNotFoundException('You shall not pass');
+        }
+
+        $jam = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Jam')
+            ->findOneBy(array('slug' => $slug));
+
+        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+
+        if(!$user->isJamMember($jam)){
+            throw $this->createNotFoundException('You are not this jam member.');
+        }
+
+        $jamImage = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:JamImage')
+            ->find($id);
+
+        if(!$jamImage){
+            throw $this->createNotFoundException('Image not found.');
+        }
+
+        $jam->removeImage($jamImage);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($jam);
+        $em->flush();
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'status' => 'success'
+        ));
 
         return $response;
     }
