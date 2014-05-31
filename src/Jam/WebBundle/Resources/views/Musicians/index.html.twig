@@ -9,7 +9,7 @@
                 </a>
                 <div class="user-box-details">
                     <a href="{{ path('musician_profile', {'username': m.username}) }}">{{ m.username }}</a> <br />
-                    <span class="user-genres"> {% for g in m.genres %}{{ g.name }}{% if not loop.last %} | {% endif %}{% endfor %}</span>
+                    <span class="user-box-genres"> {% for g in m.genres %}{{ g.name }}{% if not loop.last %} | {% endif %}{% endfor %}</span>
                 </div>
 
             </div>
