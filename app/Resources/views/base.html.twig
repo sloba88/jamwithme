@@ -16,23 +16,70 @@
         <style>
 
             body {
-                background-color: #EEEEEE;
+                background-color: oldlace;
                 padding-bottom: 40px;
                 padding-top: 60px;
             }
 
-            .bar {
-                height: 18px;
-                background: green;
+            body{
+                /*cornsilk*/
+                /*ivory*/
+                /*ghostwhite*/
+                /*beige*/
+                /*oldlace*/
             }
 
-            html body #map-canvas {
-                height: 400px;
-                margin: 0px;
-                padding: 0px;
-                width: 100%;
-                clear: both;
-            }
+        .bar {
+            height: 18px;
+            background: green;
+        }
+
+        html body #map-canvas {
+            height: 400px;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            clear: both;
+        }
+
+        .navbar{
+            background-color: #404569;
+        }
+
+        .navbar-default .navbar-nav > li > a{
+            color: #e3e3e3;
+        }
+
+        .navbar-default .navbar-brand{
+            color: #e3e3e3;
+            font-size: 34px;
+        }
+
+        a{
+            color: #8A8E97;
+        }
+
+        .user-box{
+            background-color: #fff;
+            margin: 0 10px 10px 0;
+        }
+
+        .user-box img{
+            margin-right:8px;
+        }
+
+        .user-box-details{
+            float:left;
+        }
+
+        .user-box .user-box-image-link{
+            float:left;
+        }
+
+        .select2-container.form-control{
+            padding: 0;
+        }
+
 
         </style>
     </head>
@@ -42,7 +89,7 @@
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ path('home') }}">Jam With Me</a>
+                <a class="navbar-brand" href="{{ path('home') }}">JWM</a>
             </div>
                 <ul class="nav navbar-nav navbar-left">
                     <li {% if app.request.attributes.get('_route') == 'musicians' %}class="active"{% endif %}><a href="{{ path('musicians') }}">Musicians</a></li>

@@ -3,11 +3,15 @@
 {% block body %}
 
         {% for m in musicians %}
-            <div class="col-md-2 text-center">
-                <a href="{{ path('musician_profile', {'username': m.username}) }}">
+            <div class="col-md-2 user-box">
+                <a href="{{ path('musician_profile', {'username': m.username}) }}" class="user-box-image-link">
                     <img src="{{ asset(m.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
-                    <div>{{ m.username }}</div>
                 </a>
+                <div class="user-box-details">
+                    <a href="{{ path('musician_profile', {'username': m.username}) }}">{{ m.username }}</a> <br />
+                    <span class="user-genres"> {% for g in m.genres %}{{ g.name }}{% if not loop.last %} | {% endif %}{% endfor %}</span>
+                </div>
+
             </div>
         {% endfor %}
 
@@ -82,7 +86,7 @@
                             content: contentString
                         });
 
-                        google.maps.event.addListener(marker, 'click', function() {
+                        google.maps.event.addListener(marker, 'mouseover', function() {
                             infowindow.open(map,marker);
                         });
 
