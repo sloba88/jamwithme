@@ -26,6 +26,7 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
         $this->jams = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
