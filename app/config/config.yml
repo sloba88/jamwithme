@@ -77,8 +77,8 @@ fos_user:
             form:
                 type: jam_user_registration
     profile:
-                form:
-                    type: jam_user_registration
+            form:
+                type: jam_user_registration
 
 assetic:
     filters:

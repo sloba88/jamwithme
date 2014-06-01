@@ -26,6 +26,16 @@
         <service id="jam_user.image_type_extension" class="Jam\UserBundle\Form\Extension\ImageTypeExtension">
             <tag name="form.type_extension" alias="file" />
         </service>
+
+        <service id="jam_user.artist.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\ArtistTransform">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="artist.form.type" class="Jam\CoreBundle\Form\Type\ArtistType">
+            <argument type="service" id="jam_user.artist.form.data_transformer"/>
+            <tag name="form.type" alias="artist_type" />
+        </service>
+
     </services>
 
 </container>

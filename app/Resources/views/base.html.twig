@@ -275,6 +275,73 @@
             }
         }
 
+        $(function() {
+            $("#fos_user_profile_form_artists2" ).autocomplete({
+                source: function( request, response ) {
+                    $.ajax({
+                        url: "http://developer.echonest.com/api/v4/artist/suggest",
+                        dataType: "jsonp",
+                        data: {
+                            results: 12,
+                            api_key: "AVZ7NYSNWRRUQVWXS",
+                            format:"jsonp",
+                            name:request.term
+                        },
+                        success: function( data ) {
+                            response( $.map( data.response.artists, function(item) {
+                                return {
+                                    label: item.name,
+                                    value: item.name,
+                                    id: item.id
+                                }
+                            }));
+                        }
+                    });
+                },
+                minLength: 3,
+                select: function( event, ui ) {
+                    $("#log").empty();
+                    $("#log").append(ui.item ? ui.item.id + ' ' + ui.item.label : '(nothing)');
+                }
+            });
+
+            $("#fos_user_profile_form_artists").select2({
+                placeholder: "Favourite Artists?",
+                minimumInputLength: 2,
+                multiple: true,
+                initSelection : function (element, callback) {
+                    var data = [];
+                    $(element.val().split(",")).each(function () {
+                        data.push({id: this, text: this});
+                    });
+                    callback(data);
+                },
+                ajax: {
+                    url: "http://developer.echonest.com/api/v4/artist/suggest",
+                    dataType: "jsonp",
+                    results: function (data) {
+                        //console.log(data);
+                        return {results: $.map( data.response.artists, function(item) {
+                            return {
+                                text: item.name,
+                                value: item.name,
+                                id: item.name
+                            }
+                        })}
+                    },
+                    data: function (term, page) {
+                        return {
+                            results: 12,
+                            api_key: "AVZ7NYSNWRRUQVWXS",
+                            format:"jsonp",
+                            name: term
+                        };
+                    }
+                }
+            });
+
+        });
+
     </script>
 
     </body>

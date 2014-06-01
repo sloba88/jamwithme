@@ -54,6 +54,18 @@ class User extends BaseUser
     protected $genres;
 
     /**
+     * @var collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="musicians", cascade={"persist"})
+     * @ORM\JoinTable(
+     *      name="musicians_artists",
+     *      joinColumns={@ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     * )
+     */
+    protected $artists;
+
+    /**
      * @ORM\Column(type="string", length=100)
      *
      * @Assert\NotBlank(message="Please enter your first name.", groups={"Registration", "Profile"})
@@ -559,5 +571,48 @@ class User extends BaseUser
     public function getBirthDate()
     {
         return $this->birthDate;
+    }
+
+    /**
+     * Add artists
+     *
+     * @param \Jam\CoreBundle\Entity\Artist $artists
+     * @return User
+     */
+    public function addArtist(\Jam\CoreBundle\Entity\Artist $artists)
+    {
+        $this->artists[] = $artists;
+
+        return $this;
+    }
+
+    /**
+     * Remove artists
+     *
+     * @param \Jam\CoreBundle\Entity\Artist $artists
+     */
+    public function removeArtist(\Jam\CoreBundle\Entity\Artist $artists)
+    {
+        $this->artists->removeElement($artists);
+    }
+
+    /**
+     * Get artists
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getArtists()
+    {
+        return $this->artists;
+    }
+
+    /**
+     * Set artists
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function setArtists(ArrayCollection $artists)
+    {
+        $this->artists = $artists;
     }
 }

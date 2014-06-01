@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class RegistrationFormType extends BaseType
 {
@@ -37,6 +38,15 @@ class RegistrationFormType extends BaseType
             'property' => "name",
             'multiple' => true
         ));
+
+//        $builder->add(
+//            $builder->create('artists', 'text', array(
+//                'required' => false
+//            ))
+//                ->addViewTransformer($this->artistTransform)
+//        );
+
+        $builder->add('artists', 'artist_type');
 
         $builder->add('location', new LocationType());
 

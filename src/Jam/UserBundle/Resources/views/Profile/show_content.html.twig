@@ -30,6 +30,13 @@
         {% endfor %}
         </ul>
 
+        <p>Artists: </p>
+        <ul>
+            {% for a in user.artists %}
+                <li>{{ a.name }}</li>
+            {% endfor %}
+        </ul>
+
         <p>Instruments: </p>
         <ul>
             {% for i in user.instruments %}
