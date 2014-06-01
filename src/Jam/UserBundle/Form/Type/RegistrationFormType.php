@@ -40,6 +40,21 @@ class RegistrationFormType extends BaseType
 
         $builder->add('location', new LocationType());
 
+        $builder->add('gender', 'choice', array(
+            'choices'   => array(
+            '1' => 'Male',
+            '2' => 'Female',
+        ),
+            'expanded' => true,
+            'empty_data'  => 0
+        ));
+
+        $builder->add('birthDate', 'date', array(
+            'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+            'widget' => 'choice',
+            'years' => range(1920, date('Y'))
+        ));
+
         $builder->add('images', 'collection', array(
             'type' => new ImageType(),
             'allow_add' => true,

@@ -119,6 +119,21 @@ class User extends BaseUser
      */
     private $images;
 
+
+    /**
+     * @ORM\Column(type="smallint", length=1)
+     *
+     * @Assert\NotBlank(message="Please select your gender.", groups={"Registration", "Profile"})
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="date")
+     *
+     * @Assert\NotBlank(message="Please enter your date of birth.", groups={"Registration", "Profile"})
+     */
+    private $birthDate;
+
     /**
      * Get id
      *
@@ -497,5 +512,52 @@ class User extends BaseUser
     public function getJamsMember()
     {
         return $this->jamsMember;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param integer $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return integer 
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+
+    /**
+     * Set birthDate
+     *
+     * @param \DateTime $birthDate
+     * @return User
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate
+     *
+     * @return \DateTime 
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
     }
 }
