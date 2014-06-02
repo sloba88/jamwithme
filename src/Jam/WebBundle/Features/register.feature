@@ -1,5 +1,5 @@
 Feature: Musician feature
-    In order to create and join jams
+    In order to find people and create jams
     As a musician
     I want to be able to register
 
