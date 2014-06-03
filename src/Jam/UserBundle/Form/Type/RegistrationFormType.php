@@ -39,6 +39,15 @@ class RegistrationFormType extends BaseType
             'multiple' => true
         ));
 
+        $builder->add('brands', 'entity', array(
+            'class' => 'JamCoreBundle:Brand',
+            'query_builder' => function(EntityRepository $er) {
+                    return $er->createQueryBuilder('u');
+                },
+            'property' => "name",
+            'multiple' => true
+        ));
+
 //        $builder->add(
 //            $builder->create('artists', 'text', array(
 //                'required' => false

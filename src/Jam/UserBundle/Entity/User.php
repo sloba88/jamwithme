@@ -66,6 +66,18 @@ class User extends BaseUser
     protected $artists;
 
     /**
+     * @var collection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Brand", inversedBy="musicians", cascade={"persist"})
+     * @ORM\JoinTable(
+     *      name="musicians_brands",
+     *      joinColumns={@ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     * )
+     */
+    protected $brands;
+
+    /**
      * @ORM\Column(type="string", length=100)
      *
      * @Assert\NotBlank(message="Please enter your first name.", groups={"Registration", "Profile"})
@@ -614,5 +626,38 @@ class User extends BaseUser
     public function setArtists(ArrayCollection $artists)
     {
         $this->artists = $artists;
+    }
+
+    /**
+     * Add brands
+     *
+     * @param \Jam\CoreBundle\Entity\Brand $brands
+     * @return User
+     */
+    public function addBrand(\Jam\CoreBundle\Entity\Brand $brands)
+    {
+        $this->brands[] = $brands;
+
+        return $this;
+    }
+
+    /**
+     * Remove brands
+     *
+     * @param \Jam\CoreBundle\Entity\Brand $brands
+     */
+    public function removeBrand(\Jam\CoreBundle\Entity\Brand $brands)
+    {
+        $this->brands->removeElement($brands);
+    }
+
+    /**
+     * Get brands
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBrands()
+    {
+        return $this->brands;
     }
 }
