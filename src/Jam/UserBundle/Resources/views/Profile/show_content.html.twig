@@ -44,6 +44,13 @@
             {% endfor %}
         </ul>
 
+        <p>Brands: </p>
+        <ul>
+            {% for b in user.brands %}
+                <li>{{ b.name }}</li>
+            {% endfor %}
+        </ul>
+
         <p>Jams: </p>
         <ul>
             {% for j in user.jamsMember %}
