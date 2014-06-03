@@ -29,7 +29,8 @@
 
         function initialize() {
             var mapOptions = {
-                zoom: 14
+                zoom: 14,
+                maxZoom: 15
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
@@ -67,6 +68,8 @@
 
         $(function() {
             initialize();
+            var infowindow = null;
+            var iconBase = 'https://maps.google.com/mapfiles/kml/';
 
             var url = $map.data('url');
             $.ajax({
@@ -74,15 +77,27 @@
             }).done(function( result ) {
                 if (result.status == 'success'){
                     $.each(result.data, function(k, v){
+
+                        if (v.me){
+                            icon = iconBase + 'pal2/icon2.png';
+                        }else{
+                            icon = iconBase + 'pal4/icon39.png';
+                        }
+
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(v.lat, v.lng),
                             map: map,
-                            title: v.username
+                            title: v.username,
+                            icon: icon
                         });
 
                         var contentString = '<div id="content"><a href="'+ v.url +'"><img src="'+ v.image +'" /><p>'+ v.username +'</p></a></div>';
 
-                        var infowindow = new google.maps.InfoWindow({
+                        if (infowindow) {
+                            infowindow.close();
+                        }
+
+                        infowindow = new google.maps.InfoWindow({
                             content: contentString
                         });
 

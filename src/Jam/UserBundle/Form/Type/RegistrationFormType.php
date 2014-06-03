@@ -65,13 +65,15 @@ class RegistrationFormType extends BaseType
             '2' => 'Female',
         ),
             'expanded' => true,
-            'empty_data'  => 0
+            'empty_data'  => 0,
+            'required' => false
         ));
 
         $builder->add('birthDate', 'date', array(
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
             'widget' => 'choice',
-            'years' => range(1920, date('Y'))
+            'years' => range(1920, date('Y')),
+            'required' => false
         ));
 
         $builder->add('images', 'collection', array(

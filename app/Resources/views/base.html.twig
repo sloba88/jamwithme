@@ -250,12 +250,11 @@
             var image = $(this).parents('.image-holder');
             $.ajax({
                 url: url
-            })
-                    .done(function( result ) {
-                        if (result.status == 'success'){
-                            image.remove();
-                        }
-                    });
+            }).done(function( result ) {
+                if (result.status == 'success'){
+                    image.remove();
+                }
+            });
         });
 
     });
