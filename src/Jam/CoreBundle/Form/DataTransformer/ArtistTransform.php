@@ -51,7 +51,7 @@ class ArtistTransform implements DataTransformerInterface
         $artistsCollection = new ArrayCollection();
 
         if (!$name) {
-            return null;
+            return $artistsCollection;
         }
 
         $names = explode(",", $name);
