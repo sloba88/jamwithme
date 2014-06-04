@@ -93,15 +93,15 @@
 
                         var contentString = '<div id="content"><a href="'+ v.url +'"><img src="'+ v.image +'" /><p>'+ v.username +'</p></a></div>';
 
-                        if (infowindow) {
-                            infowindow.close();
-                        }
-
-                        infowindow = new google.maps.InfoWindow({
-                            content: contentString
-                        });
-
                         google.maps.event.addListener(marker, 'mouseover', function() {
+                            if (infowindow) {
+                                infowindow.close();
+                            }
+
+                            infowindow = new google.maps.InfoWindow({
+                                content: contentString
+                            });
+
                             infowindow.open(map,marker);
                         });
 
