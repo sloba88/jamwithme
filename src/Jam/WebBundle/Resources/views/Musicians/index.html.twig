@@ -15,8 +15,9 @@
             </div>
         {% endfor %}
 
-
     <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
+
+    {{ form(form) }}
 
 {% endblock %}
 
@@ -68,14 +69,35 @@
 
         $(function() {
             initialize();
-            var infowindow = null;
-            var iconBase = 'https://maps.google.com/mapfiles/kml/';
 
+            fetchMapData('');
+
+            if ($map.data('lat') == ''){
+                getLocation();
+            }else{
+                map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+            }
+
+            $("#search_search").on('click', function(e){
+                e.preventDefault();
+                var form = $(this).parents('form');
+                fetchMapData(form.serialize());
+            });
+
+        });
+
+        var markers = [];
+
+        function fetchMapData(data){
+            var iconBase = 'https://maps.google.com/mapfiles/kml/';
             var url = $map.data('url');
+            var infowindow = null;
             $.ajax({
-                url: url
+                url: url,
+                data: data
             }).done(function( result ) {
                 if (result.status == 'success'){
+                    deleteMarkers();
                     $.each(result.data, function(k, v){
 
                         if (v.me){
@@ -90,6 +112,7 @@
                             title: v.username,
                             icon: icon
                         });
+                        markers.push(marker);
 
                         var contentString = '<div id="content"><a href="'+ v.url +'"><img src="'+ v.image +'" /><p>'+ v.username +'</p></a></div>';
 
@@ -109,16 +132,25 @@
                 }
             });
 
-            if ($map.data('lat') == ''){
-                getLocation();
-            }else{
-                map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+
+            // Sets the map on all markers in the array.
+            function setAllMap(map) {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+                }
             }
 
-        });
+            // Removes the markers from the map, but keeps them in the array.
+            function clearMarkers() {
+                setAllMap(null);
+            }
 
-
-
+            // Deletes all markers in the array by removing references to them.
+            function deleteMarkers() {
+                clearMarkers();
+                markers = [];
+            }
+        }
 
 
     </script>

@@ -27,6 +27,7 @@ class User extends BaseUser
         // your own logic
         $this->jams = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->genres = new ArrayCollection();
     }
 
     /**
@@ -47,8 +48,8 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre", inversedBy="musicians", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="musicians_genres",
-     *      joinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)}
      * )
      */
     protected $genres;

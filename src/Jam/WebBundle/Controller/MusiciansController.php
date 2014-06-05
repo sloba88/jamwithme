@@ -2,6 +2,8 @@
 
 namespace Jam\WebBundle\Controller;
 
+use Jam\CoreBundle\Entity\Search;
+use Jam\CoreBundle\Form\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -19,7 +21,9 @@ class MusiciansController extends Controller
             ->getRepository('JamUserBundle:User')
             ->findAll();
 
-        return array('musicians' => $musicians);
+        $form = $this->createForm(new SearchType());
+
+        return array('musicians' => $musicians, 'form' => $form->createView());
     }
 
     /**
@@ -28,12 +32,31 @@ class MusiciansController extends Controller
      */
     public function findAction()
     {
-        $musicians = $this->getDoctrine()
-            ->getRepository('JamUserBundle:User')
-            ->findAll();
+        $request = $this->get('request_stack')->getCurrentRequest();
+        $searchParams = $request->query->get('search');
+
+        if ($searchParams){
+            //$search = new Search();
+            //$search->setGenres($searchParams['genres']);
+            //$search->setCreator($this->container->get('security.context')->getToken()->getUser());
+            //$em = $this->getDoctrine()->getManager();
+            //$em->persist($search);
+            //$em->flush();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $query = $em->createQuery('SELECT u FROM JamUserBundle:User u JOIN u.genres g WHERE g.id IN (:genres) ');
+            $query->setParameter('genres', $searchParams['genres']);
+            $musicians = $query->getResult();
+
+        }else{
+
+            $musicians = $this->getDoctrine()
+                ->getRepository('JamUserBundle:User')
+                ->findAll();
+        }
 
         $response = new JsonResponse();
-
         $musicians_data = array();
 
         foreach($musicians AS $m){
