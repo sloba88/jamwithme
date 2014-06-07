@@ -36,8 +36,8 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Instrument", inversedBy="musicians", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="musicians_instruments",
-     *      joinColumns={@ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=false)}
      * )
      */
     protected $instruments;
@@ -72,8 +72,8 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Brand", inversedBy="musicians", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="musicians_brands",
-     *      joinColumns={@ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=false)}
      * )
      */
     protected $brands;

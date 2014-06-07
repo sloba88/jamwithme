@@ -20,6 +20,14 @@ class SearchType extends AbstractType
                 'property' => "name",
                 'multiple' => true
             ))
+            ->add('instruments', 'entity', array(
+                'class' => 'JamCoreBundle:Instrument',
+                'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u');
+                    },
+                'property' => "name",
+                'multiple' => true
+            ))
             ->add('search', 'submit');
     }
 
@@ -32,6 +40,6 @@ class SearchType extends AbstractType
 
     public function getName()
     {
-        return 'search';
+        return 'search_form';
     }
 }

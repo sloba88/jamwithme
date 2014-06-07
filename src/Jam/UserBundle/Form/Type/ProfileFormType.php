@@ -27,7 +27,8 @@ class ProfileFormType extends BaseType
                 return $er->createQueryBuilder('u');
             },
             'property' => "name",
-            'multiple' => true
+            'multiple' => true,
+            'required' => false
         ));
 
         $builder->add('genres', 'entity', array(
@@ -36,7 +37,8 @@ class ProfileFormType extends BaseType
                 return $er->createQueryBuilder('u');
             },
             'property' => "name",
-            'multiple' => true
+            'multiple' => true,
+            'required' => false
         ));
 
         $builder->add('brands', 'entity', array(
@@ -45,7 +47,8 @@ class ProfileFormType extends BaseType
                     return $er->createQueryBuilder('u');
                 },
             'property' => "name",
-            'multiple' => true
+            'multiple' => true,
+            'required' => false
         ));
 
 //        $builder->add(

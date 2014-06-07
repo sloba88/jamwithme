@@ -43,11 +43,24 @@ class MusiciansController extends Controller
             //$em->persist($search);
             //$em->flush();
 
-            $em = $this->getDoctrine()->getManager();
+            $repo = $this->getDoctrine()->getRepository('JamUserBundle:User');
 
-            $query = $em->createQuery('SELECT u FROM JamUserBundle:User u JOIN u.genres g WHERE g.id IN (:genres) ');
-            $query->setParameter('genres', $searchParams['genres']);
-            $musicians = $query->getResult();
+            $query = $repo
+                ->createQueryBuilder('u');
+
+            if (isset($searchParams['genres'])){
+                $query->join('u.genres', 'g')
+                ->andWhere('g.id IN (:genres)')
+                ->setParameter('genres', $searchParams['genres']);
+            }
+
+            if (isset($searchParams['instruments'])){
+                $query->join('u.instruments', 'i')
+                    ->andWhere('i.id IN (:instruments)')
+                    ->setParameter('instruments', $searchParams['instruments']);
+            }
+
+            $musicians = $query->getQuery()->getResult();
 
         }else{
 
