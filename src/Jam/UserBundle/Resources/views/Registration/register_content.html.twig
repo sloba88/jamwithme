@@ -7,58 +7,9 @@
     <div class="col-md-6">
         {{ form_row(form.username) }}
 
-        {{ form_row(form.firstName) }}
-
-        {{ form_row(form.lastName) }}
-
         {{ form_row(form.email) }}
 
         {{ form_row(form.plainPassword) }}
-
-        {{ form_row(form.gender) }}
-
-        {{ form_row(form.birthDate) }}
-
-        <div class="form-group" >
-            {{ form_label(form.images, 'Images'|trans) }}
-            {{ form_errors(form.images) }}
-            <div>
-                <div id="user_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-index="{{ form.vars.value.images|length }}">
-                    {% for i in form.vars.value.images %}
-                        <div class="image-holder">
-                            <img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
-                            <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                            <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="clear">
-                    <button type="button" class="btn btn-link" id="add_another_image"><span class="glyphicon glyphicon-plus"></span>{% trans from "buttons" %} Add another image{% endtrans %}</button>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="col-md-6">
-        {{ form_row(form.instruments) }}
-
-        {{ form_row(form.genres) }}
-
-        {{ form_row(form.brands) }}
-
-        <div class="clearfix"></div>
-
-        {{ form_row(form.aboutMe) }}
-
-        <div class="form-group">
-            {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
-            {{ form_errors(form.location) }}
-            <div>
-                {{ form_widget(form.location) }}
-            </div>
-        </div>
 
     </div>
 

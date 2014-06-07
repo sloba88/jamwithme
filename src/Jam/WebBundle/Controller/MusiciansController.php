@@ -69,8 +69,8 @@ class MusiciansController extends Controller
 
             array_push($musicians_data, array(
                'username' => $m->getUsername(),
-               'lat' => $m->getLocation()->getLat(),
-               'lng' => $m->getLocation()->getLng(),
+               'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
+               'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
                'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                'me' => $this->container->get('security.context')->getToken()->getUser() == $m->getUsername() ? true : false

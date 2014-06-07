@@ -79,29 +79,27 @@ class User extends BaseUser
     protected $brands;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      *
-     * @Assert\NotBlank(message="Please enter your first name.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=2,
      *     max="255",
      *     minMessage="The name is too short.",
      *     maxMessage="The name is too long.",
-     *     groups={"Registration", "Profile"}
+     *     groups={"Profile"}
      * )
      */
     protected $firstName;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      *
-     * @Assert\NotBlank(message="Please enter your last name.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=2,
      *     max="255",
      *     minMessage="The name is too short.",
      *     maxMessage="The name is too long.",
-     *     groups={"Registration", "Profile"}
+     *     groups={"Profile"}
      * )
      */
     protected $lastName;
@@ -124,7 +122,7 @@ class User extends BaseUser
     protected $jamsRequests;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      *
      */
     protected $aboutMe;
@@ -146,16 +144,14 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\Column(type="smallint", length=1)
+     * @ORM\Column(type="smallint", length=1, nullable=true)
      *
-     * @Assert\NotBlank(message="Please select your gender.", groups={"Registration", "Profile"})
      */
     private $gender;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      *
-     * @Assert\NotBlank(message="Please enter your date of birth.", groups={"Registration", "Profile"})
      */
     private $birthDate;
 
