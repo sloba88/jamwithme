@@ -558,6 +558,18 @@ class User extends BaseUser
         return $this->gender;
     }
 
+    /**
+     * Get gender
+     *
+     * @return integer
+     */
+    public function getGenderText()
+    {
+        if ($this->gender == null) return false;
+
+        return $this->gender == 1 ? 'male' : 'female';
+    }
+
 
     /**
      * Set birthDate
@@ -580,6 +592,21 @@ class User extends BaseUser
     public function getBirthDate()
     {
         return $this->birthDate;
+    }
+
+    /**
+     * Get age
+     *
+     * @return \DateTime
+     */
+    public function getAge()
+    {
+        if ($this->birthDate == null) return false;
+
+        $now = new \DateTime();
+        $diff = $now->diff($this->birthDate);
+
+        return $diff->y;
     }
 
     /**

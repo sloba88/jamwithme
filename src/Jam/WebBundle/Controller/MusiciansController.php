@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class MusiciansController extends Controller
 {
@@ -15,13 +16,17 @@ class MusiciansController extends Controller
      * @Route("/musicians", name="musicians")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $musicians = $this->getDoctrine()
             ->getRepository('JamUserBundle:User')
             ->findAll();
 
-        $form = $this->createForm(new SearchType());
+        $form = $this->createForm(new SearchType(), null, array(
+            'method' => 'GET'
+        ));
+
+        $form->handleRequest($request);
 
         return array('musicians' => $musicians, 'form' => $form->createView());
     }
@@ -33,7 +38,7 @@ class MusiciansController extends Controller
     public function findAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
-        $searchParams = $request->query->get('search');
+        $searchParams = $request->query->get('search_form');
 
         if ($searchParams){
             //$search = new Search();

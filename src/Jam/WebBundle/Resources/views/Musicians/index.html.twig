@@ -71,7 +71,7 @@
         $(function() {
             initialize();
 
-            fetchMapData('');
+            //fetchMapData('');
 
             if ($map.data('lat') == ''){
                 getLocation();
@@ -79,17 +79,19 @@
                 map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
             }
 
-            $("#search_search").on('click', function(e){
+            $("#search_form_search").on('click', function(e){
                 e.preventDefault();
-                var form = $(this).parents('form');
-                fetchMapData(form.serialize());
+                fetchMapData();
             });
+
+            fetchMapData();
 
         });
 
         var markers = [];
 
-        function fetchMapData(data){
+        function fetchMapData(){
+            var data = $("#search_form").parents('form').serialize();
             var iconBase = 'https://maps.google.com/mapfiles/kml/';
             var url = $map.data('url');
             var infowindow = null;

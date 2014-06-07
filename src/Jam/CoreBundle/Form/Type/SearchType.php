@@ -18,7 +18,8 @@ class SearchType extends AbstractType
                         return $er->createQueryBuilder('u');
                     },
                 'property' => "name",
-                'multiple' => true
+                'multiple' => true,
+                'required' => false
             ))
             ->add('instruments', 'entity', array(
                 'class' => 'JamCoreBundle:Instrument',
@@ -26,7 +27,8 @@ class SearchType extends AbstractType
                         return $er->createQueryBuilder('u');
                     },
                 'property' => "name",
-                'multiple' => true
+                'multiple' => true,
+                'required' => false
             ))
             ->add('search', 'submit');
     }
@@ -34,7 +36,8 @@ class SearchType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jam\CoreBundle\Entity\Search',
+            //'data_class' => 'Jam\CoreBundle\Entity\Search',
+            'csrf_protection' => false
         ));
     }
 
