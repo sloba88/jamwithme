@@ -44,6 +44,13 @@ class Search
     private $genres;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="distance", type="integer")
+     */
+    private $distance;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -187,5 +194,28 @@ class Search
     public function setGenres(ArrayCollection $genres)
     {
         $this->genres = $genres;
+    }
+
+    /**
+     * Set distance
+     *
+     * @param integer $distance
+     * @return Search
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * Get distance
+     *
+     * @return integer 
+     */
+    public function getDistance()
+    {
+        return $this->distance;
     }
 }

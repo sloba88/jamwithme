@@ -1,0 +1,19 @@
+fos_elastica:
+    clients:
+        default: { host: %elastic_host%, port: %elastic_port% }
+    indexes:
+        search:
+            types:
+                user:
+                    mappings:
+                        username: ~
+                    persistence:
+                        # the driver can be orm, mongodb or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: Jam\UserBundle\Entity\User
+                        provider: ~
+                        listener:
+                            immediate: ~
+                        finder: ~

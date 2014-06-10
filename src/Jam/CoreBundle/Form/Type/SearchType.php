@@ -30,6 +30,7 @@ class SearchType extends AbstractType
                 'multiple' => true,
                 'required' => false
             ))
+            ->add('distance')
             ->add('search', 'submit');
     }
 

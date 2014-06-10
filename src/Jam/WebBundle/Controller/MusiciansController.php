@@ -39,6 +39,7 @@ class MusiciansController extends Controller
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $searchParams = $request->query->get('search_form');
+        $me = $this->container->get('security.context')->getToken()->getUser();
 
         if ($searchParams){
             //$search = new Search();
@@ -65,7 +66,11 @@ class MusiciansController extends Controller
                     ->setParameter('instruments', $searchParams['instruments']);
             }
 
-            $musicians = $query->getQuery()->getResult();
+            if (isset($searchParams['distance'])){
+
+            }
+
+                $musicians = $query->getQuery()->getResult();
 
         }else{
 
@@ -91,7 +96,7 @@ class MusiciansController extends Controller
                'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
                'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
-               'me' => $this->container->get('security.context')->getToken()->getUser() == $m->getUsername() ? true : false
+               'me' => $me == $m->getUsername() ? true : false
             ));
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jam\CoreBUndle\Model;
+namespace Jam\CoreBundle\Model;
 
 
 interface TimestampableInterface
