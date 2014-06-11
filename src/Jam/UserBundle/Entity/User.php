@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="Jam\UserBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -18,6 +19,7 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
      */
     protected $id;
 
@@ -684,4 +686,28 @@ class User extends BaseUser
     {
         return $this->brands;
     }
+
+    public function getLat()
+    {
+        return $this->location ? $this->location->getLat() : false;
+    }
+
+    public function getLon()
+    {
+        return $this->location? $this->location->getLng() : false;
+    }
+
+
+    public function getPin()
+    {
+        return $this->getLat().','.$this->getLon();
+
+        $location = array();
+        $location["lat"] = $this->getLat();
+        $location["lon"] = $this->getLon();
+
+        return $location;
+    }
+
+
 }

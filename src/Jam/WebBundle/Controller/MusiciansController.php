@@ -2,6 +2,7 @@
 
 namespace Jam\WebBundle\Controller;
 
+use Elastica\Query\MatchAll;
 use Jam\CoreBundle\Entity\Search;
 use Jam\CoreBundle\Form\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Elastica\Util;
 
 class MusiciansController extends Controller
 {
@@ -41,6 +43,9 @@ class MusiciansController extends Controller
         $searchParams = $request->query->get('search_form');
         $me = $this->container->get('security.context')->getToken()->getUser();
 
+        $finder = $this->container->get('fos_elastica.finder.searches.user');
+        $elasticaQuery = new MatchAll();
+
         if ($searchParams){
             //$search = new Search();
             //$search->setGenres($searchParams['genres']);
@@ -49,35 +54,39 @@ class MusiciansController extends Controller
             //$em->persist($search);
             //$em->flush();
 
-            $repo = $this->getDoctrine()->getRepository('JamUserBundle:User');
-
-            $query = $repo
-                ->createQueryBuilder('u');
-
             if (isset($searchParams['genres'])){
+                /*
                 $query->join('u.genres', 'g')
                 ->andWhere('g.id IN (:genres)')
                 ->setParameter('genres', $searchParams['genres']);
+                */
             }
 
             if (isset($searchParams['instruments'])){
+                /*
                 $query->join('u.instruments', 'i')
                     ->andWhere('i.id IN (:instruments)')
                     ->setParameter('instruments', $searchParams['instruments']);
+                */
             }
 
             if (isset($searchParams['distance'])){
 
+                $locationFilter = new \Elastica\Filter\GeoDistance(
+                    'pin',
+                    array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
+                    (intval($searchParams['distance']) ? intval($searchParams['distance']) : '20') . 'km'
+                );
+                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
             }
 
-                $musicians = $query->getQuery()->getResult();
+            $query = \Elastica\Query::create($elasticaQuery);
 
         }else{
-
-            $musicians = $this->getDoctrine()
-                ->getRepository('JamUserBundle:User')
-                ->findAll();
+            $query = new \Elastica\Query\MatchAll();
         }
+
+        $musicians = $finder->find($query);
 
         $response = new JsonResponse();
         $musicians_data = array();
