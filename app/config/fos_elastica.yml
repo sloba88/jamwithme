@@ -9,6 +9,14 @@ fos_elastica:
                     mappings:
                         username: ~
                         pin: { type: geo_point }
+                        genres:
+                            type: "object"
+                            properties:
+                                id: ~
+                        instruments:
+                            type: "object"
+                            properties:
+                                id: ~
                     persistence:
                         driver: orm
                         model: Jam\UserBundle\Entity\User

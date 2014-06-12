@@ -55,19 +55,13 @@ class MusiciansController extends Controller
             //$em->flush();
 
             if (isset($searchParams['genres'])){
-                /*
-                $query->join('u.genres', 'g')
-                ->andWhere('g.id IN (:genres)')
-                ->setParameter('genres', $searchParams['genres']);
-                */
+                $categoryQuery = new \Elastica\Filter\Terms('genres.id', $searchParams['genres']);
+                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
             }
 
             if (isset($searchParams['instruments'])){
-                /*
-                $query->join('u.instruments', 'i')
-                    ->andWhere('i.id IN (:instruments)')
-                    ->setParameter('instruments', $searchParams['instruments']);
-                */
+                $categoryQuery = new \Elastica\Filter\Terms('instruments.id', $searchParams['instruments']);
+                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
             }
 
             if (isset($searchParams['distance'])){
