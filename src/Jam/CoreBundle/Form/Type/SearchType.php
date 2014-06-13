@@ -33,8 +33,7 @@ class SearchType extends AbstractType
             ->add('distance', 'number', array(
                 'data' => 20,
                 'label' => 'Distance (km)'
-            ))
-            ->add('search', 'submit');
+            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -17,7 +17,9 @@
 
     <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
+    <div class="col-md-6">
     {{ form(form) }}
+    </div>
 
 {% endblock %}
 
@@ -27,6 +29,7 @@
     <script>
         var map;
         var $map = $('#map-canvas');
+        var distanceCircle;
 
         function initialize() {
             var mapOptions = {
@@ -68,6 +71,21 @@
             }
         }
 
+        function drawRadius(radius){
+            var populationOptions = {
+                strokeColor: 'gray',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: 'gray',
+                fillOpacity: 0.35,
+                map: map,
+                center: new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))),
+                radius: radius * 1000
+            };
+            // Add the circle for this city to the map.
+            distanceCircle = new google.maps.Circle(populationOptions);
+        }
+
         $(function() {
             initialize();
 
@@ -79,8 +97,9 @@
                 map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
             }
 
-            $("#search_form_search").on('click', function(e){
-                e.preventDefault();
+            drawRadius($("#search_form_distance").val());
+
+            $("#search_form").parents('form').on('change', function(){
                 fetchMapData();
             });
 
@@ -101,6 +120,7 @@
             }).done(function( result ) {
                 if (result.status == 'success'){
                     deleteMarkers();
+                    distanceCircle.setRadius(parseInt($("#search_form_distance").val()) * 1000);
                     $.each(result.data, function(k, v){
 
                         if (v.me){
