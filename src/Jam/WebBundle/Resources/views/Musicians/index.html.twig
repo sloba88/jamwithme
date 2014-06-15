@@ -3,7 +3,7 @@
 {% block body %}
 
         {% for m in musicians %}
-            <div class="col-md-2 user-box">
+            <div class="col-md-3 user-box">
                 <a href="{{ path('musician_profile', {'username': m.username}) }}" class="user-box-image-link">
                     <img src="{{ asset(m.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
                 </a>
