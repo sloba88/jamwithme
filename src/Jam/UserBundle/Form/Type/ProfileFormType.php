@@ -21,6 +21,8 @@ class ProfileFormType extends BaseType
         $builder->add('username');
         $builder->add('aboutMe');
 
+        $builder->add('skilLevel');
+
         $builder->add('instruments', 'entity', array(
             'class' => 'JamCoreBundle:Instrument',
             'query_builder' => function(EntityRepository $er) {

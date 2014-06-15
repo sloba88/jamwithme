@@ -158,6 +158,12 @@ class User extends BaseUser
     private $birthDate;
 
     /**
+     * @ORM\Column(type="smallint", length=1, nullable=true)
+     *
+     */
+    private $skilLevel;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -710,4 +716,27 @@ class User extends BaseUser
     }
 
 
+
+    /**
+     * Set skilLevel
+     *
+     * @param integer $skilLevel
+     * @return User
+     */
+    public function setSkilLevel($skilLevel)
+    {
+        $this->skilLevel = $skilLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get skilLevel
+     *
+     * @return integer 
+     */
+    public function getSkilLevel()
+    {
+        return $this->skilLevel;
+    }
 }
