@@ -1,3 +1,8 @@
+jam_message:
+    resource: "@JamMessageBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 jam_user:
     resource: "@JamUserBundle/Controller/"
     type:     annotation

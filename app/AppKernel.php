@@ -26,7 +26,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle()
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
+            new Jam\MessageBundle\JamMessageBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
