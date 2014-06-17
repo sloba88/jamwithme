@@ -17,4 +17,12 @@
         </service>
     </services>
     -->
+
+    <services>
+        <service id="message_user_listener" class="Jam\MessageBundle\Listener\MessageUserListener">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <tag name="doctrine_mongodb.odm.event_listener" event="postLoad" />
+        </service>
+    </services>
+
 </container>

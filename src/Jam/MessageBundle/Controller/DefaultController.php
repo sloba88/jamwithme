@@ -46,6 +46,8 @@ class DefaultController extends Controller
 
         $messages = $repository->findAll();
 
+        //var_dump($messages);
+
         return array('messages' => $messages);
     }
 }

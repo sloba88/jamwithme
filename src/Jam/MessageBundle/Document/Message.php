@@ -15,6 +15,7 @@ class Message
 
     /**
      * @MongoDB\Int
+     * @var \Jam\UserBundle\Entity\User
      */
     protected $from;
 
