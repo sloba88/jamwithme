@@ -1,1 +1,9 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <p>List previous messages up here</p>
+    <p>Send Message to both inboxes!!!!!</p>
+
+    {{ form(form) }}
+{% endblock %}

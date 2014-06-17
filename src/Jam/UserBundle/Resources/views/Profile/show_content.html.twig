@@ -20,6 +20,8 @@
         <p>Age: {{ user.age }}</p>
         <p>Gender: {{ user.genderText }}</p>
 
+        <a href="{{ path('send_message', {'username': user.username}) }}" class="btn btn-sm btn-default">Send Message</a>
+
     </div>
 
     <div class="col-md-6">

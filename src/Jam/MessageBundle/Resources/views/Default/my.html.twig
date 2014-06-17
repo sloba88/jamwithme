@@ -4,11 +4,15 @@
 
     <p>My Messages</p>
     {% for m in messages %}
-        <div class="col-md-6">
-            <a href="{{ path('musician_profile', {'username': m.to.username}) }}" class="user-box-image-link">
-                <img src="{{ asset(m.to.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
-            </a>
-            <p>{{ m.from.username }}: {{ m.message }}</p>
+        <div class="col-md-12">
+            <div class="col-md-1">
+                <a href="{{ path('musician_profile', {'username': m.to.username}) }}" class="user-box-image-link">
+                    <img src="{{ asset(m.to.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+                </a>
+            </div>
+            <div class="col-md-11">
+                <p>{{ m.to.username }}: {{ m.message }}</p>
+            </div>
         </div>
     {% endfor %}
 
