@@ -2,6 +2,7 @@
 
 namespace Jam\MessageBundle\Controller;
 
+use Jam\MessageBundle\Document\Inbox;
 use Jam\MessageBundle\Document\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,14 +21,29 @@ class DefaultController extends Controller
 
         $me = $this->container->get('security.context')->getToken()->getUser();
 
+        $repository = $this->get('doctrine_mongodb')
+            ->getManager()
+            ->getRepository('JamMessageBundle:Inbox');
+
+        $myInbox = $repository->findOneByUser($me->getId());
+
+        if ($myInbox){
+
+        }else{
+            $myInbox = new Inbox();
+            $myInbox->setUser($me->getId());
+        }
+
         $message = new Message();
         $message->setFrom($me->getId());
         $message->setTo($user->getId());
-        $message->setMessage("Hello From MongoDB!");
+        $message->setMessage("Second message in your inbox!!!");
 
-        //$dm = $this->get('doctrine_mongodb')->getManager();
-        //$dm->persist($message);
-        //$dm->flush();
+        $myInbox->addMessage($message);
+
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $dm->persist($myInbox);
+        $dm->flush();
 
         return array('name' => $username);
     }
@@ -42,9 +58,9 @@ class DefaultController extends Controller
 
         $repository = $this->get('doctrine_mongodb')
             ->getManager()
-            ->getRepository('JamMessageBundle:Message');
+            ->getRepository('JamMessageBundle:Inbox');
 
-        $messages = $repository->findAll();
+        $messages = $repository->findOneByUser($me->getId())->getMessages();
 
         //var_dump($messages);
 

@@ -13,13 +13,28 @@ class MessageUserListener
 
     public function postLoad(\Doctrine\ODM\MongoDB\Event\LifecycleEventArgs $eventArgs)
     {
+        //how to register listener only for Inbox or Message?
+
         $message = $eventArgs->getDocument();
+
+        if (get_class($message) == "Jam\MessageBundle\Document\Inbox"){
+            return;
+        }
+
         $dm = $eventArgs->getDocumentManager();
-        $productReflProp = $dm->getClassMetadata('JamMessageBundle:Message')
+
+        $messageToUser = $dm->getClassMetadata('JamMessageBundle:Message')
             ->reflClass->getProperty('from');
-        $productReflProp->setAccessible(true);
-        $productReflProp->setValue(
+        $messageToUser->setAccessible(true);
+        $messageToUser->setValue(
             $message, $this->em->getReference('JamUserBundle:User', $message->getFrom())
+        );
+
+        $messageToUser = $dm->getClassMetadata('JamMessageBundle:Message')
+            ->reflClass->getProperty('to');
+        $messageToUser->setAccessible(true);
+        $messageToUser->setValue(
+            $message, $this->em->getReference('JamUserBundle:User', $message->getTo())
         );
     }
 }
