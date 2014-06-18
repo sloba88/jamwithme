@@ -38,13 +38,17 @@ class DefaultController extends Controller
                 ->getManager()
                 ->getRepository('JamMessageBundle:Inbox');
 
-            $myInbox = $repository->findOneByUser($me->getId());
+            $myInbox    = $repository->findOneByUser($me->getId());
+            $userInbox = $repository->findOneByUser($user->getId());
 
-            if ($myInbox){
-
-            }else{
+            if (!$myInbox){
                 $myInbox = new Inbox();
                 $myInbox->setUser($me->getId());
+            }
+
+            if (!$userInbox){
+                $userInbox = new Inbox();
+                $userInbox->setUser($user->getId());
             }
 
             $message->setFrom($me->getId());
@@ -52,9 +56,11 @@ class DefaultController extends Controller
             $message->setMessage($data->getMessage());
 
             $myInbox->addMessage($message);
+            $userInbox->addMessage($message);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($myInbox);
+            $dm->persist($userInbox);
             $dm->flush();
 
             return $this->redirect($this->generateUrl('send_message', array('username' => $user->getUsername())));
