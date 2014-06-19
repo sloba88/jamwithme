@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <p>My Messages</p>
+    {% for m in conversations %}
+        <div class="col-md-12">
+            <div class="col-md-1">
+                <a href="{{ path('messages', {'username': m.user.username}) }}" class="user-box-image-link">
+                    <img src="{{ asset(m.user.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+                </a>
+            </div>
+            <div class="col-md-11">
+                {#<p>{{ m.to.username }}: {{ m.message }}</p>#}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

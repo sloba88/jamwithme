@@ -2,6 +2,7 @@
 
 namespace Jam\MessageBundle\Controller;
 
+use Jam\MessageBundle\Document\Conversation;
 use Jam\MessageBundle\Document\Inbox;
 use Jam\MessageBundle\Document\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,12 +35,19 @@ class DefaultController extends Controller
 
             $data = $form->getData();
 
-            $repository = $this->get('doctrine_mongodb')
+            $inboxRepository = $this->get('doctrine_mongodb')
                 ->getManager()
                 ->getRepository('JamMessageBundle:Inbox');
 
-            $myInbox    = $repository->findOneByUser($me->getId());
-            $userInbox = $repository->findOneByUser($user->getId());
+            $conversationRepository = $this->get('doctrine_mongodb')
+                ->getManager()
+                ->getRepository('JamMessageBundle:Conversation');
+
+            $myInbox    = $inboxRepository->findOneByUser($me->getId());
+            $userInbox  = $inboxRepository->findOneByUser($user->getId());
+
+            $myConversation   = $conversationRepository->findOneByUser($user->getId());
+            $userConversation = $conversationRepository->findOneByUser($me->getId());
 
             if (!$myInbox){
                 $myInbox = new Inbox();
@@ -51,12 +59,24 @@ class DefaultController extends Controller
                 $userInbox->setUser($user->getId());
             }
 
+            if (!$myConversation){
+                $myConversation = new Conversation();
+                $myConversation->setUser($user->getId());
+                $myInbox->addConversation($myConversation);
+            }
+
+            if (!$userConversation){
+                $userConversation = new Conversation();
+                $userConversation->setUser($me->getId());
+                $userInbox->addConversation($userConversation);
+            }
+
             $message->setFrom($me->getId());
             $message->setTo($user->getId());
             $message->setMessage($data->getMessage());
 
-            $myInbox->addMessage($message);
-            $userInbox->addMessage($message);
+            $myConversation->addMessage($message);
+            $userConversation->addMessage($message);
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($myInbox);
@@ -70,10 +90,10 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/messages/", name="messages")
+     * @Route("/messages/", name="inbox")
      * @Template()
      */
-    public function myAction()
+    public function conversationsAction()
     {
         $me = $this->container->get('security.context')->getToken()->getUser();
 
@@ -81,9 +101,47 @@ class DefaultController extends Controller
             ->getManager()
             ->getRepository('JamMessageBundle:Inbox');
 
-        $messages = $repository->findOneByUser($me->getId())->getMessages();
+        $inbox = $repository->findOneByUser($me->getId());
+
+        if ($inbox){
+            $conversations = $inbox->getConversations();
+        }else{
+            $conversations = array ();
+        }
 
         //var_dump($messages);
+
+        return array('conversations' => $conversations);
+    }
+
+    /**
+     * @Route("/messages/{username}", name="messages")
+     * @Template()
+     */
+    public function messagesAction($username)
+    {
+        $me = $this->container->get('security.context')->getToken()->getUser();
+        $messages = array ();
+
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        $inbox = $this->get('doctrine_mongodb')
+            ->getManager()
+            ->createQueryBuilder('JamMessageBundle:Inbox')
+            ->field('conversations.user')->equals($user->getId())
+            ->getQuery()
+            ->execute();
+
+        $inbox = $inbox->getNext();
+
+        if ($inbox){
+            $conv = $inbox->getConversations();
+
+            foreach($conv AS $c){
+                $messages = array_merge($messages, $c->getMessages()->toArray());
+            }
+        }
 
         return array('messages' => $messages);
     }

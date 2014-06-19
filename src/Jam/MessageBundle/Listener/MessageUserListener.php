@@ -16,12 +16,23 @@ class MessageUserListener
         //how to register listener only for Inbox or Message?
 
         $message = $eventArgs->getDocument();
+        $dm = $eventArgs->getDocumentManager();
 
         if (get_class($message) == "Jam\MessageBundle\Document\Inbox"){
             return;
         }
 
-        $dm = $eventArgs->getDocumentManager();
+        if (get_class($message) == "Jam\MessageBundle\Document\Conversation"){
+
+            $convToUser = $dm->getClassMetadata('JamMessageBundle:Conversation')
+                ->reflClass->getProperty('user');
+            $convToUser->setAccessible(true);
+            $convToUser->setValue(
+                $message, $this->em->getReference('JamUserBundle:User', $message->getUser())
+            );
+
+            return;
+        }
 
         $messageToUser = $dm->getClassMetadata('JamMessageBundle:Message')
             ->reflClass->getProperty('from');

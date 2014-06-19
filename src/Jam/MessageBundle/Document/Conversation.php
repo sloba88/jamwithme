@@ -5,9 +5,9 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Doctrine\ODM\MongoDB\Mapping\Annotations\EmbedMany;
 
 /**
- * @MongoDB\Document
+ * @MongoDB\EmbeddedDocument
  */
-class Inbox
+class Conversation
 {
     /**
      * @MongoDB\Id
@@ -20,13 +20,12 @@ class Inbox
      */
     protected $user;
 
-    /** @EmbedMany(targetDocument="Conversation") */
-    private $conversations = array();
-
+    /** @EmbedMany(targetDocument="Message") */
+    private $messages = array();
 
     public function __construct()
     {
-        $this->conversations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -62,32 +61,32 @@ class Inbox
     }
 
     /**
-     * Add conversation
+     * Add message
      *
-     * @param Jam\MessageBundle\Document\Conversation $conversation
+     * @param Jam\MessageBundle\Document\Message $message
      */
-    public function addConversation(\Jam\MessageBundle\Document\Conversation $conversation)
+    public function addMessage(\Jam\MessageBundle\Document\Message $message)
     {
-        $this->conversations[] = $conversation;
+        $this->messages[] = $message;
     }
 
     /**
-     * Remove conversation
+     * Remove message
      *
-     * @param Jam\MessageBundle\Document\Conversation $conversation
+     * @param Jam\MessageBundle\Document\Message $message
      */
-    public function removeConversation(\Jam\MessageBundle\Document\Conversation $conversation)
+    public function removeMessage(\Jam\MessageBundle\Document\Message $message)
     {
-        $this->conversations->removeElement($conversation);
+        $this->messages->removeElement($message);
     }
 
     /**
-     * Get conversations
+     * Get messages
      *
-     * @return Doctrine\Common\Collections\Collection $conversations
+     * @return Doctrine\Common\Collections\Collection $messages
      */
-    public function getConversations()
+    public function getMessages()
     {
-        return $this->conversations;
+        return $this->messages;
     }
 }
