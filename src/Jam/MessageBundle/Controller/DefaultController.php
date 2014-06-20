@@ -2,6 +2,7 @@
 
 namespace Jam\MessageBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Jam\MessageBundle\Document\Conversation;
 use Jam\MessageBundle\Document\Inbox;
 use Jam\MessageBundle\Document\Message;
@@ -21,6 +22,7 @@ class DefaultController extends Controller
         $user = $userManager->findUserByUsername($username);
         $me = $this->container->get('security.context')->getToken()->getUser();
         $request = $this->get('request_stack')->getCurrentRequest();
+        $dm = $this->get('doctrine_mongodb')->getManager();
 
         $message = new Message();
 
@@ -35,23 +37,40 @@ class DefaultController extends Controller
 
             $data = $form->getData();
 
-            $inboxRepository = $this->get('doctrine_mongodb')
-                ->getManager()
-                ->getRepository('JamMessageBundle:Inbox');
-
-            $conversationRepository = $this->get('doctrine_mongodb')
-                ->getManager()
-                ->getRepository('JamMessageBundle:Conversation');
+            $inboxRepository = $dm->getRepository('JamMessageBundle:Inbox');
 
             $myInbox    = $inboxRepository->findOneByUser($me->getId());
             $userInbox  = $inboxRepository->findOneByUser($user->getId());
 
-            $myConversation   = $conversationRepository->findOneByUser($user->getId());
-            $userConversation = $conversationRepository->findOneByUser($me->getId());
+            $message->setFrom($me->getId());
+            $message->setTo($user->getId());
+            $message->setMessage($data->getMessage());
+
 
             if (!$myInbox){
                 $myInbox = new Inbox();
                 $myInbox->setUser($me->getId());
+            }
+
+            $myConversation = $dm->createQueryBuilder('JamMessageBundle:Inbox')
+                ->field('user')->equals($me->getId())
+                ->field('conversations.user')->equals($user->getId())
+                ->getQuery()
+                ->getSingleResult();
+
+            if(!$myConversation){
+                $myConversation = new Conversation();
+                $myConversation->setUser($user->getId());
+                $myInbox->addConversation($myConversation);
+            }
+
+            foreach($myInbox->getConversations() AS $c){
+                $userId = is_object($c->getUser()) == true ? $c->getUser()->getId(): $c->getUser();
+                $c->setUser($userId);
+                if ($userId == $user->getId()){
+                    $c->setUser($user->getId());
+                    $c->addMessage($message);
+                }
             }
 
             if (!$userInbox){
@@ -59,11 +78,11 @@ class DefaultController extends Controller
                 $userInbox->setUser($user->getId());
             }
 
-            if (!$myConversation){
-                $myConversation = new Conversation();
-                $myConversation->setUser($user->getId());
-                $myInbox->addConversation($myConversation);
-            }
+            $userConversation = $dm->createQueryBuilder('JamMessageBundle:Inbox')
+                ->field('user')->equals($user->getId())
+                ->field('conversations.user')->equals($me->getId())
+                ->getQuery()
+                ->getSingleResult();
 
             if (!$userConversation){
                 $userConversation = new Conversation();
@@ -71,16 +90,18 @@ class DefaultController extends Controller
                 $userInbox->addConversation($userConversation);
             }
 
-            $message->setFrom($me->getId());
-            $message->setTo($user->getId());
-            $message->setMessage($data->getMessage());
+            foreach($userInbox->getConversations() AS $c){
+                $userId = is_object($c->getUser()) == true ? $c->getUser()->getId(): $c->getUser();
+                $c->setUser($userId);
+                if ($userId == $me->getId()){
+                    $c->setUser($me->getId());
+                    $c->addMessage($message);
+                }
+            }
 
-            $myConversation->addMessage($message);
-            $userConversation->addMessage($message);
-
-            $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($myInbox);
             $dm->persist($userInbox);
+
             $dm->flush();
 
             return $this->redirect($this->generateUrl('send_message', array('username' => $user->getUsername())));

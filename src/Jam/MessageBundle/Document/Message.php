@@ -29,7 +29,6 @@ class Message
      */
     private $message;
 
-
     /**
      * Get id
      *

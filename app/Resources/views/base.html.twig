@@ -120,6 +120,24 @@
             border-top-right-radius: 0;
         }
 
+        .conversation-box{
+            background-color: #fff;
+            padding: 10px;
+            border-bottom:1px dotted silver;
+        }
+
+        .conversation-message-box{
+            background-color: #fff;
+            padding: 10px;
+            border-bottom:1px dotted silver;
+            display: none;
+        }
+
+        .conversation-box:hover{
+            border: 1px solid silver;
+            cursor: pointer;
+        }
+
 
     </style>
 </head>
@@ -268,6 +286,12 @@
                     image.remove();
                 }
             });
+        });
+
+        $(".conversation-box").on('click', function(e){
+            e.preventDefault();
+            $(".conversation-message-box").hide();
+            $(this).parents('.conversation').find('.conversation-message-box').show();
         });
 
     });

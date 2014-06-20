@@ -3,15 +3,28 @@
 {% block body %}
 
     <p>My Messages</p>
-    {% for m in conversations %}
-        <div class="col-md-12">
-            <div class="col-md-1">
-                <a href="{{ path('messages', {'username': m.user.username}) }}" class="user-box-image-link">
-                    <img src="{{ asset(m.user.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
-                </a>
+
+    {% for c in conversations %}
+        <div class="col-md-12 clearfix conversation">
+            <div class="col-md-4">
+                <div class="conversation-box clearfix">
+                    <a href="#" class="user-box-image-link">
+                        <div class="col-md-4">
+                                <img src="{{ asset(c.user.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+                        </div>
+                        <div class="col-md-8">
+                            <h4>{{ c.user.username }}</h4>
+                            <p>{{ c.messages|last.message }}</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="col-md-11">
-                {#<p>{{ m.to.username }}: {{ m.message }}</p>#}
+            <div class="col-md-8">
+                <div class="conversation-message-box clearfix">
+                    {% for m in c.messages %}
+                            <p><i>{{ m.from }}</i>: {{ m.message }}</p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {% endfor %}
