@@ -2,6 +2,8 @@
 
 namespace Jam\MessageBundle\Document;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * @MongoDB\EmbeddedDocument
@@ -28,6 +30,13 @@ class Message
      * @MongoDB\String
      */
     private $message;
+
+
+    /**
+     * @MongoDB\Timestamp
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
 
     /**
      * Get id
@@ -103,5 +112,27 @@ class Message
     public function getMessage()
     {
         return $this->message;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param timestamp $createdAt
+     * @return self
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return timestamp $createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

@@ -110,6 +110,9 @@ stof_doctrine_extensions:
             translatable: true
             timestampable: true
             softdeleteable: true
+    mongodb:
+        default:
+            timestampable: true
 
 liip_imagine:
     resolvers:
