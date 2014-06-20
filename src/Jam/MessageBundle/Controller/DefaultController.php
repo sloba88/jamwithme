@@ -9,6 +9,7 @@ use Jam\MessageBundle\Document\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -26,16 +27,18 @@ class DefaultController extends Controller
 
         $message = new Message();
 
+        /*
         $form = $this->createFormBuilder($message)
             ->add('message', 'textarea')
             ->add('send', 'submit')
             ->getForm();
+        */
 
-        $form->handleRequest($request);
+        //$form->handleRequest($request);
 
-        if ($form->isValid()) {
+        //if ($form->isValid()) {
 
-            $data = $form->getData();
+            //$data = $form->getData();
 
             $inboxRepository = $dm->getRepository('JamMessageBundle:Inbox');
 
@@ -44,8 +47,7 @@ class DefaultController extends Controller
 
             $message->setFrom($me->getId());
             $message->setTo($user->getId());
-            $message->setMessage($data->getMessage());
-
+            $message->setMessage($this->get('request')->request->get('message'));
 
             if (!$myInbox){
                 $myInbox = new Inbox();
@@ -101,13 +103,16 @@ class DefaultController extends Controller
 
             $dm->persist($myInbox);
             $dm->persist($userInbox);
-
             $dm->flush();
 
-            return $this->redirect($this->generateUrl('send_message', array('username' => $user->getUsername())));
-        }
+            $response = array();
+            $response['status'] = 'success';
 
-        return array('form' => $form->createView());
+
+            //return $this->redirect($this->generateUrl('send_message', array('username' => $user->getUsername())));
+        //}
+
+        return new JsonResponse($response);
     }
 
     /**
@@ -160,7 +165,10 @@ class DefaultController extends Controller
             $conv = $inbox->getConversations();
 
             foreach($conv AS $c){
-                $messages = array_merge($messages, $c->getMessages()->toArray());
+                if ($user->getId() == $c->getUser()->getId()){
+                    $messages = array_merge($messages, $c->getMessages()->toArray());
+                }
+
             }
         }
 

@@ -4,29 +4,34 @@
 
     <p>My Messages</p>
 
-    {% for c in conversations %}
-        <div class="col-md-12 clearfix conversation">
-            <div class="col-md-4">
-                <div class="conversation-box clearfix">
-                    <a href="#" class="user-box-image-link">
+    {# TODO: this must be re written with Backbone #}
+
+    <div class="col-md-4">
+        {% for c in conversations %}
+                    <div class="conversation-box clearfix" data-user="{{ c.user.id }}">
                         <div class="col-md-4">
+                            <a href="{{ path('musician_profile', {'username': c.user.username}) }}" class="user-box-image-link">
                                 <img src="{{ asset(c.user.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+                            </a>
                         </div>
                         <div class="col-md-8">
                             <h4>{{ c.user.username }}</h4>
                             <p>{{ c.messages|last.message }}</p>
                         </div>
-                    </a>
-                </div>
+                    </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md-8">
+        {% for c in conversations %}
+            <div class="conversation-message-box clearfix" data-user="{{ c.user.id }}">
+                {% for m in c.messages %}
+                    <p><i>{{ m.from }}</i>: {{ m.message }}</p>
+                {% endfor %}
+                <input type="text" class="form-control send-message" maxlength="250" data-url="{{ path('send_message', {'username': c.user.username}) }}" />
             </div>
-            <div class="col-md-8">
-                <div class="conversation-message-box clearfix">
-                    {% for m in c.messages %}
-                            <p><i>{{ m.from }}</i>: {{ m.message }}</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+
 
 {% endblock %}

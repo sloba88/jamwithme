@@ -126,6 +126,10 @@
             border-bottom:1px dotted silver;
         }
 
+        .conversation-box.active{
+            background-color: #f4f8fa;
+        }
+
         .conversation-message-box{
             background-color: #fff;
             padding: 10px;
@@ -289,9 +293,29 @@
         });
 
         $(".conversation-box").on('click', function(e){
-            e.preventDefault();
+            //e.preventDefault();
+            $(".conversation-box").removeClass('active');
+            $(this).addClass('active');
             $(".conversation-message-box").hide();
-            $(this).parents('.conversation').find('.conversation-message-box').show();
+            var user = $(this).data('user');
+            $('*[data-user="'+user+'"]').show();
+        });
+
+        $(".send-message").on('keyup', function(e){
+            if(e.which == 13) {
+                var self = $(this);
+                var value = $(this).val();
+                var url = $(this).data('url');
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { message: value }
+                }).done(function( msg ) {
+                    if (msg.status == 'success'){
+                        self.val('');
+                    }
+                });
+            }
         });
 
     });

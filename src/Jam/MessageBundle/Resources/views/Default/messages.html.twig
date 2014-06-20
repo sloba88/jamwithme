@@ -1,13 +1,8 @@
-{% extends '::base.html.twig' %}
-
-{% block body %}
-
-    <p>My Messages</p>
     {% for m in messages %}
         <div class="col-md-12">
             <div class="col-md-1">
-                <a href="{{ path('messages', {'username': m.from.username}) }}" class="user-box-image-link">
-                    <img src="{{ asset(m.from.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+                <a href="#" class="user-box-image-link">
+                    <img width="20" src="{{ asset(m.from.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
                 </a>
             </div>
             <div class="col-md-11">
@@ -16,4 +11,3 @@
         </div>
     {% endfor %}
 
-{% endblock %}

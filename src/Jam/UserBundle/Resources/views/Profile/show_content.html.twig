@@ -20,7 +20,31 @@
         <p>Age: {{ user.age }}</p>
         <p>Gender: {{ user.genderText }}</p>
 
-        <a href="{{ path('send_message', {'username': user.username}) }}" class="btn btn-sm btn-default">Send Message</a>
+        <!-- Button trigger modal -->
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+            Send Message
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Send Message</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        {{ render(controller('JamMessageBundle:Default:messages', { 'username': user.username })) }}
+
+                        <input type="text" class="form-control send-message" maxlength="250" data-url="{{ path('send_message', {'username': user.username}) }}" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 

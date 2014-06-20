@@ -878,12 +878,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMongoDBBundle.git",
-                "reference": "fe556181ef78931bf2ccfc3a96ae6e93c6dc4775"
+                "reference": "3aafa97ed74bb6e41b7f3c874dfb21a4e06c2169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMongoDBBundle/zipball/fe556181ef78931bf2ccfc3a96ae6e93c6dc4775",
-                "reference": "fe556181ef78931bf2ccfc3a96ae6e93c6dc4775",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMongoDBBundle/zipball/3aafa97ed74bb6e41b7f3c874dfb21a4e06c2169",
+                "reference": "3aafa97ed74bb6e41b7f3c874dfb21a4e06c2169",
                 "shasum": ""
             },
             "require": {
@@ -923,7 +923,7 @@
                     "homepage": "http://avalanche123.com"
                 },
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -940,7 +940,7 @@
                 "persistence",
                 "symfony"
             ],
-            "time": "2014-05-19 22:47:06"
+            "time": "2014-06-18 20:58:26"
         },
         {
             "name": "doctrine/orm",
@@ -1021,7 +1021,6 @@
         {
             "name": "friendsofsymfony/elastica-bundle",
             "version": "dev-master",
-            "target-dir": "FOS/ElasticaBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
@@ -1029,27 +1028,31 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/14083496d76f82eb25eba9dd8d16e21b909e4a42",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/95e445bd0dc91364de38ff527c0bfc7d1199fd50",
                 "reference": "90022b0d0a540e8bf5fc44cde6c8b996c072aefd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "psr/log": "~1.0",
-                "ruflin/elastica": ">=0.90.10.0, <1.2-dev",
+                "ruflin/elastica": ">=0.90.10.0, <1.3-dev",
                 "symfony/console": "~2.1",
                 "symfony/form": "~2.1",
                 "symfony/framework-bundle": "~2.3",
                 "symfony/property-access": "~2.2"
             },
             "require-dev": {
-                "doctrine/mongodb-odm": "1.0.*@dev",
+                "doctrine/doctrine-bundle": "~1.2@beta",
+                "doctrine/mongodb-odm": "1.0.*@beta",
                 "doctrine/orm": "~2.2",
                 "knplabs/knp-components": "~1.2",
+                "knplabs/knp-paginator-bundle": "~2.4",
                 "pagerfanta/pagerfanta": "1.0.*@dev",
+                "phpunit/phpunit": "~4.1",
                 "propel/propel1": "1.6.*",
                 "symfony/browser-kit": "~2.3",
-                "symfony/expression-language": "~2.4"
+                "symfony/expression-language": "~2.4",
+                "symfony/twig-bundle": "~2.3"
             },
             "suggest": {
                 "doctrine/mongodb-odm": "1.0.*@dev",
@@ -1066,8 +1069,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "FOS\\ElasticaBundle": ""
+                "psr-4": {
+                    "FOS\\ElasticaBundle\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1076,9 +1079,8 @@
             ],
             "authors": [
                 {
-                    "name": "Thibault Duplessis",
-                    "email": "thibault.duplessis@gmail.com",
-                    "homepage": "http://ornicar.github.com"
+                    "name": "Tim Nagel",
+                    "email": "tim@nagel.com.au"
                 },
                 {
                     "name": "Jeremy Mikola",
@@ -1088,6 +1090,10 @@
                 {
                     "name": "Richard Miller",
                     "email": "richard.miller@limethinking.co.uk"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/FriendsOfSymfony/FOSElasticaBundle/contributors"
                 }
             ],
             "description": "Elasticsearch PHP integration for your Symfony2 project using Elastica",
@@ -1109,12 +1115,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb"
+                "reference": "71ed2505443f375876a38e82ff0d1929d6078270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/a93c355d70fd57a8171faece7969a13cb9387efb",
-                "reference": "a93c355d70fd57a8171faece7969a13cb9387efb",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/71ed2505443f375876a38e82ff0d1929d6078270",
+                "reference": "71ed2505443f375876a38e82ff0d1929d6078270",
                 "shasum": ""
             },
             "require": {
@@ -1169,7 +1175,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-06-08 14:16:45"
+            "time": "2014-06-13 14:56:35"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1253,16 +1259,16 @@
         },
         {
             "name": "imagine/imagine",
-            "version": "v0.5.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709"
+                "reference": "725279fd560faa1c7012a80b427b31d7f08f36ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/f64ec666baaa800edcbf237db41121a569230709",
-                "reference": "f64ec666baaa800edcbf237db41121a569230709",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/725279fd560faa1c7012a80b427b31d7f08f36ff",
+                "reference": "725279fd560faa1c7012a80b427b31d7f08f36ff",
                 "shasum": ""
             },
             "require": {
@@ -1277,6 +1283,11 @@
                 "ext-imagick": "to use the Imagick implementation"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "0.6-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Imagine": "lib/"
@@ -1301,7 +1312,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2013-07-10 17:25:36"
+            "time": "2014-06-16 20:53:48"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1721,12 +1732,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "0a39eb7dc1e2ce7d41afa02712cf433465cdaca9"
+                "reference": "7d73273fde801c937f58ed2c07e068d3c5741651"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/0a39eb7dc1e2ce7d41afa02712cf433465cdaca9",
-                "reference": "0a39eb7dc1e2ce7d41afa02712cf433465cdaca9",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/7d73273fde801c937f58ed2c07e068d3c5741651",
+                "reference": "7d73273fde801c937f58ed2c07e068d3c5741651",
                 "shasum": ""
             },
             "require": {
@@ -1786,7 +1797,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2014-06-06 07:41:14"
+            "time": "2014-06-16 09:50:26"
         },
         {
             "name": "monolog/monolog",
@@ -1995,16 +2006,16 @@
         },
         {
             "name": "ruflin/elastica",
-            "version": "v1.1.1.1",
+            "version": "v1.2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "fc607170ab2ca751097648d48a5d38e15e9d5f6a"
+                "reference": "3c3ee39f90d942b1f25fdfb9d39669067375fa79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/fc607170ab2ca751097648d48a5d38e15e9d5f6a",
-                "reference": "fc607170ab2ca751097648d48a5d38e15e9d5f6a",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/3c3ee39f90d942b1f25fdfb9d39669067375fa79",
+                "reference": "3c3ee39f90d942b1f25fdfb9d39669067375fa79",
                 "shasum": ""
             },
             "require": {
@@ -2012,10 +2023,12 @@
             },
             "require-dev": {
                 "munkie/elasticsearch-thrift-php": "1.4.*",
+                "phpunit/phpunit": "4.1.*",
                 "psr/log": "~1.0",
                 "satooshi/php-coveralls": "dev-master"
             },
             "suggest": {
+                "guzzlehttp/guzzle": "Allow using guzzle 4.x as the http transport (requires php 5.4)",
                 "monolog/monolog": "Logging request",
                 "munkie/elasticsearch-thrift-php": "Allow using thrift transport",
                 "psr/log": "for logging"
@@ -2043,7 +2056,7 @@
                 "client",
                 "search"
             ],
-            "time": "2014-04-27 17:30:35"
+            "time": "2014-06-14 08:44:53"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2260,16 +2273,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.0",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48"
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/043e336b871f17a117f76ef8e190eddfc04c8d48",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/2b9af56cc676c338d52fca4c657e5bdff73bb7af",
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af",
                 "shasum": ""
             },
             "require": {
@@ -2310,7 +2323,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-05-08 08:11:19"
+            "time": "2014-06-13 11:44:54"
         },
         {
             "name": "symfony/assetic-bundle",
