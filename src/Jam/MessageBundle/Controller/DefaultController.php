@@ -21,96 +21,82 @@ class DefaultController extends Controller
     {
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
+
+        if (!$user) throw $this->createNotFoundException('This user does not exist');
+
         $me = $this->container->get('security.context')->getToken()->getUser();
-        $request = $this->get('request_stack')->getCurrentRequest();
         $dm = $this->get('doctrine_mongodb')->getManager();
 
+        if ($me->getId() == $user->getId()) throw $this->createNotFoundException("You can't message yourself.");
+
+        $inboxRepository = $dm->getRepository('JamMessageBundle:Inbox');
+
+        $myInbox    = $inboxRepository->findOneByUser($me->getId());
+        $userInbox  = $inboxRepository->findOneByUser($user->getId());
+
         $message = new Message();
+        $message->setFrom($me->getId());
+        $message->setTo($user->getId());
+        $message->setMessage($this->get('request')->request->get('message'));
 
-        /*
-        $form = $this->createFormBuilder($message)
-            ->add('message', 'textarea')
-            ->add('send', 'submit')
-            ->getForm();
-        */
+        if (!$myInbox){
+            $myInbox = new Inbox();
+            $myInbox->setUser($me->getId());
+        }
 
-        //$form->handleRequest($request);
+        $myConversation = $dm->createQueryBuilder('JamMessageBundle:Inbox')
+            ->field('user')->equals($me->getId())
+            ->field('conversations.user')->equals($user->getId())
+            ->getQuery()
+            ->getSingleResult();
 
-        //if ($form->isValid()) {
+        if(!$myConversation){
+            $myConversation = new Conversation();
+            $myConversation->setUser($user->getId());
+            $myInbox->addConversation($myConversation);
+        }
 
-            //$data = $form->getData();
-
-            $inboxRepository = $dm->getRepository('JamMessageBundle:Inbox');
-
-            $myInbox    = $inboxRepository->findOneByUser($me->getId());
-            $userInbox  = $inboxRepository->findOneByUser($user->getId());
-
-            $message->setFrom($me->getId());
-            $message->setTo($user->getId());
-            $message->setMessage($this->get('request')->request->get('message'));
-
-            if (!$myInbox){
-                $myInbox = new Inbox();
-                $myInbox->setUser($me->getId());
+        foreach($myInbox->getConversations() AS $c){
+            $userId = is_object($c->getUser()) == true ? $c->getUser()->getId(): $c->getUser();
+            $c->setUser($userId);
+            if ($userId == $user->getId()){
+                $c->setUser($user->getId());
+                $c->addMessage($message);
             }
+        }
 
-            $myConversation = $dm->createQueryBuilder('JamMessageBundle:Inbox')
-                ->field('user')->equals($me->getId())
-                ->field('conversations.user')->equals($user->getId())
-                ->getQuery()
-                ->getSingleResult();
+        if (!$userInbox){
+            $userInbox = new Inbox();
+            $userInbox->setUser($user->getId());
+        }
 
-            if(!$myConversation){
-                $myConversation = new Conversation();
-                $myConversation->setUser($user->getId());
-                $myInbox->addConversation($myConversation);
+        $userConversation = $dm->createQueryBuilder('JamMessageBundle:Inbox')
+            ->field('user')->equals($user->getId())
+            ->field('conversations.user')->equals($me->getId())
+            ->getQuery()
+            ->getSingleResult();
+
+        if (!$userConversation){
+            $userConversation = new Conversation();
+            $userConversation->setUser($me->getId());
+            $userInbox->addConversation($userConversation);
+        }
+
+        foreach($userInbox->getConversations() AS $c){
+            $userId = is_object($c->getUser()) == true ? $c->getUser()->getId(): $c->getUser();
+            $c->setUser($userId);
+            if ($userId == $me->getId()){
+                $c->setUser($me->getId());
+                $c->addMessage($message);
             }
+        }
 
-            foreach($myInbox->getConversations() AS $c){
-                $userId = is_object($c->getUser()) == true ? $c->getUser()->getId(): $c->getUser();
-                $c->setUser($userId);
-                if ($userId == $user->getId()){
-                    $c->setUser($user->getId());
-                    $c->addMessage($message);
-                }
-            }
+        $dm->persist($myInbox);
+        $dm->persist($userInbox);
+        $dm->flush();
 
-            if (!$userInbox){
-                $userInbox = new Inbox();
-                $userInbox->setUser($user->getId());
-            }
-
-            $userConversation = $dm->createQueryBuilder('JamMessageBundle:Inbox')
-                ->field('user')->equals($user->getId())
-                ->field('conversations.user')->equals($me->getId())
-                ->getQuery()
-                ->getSingleResult();
-
-            if (!$userConversation){
-                $userConversation = new Conversation();
-                $userConversation->setUser($me->getId());
-                $userInbox->addConversation($userConversation);
-            }
-
-            foreach($userInbox->getConversations() AS $c){
-                $userId = is_object($c->getUser()) == true ? $c->getUser()->getId(): $c->getUser();
-                $c->setUser($userId);
-                if ($userId == $me->getId()){
-                    $c->setUser($me->getId());
-                    $c->addMessage($message);
-                }
-            }
-
-            $dm->persist($myInbox);
-            $dm->persist($userInbox);
-            $dm->flush();
-
-            $response = array();
-            $response['status'] = 'success';
-
-
-            //return $this->redirect($this->generateUrl('send_message', array('username' => $user->getUsername())));
-        //}
+        $response = array();
+        $response['status'] = 'success';
 
         return new JsonResponse($response);
     }
