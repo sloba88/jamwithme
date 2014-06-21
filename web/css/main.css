@@ -1,0 +1,129 @@
+body {
+    background-color: oldlace;
+    padding-bottom: 40px;
+    padding-top: 60px;
+}
+
+body{
+    /*cornsilk*/
+    /*ivory*/
+    /*ghostwhite*/
+    /*beige*/
+    /*oldlace*/
+}
+
+.bar {
+    height: 18px;
+    background: green;
+}
+
+html body #map-canvas {
+    height: 400px;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    clear: both;
+}
+
+.navbar{
+    background-color: #404569;
+}
+
+.navbar-default .navbar-nav > li > a{
+    color: #e3e3e3;
+}
+
+.navbar-default .navbar-brand{
+    color: #e3e3e3;
+    font-size: 34px;
+}
+
+a{
+    color: #8A8E97;
+}
+
+.user-box{
+    background-color: #fff;
+    margin: 0 10px 10px 0;
+}
+
+.user-box img{
+    margin-right:8px;
+}
+
+.user-box-details{
+    float:left;
+}
+
+.user-box .user-box-image-link{
+    float:left;
+}
+
+.select2-container.form-control{
+    padding: 0;
+}
+
+.user-box-genres{
+    font-size: 11px;
+    font-style: italic;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.conversation-box{
+    background-color: #fff;
+    padding: 10px;
+    border-bottom:1px dotted silver;
+}
+
+.conversation-box.active{
+    background-color: #f4f8fa;
+}
+
+.conversation-message-box{
+    background-color: #fff;
+    padding: 10px;
+    border-bottom:1px dotted silver;
+}
+
+.conversation-message-box p{
+    display: none;
+}
+
+.conversation-box:hover{
+    border: 1px solid silver;
+    cursor: pointer;
+}

@@ -6,32 +6,75 @@
 
     {# TODO: this must be re written with Backbone #}
 
-    <div class="col-md-4">
-        {% for c in conversations %}
-                    <div class="conversation-box clearfix" data-user="{{ c.user.id }}">
-                        <div class="col-md-4">
-                            <a href="{{ path('musician_profile', {'username': c.user.username}) }}" class="user-box-image-link">
-                                <img src="{{ asset(c.user.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
-                            </a>
-                        </div>
-                        <div class="col-md-8">
-                            <h4>{{ c.user.username }}</h4>
-                            <p>{{ c.messages|last.message }}</p>
-                        </div>
-                    </div>
-        {% endfor %}
+    <div class="col-md-4 conversations-box">
+
     </div>
 
     <div class="col-md-8">
-        {% for c in conversations %}
-            <div class="conversation-message-box clearfix" data-user="{{ c.user.id }}">
-                {% for m in c.messages %}
-                    <p><i>{{ m.from }}</i>: {{ m.message }}</p>
-                {% endfor %}
-                <input type="text" class="form-control send-message" maxlength="250" data-url="{{ path('send_message', {'username': c.user.username}) }}" />
-            </div>
-        {% endfor %}
+        <div class="conversation-message-box clearfix"></div>
+        <input type="text" class="form-control send-message" maxlength="250" data-toid="" data-tousername="" />
     </div>
 
+
+    <script type="text/template" id="messageTemplate">
+        <% _.each( rc.messages, function( m ){ %>
+            <p data-user="<%- m.to.username %>"><i><%- m.from.username %></i>: <%- m.message %></p>
+        <% }); %>
+    </script>
+
+    <script type="text/template" id="conversationTemplate">
+        <% _.each( rc, function( c ){ %>
+        <div class="conversation-box clearfix" data-user="<%- c.username %>" data-id="<%- c.id %>">
+            <p><%- c.username %></p>
+        </div>
+        <% }); %>
+    </script>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        jQuery(document).ready(function() {
+            socket.emit('getMyMessages', { userID: '{{ app.user.id }}' });
+
+            socket.on('myMessages', function (data) {
+
+                _.templateSettings.variable = "rc";
+                var messageTemplate      = _.template($( "#messageTemplate" ).html());
+                var conversationTemplate = _.template($( "#conversationTemplate" ).html());
+                var conversations = [];
+
+                $.each(data, function( index, value ) {
+                    $( ".conversation-message-box" ).append(messageTemplate( value ) );
+
+                    $.each(value.messages, function( index, val ) {
+                        if (!_.findWhere(conversations, val.to)){
+                            conversations.push(val.to);
+                        }
+                    });
+                });
+
+                $( ".conversations-box" ).append( conversationTemplate( conversations ) );
+
+                $(".conversation-box:first").click();
+
+            });
+
+            $(".conversations-box").on('click', '.conversation-box', function(e){
+                //e.preventDefault();
+                $(".conversation-box").removeClass('active');
+                $(this).addClass('active');
+                $(".conversation-message-box p").hide();
+                var user = $(this).data('user');
+                var userID = $(this).data('id');
+                $('*[data-user="'+user+'"]').show();
+                $(".send-message").data('toid', userID);
+                $(".send-message").data('tousername', user);
+            });
+
+
+        });
+    </script>
 
 {% endblock %}

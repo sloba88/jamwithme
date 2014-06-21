@@ -13,3 +13,4 @@
 *.php~
 /web/media/*
 /web/uploads/*
+/node/node_modules/*

@@ -9,141 +9,21 @@
     <!-- Bootstrap -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('/css/select2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('/css/main.css') }}" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
-    <style>
+    <script src="https://cdn.socket.io/socket.io-1.0.4.js"></script>
+    <script src="http://127.0.0.1:3000/socket.io/socket.io.js"></script>
 
-        body {
-            background-color: oldlace;
-            padding-bottom: 40px;
-            padding-top: 60px;
-        }
+    <script>
+        var socket = io('http://127.0.0.1:3000');
+        socket.on('registerConnectedUser', function (data) {
+            socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': '{{ app.user.username }}' });
+        });
+    </script>
 
-        body{
-            /*cornsilk*/
-            /*ivory*/
-            /*ghostwhite*/
-            /*beige*/
-            /*oldlace*/
-        }
-
-        .bar {
-            height: 18px;
-            background: green;
-        }
-
-        html body #map-canvas {
-            height: 400px;
-            margin: 0px;
-            padding: 0px;
-            width: 100%;
-            clear: both;
-        }
-
-        .navbar{
-            background-color: #404569;
-        }
-
-        .navbar-default .navbar-nav > li > a{
-            color: #e3e3e3;
-        }
-
-        .navbar-default .navbar-brand{
-            color: #e3e3e3;
-            font-size: 34px;
-        }
-
-        a{
-            color: #8A8E97;
-        }
-
-        .user-box{
-            background-color: #fff;
-            margin: 0 10px 10px 0;
-        }
-
-        .user-box img{
-            margin-right:8px;
-        }
-
-        .user-box-details{
-            float:left;
-        }
-
-        .user-box .user-box-image-link{
-            float:left;
-        }
-
-        .select2-container.form-control{
-            padding: 0;
-        }
-
-        .user-box-genres{
-            font-size: 11px;
-            font-style: italic;
-        }
-
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin .checkbox {
-            font-weight: normal;
-        }
-        .form-signin .form-control {
-            position: relative;
-            height: auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        .conversation-box{
-            background-color: #fff;
-            padding: 10px;
-            border-bottom:1px dotted silver;
-        }
-
-        .conversation-box.active{
-            background-color: #f4f8fa;
-        }
-
-        .conversation-message-box{
-            background-color: #fff;
-            padding: 10px;
-            border-bottom:1px dotted silver;
-            display: none;
-        }
-
-        .conversation-box:hover{
-            border: 1px solid silver;
-            cursor: pointer;
-        }
-
-
-    </style>
 </head>
 <body>
 
@@ -207,6 +87,7 @@
 <script src="{{ asset('/js/vendor/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('bundles/jamlocation/jquery.ui.addresspicker.js') }}"></script>
 <script src="{{ asset('bundles/jamlocation/location.js') }}"></script>
+<script src="{{ asset('js/vendor/underscore-min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 
 <script>
@@ -292,29 +173,22 @@
             });
         });
 
-        $(".conversation-box").on('click', function(e){
-            //e.preventDefault();
-            $(".conversation-box").removeClass('active');
-            $(this).addClass('active');
-            $(".conversation-message-box").hide();
-            var user = $(this).data('user');
-            $('*[data-user="'+user+'"]').show();
-        });
-
         $(".send-message").on('keyup', function(e){
             if(e.which == 13) {
                 var self = $(this);
                 var value = $(this).val();
-                var url = $(this).data('url');
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: { message: value }
-                }).done(function( msg ) {
-                    if (msg.status == 'success'){
-                        self.val('');
+                var toID = $(this).data('toid');
+                var toUsername = $(this).data('tousername');
+
+                socket.emit('newMessage', {
+                    message: value,
+                    to: {
+                        id: toID,
+                        username: toUsername
                     }
                 });
+
+                self.val('');
             }
         });
 

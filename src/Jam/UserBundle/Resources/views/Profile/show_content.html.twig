@@ -37,7 +37,7 @@
 
                         {{ render(controller('JamMessageBundle:Default:messages', { 'username': user.username })) }}
 
-                        <input type="text" class="form-control send-message" maxlength="250" data-url="{{ path('send_message', {'username': user.username}) }}" />
+                        <input type="text" class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
