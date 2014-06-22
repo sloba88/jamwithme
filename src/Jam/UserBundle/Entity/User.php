@@ -511,6 +511,16 @@ class User extends BaseUser
     }
 
     /**
+     * Get avatar
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAvatar()
+    {
+        return $this->images->first()->getWebPath();
+    }
+
+    /**
      * Add jamsMember
      *
      * @param \Jam\CoreBundle\Entity\JamMember $jamsMember

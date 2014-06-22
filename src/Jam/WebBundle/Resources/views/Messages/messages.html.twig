@@ -6,11 +6,9 @@
 
     {# TODO: this must be re written with Backbone #}
 
-    <div class="col-md-4 conversations-box">
+    <div class="col-md-3 conversations-box"></div>
 
-    </div>
-
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div class="conversation-message-box clearfix"></div>
         <input type="text" class="form-control send-message" maxlength="250" data-toid="" data-tousername="" />
     </div>
@@ -25,7 +23,12 @@
     <script type="text/template" id="conversationTemplate">
         <% _.each( rc, function( c ){ %>
         <div class="conversation-box clearfix" data-user="<%- c.username %>" data-id="<%- c.id %>">
-            <p><%- c.username %></p>
+            <div class="col-md-5">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- c.username %>/avatar" class="img-circle" />
+            </div>
+            <div class="col-md-7">
+                <h4><%- c.username %></h4>
+            </div>
         </div>
         <% }); %>
     </script>
