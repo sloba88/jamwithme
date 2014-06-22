@@ -31,7 +31,7 @@ class SearchType extends AbstractType
                 'required' => false
             ))
             ->add('distance', 'number', array(
-                'data' => 20,
+                'data' => 10,
                 'label' => 'Distance (km)'
             ));
     }
