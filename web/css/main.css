@@ -117,6 +117,8 @@ a{
     background-color: #fff;
     padding: 10px;
     border-bottom:1px dotted silver;
+    max-height: 400px;
+    overflow-y: scroll;
 }
 
 .conversation-message-box p{

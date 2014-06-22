@@ -8,6 +8,8 @@ var app = express();
 var server = app.listen(3000);
 var io = require('socket.io').listen(server);
 
+var activeUsers = {};
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -45,6 +47,7 @@ db.once('open', function callback () {
 
             socket.userID   = data.userID;
             socket.username = data.username;
+            activeUsers[data.userID] = socket;
 
             Message.find({ user :  data.userID }, function (err, messages) {
                 if (err) return console.error(err);
@@ -76,16 +79,40 @@ db.once('open', function callback () {
                 messages: [m]
             });
 
+            var messageTo = new Message({
+                user: data.to,
+                otherUser: m.from,
+                messages: [m]
+            });
+
             Message.findOne({'user.id': socket.userID}, function(e, r){
                 if (r == null){
-                    message.save(function (err, message) {
+                    message.save(function (err, m) {
                         if (err) return console.error(err);
-                        console.log('new saved');
+                        socket.emit('messageSaved', message);
                     });
                 }else{
                     r.messages.push(m);
                     r.save(function(err, res){
-                        console.log('saved');
+                        socket.emit('messageSaved', message);
+                    });
+                }
+            });
+
+            Message.findOne({'user.id': data.to.id}, function(e, r){
+                if (r == null){
+                    messageTo.save(function (err, m) {
+                        if (err) return console.error(err);
+                        //socket.emit('messageReceived', messageTo);
+                        var socketTo = activeUsers[data.to.id];
+                        socketTo.emit('messageReceived', messageTo);
+                    });
+                }else{
+                    r.messages.push(m);
+                    r.save(function(err, res){
+                        //socket.emit('messageReceived', messageTo);
+                        var socketTo = activeUsers[data.to.id];
+                        socketTo.emit('messageReceived', messageTo);
                     });
                 }
             });

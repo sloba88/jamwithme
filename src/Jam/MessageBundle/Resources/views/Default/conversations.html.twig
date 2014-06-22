@@ -18,7 +18,7 @@
 
     <script type="text/template" id="messageTemplate">
         <% _.each( rc.messages, function( m ){ %>
-            <p data-user="<%- m.to.username %>"><i><%- m.from.username %></i>: <%- m.message %></p>
+            <p data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>"><strong><i><%- m.from.username %></i></strong>: <%- m.message %></p>
         <% }); %>
     </script>
 
@@ -35,22 +35,32 @@
 {% block javascripts %}
 
     <script>
+
+        var myID = {{ app.user.id }};
+
         jQuery(document).ready(function() {
-            socket.emit('getMyMessages', { userID: '{{ app.user.id }}' });
+            socket.emit('getMyMessages', { userID: 'myID' });
+
+            _.templateSettings.variable = "rc";
+            var messageTemplate      = _.template($( "#messageTemplate" ).html());
+            var conversationTemplate = _.template($( "#conversationTemplate" ).html());
+            var conversations = [];
 
             socket.on('myMessages', function (data) {
 
-                _.templateSettings.variable = "rc";
-                var messageTemplate      = _.template($( "#messageTemplate" ).html());
-                var conversationTemplate = _.template($( "#conversationTemplate" ).html());
-                var conversations = [];
-
                 $.each(data, function( index, value ) {
+                    console.log(value);
                     $( ".conversation-message-box" ).append(messageTemplate( value ) );
 
                     $.each(value.messages, function( index, val ) {
-                        if (!_.findWhere(conversations, val.to)){
-                            conversations.push(val.to);
+                        var other;
+                        if (val.to.id == myID){
+                            other = val.from;
+                        }else{
+                            other = val.to;
+                        }
+                        if (!_.findWhere(conversations, other)){
+                            conversations.push(other);
                         }
                     });
                 });
@@ -58,6 +68,7 @@
                 $( ".conversations-box" ).append( conversationTemplate( conversations ) );
 
                 $(".conversation-box:first").click();
+                scrollToBottom();
 
             });
 
@@ -69,12 +80,26 @@
                 var user = $(this).data('user');
                 var userID = $(this).data('id');
                 $('*[data-user="'+user+'"]').show();
+                $('*[data-user2="'+user+'"]').show();
                 $(".send-message").data('toid', userID);
                 $(".send-message").data('tousername', user);
+                scrollToBottom();
+            });
+
+            socket.on('messageSaved', function (data) {
+                var mess = $(messageTemplate( data )).show();
+                $( ".conversation-message-box" ).append(mess );
+                scrollToBottom();
+            });
+
+            socket.on('messageReceived', function (data) {
+                var mess = $(messageTemplate( data )).show();
+                $( ".conversation-message-box" ).append(mess );
+                scrollToBottom();
             });
 
 
-        });
+            });
     </script>
 
 {% endblock %}
