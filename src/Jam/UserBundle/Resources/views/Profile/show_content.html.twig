@@ -34,9 +34,6 @@
                         <h4 class="modal-title" id="myModalLabel">Send Message</h4>
                     </div>
                     <div class="modal-body">
-
-                        {{ render(controller('JamMessageBundle:Default:messages', { 'username': user.username })) }}
-
                         <input type="text" class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" />
                     </div>
                     <div class="modal-footer">

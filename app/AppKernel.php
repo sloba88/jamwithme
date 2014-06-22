@@ -27,8 +27,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
-            new Jam\MessageBundle\JamMessageBundle(),
+            new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
