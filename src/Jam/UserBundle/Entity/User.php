@@ -517,7 +517,11 @@ class User extends BaseUser
      */
     public function getAvatar()
     {
-        return $this->images->first()->getWebPath();
+        if ($this->images->count() > 0){
+            return $this->images->first()->getWebPath();
+        }else{
+            return $this->getPlaceholderImage();
+        }
     }
 
     /**
@@ -748,5 +752,10 @@ class User extends BaseUser
     public function getSkilLevel()
     {
         return $this->skilLevel;
+    }
+
+    public function getPlaceholderImage()
+    {
+        return '/images/placeholder-user.jpg';
     }
 }

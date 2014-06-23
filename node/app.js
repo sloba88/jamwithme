@@ -105,14 +105,18 @@ db.once('open', function callback () {
                         if (err) return console.error(err);
                         //socket.emit('messageReceived', messageTo);
                         var socketTo = activeUsers[data.to.id];
-                        socketTo.emit('messageReceived', messageTo);
+                        if (socketTo){
+                            socketTo.emit('messageReceived', messageTo);
+                        }
                     });
                 }else{
                     r.messages.push(m);
                     r.save(function(err, res){
                         //socket.emit('messageReceived', messageTo);
                         var socketTo = activeUsers[data.to.id];
-                        socketTo.emit('messageReceived', messageTo);
+                        if (socketTo){
+                            socketTo.emit('messageReceived', messageTo);
+                        }
                     });
                 }
             });
