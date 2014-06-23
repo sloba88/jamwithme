@@ -34,7 +34,7 @@
                         <h4 class="modal-title" id="myModalLabel">Send Message</h4>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" />
+                        <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3" placeholder="Say something cool..." ></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

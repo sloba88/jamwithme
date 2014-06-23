@@ -135,3 +135,7 @@ a{
     font-size: 11px;
     color: silver;
 }
+
+.send-message{
+    resize: none;
+}
