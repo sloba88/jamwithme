@@ -129,3 +129,9 @@ a{
     border: 1px solid silver;
     cursor: pointer;
 }
+
+.message-time{
+    float: right;
+    font-size: 11px;
+    color: silver;
+}

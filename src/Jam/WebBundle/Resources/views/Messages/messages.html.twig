@@ -16,7 +16,10 @@
 
     <script type="text/template" id="messageTemplate">
         <% _.each( rc.messages, function( m ){ %>
-            <p data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>"><strong><i><%- m.from.username %></i></strong>: <%- m.message %></p>
+            <% createdAt = new Date(m.createdAt); %>
+            <p data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>"><strong><i><%- m.from.username %></i></strong>: <%- m.message %>
+                <span class="message-time"><%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %></span>
+            </p>
         <% }); %>
     </script>
 
