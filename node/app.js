@@ -35,7 +35,8 @@ db.once('open', function callback () {
                     },
                     message : String,
                     createdAt : Date
-                }]
+                }],
+                isRead: Boolean
             }
         ),
         'Inbox');
@@ -52,7 +53,14 @@ db.once('open', function callback () {
             Message.find({ user :  data.userID }, function (err, messages) {
                 if (err) return console.error(err);
                 console.log(messages)
-            })
+            });
+
+            //get unread messages count
+            Message.find({ 'isRead' :  false, 'user.id' :  socket.userID }, function (err, messages) {
+                if (err) return console.error(err);
+                socket.emit('myUnreadMessagesCount', messages.length);
+            });
+
         });
 
         socket.on('newMessage', function (data) {
@@ -76,15 +84,18 @@ db.once('open', function callback () {
                     username: socket.username
                 },
                 otherUser: data.to,
-                messages: [m]
+                messages: [m],
+                isRead: true
             });
 
             var messageTo = new Message({
                 user: data.to,
                 otherUser: m.from,
-                messages: [m]
+                messages: [m],
+                isRead: false
             });
 
+            //my inbox
             Message.findOne({'user.id': socket.userID}, function(e, r){
                 if (r == null){
                     message.save(function (err, m) {
@@ -99,6 +110,7 @@ db.once('open', function callback () {
                 }
             });
 
+            //other inbox
             Message.findOne({'user.id': data.to.id}, function(e, r){
                 if (r == null){
                     messageTo.save(function (err, m) {
@@ -111,6 +123,7 @@ db.once('open', function callback () {
                     });
                 }else{
                     r.messages.push(m);
+                    r.isRead = false;
                     r.save(function(err, res){
                         //socket.emit('messageReceived', messageTo);
                         var socketTo = activeUsers[data.to.id];
