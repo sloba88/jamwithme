@@ -139,3 +139,19 @@ a{
 .send-message{
     resize: none;
 }
+
+.map-view-container{
+    position: relative;
+}
+
+.filter-container{
+    position: absolute;
+    top: 10px;
+    background-color: oldlace;
+    opacity: 0.9;
+    padding-bottom: 10px;
+}
+
+#search_form_distance{
+    display: none;
+}

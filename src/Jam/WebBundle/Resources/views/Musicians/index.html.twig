@@ -2,6 +2,7 @@
 
 {% block body %}
 
+    <div class="list-view-container clearfix">
         {% for m in musicians %}
             <div class="col-md-3 user-box">
                 <a href="{{ path('musician_profile', {'username': m.username}) }}" class="user-box-image-link">
@@ -14,11 +15,15 @@
 
             </div>
         {% endfor %}
+    </div>
 
-    <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
+    <div class="map-view-container clearfix">
+        <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
-    <div class="col-md-6">
-    {{ form(form) }}
+        <div class="col-md-3 filter-container">
+            {{ form(form) }}
+            <div id="distance-slider"></div>
+        </div>
     </div>
 
 {% endblock %}
@@ -35,9 +40,14 @@
 
         function initialize() {
             var mapOptions = {
-                zoom: 14,
-                maxZoom: 15,
-                scrollwheel: false
+                zoom: 13,
+                maxZoom: 13,
+                scrollwheel: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.SMALL,
+                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                }
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
@@ -75,21 +85,6 @@
         }
 
         function drawRadius(radius){
-            /*
-            var populationOptions = {
-                strokeColor: 'gray',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: 'gray',
-                fillOpacity: 0.35,
-                map: map,
-                center: new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))),
-                radius: radius * 1000
-            };
-            // Add the circle for this city to the map.
-            distanceCircle = new google.maps.Circle(populationOptions);
-            */
-
             if (typeof donut != 'undefined') donut.setMap(null);
 
             donut = new google.maps.Polygon({
@@ -102,16 +97,10 @@
                 fillColor: "gray",
                 fillOpacity: 0.35
             });
-            //donut.setMap(map);
-
-
         }
 
         $(function() {
             initialize();
-
-            //fetchMapData('');
-
             if ($map.data('lat') == ''){
                 getLocation();
             }else{
