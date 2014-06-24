@@ -2,20 +2,24 @@
 
 {% block body %}
 
-    <div class="list-view-container clearfix">
-        {% for m in musicians %}
-            <div class="col-md-3 user-box">
-                <a href="{{ path('musician_profile', {'username': m.username}) }}" class="user-box-image-link">
-                    <img src="{{ asset(m.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
-                </a>
-                <div class="user-box-details">
-                    <a href="{{ path('musician_profile', {'username': m.username}) }}">{{ m.username }}</a> <br />
-                    <span class="user-box-genres"> {% for g in m.genres %}{{ g.name }}{% if not loop.last %} | {% endif %}{% endfor %}</span>
-                </div>
+    <div class="list-view-container clearfix"></div>
 
+    <script type="text/template" id="musicianBoxTemplate">
+        <div class="col-md-3 musician-box">
+            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="img-circle" />
+            </a>
+            <div class="musician-box-details">
+                <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br />
+                <span class="musician-box-genres">
+                    <% _.each( mu.genres, function(v, k){ %>
+                        <% if (k!=0){ %>|<% } %>
+                        <%- v %>
+                    <% }); %>
+                </span>
             </div>
-        {% endfor %}
-    </div>
+        </div>
+    </script>
 
     <div class="map-view-container clearfix">
         <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
@@ -27,7 +31,6 @@
     </div>
 
 {% endblock %}
-
 
 {% block javascripts %}
 
@@ -109,7 +112,6 @@
 
             drawRadius($("#search_form_distance").val());
 
-
             $("#search_form").parents('form').on('change', function(){
                 fetchMapData();
             });
@@ -119,21 +121,25 @@
         });
 
         var markers = [];
+        _.templateSettings.variable = "mu";
+        var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
 
         function fetchMapData(){
             var data = $("#search_form").parents('form').serialize();
             var iconBase = 'https://maps.google.com/mapfiles/kml/';
             var url = $map.data('url');
             var infowindow = null;
+            $( ".list-view-container").html('');
             $.ajax({
                 url: url,
                 data: data
             }).done(function( result ) {
                 if (result.status == 'success'){
                     deleteMarkers();
-                    //distanceCircle.setRadius(parseInt($("#search_form_distance").val()) * 1000);
                     drawRadius($("#search_form_distance").val());
                     $.each(result.data, function(k, v){
+
+                        $( ".list-view-container" ).append(musicianBoxTemplate( v ) );
 
                         if (v.me){
                             icon = iconBase + 'pal2/icon2.png';

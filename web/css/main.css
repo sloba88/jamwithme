@@ -42,20 +42,20 @@ a{
     color: #8A8E97;
 }
 
-.user-box{
+.musician-box{
     background-color: #fff;
     margin: 0 10px 10px 0;
 }
 
-.user-box img{
+.musician-box img{
     margin-right:8px;
 }
 
-.user-box-details{
+.musician-box-details{
     float:left;
 }
 
-.user-box .user-box-image-link{
+.musician-box .musician-box-image-link{
     float:left;
 }
 
@@ -63,7 +63,7 @@ a{
     padding: 0;
 }
 
-.user-box-genres{
+.musician-box-genres{
     font-size: 11px;
     font-style: italic;
 }

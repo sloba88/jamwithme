@@ -55,7 +55,6 @@
             socket.on('myMessages', function (data) {
 
                 $.each(data, function( index, value ) {
-                    console.log(value);
                     $( ".conversation-message-box" ).append(messageTemplate( value ) );
 
                     $.each(value.messages, function( index, val ) {

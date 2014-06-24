@@ -717,7 +717,6 @@ class User extends BaseUser
         return $this->location? $this->location->getLng() : false;
     }
 
-
     public function getPin()
     {
         return $this->getLat().','.$this->getLon();
@@ -729,7 +728,18 @@ class User extends BaseUser
         return $location;
     }
 
+    public function getGenresNamesArray()
+    {
+        $genres = array();
 
+        if ($this->genres->count()==0) $genres;
+
+        foreach ($this->genres AS $g){
+            array_push($genres, $g->getName());
+        }
+
+        return $genres;
+    }
 
     /**
      * Set skilLevel

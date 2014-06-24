@@ -99,7 +99,8 @@ class MusiciansController extends Controller
                'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
                'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
-               'me' => $me == $m->getUsername() ? true : false
+               'me' => $me == $m->getUsername() ? true : false,
+               'genres' => $m->getGenresNamesArray()
             ));
         }
 
