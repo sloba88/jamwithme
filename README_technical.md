@@ -12,3 +12,8 @@ Download and install MongoDB and run it
 mongod
 ```
 
+Install Node.js and run the server
+```
+cd node
+node app.js
+```
