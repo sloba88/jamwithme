@@ -40,7 +40,7 @@
         "gedmo/doctrine-extensions": "2.3.*",
         "liip/imagine-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "1.1.*@dev",
-        "friendsofsymfony/elastica-bundle": "dev-master#90022b0d0a540e8bf5fc44cde6c8b996c072aefd",
+        "friendsofsymfony/elastica-bundle": "dev-master",
         "jms/serializer-bundle": "0.13.*@dev",
         "doctrine/mongodb-odm": "1.0.*@dev",
         "doctrine/mongodb-odm-bundle": "3.0.*@dev"

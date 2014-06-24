@@ -141,11 +141,7 @@
 
                         $( ".list-view-container" ).append(musicianBoxTemplate( v ) );
 
-                        if (v.me){
-                            icon = iconBase + 'pal2/icon2.png';
-                        }else{
-                            icon = iconBase + 'pal4/icon39.png';
-                        }
+                        icon = iconBase + 'pal4/icon39.png';
 
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(v.lat, v.lng),
@@ -170,6 +166,17 @@
                         });
 
                     });
+
+                    //add myself on map
+                    icon = iconBase + 'pal2/icon2.png';
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))),
+                        map: map,
+                        title: '{{ app.user.username }}',
+                        icon: icon
+                    });
+                    markers.push(marker);
+
                 }
             });
 

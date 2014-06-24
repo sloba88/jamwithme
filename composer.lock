@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7d6bc2aebb73729af4a78f05996e9941",
+    "hash": "58cde8486e55c9b711a0844c71c9e32f",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -799,12 +799,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/mongodb-odm.git",
-                "reference": "d6110fa6840370fc49c5492cb6a30d8432ddfa8d"
+                "reference": "f650a3848e26adfb0a6ba91bef94f64c95b50fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/d6110fa6840370fc49c5492cb6a30d8432ddfa8d",
-                "reference": "d6110fa6840370fc49c5492cb6a30d8432ddfa8d",
+                "url": "https://api.github.com/repos/doctrine/mongodb-odm/zipball/f650a3848e26adfb0a6ba91bef94f64c95b50fdc",
+                "reference": "f650a3848e26adfb0a6ba91bef94f64c95b50fdc",
                 "shasum": ""
             },
             "require": {
@@ -869,7 +869,7 @@
                 "odm",
                 "persistence"
             ],
-            "time": "2014-06-06 17:50:20"
+            "time": "2014-06-20 23:08:43"
         },
         {
             "name": "doctrine/mongodb-odm-bundle",
@@ -1024,12 +1024,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
-                "reference": "90022b0d0a540e8bf5fc44cde6c8b996c072aefd"
+                "reference": "f6264f4149990f26c247419e4e6f26b34fadcd8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/95e445bd0dc91364de38ff527c0bfc7d1199fd50",
-                "reference": "90022b0d0a540e8bf5fc44cde6c8b996c072aefd",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/f6264f4149990f26c247419e4e6f26b34fadcd8d",
+                "reference": "f6264f4149990f26c247419e4e6f26b34fadcd8d",
                 "shasum": ""
             },
             "require": {
@@ -1045,6 +1045,7 @@
                 "doctrine/doctrine-bundle": "~1.2@beta",
                 "doctrine/mongodb-odm": "1.0.*@beta",
                 "doctrine/orm": "~2.2",
+                "jms/serializer-bundle": "@stable",
                 "knplabs/knp-components": "~1.2",
                 "knplabs/knp-paginator-bundle": "~2.4",
                 "pagerfanta/pagerfanta": "1.0.*@dev",
@@ -1106,7 +1107,7 @@
                 "propel",
                 "search"
             ],
-            "time": "2013-12-15 07:33:45"
+            "time": "2014-06-24 00:30:31"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1732,12 +1733,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "7d73273fde801c937f58ed2c07e068d3c5741651"
+                "reference": "f945a54e90407d3a59980577c83079d63b8000d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/7d73273fde801c937f58ed2c07e068d3c5741651",
-                "reference": "7d73273fde801c937f58ed2c07e068d3c5741651",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/f945a54e90407d3a59980577c83079d63b8000d5",
+                "reference": "f945a54e90407d3a59980577c83079d63b8000d5",
                 "shasum": ""
             },
             "require": {
@@ -1797,7 +1798,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2014-06-16 09:50:26"
+            "time": "2014-06-24 15:35:17"
         },
         {
             "name": "monolog/monolog",
@@ -2163,17 +2164,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.3.4",
+            "version": "v2.3.5",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "4a7b126e9c22f858e3584b19ddce6e5bdd7677ee"
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/4a7b126e9c22f858e3584b19ddce6e5bdd7677ee",
-                "reference": "4a7b126e9c22f858e3584b19ddce6e5bdd7677ee",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
+                "reference": "8b7a33aa3d22388443b6de0b0cf184122e9f60d2",
                 "shasum": ""
             },
             "require": {
@@ -2203,11 +2204,13 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2013-08-21 18:09:35"
+            "time": "2014-04-28 14:01:06"
         },
         {
             "name": "stof/doctrine-extensions-bundle",

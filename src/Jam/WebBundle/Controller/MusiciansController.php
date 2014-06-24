@@ -2,6 +2,8 @@
 
 namespace Jam\WebBundle\Controller;
 
+use Elastica\Query\Bool;
+use Elastica\Query\Match;
 use Elastica\Query\MatchAll;
 use Jam\CoreBundle\Entity\Search;
 use Jam\CoreBundle\Form\Type\SearchType;
@@ -54,6 +56,8 @@ class MusiciansController extends Controller
             //$em->persist($search);
             //$em->flush();
 
+
+
             if (isset($searchParams['genres'])){
                 $categoryQuery = new \Elastica\Filter\Terms('genres.id', $searchParams['genres']);
                 $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
@@ -73,6 +77,11 @@ class MusiciansController extends Controller
                 );
                 $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
             }
+
+            /* exclude myself in result set */
+            $categoryQuery = new \Elastica\Filter\Term(array('username' => $me->getUsername()));
+            $elasticaBool = new \Elastica\Filter\BoolNot($categoryQuery);
+            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
 
             $query = \Elastica\Query::create($elasticaQuery);
 
