@@ -212,6 +212,8 @@
         socket.on('myUnreadMessagesCount', function(data){
             if (data!=0){
                 $("#messages-nav .badge").text(data);
+            }else{
+                $("#messages-nav .badge").text('');
             }
         });
 

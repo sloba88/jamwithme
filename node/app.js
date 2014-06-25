@@ -58,6 +58,7 @@ db.once('open', function callback () {
             //get unread messages count
             Message.find({ 'isRead' :  false, 'user.id' :  socket.userID }, function (err, messages) {
                 if (err) return console.error(err);
+                socket.unreadMessages = messages.length;
                 socket.emit('myUnreadMessagesCount', messages.length);
             });
 
@@ -142,9 +143,19 @@ db.once('open', function callback () {
             });
         });
 
+        socket.on('conversationIsRead', function (data) {
+
+            Message.update({ 'user.id' : socket.userID, 'messages.to.id' : data.userID, isRead: false }, {
+                isRead: true
+            }, function(err, numberAffected, rawResponse) {
+                //handle it
+                console.log(numberAffected);
+                socket.unreadMessages -= numberAffected;
+                socket.emit('myUnreadMessagesCount', socket.unreadMessages);
+            })
+        });
 
     });
-
 });
 
 

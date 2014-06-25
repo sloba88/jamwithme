@@ -89,6 +89,11 @@
                 $(".send-message").data('toid', userID);
                 $(".send-message").data('tousername', user);
                 scrollToBottom();
+
+                //this conversation has been read
+                setTimeout(function(){
+                    socket.emit('conversationIsRead', { userID: userID });
+                },500)
             });
 
             socket.on('messageSaved', function (data) {
