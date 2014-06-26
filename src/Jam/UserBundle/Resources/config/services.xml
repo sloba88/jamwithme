@@ -4,20 +4,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="jam_user.example.class">Jam\UserBundle\Example</parameter>
-    </parameters> -->
+        <parameter key="my_user_provider.class">Jam\UserBundle\Security\Core\User\FOSUBUserProvider</parameter>
+    </parameters>
 
     <services>
-        <!--
-        <service id="jam_user.example" class="%jam_user.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-        -->
-
         <service id="jam_user.registration.form.type" class="Jam\UserBundle\Form\Type\RegistrationFormType">
             <tag name="form.type" alias="jam_user_registration" />
             <argument>%fos_user.model.user.class%</argument>
@@ -39,6 +30,19 @@
         <service id="artist.form.type" class="Jam\CoreBundle\Form\Type\ArtistType">
             <argument type="service" id="jam_user.artist.form.data_transformer"/>
             <tag name="form.type" alias="artist_type" />
+        </service>
+
+        <service id="my_user_provider" class="%my_user_provider.class%">
+            <argument type="service" id="jam_user.artist.form.data_transformer"/>
+            <tag name="form.type" alias="artist_type" />
+        </service>
+
+        <service id="my_user_provider" class="%my_user_provider.class%">
+            <argument type="service" id="fos_user.user_manager"/>
+            <argument type="collection">
+                <argument key="facebook">facebook_id</argument>
+                <argument key="google">google_id</argument>
+            </argument>
         </service>
 
     </services>
