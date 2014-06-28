@@ -136,5 +136,9 @@ hwi_oauth:
             type:                facebook
             client_id:           "%facebook_app_id%"
             client_secret:       "%facebook_app_secret%"
-            scope:               ""
+            scope:         "email"
+            infos_url:     "https://graph.facebook.com/me?fields=name,email,picture.type(square)"
+            paths:
+                email:          email
+                profilepicture: picture.data.url
     # here you will add one (or more) configurations for resource owners

@@ -30,6 +30,13 @@ class DefaultController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
 
-        return $this->redirect($this->get('liip_imagine.cache.manager')->getBrowserPath($user->getAvatar(), 'my_thumb'));
+        //make logic to check if it is external image here!
+
+        if (strpos($user->getAvatar(),'http') !== false) {
+            return $this->redirect($user->getAvatar());
+        }else{
+            return $this->redirect($this->get('liip_imagine.cache.manager')->getBrowserPath($user->getAvatar(), 'my_thumb'));
+        }
+
     }
 }

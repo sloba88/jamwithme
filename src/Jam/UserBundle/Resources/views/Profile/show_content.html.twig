@@ -4,13 +4,7 @@
 
     <div class="col-md-6">
 
-        {% if ( user.images|length == 0 ) %}
-            <img src="{{ asset('/images/placeholder-user.jpg') | imagine_filter('my_thumb') }}" class="img-circle" />
-        {% else %}
-            {% for i in user.images %}
-                <img src="{{ asset(i.getWebPath()) | imagine_filter('my_thumb') }}" class="img-circle" />
-            {% endfor %}
-        {% endif %}
+        <img src="{{ path('musician_avatar', { 'username': app.user.username }) }}" class="img-circle" />
 
         <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
         <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>

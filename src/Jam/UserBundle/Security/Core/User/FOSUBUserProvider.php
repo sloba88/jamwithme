@@ -3,6 +3,7 @@ namespace Jam\UserBundle\Security\Core\User;
 
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
+use Jam\UserBundle\Entity\UserImage;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class FOSUBUserProvider extends BaseClass
@@ -44,6 +45,7 @@ class FOSUBUserProvider extends BaseClass
     {
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
@@ -57,9 +59,19 @@ class FOSUBUserProvider extends BaseClass
             //I have set all requested data with the user's username
             //modify here with relevant data
             $user->setUsername($username);
-            $user->setEmail($username);
             $user->setPassword($username);
             $user->setEnabled(true);
+
+            if ($response->getEmail()){
+                $user->setEmail($response->getEmail());
+            }else{
+                $user->setEmail($username);
+            }
+
+            $photo = new UserImage();
+            $photo->setPath($response->getProfilePicture());
+            $user->addExternalImage($photo);
+
             $this->userManager->updateUser($user);
             return $user;
         }

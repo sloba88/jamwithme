@@ -45,7 +45,7 @@
             {% if is_granted("ROLE_USER") %}
 
                 <li><a href="{{ path('musician_profile', {'username': app.user.username}) }}" class="user-box-image-link" style="padding:10px 0">
-                        <img width="30" src="{{ asset(app.user.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
+                        <img width="30" src="{{ path('musician_avatar', { 'username': app.user.username }) }}" class="img-circle" />
                     </a>
                 </li>
 

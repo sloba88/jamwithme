@@ -122,9 +122,24 @@ class Image implements ImageInterface
 
     public function getWebPath()
     {
-        return null === $this->path
-            ? null
-            : $this->getUploadDir().'/'.$this->path;
+        if ( !$this->isExternalImage()){
+            return null === $this->path
+                ? null
+                : $this->getUploadDir().'/'.$this->path;
+        }else{
+            return null === $this->path
+                ? null
+                : $this->path;
+        }
+    }
+
+    public function isExternalImage()
+    {
+        if ( file_exists($this->getAbsolutePath())){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     protected function getUploadRootDir()
