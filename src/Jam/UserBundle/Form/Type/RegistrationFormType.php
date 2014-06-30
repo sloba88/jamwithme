@@ -18,6 +18,13 @@ class RegistrationFormType extends BaseType
         $builder->add('username');
     }
 
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => "Jam\UserBundle\Entity\User"
+        ));
+    }
+
     public function getName()
     {
         return 'jam_user_registration';

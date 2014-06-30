@@ -15,3 +15,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
     elastic_host : localhost
     elastic_port : 9200
+    facebook_app_id: 579440428844182
+    facebook_app_secret: cc714025fc8de9146f26690484a02f8a

@@ -58,8 +58,8 @@ class FOSUBUserProvider extends BaseClass
             $user->$setter_token($response->getAccessToken());
             //I have set all requested data with the user's username
             //modify here with relevant data
-            $user->setUsername($username);
             $user->setPassword($username);
+
             $user->setEnabled(true);
 
             if ($response->getEmail()){
@@ -68,9 +68,28 @@ class FOSUBUserProvider extends BaseClass
                 $user->setEmail($username);
             }
 
-            $photo = new UserImage();
-            $photo->setPath($response->getProfilePicture());
-            $user->addExternalImage($photo);
+            if ($response->getProfilePicture()){
+                $photo = new UserImage();
+                $photo->setPath($response->getProfilePicture());
+                $user->addExternalImage($photo);
+            }
+
+            $allFields = $response->getResponse();
+
+            if (isset($allFields['gender'])){
+                if ($allFields['gender']=='male'){
+                    $user->setGender('1');
+                }else if($allFields['gender']=='female'){
+                    $user->setGender('2');
+                }
+            }
+
+            if (isset($allFields['name'])){
+                $cleanUsername = str_replace(" ", ".", $allFields['name']);
+                $user->setUsername($cleanUsername);
+            }else{
+                $user->setUsername($username);
+            }
 
             $this->userManager->updateUser($user);
             return $user;

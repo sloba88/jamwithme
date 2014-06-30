@@ -13,7 +13,10 @@ framework:
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
-    validation:      { enable_annotations: true }
+    validation:
+        enabled: true
+        api: 2.4
+        enable_annotations: true
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -137,7 +140,7 @@ hwi_oauth:
             client_id:           "%facebook_app_id%"
             client_secret:       "%facebook_app_secret%"
             scope:         "email"
-            infos_url:     "https://graph.facebook.com/me?fields=name,email,picture.type(square)"
+            infos_url:     "https://graph.facebook.com/me?fields=name,email,gender,picture.type(square)"
             paths:
                 email:          email
                 profilepicture: picture.data.url
