@@ -4,7 +4,7 @@
 
     <div class="col-md-6">
 
-        <img src="{{ path('musician_avatar', { 'username': app.user.username }) }}" class="img-circle" />
+        <img src="{{ path('musician_avatar', { 'username': user.username }) }}" class="img-circle" />
 
         <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
         <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>
