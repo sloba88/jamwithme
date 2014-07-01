@@ -145,7 +145,7 @@ db.once('open', function callback () {
 
         socket.on('conversationIsRead', function (data) {
 
-            Message.update({ 'user.id' : socket.userID, 'messages.to.id' : data.userID, isRead: false }, {
+            Message.update({ 'user.id' : socket.userID, isRead: false, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, {
                 isRead: true
             }, function(err, numberAffected, rawResponse) {
                 //handle it
