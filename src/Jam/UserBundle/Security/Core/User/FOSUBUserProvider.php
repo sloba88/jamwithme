@@ -93,6 +93,13 @@ class FOSUBUserProvider extends BaseClass
 
             $this->userManager->updateUser($user);
             return $user;
+        }else{
+            if ($response->getProfilePicture()){
+                $photo = new UserImage();
+                $photo->setPath($response->getProfilePicture());
+                $user->addExternalImage($photo);
+                $this->userManager->updateUser($user);
+            }
         }
 
         //if user exists - go with the HWIOAuth way

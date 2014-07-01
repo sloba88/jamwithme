@@ -42,13 +42,18 @@ a{
     color: #8A8E97;
 }
 
+.user-box-image-link{
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
 .musician-box{
     background-color: #fff;
     margin: 0 10px 10px 0;
-}
-
-.musician-box img{
-    margin-right:8px;
+    padding: 5px;
+    height: 60px;
 }
 
 .musician-box-details{
@@ -57,6 +62,10 @@ a{
 
 .musician-box .musician-box-image-link{
     float:left;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    margin-right: 8px;
 }
 
 .select2-container.form-control{
@@ -154,4 +163,8 @@ a{
 
 #search_form_distance{
     display: none;
+}
+
+.musician-box-image-link{
+
 }

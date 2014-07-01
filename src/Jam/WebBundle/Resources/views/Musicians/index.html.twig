@@ -6,8 +6,8 @@
 
     <script type="text/template" id="musicianBoxTemplate">
         <div class="col-md-3 musician-box">
-            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link">
-                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="img-circle" />
+            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
             </a>
             <div class="musician-box-details">
                 <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br />
@@ -129,7 +129,9 @@
             drawRadius($("#search_form_distance").val());
 
             $("#search_form").parents('form').on('change', function(){
-                fetchMapData();
+                delay(function(){
+                    fetchMapData();
+                }, 500);
             });
 
             fetchMapData();
@@ -233,7 +235,13 @@
                 return extp;
         }
 
-
+        var delay = (function(){
+            var timer = 0;
+            return function(callback, ms){
+                clearTimeout (timer);
+                timer = setTimeout(callback, ms);
+            };
+        })();
 
 
     </script>
