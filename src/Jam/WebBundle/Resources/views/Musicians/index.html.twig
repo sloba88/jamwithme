@@ -40,6 +40,7 @@
         var distanceCircle;
         var bounds = null;
         var donut;
+        var iconBase = 'https://maps.google.com/mapfiles/kml/';
 
         function initialize() {
             var mapOptions = {
@@ -66,6 +67,10 @@
         }
         function showPosition(position){
             map.setCenter(new google.maps.LatLng(parseFloat(position.coords.latitude), position.coords.longitude));
+            $map.data('lat', position.coords.latitude);
+            $map.data('lng', position.coords.longitude);
+            addMyselfOnMap(map);
+            //save to database also
         }
 
         function showError(error)
@@ -102,6 +107,17 @@
             });
         }
 
+        function addMyselfOnMap(map){
+            icon = iconBase + 'pal2/icon2.png';
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))),
+                map: map,
+                title: '{{ app.user.username }}',
+                icon: icon
+            });
+            markers.push(marker);
+        }
+
         $(function() {
             initialize();
             if ($map.data('lat') == ''){
@@ -126,7 +142,6 @@
 
         function fetchMapData(){
             var data = $("#search_form").parents('form').serialize();
-            var iconBase = 'https://maps.google.com/mapfiles/kml/';
             var url = $map.data('url');
             var infowindow = null;
             $( ".list-view-container").html('');
@@ -168,18 +183,9 @@
                     });
 
                     //add myself on map
-                    icon = iconBase + 'pal2/icon2.png';
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))),
-                        map: map,
-                        title: '{{ app.user.username }}',
-                        icon: icon
-                    });
-                    markers.push(marker);
-
+                    addMyselfOnMap(map);
                 }
             });
-
 
             // Sets the map on all markers in the array.
             function setAllMap(map) {
