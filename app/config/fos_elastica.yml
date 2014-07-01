@@ -23,3 +23,5 @@ fos_elastica:
                         provider: ~
                         listener:
                         finder: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true

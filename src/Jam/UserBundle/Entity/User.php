@@ -741,13 +741,9 @@ class User extends BaseUser
 
     public function getPin()
     {
+        if (!$this->getLat()) return null;
+
         return $this->getLat().','.$this->getLon();
-
-        $location = array();
-        $location["lat"] = $this->getLat();
-        $location["lon"] = $this->getLon();
-
-        return $location;
     }
 
     public function getGenresNamesArray()

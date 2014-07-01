@@ -31,6 +31,7 @@ class DefaultController extends Controller
         $user = $userManager->findUserByUsername($username);
 
         //make logic to check if it is external image here!
+        //store to Mongo or Redis maybe to fetch it faster?
 
         if (strpos($user->getAvatar(),'http') !== false) {
             return $this->redirect($user->getAvatar());

@@ -45,6 +45,9 @@ class MusiciansController extends Controller
         $searchParams = $request->query->get('search_form');
         $me = $this->container->get('security.context')->getToken()->getUser();
 
+        //$finder = $this->container->get('fos_elastica.index');
+        //$finder->refresh();
+
         $finder = $this->container->get('fos_elastica.finder.searches.user');
         $elasticaQuery = new MatchAll();
 
@@ -68,8 +71,7 @@ class MusiciansController extends Controller
                 $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
             }
 
-            if (isset($searchParams['distance'])){
-
+            if (isset($searchParams['distance']) && $me->getLat()){
                 $locationFilter = new \Elastica\Filter\GeoDistance(
                     'pin',
                     array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
@@ -89,7 +91,7 @@ class MusiciansController extends Controller
             $query = new \Elastica\Query\MatchAll();
         }
 
-        $musicians = $finder->find($query);
+        $musicians = $finder->find($elasticaQuery);
 
         $response = new JsonResponse();
         $musicians_data = array();
