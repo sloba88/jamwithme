@@ -27,7 +27,12 @@ class User extends BaseUser
     protected $facebook_id;
 
     /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
-    protected $facebook_access_token;
+
+    /** @ORM\Column(name="soundcloud_id", type="string", length=255, nullable=true) */
+    protected $soundcloud_id;
+
+    /** @ORM\Column(name="soundcloud_access_token", type="string", length=255, nullable=true) */
+    protected $soundcloud_access_token;
 
     public function __construct()
     {
@@ -831,5 +836,51 @@ class User extends BaseUser
     public function getFacebookAccessToken()
     {
         return $this->facebook_access_token;
+    }
+
+    /**
+     * Set soundcloud_id
+     *
+     * @param string $soundcloudId
+     * @return User
+     */
+    public function setSoundcloudId($soundcloudId)
+    {
+        $this->soundcloud_id = $soundcloudId;
+
+        return $this;
+    }
+
+    /**
+     * Get soundcloud_id
+     *
+     * @return string 
+     */
+    public function getSoundcloudId()
+    {
+        return $this->soundcloud_id;
+    }
+
+    /**
+     * Set soundcloud_access_token
+     *
+     * @param string $soundcloudAccessToken
+     * @return User
+     */
+    public function setSoundcloudAccessToken($soundcloudAccessToken)
+    {
+        $this->soundcloud_access_token = $soundcloudAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get soundcloud_access_token
+     *
+     * @return string 
+     */
+    public function getSoundcloudAccessToken()
+    {
+        return $this->soundcloud_access_token;
     }
 }

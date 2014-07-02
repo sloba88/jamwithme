@@ -42,6 +42,7 @@
             <argument type="collection">
                 <argument key="facebook">facebook_id</argument>
                 <argument key="google">google_id</argument>
+                <argument key="soundcloud">soundcloud_id</argument>
             </argument>
         </service>
 

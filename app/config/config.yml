@@ -133,7 +133,7 @@ hwi_oauth:
         properties:
             # these properties will be used/redefined later in the custom FOSUBUserProvider service.
             facebook: facebook_id
-            google: google_id
+            soundcloud: soundcloud_id
     resource_owners:
         facebook:
             type:                facebook
@@ -144,4 +144,8 @@ hwi_oauth:
             paths:
                 email:          email
                 profilepicture: picture.data.url
+        soundcloud:
+            type:                soundcloud
+            client_id:           "%soundcloud_app_id%"
+            client_secret:       "%soundcloud_app_secret%"
     # here you will add one (or more) configurations for resource owners

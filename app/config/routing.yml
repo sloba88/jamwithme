@@ -53,3 +53,9 @@ facebook_login:
 
 jam_facebook_login:
     pattern: /login/facebook
+
+soundcloud_login:
+    pattern: /login/check-soundcloud
+
+jam_soundcloud_login:
+    pattern: /login/soundcloud
