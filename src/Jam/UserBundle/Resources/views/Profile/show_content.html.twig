@@ -14,28 +14,32 @@
         <p>Age: {{ user.age }}</p>
         <p>Gender: {{ user.genderText }}</p>
 
-        <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-            Send Message
-        </button>
+        {% if app.user != user %}
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Send Message</h4>
-                    </div>
-                    <div class="modal-body">
-                        <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3" placeholder="Say something cool..." ></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                Send Message
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Send Message</h4>
+                        </div>
+                        <div class="modal-body">
+                            <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3" placeholder="Say something cool..." ></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        {% endif %}
 
     </div>
 

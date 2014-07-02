@@ -2,15 +2,19 @@
 
 {% block body %}
 
-    <p>My Messages</p>
+    <h3>My Messages</h3>
 
     {# TODO: this must be re written with Backbone #}
+
+    <div class="row">
 
     <div class="col-md-3 conversations-box"></div>
 
     <div class="col-md-9">
         <div class="conversation-message-box clearfix"></div>
         <textarea class="form-control send-message" maxlength="250" data-toid="" data-tousername="" rows="3" placeholder="Say something cool..." ></textarea>
+    </div>
+
     </div>
 
 
@@ -26,10 +30,10 @@
     <script type="text/template" id="conversationTemplate">
         <% _.each( rc, function( c ){ %>
         <div class="conversation-box clearfix" data-user="<%- c.username %>" data-id="<%- c.id %>">
-            <div class="col-md-5">
-                <img src="{{ app.request.getBaseURL() }}/m/<%- c.username %>/avatar" class="img-circle" />
+            <div class="col-md-3">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- c.username %>/avatar" class="img-circle" width="50" />
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <h4><%- c.username %></h4>
             </div>
         </div>
