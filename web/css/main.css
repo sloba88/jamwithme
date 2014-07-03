@@ -155,9 +155,9 @@ a{
 
 .filter-container{
     position: absolute;
-    top: 10px;
+    top: 0;
     background-color: oldlace;
-    opacity: 0.9;
+    opacity: 0.85;
     padding-bottom: 10px;
 }
 

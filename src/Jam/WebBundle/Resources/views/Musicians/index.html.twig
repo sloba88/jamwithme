@@ -12,7 +12,7 @@
     <br />
 
     <div class="tab-content">
-        <div class="tab-pane active" id="map">
+        <div class="tab-pane fade in active" id="map">
             <div class="map-view-container clearfix">
                 <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="list">
+        <div class="tab-pane fade" id="list">
             <div class="list-view-container clearfix"></div>
         </div>
     </div>
