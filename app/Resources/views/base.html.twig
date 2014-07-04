@@ -340,6 +340,16 @@
             }
         });
 
+        $('#list-tab-btn').on('shown.bs.tab', function (e) {
+            $(".filter-container").prependTo("#list");
+        });
+
+        $("#map-tab-btn").on('shown.bs.tab', function (e) {
+            $(".filter-container").appendTo(".map-view-container");
+        });
+
+
+
     });
 
     function scrollToBottom(){

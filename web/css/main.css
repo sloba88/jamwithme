@@ -153,12 +153,17 @@ a{
     position: relative;
 }
 
-.filter-container{
+.map-view-container .filter-container{
     position: absolute;
     top: 0;
     background-color: oldlace;
     opacity: 0.85;
+}
+
+.filter-container{
+    border: 1px solid black;
     padding-bottom: 10px;
+
 }
 
 #search_form_distance{
