@@ -31,7 +31,7 @@ class Instrument
     /**
      * @var collection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", mappedBy="instruments" )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="instrument" )
      */
     private $musicians;
 

@@ -97,7 +97,7 @@
 <script>
 
     jQuery(document).ready(function() {
-        $("#fos_user_profile_form_instruments, #fos_user_registration_form_instruments").select2({
+        $(".instrument-select").select2({
             placeholder: 'What do you play?'
         });
 
@@ -132,6 +132,7 @@
 
     var imagesCollectionHolder = $('#user_images');
     var jamMembersCollectionHolder = $("#jam_members")
+    var musicianInstrumentsCollectionHolder = $("#musician_instruments")
 
     jQuery(document).ready(function() {
         {% if form is defined and form.vars.valid %}
@@ -153,6 +154,11 @@
         $("#add_another_member").on('click', function(e){
             e.preventDefault();
             addCollectionForm(jamMembersCollectionHolder, 'members');
+        });
+
+        $("#add_another_instrument").on('click', function(e){
+            e.preventDefault();
+            addCollectionForm(musicianInstrumentsCollectionHolder, 'instruments');
         });
 
         $(document).on('click', '.make-primary-image', function(){

@@ -28,11 +28,15 @@ class InstrumentTransform implements \Symfony\Component\Form\DataTransformerInte
      */
     public function transform($instrument)
     {
+        if ('' === $instrument) {
+            return "";
+        }
+
         if (null === $instrument) {
             return "";
         }
 
-        return $instrument->getId();
+        return $instrument;
     }
 
     /**
@@ -45,6 +49,10 @@ class InstrumentTransform implements \Symfony\Component\Form\DataTransformerInte
     public function reverseTransform($number)
     {
         if (!$number) {
+            return null;
+        }
+
+        if ($number == '') {
             return null;
         }
 

@@ -62,7 +62,7 @@
         <p>Instruments: </p>
         <ul>
             {% for i in user.instruments %}
-                <li><a href="{{ path('musicians', {'search_form[instruments][]' : i.id }) }}">{{ i.name }}</a></li>
+                <li><a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a></li>
 
             {% endfor %}
         </ul>

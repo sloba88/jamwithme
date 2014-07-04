@@ -2,11 +2,15 @@
 
 namespace Jam\UserBundle\Form\Type;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Jam\CoreBundle\Form\DataTransformer\InstrumentTransform;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Jam\CoreBundle\Form\Type\InstrumentType;
+
 
 class ProfileFormType extends BaseType
 {
@@ -21,18 +25,14 @@ class ProfileFormType extends BaseType
         $builder->add('username');
         $builder->add('aboutMe');
 
-        $builder->add('skilLevel');
+        $builder->add('isTeacher', 'checkbox', array(
+            'label' => 'I am music teacher and I provide private lesions'
 
-        $builder->add('isTeacher');
+        ));
 
-        $builder->add('instruments', 'entity', array(
-            'class' => 'JamCoreBundle:Instrument',
-            'query_builder' => function(EntityRepository $er) {
-                return $er->createQueryBuilder('u');
-            },
-            'property' => "name",
-            'multiple' => true,
-            'required' => false
+        $builder->add('instruments', 'collection', array(
+            'type' => 'instrument_type',
+            'allow_add' => true
         ));
 
         $builder->add('genres', 'entity', array(
@@ -54,13 +54,6 @@ class ProfileFormType extends BaseType
             'multiple' => true,
             'required' => false
         ));
-
-//        $builder->add(
-//            $builder->create('artists', 'text', array(
-//                'required' => false
-//            ))
-//                ->addViewTransformer($this->artistTransform)
-//        );
 
         $builder->add('artists', 'artist_type');
 

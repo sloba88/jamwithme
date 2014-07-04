@@ -46,18 +46,6 @@ class User extends BaseUser
     /**
      * @var collection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Instrument", inversedBy="musicians", cascade={"persist"})
-     * @ORM\JoinTable(
-     *      name="musicians_instruments",
-     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=false)}
-     * )
-     */
-    protected $instruments;
-
-    /**
-     * @var collection
-     *
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre", inversedBy="musicians", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="musicians_genres",
@@ -155,6 +143,12 @@ class User extends BaseUser
      */
     private $images;
 
+    /**
+     * @var collection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"} )
+     */
+    private $instruments;
 
     /**
      * @ORM\Column(type="smallint", length=1, nullable=true)
@@ -167,12 +161,6 @@ class User extends BaseUser
      *
      */
     private $birthDate;
-
-    /**
-     * @ORM\Column(type="smallint", length=1, nullable=true)
-     *
-     */
-    private $skilLevel;
 
     /**
      * @ORM\Column(type="boolean", length=1, nullable=false)
@@ -234,39 +222,6 @@ class User extends BaseUser
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Add instruments
-     *
-     * @param \Jam\CoreBundle\Entity\Instrument $instruments
-     * @return User
-     */
-    public function addInstrument(\Jam\CoreBundle\Entity\Instrument $instruments)
-    {
-        $this->instruments[] = $instruments;
-
-        return $this;
-    }
-
-    /**
-     * Remove instruments
-     *
-     * @param \Jam\CoreBundle\Entity\Instrument $instruments
-     */
-    public function removeInstrument(\Jam\CoreBundle\Entity\Instrument $instruments)
-    {
-        $this->instruments->removeElement($instruments);
-    }
-
-    /**
-     * Get instruments
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getInstruments()
-    {
-        return $this->instruments;
     }
 
     /**
@@ -770,29 +725,6 @@ class User extends BaseUser
         return $genres;
     }
 
-    /**
-     * Set skilLevel
-     *
-     * @param integer $skilLevel
-     * @return User
-     */
-    public function setSkilLevel($skilLevel)
-    {
-        $this->skilLevel = $skilLevel;
-
-        return $this;
-    }
-
-    /**
-     * Get skilLevel
-     *
-     * @return integer 
-     */
-    public function getSkilLevel()
-    {
-        return $this->skilLevel;
-    }
-
     public function getPlaceholderImage()
     {
         return '/images/placeholder-user.jpg';
@@ -911,5 +843,38 @@ class User extends BaseUser
     public function getIsTeacher()
     {
         return $this->isTeacher;
+    }
+
+    /**
+     * Add instruments
+     *
+     * @param \Jam\CoreBundle\Entity\MusicianInstrument $instruments
+     * @return User
+     */
+    public function addInstrument(\Jam\CoreBundle\Entity\MusicianInstrument $instruments)
+    {
+        $this->instruments[] = $instruments;
+
+        return $this;
+    }
+
+    /**
+     * Remove instruments
+     *
+     * @param \Jam\CoreBundle\Entity\MusicianInstrument $instruments
+     */
+    public function removeInstrument(\Jam\CoreBundle\Entity\MusicianInstrument $instruments)
+    {
+        $this->instruments->removeElement($instruments);
+    }
+
+    /**
+     * Get instruments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInstruments()
+    {
+        return $this->instruments;
     }
 }
