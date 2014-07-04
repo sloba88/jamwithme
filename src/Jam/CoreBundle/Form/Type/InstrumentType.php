@@ -35,7 +35,8 @@ class InstrumentType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'class'=> 'instrument-select'
-                )
+                ),
+                'label' => 'What do you play?'
             ))
                 ->addModelTransformer($this->instrumentTransform)
         );
@@ -46,7 +47,8 @@ class InstrumentType extends AbstractType
                 '2'   => 'Average',
                 '3'   => 'Decent',
                 '4'   => 'Professional'
-            )
+            ),
+            'label' => 'How good are you?'
         ));
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {

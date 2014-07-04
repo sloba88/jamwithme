@@ -49,12 +49,19 @@
         <div class="tab-pane" id="musician-info-tab">
 
             <div class="col-md-6">
-                {{ form_row(form.isTeacher) }}
 
-                <ul id="musician_instruments" data-prototype="{{ form_widget(form.instruments.vars.prototype)|e }}">
-                    {{ form_row(form.instruments) }}
+                {{ form_row(form.aboutMe) }}
 
-                </ul>
+                <div id="musician_instruments" data-prototype="{{ form_widget(form.instruments.vars.prototype)|e }}">
+                    {% for f in form.instruments %}
+                        <div class="col-md-8">
+                            {{ form_row(f.instrument) }}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form_row(f.skillLevel) }}
+                        </div>
+                    {% endfor %}
+                </div>
 
                 <a href="#" id="add_another_instrument">Add another</a>
 
@@ -62,13 +69,13 @@
 
             <div class="col-md-6">
 
+                {{ form_row(form.isTeacher) }}
+
                 {{ form_row(form.genres) }}
 
                 {{ form_row(form.brands) }}
 
                 <div class="clearfix"></div>
-
-                {{ form_row(form.aboutMe) }}
 
                 {{ form_row(form.artists) }}
 
@@ -102,13 +109,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
 
 
     {{ form_widget(form._token) }}
