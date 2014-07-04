@@ -175,6 +175,12 @@ class User extends BaseUser
     private $skilLevel;
 
     /**
+     * @ORM\Column(type="boolean", length=1, nullable=false)
+     *
+     */
+    private $isTeacher = false;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -882,5 +888,28 @@ class User extends BaseUser
     public function getSoundcloudAccessToken()
     {
         return $this->soundcloud_access_token;
+    }
+
+    /**
+     * Set isTeacher
+     *
+     * @param boolean $isTeacher
+     * @return User
+     */
+    public function setIsTeacher($isTeacher)
+    {
+        $this->isTeacher = $isTeacher;
+
+        return $this;
+    }
+
+    /**
+     * Get isTeacher
+     *
+     * @return boolean 
+     */
+    public function getIsTeacher()
+    {
+        return $this->isTeacher;
     }
 }

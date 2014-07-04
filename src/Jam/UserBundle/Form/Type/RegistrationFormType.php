@@ -16,6 +16,7 @@ class RegistrationFormType extends BaseType
 
         $builder->add('email');
         $builder->add('username');
+        $builder->add('isTeacher');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
