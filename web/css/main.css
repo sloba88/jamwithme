@@ -163,7 +163,6 @@ a{
 .filter-container{
     border: 1px solid black;
     padding-bottom: 10px;
-
 }
 
 #search_form_distance{
@@ -172,4 +171,19 @@ a{
 
 .musician-box-image-link{
 
+}
+
+.connect-with-facebook-btn{
+    background: url('../images/facebook-connect-button.png');
+    width: 180px;
+    height: 40px;
+    display: inline-block;
+    background-size: 180px 40px;
+}
+
+.connect-with-soundcloud-btn{
+    background: url('http://connect.soundcloud.com/2/btn-connect-sc-m.png');
+    width: 207px;
+    height: 25px;
+    display: inline-block
 }

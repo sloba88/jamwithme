@@ -2,7 +2,6 @@
 {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
-    {#{{ form_widget(form) }}#}
 
     {{ form_errors(form) }}
 
@@ -10,12 +9,12 @@
         <li class="active"><a href="#personal-info-tab" role="tab" data-toggle="tab">Personal Info</a></li>
         <li><a href="#musician-info-tab" role="tab" data-toggle="tab">Musician Info</a></li>
         <li><a href="#media-tab" role="tab" data-toggle="tab">Media</a></li>
+        <li><a href="#networks-tab" role="tab" data-toggle="tab">Networks</a></li>
     </ul>
 
     <br />
 
-
-    <div class="tab-content">
+    <div class="tab-content clearfix">
 
         <div class="tab-pane active" id="personal-info-tab">
 
@@ -108,11 +107,33 @@
 
         </div>
 
+        <div class="tab-pane" id="networks-tab">
+
+            <h4>Facebook</h4>
+            {% if app.user.facebookId %}
+                <!--add buttons -->
+                <a href="#">Connected</a>
+            {% else %}
+                <a class="connect-with-facebook-btn" href="{{ path('jam_facebook_login') }}" ></a>
+            {% endif %}
+
+            <br />
+
+            <h4>Soundcloud</h4>
+            {% if app.user.facebookId %}
+                <!--add buttons -->
+                <a href="#">Connected</a>
+            {% else %}
+                <a href="{{ path('jam_soundcloud_login') }}" class="connect-with-soundcloud-btn" ></a>
+            {% endif %}
+
+        </div>
+
     </div>
 
 
     {{ form_widget(form._token) }}
-
+    <hr />
     <div class="col-md-12">
         <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans }}" />
     </div>
