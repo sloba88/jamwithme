@@ -28,7 +28,7 @@
     </div>
 
     <script type="text/template" id="musicianBoxTemplate">
-        <div class="col-md-3 musician-box">
+        <div class="col-md-3 musician-box <% if(mu.teacher){ %>teacher<% } %>">
             <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
                 <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
             </a>
@@ -41,6 +41,14 @@
                     <% }); %>
                 </span>
             </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="musicianMapBoxTemplate">
+        <div class="musician-map-box <% if(mu.teacher){ %>teacher<% } %>">
+            <a href="<%- mu.url %>"><img src="<%- mu.image %>" />
+                <p><%- mu.username %></p>
+            </a>
         </div>
     </script>
 
@@ -155,6 +163,7 @@
         var markers = [];
         _.templateSettings.variable = "mu";
         var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
+        var musicianMapBoxTemplate     = _.template($( "#musicianMapBoxTemplate" ).html());
 
         function fetchMapData(){
             var data = $("#search_form").parents('form').serialize();
@@ -182,15 +191,13 @@
                         });
                         markers.push(marker);
 
-                        var contentString = '<div id="content"><a href="'+ v.url +'"><img src="'+ v.image +'" /><p>'+ v.username +'</p></a></div>';
-
                         google.maps.event.addListener(marker, 'mouseover', function() {
                             if (infowindow) {
                                 infowindow.close();
                             }
 
                             infowindow = new google.maps.InfoWindow({
-                                content: contentString
+                                content: musicianMapBoxTemplate( v )
                             });
 
                             infowindow.open(map,marker);

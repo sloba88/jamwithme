@@ -45,6 +45,10 @@
 
     <div class="col-md-6">
 
+        {% if user.isTeacher %}
+            <p>This guy is a teacher!</p>
+        {% endif %}
+
         <p>Genres: </p>
         <ul>
         {% for g in user.genres %}

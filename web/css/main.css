@@ -54,6 +54,20 @@ a{
     margin: 0 10px 10px 0;
     padding: 5px;
     height: 60px;
+    border:1px solid #e5e5e5;
+}
+
+.musician-box.teacher{
+    background-color: #feffde;
+}
+
+.musician-map-box{
+    width: 120px;
+    height: 120px;
+}
+
+.musician-map-box.teacher{
+    background-color: #feffde;
 }
 
 .musician-box-details{

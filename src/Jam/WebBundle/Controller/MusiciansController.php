@@ -85,10 +85,10 @@ class MusiciansController extends Controller
             $elasticaBool = new \Elastica\Filter\BoolNot($categoryQuery);
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
 
-            $query = \Elastica\Query::create($elasticaQuery);
+            //$query = \Elastica\Query::create($elasticaQuery);
 
         }else{
-            $query = new \Elastica\Query\MatchAll();
+            //$query = new \Elastica\Query\MatchAll();
         }
 
         $musicians = $finder->find($elasticaQuery);
@@ -104,15 +104,21 @@ class MusiciansController extends Controller
                 $image = '/images/placeholder-user.jpg';
             }
 
-            array_push($musicians_data, array(
-               'username' => $m->getUsername(),
-               'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
-               'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
-               'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
-               'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
-               'me' => $me == $m->getUsername() ? true : false,
-               'genres' => $m->getGenresNamesArray()
-            ));
+            $data_array = array(
+                'username' => $m->getUsername(),
+                'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
+                'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
+                'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
+                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
+                'me' => $me == $m->getUsername() ? true : false,
+                'genres' => $m->getGenresNamesArray(),
+            );
+
+            if ($m->getIsTeacher()){
+                $data_array['teacher'] = true;
+            }
+
+            array_push($musicians_data, $data_array);
         }
 
         $response->setData(array(
