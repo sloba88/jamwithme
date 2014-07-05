@@ -19,15 +19,23 @@ class ProfileFormType extends BaseType
         parent::buildForm($builder, $options);
 
         // add your custom field
-        $builder->add('firstName');
-        $builder->add('lastName');
-        $builder->add('email');
+        $builder->add('firstName', 'text', array(
+            'required' => false
+        ));
+        $builder->add('lastName', 'text', array(
+            'required' => false
+        ));
+        $builder->add('email', 'email', array(
+            'disabled' => true
+        ));
         $builder->add('username');
-        $builder->add('aboutMe');
+        $builder->add('aboutMe', 'textarea', array(
+            'required' => false
+        ));
 
         $builder->add('isTeacher', 'checkbox', array(
-            'label' => 'I am music teacher and I provide private lesions'
-
+            'label' => 'I am music teacher and I provide private lesions',
+            'required' => false
         ));
 
         $builder->add('instruments', 'collection', array(
