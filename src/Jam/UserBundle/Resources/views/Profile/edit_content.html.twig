@@ -92,7 +92,7 @@
         </div>
         <div class="tab-pane" id="media-tab">
 
-            <div class="col-md-6">
+            <div class="col-md-12">
 
                 <div class="form-group" >
                     {{ form_label(form.images, 'Images'|trans) }}
@@ -101,17 +101,23 @@
                         <div id="user_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-index="{{ form.vars.value.images|length }}">
                             {% for i in form.vars.value.images %}
                                 <div class="image-holder">
-                                    <img src="{{ asset(i.getWebPath) | imagine_filter('my_thumb') }}" class="img-circle" />
+                                    <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" />
                                     <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                     <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="clear">
-                            <button type="button" class="btn btn-link" id="add_another_image"><span class="glyphicon glyphicon-plus"></span>{% trans from "buttons" %} Add another image{% endtrans %}</button>
-                        </div>
                     </div>
                 </div>
+
+                <input type="file" accept="image/*" name="file" id="jam_images_images_0_file" multiple data-url="{{ path('upload_user_image') }}">
+
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+
+                <div id="files" class="files"></div>
+
             </div>
 
         </div>
@@ -146,3 +152,4 @@
         <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans }}" />
     </div>
 </form>
+

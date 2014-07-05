@@ -201,3 +201,18 @@ a{
     height: 25px;
     display: inline-block
 }
+
+#user_images .image-holder{
+    float:left;
+    position: relative;
+}
+
+#user_images .image-holder .remove-image{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #fff;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}

@@ -198,7 +198,7 @@ class JamController extends Controller
     }
 
     /**
-     * @Route("/jam/image/add/{slug}", name="upload_image")
+     * @Route("/jam/image/add/{slug}", name="upload_jam_image")
      * @Template()
      */
     public function uploadImageAction($slug)
@@ -243,16 +243,6 @@ class JamController extends Controller
                 'deleteType' => 'DELETE'
             )
         ));
-
-        /*{"files":[{
-            "url":"http://jquery-file-upload.appspot.com/AMIfv94N8JSr3kEKex2xHrXhAOoQdKBA-r3MLQHoeO_Ohc-euu-7jvwMdjEKDk-s-kxyYAD4YTwSCCpzX7nNAhiGIuJJrnTAW87UzCidghvuQNGvEOcK1LtUIVa_cXtzFug5IgeV0EdIydjbUEPQhHHnyITFLiHqp45U9KWmwy2E90RoPcewDFU/998628_670369989662220_792208664_n.png",
-            "thumbnailUrl":"http://lh3.ggpht.com/uC5buMbFdxzpiroZ0KkSSD7Us8L0BIN5PpkyBYWy5eXA_T4Wvwr4OotKDkFav_rnviu7FyqqAKAtCTqQinhp1r28H4ebh-3j=s80",
-            "name":"998628_670369989662220_792208664_n.png",
-            "type":"image/png",
-            "size":655141,
-            "deleteUrl":"http://jquery-file-upload.appspot.com/AMIfv94N8JSr3kEKex2xHrXhAOoQdKBA-r3MLQHoeO_Ohc-euu-7jvwMdjEKDk-s-kxyYAD4YTwSCCpzX7nNAhiGIuJJrnTAW87UzCidghvuQNGvEOcK1LtUIVa_cXtzFug5IgeV0EdIydjbUEPQhHHnyITFLiHqp45U9KWmwy2E90RoPcewDFU/998628_670369989662220_792208664_n.png?delete=true",
-            "deleteType":"DELETE"
-        }]}*/
 
         return $response;
     }

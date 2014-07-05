@@ -94,7 +94,7 @@ class FOSUBUserProvider extends BaseClass
             $this->userManager->updateUser($user);
             return $user;
         }else{
-            if ($response->getProfilePicture()){
+            if ($response->getProfilePicture() && $user->getImages()->count() == 0){
                 $photo = new UserImage();
                 $photo->setPath($response->getProfilePicture());
                 $user->addExternalImage($photo);
