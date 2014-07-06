@@ -3,9 +3,14 @@
 <div class="fos_user_user_show">
 
     <div class="col-md-12 profile-header">
-        {% for i in user.images %}
-            <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" width="200" />
-        {% endfor %}
+
+        {% if user.images|length > 0 %}
+            {% for i in user.images %}
+                <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" width="200" />
+            {% endfor %}
+        {% else %}
+            <h3>Upload some photos here</h3>
+        {% endif %}
 
         <div class="profile-avatar-container">
             <img src="{{ path('musician_avatar', { 'username': user.username }) }}" class="img-circle" />

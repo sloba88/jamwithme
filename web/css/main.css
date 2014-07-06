@@ -246,6 +246,12 @@ a{
 
 .profile-header{
     position: relative;
+    min-height: 100px;
+}
+
+.profile-header h3{
+    text-align: center;
+    margin-top: 50px;
 }
 
 .profile-avatar-container{
