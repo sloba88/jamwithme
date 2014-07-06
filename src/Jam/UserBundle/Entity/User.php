@@ -890,6 +890,11 @@ class User extends BaseUser
      */
     public function getAvatar()
     {
-        return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
+        if ($this->avatar){
+            return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
+        }else{
+            return 'images/placeholder-user.jpg';
+        }
+
     }
 }

@@ -2,14 +2,42 @@
 
 <div class="fos_user_user_show">
 
+    <div class="col-md-12 profile-header">
+        {% for i in user.images %}
+            <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" width="200" />
+        {% endfor %}
+
+        <div class="profile-avatar-container">
+            <img src="{{ path('musician_avatar', { 'username': user.username }) }}" class="img-circle" />
+            <p>{{ user.username }}</p>
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <hr />
+    </div>
+
+    <ul class="profile-genres">
+        {% for g in user.genres %}
+            <li><a href="{{ path('musicians', {'search_form[genres][]' : g.id }) }}">{{ g.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <div class="clearfix"></div>
+
+    <hr />
+
     <div class="col-md-6">
 
-        <img src="{{ path('musician_avatar', { 'username': user.username }) }}" class="img-circle" />
+        <p>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</p>
 
-        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-        <p>{{ 'profile.show.first_name'|trans }}: {{ user.firstName }}</p>
-        <p>{{ 'profile.show.last_name'|trans }}: {{ user.lastName }}</p>
-        <p>{{ 'profile.show.about_me'|trans }}: {{ user.aboutMe }}</p>
+        <p>{{ 'profile.show.about_me'|trans }}:</p>
+
+        <div class="about-me-box">
+            {{ user.aboutMe }}
+        </div>
+
+        <br />
 
         <p>Age: {{ user.age }}</p>
         <p>Gender: {{ user.genderText }}</p>
@@ -48,13 +76,6 @@
         {% if user.isTeacher %}
             <p>This guy is a teacher!</p>
         {% endif %}
-
-        <p>Genres: </p>
-        <ul>
-        {% for g in user.genres %}
-            <li><a href="{{ path('musicians', {'search_form[genres][]' : g.id }) }}">{{ g.name }}</a></li>
-        {% endfor %}
-        </ul>
 
         <p>Artists: </p>
         <ul>

@@ -244,3 +244,39 @@ a{
     margin-top: 10px;
 }
 
+.profile-header{
+    position: relative;
+}
+
+.profile-avatar-container{
+    position: absolute;
+    top: 10px;
+    left: 25px;
+    background-color: #fff;
+    opacity: .92;
+    padding: 10px;
+    box-shadow: 3px 3px 6px black;
+}
+
+.about-me-box{
+    background-color: #fff;
+    opacity: 0.95;
+    padding: 15px;
+    border: 1px solid #eaeaea;
+}
+
+#fos_user_profile_form_aboutMe{
+    height: 180px;
+}
+
+.profile-genres{
+    list-style-type: none;
+}
+
+.profile-genres li a{
+    background-color: palevioletred;
+    color :#fff;
+    padding: 4px 8px;
+    float: left;
+    margin-right: 4px;
+}
