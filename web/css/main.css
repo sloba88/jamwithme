@@ -217,6 +217,14 @@ a{
     text-align: center;
 }
 
+#user_images .set-profile-photo{
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    background-color: #fff;
+    padding: 0 2px;
+}
+
 .fileinput-button{
     position: relative;
 }
@@ -235,3 +243,4 @@ a{
 .progress{
     margin-top: 10px;
 }
+

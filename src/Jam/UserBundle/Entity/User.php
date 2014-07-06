@@ -169,6 +169,12 @@ class User extends BaseUser
     private $isTeacher = false;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     */
+    private $avatar;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -496,20 +502,6 @@ class User extends BaseUser
     public function getImages()
     {
         return $this->images;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAvatar()
-    {
-        if ($this->images->count() > 0){
-            return $this->images->first()->getWebPath();
-        }else{
-            return $this->getPlaceholderImage();
-        }
     }
 
     /**
@@ -876,5 +868,28 @@ class User extends BaseUser
     public function getInstruments()
     {
         return $this->instruments;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string 
+     */
+    public function getAvatar()
+    {
+        return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
     }
 }

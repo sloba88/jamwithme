@@ -6,6 +6,8 @@ use Proxies\__CG__\Jam\UserBundle\Entity\UserImage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
@@ -78,6 +80,56 @@ class DefaultController extends Controller
                 'deleteType' => 'DELETE'
             )
         ));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/user/set/avatar/{id}", name="set_avatar")
+     * @Template()
+     */
+    public function setAvatarAction($id)
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+        }else{
+            throw $this->createNotFoundException('You shall not pass');
+        }
+
+        $allImages = $user->getImages();
+
+        foreach($allImages as $image){
+            if ($image->getId() == $id){
+                $user->setAvatar($image->getPath());
+                //from $image->getAbsolutePath();
+                //to
+
+                $fs = new Filesystem();
+                if (!$fs->exists('uploads/avatars/'.$user->getId())){
+
+                    try {
+                        $fs->mkdir('uploads/avatars/'.$user->getId());
+                    } catch (IOException $e) {
+                        echo "An error occurred while creating your directory at ".$e->getPath();
+                    }
+                }
+
+                $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$user->getId().'/'.$image->getPath());
+            }
+        }
+
+        //move file also to different folder
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'status' => 'success'));
 
         return $response;
     }

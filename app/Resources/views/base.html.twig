@@ -200,6 +200,20 @@
             }
         });
 
+        $(".set-profile-photo").on('click', function(e){
+            e.preventDefault();
+            var url = $(this).data('url');
+            $.ajax({
+                url: url
+            }).done(function( result ) {
+                if (result.status == 'success'){
+                    //image.remove();
+                    window.location.reload();
+                }
+            });
+
+        });
+
         socket.on('myUnreadMessagesCount', function(data){
             if (data!=0){
                 $("#messages-nav .badge").text(data);
