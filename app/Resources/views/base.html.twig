@@ -130,21 +130,10 @@
 
     });
 
-    var imagesCollectionHolder = $('#user_images');
     var jamMembersCollectionHolder = $("#jam_members")
     var musicianInstrumentsCollectionHolder = $("#musician_instruments")
 
     jQuery(document).ready(function() {
-        {% if form is defined and form.vars.valid %}
-        if($("#user_images").data('index')==0){
-            addCollectionForm(imagesCollectionHolder, 'images');
-        }
-
-        {% endif %}
-
-        $(document).on('change', "#user_images input[type=file]", function(){
-            readURL(this);
-        });
 
         $("#add_another_image").click(function(e){
             e.preventDefault();
@@ -169,8 +158,6 @@
         $(document).on('click', '.remove-image', function(e){
             e.preventDefault();
             $(this).parents('.image-holder').remove();
-            imagesCollectionHolder.data('index', imagesCollectionHolder.data('index') - 1);
-            $("#add_another_image").show();
         });
 
         $(".price-type").click(function(){
@@ -178,8 +165,6 @@
             $(this).prop('checked', true).attr('checked', true);
             $("#ad_price").val('');
         });
-
-        $("#user_images .image-holder input[type=radio]").after("<span></span>");
 
         $(".remove-image-ajax").on('click', function(e){
             e.preventDefault();
@@ -231,12 +216,6 @@
         var prototype = collectionHolder.data('prototype');
         var index = collectionHolder.data('index');
         var newForm = prototype.replace(/__name__/g, index);
-        //for images only
-        if(type == 'images') {
-            newForm = $(newForm).addClass('image-holder');
-            newForm.find('.make-primary-image').parent().hide();
-            newForm.find("input[type=radio]").after("<span></span>");
-        }
 
         // increase the index with one for the next item
         collectionHolder.data('index', index + 1);
@@ -354,7 +333,15 @@
             $(".filter-container").appendTo(".map-view-container");
         });
 
+        // store the currently selected tab in the hash value
+        $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+            var id = $(e.target).attr("href").substr(1);
+            window.location.hash = id;
+        });
 
+        // on load of the page: switch to the currently selected tab
+        var hash = window.location.hash;
+        $('ul.nav-tabs a[href="' + hash + '"]').tab('show');
 
     });
 

@@ -21,29 +21,20 @@
     <script>
         $(function () {
 
-            var url = $("#jam_images_0_file").data('url');
-            uploadButton = $('<button/>')
-                    .addClass('btn btn-primary')
-                    .prop('disabled', true)
-                    .text('Processing...')
-                    .on('click', function (e) {
-                        e.preventDefault();
-                        var $this = $(this),
-                                data = $this.data();
-                        $this
-                                .off('click')
-                                .text('Abort')
-                                .on('click', function () {
-                                    $this.remove();
-                                    data.abort();
-                                });
-                        data.submit().always(function () {
-                            $this.remove();
-                        });
-                    });
+            var que = [];
 
-            $('#jam_images_images_0_file').fileupload({
-                url: url,
+            $(".start").on('click', function(e){
+                e.preventDefault();
+                if (que.length > 0){
+                    $.each(que, function(q, e){
+                        e.submit();
+                    });
+                }
+
+                que = [];
+            });
+
+            $('#upload_images').fileupload({
                 dataType: 'json',
                 autoUpload: false,
                 acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
@@ -62,13 +53,15 @@
             }).on('fileuploadadd', function (e, data) {
                 data.context = $('<div/>').appendTo('#files');
                 $.each(data.files, function (index, file) {
-                    var node = $('<p/>')
-                            .append($('<span/>').text(file.name));
-                    if (!index) {
+                    var node = $('<p/>');
+                    /*
+                            .append($('<span/>').text(file.name)); */
+                    /*if (!index) {
                         node
                                 .append('<br>')
                                 .append(uploadButton.clone(true).data(data));
-                    }
+                    }*/
+                    que.push(data);
                     node.appendTo(data.context);
                 });
             }).on('fileuploadprocessalways', function (e, data) {
@@ -93,9 +86,14 @@
             }).on('fileuploadprogressall', function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css(
-                        'width',
-                        progress + '%'
+                    'width',
+                    progress + '%'
                 );
+                if (progress==100){
+                    setTimeout(function(){
+                        window.location.reload();
+                    },200)
+                }
             }).on('fileuploaddone', function (e, data) {
                 $.each(data.result.files, function (index, file) {
                     if (file.url) {

@@ -6,17 +6,17 @@
     {{ form_errors(form) }}
 
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-        <li class="active"><a href="#personal-info-tab" role="tab" data-toggle="tab">Personal Info</a></li>
-        <li><a href="#musician-info-tab" role="tab" data-toggle="tab">Musician Info</a></li>
-        <li><a href="#media-tab" role="tab" data-toggle="tab">Media</a></li>
-        <li><a href="#networks-tab" role="tab" data-toggle="tab">Networks</a></li>
+        <li class="active"><a href="#personal-info" role="tab" data-toggle="tab">Personal Info</a></li>
+        <li><a href="#musician-info" role="tab" data-toggle="tab">Musician Info</a></li>
+        <li><a href="#media" role="tab" data-toggle="tab">Media</a></li>
+        <li><a href="#networks" role="tab" data-toggle="tab">Networks</a></li>
     </ul>
 
     <br />
 
     <div class="tab-content clearfix">
 
-        <div class="tab-pane active" id="personal-info-tab">
+        <div class="tab-pane active" id="personal-info">
 
             <div class="col-md-6">
 
@@ -54,7 +54,7 @@
             </div>
 
         </div>
-        <div class="tab-pane" id="musician-info-tab">
+        <div class="tab-pane" id="musician-info">
 
             <div class="col-md-6">
 
@@ -90,9 +90,26 @@
             </div>
 
         </div>
-        <div class="tab-pane" id="media-tab">
+        <div class="tab-pane" id="media">
 
             <div class="col-md-12">
+
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="file" id="upload_images" accept="image/*" data-url="{{ path('upload_user_image') }}" multiple >
+                </span>
+
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start upload</span>
+                </button>
+
+                <div id="progress" class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+
+                <div id="files" class="files"></div>
 
                 <div class="form-group" >
                     {{ form_label(form.images, 'Images'|trans) }}
@@ -110,18 +127,10 @@
                     </div>
                 </div>
 
-                <input type="file" accept="image/*" name="file" id="jam_images_images_0_file" multiple data-url="{{ path('upload_user_image') }}">
-
-                <div id="progress" class="progress">
-                    <div class="progress-bar progress-bar-success"></div>
-                </div>
-
-                <div id="files" class="files"></div>
-
             </div>
 
         </div>
-        <div class="tab-pane" id="networks-tab">
+        <div class="tab-pane" id="networks">
 
             <h4>Facebook</h4>
             {% if app.user.facebookId %}
