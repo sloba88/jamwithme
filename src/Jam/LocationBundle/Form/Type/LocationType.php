@@ -27,15 +27,21 @@ class LocationType extends AbstractType
                                                 'data-country' => false,
                                                 )
                                 ))
-                ->add('neighborhood', 'hidden', array(
-                    'required'      => false,
-                    ))
                 ->add('locality', 'hidden', array(
                     'required'      => false,
                     ))
                 ->add('country', 'hidden', array(
                     'required'      => false
                     ))
+                ->add('zip', 'hidden', array(
+                    'required'      => false
+                ))
+                ->add('route', 'hidden', array(
+                    'required'      => false
+                ))
+                ->add('administrative_area_level_3', 'hidden', array(
+                    'required'      => false
+                ))
                 ->add('lat', 'hidden', array(
                     'required'      => false
                     ))

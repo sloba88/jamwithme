@@ -5,13 +5,15 @@ $(function() {
             widget_location = widget.find('[id$="_location"]')
 
         var addresspickerMap = widget_location.find('[id$="_location_address"]').addresspicker({
-            regionBias: widget_location.attr('data-country-short'),
+            regionBias: 'en',
             reverseGeocode: true,
             elements: {
                 map: widget.find('[id$="_location_map"]'),
-                neighborhood: widget.find('[id$="_location_neighborhood"]'),
                 locality: widget.find('[id$="_location_locality"]'),
+                administrative_area_level_3: widget.find('[id$="_administrative_area_level_3"]'),
                 country: widget.find('[id$="_location_country"]'),
+                route: widget.find('[id$="_location_route"]'),
+                postal_code: widget.find('[id$="_location_zip"]'),
                 lat: widget.find('[id$="_location_lat"]'),
                 lng: widget.find('[id$="_location_lng"]')
             },

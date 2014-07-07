@@ -27,13 +27,6 @@ class Location
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     protected $address;
- 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="neighborhood", type="string", length=255, nullable=true)
-     */
-    protected $neighborhood;
     
     /**
      * @var string
@@ -48,6 +41,20 @@ class Location
      * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     protected $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="route", type="string", length=255, nullable=true)
+     */
+    protected $route;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="zip", type="integer", length=10, nullable=true)
+     */
+    protected $zip;
  
     /**
      * @var float     Latitude of the position
@@ -62,7 +69,15 @@ class Location
      * @ORM\Column(name="lng", type="float", nullable=true)
      */
     protected $lng;
- 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="administrative_area_level_3", type="string", length=255, nullable=true)
+     */
+    protected $administrative_area_level_3;
+    
+
     public function setAddress($address)
     {
         $this->address = $address;
@@ -71,16 +86,6 @@ class Location
     public function getAddress()
     {
         return $this->address;
-    }
- 
-    public function setNeighborhood($neighborhood)
-    {
-      $this->neighborhood = $neighborhood;
-    } 
-    
-    public function getNeighborhood()
-    {
-      return $this->neighborhood;
     }
  
     public function setLocality($locality)
@@ -127,5 +132,84 @@ class Location
             $lng = floatval($lng);
         }
         $this->lng = $lng;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set zip
+     *
+     * @param integer $zip
+     * @return Location
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
+
+        return $this;
+    }
+
+    /**
+     * Get zip
+     *
+     * @return integer 
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * Set route
+     *
+     * @param string $route
+     * @return Location
+     */
+    public function setRoute($route)
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * Get route
+     *
+     * @return string 
+     */
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    /**
+     * Set administrative_area_level_3
+     *
+     * @param string $administrativeAreaLevel3
+     * @return Location
+     */
+    public function setAdministrativeAreaLevel3($administrativeAreaLevel3)
+    {
+        $this->administrative_area_level_3 = $administrativeAreaLevel3;
+
+        return $this;
+    }
+
+    /**
+     * Get administrative_area_level_3
+     *
+     * @return string 
+     */
+    public function getAdministrativeAreaLevel3()
+    {
+        return $this->administrative_area_level_3;
     }
 }
