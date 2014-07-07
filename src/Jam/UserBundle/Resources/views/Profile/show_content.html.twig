@@ -14,7 +14,8 @@
 
         <div class="profile-avatar-container">
             <img src="{{ path('musician_avatar', { 'username': user.username }) }}" class="img-circle" />
-            <p>{{ user.username }}</p>
+            <h5>{{ user.username }}</h5>
+            {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i> {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
         </div>
     </div>
 

@@ -49,9 +49,9 @@
                     </a>
                 </li>
 
-                <li {% if app.request.attributes.get('_route') == 'notifications' %}class="active"{% endif %}><a href="{#{{ path('notifications') }}#}">Notifications</a></li>
+                {#<li {% if app.request.attributes.get('_route') == 'notifications' %}class="active"{% endif %}><a href="&#123;&#35;{{ path('notifications') }}&#35;&#125;">Notifications</a></li>#}
                 <li {% if app.request.attributes.get('_route') == 'inbox' %}class="active"{% endif %}><a href="{{ path('inbox') }}" id="messages-nav"><span class="glyphicon glyphicon-envelope"></span> <span class="badge"></span></a></li>
-                <li {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}class="active"{% endif %}><a href="{{ path('fos_user_profile_edit') }}">Edit Profile</a></li>
+                <li {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}class="active"{% endif %}><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-cog"></span></a></li>
                 <li {% if app.request.attributes.get('_route') == 'start_jam' %}class="active"{% endif %}><a href="{{ path('start_jam') }}">Start a jam</a></li>
                 <li {% if app.request.attributes.get('_route') == 'fos_user_security_logout' %}class="active"{% endif %}><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"></span></a></li>
             {% else %}

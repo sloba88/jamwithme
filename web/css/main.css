@@ -53,7 +53,7 @@ a{
     background-color: #fff;
     margin: 0 10px 10px 0;
     padding: 5px;
-    height: 60px;
+    height: 70px;
     border:1px solid #e5e5e5;
 }
 
@@ -72,6 +72,17 @@ a{
 
 .musician-box-details{
     float:left;
+}
+
+.musician-box-location{
+    display: block;
+    font-size: 10px;
+    color: gray;
+    font-style: italic;
+}
+
+.musician-box-location i{
+    color: purple;
 }
 
 .musician-box .musician-box-image-link{
@@ -262,6 +273,8 @@ a{
     opacity: .92;
     padding: 10px;
     box-shadow: 3px 3px 6px black;
+    width: 140px;
+    height: 120px;
 }
 
 .about-me-box{

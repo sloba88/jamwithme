@@ -112,6 +112,7 @@ class MusiciansController extends Controller
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
+                'location' => $m->getLocation()->getAdministrativeAreaLevel3(),
             );
 
             if ($m->getIsTeacher()){
