@@ -27,6 +27,14 @@
         </div>
     </div>
 
+    <script type="text/template" id="musicianMapBoxTemplate">
+        <div class="musician-map-box <% if(mu.teacher){ %>teacher<% } %>">
+            <a href="<%- mu.url %>"><img src="<%- mu.image %>" />
+                <p><%- mu.username %></p>
+            </a>
+        </div>
+    </script>
+
     <script type="text/template" id="musicianBoxTemplate">
         <div class="col-md-3 musician-box <% if(mu.teacher){ %>teacher<% } %>">
             <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
@@ -42,14 +50,6 @@
                 </span>
                 <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
             </div>
-        </div>
-    </script>
-
-    <script type="text/template" id="musicianMapBoxTemplate">
-        <div class="musician-map-box <% if(mu.teacher){ %>teacher<% } %>">
-            <a href="<%- mu.url %>"><img src="<%- mu.image %>" />
-                <p><%- mu.username %></p>
-            </a>
         </div>
     </script>
 

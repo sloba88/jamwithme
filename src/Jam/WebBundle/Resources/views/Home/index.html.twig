@@ -27,10 +27,53 @@
     </div>
 
     <div class="col-md-6">
+        <div class="shouts-view-container"></div>
+        <div class="clearfix"></div>
         {{ form(form) }}
     </div>
 
+    <script type="text/template" id="musicianBoxTemplate">
+        <% mu = sh.musician %>
+        <div class="col-md-3 musician-box <% if(mu.teacher){ %>teacher<% } %>">
+            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
+            </a>
+            <div class="musician-box-details">
+                <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br />
+                <span class="musician-box-genres">
+                    <% _.each( mu.genres, function(v, k){ %>
+                        <% if (k!=0){ %>|<% } %>
+                        <%- v %>
+                    <% }); %>
+                </span>
+                <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <%- sh.text %>
+        </div>
+    </script>
 
+{% endblock %}
 
+{% block javascripts %}
+
+<script>
+
+    _.templateSettings.variable = "sh";
+    var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
+
+    $.ajax({
+        url: 'http://local.jamwme/app_dev.php/shouts/find'
+        //data: data
+    }).done(function( result ) {
+        if (result.status == 'success'){
+            $.each(result.data, function(k, v){
+                $( ".shouts-view-container" ).append(musicianBoxTemplate( v ) );
+            });
+        }
+    });
+
+</script>
 
 {% endblock %}

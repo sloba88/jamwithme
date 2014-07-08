@@ -25,3 +25,18 @@ fos_elastica:
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
+
+                shout:
+                    mappings:
+                        creator:
+                            type: "object"
+                            properties:
+                                pin: ~
+                    persistence:
+                        driver: orm
+                        model: Jam\CoreBundle\Entity\Shout
+                        provider: ~
+                        listener:
+                        finder: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
