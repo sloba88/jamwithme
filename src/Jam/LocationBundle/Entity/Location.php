@@ -52,7 +52,7 @@ class Location
     /**
      * @var integer
      *
-     * @ORM\Column(name="zip", type="integer", length=10, nullable=true)
+     * @ORM\Column(name="zip", type="string", length=10, nullable=true)
      */
     protected $zip;
  
