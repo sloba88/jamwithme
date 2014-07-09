@@ -2,21 +2,20 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="btn-group pull-right">
-            <a href="#map" role="tab" data-toggle="tab" class="btn btn-default btn-sm active" id="map-tab-btn"><span class="glyphicon glyphicon-globe"></span></a>
-            <a href="#list" role="tab" data-toggle="tab" class="btn btn-default btn-sm" id="list-tab-btn"><span class="glyphicon glyphicon-th-list"></span></a>
-        </div>
-    </div>
-
-    <br />
-
-    <div class="tab-content">
+    <div class="tab-content full-screen">
         <div class="tab-pane fade in active" id="map">
             <div class="map-view-container clearfix">
                 <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
                 <div class="col-md-3 filter-container">
+
+                    <div class="row">
+                        <div class="btn-group pull-right tabs">
+                            <a href="#map" role="tab" data-toggle="tab" class="btn btn-default btn-sm active" id="map-tab-btn"><span class="glyphicon glyphicon-globe"></span></a>
+                            <a href="#list" role="tab" data-toggle="tab" class="btn btn-default btn-sm" id="list-tab-btn"><span class="glyphicon glyphicon-th-list"></span></a>
+                        </div>
+                    </div>
+
                     {{ form(form) }}
                     <div id="distance-slider"></div>
                 </div>
@@ -36,7 +35,7 @@
     </script>
 
     <script type="text/template" id="musicianBoxTemplate">
-        <div class="col-md-3 musician-box <% if(mu.teacher){ %>teacher<% } %>">
+        <div class="col-md-4 musician-box <% if(mu.teacher){ %>teacher<% } %>">
             <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
                 <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
             </a>
@@ -121,12 +120,12 @@
             donut = new google.maps.Polygon({
                 paths: [drawCircle(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))), 1000, 1),
                     drawCircle(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))), radius, -1)],
-                strokeColor: "gray",
+                strokeColor: "white",
                 strokeOpacity: 0.8,
-                strokeWeight: 2,
+                strokeWeight: 5,
                 map: map,
-                fillColor: "gray",
-                fillOpacity: 0.35
+                fillColor: "blue",
+                fillOpacity: 0.10
             });
         }
 
@@ -235,7 +234,7 @@
             var r2d = 180 / Math.PI;   // radians to degrees
             var earthsradius = 6371; // 3963 is the radius of the earth in miles
 
-            var points = 64;
+            var points = 128;
 
             // find the raidus in lat/lon
             var rlat = (radius / earthsradius) * r2d;

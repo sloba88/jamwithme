@@ -342,10 +342,16 @@
 
         $('#list-tab-btn').on('shown.bs.tab', function (e) {
             $(".filter-container").prependTo("#list");
+            $('.tabs .active').removeClass('active');
+            $(this).addClass('active');
+            $(".filter-container").parents('.tab-content').removeClass('full-screen');
         });
 
         $("#map-tab-btn").on('shown.bs.tab', function (e) {
             $(".filter-container").appendTo(".map-view-container");
+            $('.tabs .active').removeClass('active');
+            $(this).addClass('active');
+            $(".filter-container").parents('.tab-content').addClass('full-screen');
         });
 
         // store the currently selected tab in the hash value

@@ -18,7 +18,7 @@ body{
 }
 
 html body #map-canvas {
-    height: 400px;
+    height: 600px;
     margin: 0px;
     padding: 0px;
     width: 100%;
@@ -310,4 +310,11 @@ a{
 .profile-about-me{
     font-size: 13px;
     font-style: italic;
+}
+
+.tab-content.full-screen{
+    position: absolute;
+    width: 100%;
+    top: 51px;
+    left: 0;
 }
