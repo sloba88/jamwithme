@@ -2,7 +2,58 @@
 
 <div class="fos_user_user_show">
 
-    <div class="col-md-12 profile-header">
+    <div class="clearfix">
+        <hr />
+    </div>
+
+    <div class="col-md-3 profile-profile-column">
+        <div class="profile-avatar-container">
+            <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" class="img-circle col-md-6" />
+            <h4 class="col-md-6">{{ user.username }}</h4>
+            {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i> {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
+
+            {% if app.user != user %}
+                <a href="#" class="profile-send-message" data-toggle="modal" data-target="#myModal">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+
+        <p>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</p>
+
+        <p>Instruments: </p>
+        <ul>
+            {% for i in user.instruments %}
+                <li><a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }} ({{ i.skillLevel }})</a></li>
+
+            {% endfor %}
+        </ul>
+
+        <ul class="profile-genres">
+            {% for g in user.genres %}
+                <li><a href="{{ path('musicians', {'search_form[genres][]' : g.id }) }}">{{ g.name }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <div class="clearfix"></div>
+
+
+        <br />
+
+        <p>Age: {{ user.age }}</p>
+        <p>Gender: {{ user.genderText }}</p>
+
+        <hr />
+
+        <div class="profile-about-me">
+            {{ user.aboutMe }}
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
 
         {% if user.images|length > 0 %}
             {% for i in user.images %}
@@ -12,48 +63,7 @@
             <h3>Upload some photos here</h3>
         {% endif %}
 
-        <div class="profile-avatar-container">
-            <img src="{{ path('musician_avatar', { 'username': user.username }) }}" class="img-circle" />
-            <h5>{{ user.username }}</h5>
-            {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i> {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
-        </div>
-    </div>
-
-    <div class="clearfix">
-        <hr />
-    </div>
-
-    <ul class="profile-genres">
-        {% for g in user.genres %}
-            <li><a href="{{ path('musicians', {'search_form[genres][]' : g.id }) }}">{{ g.name }}</a></li>
-        {% endfor %}
-    </ul>
-
-    <div class="clearfix"></div>
-
-    <hr />
-
-    <div class="col-md-6">
-
-        <p>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</p>
-
-        <p>{{ 'profile.show.about_me'|trans }}:</p>
-
-        <div class="about-me-box">
-            {{ user.aboutMe }}
-        </div>
-
-        <br />
-
-        <p>Age: {{ user.age }}</p>
-        <p>Gender: {{ user.genderText }}</p>
-
         {% if app.user != user %}
-
-            <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
-                Send Message
-            </button>
 
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -77,7 +87,7 @@
 
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-3">
 
         {% if user.isTeacher %}
             <p>This guy is a teacher!</p>
@@ -90,13 +100,6 @@
             {% endfor %}
         </ul>
 
-        <p>Instruments: </p>
-        <ul>
-            {% for i in user.instruments %}
-                <li><a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }} ({{ i.skillLevel }})</a></li>
-
-            {% endfor %}
-        </ul>
 
         <p>Brands: </p>
         <ul>

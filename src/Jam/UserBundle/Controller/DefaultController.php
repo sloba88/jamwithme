@@ -25,10 +25,10 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/m/{username}/avatar", name="musician_avatar")
+     * @Route("/m/{username}/avatar/{size}", name="musician_avatar")
      * @Template()
      */
-    public function avatarAction($username)
+    public function avatarAction($username, $size = 'my_thumb')
     {
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
@@ -39,7 +39,7 @@ class DefaultController extends Controller
         if (strpos($user->getAvatar(),'http') !== false) {
             return $this->redirect($user->getAvatar());
         }else{
-            return $this->redirect($this->get('liip_imagine.cache.manager')->getBrowserPath($user->getAvatar(), 'my_thumb'));
+            return $this->redirect($this->get('liip_imagine.cache.manager')->getBrowserPath($user->getAvatar(), $size));
         }
 
     }
