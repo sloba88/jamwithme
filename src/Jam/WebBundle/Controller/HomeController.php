@@ -19,8 +19,13 @@ class HomeController extends Controller
         $shout = new Shout();
 
         $form = $this->createFormBuilder($shout)
-            ->add('text', 'textarea')
-            ->add('submit', 'submit')
+            ->add('text', 'textarea', array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Say something cool...'
+                )
+            ))
+            ->add('send', 'submit')
             ->getForm();
 
         $form->handleRequest($request);

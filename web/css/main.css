@@ -318,3 +318,8 @@ a{
     top: 51px;
     left: 0;
 }
+
+.shouts-view-container .musician-box{
+    height: auto;
+    padding: 10px;
+}
