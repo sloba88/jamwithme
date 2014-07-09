@@ -30,6 +30,9 @@ class SearchType extends AbstractType
                 'multiple' => true,
                 'required' => false
             ))
+            ->add('isTeacher', 'checkbox', array(
+                'label' => 'Only people providing lesions'
+            ))
             ->add('distance', 'number', array(
                 'data' => 4,
                 'label' => 'Distance (km)'

@@ -17,6 +17,8 @@ fos_elastica:
                             type: "object"
                             properties:
                                 id: ~
+                        isTeacher:
+                            type: "boolean"
                     persistence:
                         driver: orm
                         model: Jam\UserBundle\Entity\User

@@ -71,6 +71,17 @@ class MusiciansController extends Controller
                 $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
             }
 
+            if (isset($searchParams['isTeacher'])){
+                //$categoryQuery = new \Elastica\Filter\Bool('instruments.id', $searchParams['instruments']);
+                //$elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
+                //TODO: filter by teachers
+                $boolFilter = new \Elastica\Filter\Bool();
+                $filter1 = new \Elastica\Filter\Term();
+                $filter1->setTerm('isTeacher', '1');
+                $boolFilter->addMust($filter1);
+                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $boolFilter);
+            }
+
             if (isset($searchParams['distance']) && $me->getLat()){
                 $locationFilter = new \Elastica\Filter\GeoDistance(
                     'pin',
