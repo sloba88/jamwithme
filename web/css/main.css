@@ -323,3 +323,13 @@ a{
     height: auto;
     padding: 10px;
 }
+
+.shouts-view-container hr{
+    margin-top: 10px;
+    margin-bottom: 2px;
+}
+
+.shout-created-at{
+    font-size: 11px;
+    font-style: italic;
+}

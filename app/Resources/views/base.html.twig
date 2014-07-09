@@ -364,6 +364,10 @@
         var hash = window.location.hash;
         $('ul.nav-tabs a[href="' + hash + '"]').tab('show');
 
+        setTimeout(function(){
+            $(".flash-message").fadeOut();
+        },3000)
+
     });
 
     function scrollToBottom(){
