@@ -72,9 +72,6 @@ class MusiciansController extends Controller
             }
 
             if (isset($searchParams['isTeacher'])){
-                //$categoryQuery = new \Elastica\Filter\Bool('instruments.id', $searchParams['instruments']);
-                //$elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
-                //TODO: filter by teachers
                 $boolFilter = new \Elastica\Filter\Bool();
                 $filter1 = new \Elastica\Filter\Term();
                 $filter1->setTerm('isTeacher', '1');
