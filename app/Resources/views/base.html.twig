@@ -34,7 +34,7 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('home') }}">JWM</a>
+            <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('images/logo.png') }}" alt="JamWithMee" /></a>
         </div>
         <ul class="nav navbar-nav navbar-left">
             <li {% if app.request.attributes.get('_route') == 'home' %}class="active"{% endif %}><a href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span></a></li>

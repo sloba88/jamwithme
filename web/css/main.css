@@ -1,5 +1,5 @@
 body {
-    background-color: oldlace;
+    background-color: #F2ECE8;
     padding-bottom: 40px;
     padding-top: 60px;
 }
@@ -26,7 +26,12 @@ html body #map-canvas {
 }
 
 .navbar{
-    background-color: #404569;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+.navbar-brand{
+    padding: 4px 10px 0 0;
 }
 
 .navbar-default .navbar-nav > li > a{
