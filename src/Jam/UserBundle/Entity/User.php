@@ -153,6 +153,13 @@ class User extends BaseUser
     /**
      * @var collection
      *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Video", mappedBy="creator", cascade={"all"} )
+     */
+    private $videos;
+
+    /**
+     * @var collection
+     *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"} )
      */
     private $instruments;
@@ -936,5 +943,38 @@ class User extends BaseUser
     public function getShouts()
     {
         return $this->shouts;
+    }
+
+    /**
+     * Add videos
+     *
+     * @param \Jam\CoreBundle\Entity\Video $videos
+     * @return User
+     */
+    public function addVideo(\Jam\CoreBundle\Entity\Video $videos)
+    {
+        $this->videos[] = $videos;
+
+        return $this;
+    }
+
+    /**
+     * Remove videos
+     *
+     * @param \Jam\CoreBundle\Entity\Video $videos
+     */
+    public function removeVideo(\Jam\CoreBundle\Entity\Video $videos)
+    {
+        $this->videos->removeElement($videos);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

@@ -63,6 +63,10 @@
             <h3>Upload some photos here</h3>
         {% endif %}
 
+        {% for v in user.videos %}
+            <iframe width="560" height="315" src="{{ v.url }}??autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+        {% endfor %}
+
         {% if app.user != user %}
 
             <!-- Modal -->

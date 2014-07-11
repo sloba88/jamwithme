@@ -133,6 +133,7 @@
 
     var jamMembersCollectionHolder = $("#jam_members")
     var musicianInstrumentsCollectionHolder = $("#musician_instruments")
+    var videosCollectionHolder = $("#musician_videos")
 
     jQuery(document).ready(function() {
 
@@ -149,6 +150,11 @@
         $("#add_another_instrument").on('click', function(e){
             e.preventDefault();
             addCollectionForm(musicianInstrumentsCollectionHolder, 'instruments');
+        });
+
+        $("#add_another_video").on('click', function(e){
+            e.preventDefault();
+            addCollectionForm(videosCollectionHolder, 'instruments');
         });
 
         $(document).on('click', '.make-primary-image', function(){

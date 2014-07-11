@@ -5,6 +5,7 @@ namespace Jam\UserBundle\Form\Type;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Form\DataTransformer\InstrumentTransform;
+use Jam\CoreBundle\Form\Type\VideoType;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
@@ -90,6 +91,11 @@ class ProfileFormType extends BaseType
             'by_reference' => false,
             'label' => false,
             'allow_delete' => true
+        ));
+
+        $builder->add('videos', 'collection', array(
+            'type' => 'video_type',
+            'allow_add'    => true,
         ));
 
     }

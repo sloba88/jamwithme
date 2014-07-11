@@ -71,7 +71,7 @@
                     {% endfor %}
                 </div>
 
-                <a href="#" id="add_another_instrument">Add another</a>
+                <a href="#" id="add_another_instrument">Add another instrument</a>
 
             </div>
 
@@ -92,7 +92,7 @@
         </div>
         <div class="tab-pane" id="media">
 
-            <div class="col-md-12">
+            <div class="col-md-8">
 
                 <span class="btn btn-success fileinput-button">
                     <i class="glyphicon glyphicon-plus"></i>
@@ -120,7 +120,7 @@
                                 <div class="image-holder">
                                     <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" />
                                     <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                                    <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</span></a>
+                                    <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a>
                                     <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                                 </div>
                             {% endfor %}
@@ -128,6 +128,17 @@
                     </div>
                 </div>
 
+            </div>
+
+            {# video links #}
+            <div class="col-md-4">
+                <ul id="musician_videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}">
+                    {# iterate over each existing tag and render its only field: name #}
+                    {% for v in form.videos %}
+                        <li>{{ form_row(v.url) }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="#" id="add_another_video">Add another video</a>
             </div>
 
         </div>
