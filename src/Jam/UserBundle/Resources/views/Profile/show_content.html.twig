@@ -9,7 +9,7 @@
     <div class="col-md-3 profile-profile-column">
         <div class="profile-avatar-container">
             <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" class="img-circle col-md-6" />
-            <h4 class="col-md-6">{{ user.username }}</h4>
+            <h3 class="col-md-6">{{ user.username }}</h3>
             {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i> {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
 
             {% if app.user != user %}
@@ -87,33 +87,43 @@
 
     </div>
 
-    <div class="col-md-3 profile-profile-column">
+    <div class="col-md-3 profile-profile-column" style="padding:0">
 
         {% if user.isTeacher %}
             <p>This guy is a teacher!</p>
         {% endif %}
 
-        <p>Artists: </p>
+        <h4>Artists</h4>
         <ul>
             {% for a in user.artists %}
                 <li>{{ a.name }}</li>
             {% endfor %}
         </ul>
 
-
-        <p>Brands: </p>
+        <h4>Brands</h4>
         <ul>
             {% for b in user.brands %}
                 <li>{{ b.name }}</li>
             {% endfor %}
         </ul>
 
-        <p>Jams: </p>
+        <h4>Jams</h4>
         <ul>
             {% for j in user.jamsMember %}
                 <li><a href="{{ path('view_jam', { 'slug': j.jam.slug } ) }}">{{ j.jam.name }}</a> ({{ j.role }})</li>
             {% endfor %}
         </ul>
+
+        <h4>Shouts</h4>
+
+        {% for s in user.shouts %}
+            <div class="profile-shout">
+                {{ s.text }}
+                <hr />
+                <span class="shout-created-at"><i class="glyphicon glyphicon-time"></i> {{ s.createdAt.date }}</span>
+            </div>
+
+        {% endfor %}
 
     </div>
 

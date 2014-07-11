@@ -284,6 +284,23 @@ a{
     min-height: 700px;
 }
 
+.profile-profile-column h4{
+    padding: 6px 10px;
+    background-color: #382F3A;
+    color: #fff;
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.profile-profile-column .profile-shout{
+    padding: 15px 20px;
+    border-bottom:1px solid black;
+}
+
+.profile-profile-column .profile-shout hr{
+    margin: 8px 0;
+}
+
 #fos_user_profile_form_aboutMe{
     height: 180px;
 }
@@ -295,12 +312,18 @@ a{
 }
 
 .profile-genres li a{
-    background-color: palevioletred;
-    color :#fff;
+    background-color: #6fdfff;
+    color: #000;
     padding: 4px 8px;
     float: left;
     margin-right: 4px;
     margin-top: 5px;
+    text-decoration: none;
+}
+
+.profile-genres li a:hover{
+    background-color: #652978;
+    color: #fff;
 }
 
 #list .filter-container{

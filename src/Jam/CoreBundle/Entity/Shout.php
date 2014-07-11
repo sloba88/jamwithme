@@ -26,7 +26,7 @@ class Shout
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jamsCreator")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="shouts")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=true)
      */
     private $creator;

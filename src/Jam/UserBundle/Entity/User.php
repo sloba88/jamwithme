@@ -146,6 +146,13 @@ class User extends BaseUser
     /**
      * @var collection
      *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Shout", mappedBy="creator", cascade={"all"} )
+     */
+    private $shouts;
+
+    /**
+     * @var collection
+     *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"} )
      */
     private $instruments;
@@ -896,5 +903,38 @@ class User extends BaseUser
             return 'images/placeholder-user.jpg';
         }
 
+    }
+
+    /**
+     * Add shouts
+     *
+     * @param \Jam\CoreBundle\Entity\Shout $shouts
+     * @return User
+     */
+    public function addShout(\Jam\CoreBundle\Entity\Shout $shouts)
+    {
+        $this->shouts[] = $shouts;
+
+        return $this;
+    }
+
+    /**
+     * Remove shouts
+     *
+     * @param \Jam\CoreBundle\Entity\Shout $shouts
+     */
+    public function removeShout(\Jam\CoreBundle\Entity\Shout $shouts)
+    {
+        $this->shouts->removeElement($shouts);
+    }
+
+    /**
+     * Get shouts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getShouts()
+    {
+        return $this->shouts;
     }
 }
