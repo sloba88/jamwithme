@@ -132,13 +132,14 @@
 
             {# video links #}
             <div class="col-md-4">
+                <h4>Videos</h4>
                 <ul id="musician_videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}">
                     {# iterate over each existing tag and render its only field: name #}
                     {% for v in form.videos %}
                         <li>{{ form_row(v.url) }}</li>
                     {% endfor %}
                 </ul>
-                <a href="#" id="add_another_video">Add another video</a>
+                <a href="#" id="add_another_video">Add another url</a>
             </div>
 
         </div>
