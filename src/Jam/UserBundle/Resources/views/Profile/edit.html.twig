@@ -5,6 +5,7 @@
 {% endblock fos_user_content %}
 
 {% block javascripts %}
+    <link href="{{ asset('/css/jquery.Jcrop.min.css') }}" rel="stylesheet"/>
     <script src="/js/fileupload/vendor/jquery.ui.widget.js"></script>
     <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
     <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
@@ -18,6 +19,7 @@
     <script src="/js/fileupload/jquery.fileupload-process.js"></script>
     <!-- The File Upload image preview & resize plugin -->
     <script src="/js/fileupload/jquery.fileupload-image.js"></script>
+    <script src="/js/vendor/jquery.Jcrop.min.js"></script>
     <script>
         $(function () {
 
@@ -33,7 +35,7 @@
 
                 que = [];
             });
-
+            var imageIndex = 0;
             $('#upload_images').fileupload({
                 dataType: 'json',
                 autoUpload: false,
@@ -44,26 +46,36 @@
                 // send Blob objects via XHR requests:
                 disableImageResize: /Android(?!.*Chrome)|Opera/
                         .test(window.navigator.userAgent),
-                previewMaxWidth: 100,
-                previewMaxHeight: 100,
+                previewMaxWidth: 800,
+                previewMaxHeight: 800,
                 imageMaxWidth: 800,
                 imageMaxHeight: 800,
                 imageCrop: false,
-                previewCrop: true
+                previewCrop: false
             }).on('fileuploadadd', function (e, data) {
                 data.context = $('<div/>').appendTo('#files');
+
                 $.each(data.files, function (index, file) {
-                    var node = $('<p/>');
-                    /*
-                            .append($('<span/>').text(file.name)); */
-                    /*if (!index) {
-                        node
-                                .append('<br>')
-                                .append(uploadButton.clone(true).data(data));
-                    }*/
+                    var node = $('<p/>')
+                    .append('<label>X1 <input type="text" size="4" class="x_cord" id="x1_'+imageIndex+'" name="x1[]" /></label>')
+                    .append('<label>Y1 <input type="text" size="4" class="y_cord" id="y1_'+imageIndex+'" name="y1[]" /></label>')
+                    .append('<label>X2 <input type="text" size="4" class="x2_cord" id="x2_'+imageIndex+'" name="x2[]" /></label>')
+                    .append('<label>Y2 <input type="text" size="4" class="y2_cord" id="y2_'+imageIndex+'" name="y2[]" /></label>')
+                    .append('<label>W <input type="text" size="4"  class="w_cord" id="w_'+imageIndex+'" name="w[]" /></label>')
+                    .append('<label>H <input type="text" size="4"  class="h_cord"id="h_'+imageIndex+'" name="h[]" /></label>');
+                    imageIndex++;
                     que.push(data);
                     node.appendTo(data.context);
                 });
+            }).on('fileuploadsubmit', function (e, data) {
+                        var inputs = data.context.find(':input');
+                        if (inputs.filter(function () {
+                            return !this.value && $(this).prop('required');
+                        }).first().focus().length) {
+                            data.context.find('button').prop('disabled', false);
+                            return false;
+                        }
+                        data.formData = inputs.serializeArray();
             }).on('fileuploadprocessalways', function (e, data) {
                 var index = data.index,
                         file = data.files[index],
@@ -83,6 +95,32 @@
                             .text('Upload')
                             .prop('disabled', !!data.files.error);
                 }
+
+                var jcrop_api;
+
+                $(file.preview).Jcrop({
+                    onChange:   showCoords,
+                    onSelect:   showCoords,
+                    onRelease:  clearCoords
+                },function(){
+                    jcrop_api = this;
+                });
+
+                function showCoords(c){
+                    node.find('input.x_cord').val(c.x);
+                    node.find('input.y_cord').val(c.y);
+                    node.find('input.x2_cord').val(c.x2);
+                    node.find('input.y2_cord').val(c.y2);
+                    node.find('input.w_cord').val(c.w);
+                    node.find('input.h_cord').val(c.h);
+                };
+
+                function clearCoords(){
+                    $('#coords input').val('');
+                };
+
+
+
             }).on('fileuploadprogressall', function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
                 $('#progress .progress-bar').css(

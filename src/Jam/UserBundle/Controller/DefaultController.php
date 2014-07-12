@@ -2,7 +2,10 @@
 
 namespace Jam\UserBundle\Controller;
 
-use Proxies\__CG__\Jam\UserBundle\Entity\UserImage;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
+use Imagine\Image\Point;
+use Jam\UserBundle\Entity\UserImage;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -41,7 +44,6 @@ class DefaultController extends Controller
         }else{
             return $this->redirect($this->get('liip_imagine.cache.manager')->getBrowserPath($user->getAvatar(), $size));
         }
-
     }
 
     /**
@@ -64,9 +66,12 @@ class DefaultController extends Controller
         $userImage->setFile($file);
         $user->addImage($userImage);
 
+        $this->resizeImage($userImage, $request->request->all());
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
+
 
         $response = new JsonResponse();
         $response->setData(array(
@@ -82,6 +87,18 @@ class DefaultController extends Controller
         ));
 
         return $response;
+    }
+
+    private function resizeImage(UserImage $userImage, $dimensions)
+    {
+        $imagine = new Imagine();
+
+        $image = $imagine->open($userImage->getAbsolutePath());
+        $point = new Point($dimensions['x1'][0], $dimensions['y1'][0]);
+        $box = new Box($dimensions['w'][0], $dimensions['h'][0]);
+
+        $image->crop($point, $box)
+              ->save($userImage->getAbsolutePath());
     }
 
     /**
