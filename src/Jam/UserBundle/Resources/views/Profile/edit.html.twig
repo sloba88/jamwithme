@@ -48,7 +48,7 @@
                 previewMaxHeight: 100,
                 imageMaxWidth: 800,
                 imageMaxHeight: 800,
-                imageCrop: true,
+                imageCrop: false,
                 previewCrop: true
             }).on('fileuploadadd', function (e, data) {
                 data.context = $('<div/>').appendTo('#files');
@@ -91,7 +91,7 @@
                 );
                 if (progress==100){
                     setTimeout(function(){
-                        window.location.reload();
+                        //window.location.reload();
                     },200)
                 }
             }).on('fileuploaddone', function (e, data) {

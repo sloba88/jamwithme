@@ -20,7 +20,7 @@ class VideoType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('url', 'url');
+        $builder->add('url', 'text');
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $user = $this->securityContext->getToken()->getUser();

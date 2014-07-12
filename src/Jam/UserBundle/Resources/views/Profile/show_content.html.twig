@@ -57,7 +57,7 @@
 
         {% if user.images|length > 0 %}
             {% for i in user.images %}
-                <a href="#" class="profile-media-wall-image"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" width="200" /></a>
+                <a href="#" class="profile-media-wall-image"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" /></a>
             {% endfor %}
         {% else %}
             <h3>Upload some photos here</h3>
