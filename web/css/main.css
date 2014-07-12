@@ -376,3 +376,24 @@ a{
     font-size: 11px;
     font-style: italic;
 }
+
+#upload_images{
+    height: 33px;
+    width: 110px;
+}
+
+.preview-thumb canvas{
+    width: 80px;
+}
+
+#media #files input{
+    display: none;
+}
+
+#media #files .preview-container{
+    float: left;
+}
+
+#media #files .preview-thumb{
+    padding: 5px;
+}

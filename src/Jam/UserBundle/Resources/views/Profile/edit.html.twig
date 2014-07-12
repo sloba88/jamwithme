@@ -53,16 +53,16 @@
                 imageCrop: false,
                 previewCrop: false
             }).on('fileuploadadd', function (e, data) {
-                data.context = $('<div/>').appendTo('#files');
+                data.context = $('<div class="preview-container" />').appendTo('#files');
 
                 $.each(data.files, function (index, file) {
                     var node = $('<p/>')
-                    .append('<label>X1 <input type="text" size="4" class="x_cord" id="x1_'+imageIndex+'" name="x1[]" /></label>')
-                    .append('<label>Y1 <input type="text" size="4" class="y_cord" id="y1_'+imageIndex+'" name="y1[]" /></label>')
-                    .append('<label>X2 <input type="text" size="4" class="x2_cord" id="x2_'+imageIndex+'" name="x2[]" /></label>')
-                    .append('<label>Y2 <input type="text" size="4" class="y2_cord" id="y2_'+imageIndex+'" name="y2[]" /></label>')
-                    .append('<label>W <input type="text" size="4"  class="w_cord" id="w_'+imageIndex+'" name="w[]" /></label>')
-                    .append('<label>H <input type="text" size="4"  class="h_cord"id="h_'+imageIndex+'" name="h[]" /></label>');
+                        .append('<input type="text" size="4" class="x_cord" id="x1_'+imageIndex+'" name="x1[]" />')
+                        .append('<input type="text" size="4" class="y_cord" id="y1_'+imageIndex+'" name="y1[]" />')
+                        .append('<input type="text" size="4" class="x2_cord" id="x2_'+imageIndex+'" name="x2[]" />')
+                        .append('<input type="text" size="4" class="y2_cord" id="y2_'+imageIndex+'" name="y2[]" />')
+                        .append('<input type="text" size="4"  class="w_cord" id="w_'+imageIndex+'" name="w[]" />')
+                        .append('<input type="text" size="4"  class="h_cord"id="h_'+imageIndex+'" name="h[]" />');
                     imageIndex++;
                     que.push(data);
                     node.appendTo(data.context);
@@ -82,44 +82,55 @@
                         node = $(data.context.children()[index]);
                 if (file.preview) {
                     node
-                            .prepend('<br>')
-                            .prepend(file.preview);
+                        .prepend('<br>')
+                        .prepend(file.preview);
+
+                    $(file.preview).wrap( "<a class='preview-thumb'></a>");
+
+                    var modalCropContainer = $("#imageCropModalTemplate").clone();
+                    var newImage = cloneCanvas(file.preview);
+                    modalCropContainer.find(".modal-body").html(newImage);
+                    node.append(modalCropContainer);
+
+                    $(file.preview).on('click', function(){
+                        modalCropContainer.modal('show');
+                    });
+
+                    modalCropContainer.on('shown.bs.modal', function (e) {
+                        var jcrop_api;
+                        $(newImage).Jcrop({
+                            onChange:   showCoords,
+                            onSelect:   showCoords,
+                            onRelease:  clearCoords,
+                            minSize: [100, 100]
+                        },function(){
+                            jcrop_api = this;
+                        });
+                    });
+
+                    modalCropContainer.find('.cancel-crop').on('click', function(){
+                        clearCoords();
+                    });
+
+                    function showCoords(c){
+                        node.find('input.x_cord').val(c.x);
+                        node.find('input.y_cord').val(c.y);
+                        node.find('input.x2_cord').val(c.x2);
+                        node.find('input.y2_cord').val(c.y2);
+                        node.find('input.w_cord').val(c.w);
+                        node.find('input.h_cord').val(c.h);
+                    };
+
+                    function clearCoords(){
+                        node.find('input').val('');
+                    };
+
                 }
                 if (file.error) {
                     node
                             .append('<br>')
                             .append($('<span class="text-danger"/>').text(file.error));
                 }
-                if (index + 1 === data.files.length) {
-                    data.context.find('button')
-                            .text('Upload')
-                            .prop('disabled', !!data.files.error);
-                }
-
-                var jcrop_api;
-
-                $(file.preview).Jcrop({
-                    onChange:   showCoords,
-                    onSelect:   showCoords,
-                    onRelease:  clearCoords
-                },function(){
-                    jcrop_api = this;
-                });
-
-                function showCoords(c){
-                    node.find('input.x_cord').val(c.x);
-                    node.find('input.y_cord').val(c.y);
-                    node.find('input.x2_cord').val(c.x2);
-                    node.find('input.y2_cord').val(c.y2);
-                    node.find('input.w_cord').val(c.w);
-                    node.find('input.h_cord').val(c.h);
-                };
-
-                function clearCoords(){
-                    $('#coords input').val('');
-                };
-
-
 
             }).on('fileuploadprogressall', function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -156,6 +167,25 @@
                 });
             }).prop('disabled', !$.support.fileInput)
                     .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+
         });
+
+        function cloneCanvas(oldCanvas) {
+
+            //create a new canvas
+            var newCanvas = document.createElement('canvas');
+            var context = newCanvas.getContext('2d');
+
+            //set dimensions
+            newCanvas.width = oldCanvas.width;
+            newCanvas.height = oldCanvas.height;
+
+            //apply the old canvas to the new one
+            context.drawImage(oldCanvas, 0, 0);
+
+            //return the new canvas
+            return newCanvas;
+        }
     </script>
 {% endblock %}
