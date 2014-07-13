@@ -92,8 +92,15 @@ class DefaultController extends Controller
     private function resizeImage(UserImage $userImage, $dimensions)
     {
         $imagine = new Imagine();
-
         $image = $imagine->open($userImage->getAbsolutePath());
+
+        if ($image->getSize()->getWidth() < 100 || $image->getSize()->getHeight() < 100){
+            $image->resize(new Box(200, 200))
+                ->save($userImage->getAbsolutePath());
+        }
+
+        if ($dimensions['w'][0]=='') return;
+
         $point = new Point($dimensions['x1'][0], $dimensions['y1'][0]);
         $box = new Box($dimensions['w'][0], $dimensions['h'][0]);
 

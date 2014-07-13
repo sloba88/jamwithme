@@ -53,19 +53,22 @@
 
     </div>
 
-    <div class="col-md-6 profile-media-wall">
+    <div class="col-md-6 profile-media-wall-container">
+        <div class="profile-media-wall">
 
-        {% if user.images|length > 0 %}
-            {% for i in user.images %}
-                <a href="#" class="profile-media-wall-image"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium') }}" /></a>
+            {% if user.images|length > 0 %}
+                {% for i in user.images %}
+                    <a href="#" class="profile-media-wall-item profile-media-wall-image"><img src="{{ asset(i.getWebPath) }}" /></a>
+                {% endfor %}
+            {% else %}
+                <h3>Upload some photos here</h3>
+            {% endif %}
+
+            {% for v in user.videos %}
+                <iframe width="540" height="315" class="profile-media-wall-item" src="{{ v.url }}??autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
             {% endfor %}
-        {% else %}
-            <h3>Upload some photos here</h3>
-        {% endif %}
 
-        {% for v in user.videos %}
-            <iframe width="540" height="315" src="{{ v.url }}??autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
-        {% endfor %}
+        </div>
 
         {% if app.user != user %}
 
