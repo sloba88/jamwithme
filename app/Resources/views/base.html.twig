@@ -93,7 +93,7 @@
 <script src="{{ asset('bundles/jamlocation/jquery.ui.addresspicker.js') }}"></script>
 <script src="{{ asset('bundles/jamlocation/location.js') }}"></script>
 <script src="{{ asset('js/vendor/underscore-min.js') }}"></script>
-<script src="{{ asset('js/vendor/freewall.js') }}"></script>
+<script src="{{ asset('js/vendor/isotope.pkgd.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 
 <script>
@@ -130,38 +130,16 @@
             }
         });
 
-
-        var wall = new freewall(".profile-media-wall");
-
-        wall.reset({
-            selector: '.profile-media-wall-item',
-            animate: true,
-            cellW: 150,
-            cellH: 'auto',
-            onResize: function() {
-                wall.fitWidth();
+        var $container = $('.profile-media-wall').isotope({
+            // main isotope options
+            itemSelector: '.profile-media-wall-item',
+            layoutMode: 'fitRows',
+            // options for cellsByRow layout mode
+            // options for masonry layout mode
+            masonry: {
+                columnWidth: 150
             }
-        });
-
-        var images = wall.container.find('.profile-media-wall-item');
-        images.find('img').load(function() {
-            wall.fitWidth();
-        });
-        /*
-
-        wall.reset({
-            selector: '.profile-media-wall-item',
-            animate: false,
-            cellW: 'auto',
-            cellH: 'auto',
-            delay: 30,
-            onResize: function() {
-                wall.refresh($('.profile-media-wall-container').width() - 30, 1700);
-            }
-        });
-        // caculator width and height for IE7;
-        wall.fitZone($('.profile-media-wall-container').width() - 40 , 1700);
-        */
+        })
 
     });
 

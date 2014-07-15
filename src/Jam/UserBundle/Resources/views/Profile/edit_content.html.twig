@@ -122,7 +122,7 @@
                             {% for i in form.vars.value.images %}
                                 <div class="image-holder">
                                     {# | imagine_filter('my_medium') #}
-                                    <img src="{{ asset(i.getWebPath) }}" />
+                                    <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" />
                                     <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                     <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a>
                                     <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>

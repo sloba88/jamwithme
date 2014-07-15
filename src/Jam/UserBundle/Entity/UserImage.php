@@ -28,6 +28,13 @@ class UserImage extends BaseImage
     private $isDefault = false;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer")
+     */
+    private $type;
+
+    /**
      * Set isDefault
      *
      * @param boolean $isDefault
@@ -71,5 +78,28 @@ class UserImage extends BaseImage
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return UserImage
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

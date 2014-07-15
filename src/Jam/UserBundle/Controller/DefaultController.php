@@ -66,7 +66,7 @@ class DefaultController extends Controller
         $userImage->setFile($file);
         $user->addImage($userImage);
 
-        $this->resizeImage($userImage, $request->request->all());
+        $image = $this->resizeImage($userImage, $request->request->all());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
@@ -95,17 +95,46 @@ class DefaultController extends Controller
         $image = $imagine->open($userImage->getAbsolutePath());
 
         if ($image->getSize()->getWidth() < 100 || $image->getSize()->getHeight() < 100){
-            $image->resize(new Box(200, 200))
-                ->save($userImage->getAbsolutePath());
+            $image->resize(new Box(200, 200));
         }
 
-        if ($dimensions['w'][0]=='') return;
+        if ($image->getSize()->getWidth() > 1000){
+            $image->resize($image->getSize()->widen(1000));
+        }
 
-        $point = new Point($dimensions['x1'][0], $dimensions['y1'][0]);
-        $box = new Box($dimensions['w'][0], $dimensions['h'][0]);
+        if ($image->getSize()->getHeight() > 800){
+            $image->resize($image->getSize()->heighten(800));
+        }
 
-        $image->crop($point, $box)
-              ->save($userImage->getAbsolutePath());
+        $image->save($userImage->getAbsolutePath());
+
+        if ($dimensions['w'][0]!=''){
+            $point = new Point($dimensions['x1'][0], $dimensions['y1'][0]);
+            $box = new Box($dimensions['w'][0], $dimensions['h'][0]);
+
+            $image->crop($point, $box);
+            $image->save($userImage->getAbsolutePath());
+        }
+
+        $squareDelimiter = round($image->getSize()->getWidth() / 4);
+
+        //is it square or close to square?
+        if (abs($image->getSize()->getWidth() - $image->getSize()->getHeight()) < $squareDelimiter){
+            //it is square
+            if ($image->getSize()->getWidth()<800){
+                //small square
+                $userImage->setType(1);
+            }else{
+                $userImage->setType(2);
+            }
+        }else{
+            //it is rectangle
+            $userImage->setType(3);
+        }
+
+        $image->save($userImage->getAbsolutePath());
+
+        return $image;
     }
 
     /**
