@@ -16,7 +16,10 @@ class RegistrationFormType extends BaseType
 
         $builder->add('email');
         $builder->add('username');
-        $builder->add('isTeacher');
+        $builder->add('isTeacher', 'checkbox', array(
+            'required' => false,
+            'label' => 'I am music teacher and I provide private lesions'
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
