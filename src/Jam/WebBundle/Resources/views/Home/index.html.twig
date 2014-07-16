@@ -71,7 +71,7 @@
     var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
 
     $.ajax({
-        url: 'http://local.jamwme/app_dev.php/shouts/find'
+        url: baseURL+'/shouts/find'
         //data: data
     }).done(function( result ) {
         if (result.status == 'success'){

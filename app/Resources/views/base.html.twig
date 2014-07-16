@@ -19,7 +19,9 @@
     <script src="http://95.85.32.166:3000/socket.io/socket.io.js"></script>
 
     <script>
+        baseURL = '{{ app.request.getBaseURL() }}';
         var socket = io('http://95.85.32.166:3000');
+
         {% if app.user %}
         socket.on('registerConnectedUser', function (data) {
             socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': '{{ app.user.username }}' });
