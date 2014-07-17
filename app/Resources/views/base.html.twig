@@ -66,6 +66,14 @@
 
 <div class="container">
 
+    {% if is_granted("ROLE_USER") %}
+        {% if not app.user.location %}
+            <div class="flash-message warning alert-warning">
+                <em>Please set your <a href="{{ path('fos_user_profile_edit') }}">location</a> in order to be able to search people around you.</em>
+            </div>
+        {% endif %}
+    {% endif %}
+
     {% for flashMessage in app.session.flashbag.get('success') %}
         <div class="flash-message alert alert-success">
             <em>{{ flashMessage }}</em>
@@ -385,7 +393,7 @@
         $('ul.nav-tabs a[href="' + hash + '"]').tab('show');
 
         setTimeout(function(){
-            $(".flash-message").fadeOut();
+            $(".flash-message.alert, .flash-message.success").fadeOut();
         },3000)
 
     });
