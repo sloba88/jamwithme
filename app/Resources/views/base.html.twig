@@ -69,7 +69,7 @@
     {% if is_granted("ROLE_USER") %}
         {% if not app.user.location %}
             <div class="flash-message warning alert-warning">
-                <em>Please set your <a href="{{ path('fos_user_profile_edit') }}">location</a> in order to be able to search people around you.</em>
+                <em>Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.</em>
             </div>
         {% endif %}
     {% endif %}

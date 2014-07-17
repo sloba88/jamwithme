@@ -44,6 +44,16 @@ class MusiciansController extends Controller
         $request = $this->get('request_stack')->getCurrentRequest();
         $searchParams = $request->query->get('search_form');
         $me = $this->container->get('security.context')->getToken()->getUser();
+        $response = new JsonResponse();
+
+        if (!$me->getLocation()){
+            $response->setData(array(
+                'status'    => 'error',
+                'data' => array()
+            ));
+
+            return $response;
+        }
 
         //$finder = $this->container->get('fos_elastica.index');
         //$finder->refresh();
@@ -101,7 +111,6 @@ class MusiciansController extends Controller
 
         $musicians = $finder->find($elasticaQuery);
 
-        $response = new JsonResponse();
         $musicians_data = array();
 
         foreach($musicians AS $m){
