@@ -16,11 +16,11 @@
     {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
 
     <script src="https://cdn.socket.io/socket.io-1.0.4.js"></script>
-    <script src="http://95.85.32.166:3000/socket.io/socket.io.js"></script>
+    <script src="{{ node_server }}/socket.io/socket.io.js"></script>
 
     <script>
         baseURL = '{{ app.request.getBaseURL() }}';
-        var socket = io('http://95.85.32.166:3000');
+        var socket = io('{{ node_server }}');
 
         {% if app.user %}
         socket.on('registerConnectedUser', function (data) {
@@ -46,7 +46,7 @@
         <ul class="nav navbar-nav navbar-right">
             {% if is_granted("ROLE_USER") %}
 
-                <li><a href="{{ path('musician_profile', {'username': app.user.username}) }}" class="user-box-image-link img-circle" style="padding:0">
+                <li><a href="{{ path('musician_profile', {'username': app.user.username}) }}" class="user-box-image-link img-circle" style="padding:0; margin-right: 10px">
                         <img width="30" src="{{ path('musician_avatar', { 'username': app.user.username }) }}" class="" />
                     </a>
                 </li>
