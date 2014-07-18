@@ -13,6 +13,7 @@
         <h3>Members:</h3>
 
             {% for m in jam.jamMembers %}
+                {% if m.member %}
                 <div class="col-md-2 text-center">
                     <a href="{{ path('musician_profile', {'username': m.member.username}) }}">
                         <img src="{{ asset(m.member.images.first.getWebPath|default('/images/placeholder-user.jpg')) | imagine_filter('my_thumb') }}" class="img-circle" />
@@ -20,6 +21,7 @@
                         <div>{{ m.role }}</div>
                     </a>
                 </div>
+                {% endif %}
             {% endfor %}
 
         <div class="clearfix"></div>
