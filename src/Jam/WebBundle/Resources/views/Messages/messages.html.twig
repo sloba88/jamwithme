@@ -49,7 +49,10 @@
         var myID = {{ app.user.id }};
 
         jQuery(document).ready(function() {
-            socket.emit('getMyMessages', { userID: 'myID' });
+
+            setTimeout(function(){
+                socket.emit('getMyMessages', { userID: 'myID' });
+            },500);
 
             _.templateSettings.variable = "rc";
             var messageTemplate      = _.template($( "#messageTemplate" ).html());
