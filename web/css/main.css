@@ -404,7 +404,7 @@ a{
     padding: 10px;
 }
 
-.select2-container-multi .select2-choices {
+#musician-info .select2-container-multi .select2-choices {
     height: 70px !important;
     overflow: auto;
 }
