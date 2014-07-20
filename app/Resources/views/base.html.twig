@@ -229,14 +229,13 @@
             }
         });
 
-        $(".set-profile-photo").on('click', function(e){
+        $("body").on('click', '.set-profile-photo', function(e){
             e.preventDefault();
             var url = $(this).data('url');
             $.ajax({
                 url: url
             }).done(function( result ) {
                 if (result.status == 'success'){
-                    //image.remove();
                     window.location.reload();
                 }
             });
@@ -386,7 +385,12 @@
         $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
             var id = $(e.target).attr("href").substr(1);
             window.location.hash = id;
+            if (id=='media'){
+                $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+            }
         });
+
+
 
         // on load of the page: switch to the currently selected tab
         var hash = window.location.hash;

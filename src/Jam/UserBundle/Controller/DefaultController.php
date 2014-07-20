@@ -62,6 +62,8 @@ class DefaultController extends Controller
 
         $file = $request->files->get('file');
 
+        if ($file=='') throw $this->createNotFoundException('File not sent');
+
         $userImage = new UserImage();
         $userImage->setFile($file);
         $user->addImage($userImage);
@@ -72,15 +74,15 @@ class DefaultController extends Controller
         $em->persist($user);
         $em->flush();
 
-
         $response = new JsonResponse();
         $response->setData(array(
             'files' => array(
-                'url' => $userImage->getWebPath(),
+                'url' => $this->get('liip_imagine.cache.manager')->getBrowserPath($userImage->getWebPath(), 'my_medium_'.$userImage->getType()),
                 'thumbnailUrl' => $userImage->getWebPath(),
                 'name' => $userImage->getPath(),
                 'type' => $file->getClientMimeType(),
                 'size' => $file->getClientSize(),
+                'setAvatarUrl' => $this->generateUrl('set_avatar', array('id' => $userImage->getId())),
                 'deleteUrl' => '',
                 'deleteType' => 'DELETE'
             )

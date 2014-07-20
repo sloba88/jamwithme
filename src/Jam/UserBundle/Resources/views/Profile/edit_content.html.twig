@@ -116,16 +116,13 @@
                 <hr />
                 <div class="form-group" >
                     {{ form_label(form.images, 'Images'|trans) }}
-                    {{ form_errors(form.images) }}
                     <div>
-                        <div id="user_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e }}" data-index="{{ form.vars.value.images|length }}">
+                        <div id="user_images" class="profile-media-wall">
                             {% for i in form.vars.value.images %}
-                                <div class="image-holder">
-                                    {# | imagine_filter('my_medium') #}
+                                <div class="image-holder profile-media-wall-item">
                                     <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" />
-                                    <a href="" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                    <a href="#" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                     <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a>
-                                    <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                                 </div>
                             {% endfor %}
                         </div>
@@ -195,3 +192,11 @@
         </div>
     </div>
 </div>
+
+<script type="text/template" id="imageTemplate">
+    <div class="image-holder profile-media-wall-item">
+        <img src="<%- rc.url %>" />
+        <a href="#" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
+        <a href="#" class="set-profile-photo" data-url="<%- rc.setAvatarUrl %>">Set as avatar</a>
+    </div>
+</script>
