@@ -31,7 +31,15 @@
         <p>Instruments: </p>
         <ul>
             {% for i in user.instruments %}
-                <li><a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }} ({{ i.skillLevel }})</a></li>
+                <li>
+                    <a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a>
+                        {% for l in 1..i.skillLevel %}
+                            <i class="glyphicon glyphicon-star"></i>
+                        {% endfor %}
+                        {% for l in 1..(4-i.skillLevel) %}
+                            <i class="glyphicon glyphicon-star-empty"></i>
+                        {% endfor %}
+                </li>
 
             {% endfor %}
         </ul>
