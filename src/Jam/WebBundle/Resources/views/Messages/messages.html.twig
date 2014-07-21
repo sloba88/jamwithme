@@ -17,16 +17,6 @@
 
     </div>
 
-
-    <script type="text/template" id="messageTemplate">
-        <% _.each( rc.messages, function( m ){ %>
-            <% createdAt = new Date(m.createdAt); %>
-            <p data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>"><strong><i><%- m.from.username %></i></strong>: <%- m.message %>
-                <span class="message-time"><%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %></span>
-            </p>
-        <% }); %>
-    </script>
-
     <script type="text/template" id="conversationTemplate">
         <% _.each( rc, function( c ){ %>
         <div class="conversation-box clearfix" data-user="<%- c.username %>" data-id="<%- c.id %>">
@@ -101,18 +91,6 @@
                 setTimeout(function(){
                     socket.emit('conversationIsRead', { userID: userID });
                 },500)
-            });
-
-            socket.on('messageSaved', function (data) {
-                var mess = $(messageTemplate( data )).show();
-                $( ".conversation-message-box" ).append(mess );
-                scrollToBottom();
-            });
-
-            socket.on('messageReceived', function (data) {
-                var mess = $(messageTemplate( data )).show();
-                $( ".conversation-message-box" ).append(mess );
-                scrollToBottom();
             });
 
         });

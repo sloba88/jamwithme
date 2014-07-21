@@ -143,6 +143,13 @@ db.once('open', function callback () {
             });
         });
 
+        socket.on('getOurConversation', function (data) {
+            Message.find({ 'user.id' :  socket.userID, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, function (err, messages) {
+                if (err) return console.error(err);
+                socket.emit('ourConversation', messages);
+            });
+        });
+
         socket.on('conversationIsRead', function (data) {
 
             Message.update({ 'user.id' : socket.userID, isRead: false, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, {

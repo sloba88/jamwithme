@@ -106,6 +106,15 @@
 <script src="{{ asset('js/vendor/isotope.pkgd.min.js') }}"></script>
 {% block javascripts %}{% endblock %}
 
+<script type="text/template" id="messageTemplate">
+    <% _.each( rc.messages, function( m ){ %>
+    <% createdAt = new Date(m.createdAt); %>
+    <p data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>"><strong><i><%- m.from.username %></i></strong>: <%- m.message %>
+        <span class="message-time"><%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %></span>
+    </p>
+    <% }); %>
+</script>
+
 <script>
 
     jQuery(document).ready(function() {
@@ -390,7 +399,34 @@
             }
         });
 
+        $('#messageModal').on('show.bs.modal', function (e) {
+            socket.emit('getOurConversation', { userID:  $("#messageModal").data('id')});
+        });
 
+        _.templateSettings.variable = "rc";
+        var messageTemplate      = _.template($( "#messageTemplate" ).html());
+
+        socket.on('ourConversation', function (data) {
+            $( "#messageModal .conversation-message-box").html('');
+            $.each(data, function( index, value ) {
+                $( "#messageModal .conversation-message-box" ).append(messageTemplate( value ) );
+            });
+
+            $( "#messageModal .conversation-message-box p").fadeIn();
+            setTimeout(function(){scrollToBottom()},300);
+        });
+
+        socket.on('messageSaved', function (data) {
+            var mess = $(messageTemplate( data )).show();
+            $( ".conversation-message-box" ).append(mess);
+            scrollToBottom();
+        });
+
+        socket.on('messageReceived', function (data) {
+            var mess = $(messageTemplate( data )).show();
+            $( ".conversation-message-box" ).append(mess);
+            scrollToBottom();
+        });
 
         // on load of the page: switch to the currently selected tab
         var hash = window.location.hash;
@@ -398,7 +434,7 @@
 
         setTimeout(function(){
             $(".flash-message.alert, .flash-message.success").fadeOut();
-        },3000)
+        },3000);
 
     });
 
