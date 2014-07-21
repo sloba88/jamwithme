@@ -36,9 +36,11 @@
                         {% for l in 1..i.skillLevel %}
                             <i class="glyphicon glyphicon-star"></i>
                         {% endfor %}
-                        {% for l in 1..(4-i.skillLevel) %}
-                            <i class="glyphicon glyphicon-star-empty"></i>
-                        {% endfor %}
+                        {% if 4-i.skillLevel !=0 %}
+                            {% for l in 1..(4-i.skillLevel) %}
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                            {% endfor %}
+                        {% endif %}
                 </li>
 
             {% endfor %}
