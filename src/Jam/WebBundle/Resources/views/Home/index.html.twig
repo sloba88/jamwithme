@@ -75,7 +75,7 @@
     }).done(function( result ) {
         if (result.status == 'success'){
             $.each(result.data, function(k, v){
-                $( ".shouts-view-container" ).append(musicianBoxTemplate( v ) );
+                $( ".shouts-view-container" ).prepend(musicianBoxTemplate( v ) );
             });
         }
     });
