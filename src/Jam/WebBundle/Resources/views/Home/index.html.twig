@@ -29,9 +29,16 @@
     </div>
 
     <div class="col-md-6">
-        <div class="shouts-view-container"></div>
+        <form class="form-horizontal" role="form" action="{{ path('home') }}" method="POST">
+            <div class="form-group">
+                {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(form.send, {'attr': {'class': 'form-control'}}) }}
+                {{ form_widget(form._token) }}
+            </div>
+        </form>
+
         <div class="clearfix"></div>
-        {{ form(form) }}
+        <div class="shouts-view-container"></div>
     </div>
 
     <script type="text/template" id="musicianBoxTemplate">

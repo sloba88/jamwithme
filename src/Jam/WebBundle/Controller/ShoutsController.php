@@ -41,7 +41,10 @@ class ShoutsController extends Controller
             }
         }
 
-        $shouts = $finder->find($elasticaQuery);
+        $sortQuery = \Elastica\Query::create($elasticaQuery);
+        $sortQuery->addSort(array('createdAt' => array('order' => 'ASC')));
+
+        $shouts = $finder->find($sortQuery);
 
         $response = new JsonResponse();
         $musicians_data = array();

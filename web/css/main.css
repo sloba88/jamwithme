@@ -408,3 +408,11 @@ a{
     height: 70px !important;
     overflow: auto;
 }
+
+#form_text{
+    resize: none;
+}
+
+.shouts-view-container{
+    margin-top: -14px;
+}

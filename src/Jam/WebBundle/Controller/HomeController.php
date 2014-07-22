@@ -22,7 +22,8 @@ class HomeController extends Controller
             ->add('text', 'textarea', array(
                 'label' => false,
                 'attr' => array(
-                    'placeholder' => 'Say something cool...'
+                    'placeholder' => 'Say something cool...',
+                    'maxlength' => 250
                 )
             ))
             ->add('send', 'submit')
