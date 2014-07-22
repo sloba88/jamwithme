@@ -75,6 +75,31 @@
     </div>
 
     <div class="col-md-6 profile-media-wall-container">
+
+        <a href="#" class="btn btn-sm btn-default pull-right" id="addPhotosToggle"><span class="glyphicon glyphicon-camera"></span> Add photos</a>
+        <div class="clearfix"></div>
+
+        <div class="profile-add-photos">
+            <span class="btn btn-success btn-sm fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="file" id="upload_images" accept="image/*" data-url="{{ path('upload_user_image') }}" multiple >
+                </span>
+
+            <button type="submit" class="btn btn-primary start btn-sm">
+                <i class="glyphicon glyphicon-upload"></i>
+                <span>Start upload</span>
+            </button>
+
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+
+            <div id="files" class="files"></div>
+
+            <div class="clearfix"></div>
+        </div>
+
         <div class="profile-media-wall">
 
             {% if user.images|length == 0 and user.videos|length == 0 %}
@@ -83,7 +108,13 @@
 
             {% if user.images|length > 0 %}
                 {% for i in user.images %}
-                    <a href="#" class="profile-media-wall-item profile-media-wall-image"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                    <div class="image-holder profile-media-wall-item">
+                        <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" />
+                        <div class="profile-media-image-commands">
+                            <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
+                            <a href="#" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                        </div>
+                    </div>
                 {% endfor %}
             {% endif %}
 
@@ -168,3 +199,4 @@
     {# #}
 
 </div>
+

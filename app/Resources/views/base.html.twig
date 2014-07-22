@@ -42,6 +42,7 @@
             <li {% if app.request.attributes.get('_route') == 'home' %}class="active"{% endif %}><a href="{{ path('home') }}"><span class="glyphicon glyphicon-home"></span></a></li>
             <li {% if app.request.attributes.get('_route') == 'musicians' %}class="active"{% endif %}><a href="{{ path('musicians') }}">Musicians</a></li>
             <li {% if app.request.attributes.get('_route') == 'jams' %}class="active"{% endif %}><a href="{{ path('jams') }}">Jams</a></li>
+            <li {% if app.request.attributes.get('_route') == 'start_jam' %}class="active"{% endif %}><a href="{{ path('start_jam') }}">Start a jam</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if is_granted("ROLE_USER") %}
@@ -54,7 +55,6 @@
                 {#<li {% if app.request.attributes.get('_route') == 'notifications' %}class="active"{% endif %}><a href="&#123;&#35;{{ path('notifications') }}&#35;&#125;">Notifications</a></li>#}
                 <li {% if app.request.attributes.get('_route') == 'inbox' %}class="active"{% endif %}><a href="{{ path('inbox') }}" id="messages-nav"><span class="glyphicon glyphicon-envelope"></span> <span class="badge"></span></a></li>
                 <li {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}class="active"{% endif %}><a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-cog"></span></a></li>
-                <li {% if app.request.attributes.get('_route') == 'start_jam' %}class="active"{% endif %}><a href="{{ path('start_jam') }}">Start a jam</a></li>
                 <li {% if app.request.attributes.get('_route') == 'fos_user_security_logout' %}class="active"{% endif %}><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"></span></a></li>
             {% else %}
                 <li {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}class="active"{% endif %}><a href="{{ path('fos_user_security_login') }}">Login</a></li>
@@ -113,6 +113,32 @@
         <span class="message-time"><%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %></span>
     </p>
     <% }); %>
+</script>
+
+<div class="modal fade" id="imageCropModalTemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Crop Photo</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default cancel-crop" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/template" id="imageTemplate">
+    <div class="image-holder profile-media-wall-item">
+        <img src="<%- rc.url %>" />
+        <div class="profile-media-image-commands">
+            <a href="#" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
+            <a href="#" class="set-profile-photo" data-url="<%- rc.setAvatarUrl %>">Set as avatar</a>
+        </div>
+    </div>
 </script>
 
 <script>
@@ -195,6 +221,7 @@
 
         $(document).on('click', '.remove-image', function(e){
             e.preventDefault();
+            alert('To be implemented');
             $(this).parents('.image-holder').remove();
         });
 
@@ -257,6 +284,12 @@
             }else{
                 $("#messages-nav .badge").text('');
             }
+        });
+
+        $("#addPhotosToggle").on('click', function(e){
+            e.preventDefault();
+            $(this).hide();
+            $(".profile-add-photos").fadeIn();
         });
 
     });

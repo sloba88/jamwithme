@@ -219,27 +219,41 @@ a{
     display: inline-block
 }
 
-#user_images .image-holder{
+.profile-media-wall .image-holder{
     float:left;
     position: relative;
 }
 
-#user_images .image-holder .remove-image{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: #fff;
+.profile-media-wall .image-holder .remove-image{
     width: 20px;
     height: 20px;
     text-align: center;
+    position: relative;
+    top:2px;
+    right: 1px;
 }
 
-#user_images .set-profile-photo{
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    background-color: #fff;
+.profile-media-wall .set-profile-photo{
     padding: 0 2px;
+    font-size: 11px;
+}
+
+.profile-media-wall .set-profile-photo:hover{
+    text-decoration: none;
+}
+
+.profile-media-wall .profile-media-image-commands{
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    opacity: 0.9;
+    right: 0;
+    padding: 2px;
+    display: none;
+}
+
+.profile-media-wall .profile-media-wall-item:hover > .profile-media-image-commands{
+    display: block;
 }
 
 .fileinput-button{
@@ -387,15 +401,15 @@ a{
     width: 80px;
 }
 
-#media #files input{
+#files input{
     display: none;
 }
 
-#media #files .preview-container{
+#files .preview-container{
     float: left;
 }
 
-#media #files .preview-thumb{
+#files .preview-thumb{
     padding: 5px;
 }
 
@@ -415,4 +429,12 @@ a{
 
 .shouts-view-container{
     margin-top: -14px;
+}
+
+#addPhotosToggle{
+    margin-bottom: 10px;
+}
+
+.profile-add-photos{
+    display: none;
 }
