@@ -4,13 +4,13 @@ Current specification, will be added somewhere else later
 JamWithMe is the new start-up that aims to connect musicians with each other, or better - dating website for musicians. Goal of the website is to gather amateurs and professionals and provide social interaction as the services of managing jamming sessions, or any similar event. The main feature is search that enables finding musicians in your area based on your preferences, that could be either instruments, genres, or similar interests. The system will be "open minded" for all kinds of music or music artists.
 
 Development:
-Basic idea is to start with the responsive website with "mobile first" approach and try to implement service oriented architecture that would make easier to follow with iOS and Android native app.
+Basic idea is to start with the responsive website with "mobile first" approach and try to implement service oriented architecture that would make easier to follow with iOS and Android native app. Maybe Phonegap?
 
 Main features:
 Registration with social networks
 Generating musician profile with basic details and preferances (to be defined later)
 Search or browse musicians and jams with and without map interface
-Creating your own jam and joining others
+Creating your own jam/group pages and promote them
 
 
 Story:
@@ -24,6 +24,9 @@ When person gets message he will also receive email and have onsite notification
 User profile:
 We will provide only necessary information like profile photo, biography, location, age, genres, instruments, influencers, jams, connections, photos and videos (youtube). Connections are all the people that are connected to that person through any of his current jams.
 
+------
+OUTDATED
+
 Jam profile:
 When person create a Jam we will automatically create a "Jam page" which will be unique to that Jam name. One person can create multiple jams, we will not limit this in beginning but we can maybe try to moderate if we see that someone is spamming this way and ruins the jam search for others. Jam page will have a styled list of all the people that are in the jam and genre that is played. This page will have an option to send request to join the jam and the "Jam starter" will have the ability to accept or deny.
 Some ideas include to create event system to track the jams and to have history but that will be discussed later.
@@ -34,11 +37,17 @@ This option will by default list all the jams that are near you with advanced al
 Jams as map:
 This is one of the key options that will present the search on a big map, and will point all the jams nearby.
 
-Musicians:
-Idea behind this section is basically the same as Jams section, with the difference of browsing and searching only people near you. This is opposite way of searches where "Jam starters" would search the people to join their jams.
-
 Jam Requests:
 We will try not to limit users in any way on the start. They will be able to send endless amount of requests, messages, create jams and so on. As we grow we need to track eventual abuses of this system. Idea is that "Jam starter" be some kind of mini admin who will be able to accept and deny other people into the jam. Not to complicate things we will have only one admin on the start. So there are two ways of request, from person to join the jam and from jam admin to invite a person into one of his jams. It is worth considering option to have a "private jams" in the near future because not all people want to compromise themselves and give them an option only to invite people they want. This way their jams will not appear in the search sections.
+
+OUTDATED
+-----
+
+Musicians:
+Idea behind this section is basically the same as Jams section, with the difference of browsing and searching only people near you. This is opposite way of searches where "Jam starters" would search the people to join their jams. You will be able to distinguish between people based on your match, but that is more of a makeup.
+
+People providing lessions:
+Musicians will be able to mark themselves as the one providing lessions and they will be displayed differently and you could filter them out. Those profiles have possibility to gather income.
 
 Genres:
 Our goal is to have our own database of all the existing genres and "smart" way of narrowing select to the one you want. Good UX practice here is "as you type" system that would only allow to select keyword that is suggested. This way we keep our database clean and if person really can't find some sub-genre he can always leave his selection on one level above. 
