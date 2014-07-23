@@ -113,10 +113,11 @@
 
                 <div class="clearfix"></div>
 
-                <hr />
-                <div class="form-group" >
-                    {{ form_label(form.images, 'Images'|trans) }}
-                    <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ form_label(form.images, 'Photos'|trans) }}</h3>
+                    </div>
+                    <div class="panel-body">
                         <div id="user_images" class="profile-media-wall">
                             {% for i in form.vars.value.images %}
                                 <div class="image-holder profile-media-wall-item">
@@ -135,14 +136,21 @@
 
             {# video links #}
             <div class="col-md-4">
-                <h4>Videos</h4>
-                <ul id="musician_videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}">
-                    {# iterate over each existing tag and render its only field: name #}
-                    {% for v in form.videos %}
-                        <li>{{ form_row(v.url) }}</li>
-                    {% endfor %}
-                </ul>
-                <a href="#" id="add_another_video">Add another url</a>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Youtube Videos</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul id="musician_videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}">
+                            {% for v in form.videos %}
+                                <li>{{ form_widget(v.url) }}</li>
+                            {% endfor %}
+                        </ul>
+                        <a href="#" id="add_another_video" class="btn btn-sm btn-default">Add Another</a>
+                    </div>
+                </div>
+
             </div>
 
         </div>

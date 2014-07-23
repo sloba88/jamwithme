@@ -438,3 +438,12 @@ a{
 .profile-add-photos{
     display: none;
 }
+
+#musician_videos{
+    list-style-type: none;
+    padding:0;
+}
+
+#musician_videos li{
+    margin-bottom: 10px;
+}
