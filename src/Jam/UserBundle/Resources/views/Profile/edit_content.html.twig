@@ -124,7 +124,7 @@
                                     <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" />
                                     <div class="profile-media-image-commands">
                                         <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
-                                        <a href="#" class="remove-image"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                        <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                     </div>
                                 </div>
                             {% endfor %}

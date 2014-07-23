@@ -91,6 +91,39 @@ class DefaultController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/user/image/remove/{id}", name="remove_user_image")
+     * @Template()
+     */
+    public function removeImageAction($id)
+    {
+        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+            $user = $this->container->get('security.context')->getToken()->getUser();
+        }else{
+            throw $this->createNotFoundException('You shall not pass');
+        }
+
+        $userImage = $this->getDoctrine()
+            ->getRepository('JamUserBundle:UserImage')
+            ->find($id);
+
+        if (!$userImage) throw $this->createNotFoundException('There is no image with that id');
+
+        $userImage->setUser(null);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($userImage);
+        $em->persist($user);
+        $em->flush();
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'status' => 'success'
+        ));
+
+        return $response;
+    }
+
     private function resizeImage(UserImage $userImage, $dimensions)
     {
         $imagine = new Imagine();

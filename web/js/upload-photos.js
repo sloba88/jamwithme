@@ -135,6 +135,7 @@ $(function () {
         if (file.url) {
             $( ".profile-media-wall" ).append(imageTemplate( file ) );
             $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+            $("#files").html('');
         } else if (file.error) {
             var error = $('<span class="text-danger"/>').text(file.error);
             $(data.context.children()[index])
@@ -150,6 +151,22 @@ $(function () {
         });
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+    $(".remove-image-ajax").on('click', function(e){
+        e.preventDefault();
+        var url = $(this).data('url');
+        var image = $(this).parents('.image-holder');
+        $.ajax({
+            url: url
+        }).done(function( result ) {
+            if (result.status == 'success'){
+                image.fadeOut(400, function(){
+                    image.remove();
+                    $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+                });
+            }
+        });
+    });
 
 
 });

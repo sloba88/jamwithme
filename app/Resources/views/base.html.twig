@@ -124,8 +124,8 @@
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default cancel-crop" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn btn-default btn-sm cancel-crop" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Save changes</button>
             </div>
         </div>
     </div>
@@ -214,34 +214,10 @@
             addCollectionForm(videosCollectionHolder, 'instruments');
         });
 
-        $(document).on('click', '.make-primary-image', function(){
-            $('.make-primary-image').attr('checked', false);
-            $(this).prop('checked', true).attr('checked', true);
-        });
-
-        $(document).on('click', '.remove-image', function(e){
-            e.preventDefault();
-            alert('To be implemented');
-            $(this).parents('.image-holder').remove();
-        });
-
         $(".price-type").click(function(){
             $('.price-type').attr('checked', false);
             $(this).prop('checked', true).attr('checked', true);
             $("#ad_price").val('');
-        });
-
-        $(".remove-image-ajax").on('click', function(e){
-            e.preventDefault();
-            var url = $(this).data('url');
-            var image = $(this).parents('.image-holder');
-            $.ajax({
-                url: url
-            }).done(function( result ) {
-                if (result.status == 'success'){
-                    image.remove();
-                }
-            });
         });
 
         $(".send-message").on('keyup', function(e){
