@@ -24,24 +24,7 @@ When person gets message he will also receive email and have onsite notification
 User profile:
 We will provide only necessary information like profile photo, biography, location, age, genres, instruments, influencers, jams, connections, photos and videos (youtube). Connections are all the people that are connected to that person through any of his current jams.
 
-------
-OUTDATED
 
-Jam profile:
-When person create a Jam we will automatically create a "Jam page" which will be unique to that Jam name. One person can create multiple jams, we will not limit this in beginning but we can maybe try to moderate if we see that someone is spamming this way and ruins the jam search for others. Jam page will have a styled list of all the people that are in the jam and genre that is played. This page will have an option to send request to join the jam and the "Jam starter" will have the ability to accept or deny.
-Some ideas include to create event system to track the jams and to have history but that will be discussed later.
-
-Jams:
-This option will by default list all the jams that are near you with advanced algorithms that fill put on top jams that you may be interested in. Filters in the sidebar will help that you narrow the search using drop-down menus or keyword text searches.
-
-Jams as map:
-This is one of the key options that will present the search on a big map, and will point all the jams nearby.
-
-Jam Requests:
-We will try not to limit users in any way on the start. They will be able to send endless amount of requests, messages, create jams and so on. As we grow we need to track eventual abuses of this system. Idea is that "Jam starter" be some kind of mini admin who will be able to accept and deny other people into the jam. Not to complicate things we will have only one admin on the start. So there are two ways of request, from person to join the jam and from jam admin to invite a person into one of his jams. It is worth considering option to have a "private jams" in the near future because not all people want to compromise themselves and give them an option only to invite people they want. This way their jams will not appear in the search sections.
-
-OUTDATED
------
 
 Musicians:
 Idea behind this section is basically the same as Jams section, with the difference of browsing and searching only people near you. This is opposite way of searches where "Jam starters" would search the people to join their jams. You will be able to distinguish between people based on your match, but that is more of a makeup.
@@ -128,3 +111,24 @@ After creating functional rounded system that would provide basic service our go
 Further plans:
 One of the plans is developing event based system where they would track events of the basic jams, or other variations of jams like guitar lessons, band rehearsals, actual live gigs.
 This is where things get more complicated but this is also the system that would eventually create real money. I would suggest moving everything connected with this story to chapter II or even chapter III of our application. This is not only complicated from the developers perspective, with this we are entering some well established markets and more serious competition. 
+
+
+
+OUTDATED
+-----
+
+Jam profile:
+When person create a Jam we will automatically create a "Jam page" which will be unique to that Jam name. One person can create multiple jams, we will not limit this in beginning but we can maybe try to moderate if we see that someone is spamming this way and ruins the jam search for others. Jam page will have a styled list of all the people that are in the jam and genre that is played. This page will have an option to send request to join the jam and the "Jam starter" will have the ability to accept or deny.
+Some ideas include to create event system to track the jams and to have history but that will be discussed later.
+
+Jams:
+This option will by default list all the jams that are near you with advanced algorithms that fill put on top jams that you may be interested in. Filters in the sidebar will help that you narrow the search using drop-down menus or keyword text searches.
+
+Jams as map:
+This is one of the key options that will present the search on a big map, and will point all the jams nearby.
+
+Jam Requests:
+We will try not to limit users in any way on the start. They will be able to send endless amount of requests, messages, create jams and so on. As we grow we need to track eventual abuses of this system. Idea is that "Jam starter" be some kind of mini admin who will be able to accept and deny other people into the jam. Not to complicate things we will have only one admin on the start. So there are two ways of request, from person to join the jam and from jam admin to invite a person into one of his jams. It is worth considering option to have a "private jams" in the near future because not all people want to compromise themselves and give them an option only to invite people they want. This way their jams will not appear in the search sections.
+
+OUTDATED
+-----
