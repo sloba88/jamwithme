@@ -5,6 +5,8 @@ http://95.85.32.166/app_dev.php
 tester
 Ly3CtLgT
 
+Temporary landing page: http://95.85.32.166/landing/
+
 
 JamWithMe is the new start-up that aims to connect musicians with each other, or better - dating website for musicians. Goal of the website is to gather amateurs and professionals and provide social interaction as the services of managing jamming sessions, or any similar event. The main feature is search that enables finding musicians in your area based on your preferences, that could be either instruments, genres, or similar interests. The system will be "open minded" for all kinds of music or music artists.
 
