@@ -37,6 +37,7 @@
                 route: false,
                 locality: false,
                 sublocality: false,
+                neighborhood: false,
                 administrative_area_level_3: false,
                 administrative_area_level_2: false,
                 administrative_area_level_1: false,
@@ -127,6 +128,7 @@
             this.locality = $(this.options.elements.locality);
             this.sublocality = $(this.options.elements.sublocality);
             this.administrative_area_level_3 = $(this.options.elements.administrative_area_level_3);
+            this.neighborhood = $(this.options.elements.neighborhood);
             this.administrative_area_level_2 = $(this.options.elements.administrative_area_level_2);
             this.administrative_area_level_1 = $(this.options.elements.administrative_area_level_1);
             this.country  = $(this.options.elements.country);
@@ -161,7 +163,7 @@
             }
         },
 
-        _addressParts: {street_number: null, route: null, locality: null, sublocality: null,
+        _addressParts: {street_number: null, route: null, locality: null, sublocality: null, neighborhood: null,
             administrative_area_level_3: null, administrative_area_level_2: null,
             administrative_area_level_1: null, country: null, postal_code:null, type: null},
 
@@ -174,7 +176,7 @@
                     if (parsedResult[addressPart] !== false){
                         this[addressPart].val(parsedResult[addressPart]);
                     } else {
-                        this[addressPart].val('');
+                        //this[addressPart].val('');
                     }
                 }
             }
@@ -184,7 +186,13 @@
             this.geocoder.geocode({'latlng': location.lat() + "," + location.lng()}, $.proxy(function(results, status){
                 if (status == google.maps.GeocoderStatus.OK){
 
+                    for (addressPart in this._addressParts){
+                        this[addressPart].val('');
+                    }
+
                     this._updateAddressParts(results[0]);
+                    this._updateAddressParts(results[1]);
+                    this._updateAddressParts(results[2]);
                     this.element.val(results[0].formatted_address);
                     this.selectedResult = results[0];
 

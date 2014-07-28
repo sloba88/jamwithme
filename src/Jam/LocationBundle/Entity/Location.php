@@ -34,6 +34,13 @@ class Location
      * @ORM\Column(name="locality", type="string", length=255, nullable=true)
      */
     protected $locality;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="neighborhood", type="string", length=255, nullable=true)
+     */
+    protected $neighborhood;
  
     /**
      * @var string
@@ -211,5 +218,28 @@ class Location
     public function getAdministrativeAreaLevel3()
     {
         return $this->administrative_area_level_3;
+    }
+
+    /**
+     * Set neighborhood
+     *
+     * @param string $neighborhood
+     * @return Location
+     */
+    public function setNeighborhood($neighborhood)
+    {
+        $this->neighborhood = $neighborhood;
+
+        return $this;
+    }
+
+    /**
+     * Get neighborhood
+     *
+     * @return string 
+     */
+    public function getNeighborhood()
+    {
+        return $this->neighborhood;
     }
 }

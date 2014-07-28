@@ -10,6 +10,7 @@ $(function() {
             elements: {
                 map: widget.find('[id$="_location_map"]'),
                 locality: widget.find('[id$="_location_locality"]'),
+                neighborhood: widget.find('[id$="_location_neighborhood"]'),
                 administrative_area_level_3: widget.find('[id$="_administrative_area_level_3"]'),
                 country: widget.find('[id$="_location_country"]'),
                 route: widget.find('[id$="_location_route"]'),
@@ -19,7 +20,7 @@ $(function() {
             },
             mapOptions: {
                 center: new google.maps.LatLng(60.1605645, 24.8696196),
-                zoom: widget_location.attr('data-marker') ? 9 : 6
+                zoom: 12
             },
             updateCallback: function() {
                 showMap(false);

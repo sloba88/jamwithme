@@ -30,6 +30,9 @@ class LocationType extends AbstractType
                 ->add('locality', 'hidden', array(
                     'required'      => false,
                     ))
+                ->add('neighborhood', 'hidden', array(
+                    'required'      => false,
+                    ))
                 ->add('country', 'hidden', array(
                     'required'      => false
                     ))
