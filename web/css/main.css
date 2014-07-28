@@ -84,6 +84,9 @@ a{
 .musician-map-box-genres{
     font-size: 11px;
     font-style: italic;
+}
+
+.list-view-container .musician-map-box-genres{
     text-overflow: ellipsis;
     display: inline-block;
     overflow: scroll;
@@ -104,6 +107,9 @@ a{
     font-size: 10px;
     color: gray;
     font-style: italic;
+}
+
+.list-view-container .musician-box-location{
     position: relative;
     top: -12px;
 }
@@ -128,6 +134,9 @@ a{
 .musician-box-genres{
     font-size: 11px;
     font-style: italic;
+}
+
+.list-view-container .musician-box-genres{
     width: 200px;
     white-space: nowrap;
     display: inline-block;

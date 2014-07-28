@@ -14,7 +14,8 @@
             <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" class="img-circle col-md-6" />
             <h3 class="col-md-6">{{ user.username }}</h3>
             {% if user.location %}
-                {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i> {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
+                {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i>
+                    {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
             {% endif %}
 
             {% if app.user != user %}

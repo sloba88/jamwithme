@@ -121,6 +121,12 @@ class MusiciansController extends Controller
                 $image = '/images/placeholder-user.jpg';
             }
 
+            if ($m->getLocation()->getNeighborhood() != ""){
+                $location = $m->getLocation()->getNeighborhood(). ', '.$m->getLocation()->getAdministrativeAreaLevel3();
+            }else{
+                $location = $m->getLocation()->getAdministrativeAreaLevel3();
+            }
+
             $data_array = array(
                 'username' => $m->getUsername(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
@@ -129,7 +135,7 @@ class MusiciansController extends Controller
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
-                'location' => $m->getLocation()->getAdministrativeAreaLevel3(),
+                'location' => $location
             );
 
             if ($m->getIsTeacher()){
