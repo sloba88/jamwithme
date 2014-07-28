@@ -67,8 +67,28 @@ a{
 }
 
 .musician-map-box{
-    width: 120px;
+    width: 160px;
     height: 120px;
+}
+
+.musician-map-box img{
+    float: left;
+    padding: 0 10px 5px 0;
+}
+
+.musician-map-box p{
+    padding: 13px 0 10px 0;
+    float: left;
+}
+
+.musician-map-box-genres{
+    font-size: 11px;
+    font-style: italic;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: scroll;
+    height: 60px;
+    width: 100%
 }
 
 .musician-map-box.teacher{
@@ -84,6 +104,8 @@ a{
     font-size: 10px;
     color: gray;
     font-style: italic;
+    position: relative;
+    top: -12px;
 }
 
 .musician-box-location i{
@@ -106,11 +128,11 @@ a{
 .musician-box-genres{
     font-size: 11px;
     font-style: italic;
-    text-overflow: ellipsis;
     width: 200px;
     white-space: nowrap;
     display: inline-block;
-    overflow: hidden;
+    overflow: scroll;
+    height: 28px;
 }
 
 .form-signin {

@@ -31,6 +31,13 @@
             <a href="<%- mu.url %>"><img src="<%- mu.image %>" />
                 <p><%- mu.username %></p>
             </a>
+            <div class="clearfix"></div>
+            <span class="musician-map-box-genres">
+                    <% _.each( mu.genres, function(v, k){ %>
+                        <% if (k!=0){ %>|<% } %>
+                        <%- v %>
+                    <% }); %>
+                </span>
         </div>
     </script>
 
