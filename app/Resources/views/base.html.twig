@@ -104,7 +104,9 @@
 <script src="{{ asset('bundles/jamlocation/location.js') }}"></script>
 <script src="{{ asset('js/vendor/underscore-min.js') }}"></script>
 <script src="{{ asset('js/vendor/isotope.pkgd.min.js') }}"></script>
-{% block javascripts %}{% endblock %}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
 
 <script type="text/template" id="messageTemplate">
     <% _.each( rc.messages, function( m ){ %>
@@ -114,6 +116,26 @@
     </p>
     <% }); %>
 </script>
+
+<script type="text/template" id="musicianBoxTemplate">
+    <div class="musician-box <% if(mu.teacher){ %>teacher<% } %>">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
+            <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
+        </a>
+        <div class="musician-box-details">
+            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br />
+                <span class="musician-box-genres">
+                    <% _.each( mu.genres, function(v, k){ %>
+                        <% if (k!=0){ %>|<% } %>
+                        <%- v %>
+                    <% }); %>
+                </span>
+            <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
+        </div>
+    </div>
+</script>
+
+{% block javascripts %}{% endblock %}
 
 <div class="modal fade" id="imageCropModalTemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -269,8 +291,6 @@
         });
 
     });
-
-
 
     function addCollectionForm(collectionHolder, type) {
         var prototype = collectionHolder.data('prototype');

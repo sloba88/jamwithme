@@ -36,7 +36,7 @@ class MusiciansController extends Controller
     }
 
     /**
-     * @Route("/musicians/find", name="musicians_find")
+     * @Route("/musicians/find", name="musicians_find", options={"expose"=true})
      * @Template()
      */
     public function findAction()
@@ -45,6 +45,13 @@ class MusiciansController extends Controller
         $searchParams = $request->query->get('search_form');
         $me = $this->container->get('security.context')->getToken()->getUser();
         $response = new JsonResponse();
+
+        if ($searchParams && isset($searchParams['me'])){
+            //if searching nearby to other user
+            $me = $this->getDoctrine()
+                ->getRepository('JamUserBundle:User')
+                ->find($searchParams['me']);
+        }
 
         if (!$me->getLocation()){
             $response->setData(array(
@@ -68,8 +75,6 @@ class MusiciansController extends Controller
             //$em = $this->getDoctrine()->getManager();
             //$em->persist($search);
             //$em->flush();
-
-
 
             if (isset($searchParams['genres'])){
                 $categoryQuery = new \Elastica\Filter\Terms('genres.id', $searchParams['genres']);
@@ -115,6 +120,7 @@ class MusiciansController extends Controller
 
         foreach($musicians AS $m){
 
+            //TODO: NOT FIRST IMAGE ANYMORE
             if ($m->getImages()->first()){
                 $image = $m->getImages()->first()->getWebPath();
             } else{

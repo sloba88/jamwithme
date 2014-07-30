@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"musicians_find":{"tokens":[["text","\/musicians\/find"]],"defaults":[],"requirements":[],"hosttokens":[]}},"prefix":"","host":"localhost","scheme":"http"});
