@@ -109,7 +109,7 @@ a{
     font-style: italic;
 }
 
-.list-view-container .musician-box-location{
+.list-view-container .musician-box-location, .similar-nearby-box .musician-box-location{
     position: relative;
     top: -12px;
 }
@@ -136,12 +136,17 @@ a{
     font-style: italic;
 }
 
-.list-view-container .musician-box-genres{
+.list-view-container .musician-box-genres, .similar-nearby-box .musician-box-genres{
     width: 200px;
     white-space: nowrap;
     display: inline-block;
     overflow: scroll;
     height: 28px;
+}
+
+.similar-nearby-box .musician-box{
+    border-bottom: 1px solid #e5e5e5;
+    margin: 0;
 }
 
 .form-signin {
