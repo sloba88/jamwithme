@@ -89,7 +89,7 @@
     {% if is_granted("ROLE_USER") and app.user.profileFulfilment != 100 %}
         <div class="progress" style="">
             <div class="progress-bar" role="progressbar" aria-valuenow="{{ app.user.profileFulfilment }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ app.user.profileFulfilment }}%;">
-                {{ app.user.profileFulfilment }}% Profile Completition
+                {{ app.user.profileFulfilment }}% Profile completion
             </div>
         </div>
     {% endif %}
