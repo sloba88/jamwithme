@@ -478,6 +478,7 @@ a{
 
 .profile-add-photos{
     display: none;
+    margin-top: 10px;
 }
 
 #musician_videos{
@@ -487,4 +488,13 @@ a{
 
 #musician_videos li{
     margin-bottom: 10px;
+}
+
+.profile-write-recommendation{
+    display: none;
+    margin-bottom: 10px;
+}
+
+.profile-write-recommendation textarea{
+    resize: none;
 }

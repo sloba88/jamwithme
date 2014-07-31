@@ -286,8 +286,10 @@
 
         $("#addPhotosToggle").on('click', function(e){
             e.preventDefault();
-            $(this).hide();
-            $(".profile-add-photos").fadeIn();
+            $(".profile-add-photos").fadeToggle();
+            $(this).toggleClass('active');
+            $(".profile-write-recommendation").hide();
+            $("#addUserRecommendationToggle").removeClass('active');
         });
 
     });
@@ -464,6 +466,13 @@
         setTimeout(function(){
             $(".flash-message.alert, .flash-message.success").fadeOut();
         },3000);
+
+        $("#addUserRecommendationToggle").on('click', function(){
+            $(this).toggleClass('active');
+            $(".profile-write-recommendation").fadeToggle();
+            $(".profile-add-photos").hide();
+            $("#addPhotosToggle").removeClass('active');
+        });
 
     });
 

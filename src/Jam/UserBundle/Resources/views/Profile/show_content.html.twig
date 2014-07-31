@@ -77,6 +77,10 @@
 
     <div class="col-md-6 profile-media-wall-container">
 
+        {% if user.isTeacher %}
+            <a href="#" class="btn btn-sm btn-default pull-left" id="addUserRecommendationToggle"><span class="glyphicon glyphicon-heart"></span> Recommend</a>
+        {% endif %}
+
         {% if app.user == user %}
 
             <a href="#" class="btn btn-sm btn-default pull-right" id="addPhotosToggle"><span class="glyphicon glyphicon-camera"></span> Add photos</a>
@@ -104,6 +108,10 @@
             </div>
 
         {% endif %}
+
+        <div class="profile-write-recommendation">
+            <textarea class="form-control" placeholder="Say something nice"></textarea>
+        </div>
 
         <div class="profile-media-wall">
 
@@ -158,10 +166,6 @@
 
     <div class="col-md-3 profile-profile-column" style="padding:0">
 
-        {% if user.isTeacher %}
-            <p>This guy is a teacher!</p>
-        {% endif %}
-
         <h4>Artists</h4>
         <ul>
             {% for a in user.artists %}
@@ -182,12 +186,18 @@
             {% endfor %}
         </ul>
 
+        {% if user.isTeacher %}
+            <h4>Recommendations</h4>
+        {% else %}
+
         <h4>Jams</h4>
         <ul>
             {% for j in user.jamsMember %}
                 <li><a href="{{ path('view_jam', { 'slug': j.jam.slug } ) }}">{{ j.jam.name }}</a> ({{ j.role }})</li>
             {% endfor %}
         </ul>
+
+        {% endif %}
 
         <h4>Shouts</h4>
 
