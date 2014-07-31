@@ -78,7 +78,9 @@
     <div class="col-md-6 profile-media-wall-container">
 
         {% if user.isTeacher %}
-            <a href="#" class="btn btn-sm btn-default pull-left" id="addUserRecommendationToggle"><span class="glyphicon glyphicon-heart"></span> Recommend</a>
+            {% if app.user != user %}
+                <a href="#" class="btn btn-sm btn-default pull-left" id="addUserRecommendationToggle"><span class="glyphicon glyphicon-heart"></span> Recommend</a>
+            {% endif %}
         {% endif %}
 
         {% if app.user == user %}
