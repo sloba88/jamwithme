@@ -977,4 +977,35 @@ class User extends BaseUser
     {
         return $this->videos;
     }
+
+    public function getProfileFulfilment()
+    {
+        $percentage = 20;
+
+        if ($this->brands->count() > 0){
+            $percentage += 10;
+        }
+
+        if ($this->instruments->count() > 0){
+            $percentage += 10;
+        }
+
+        if ($this->genres->count() > 0){
+            $percentage += 20;
+        }
+
+        if ($this->artists->count() > 0){
+            $percentage += 10;
+        }
+
+        if ($this->aboutMe != ''){
+            $percentage += 10;
+        }
+
+        if ($this->location){
+            $percentage += 20;
+        }
+
+        return $percentage;
+    }
 }

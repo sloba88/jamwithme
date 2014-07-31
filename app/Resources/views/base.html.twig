@@ -86,6 +86,14 @@
         </div>
     {% endfor %}
 
+    {% if is_granted("ROLE_USER") %}
+        <div class="progress" style="">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ app.user.profileFulfilment }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ app.user.profileFulfilment }}%;">
+                {{ app.user.profileFulfilment }}% Profile Completition
+            </div>
+        </div>
+    {% endif %}
+
     {% block body %}{% endblock %}
     {% block fos_user_content %}
     {% endblock fos_user_content %}
