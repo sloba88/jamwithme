@@ -322,6 +322,10 @@ a{
     position: relative;
 }
 
+.profile-avatar-container img{
+    width: 130px;
+}
+
 .profile-avatar-container h4{
     margin-top: 35px;
     padding-left: 0;
@@ -498,4 +502,10 @@ a{
 
 .profile-write-recommendation textarea{
     resize: none;
+}
+
+@media only screen and (min-width: 1282px) {
+    .container {
+        width: 1280px;
+    }
 }
