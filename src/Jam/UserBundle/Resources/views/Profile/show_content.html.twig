@@ -101,11 +101,11 @@
                 </div>
 
                 <div id="files" class="files"></div>
-
-                <div class="clearfix"></div>
             </div>
 
         {% endif %}
+
+        <div class="clearfix"></div>
 
         <div class="profile-write-recommendation">
             <textarea class="form-control" placeholder="Say something nice"></textarea>
@@ -120,7 +120,7 @@
             {% if user.images|length > 0 %}
                 {% for i in user.images %}
                     <div class="image-holder profile-media-wall-item">
-                        <img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" />
+                        <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                         {% if app.user == user %}
                         <div class="profile-media-image-commands">
                             <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |

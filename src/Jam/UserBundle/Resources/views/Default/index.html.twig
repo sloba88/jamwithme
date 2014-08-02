@@ -22,10 +22,15 @@
     <script src="/js/vendor/jquery.Jcrop.min.js"></script>
     <script src="/js/upload-photos.js"></script>
 
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="/assets/fancy/jquery.mousewheel-3.0.6.pack.js"></script>
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="/assets/fancy/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="/assets/fancy/jquery.fancybox.pack.js?v=2.1.5"></script>
+
     <script>
 
         $(function() {
-
             _.templateSettings.variable = "mu";
             var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
 
@@ -38,11 +43,8 @@
                 });
             });
 
+            $(".fancybox").fancybox();
         });
-
-
-
-
     </script>
 
 {% endblock %}

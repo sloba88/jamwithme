@@ -361,6 +361,7 @@ a{
     background-color: #fff;
     outline:1px solid #e0e0e0;
     padding: 15px;
+    margin-top: 10px;
 }
 
 .profile-media-wall-image img{
@@ -492,7 +493,7 @@ a{
 
 .profile-write-recommendation{
     display: none;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .profile-write-recommendation textarea{
