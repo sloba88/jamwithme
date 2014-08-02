@@ -297,6 +297,10 @@ a{
     display: block;
 }
 
+.profile-media-wall-item{
+    padding: 3px;
+}
+
 .fileinput-button{
     position: relative;
 }
@@ -364,7 +368,7 @@ a{
 .profile-media-wall{
     background-color: #fff;
     outline:1px solid #e0e0e0;
-    padding: 15px;
+    padding: 10px;
     margin-top: 10px;
 }
 
@@ -373,9 +377,8 @@ a{
 }
 
 .profile-media-wall iframe{
-    padding: 5px;
+    padding: 2px;
 }
-
 
 #fos_user_profile_form_aboutMe{
     height: 180px;
