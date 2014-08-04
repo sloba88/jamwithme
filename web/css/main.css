@@ -507,8 +507,8 @@ a{
     resize: none;
 }
 
-@media only screen and (min-width: 1282px) {
+@media only screen and (min-width: 1322px) {
     .container {
-        width: 1280px;
+        width: 1300px;
     }
 }

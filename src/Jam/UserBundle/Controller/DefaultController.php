@@ -164,7 +164,11 @@ class DefaultController extends Controller
             }
         }else{
             //it is rectangle
-            $userImage->setType(3);
+            if ($image->getSize()->getWidth() > $image->getSize()->getHeight()){
+                $userImage->setType(3);
+            }else{
+                $userImage->setType(4);
+            }
         }
 
         $image->save($userImage->getAbsolutePath());

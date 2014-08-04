@@ -137,6 +137,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [280, 140], mode: outbound }
+        my_medium_4:
+            quality: 75
+            filters:
+                thumbnail: { size: [140, 280], mode: outbound }
 
 hwi_oauth:
     #this is my custom user provider, created from FOSUBUserProvider - will manage the

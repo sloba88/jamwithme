@@ -38,7 +38,7 @@ $(function () {
         // options for cellsByRow layout mode
         // options for masonry layout mode
         masonry: {
-            columnWidth: 150
+            columnWidth: 140
         }
     });
 
