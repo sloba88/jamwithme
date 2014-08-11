@@ -67,6 +67,14 @@
             map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
             bounds = new google.maps.LatLngBounds();
+
+            if ($map.data('lat') == ''){
+                getLocation();
+            }else{
+                map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+            }
+
+            drawRadius($("#search_form_distance").val());
         }
 
         function getLocation(){
@@ -130,14 +138,12 @@
         }
 
         $(function() {
-            initialize();
-            if ($map.data('lat') == ''){
-                getLocation();
-            }else{
-                map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
-            }
 
-            drawRadius($("#search_form_distance").val());
+            initialize();
+
+            if (localStorage.view=="list") {
+                $("#list-tab-btn").click();
+            }
 
             $("#search_form").parents('form').on('change', function(){
                 delay(function(){

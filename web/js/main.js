@@ -162,6 +162,7 @@ $(function () {
         $('.tabs .active').removeClass('active');
         $(this).addClass('active');
         $(".filter-container").parents('.tab-content').removeClass('full-screen');
+        localStorage.setItem("view", "list");
     });
 
     $("#map-tab-btn").on('shown.bs.tab', function (e) {
@@ -169,6 +170,7 @@ $(function () {
         $('.tabs .active').removeClass('active');
         $(this).addClass('active');
         $(".filter-container").parents('.tab-content').addClass('full-screen');
+        localStorage.setItem("view", "map");
     });
 
     // store the currently selected tab in the hash value
