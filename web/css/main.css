@@ -428,6 +428,7 @@ a{
 .shouts-view-container .musician-box{
     height: auto;
     padding: 10px;
+    margin-bottom: 5px;
 }
 
 .shouts-view-container hr{
