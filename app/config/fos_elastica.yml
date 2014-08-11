@@ -16,7 +16,7 @@ fos_elastica:
                         instruments:
                             type: "object"
                             properties:
-                                id: ~
+                                instrument.id:
                         isTeacher:
                             type: "boolean"
                     persistence:

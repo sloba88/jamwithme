@@ -82,7 +82,7 @@ class MusiciansController extends Controller
             }
 
             if (isset($searchParams['instruments'])){
-                $categoryQuery = new \Elastica\Filter\Terms('instruments.id', $searchParams['instruments']);
+                $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', $searchParams['instruments']);
                 $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
             }
 
@@ -127,10 +127,12 @@ class MusiciansController extends Controller
                 $image = '/images/placeholder-user.jpg';
             }
 
-            if ($m->getLocation()->getNeighborhood() != ""){
-                $location = $m->getLocation()->getNeighborhood(). ', '.$m->getLocation()->getAdministrativeAreaLevel3();
-            }else{
-                $location = $m->getLocation()->getAdministrativeAreaLevel3();
+            if ($m->getLocation()){
+                if ($m->getLocation()->getNeighborhood() != ""){
+                    $location = $m->getLocation()->getNeighborhood(). ', '.$m->getLocation()->getAdministrativeAreaLevel3();
+                }else{
+                    $location = $m->getLocation()->getAdministrativeAreaLevel3();
+                }
             }
 
             $data_array = array(
