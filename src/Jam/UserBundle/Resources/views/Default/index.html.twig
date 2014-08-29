@@ -35,8 +35,8 @@
             var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
 
             $.ajax({
-                url: Routing.generate('musicians_find'),
-                data: "search_form[me]={{ user.id }}&search_form[distance]=50&"
+                url: Routing.generate('musicians_similar'),
+                data: "me={{ user.id }}"
             }).done(function( result ) {
                 $.each(result.data, function(k, v){
                     $( ".similar-nearby-box" ).append(musicianBoxTemplate( v ) );

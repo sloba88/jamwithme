@@ -265,7 +265,7 @@ header .container {
 }
 /*****head ends*****/
 /*****profile section begins*****/
-.profileSection h4 {
+#profileSection h4 {
 	margin: 25px 0 50px;
 }
 .infoBoxBig {
@@ -420,10 +420,10 @@ header .container {
 }
 /*****multimedia ends*****/
 /*****subscribe begins*****/
-.subscribe .container {
+#subscribe .container {
 	width: 735px;
 }
-.subscribe h2 {
+#subscribe h2 {
 	margin: 0 30px 45px;
 	background: url(../images/tune-icon.png) no-repeat center top;
 	padding-top: 107px;
@@ -457,25 +457,55 @@ header .container {
 	float: right;
 }
 /*****subscribe ends*****/
+/*****page pagination begins*****/
+ul.underlinemenu {
+	top: 100px;
+	background: none;
+	box-shadow: none;
+	padding: 0;
+	width: auto;
+	right: 20px;
+	z-index: 300;
+}
+ul.underlinemenu li {
+	display: block;
+	padding: 0;
+	margin: 0 0 15px;
+}
+ul.underlinemenu li a {
+	border-radius: 50%;
+	padding: 0;
+	width: 15px;
+	height: 15px;
+	display: block;
+	background: #fff;
+	border: 1px solid #999;
+	margin: 0;
+}
+ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
+	background: #652978;
+	border: 1px solid #652978;
+}
+/*****page pagination ends*****/
 /*****parallax backgrounds begins*****/
-.map {
+#map {
 	background: url(../images/map-bg.png) center center no-repeat; 
 	min-height: 700px;
 	overflow: hidden;
 }
-.profileSection {
+#profileSection {
 	background: url(../images/profile-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
 	min-height: 773px;
 	padding-top: 102px;
 }
-.multimedia {
+#multimedia {
 	background: url(../images/media-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
 	min-height: 560px;
 	padding-top: 156px;
 }
-.subscribe {
+#subscribe {
 	background: url(../images/subscribe-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
 	min-height: 650px;
@@ -493,11 +523,11 @@ header .container {
 	.container {
 		width: 94%;
 	}
-	.profileSection {
+	#profileSection {
 		height: 1000px;
 		padding-top: 50px;
 	}
-	.multimedia {
+	#multimedia {
 		height: auto;
 		padding-top: 80px;
 	}
@@ -574,6 +604,9 @@ header .container {
 		margin: 0 auto;
 		clear: both;
 	}
+	ul.underlinemenu {
+		right: 5px;
+	}
 }
 @media all and (max-width: 780px) {
 	h1 {
@@ -584,13 +617,13 @@ header .container {
 		font-size: 34px;
 		line-height: 40px;
 	}
-	.profileSection h4 {
+	#profileSection h4 {
 		margin-bottom: 25px; 
 	}
-	.subscribe .container {
+	#subscribe .container {
 		width: 500px;
 	}
-	.subscribe h2 {
+	#subscribe h2 {
 		margin: 0 0 45px;
 	}
 	.inputField {
@@ -657,7 +690,7 @@ header .container {
 	.social li:first-child {
 		margin-left: 0;
 	}
-	.map {
+	#map {
 		background-size: auto 100%;
 	}
 	.mapInteractive {
@@ -680,10 +713,10 @@ header .container {
 	.infoBoxBig .compatibility .last span {
 		right: 15%;
 	}
-	.profileSection {
+	#profileSection {
 		padding-top: 35px;
 	}
-	.profileSection h4 {
+	#profileSection h4 {
 		margin: 20px 0;
 	}
 	.infoBoxBig {
@@ -755,7 +788,7 @@ header .container {
 	.mediaImage {
 		width: 100%;
 	}
-	.subscribe .container {
+	#subscribe .container {
 		width: 94%;
 	}
 	.inputField, .submitBtn {

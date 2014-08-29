@@ -13,6 +13,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
   <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/ddscrollspydemo.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -33,7 +34,7 @@
     </div>
   </header><!--header ends-->
 
-  <section class="map">
+  <section id="map">
     <div class="container mapContent">
       <h1>Search all the fellow musicians in your area</h1>
       <h4>Send requests to join jam or create your own!</h4>
@@ -92,7 +93,7 @@
 
           <div class="infoBox infoBoxSmall teacher">
             <div class="profileImage">
-            <img src="images/profile-jane-mcadams.png" alt="Jane McAdams">
+              <img src="images/profile-jane-mcadams.png" alt="Jane McAdams">
             </div> 
             <div class="profileData">
               <h5>Jane McAdams</h5>
@@ -107,7 +108,7 @@
     </div><!--bigContainer ends-->
   </section><!--section map ends-->
 
-  <section class="profileSection" data-type="background" data-speed="10">
+  <section id="profileSection" data-type="background" data-speed="10">
     <div class="container">
       <h2>Use your profile to introduce yourself to<br>
         other musicians
@@ -177,7 +178,7 @@
     </div>
   </section><!--profileSection ends-->
 
-  <section class="multimedia" data-type="background" data-speed="10">
+  <section id="multimedia" data-type="background" data-speed="10">
     <div class="container clearfix">
       <div class="mediaText">
         <h2>Showcase your gallery, videos and sounds</h2>
@@ -189,7 +190,7 @@
     </div>
   </section><!--multimedia ends-->
 
-  <section class="subscribe" data-type="background" data-speed="10">
+  <section id="subscribe" data-type="background" data-speed="10">
     <div class="container">
       <h2>Subscribe for JamWithMe and find crew for your next jam session</h2>
       <div class="subscribeBox clearfix">
@@ -199,8 +200,18 @@
     </div>
   </section><!--subscribe ends-->
 
+  <section class="pageHelpers">
+    <ul id="horizontalmenu" class="underlinemenu">
+      <li><a href="#map" title="Map"></a></li>
+      <li><a href="#profileSection" title="Profile"></a></li>
+      <li><a href="#multimedia" title="Multimedia"></a></li>
+      <li><a href="#subscribe" title="Subscribe"></a></li>
+    </ul>
+  </section>
+
   <!-- jQuery (necessary for JavaScript plugins) -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/ddscrollspy.js"></script>
   <script src="js/placeholders.min.js"></script>
   <script src="js/script.js"></script>
 </body>
