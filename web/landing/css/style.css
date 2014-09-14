@@ -156,8 +156,8 @@ header .container {
 	top: 100px;
 }
 .mapInteractive .icon.teacher {
-	left: 59px;
-	top: 233px;
+    left: 119px;
+    top: 283px;
 }
 .infoBoxSmall {
 	height: 117px;
@@ -486,6 +486,22 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	background: #652978;
 	border: 1px solid #652978;
 }
+
+.formError{
+    color: firebrick;
+    font-size: 16px;
+    margin-top: 5px;
+    background-color: #fff;
+    float: left;
+    padding: 4px;
+}
+
+.subscribeBox h4{
+    color:  black;
+    background-color: #fff;
+    padding: 6px;
+}
+
 /*****page pagination ends*****/
 /*****parallax backgrounds begins*****/
 #map {

@@ -4,6 +4,34 @@ $(document).ready(function(){
 
 	$('#horizontalmenu').ddscrollSpy();
 
+    $(".submitBtn").on('click', function(e){
+
+        var $myForm = $(".submitBtn").parents('form');
+        if (!$myForm[0].checkValidity()) {
+
+        }else{
+            e.preventDefault();
+            $.ajax({
+                data: {'email': $(".inputField").val()},
+                type: 'POST',
+                url: 'http://local.jamwme/app_dev.php/subscription/add',
+                success: function(result){
+                    console.log(result);
+                    if (result.status == 'success'){
+                        $(".subscribeBox >").fadeOut('slow', function(){
+                            $(".subscribeBox").html('<h4>Thank you for your subscription.</h4>');
+                        });
+                    }else if(result.status == 'error'){
+                        $('.formError').remove();
+                        $(".subscribeBox").append('<p class="formError">'+result.message+'</p>');
+                    }
+                }
+            });
+        }
+    });
+
+
+
 }); // document ready
 
 function parallax() {
