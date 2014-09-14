@@ -14,7 +14,7 @@ $(document).ready(function(){
             $.ajax({
                 data: {'email': $(".inputField").val()},
                 type: 'POST',
-                url: 'http://local.jamwme/app_dev.php/subscription/add',
+                url: 'http://jamifind.com/app_dev.php/subscription/add',
                 success: function(result){
                     console.log(result);
                     if (result.status == 'success'){
