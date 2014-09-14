@@ -140,12 +140,12 @@ header .container {
 	transition: all 0.2s ease;
 }
 .mapInteractive .icon.main {
-	left: 40%;
-	margin: 0 auto;
-	top: 151px;
-	opacity: 1;
-	cursor: auto;
-	width: 77px;
+    left: 47%;
+    margin: 0 auto;
+    top: 134px;
+    opacity: 1;
+    cursor: auto;
+    width: 77px;
 }
 .mapInteractive .icon.guitar {
 	left: 188px;
@@ -505,7 +505,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 /*****page pagination ends*****/
 /*****parallax backgrounds begins*****/
 #map {
-	background: url(../images/map-bg.png) center center no-repeat; 
+	background: #8FA1C9 url(../images/map2.jpg) center -56px no-repeat;
 	min-height: 700px;
 	overflow: hidden;
 }
