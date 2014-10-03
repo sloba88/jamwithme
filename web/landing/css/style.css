@@ -166,13 +166,12 @@ header .container {
 	top: -130px;
 	width: 377px;
 	z-index: 20;
-	visibility: hidden;
-	transition: all 0.2s ease;
+    display:none;
 }
-.info:hover .infoBoxSmall {
-	visibility: visible;
+/*.info:hover .infoBoxSmall {
+	display: inline-block;
 	transition: all 0.2s ease;
-}
+}*/
 .infoBox::before {
 	content: "";
 	position: absolute;
@@ -197,6 +196,15 @@ header .container {
 	width: 0;
 	left: 48%;
 }
+
+.infoBoxSmall.teacher::after{
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 11px solid #fff;
+    left: -25px;
+    top: 44%;
+}
+
 .profileImage {
 	border-radius: 50%;
 	float: left;
@@ -250,7 +258,8 @@ header .container {
 }
 .infoBoxSmall.teacher {
 	width: 290px;
-	left: -129px;
+	left: 71px;
+    top: -35px;
 }
 .infoBoxSmall.teacher:before {
 	background: url(../images/piano-bg.png) no-repeat right bottom #fff;
@@ -502,12 +511,20 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     padding: 6px;
 }
 
+.map-text-bottom{
+    position: absolute;
+    bottom: 25px;
+    width: 100%;
+    text-align: center;
+}
+
 /*****page pagination ends*****/
 /*****parallax backgrounds begins*****/
 #map {
 	background: #8FA1C9 url(../images/map2.jpg) center -56px no-repeat;
 	min-height: 700px;
 	overflow: hidden;
+    position: relative;
 }
 #profileSection {
 	background: url(../images/profile-bg.jpg) 50% 0 repeat fixed; 

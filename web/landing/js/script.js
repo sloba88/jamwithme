@@ -30,7 +30,21 @@ $(document).ready(function(){
         }
     });
 
+    setTimeout(function(){
+        $('.infoBoxSmall.teacher').fadeIn();
+    },2000);
 
+    $('.icon.guitar, .icon.drumms').on('mouseover', function(){
+        $('.infoBoxSmall.teacher').hide();
+    });
+
+    $('.icon.info').on('mouseover', function(){
+        $(this).find('.infoBox').fadeIn();
+    });
+
+    $('body').on('mouseleave', '.icon.info',function(e){
+        $('.infoBoxSmall').hide();
+    });
 
 }); // document ready
 
