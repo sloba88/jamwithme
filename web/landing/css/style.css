@@ -526,7 +526,18 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	background-size: cover;
 	min-height: 650px;
 	padding-top: 140px;
+    position: relative;
 }
+
+.copyright{
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    position: absolute;
+    bottom: 10px;
+    left: 38%;
+}
+
 /*****parallax backgrounds ends*****/
 /*****responsive begins*****/
 @media all and (max-width: 940px) {
