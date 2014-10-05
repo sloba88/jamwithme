@@ -46,6 +46,10 @@ $(document).ready(function(){
         $('.infoBoxSmall').hide();
     });
 
+    $('.fast-subscribe').on('click', function(){
+        $('.inputField').focus();
+    });
+
 }); // document ready
 
 function parallax() {

@@ -555,6 +555,18 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     width: 100%;
 }
 
+.social li a.fast-subscribe{
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #fff;
+    padding: 2px 10px;
+    position: relative;
+    top: -2px;
+}
+
 /*****parallax backgrounds ends*****/
 /*****responsive begins*****/
 @media all and (max-width: 940px) {
