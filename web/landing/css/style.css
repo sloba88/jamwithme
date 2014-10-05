@@ -879,9 +879,14 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 
     .subtitle{
         font-size: 18px;
+        width: 98%;
     }
 
     .infoBoxSmall.teacher:before{
         height:128px;
+    }
+
+    ul.underlinemenu li a{
+        opacity: 0.6;
     }
 }
