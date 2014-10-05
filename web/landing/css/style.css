@@ -552,7 +552,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     font-size: 13px;
     position: absolute;
     bottom: 10px;
-    left: 38%;
+    width: 100%;
 }
 
 /*****parallax backgrounds ends*****/
