@@ -33,6 +33,16 @@ class SubscriptionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($subscription);
             $em->flush();
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('New subscriber on Jamifind')
+                ->setFrom('info@jamifind.com')
+                ->setTo('stanic.slobodan88@gmail.com')
+                ->addTo('info@jamifind.com')
+                ->setBody('New subscriber on jamifind.com with email: '.$email)
+            ;
+
+            $this->get('mailer')->send($message);
             $response = new Response( json_encode(array('status' => 'success')));
         }
 
