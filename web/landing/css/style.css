@@ -66,8 +66,7 @@ h5 {
 /*****global styles ends*****/
 /*****head begins*****/
 header {
-	background: #000;
-	opacity: 0.7;
+    background: url('../images/0.70bg.png');
 	height: 55px;
 	position: fixed;
 	top: 0;
