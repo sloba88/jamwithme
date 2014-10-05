@@ -864,7 +864,9 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     }
 
     .infoBoxSmall.teacher{
-        width: 235px;
+        width: 215px;
+        left: 60px;
+        height: 128px;
     }
 
     .infoBoxSmall{
@@ -872,6 +874,14 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     }
 
     .infoBoxSmall.teacher .profileData{
-        width: 140px;
+        width: 120px;
+    }
+
+    .subtitle{
+        font-size: 18px;
+    }
+
+    .infoBoxSmall.teacher:before{
+        height:128px;
     }
 }
