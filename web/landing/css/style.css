@@ -81,7 +81,7 @@ header {
 	width: 860px;
 }
 header .container {
-	max-width: 1100px;
+	/*max-width: 1100px;*/
 	width: auto;
 	padding: 0 50px;
 }
@@ -855,6 +855,10 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		margin: 10px auto;
 		float: none;
 	}
+
+    .social li a.fast-subscribe{
+        font-size: 12px;
+    }
 }
 @media all and (max-width: 400px) {
 	.infoBoxBig .tags {
@@ -900,5 +904,9 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 
     ul.underlinemenu li a{
         opacity: 0.6;
+    }
+
+    .social li a.fast-subscribe{
+        display: none;
     }
 }
