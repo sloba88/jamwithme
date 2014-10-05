@@ -849,4 +849,29 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		position: relative;
 		left: -50px;
 	}
+
+    .mapContent {
+        padding: 65px 0 0;
+    }
+
+    .infoBoxSmall .profileImage img{
+        width: 50px;
+
+    }
+
+    .infoBoxSmall .profileData h5{
+        font-size: 18px;
+    }
+
+    .infoBoxSmall.teacher{
+        width: 235px;
+    }
+
+    .infoBoxSmall{
+        width: 342px;
+    }
+
+    .infoBoxSmall.teacher .profileData{
+        width: 140px;
+    }
 }
