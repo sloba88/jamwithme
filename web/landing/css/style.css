@@ -401,7 +401,7 @@ header .container {
 	width: 230px;
 }
 .brands .bandsList li img {
-	margin-right: 20px;
+	margin-right: 0px;
 }
 .brands .bandsList li {
 	font-weight: 600;
@@ -644,6 +644,9 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		text-align: left;
 		width: 44%;
 	}
+    .brands .bandsList li {
+        width: auto;
+    }
 	.mediaText {
 		clear: both;
 		float: none;
@@ -837,6 +840,11 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		width: 100%;
 		padding: 5px 10px;
 	}
+
+    .brands .bandsList li {
+        width: auto;
+    }
+
 	.mediaText {
 		float: left;
 		padding: 0;
