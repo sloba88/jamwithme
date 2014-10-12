@@ -53,6 +53,7 @@ security:
         #- { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/subscription/add, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/fi$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/.*, role: IS_AUTHENTICATED_FULLY }
 
 
