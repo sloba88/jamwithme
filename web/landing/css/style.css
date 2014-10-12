@@ -436,6 +436,9 @@ header .container {
 	background: url(../images/tune-icon.png) no-repeat center top;
 	padding-top: 107px;
 }
+#subscribe h4{
+    margin-top: 25px;
+}
 .inputField {
 	box-sizing: border-box;
 	height: 76px;
