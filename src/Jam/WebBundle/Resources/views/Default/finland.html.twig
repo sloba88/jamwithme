@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jamifind - find musicians and band members</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Find musicians, band members or looking for the right guitar teacher? Meet them on Jamifind.">
+
+    <!--mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--mobile ends-->
+
+    <link rel="shortcut icon" href="{{ asset('landing/images/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('landing/images/favicon.ico')}}" type="image/x-icon">
+
+    <link href="{{ asset('landing/css/normalize.css')}}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('landing/css/ddscrollspydemo.css')}}" rel="stylesheet">
+    <link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-55431237-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <meta property="og:title" content="Jamifind" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://jamifind.com" />
+    <meta property="og:image" content="http://jamifind.com/landing/images/media-image.png" />
+
+    <script>
+        var baseUrl = '{{ app.request.getBaseURL() }}';
+    </script>
+
+</head>
+<body>
+
+<header>
+    <div class="container clearfix">
+        <div class="logo">
+            <a href="" style="text-decoration: none; font-size: 26px; color: #fff;">
+                <img src="{{ asset('landing/images/logo.png')}}" alt="Jamifind logo">
+            </a>
+        </div>
+        <ul class="social">
+            <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
+            <li><a href="#subscribe" class="fast-subscribe">Subscribe</a></li>
+        </ul>
+    </div>
+</header><!--header ends-->
+
+<section id="map">
+    <div class="container mapContent">
+        <h1>Löydä jammailuseuraa tai jäseniä bändiisi.</h1>
+        <h4 class="subtitle">Etsitkö bändillesi sitä oikeaa basson soittajaa? Tarvitsetko trumpetistia levytyssessioihin? Löydä heidät <strong>Jamifindin</strong> kautta.</h4>
+
+        <div class="mapInteractive">
+            <div class="icon main">
+                <img src="{{ asset('landing/images/icon-main.png')}}" alt="Main icon">
+            </div>
+
+            <div class="icon guitar info">
+                <img src="{{ asset('landing/images/icon-guitar.png')}}" alt="Guitar icon">
+
+                <div class="infoBox infoBoxSmall">
+                    <div class="profileImage">
+                        <img src="{{ asset('landing/images/profile-abraham-jones.png')}}" alt="Abraham Jones">
+                    </div>
+                    <div class="profileData">
+                        <h5>Anton Timonen</h5>
+                        <ul class="tags clearfix">
+                            <li>Indie Rock</li>
+                            <li>Alternative Rock</li>
+                            <li>Punk</li>
+                        </ul>
+                    </div>
+                    <div class="compatibility">
+                        <span>46%</span>
+                        yhteensopivuus
+                    </div>
+                </div><!--infoBox ends-->
+            </div>
+
+            <div class="icon drumms info">
+                <img src="{{ asset('landing/images/icon-drumms.png')}}" alt="Drumms icon">
+
+                <div class="infoBox infoBoxSmall">
+                    <div class="profileImage">
+                        <img src="{{ asset('landing/images/drummer1.jpg')}}" alt="Aleksi Lehtonen">
+                    </div>
+                    <div class="profileData">
+                        <h5>Aleksi Lehtonen</h5>
+                        <ul class="tags clearfix">
+                            <li>Jazz</li>
+                            <li>Blues</li>
+                            <li>Funk</li>
+                            <li>Fusion</li>
+                        </ul>
+                    </div>
+                    <div class="compatibility">
+                        <span>86%</span>
+                        yhteensopivuus
+                    </div>
+                </div><!--infoBox ends-->
+            </div>
+
+            <div class="icon teacher info">
+                <img src="{{ asset('landing/images/icon-teacher.png')}}" alt="Teacher icon">
+
+                <div class="infoBox infoBoxSmall teacher">
+                    <div class="profileImage">
+                        <img src="{{ asset('landing/images/profile-jane-mcadams.png')}}" alt="Jane McAdams">
+                    </div>
+                    <div class="profileData">
+                        <h5>Jane McAdams</h5>
+                        <div class="lessons">
+                            piano lessons
+                        </div>
+                    </div>
+                </div><!--infoBox ends-->
+
+            </div>
+        </div><!--mapInteractive ends-->
+    </div><!--bigContainer ends-->
+    <h4 class="map-text-bottom">Etsitkö sopivaa soitonopettajaa? <strong>Jamifindin</strong> avulla se on helppoa.</h4>
+</section><!--section map ends-->
+
+<section id="profileSection" data-type="background" data-speed="10">
+    <div class="container">
+        <h2 style="margin-bottom:15px">Luo profiili ja löydä muusikoita, joilla on samat taiteelliset intressit kanssasi.</h2>
+
+
+        <div class="infoBox infoBoxBig">
+            <div class="profileImage">
+                <img src="{{ asset('landing/images/profile-anton-timonen-big.png')}}" alt="Anton Timonen">
+            </div>
+            <div class="profileData">
+                <h3>Anton Timonen</h3>
+                <div class="dataInner location">
+                    <span>Helsinki,Finland</span>
+                </div>
+                <div class="dataInner about">
+                    <span>Kokenut muusikko ja lauluntekijä etsii jammailuseuraa.</span>
+                </div>
+                <ul class="tags clearfix">
+                    <li>Indie Rock</li>
+                    <li>Alternative Rock</li>
+                    <li>Punk</li>
+                </ul>
+            </div>
+            <div class="compatibility clearfix">
+                <div class="first">
+                    Basso (Pääsoitin)
+                </div>
+                <div class="last">
+                    <span>46%</span>
+                    yhteensopivuus
+                </div>
+            </div>
+        </div><!--infoBox infoBoxBig ends-->
+
+        <div class="bands influencers">
+            <div class="title">Vaikutteet</div>
+            <ul class="bandsList">
+                <li>
+                    <img src="{{ asset('landing/images/bands-arctic-monkeys.png')}}" alt="Arctic Monkeys">Arctic Monkeys
+                </li>
+                <li>
+                    <img src="{{ asset('landing/images/bands-foo-fighters.png')}}" alt="Foo Fighters">Foo Fighters
+                </li>
+                <li>
+                    <img src="{{ asset('landing/images/bands-the-black-keys.png')}}" alt="The Black Keys">The Black Keys
+                </li>
+                <li>
+                    <img src="{{ asset('landing/images/bands-ramones.png')}}" alt="Ramones">Ramones
+                </li>
+            </ul>
+        </div><!--influencers ends-->
+
+        <div class="bands brands">
+            <div class="title">Lempibrändit</div>
+            <ul class="bandsList">
+                <li>
+                    <img src="{{ asset('landing/images/brands-gibson.png')}}" alt="Gibson">
+                </li>
+                <li>
+                    <img src="{{ asset('landing/images/brands-yamaha.png')}}" alt="Yamaha">
+                </li>
+            </ul>
+        </div><!--brands ends-->
+    </div>
+</section><!--profileSection ends-->
+
+<section id="multimedia" data-type="background" data-speed="10">
+    <div class="container clearfix">
+        <div class="mediaText">
+            <h2>Jaa ääntä, videoita ja kuvia muiden käyttäjien kanssa.</h2>
+            <!--<p>
+              And some more text about how awesome this is
+            </p>-->
+        </div>
+        <img src="{{ asset('landing/images/media-image.png')}}" alt="Media" class="mediaImage">
+    </div>
+</section><!--multimedia ends-->
+
+<section id="subscribe" data-type="background" data-speed="10">
+    <div class="container">
+        <h2>Liity Jamifind-yhteisöön ja sovi seuraava jammailusessio.</h2>
+        <div class="subscribeBox clearfix">
+            <form action="" method="POST">
+                <input type="email" placeholder="Enter your email" class="inputField" required="required">
+                <input type="submit" value="Liity" class="submitBtn">
+            </form>
+        </div>
+        <h4>Stay Tuned, Launching Soon!</h4>
+    </div>
+    <p class="copyright">Jamifind © 2014 all rights reserved.</p>
+</section><!--subscribe ends-->
+
+<section class="pageHelpers">
+    <ul id="horizontalmenu" class="underlinemenu">
+        <li><a href="#map" title="Map"></a></li>
+        <li><a href="#profileSection" title="Profile"></a></li>
+        <li><a href="#multimedia" title="Multimedia"></a></li>
+        <li><a href="#subscribe" title="Subscribe"></a></li>
+    </ul>
+</section>
+
+<!-- jQuery (necessary for JavaScript plugins) -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ asset('landing/js/ddscrollspy.js')}}"></script>
+<script src="{{ asset('landing/js/placeholders.min.js')}}"></script>
+<script src="{{ asset('landing/js/script.js')}}"></script>
+</body>
+</html>

@@ -18,4 +18,13 @@ class DefaultController extends Controller
     {
         return array();
     }
+
+    /**
+     * @Route("/fi", name="landing_fi")
+     * @Template()
+     */
+    public function finlandAction(Request $request)
+    {
+        return array();
+    }
 }
