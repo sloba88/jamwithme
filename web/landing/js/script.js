@@ -16,11 +16,19 @@ $(document).ready(function(){
                 type: 'POST',
                 url: baseUrl + '/subscription/add',
                 success: function(result){
-                    console.log(result);
                     if (result.status == 'success'){
                         $(".subscribeBox >").fadeOut('slow', function(){
                             $(".subscribeBox").html('<h4>Thank you for your subscription.</h4>');
                         });
+
+                        $.ajax({
+                            type: 'POST',
+                            url: baseUrl + '/subscription/notify',
+                            success: function(result){
+                                console.log(result)
+                            }
+                        });
+
                     }else if(result.status == 'error'){
                         $('.formError').remove();
                         $(".subscribeBox").append('<p class="formError">'+result.message+'</p>');
