@@ -40,12 +40,14 @@
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "gedmo/doctrine-extensions": "2.3.*",
         "liip/imagine-bundle": "dev-master",
-        "stof/doctrine-extensions-bundle": "1.1.*@dev",
+        "stof/doctrine-extensions-bundle": "1.2.*@dev",
         "friendsofsymfony/elastica-bundle": "dev-master",
         "jms/serializer-bundle": "0.13.*@dev",
         "hwi/oauth-bundle": "dev-master#c1cf178d72eb8c97b5547d898201490d33212373",
         "friendsofsymfony/jsrouting-bundle": "@stable",
-        "friendsofsymfony/rest-bundle": "dev-master"
+        "friendsofsymfony/rest-bundle": "dev-master",
+        "snc/redis-bundle": "1.1.*",
+        "predis/predis": "0.8.x-dev"
     },
     "scripts": {
         "post-install-cmd": [

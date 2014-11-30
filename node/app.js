@@ -10,6 +10,7 @@ var io = require('socket.io').listen(server);
 
 var activeUsers = {};
 
+//TODO: authenticate user
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
