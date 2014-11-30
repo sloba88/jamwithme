@@ -1,70 +1,255 @@
-{% extends '::base.html.twig' %}
+{% extends 'JamWebBundle::layout.html.twig' %}
 
-{% block body %}
+{% block main_content %}
 
-    <div class="col-md-6">
-        <p>TODO: </p>
 
-        <ul>
-            <li>Connection to Soundcloud</li>
-            <li>Compatibility meter!!</li>
-            <li>Connection to Facebook, invite friends</li>
-            <li>Teachers profile ratings?</li>
-            <li>My previous shouts listed in my profile sidebar</li>
-            <li>Paginate everything</li>
-            <li>Shout limitation? One per hour?</li>
-            <li>Connect user to Facebook, Soundcloud if he is already logged in</li>
-            <li>Who is online?</li>
-            <li>Edit on profile page directly</li>
-        </ul>
+    <div class="row event">
 
-        <p>Pre release: </p>
-
-        <ul>
-            <li>Set Google Analytics</li>
-            <li>Buy icons</li>
-            <li>Create Facebook and Twitter pages</li>
-            <li>Create project email address</li>
-        </ul>
-    </div>
-
-    <div class="col-md-6">
-        <form class="form-horizontal" role="form" action="{{ path('home') }}" method="POST">
-            <div class="form-group">
-                {{ form_widget(form.text, {'attr': {'class': 'form-control'}}) }}
-                {{ form_widget(form.send, {'attr': {'class': 'form-control'}}) }}
-                {{ form_widget(form._token) }}
+        <div class="col-sm-5 col-lg-4 image-box">
+            <div class="image-holder">
+                <img src="images/events-picture-01.png" alt="Event">
             </div>
-        </form>
+            <div class="promo">
+                <h4>upcoming event</h4>
+                <a href="#" class="link">view all<i class="glyphicon glyphicon-play"></i></a>
+            </div>
+        </div>
 
-        <div class="clearfix"></div>
-        <div class="shouts-view-container"></div>
-    </div>
+        <div class="col-sm-7 col-lg-8 text-box">
+            <div class="time">05 Sep 2014
+                <a href="#" class="view-details link">view details</a>
+            </div>
+            <h3>Kompakt at Oz. Amsterdam KOMPAKT Pop Up store</h3>
+            <p>
+                14:00 - 20:00 | Free entrance<br>
+                Oz. | Oudezijds Achterburgwal 66, Amsterdam
+            </p>
+        </div>
+
+    </div><!--event ends-->
+
+    <div class="filters-area">
+        <div class="filters-heading clearfix">
+            <h1 class="filters-title">find compatible musicians</h1>
+            <a href="#" data-toggle="collapse" data-target=".filters-by" class="dropup filters-hide"><span class="text">Hide filters</span><span class="caret"></span></a>
+        </div>
+
+        <div class="filters-by in row">
+            <div class="col-sm-12 col-lg-4">
+                <select class="form-control" data-placeholder="Filter by genres">
+                    <option></option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12 col-lg-4">
+                <select class="form-control" data-placeholder="Filter by instruments">
+                    <option></option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+
+            <div class="col-sm-12 col-lg-4">
+                <div class="dropdown filter-by-distance">
+                    <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                        Filter by distance
+                        <div><b></b></div>
+                    </a>
+                    <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
+                        <label>Set distance</label>
+                        <div id="filter-by-distance-slider"></div>
+                        <span class="result slide-min pull-left">0</span>
+                        <span class="result slide-max pull-right"></span>
+                    </div>
+                </div>
+            </div>
+        </div><!--filters-by ends-->
+
+        <div class="tabs-activate filters-preview">
+            <ul class="clearfix">
+                <li><a href="#" data-tab="1" class="is-active"><i class="glyphicon glyphicon-th-large"></i>grid</a></li>
+                <li><a href="#" data-tab="2"><i class="glyphicon glyphicon-map-marker"></i>map</a></li>
+                <li class="last">
+                    <input type="checkbox" id="lessons-checkbox" name="lessons" checked />
+                    <label for="lessons-checkbox"><span></span>Show only people providing lesions</label>
+                </li>
+            </ul>
+        </div><!--filters-preview ends-->
+
+    </div><!--filters-area ends-->
+
+    <div class="view-tab-container">
+        <div class="view-tab people-listing-grid row is-active" data-tab="1">
+
+            <div class="col-lg-6">
+                <div class="people-grid">
+                    <img src="images/people-01.png" alt="Bobby Adams" class="img-responsive">
+                    <div class="people-info people-info-right">
+                        <h3 class="name">Bobby Adams</h3>
+                        <div class="location">San Francisco,USA</div>
+                        <ul class="tags">
+                            <li>Indie Rock</li>
+                            <li>Punk</li>
+                            <li>Reggae</li>
+                            <li>Free Jazz</li>
+                        </ul>
+                        <ul class="compatibility-box">
+                            <li>
+                                <img src="images/icon-compatibility.png" alt="Compatibility">
+                            </li>
+                            <li class="compatibility">
+                                <span>46%</span>
+                                compatibility
+                            </li>
+                            <li class="last">
+                                <img src="images/icon-piano.png" alt="Piano" class="icon-piano">
+                            </li>
+                        </ul>
+                    </div>
+                </div><!--people-grid ends-->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="people-grid">
+                    <img src="images/people-02.png" alt="Alexander Johnson" class="img-responsive">
+                    <div class="people-info people-info-right">
+                        <h3 class="name">Alexander Johnson</h3>
+                        <div class="location">San Francisco,USA</div>
+                        <ul class="tags">
+                            <li>Indie Rock</li>
+                            <li>Punk</li>
+                            <li>Reggae</li>
+                            <li>Free Jazz</li>
+                            <li>Samba</li>
+                            <li>
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Alternative Metal <br> Avant-garde <br> Blues">+3</a>
+                            </li>
+                        </ul>
+                        <ul class="compatibility-box">
+                            <li>
+                                <img src="images/icon-compatibility.png" alt="Compatibility">
+                            </li>
+                            <li class="compatibility">
+                                <span>13%</span>
+                                compatibility
+                            </li>
+                            <li class="last">
+                                <img src="images/icon-acoustic-guitar.png" alt="Acoustic guitar" class="icon-acoustic-guitar">
+                            </li>
+                        </ul>
+                    </div>
+                </div><!--people-grid ends-->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="people-grid">
+                    <img src="images/people-03.png" alt="Bobby Adams" class="img-responsive">
+                    <div class="people-info people-info-left">
+                        <h3 class="name">Bobby Adams</h3>
+                        <div class="location">San Francisco,USA</div>
+                        <ul class="tags">
+                            <li>Indie Rock</li>
+                            <li>Punk</li>
+                            <li>Free Jazz</li>
+                        </ul>
+                        <ul class="compatibility-box">
+                            <li>
+                                <img src="images/icon-compatibility.png" alt="Compatibility">
+                            </li>
+                            <li class="compatibility">
+                                <span>78%</span>
+                                compatibility
+                            </li>
+                            <li class="last">
+                                <img src="images/icon-electric-guitar.png" alt="Electric guitar" class="icon-electric-guitar">
+                            </li>
+                        </ul>
+                    </div>
+                </div><!--people-grid ends-->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="people-grid">
+                    <img src="images/people-04.png" alt="Jane Smith Evans" class="img-responsive">
+                    <div class="people-info people-info-left people-info-left-lessons">
+                        <h3 class="name">Jane Smith Evans</h3>
+                        <div class="location">San Francisco,USA</div>
+                        <div class="lessons-box">
+                            <img src="images/icon-drums.png" alt="Drums" class="icon-drums">
+                            <div class="lessons">
+                                drum lessons
+                            </div>
+                        </div>
+                    </div>
+                </div><!--people-grid ends-->
+            </div>
+
+        </div><!--people-listing-grid ends-->
+
+        <div class="view-tab map" data-tab="2">
+
+            MAP GOES HERE!!!
+
+        </div><!--map ends-->
+
+    </div><!--view-tab-container ends-->
+
+{% endblock %}
+
+{% block right_sidebar_content %}
+
+    <div class="profile-completion clearfix">
+        <div class="pick">
+            <div class="pick-outer">
+                <img src="{{ asset('images/pick-outer.png') }}" alt="Profile completion">
+            </div>
+            <span class="pick-inner"></span>
+        </div>
+
+        <div class="profile-completion-text">
+            <h3><span>85%</span>profile completion</h3>
+            <a href="#" class="link">fill out your profile</a>
+        </div>
+    </div><!--profile-completion ends-->
+
+    <div class="shouts-feed">
+        <h3><i class=" glyphicon glyphicon-flash"></i>Shouts feed</h3>
+        <form role="form" action="{{ path('home') }}" method="POST">
+            {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3'}}) }}
+            {{ form_widget(form.send, {'attr': {'class': 'btn btn-primary'}}) }}
+            {{ form_widget(form._token) }}
+        </form>
+    </div><!--shouts-feed ends-->
+
+    <div class="shouts-listing-container">
+        <a href="#" class="filter">Filter shouts<span class="caret"></span></a>
+
+        <div class="shouts-listing"></div><!--shouts-listing ends-->
+    </div><!--shouts-listing-container ends-->
+
 
     <script type="text/template" id="musicianBoxTemplate">
         <% mu = sh.musician %>
-        <div class="col-md-12 musician-box <% if(mu.teacher){ %>teacher<% } %>">
-            <div class="col-md-3">
-                <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
-                    <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
-                </a>
-                <div class="musician-box-details">
-                    <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br />
-                    <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
-                    <span class="musician-box-genres">
-                        <% _.each( mu.genres, function(v, k){ %>
-                            <% if (k!=0){ %>|<% } %>
-                            <%- v %>
-                        <% }); %>
-                    </span>
+        <article class="shout-box clearfix <% if(mu.teacher){ %>teacher<% } %>">
+            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
+            </a>
+            <div class="shout-text">
+                <h4 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a></h4>
+                <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
+                <div class="time">
+                    <span><%- sh.createdAt.date %> </span>ago
                 </div>
-            </div>
-            <div class="col-md-9">
                 <p><%- sh.text %></p>
-                <hr />
-                <span class="shout-created-at"><i class="glyphicon glyphicon-time"></i> <%- sh.createdAt.date %></span>
             </div>
-        </div>
+        </article>
+
     </script>
 
 {% endblock %}
@@ -82,7 +267,7 @@
     }).done(function( result ) {
         if (result.status == 'success'){
             $.each(result.data, function(k, v){
-                $( ".shouts-view-container" ).prepend(musicianBoxTemplate( v ) );
+                $( ".shouts-listing" ).prepend(musicianBoxTemplate( v ) );
             });
         }
     });

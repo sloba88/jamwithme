@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+
+        <aside class="col-sm-2 sidebar">
+
+            <div class="profile-info">
+                <img class="user-image" src="{{ path('musician_avatar', { 'username': app.user.username }) }}" alt="Profile">
+                <h3 class="user-name">{{ app.user.username }}</h3>
+                <a href="#" class="link">edit profile</a>
+            </div><!--profile-info begins-->
+
+            <div class="sidebar-nav">
+                <ul class="sidebar-list">
+                    <li class="active"><a href="{{ path('home') }}"><i class="glyphicon glyphicon-dashboard"></i>Dashboard</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-user"></i>Profile</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>Messages</a></li>
+                    <li class="last"><a href="{{ path('fos_user_profile_edit') }}"><i class="glyphicon glyphicon-cog"></i>Settings</a></li>
+                </ul>
+            </div><!--sidebar-nav ends-->
+
+            <div class="sidebar-logout">
+                <ul class="sidebar-list">
+                    <li><a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-log-out"></i>Logout</a></li>
+                </ul>
+            </div>
+
+        </aside><!--sidebar ends-->
+
+        <section class="col-sm-7 main-content">
+
+            {% block main_content %}{% endblock %}
+
+        </section><!--main-content ends-->
+
+        {# why shouts why not general right sidebar #}
+        <section class="col-sm-3 shouts-sidebar">
+            {% block right_sidebar_content %}{% endblock %}
+        </section><!--shouts-sidebar ends-->
+
+
+{% endblock %}
