@@ -183,6 +183,18 @@ class User extends BaseUser
     private $isTeacher = false;
 
     /**
+     * @ORM\Column(type="boolean", length=1, nullable=false)
+     *
+     */
+     private $isVisitor = false;
+
+    /**
+     * @ORM\Column(type="boolean", length=1, nullable=false)
+     *
+     */
+     private $isJammer = false;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      */
@@ -1007,5 +1019,51 @@ class User extends BaseUser
         }
 
         return $percentage;
+    }
+
+    /**
+     * Set isVisitor
+     *
+     * @param boolean $isVisitor
+     * @return User
+     */
+    public function setIsVisitor($isVisitor)
+    {
+        $this->isVisitor = $isVisitor;
+
+        return $this;
+    }
+
+    /**
+     * Get isVisitor
+     *
+     * @return boolean 
+     */
+    public function getIsVisitor()
+    {
+        return $this->isVisitor;
+    }
+
+    /**
+     * Set isJammer
+     *
+     * @param boolean $isJammer
+     * @return User
+     */
+    public function setIsJammer($isJammer)
+    {
+        $this->isJammer = $isJammer;
+
+        return $this;
+    }
+
+    /**
+     * Get isJammer
+     *
+     * @return boolean 
+     */
+    public function getIsJammer()
+    {
+        return $this->isJammer;
     }
 }

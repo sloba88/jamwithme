@@ -16,9 +16,17 @@ class RegistrationFormType extends BaseType
 
         $builder->add('email');
         $builder->add('username');
+        $builder->add('isVisitor', 'checkbox', array(
+            'required' => false,
+            'label' => 'Hang around'
+        ));
+        $builder->add('isJammer', 'checkbox', array(
+            'required' => false,
+            'label' => 'Jam'
+        ));
         $builder->add('isTeacher', 'checkbox', array(
             'required' => false,
-            'label' => 'I am music teacher and I provide private lesions'
+            'label' => 'Teach music'
         ));
     }
 
