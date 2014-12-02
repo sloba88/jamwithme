@@ -7,28 +7,42 @@
     <div>{{ error|trans }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+<div class="container-fluid login-page">
 
-    {#<label for="username">{{ 'security.login.username'|trans }}</label>#}
-    <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required" class="form-control" />
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Login to jamifind</h1>
+        </div>
 
-    {#<label for="password">{{ 'security.login.password'|trans }}</label>#}
-    <input type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" class="form-control" />
+        <div class="login-body">
+            <form role="form" action="{{ path("fos_user_security_check") }}" method="post">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                <div class="form-group">
+                    <input type="username" class="form-control" placeholder="Username" name="_username" value="{{ last_username }}" required="required" id="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" name="_password" required="required">
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-lg btn-primary btn-block" />
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit" name="_submit" id="_submit">Login</button>
+            </form>
 
-    <br />
+            <div class="separator">
+                <img src="{{ asset('images/separator-image.png') }}" alt="Hand">
+            </div>
 
-    <a class="btn btn-sm btn-primary" href="{{ path('jam_facebook_login') }}" >Login with Facebook</a>
+            <div class="login-buttons">
+                <a href="{{ path('jam_facebook_login') }}" class="btn btn-primary facebook"><i class="fa fa-facebook-square"></i>login with facebook</a>
+                <a href="{{ path('jam_soundcloud_login') }}" class="btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>login with soundcloud</a>
+            </div>
+        </div><!--login-body ends-->
 
-    <br />
-    <br />
-
-    <a href="{{ path('jam_soundcloud_login') }}" style="background-image: url('http://connect.soundcloud.com/2/btn-connect-sc-m.png'); width: 207px; height: 25px; display: block" ></a>
-
-</form>
+        <div class="login-footer">
+            Don’t have an account?
+            <a href="{{ path('fos_user_registration_register') }}" class="link">sign up</a>
+        </div>
+    </div><!--login-container ends-->
+</div>
 {% endblock fos_user_content %}
