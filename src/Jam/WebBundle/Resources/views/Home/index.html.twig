@@ -34,167 +34,58 @@
             <a href="#" data-toggle="collapse" data-target=".filters-by" class="dropup filters-hide"><span class="text">Hide filters</span><span class="caret"></span></a>
         </div>
 
-        <div class="filters-by in row">
-            <div class="col-sm-12 col-lg-4">
-                <select class="form-control" data-placeholder="Filter by genres">
-                    <option></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-            </div>
+        <form id="main-filter-form">
+            <div class="filters-by in row">
+                <div class="col-sm-12 col-lg-4">
+                    <select class="form-control" data-placeholder="Filter by genres" id="filter-genres" name="genres[]">
+                        <option value="0">Filter By Genres</option>
+                    </select>
+                </div>
 
-            <div class="col-sm-12 col-lg-4">
-                <select class="form-control" data-placeholder="Filter by instruments">
-                    <option></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-            </div>
+                <div class="col-sm-12 col-lg-4">
+                    <select class="form-control" data-placeholder="Filter by instruments" id="filter-instruments" name="instruments[]">
+                        <option value="0">Filter By Instruments</option>
+                    </select>
+                </div>
 
-            <div class="col-sm-12 col-lg-4">
-                <div class="dropdown filter-by-distance">
-                    <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                        Filter by distance
-                        <div><b></b></div>
-                    </a>
-                    <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
-                        <label>Set distance</label>
-                        <div id="filter-by-distance-slider"></div>
-                        <span class="result slide-min pull-left">0</span>
-                        <span class="result slide-max pull-right"></span>
+                <div class="col-sm-12 col-lg-4">
+                    <div class="dropdown filter-by-distance">
+                        <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                            Filter by distance
+                            <div><b></b></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
+                            <label>Set distance</label>
+                            <div id="filter-by-distance-slider"></div>
+                            <span class="result slide-min pull-left">0</span>
+                            <span class="result slide-max pull-right"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div><!--filters-by ends-->
+            </div><!--filters-by ends-->
 
-        <div class="tabs-activate filters-preview">
-            <ul class="clearfix">
-                <li><a href="#" data-tab="1" class="is-active"><i class="glyphicon glyphicon-th-large"></i>grid</a></li>
-                <li><a href="#" data-tab="2"><i class="glyphicon glyphicon-map-marker"></i>map</a></li>
-                <li class="last">
-                    <input type="checkbox" id="lessons-checkbox" name="lessons" checked />
-                    <label for="lessons-checkbox"><span></span>Show only people providing lesions</label>
-                </li>
-            </ul>
-        </div><!--filters-preview ends-->
+            <div class="tabs-activate filters-preview">
+                <ul class="clearfix">
+                    <li><a href="#" data-tab="1" class="is-active"><i class="glyphicon glyphicon-th-large"></i>grid</a></li>
+                    <li><a href="#" data-tab="2" id="map-view"><i class="glyphicon glyphicon-map-marker"></i>map</a></li>
+                    <li class="last">
+                        <input type="checkbox" id="lessons-checkbox" />
+                        <label for="lessons-checkbox"><span></span>Show only people providing lesions</label>
+                    </li>
+                </ul>
+            </div><!--filters-preview ends-->
+        </form>
 
     </div><!--filters-area ends-->
 
     <div class="view-tab-container">
         <div class="view-tab people-listing-grid row is-active" data-tab="1">
 
-            <div class="col-lg-6">
-                <div class="people-grid">
-                    <img src="images/people-01.png" alt="Bobby Adams" class="img-responsive">
-                    <div class="people-info people-info-right">
-                        <h3 class="name">Bobby Adams</h3>
-                        <div class="location">San Francisco,USA</div>
-                        <ul class="tags">
-                            <li>Indie Rock</li>
-                            <li>Punk</li>
-                            <li>Reggae</li>
-                            <li>Free Jazz</li>
-                        </ul>
-                        <ul class="compatibility-box">
-                            <li>
-                                <img src="images/icon-compatibility.png" alt="Compatibility">
-                            </li>
-                            <li class="compatibility">
-                                <span>46%</span>
-                                compatibility
-                            </li>
-                            <li class="last">
-                                <img src="images/icon-piano.png" alt="Piano" class="icon-piano">
-                            </li>
-                        </ul>
-                    </div>
-                </div><!--people-grid ends-->
-            </div>
-
-            <div class="col-lg-6">
-                <div class="people-grid">
-                    <img src="images/people-02.png" alt="Alexander Johnson" class="img-responsive">
-                    <div class="people-info people-info-right">
-                        <h3 class="name">Alexander Johnson</h3>
-                        <div class="location">San Francisco,USA</div>
-                        <ul class="tags">
-                            <li>Indie Rock</li>
-                            <li>Punk</li>
-                            <li>Reggae</li>
-                            <li>Free Jazz</li>
-                            <li>Samba</li>
-                            <li>
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" data-html="true" title="Alternative Metal <br> Avant-garde <br> Blues">+3</a>
-                            </li>
-                        </ul>
-                        <ul class="compatibility-box">
-                            <li>
-                                <img src="images/icon-compatibility.png" alt="Compatibility">
-                            </li>
-                            <li class="compatibility">
-                                <span>13%</span>
-                                compatibility
-                            </li>
-                            <li class="last">
-                                <img src="images/icon-acoustic-guitar.png" alt="Acoustic guitar" class="icon-acoustic-guitar">
-                            </li>
-                        </ul>
-                    </div>
-                </div><!--people-grid ends-->
-            </div>
-
-            <div class="col-lg-6">
-                <div class="people-grid">
-                    <img src="images/people-03.png" alt="Bobby Adams" class="img-responsive">
-                    <div class="people-info people-info-left">
-                        <h3 class="name">Bobby Adams</h3>
-                        <div class="location">San Francisco,USA</div>
-                        <ul class="tags">
-                            <li>Indie Rock</li>
-                            <li>Punk</li>
-                            <li>Free Jazz</li>
-                        </ul>
-                        <ul class="compatibility-box">
-                            <li>
-                                <img src="images/icon-compatibility.png" alt="Compatibility">
-                            </li>
-                            <li class="compatibility">
-                                <span>78%</span>
-                                compatibility
-                            </li>
-                            <li class="last">
-                                <img src="images/icon-electric-guitar.png" alt="Electric guitar" class="icon-electric-guitar">
-                            </li>
-                        </ul>
-                    </div>
-                </div><!--people-grid ends-->
-            </div>
-
-            <div class="col-lg-6">
-                <div class="people-grid">
-                    <img src="images/people-04.png" alt="Jane Smith Evans" class="img-responsive">
-                    <div class="people-info people-info-left people-info-left-lessons">
-                        <h3 class="name">Jane Smith Evans</h3>
-                        <div class="location">San Francisco,USA</div>
-                        <div class="lessons-box">
-                            <img src="images/icon-drums.png" alt="Drums" class="icon-drums">
-                            <div class="lessons">
-                                drum lessons
-                            </div>
-                        </div>
-                    </div>
-                </div><!--people-grid ends-->
-            </div>
-
         </div><!--people-listing-grid ends-->
 
         <div class="view-tab map" data-tab="2">
 
-            MAP GOES HERE!!!
+            <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
         </div><!--map ends-->
 
@@ -234,7 +125,7 @@
     </div><!--shouts-listing-container ends-->
 
 
-    <script type="text/template" id="musicianBoxTemplate">
+    <script type="text/template" id="shoutBoxTemplate">
         <% mu = sh.musician %>
         <article class="shout-box clearfix <% if(mu.teacher){ %>teacher<% } %>">
             <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
@@ -252,6 +143,21 @@
 
     </script>
 
+    <script type="text/template" id="musicianMapBoxTemplate">
+        <div class="musician-map-box <% if(mu.teacher){ %>teacher<% } %>">
+            <a href="<%- mu.url %>"><img src="<%- mu.image %>" />
+                <p><%- mu.username %></p>
+            </a>
+            <div class="clearfix"></div>
+            <span class="musician-map-box-genres">
+                    <% _.each( mu.genres, function(v, k){ %>
+                        <% if (k!=0){ %>|<% } %>
+                        <%- v %>
+                    <% }); %>
+                </span>
+        </div>
+    </script>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -259,7 +165,7 @@
 <script>
 
     _.templateSettings.variable = "sh";
-    var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
+    var shoutBoxTemplate     = _.template($( "#shoutBoxTemplate" ).html());
 
     $.ajax({
         url: baseURL+'/shouts/find'
@@ -267,10 +173,402 @@
     }).done(function( result ) {
         if (result.status == 'success'){
             $.each(result.data, function(k, v){
-                $( ".shouts-listing" ).prepend(musicianBoxTemplate( v ) );
+                $( ".shouts-listing" ).prepend(shoutBoxTemplate( v ) );
             });
         }
     });
+
+
+    var map;
+    var $map = $('#map-canvas');
+    var distanceCircle;
+    var bounds = null;
+    var donut;
+    var iconBase = 'https://maps.google.com/mapfiles/kml/';
+
+    function initializeMap() {
+
+        var mapOptions = {
+            zoom: 12,
+            maxZoom: 13,
+            scrollwheel: false,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL,
+                position: google.maps.ControlPosition.RIGHT_BOTTOM
+            }
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+        bounds = new google.maps.LatLngBounds();
+
+        if ($map.data('lat') == ''){
+            getLocation();
+        }else{
+            map.setCenter(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))));
+        }
+
+        drawRadius($("#search_form_distance").val());
+
+        renderMapView();
+
+    }
+
+    function getLocation(){
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        }else{
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+    function showPosition(position){
+        map.setCenter(new google.maps.LatLng(parseFloat(position.coords.latitude), position.coords.longitude));
+        $map.data('lat', position.coords.latitude);
+        $map.data('lng', position.coords.longitude);
+        addMyselfOnMap(map);
+        //save to database also
+    }
+
+    function showError(error) {
+        switch(error.code)
+        {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+
+    function drawRadius(radius){
+        if (typeof donut != 'undefined') donut.setMap(null);
+
+        donut = new google.maps.Polygon({
+            paths: [drawCircle(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))), 1000, 1),
+                drawCircle(new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))), radius, -1)],
+            strokeColor: "white",
+            strokeOpacity: 0.8,
+            strokeWeight: 5,
+            map: map,
+            fillColor: "blue",
+            fillOpacity: 0.10
+        });
+    }
+
+    function addMyselfOnMap(map){
+        icon = iconBase + 'pal2/icon2.png';
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(parseFloat($map.data('lat')), parseFloat($map.data('lng'))),
+            map: map,
+            title: '{{ app.user.username }}',
+            icon: icon
+        });
+        markers.push(marker);
+    }
+
+    var delay = (function(){
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+
+    $(function() {
+
+        $('#map-view').on('click', function(){
+            delay(function(){
+                initializeMap();
+            }, 500);
+        });
+
+        if (localStorage.view=="list") {
+            $("#list-tab-btn").click();
+        }
+
+        $("#main-filter-form").on('change', function(){
+            delay(function(){
+                filterMusicians();
+            }, 500);
+        });
+
+        filterMusicians();
+
+
+        //parse generes
+        $.ajax({
+            url: Routing.generate('api_genres')
+        }).done(function( result ) {
+            $.each(result, function(k, v){
+                $('#filter-genres').append('<option value="'+v.id+'">'+ v.name + '</option>');
+            });
+
+            $('select').chosen({
+                width: '100%'
+            });
+        });
+
+        //parse instruments
+        $.ajax({
+            url: Routing.generate('api_instruments')
+        }).done(function( result ) {
+            $.each(result, function(k, v){
+                $('#filter-instruments').append('<option value="'+v.id+'">'+ v.name + '</option>');
+            });
+
+            $('select').chosen({
+                width: '100%'
+            });
+        });
+
+        //activate tabs
+        tabsToggle($('.tabs-activate'));
+
+        //activates tooltip
+        $("[data-toggle=tooltip]").tooltip();
+
+    });
+
+    var markers = [];
+    _.templateSettings.variable = "mu";
+    var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
+    var musicianMapBoxTemplate     = _.template($( "#musicianMapBoxTemplate" ).html());
+    var filterResults;
+
+    function filterMusicians(){
+        var data='';
+
+        if ( $("#filter-genres").val() != 0 ){
+            data += $("#filter-genres").serialize();
+        }
+
+        if ( $("#filter-instruments").val() != 0 ){
+            data += $("#filter-instruments").serialize();
+        }
+
+        if ($("#lessons-checkbox").is(':checked')) {
+            data += '&isTeacher=1';
+        }
+        var url = $map.data('url');
+
+        $.ajax({
+            url: url,
+            data: data
+        }).done(function( result ) {
+            if (result.status == 'success') {
+                filterResults = result;
+                renderGridView();
+            }
+        });
+    }
+
+    function renderGridView() {
+        $(".people-listing-grid").html('');
+        $.each(filterResults.data, function (k, v) {
+            $(".people-listing-grid").append(musicianBoxTemplate(v));
+        });
+    }
+
+    function renderMapView() {
+        var infowindow = null;
+        deleteMarkers();
+        drawRadius($("#search_form_distance").val());
+        $.each(filterResults.data, function (k, v) {
+            icon = iconBase + 'pal4/icon39.png';
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(v.lat, v.lng),
+                map: map,
+                title: v.username,
+                icon: icon
+            });
+            markers.push(marker);
+
+            google.maps.event.addListener(marker, 'mouseover', function() {
+                if (infowindow) {
+                    infowindow.close();
+                }
+
+                infowindow = new google.maps.InfoWindow({
+                    content: musicianMapBoxTemplate( v )
+                });
+
+                infowindow.open(map,marker);
+            });
+        });
+
+        addMyselfOnMap(map);
+
+        // Sets the map on all markers in the array.
+        function setAllMap(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+            setAllMap(null);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+    }
+
+    function fetchMapData(){
+        var data='';
+
+        if ( $("#filter-genres").val() != 0 ){
+            data += $("#filter-genres").serialize();
+        }
+
+        if ( $("#filter-instruments").val() != 0 ){
+            data += $("#filter-instruments").serialize();
+        }
+
+        if ($("#lessons-checkbox").is(':checked')) {
+            data += '&isTeacher=1';
+        }
+
+        var url = $map.data('url');
+        var infowindow = null;
+        $( ".people-listing-grid").html('');
+        $.ajax({
+            url: url,
+            data: data
+        }).done(function( result ) {
+            if (result.status == 'success'){
+                deleteMarkers();
+                drawRadius($("#search_form_distance").val());
+                $.each(result.data, function(k, v){
+
+                    $( ".people-listing-grid" ).append(musicianBoxTemplate( v ) );
+
+                    icon = iconBase + 'pal4/icon39.png';
+
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(v.lat, v.lng),
+                        map: map,
+                        title: v.username,
+                        icon: icon
+                    });
+                    markers.push(marker);
+
+                    google.maps.event.addListener(marker, 'mouseover', function() {
+                        if (infowindow) {
+                            infowindow.close();
+                        }
+
+                        infowindow = new google.maps.InfoWindow({
+                            content: musicianMapBoxTemplate( v )
+                        });
+
+                        infowindow.open(map,marker);
+                    });
+
+                });
+
+                $(".list-view-container > div ").addClass('col-md-4');
+
+                //add myself on map
+                addMyselfOnMap(map);
+            }else{
+                alert('Please set your location to be able to see people around you');
+            }
+        });
+
+        // Sets the map on all markers in the array.
+        function setAllMap(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+            setAllMap(null);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+    }
+
+    function drawCircle(point, radius, dir) {
+        var d2r = Math.PI / 180;   // degrees to radians
+        var r2d = 180 / Math.PI;   // radians to degrees
+        var earthsradius = 6371; // 3963 is the radius of the earth in miles
+
+        var points = 128;
+
+        // find the raidus in lat/lon
+        var rlat = (radius / earthsradius) * r2d;
+        var rlng = rlat / Math.cos(point.lat() * d2r);
+
+
+        var extp = new Array();
+        if (dir==1)	{var start=0;var end=points+1} // one extra here makes sure we connect the
+        else		{var start=points+1;var end=0}
+        for (var i=start; (dir==1 ? i < end : i > end); i=i+dir)
+        {
+            var theta = Math.PI * (i / (points/2));
+            ey = point.lng() + (rlng * Math.cos(theta)); // center a + radius x * cos(theta)
+            ex = point.lat() + (rlat * Math.sin(theta)); // center b + radius y * sin(theta)
+            extp.push(new google.maps.LatLng(ex, ey));
+            bounds.extend(extp[extp.length-1]);
+        }
+        // alert(extp.length);
+        return extp;
+    }
+
+    function tabsToggle(object) {
+        var $btns = object.find('a'); //all buttons
+        $viewTabContainer = $('.view-tab-container');//tabs container
+        $viewTab = $viewTabContainer.find('.view-tab'); //all tabs
+
+        var speed = 100;
+
+        //add active classes on load
+        // $btns.eq(0).addClass('is-active');
+        // $viewTabContainer.children(':first-child()').addClass('is-active');
+
+        $btns.on('click', function(e) {
+            e.preventDefault();
+
+            var $thisBtn = $(this), //this button
+                    btnDataTab = $thisBtn.data('tab'); //this button data
+
+            if (!$thisBtn.hasClass('is-active')) {
+                $btns.removeClass('is-active');
+                $thisBtn.addClass('is-active');
+
+                $viewTab.each(function() {
+                    var $thisTab = $(this); //this tab
+                    if ($thisTab.data('tab') == btnDataTab) {
+                        $viewTab.fadeOut(speed).removeClass('is-active');
+                        setTimeout(function(){
+                            $thisTab.fadeIn(speed).addClass('is-active');
+                        }, speed)
+                    }
+                });
+
+            } else {
+                return false;
+            }
+        });
+    }
 
 </script>
 

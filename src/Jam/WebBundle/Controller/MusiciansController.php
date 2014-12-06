@@ -68,6 +68,24 @@ class MusiciansController extends Controller
         $finder = $this->container->get('fos_elastica.finder.searches.user');
         $elasticaQuery = new MatchAll();
 
+        if ($request->query->get('genres')){
+            $categoryQuery = new \Elastica\Filter\Terms('genres.id', $request->query->get('genres'));
+            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
+        }
+
+        if ($request->query->get('instruments')){
+            $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', $request->query->get('instruments'));
+            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
+        }
+
+        if ($request->query->get('isTeacher')){
+            $boolFilter = new \Elastica\Filter\Bool();
+            $filter1 = new \Elastica\Filter\Term();
+            $filter1->setTerm('isTeacher', '1');
+            $boolFilter->addMust($filter1);
+            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $boolFilter);
+        }
+
         if ($searchParams){
             //$search = new Search();
             //$search->setGenres($searchParams['genres']);
@@ -76,23 +94,7 @@ class MusiciansController extends Controller
             //$em->persist($search);
             //$em->flush();
 
-            if (isset($searchParams['genres'])){
-                $categoryQuery = new \Elastica\Filter\Terms('genres.id', $searchParams['genres']);
-                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
-            }
 
-            if (isset($searchParams['instruments'])){
-                $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', $searchParams['instruments']);
-                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
-            }
-
-            if (isset($searchParams['isTeacher'])){
-                $boolFilter = new \Elastica\Filter\Bool();
-                $filter1 = new \Elastica\Filter\Term();
-                $filter1->setTerm('isTeacher', '1');
-                $boolFilter->addMust($filter1);
-                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $boolFilter);
-            }
 
             if (isset($searchParams['distance']) && $me->getLat()){
                 $locationFilter = new \Elastica\Filter\GeoDistance(
@@ -110,8 +112,6 @@ class MusiciansController extends Controller
 
             //$query = \Elastica\Query::create($elasticaQuery);
 
-        }else{
-            //$query = new \Elastica\Query\MatchAll();
         }
 
         $musicians = $finder->find($elasticaQuery);
@@ -133,6 +133,8 @@ class MusiciansController extends Controller
                 }else{
                     $location = $m->getLocation()->getAdministrativeAreaLevel3();
                 }
+            }else{
+                $location = false;
             }
 
             $data_array = array(

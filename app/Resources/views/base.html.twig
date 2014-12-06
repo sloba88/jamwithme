@@ -15,6 +15,16 @@
         <link href="{{ asset('/css/select2.css') }}" rel="stylesheet"/>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
+        <style>
+            html body #map-canvas {
+                height: 600px;
+                margin: 0px;
+                padding: 0px;
+                width: 100%;
+                clear: both;
+            }
+        </style>
+
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -158,23 +168,33 @@
 </script>
 
 <script type="text/template" id="musicianBoxTemplate">
-    <div>
-        <div class="musician-box <% if(mu.teacher){ %>teacher<% } %>">
-            <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
-                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
-            </a>
-            <div class="musician-box-details">
-                <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br />
-                    <span class="musician-box-genres">
-                        <% _.each( mu.genres, function(v, k){ %>
-                            <% if (k!=0){ %>|<% } %>
-                            <%- v %>
-                        <% }); %>
-                    </span>
-                <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
+    <div class="col-lg-4">
+        <div class="people-grid">
+            <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" alt="<%- mu.username %>" class="img-responsive">
+            <div class="people-info people-info-right">
+                <h3 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br /></h3>
+                <% if (mu.location) { %><div class="location"> <%- mu.location %></div><% } %>
+                <ul class="tags">
+                    <% _.each( mu.genres, function(v, k){ %>
+                        <li><%- v %></li>
+                    <% }); %>
+                </ul>
+                <ul class="compatibility-box">
+                    <li>
+                        <img src="images/icon-compatibility.png" alt="Compatibility">
+                    </li>
+                    <li class="compatibility">
+                        <span>46%</span>
+                        compatibility
+                    </li>
+                    <li class="last">
+                        <img src="images/icon-piano.png" alt="Piano" class="icon-piano">
+                    </li>
+                </ul>
             </div>
-        </div>
+        </div><!--people-grid ends-->
     </div>
+
 </script>
 
 {% block javascripts %}{% endblock %}
