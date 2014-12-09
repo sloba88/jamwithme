@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <div class="navbar-brand">
-                    <a href=""><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
+                    <a href="{{ path('home') }}"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
                     <span>. Bringing Musicians Together</span>
                 </div>
             </div>
@@ -125,14 +125,6 @@
                 <em>{{ flashMessage }}</em>
             </div>
         {% endfor %}
-
-        {% if is_granted("ROLE_USER") and app.user.profileFulfilment != 100 %}
-            <div class="progress" style="">
-                <div class="progress-bar" role="progressbar" aria-valuenow="{{ app.user.profileFulfilment }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ app.user.profileFulfilment }}%;">
-                    {{ app.user.profileFulfilment }}% Profile completion
-                </div>
-            </div>
-        {% endif %}
 
         {% block body %}{% endblock %}
 

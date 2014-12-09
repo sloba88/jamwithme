@@ -95,19 +95,21 @@
 
 {% block right_sidebar_content %}
 
-    <div class="profile-completion clearfix">
-        <div class="pick">
-            <div class="pick-outer">
-                <img src="{{ asset('images/pick-outer.png') }}" alt="Profile completion">
-            </div>
-            <span class="pick-inner"></span>
-        </div>
+        {% if is_granted("ROLE_USER") and app.user.profileFulfilment != 100 %}
+            <div class="profile-completion clearfix">
+                <div class="pick">
+                    <div class="pick-outer">
+                        <img src="{{ asset('images/pick-outer.png') }}" alt="Profile completion">
+                    </div>
+                    <span class="pick-inner"></span>
+                </div>
+                    <div class="profile-completion-text">
+                        <h3><span>{{ app.user.profileFulfilment }}%</span>profile completion</h3>
+                        <a href="#" class="link">fill out your profile</a>
+                    </div>
+            </div><!--profile-completion ends-->
+        {% endif %}
 
-        <div class="profile-completion-text">
-            <h3><span>85%</span>profile completion</h3>
-            <a href="#" class="link">fill out your profile</a>
-        </div>
-    </div><!--profile-completion ends-->
 
     <div class="shouts-feed">
         <h3><i class=" glyphicon glyphicon-flash"></i>Shouts feed</h3>
