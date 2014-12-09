@@ -16,6 +16,10 @@ class RegistrationFormType extends BaseType
 
         $builder->add('email');
         $builder->add('username');
+        $builder->add('plainPassword', 'repeated', array(
+            'type' => 'password',
+            'invalid_message' => 'fos_user.password.mismatch'
+        ));
         $builder->add('isVisitor', 'checkbox', array(
             'required' => false,
             'label' => 'Hang around'

@@ -1,5 +1,43 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
-{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
+
+    <div class="container-fluid login-page">
+
+        <div class="login-container">
+
+            <div class="login-header">
+                <h1>Sign Up To Jamifind</h1>
+            </div>
+
+            <div class="login-body">
+
+                <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+
+
+                    {{ form_widget(form.username, {'attr': {'placeholder': 'Username'}}) }}
+                    {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
+                    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password'}}) }}
+                    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repeat Password'}}) }}
+
+                    <label>I want to:</label>
+
+                    {{ form_row(form.isVisitor) }}
+                    {{ form_row(form.isJammer) }}
+                    {{ form_row(form.isTeacher) }}
+
+                    {{ form_widget(form._token) }}
+                    {{ form_errors(form) }}
+
+                    <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
 {% endblock fos_user_content %}
