@@ -37,13 +37,13 @@
         <form id="main-filter-form">
             <div class="filters-by in row">
                 <div class="col-sm-12 col-lg-4">
-                    <select class="form-control" data-placeholder="Filter by genres" id="filter-genres" name="genres[]">
+                    <select class="form-control" data-placeholder="Filter by genres" id="filter-genres" name="genres[]" multiple>
                         <option value="0">Filter By Genres</option>
                     </select>
                 </div>
 
                 <div class="col-sm-12 col-lg-4">
-                    <select class="form-control" data-placeholder="Filter by instruments" id="filter-instruments" name="instruments[]">
+                    <select class="form-control" data-placeholder="Filter by instruments" id="filter-instruments" name="instruments[]" multiple>
                         <option value="0">Filter By Instruments</option>
                     </select>
                 </div>
@@ -312,21 +312,17 @@
                 $('#filter-genres').append('<option value="'+v.id+'">'+ v.name + '</option>');
             });
 
-            $('select').chosen({
-                width: '100%'
-            });
-        });
+            //parse instruments
+            $.ajax({
+                url: Routing.generate('api_instruments')
+            }).done(function( result ) {
+                $.each(result, function(k, v){
+                    $('#filter-instruments').append('<option value="'+v.id+'">'+ v.name + '</option>');
+                });
 
-        //parse instruments
-        $.ajax({
-            url: Routing.generate('api_instruments')
-        }).done(function( result ) {
-            $.each(result, function(k, v){
-                $('#filter-instruments').append('<option value="'+v.id+'">'+ v.name + '</option>');
-            });
-
-            $('select').chosen({
-                width: '100%'
+                $('select').chosen({
+                    width: '100%'
+                });
             });
         });
 
