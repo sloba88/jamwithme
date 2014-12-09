@@ -1,223 +1,175 @@
-{% trans_default_domain 'FOSUserBundle' %}
 
 {% set genresMatch = 0 %}
 {% set artistsMatch = 0 %}
 
-<div class="fos_user_user_show">
+{# TODO: TEACHER #}
 
-    <div class="col-md-3 profile-profile-column">
-        <div class="profile-avatar-container">
-            <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" class="img-circle col-md-6" />
-            <div class="col-md-6">
-                <h3>{{ user.username }}</h3>
-                <p>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</p>
+<div class="col-sm-10 teacher-container grey">
+    <div class="row teacher-header">
+        <section class="col-sm-5 teacher-info">
+            <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" alt="Teacher">
+            <div class="info">
+                <h1>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</h1>
                 {% if user.location %}
-                    {% if user.location.getAdministrativeAreaLevel3 %}<p><i class="glyphicon glyphicon-map-marker"></i>
-                        {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}</p>{% endif %}
+                    {% if user.location.getAdministrativeAreaLevel3 %}
+                        <div class="location">
+                            {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}
+                        </div>
+                    {% endif %}
                 {% endif %}
+                <div class="bio">{{ user.genderText }}, {{ user.age }} years</div>
+                <div class="availability">
+                    <img src="images/available.png" alt="Available">Available
+                </div>
+                <a href="" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i>Message</a>
             </div>
+        </section><!--teacher-info ends-->
 
-            {% if app.user != user %}
-                <a href="#" class="profile-send-message" data-toggle="modal" data-target="#messageModal">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                </a>
-            {% endif %}
-        </div>
+        <section class="col-sm-3 teacher-instruments">
+            <div class="teacher-instruments-inner">
 
-        <div class="clearfix"></div>
+                {% for i in user.instruments %}
+                    <div class="col-sm-7">
+                        <a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
+                        <span class="main">main</span>
+                    </div>
 
-        <p>Instruments: </p>
-        <ul>
-            {% for i in user.instruments %}
-                <li>
-                    <a href="{{ path('musicians', {'search_form[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a>
+                <div class="col-sm-5">
+                    <ul>
                         {% for l in 1..i.skillLevel %}
-                            <i class="glyphicon glyphicon-star"></i>
+                            <li><span class="active"></span></li>
                         {% endfor %}
                         {% if 4-i.skillLevel !=0 %}
                             {% for l in 1..(4-i.skillLevel) %}
-                                <i class="glyphicon glyphicon-star-empty"></i>
+                                <li><span></span></li>
                             {% endfor %}
                         {% endif %}
-                </li>
+                    </ul>
 
-            {% endfor %}
-        </ul>
-
-        <ul class="profile-genres">
-            {% for g in user.genres %}
-                <li><a href="{{ path('musicians', {'search_form[genres][]' : g.id }) }}">{{ g.name }}</a></li>
-
-                {# calculate compatibility for gerens#}
-                {% for g2 in app.user.genres %}
-                    {% if g.id == g2.id %}
-                        {% set genresMatch = genresMatch +1 %}
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </ul>
-
-        <div class="clearfix"></div>
-
-        <br />
-
-        <p>Age: {{ user.age }}</p>
-        <p>Gender: {{ user.genderText }}</p>
-
-        <hr />
-
-        <div class="profile-about-me">
-            {{ user.aboutMe }}
-        </div>
-
-    </div>
-
-    <div class="col-md-6 profile-media-wall-container">
-
-        {% if user.isTeacher %}
-            {% if app.user != user %}
-                <a href="#" class="btn btn-sm btn-default pull-left" id="addUserRecommendationToggle"><span class="glyphicon glyphicon-heart"></span> Recommend</a>
-            {% endif %}
-        {% endif %}
-
-        {% if app.user == user %}
-
-            <a href="#" class="btn btn-sm btn-default pull-right" id="addPhotosToggle"><span class="glyphicon glyphicon-camera"></span> Add photos</a>
-            <div class="clearfix"></div>
-
-            <div class="profile-add-photos">
-                <span class="btn btn-success btn-sm fileinput-button">
-                        <i class="glyphicon glyphicon-plus"></i>
-                        <span>Add files...</span>
-                        <input type="file" name="file" id="upload_images" accept="image/*" data-url="{{ path('upload_user_image') }}" multiple >
-                    </span>
-
-                <button type="submit" class="btn btn-primary start btn-sm">
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Start upload</span>
-                </button>
-
-                <div id="progress" class="progress">
-                    <div class="progress-bar progress-bar-success"></div>
                 </div>
 
-                <div id="files" class="files"></div>
+
+                {% endfor %}
             </div>
+        </section><!--teacher-instruments ends-->
 
-        {% endif %}
+        <section class="col-sm-4 teacher-favorites reordered">
+            <ul class="tags">
+                {% for g in user.genres %}
 
-        <div class="clearfix"></div>
+                    <li><a href="{{ path('musicians', {'search_form[genres][]' : g.id }) }}">{{ g.name }}</a></li>
 
-        <div class="profile-write-recommendation">
-            <textarea class="form-control" placeholder="Say something nice"></textarea>
-        </div>
-
-        <div class="profile-media-wall">
-
-            {% if user.images|length == 0 and user.videos|length == 0 %}
-                <h3>Upload some photos here</h3>
-            {% endif %}
-
-            {% if user.images|length > 0 %}
-                {% for i in user.images %}
-                    <div class="image-holder profile-media-wall-item">
-                        <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
-                        {% if app.user == user %}
-                        <div class="profile-media-image-commands">
-                            <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
-                            <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                        </div>
+                    {# calculate compatibility for gerens#}
+                    {% for g2 in app.user.genres %}
+                        {% if g.id == g2.id %}
+                            {% set genresMatch = genresMatch +1 %}
                         {% endif %}
-                    </div>
+                    {% endfor %}
+
                 {% endfor %}
-            {% endif %}
-
-            {% for v in user.videos %}
-                <iframe width="510" height="315" class="profile-media-wall-item" src="{{ v.url }}??autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
-            {% endfor %}
-
-        </div>
-
-        {% if app.user != user %}
-
-            <!-- Modal -->
-            <div class="modal fade" id="messageModal" data-id="{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Send Message</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="conversation-message-box"></div>
-                            <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3" placeholder="Say something cool..." ></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
+            </ul>
+            <div class="favorite-group">
+                <span>Influencers:</span>
+                {% for a in user.artists %}
+                    {{ a.name }},
+                    {# calculate compatibility for gerens#}
+                    {% for g2 in app.user.artists %}
+                        {% if a.name == g2.name %}
+                            {% set artistsMatch = artistsMatch +1 %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
             </div>
-
-        {% endif %}
-
+            <div class="favorite-group">
+                <span>Favourite brands:</span>
+                {% for b in user.brands %}
+                    {{ b.name }},
+                {% endfor %}
+            </div>
+        </section>
     </div>
 
-    <div class="col-md-3 profile-profile-column" style="padding:0">
+    <div class="row">
+        <section class="col-sm-9 main-content">
 
-        <h4>Artists</h4>
-        <ul>
-            {% for a in user.artists %}
-                <li>{{ a.name }}</li>
-                {# calculate compatibility for gerens#}
-                {% for g2 in app.user.artists %}
-                    {% if a.name == g2.name %}
-                        {% set artistsMatch = artistsMatch +1 %}
-                    {% endif %}
+            <ul class="tabs-activate profile-tabs">
+                <!-- <li><a href="#" data-tab="1" class="is-active">About</a></li> -->
+                <li><a href="#" data-tab="1" class="is-active">My Stuff</a></li>
+                <li class="last">
+                    <ul class="compatibility-box">
+                        <li>
+                            <img src="{{ asset('images/icon-compatibility.png') }}" alt="Compatibility">
+                        </li>
+                        <li class="compatibility">
+                            <span>46%</span>
+                            compatibility
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="view-tab-container teacher-text-container">
+
+                <div class="view-tab stuff is-active" data-tab="1">
+                    {{ user.aboutMe }}
+                </div><!--stuff ends-->
+
+            </div><!--view-tab-container ends-->
+
+        </section><!--main-content ends-->
+
+        <section class="col-sm-3 shouts-sidebar">
+
+            <div class="shouts-feed">
+                <h3><i class=" glyphicon glyphicon-flash"></i>Shouts feed</h3>
+            </div><!--shouts-feed ends-->
+
+            <div class="shouts-listing-container">
+                <div class="shouts-listing">
+
+                {% for s in user.shouts %}
+
+                    <article class="shout-box clearfix">
+                        <img src="images/teacher-02.png" alt="Image">
+                        <div class="shout-text">
+                            <h4 class="name">{{ user.username }}</h4>
+                            <div class="time">
+                                <span>{{ s.createdAt.date }} min</span>ago
+                            </div>
+                            <p>{{ s.text }}</p>
+                        </div>
+                    </article>
+
                 {% endfor %}
-            {% endfor %}
-        </ul>
 
-        <h4>Brands</h4>
-        <ul>
-            {% for b in user.brands %}
-                <li>{{ b.name }}</li>
-            {% endfor %}
-        </ul>
+                </div><!--shouts-listing ends-->
+            </div><!--shouts-listing-container ends-->
 
-        {% if user.isTeacher %}
-            <h4>Recommendations</h4>
-        {% else %}
-
-        <h4>Jams</h4>
-        <ul>
-            {% for j in user.jamsMember %}
-                <li><a href="{{ path('view_jam', { 'slug': j.jam.slug } ) }}">{{ j.jam.name }}</a> ({{ j.role }})</li>
-            {% endfor %}
-        </ul>
-
-        {% endif %}
-
-        <h4>Shouts</h4>
-
-        {% for s in user.shouts %}
-            <div class="profile-shout">
-                {{ s.text }}
-                <hr />
-                <span class="shout-created-at"><i class="glyphicon glyphicon-time"></i> {{ s.createdAt.date }}</span>
-            </div>
-
-        {% endfor %}
-
-        <h4>Similar People Nearby</h4>
-
-        <div class="similar-nearby-box"></div>
-
+        </section>
     </div>
-
-    {# calculate compatibility #}
-
-    {# #}
 
 </div>
 
+
+{% if app.user != user %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="messageModal" data-id="{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Send Message</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="conversation-message-box"></div>
+                    <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3" placeholder="Say something cool..." ></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

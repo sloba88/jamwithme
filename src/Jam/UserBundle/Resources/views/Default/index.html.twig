@@ -1,8 +1,9 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends 'JamUserBundle::layout.html.twig' %}
 
 {% block fos_user_content %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock fos_user_content %}
+
 
 {% block javascripts %}
     <link href="{{ asset('/css/jquery.Jcrop.min.css') }}" rel="stylesheet"/>
