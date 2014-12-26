@@ -4,6 +4,35 @@ $(function () {
         placeholder: 'What do you play?'
     });
 
+    $('select').select2();
+
+    //activates tooltip
+    $("[data-toggle=tooltip]").tooltip();
+
+    //activates slider
+    $("#filter-by-distance-slider").slider({
+        range: "min",
+        value: $("#search_form_distance").val(),
+        min: 0,
+        max: 20,
+        step: 2,
+        create: function(event, ui) {
+            var selection = $("#filter-by-distance-slider").slider("value");
+            $('.slide-max').text(selection + 'km');
+        },
+        slide: function(event, ui) {
+            $('.slide-max').text(ui.value + 'km');
+            $("#search_form_distance").val(ui.value).trigger('change');
+        }
+    });
+
+    profileCompletion();
+
+    filtersToggle();
+
+    //activate tabs
+    tabsToggle($('.tabs-activate'));
+
     $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres, #jam_genres").select2({
         placeholder: 'Whats music do you play?'
     });
@@ -20,26 +49,20 @@ $(function () {
         placeholder: 'Filter by instruments'
     });
 
-    $("#distance-slider").slider({
-        range: "min",
-        value: $("#search_form_distance").val(),
-        step: 1,
-        min: 1,
-        max: 20,
-        slide: function(event, ui) {
-            $("#search_form_distance").val(ui.value).trigger('change');
-        }
-    });
-
     var $container = $('.profile-media-wall').isotope({
         // main isotope options
         itemSelector: '.profile-media-wall-item',
-        layoutMode: 'fitRows',
+        layoutMode: 'masonry',
         // options for cellsByRow layout mode
         // options for masonry layout mode
         masonry: {
-            columnWidth: 140
+            columnWidth: 140,
+            gutter: 10
         }
+    });
+
+    $container.imagesLoaded( function() {
+        $container.isotope('layout');
     });
 
     var jamMembersCollectionHolder = $("#jam_members")
@@ -309,4 +332,66 @@ function scrollToBottom(){
     var wtf    = $('.conversation-message-box');
     var height = wtf[0].scrollHeight;
     wtf.scrollTop(height);
+}
+
+function profileCompletion() {
+    var numberText = $('.profile-completion-text span').text(),
+        number = numberText.slice(0, -1);
+
+    var $pickInner = $('.pick-inner');
+
+    $pickInner.height(number * 0.5);
+}
+
+function filtersToggle() {
+    var $filtersBy = $('.filters-by'),
+        $filtersHide = $('.filters-hide'),
+        $filtersHideText = $filtersHide.children('.text');
+
+    $filtersBy.on('hidden.bs.collapse', function() {
+        $filtersHide.removeClass('dropup');
+        $filtersHideText.text('Show filters');
+    });
+
+    $filtersBy.on('shown.bs.collapse', function() {
+        $filtersHide.addClass('dropup');
+        $filtersHideText.text('Hide filters');
+    });
+}
+
+function tabsToggle(object) {
+    var $btns = object.find('a'); //all buttons
+    $viewTabContainer = $('.view-tab-container');//tabs container
+    $viewTab = $viewTabContainer.find('.view-tab'); //all tabs
+
+    var speed = 100;
+
+    //add active classes on load
+    // $btns.eq(0).addClass('is-active');
+    // $viewTabContainer.children(':first-child()').addClass('is-active');
+
+    $btns.on('click', function(e) {
+        e.preventDefault();
+
+        var $thisBtn = $(this), //this button
+            btnDataTab = $thisBtn.data('tab'); //this button data
+
+        if (!$thisBtn.hasClass('is-active')) {
+            $btns.removeClass('is-active');
+            $thisBtn.addClass('is-active');
+
+            $viewTab.each(function() {
+                var $thisTab = $(this); //this tab
+                if ($thisTab.data('tab') == btnDataTab) {
+                    $viewTab.fadeOut(speed).removeClass('is-active');
+                    setTimeout(function(){
+                        $thisTab.fadeIn(speed).addClass('is-active');
+                    }, speed)
+                }
+            });
+
+        } else {
+            return false;
+        }
+    });
 }

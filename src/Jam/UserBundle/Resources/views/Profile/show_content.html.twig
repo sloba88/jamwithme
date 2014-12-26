@@ -1,4 +1,3 @@
-
 {% set genresMatch = 0 %}
 {% set artistsMatch = 0 %}
 
@@ -8,6 +7,7 @@
     <div class="row teacher-header">
         <section class="col-sm-5 teacher-info">
             <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" alt="Teacher">
+
             <div class="info">
                 <h1>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</h1>
                 {% if user.location %}
@@ -18,12 +18,14 @@
                     {% endif %}
                 {% endif %}
                 <div class="bio">{{ user.genderText }}, {{ user.age }} years</div>
-                <div class="availability">
-                    <img src="images/available.png" alt="Available">Available
-                </div>
-                <a href="" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i>Message</a>
+                <p>{{ user.aboutMe }}</p>
+
+                {% if app.user != user %}
+                    <a href="" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i>Message</a>
+                {% endif %}
             </div>
-        </section><!--teacher-info ends-->
+        </section>
+        <!--teacher-info ends-->
 
         <section class="col-sm-3 teacher-instruments">
             <div class="teacher-instruments-inner">
@@ -34,24 +36,24 @@
                         <span class="main">main</span>
                     </div>
 
-                <div class="col-sm-5">
-                    <ul>
-                        {% for l in 1..i.skillLevel %}
-                            <li><span class="active"></span></li>
-                        {% endfor %}
-                        {% if 4-i.skillLevel !=0 %}
-                            {% for l in 1..(4-i.skillLevel) %}
-                                <li><span></span></li>
+                    <div class="col-sm-5">
+                        <ul>
+                            {% for l in 1..i.skillLevel %}
+                                <li><span class="active"></span></li>
                             {% endfor %}
-                        {% endif %}
-                    </ul>
+                            {% if 4-i.skillLevel !=0 %}
+                                {% for l in 1..(4-i.skillLevel) %}
+                                    <li><span></span></li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
 
-                </div>
-
+                    </div>
 
                 {% endfor %}
             </div>
-        </section><!--teacher-instruments ends-->
+        </section>
+        <!--teacher-instruments ends-->
 
         <section class="col-sm-4 teacher-favorites reordered">
             <ul class="tags">
@@ -111,39 +113,73 @@
             <div class="view-tab-container teacher-text-container">
 
                 <div class="view-tab stuff is-active" data-tab="1">
-                    {{ user.aboutMe }}
-                </div><!--stuff ends-->
 
-            </div><!--view-tab-container ends-->
+                    <div class="profile-media-wall">
 
-        </section><!--main-content ends-->
+                        {% if user.images|length == 0 and user.videos|length == 0 %}
+                            <h3>Upload some photos here</h3>
+                        {% endif %}
+
+                        {% if user.images|length > 0 %}
+                            {% for i in user.images %}
+                                <div class="image-holder profile-media-wall-item">
+                                    <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                    {#{% if app.user == user %}
+                                        <div class="profile-media-image-commands">
+                                            <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
+                                            <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                        </div>
+                                    {% endif %}#}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% for v in user.videos %}
+                            <iframe width="140" height="140" class="profile-media-wall-item" src="{{ v.url }}??autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                <!--stuff ends-->
+
+            </div>
+            <!--view-tab-container ends-->
+
+        </section>
+        <!--main-content ends-->
 
         <section class="col-sm-3 shouts-sidebar">
 
             <div class="shouts-feed">
                 <h3><i class=" glyphicon glyphicon-flash"></i>Shouts feed</h3>
-            </div><!--shouts-feed ends-->
+            </div>
+            <!--shouts-feed ends-->
 
             <div class="shouts-listing-container">
                 <div class="shouts-listing">
 
-                {% for s in user.shouts %}
+                    {% for s in user.shouts %}
 
-                    <article class="shout-box clearfix">
-                        <img src="images/teacher-02.png" alt="Image">
-                        <div class="shout-text">
-                            <h4 class="name">{{ user.username }}</h4>
-                            <div class="time">
-                                <span>{{ s.createdAt.date }} min</span>ago
+                        <article class="shout-box clearfix">
+                            <img src="images/teacher-02.png" alt="Image">
+
+                            <div class="shout-text">
+                                <h4 class="name">{{ user.username }}</h4>
+
+                                <div class="time">
+                                    <span>{{ s.createdAt.date }} min</span>ago
+                                </div>
+                                <p>{{ s.text }}</p>
                             </div>
-                            <p>{{ s.text }}</p>
-                        </div>
-                    </article>
+                        </article>
 
-                {% endfor %}
+                    {% endfor %}
 
-                </div><!--shouts-listing ends-->
-            </div><!--shouts-listing-container ends-->
+                </div>
+                <!--shouts-listing ends-->
+            </div>
+            <!--shouts-listing-container ends-->
 
         </section>
     </div>
@@ -163,7 +199,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="conversation-message-box"></div>
-                    <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3" placeholder="Say something cool..." ></textarea>
+                    <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3"
+                              placeholder="Say something cool..."></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

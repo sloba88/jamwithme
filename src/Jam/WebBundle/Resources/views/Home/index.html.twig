@@ -320,9 +320,7 @@
                     $('#filter-instruments').append('<option value="'+v.id+'">'+ v.name + '</option>');
                 });
 
-                $('select').chosen({
-                    width: '100%'
-                });
+                $('select').select2();
             });
         });
 
@@ -529,43 +527,6 @@
         }
         // alert(extp.length);
         return extp;
-    }
-
-    function tabsToggle(object) {
-        var $btns = object.find('a'); //all buttons
-        $viewTabContainer = $('.view-tab-container');//tabs container
-        $viewTab = $viewTabContainer.find('.view-tab'); //all tabs
-
-        var speed = 100;
-
-        //add active classes on load
-        // $btns.eq(0).addClass('is-active');
-        // $viewTabContainer.children(':first-child()').addClass('is-active');
-
-        $btns.on('click', function(e) {
-            e.preventDefault();
-
-            var $thisBtn = $(this), //this button
-                    btnDataTab = $thisBtn.data('tab'); //this button data
-
-            if (!$thisBtn.hasClass('is-active')) {
-                $btns.removeClass('is-active');
-                $thisBtn.addClass('is-active');
-
-                $viewTab.each(function() {
-                    var $thisTab = $(this); //this tab
-                    if ($thisTab.data('tab') == btnDataTab) {
-                        $viewTab.fadeOut(speed).removeClass('is-active');
-                        setTimeout(function(){
-                            $thisTab.fadeIn(speed).addClass('is-active');
-                        }, speed)
-                    }
-                });
-
-            } else {
-                return false;
-            }
-        });
     }
 
 </script>
