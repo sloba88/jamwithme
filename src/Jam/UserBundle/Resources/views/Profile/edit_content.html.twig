@@ -79,7 +79,20 @@
 
                 <div class="col-md-6">
 
-                    {{ form_row(form.isTeacher) }}
+                    <h4>I want to:</h4>
+
+                    {{ form_widget(form.isVisitor) }}
+                    {{ form_label(form.isVisitor) }}
+
+                    <br />
+
+                    {{ form_widget(form.isJammer) }}
+                    {{ form_label(form.isJammer) }}
+
+                    <br />
+
+                    {{ form_widget(form.isTeacher) }}
+                    {{ form_label(form.isTeacher) }}
 
                     {{ form_row(form.genres) }}
 
@@ -183,8 +196,8 @@
 
         {{ form_widget(form._token) }}
         <hr />
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans }}" />
+        <div class="col-md-3">
+            <input type="submit" class="btn btn-primary" value="Save" />
         </div>
     </form>
 

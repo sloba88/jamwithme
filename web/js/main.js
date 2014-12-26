@@ -6,6 +6,8 @@ $(function () {
 
     $('select').select2();
 
+    $('input[type=checkbox]').next('label').prepend('<span></span>');
+
     //activates tooltip
     $("[data-toggle=tooltip]").tooltip();
 

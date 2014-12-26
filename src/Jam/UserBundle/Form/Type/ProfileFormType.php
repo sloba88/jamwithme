@@ -34,9 +34,17 @@ class ProfileFormType extends BaseType
             'required' => false
         ));
 
+        $builder->add('isVisitor', 'checkbox', array(
+            'required' => false,
+            'label' => 'Hang around'
+        ));
+        $builder->add('isJammer', 'checkbox', array(
+            'required' => false,
+            'label' => 'Jam'
+        ));
         $builder->add('isTeacher', 'checkbox', array(
-            'label' => 'I am music teacher and I provide private lesions',
-            'required' => false
+            'required' => false,
+            'label' => 'Teach music'
         ));
 
         $builder->add('instruments', 'collection', array(
