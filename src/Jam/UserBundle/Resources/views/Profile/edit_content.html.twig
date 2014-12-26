@@ -141,6 +141,7 @@
                                             <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
                                             <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                         </div>
+                                        <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                                     </div>
                                 {% endfor %}
                             </div>

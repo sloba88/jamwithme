@@ -98,15 +98,17 @@
                 <!-- <li><a href="#" data-tab="1" class="is-active">About</a></li> -->
                 <li><a href="#" data-tab="1" class="is-active">My Stuff</a></li>
                 <li class="last">
-                    <ul class="compatibility-box">
-                        <li>
-                            <img src="{{ asset('images/icon-compatibility.png') }}" alt="Compatibility">
-                        </li>
-                        <li class="compatibility">
-                            <span>46%</span>
-                            compatibility
-                        </li>
-                    </ul>
+                    {% if app.user != user %}
+                        <ul class="compatibility-box">
+                            <li>
+                                <img src="{{ asset('images/icon-compatibility.png') }}" alt="Compatibility">
+                            </li>
+                            <li class="compatibility">
+                                <span>46%</span>
+                                compatibility
+                            </li>
+                        </ul>
+                    {% endif %}
                 </li>
             </ul>
 
