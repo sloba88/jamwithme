@@ -164,7 +164,9 @@
                     {% for s in user.shouts %}
 
                         <article class="shout-box clearfix">
-                            <img src="images/teacher-02.png" alt="Image">
+                            <a href="{{ app.request.getBaseURL() }}/m/{{ user.username }}" class="musician-box-image-link img-circle">
+                                <img src="{{ app.request.getBaseURL() }}/m/{{ user.username }}/avatar" class="" width="50" />
+                            </a>
 
                             <div class="shout-text">
                                 <h4 class="name">{{ user.username }}</h4>
