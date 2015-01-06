@@ -158,36 +158,6 @@
     <% }); %>
 </script>
 
-<script type="text/template" id="musicianBoxTemplate">
-    <div class="col-lg-4">
-        <div class="people-grid">
-            <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar/medium_thumb" alt="<%- mu.username %>" class="img-responsive">
-            <div class="people-info people-info-right">
-                <h3 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br /></h3>
-                <% if (mu.location) { %><div class="location"> <%- mu.location %></div><% } %>
-                <ul class="tags">
-                    <% _.each( mu.genres, function(v, k){ %>
-                        <li><%- v %></li>
-                    <% }); %>
-                </ul>
-                <ul class="compatibility-box">
-                    <li>
-                        <img src="{{ asset('images/icon-compatibility.png') }}" alt="Compatibility">
-                    </li>
-                    <li class="compatibility">
-                        <span>46%</span>
-                        compatibility
-                    </li>
-                    <li class="last">
-                        <img src="{{ asset('images/icon-piano.png') }}" alt="Piano" class="icon-piano">
-                    </li>
-                </ul>
-            </div>
-        </div><!--people-grid ends-->
-    </div>
-
-</script>
-
 {% block javascripts %}{% endblock %}
 
 <div class="modal fade" id="imageCropModalTemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -4,20 +4,15 @@
 
     {% include "JamWebBundle::navigation.html.twig" %}
 
-    <section class="col-sm-7 main-content">
+    <section class="col-sm-10 main-content">
 
         {% block main_content %}{% endblock %}
         {% block fos_user_content %}{% endblock fos_user_content %}
 
     </section><!--main-content ends-->
 
-    {# why shouts why not general right sidebar #}
-    <section class="col-sm-3 shouts-sidebar">
-        {% block right_sidebar_content %}{% endblock %}
-    </section><!--shouts-sidebar ends-->
-
     <script type="text/template" id="musicianBoxTemplate">
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="people-grid">
                 <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar/medium_thumb" alt="<%- mu.username %>" class="img-responsive">
                 <div class="people-info people-info-right">
