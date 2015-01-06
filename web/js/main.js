@@ -199,7 +199,7 @@ $(function () {
     });
 
     // store the currently selected tab in the hash value
-    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+    $("ul.tabs-activate > li > a").on("shown.tab", function (e) {
         var id = $(e.target).attr("href").substr(1);
         window.location.hash = id;
         if (id=='media'){
@@ -238,7 +238,7 @@ $(function () {
 
     // on load of the page: switch to the currently selected tab
     var hash = window.location.hash;
-    $('ul.nav-tabs a[href="' + hash + '"]').tab('show');
+    $('ul.tabs-activate a[href="' + hash + '"]').trigger('click');
 
     setTimeout(function(){
         $(".flash-message.alert, .flash-message.success").fadeOut();
@@ -388,6 +388,7 @@ function tabsToggle(object) {
                     $viewTab.fadeOut(speed).removeClass('is-active');
                     setTimeout(function(){
                         $thisTab.fadeIn(speed).addClass('is-active');
+                        $thisBtn.trigger('shown.tab');
                     }, speed)
                 }
             });

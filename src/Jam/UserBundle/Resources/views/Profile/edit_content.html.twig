@@ -1,24 +1,97 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
+<style>
+    #upload_images{
+        height: 33px;
+        width: 110px;
+    }
+
+    .preview-thumb canvas{
+        width: 80px;
+    }
+
+    #files input{
+        display: none;
+    }
+
+    #files .preview-container{
+        float: left;
+    }
+
+    #files .preview-thumb{
+        padding: 5px;
+    }
+
+    .fileinput-button{
+        position: relative;
+        margin-bottom: 6px;
+    }
+
+    .fileinput-button input{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        opacity: 0;
+        -ms-filter: 'alpha(opacity=0)';
+        direction: ltr;
+        cursor: pointer;
+    }
+
+    .progress{
+        margin-top: 10px;
+    }
+
+    .profile-media-wall .image-holder{
+        position: relative;
+        background-color: #000;
+    }
+
+    .profile-media-wall .fancybox{
+        -webkit-transition: opacity 0.5s ease-in-out;
+        -moz-transition: opacity 0.5s ease-in-out;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .profile-media-wall .image-holder:hover .fancybox{
+        opacity: .8;
+    }
+
+    .profile-media-image-commands{
+        display: none;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        background-color: #000;
+        padding: 2px;
+    }
+
+    .profile-media-wall .image-holder:hover .profile-media-image-commands{
+        display: block;
+    }
+
+</style>
+
 <div class="col-sm-10 main-content">
 
     <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
 
         {{ form_errors(form) }}
 
-        <ul class="nav nav-tabs" role="tablist" id="myTab">
-            <li class="active"><a href="#personal-info" role="tab" data-toggle="tab">Personal Info</a></li>
-            <li><a href="#musician-info" role="tab" data-toggle="tab">Musician Info</a></li>
-            <li><a href="#media" role="tab" data-toggle="tab">Media</a></li>
-            <li><a href="#networks" role="tab" data-toggle="tab">Networks</a></li>
+        <ul class="tabs-activate profile-tabs" id="myTab">
+            <li><a href="#personal-info" data-tab="1" class="is-active">Personal Info</a></li>
+            <li><a href="#musician-info" data-tab="2">Musician Info</a></li>
+            <li><a href="#media" data-tab="3">Media</a></li>
+            <li><a href="#networks" data-tab="4">Networks</a></li>
         </ul>
 
         <br />
 
-        <div class="tab-content clearfix">
+        <div class="view-tab-container clearfix">
 
-            <div class="tab-pane active" id="personal-info">
+            <div class="view-tab is-active" id="personal-info" data-tab="1">
 
                 <div class="col-md-6">
 
@@ -56,7 +129,7 @@
                 </div>
 
             </div>
-            <div class="tab-pane" id="musician-info">
+            <div class="view-tab" id="musician-info" data-tab="2">
 
                 <div class="col-md-6">
 
@@ -105,7 +178,7 @@
                 </div>
 
             </div>
-            <div class="tab-pane" id="media">
+            <div class="view-tab" id="media" data-tab="3">
 
                 <div class="col-md-8">
 
@@ -170,7 +243,7 @@
                 </div>
 
             </div>
-            <div class="tab-pane" id="networks">
+            <div class="view-tab" id="networks" data-tab="4">
 
                 <h4>Facebook</h4>
                 {% if app.user.facebookId %}
