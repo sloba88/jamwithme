@@ -1,42 +1,82 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block bodyclasses %}login-page signup-page{% endblock %}
+
 {% block fos_user_content %}
     {% trans_default_domain 'FOSUserBundle' %}
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
-    <div class="container-fluid login-page">
+    <div class="container-fluid">
 
         <div class="login-container">
-
             <div class="login-header">
-                <h1>Sign Up To Jamifind</h1>
+                <h1>sign up to jamifind</h1>
             </div>
 
             <div class="login-body">
 
                 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
 
+                    <div class="form-group">
+                        {{ form_widget(form.username, {'attr': {'placeholder': 'Username' }}) }}
+                    </div>
 
-                    {{ form_widget(form.username, {'attr': {'placeholder': 'Username'}}) }}
-                    {{ form_widget(form.email, {'attr': {'placeholder': 'Email'}}) }}
-                    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password'}}) }}
-                    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repeat Password'}}) }}
+                    <div class="form-group">
+                        {{ form_widget(form.email, {'attr': {'placeholder': 'Email' }}) }}
+                    </div>
 
-                    <label>I want to:</label>
+                    <div class="form-group">
+                        {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password' }}) }}
+                    </div>
 
-                    {{ form_row(form.isVisitor) }}
-                    {{ form_row(form.isJammer) }}
-                    {{ form_row(form.isTeacher) }}
+                    <div class="form-group">
+                        {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repeat Password' }}) }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="select-label">I want to:</label>
+
+                        <ul class="checkboxes-list">
+                            <li>
+                                {{ form_widget(form.isVisitor) }}
+                                {{ form_label(form.isVisitor) }}
+                            </li>
+                            <li>
+                                {{ form_widget(form.isJammer) }}
+                                {{ form_label(form.isJammer) }}
+                            </li>
+                            <li>
+                                {{ form_widget(form.isTeacher) }}
+                                {{ form_label(form.isTeacher) }}
+                            </li>
+                        </ul>
+
+                    </div>
 
                     {{ form_widget(form._token) }}
                     {{ form_errors(form) }}
 
-                    <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+                    <input type="submit" class="btn btn-primary" value="Sign Up"/>
+
+                    <div class="separator">
+                        <img src="{{ asset('images/separator-image.png') }}" alt="Hand">
+                    </div>
+
                 </form>
+
+                <div class="login-buttons">
+                    <a href="{{ path('jam_facebook_login') }}" class="btn btn-primary facebook"><i class="fa fa-facebook-square"></i>sign up with facebook</a>
+                    <a href="{{ path('jam_soundcloud_login') }}" class="btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>sign up with soundcloud</a>
+                </div>
 
             </div>
 
-        </div>
+            <div class="login-footer">
+                Already have an account?
+                <a href="{{ path('fos_user_security_login') }}" class="link">login</a>
+            </div>
+
+        </div><!--login-container ends-->
 
     </div>
 

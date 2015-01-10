@@ -8242,6 +8242,11 @@ button.close {
     src: url('../fonts/hind/hind-semibold-webfont.eot?&1416173782#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1416173782') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1416173782') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1416173782') format('svg');
 }
 @font-face {
+    font-family: "Hind Bold";
+    src: url('../fonts/hind/hind-bold-webfont.eot?1420891071');
+    src: url('../fonts/hind/hind-bold-webfont.eot?&1420891071#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1420891071') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1420891071') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1420891071') format('svg');
+}
+@font-face {
     font-family: "CooperHewitt Bold";
     src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1415713461');
     src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1415713461#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1415713461') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1415713461') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1415713461') format('svg');
@@ -8391,7 +8396,7 @@ input[type="checkbox"] {
 }
 
 /* line 50, ../sass/jamifind/_custom.scss */
-input[type="checkbox"] + label span{
+input[type="checkbox"] + label span {
     display: inline-block;
     width: 17px;
     height: 17px;
@@ -8404,7 +8409,7 @@ input[type="checkbox"] + label span{
 }
 
 /* line 62, ../sass/jamifind/_custom.scss */
-input[type="checkbox"]:checked + label span{
+input[type="checkbox"]:checked + label span {
     background: url(../images/checkbox-checked.png) no-repeat;
     top: -5px;
 }
@@ -9097,7 +9102,7 @@ header .search-block .btn-search:focus {
 /* line 242, ../sass/jamifind/_main.scss */
 .people-listing-grid .people-grid .people-info.people-info-right {
     background: url("../images/transparent-bg-right.png") no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
     background-position: left top;
     padding-left: 16%;
     padding-right: 15px;
@@ -9550,6 +9555,229 @@ header .search-block .btn-search:focus {
     margin-right: 5px;
 }
 
+/* line 3, ../sass/jamifind/_messages.scss */
+.messages-header .title,
+.messages-header .btn-compose {
+    font-family: "CooperHewitt Bold";
+    text-transform: uppercase;
+}
+/* line 9, ../sass/jamifind/_messages.scss */
+.messages-header .title {
+    color: #2b2a3b;
+    float: left;
+    font-size: 23px;
+    margin: 0;
+}
+/* line 16, ../sass/jamifind/_messages.scss */
+.messages-header .btn-compose {
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: #fabc09;
+    border-radius: 0;
+    color: #000;
+    float: right;
+    font-size: 14px;
+    padding-bottom: 4px;
+}
+/* line 25, ../sass/jamifind/_messages.scss */
+.messages-header .btn-compose:hover, .messages-header .btn-compose:active {
+    opacity: 0.8;
+    outline: none;
+}
+
+/* line 33, ../sass/jamifind/_messages.scss */
+.messages-container {
+    margin-top: 8px;
+}
+
+/* line 37, ../sass/jamifind/_messages.scss */
+.message-single {
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #2b2a3b;
+    cursor: pointer;
+    margin: 0;
+    padding: 15px 0 18px;
+    position: relative;
+}
+/* line 45, ../sass/jamifind/_messages.scss */
+.message-single.first {
+    border-top: 4px solid #414141;
+}
+/* line 49, ../sass/jamifind/_messages.scss */
+.message-single.unread {
+    background: #3b385e;
+}
+/* line 52, ../sass/jamifind/_messages.scss */
+.message-single.unread .name,
+.message-single.unread .date,
+.message-single.unread .message-content,
+.message-single.unread i {
+    color: #fff;
+}
+/* line 60, ../sass/jamifind/_messages.scss */
+.message-single:hover {
+    background: #fabc09;
+}
+/* line 64, ../sass/jamifind/_messages.scss */
+.message-single .message-picture {
+    float: left;
+    margin-right: 15px;
+}
+/* line 69, ../sass/jamifind/_messages.scss */
+.message-single .name {
+    color: #18152b;
+    font-family: "CooperHewitt Bold";
+    font-size: 16px;
+    margin: 5px;
+    padding-left: 50px;
+    text-transform: uppercase;
+}
+/* line 78, ../sass/jamifind/_messages.scss */
+.message-single .time {
+    color: #878595;
+    font-family: "Hind Medium";
+    font-size: 12px;
+    padding-left: 50px;
+}
+
+/* line 86, ../sass/jamifind/_messages.scss */
+.message-content {
+    color: #18152b;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 0 60px 0 0;
+    position: static;
+}
+/* line 93, ../sass/jamifind/_messages.scss */
+.message-content i {
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #2b2a3b;
+    font-size: 40px;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+}
+
+/* line 103, ../sass/jamifind/_messages.scss */
+.conversation {
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: #2b2a3b;
+    bottom: 0;
+    padding: 25px 15px;
+    position: fixed;
+    right: -340px;
+    top: 0;
+    width: 325px;
+}
+/* line 113, ../sass/jamifind/_messages.scss */
+.conversation.is-opened {
+    right: 0;
+}
+/* line 119, ../sass/jamifind/_messages.scss */
+.conversation.is-opened-compose .conversation-single {
+    display: none;
+}
+
+/* line 125, ../sass/jamifind/_messages.scss */
+.conversation-container {
+    overflow: auto;
+}
+
+/* line 129, ../sass/jamifind/_messages.scss */
+.conversation-close {
+    border-bottom: 4px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+}
+/* line 133, ../sass/jamifind/_messages.scss */
+.conversation-close .close-link {
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    color: #fabc09;
+    display: inline-block;
+    font-family: "Hind Bold";
+    font-size: 14px;
+    text-transform: uppercase;
+}
+/* line 141, ../sass/jamifind/_messages.scss */
+.conversation-close .close-link i {
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    color: #fff;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+}
+/* line 149, ../sass/jamifind/_messages.scss */
+.conversation-close .close-link:hover, .conversation-close .close-link:active {
+    opacity: 0.8;
+    text-decoration: none;
+}
+/* line 154, ../sass/jamifind/_messages.scss */
+.conversation-close .close-link:hover i, .conversation-close .close-link:active i {
+    color: #fabc09;
+}
+
+/* line 161, ../sass/jamifind/_messages.scss */
+.conversation-single {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 20px 0;
+}
+/* line 166, ../sass/jamifind/_messages.scss */
+.conversation-single .message-picture {
+    float: left;
+    margin-right: 15px;
+}
+/* line 171, ../sass/jamifind/_messages.scss */
+.conversation-single .name,
+.conversation-single .time,
+.conversation-single .text {
+    padding-left: 55px;
+}
+/* line 177, ../sass/jamifind/_messages.scss */
+.conversation-single .name {
+    font-family: "CooperHewitt Bold";
+    font-size: 14px;
+    margin: 0 0 2px;
+    text-transform: uppercase;
+}
+/* line 184, ../sass/jamifind/_messages.scss */
+.conversation-single .time {
+    font-size: 12px;
+}
+/* line 188, ../sass/jamifind/_messages.scss */
+.conversation-single .text {
+    line-height: 18px;
+    margin: 0;
+}
+
+/* line 194, ../sass/jamifind/_messages.scss */
+.conversation-send {
+    bottom: 20px;
+    left: 15px;
+    position: absolute;
+    right: 15px;
+}
+/* line 200, ../sass/jamifind/_messages.scss */
+.conversation-send .btn {
+    margin-top: 10px;
+}
+
 /* line 1, ../sass/jamifind/_login.scss */
 .login-page {
     background: url(../images/background-login.jpg) no-repeat;
@@ -9557,21 +9785,26 @@ header .search-block .btn-search:focus {
     min-height: 900px;
 }
 /* line 6, ../sass/jamifind/_login.scss */
+.login-page.signup-page {
+    background-image: url(../images/background-signup.jpg);
+}
+/* line 10, ../sass/jamifind/_login.scss */
 .login-page .login-container {
     position: fixed;
     left: 0;
     right: 0;
     margin: 100px auto;
+    top: 0;
     width: 385px;
 }
-/* line 13, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-header {
-    background: #2b2a3b url(../images/login-header.png) no-repeat;
+/* line 19, ../sass/jamifind/_login.scss */
+.login-page .login-header {
+    background: rgba(43, 42, 59, 0.95) url(../images/login-header.png) no-repeat;
     background-position: center bottom;
     height: 66px;
 }
-/* line 18, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-header h1 {
+/* line 24, ../sass/jamifind/_login.scss */
+.login-page .login-header h1 {
     color: #fff;
     font-size: 26px;
     font-weight: normal;
@@ -9580,59 +9813,69 @@ header .search-block .btn-search:focus {
     text-align: center;
     text-transform: uppercase;
 }
-/* line 29, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body {
+/* line 35, ../sass/jamifind/_login.scss */
+.login-page .login-body {
     background: #fff;
     padding: 15px 35px 10px;
 }
-/* line 33, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .form-control {
+/* line 39, ../sass/jamifind/_login.scss */
+.login-page .login-body .form-control {
     border: 2px solid #414141;
     height: 40px;
 }
-/* line 38, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .btn-submit {
+/* line 44, ../sass/jamifind/_login.scss */
+.login-page .login-body .btn-submit {
+    font-size: 14px;
     padding: 9px 12px;
 }
-/* line 42, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .separator {
+/* line 49, ../sass/jamifind/_login.scss */
+.login-page .login-body .separator {
     border-top: 2px solid #414141;
     margin-top: 25px;
     position: relative;
     text-align: center;
 }
-/* line 48, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .separator img {
+/* line 55, ../sass/jamifind/_login.scss */
+.login-page .login-body .separator img {
     background: #fff;
     padding: 0 10px;
     position: relative;
     top: -15px;
 }
-/* line 58, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .login-buttons .btn {
+/* line 65, ../sass/jamifind/_login.scss */
+.login-page .login-body .login-buttons .btn {
     color: #fff;
     font-family: "Hind Semibold";
     font-size: 14px;
     margin-bottom: 15px;
     position: relative;
 }
-/* line 65, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .login-buttons .btn.facebook {
+/* line 72, ../sass/jamifind/_login.scss */
+.login-page .login-body .login-buttons .btn.facebook {
     background: #336699;
 }
-/* line 69, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .login-buttons .btn.soundcloud {
+/* line 76, ../sass/jamifind/_login.scss */
+.login-page .login-body .login-buttons .btn.soundcloud {
     background: #f85d0f;
 }
-/* line 73, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-body .login-buttons .btn i {
+/* line 80, ../sass/jamifind/_login.scss */
+.login-page .login-body .login-buttons .btn i {
     font-size: 22px;
     left: 10px;
     position: absolute;
     top: 5px;
 }
-/* line 83, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-footer {
+/* line 89, ../sass/jamifind/_login.scss */
+.login-page .login-body .select-label {
+    display: block;
+    font-family: "Hind Semibold";
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+}
+/* line 99, ../sass/jamifind/_login.scss */
+.login-page .login-footer {
     background: #2b2a3b;
     color: #fff;
     font-family: "CooperHewitt Book";
@@ -9641,12 +9884,37 @@ header .search-block .btn-search:focus {
     margin-top: 15px;
     text-align: center;
 }
-/* line 92, ../sass/jamifind/_login.scss */
-.login-page .login-container .login-footer a {
+/* line 108, ../sass/jamifind/_login.scss */
+.login-page .login-footer a {
     display: inline-block;
     font-size: 15px;
     margin-left: 7px;
     font-family: "CooperHewitt Bold";
     padding-top: 12px;
     text-transform: uppercase;
+}
+/* line 118, ../sass/jamifind/_login.scss */
+.login-page .checkboxes-list {
+    border: 2px solid #414141;
+    margin: 0;
+    padding: 15px;
+    list-style: none;
+}
+/* line 124, ../sass/jamifind/_login.scss */
+.login-page .checkboxes-list li:not(.last) {
+    margin-bottom: 10px;
+}
+/* line 128, ../sass/jamifind/_login.scss */
+.login-page .checkboxes-list label {
+    font-weight: normal;
+    margin: 0;
+    text-transform: uppercase;
+}
+/* line 134, ../sass/jamifind/_login.scss */
+.login-page .checkboxes-list input[type="checkbox"] + label span {
+    top: 0;
+}
+/* line 138, ../sass/jamifind/_login.scss */
+.login-page .checkboxes-list input[type="checkbox"]:checked + label span {
+    top: -3px;
 }

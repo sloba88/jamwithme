@@ -7,7 +7,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-        <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"> -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- Bootstrap -->
         <link href="{{ asset('/css/jquery-ui.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/select2.css') }}" rel="stylesheet"/>
@@ -47,7 +47,7 @@
     </script>
 
 </head>
-<body>
+<body class="{% block bodyclasses %}{% endblock %}">
 
 <header>
     <div class="container-fluid">
