@@ -6,6 +6,13 @@ $(function () {
 
     $('select').select2();
 
+    //scrollbar plugin
+    if ($('.view-tab-container').length && $('.shouts-listing').length) {
+        $('.view-tab-container, .shouts-listing').perfectScrollbar({
+            suppressScrollX: true
+        });
+    }
+
     $('input[type=checkbox]').next('label').prepend('<span></span>');
 
     //activates tooltip
@@ -35,6 +42,15 @@ $(function () {
     conversations();
 
     conversationHeight();
+
+    sidebarHeight();
+
+    peopleGrid();
+
+    $(window).resize(function() {
+        conversationHeight();
+        sidebarHeight();
+    });
 
     //activate tabs
     tabsToggle($('.tabs-activate'));
@@ -365,6 +381,37 @@ function filtersToggle() {
     });
 }
 
+function peopleGrid() {
+    var $peopleGrid = $('.people-listing-grid');
+
+    $peopleGrid.on('mouseenter', '.people-grid', function() {
+        var $this = $(this),
+            $tags = $this.find('.tags'),
+            $compatibilityBox = $this.find('.compatibility-box');
+
+        $this.addClass('hovered');
+
+        setTimeout(function() {
+            if ($this.hasClass('hovered')) {
+                $tags.fadeIn(300);
+                $compatibilityBox.removeClass('hide').fadeIn(100);
+            }
+        }, 200)
+
+    });
+
+    $peopleGrid.on('mouseleave', '.people-grid', function() {
+        var $this = $(this),
+            $tags = $this.find('.tags'),
+            $compatibilityBox = $this.find('.compatibility-box');
+
+        $this.removeClass('hovered');
+
+        $tags.hide();
+        $compatibilityBox.addClass('hide').hide();
+    });
+}
+
 function tabsToggle(object) {
     var $btns = object.find('a'); //all buttons
     $viewTabContainer = $('.view-tab-container');//tabs container
@@ -403,6 +450,21 @@ function tabsToggle(object) {
     });
 }
 
+function sidebarHeight() {
+    var windowHeight = $(window).height(),
+        $mainContentInner = $('.main-content-inner'),
+        $viewTabContainer = $mainContentInner.children('.view-tab-container'),
+        eventDivHeight = $mainContentInner.children('.event').height(),
+        filtersAreaHeight = $mainContentInner.children('.filters-area').height();
+
+    $('.sidebar-inner').height(windowHeight - 70);
+
+    $mainContentInner.height(windowHeight - 100);
+
+    $('.shouts-listing').height($('.sidebar-inner').height() - 374);
+
+    $viewTabContainer.height($mainContentInner.height() - eventDivHeight - filtersAreaHeight - 39);
+}
 
 function conversations() {
     var $conversation = $('.conversation'),

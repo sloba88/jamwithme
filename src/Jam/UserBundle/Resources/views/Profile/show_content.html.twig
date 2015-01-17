@@ -1,12 +1,18 @@
 {% set genresMatch = 0 %}
 {% set artistsMatch = 0 %}
 
+<style>
+    .teacher-instruments .teacher-instruments-inner {
+        padding: 20px 20px 0 10px;
+    }
+</style>
+
 {# TODO: TEACHER #}
 
 <div class="col-sm-10 teacher-container grey">
     <div class="row teacher-header">
         <section class="col-sm-5 teacher-info">
-            <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'medium_thumb' }) }}" alt="Teacher">
+            <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'my_medium_1' }) }}" alt="Teacher">
 
             <div class="info">
                 <h1>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</h1>
