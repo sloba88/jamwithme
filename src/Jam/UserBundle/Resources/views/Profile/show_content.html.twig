@@ -23,7 +23,7 @@
                         </div>
                     {% endif %}
                 {% endif %}
-                <div class="bio">{{ user.genderText }}, {{ user.age }} years</div>
+                <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
                 <p>{{ user.aboutMe }}</p>
 
                 {% if app.user != user %}
@@ -143,7 +143,10 @@
                         {% endif %}
 
                         {% for v in user.videos %}
-                            <iframe width="140" height="140" class="profile-media-wall-item" src="{{ v.url }}??autoplay=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+                            <div class="image-holder profile-media-wall-item">
+                                <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" /></a>
+                            </div>
+                            {#<iframe width="140" height="140" class="profile-media-wall-item fancybox" src="" frameborder="0" allowfullscreen></iframe>#}
                         {% endfor %}
 
                     </div>
@@ -166,6 +169,10 @@
 
             <div class="shouts-listing-container">
                 <div class="shouts-listing">
+
+                    {% if user.shouts|length == 0 %}
+                        <h5>No shouts yet.</h5>
+                    {% endif %}
 
                     {% for s in user.shouts %}
 

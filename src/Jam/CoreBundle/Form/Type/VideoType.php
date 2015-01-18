@@ -31,11 +31,13 @@ class VideoType extends AbstractType
             $user = $this->securityContext->getToken()->getUser();
             $musicianVideo = $event->getForm()->getData();
             $musicianVideo->setCreator($user);
-
+            $musicianVideo->setUrl($musicianVideo->getUrl());
+            /*
             if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $musicianVideo->getUrl(), $match)) {
                 $video_id = $match[1];
                 $musicianVideo->setUrl('//www.youtube.com/embed/'.$video_id);
             }
+            */
 
         });
     }

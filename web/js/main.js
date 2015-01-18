@@ -130,6 +130,10 @@ $(function () {
 
     });
 
+    if (jQuery().fancybox) {
+        $(".fancybox").fancybox();
+    }
+
     $("#addPhotosToggle").on('click', function(e){
         e.preventDefault();
         $(".profile-add-photos").fadeToggle();
@@ -298,6 +302,32 @@ $(function () {
 
             self.val('');
         }
+    });
+
+    $('.ytvideo').each(function(){
+        var src = $(this).attr('href');
+        var ytId = youtubeParser(src);
+        var ytImg = 'http://img.youtube.com/vi/'+ytId+'/0.jpg';
+        $(this).find('img').attr('src', ytImg);
+    });
+
+    $('.ytvideo').on('click', function() {
+        $.fancybox({
+            'padding'		: 0,
+            'autoScale'		: false,
+            'transitionIn'	: 'none',
+            'transitionOut'	: 'none',
+            'width'			: 640,
+            'height'		: 385,
+            'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+            'type'			: 'swf',
+            'swf'			: {
+                'wmode'				: 'transparent',
+                'allowfullscreen'	: 'true'
+            }
+        });
+
+        return false;
     });
 
 });
@@ -516,4 +546,14 @@ function conversationHeight() {
         coneversationSendHeight = $('.conversation-send').height();
 
     $conversationContainer.height(conversationHeight - coneversationCloseHeight - coneversationSendHeight - 30);
+}
+
+function youtubeParser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match&&match[7].length==11){
+        return match[7];
+    }else{
+
+    }
 }
