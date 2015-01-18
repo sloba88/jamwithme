@@ -275,14 +275,6 @@ $(function () {
         $("#addPhotosToggle").removeClass('active');
     });
 
-    socket.on('myUnreadMessagesCount', function(data){
-        if (data!=0){
-            $("#messages-nav .badge").text(data);
-        }else{
-            $("#messages-nav .badge").text('');
-        }
-    });
-
     $(".send-message").on('keyup', function(e){
         if(e.which == 13) {
             var self = $(this);
@@ -329,8 +321,16 @@ $(function () {
 
         return false;
     });
-
 });
+
+socket.on('myUnreadMessagesCount', function(data){
+    if (data!=0){
+        $(".inbox .badge").text(data);
+    }else{
+        $(".inbox .badge").text('');
+    }
+});
+
 
 function addCollectionForm(collectionHolder, type) {
     var prototype = collectionHolder.data('prototype');
@@ -513,6 +513,8 @@ function conversations() {
         var userID = $(this).data('id');
         $('*[data-user="'+user+'"]').show();
         $('*[data-user2="'+user+'"]').show();
+        $(".send-message").data('toid', userID);
+        $(".send-message").data('tousername', user);
 
         scrollToBottom();
 
