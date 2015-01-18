@@ -201,6 +201,12 @@ class User extends BaseUser
     private $avatar;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     */
+    protected $hourlyRate;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -1065,5 +1071,28 @@ class User extends BaseUser
     public function getIsJammer()
     {
         return $this->isJammer;
+    }
+
+    /**
+     * Set hourlyRate
+     *
+     * @param string $hourlyRate
+     * @return User
+     */
+    public function setHourlyRate($hourlyRate)
+    {
+        $this->hourlyRate = $hourlyRate;
+
+        return $this;
+    }
+
+    /**
+     * Get hourlyRate
+     *
+     * @return string 
+     */
+    public function getHourlyRate()
+    {
+        return $this->hourlyRate;
     }
 }

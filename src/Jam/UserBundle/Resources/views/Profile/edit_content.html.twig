@@ -87,8 +87,6 @@
             <li><a href="#networks" data-tab="4">Networks</a></li>
         </ul>
 
-        <br />
-
         <div class="view-tab-container clearfix">
 
             <div class="view-tab is-active" id="personal-info" data-tab="1">
@@ -133,25 +131,6 @@
 
                 <div class="col-md-6">
 
-                    {{ form_row(form.aboutMe) }}
-
-                    <div id="musician_instruments" data-prototype="{{ form_widget(form.instruments.vars.prototype)|e }}">
-                        {% for f in form.instruments %}
-                            <div class="col-md-8">
-                                {{ form_row(f.instrument) }}
-                            </div>
-                            <div class="col-md-4">
-                                {{ form_row(f.skillLevel) }}
-                            </div>
-                        {% endfor %}
-                    </div>
-
-                    <a href="#" class="btn btn-sm btn-default" id="add_another_instrument"><span class="glyphicon glyphicon-plus-sign"></span> Add another instrument</a>
-
-                </div>
-
-                <div class="col-md-6">
-
                     <h4>I want to:</h4>
 
                     {{ form_widget(form.isVisitor) }}
@@ -166,6 +145,35 @@
 
                     {{ form_widget(form.isTeacher) }}
                     {{ form_label(form.isTeacher) }}
+
+                    <div class="clearfix" style="margin-bottom: 10px"></div>
+
+                    <div class="col-md-7"><label>What do you play?</label></div>
+                    <div class="col-md-5"><label>How good are you?</label></div>
+
+                    <div id="musician_instruments" data-prototype="{{ form_widget(form.instruments.vars.prototype)|e }}">
+                        {% for f in form.instruments %}
+                            <div class="col-md-7">
+                                {{ form_widget(f.instrument) }}
+                            </div>
+                            <div class="col-md-5">
+                                {{ form_widget(f.skillLevel) }}
+                            </div>
+                            <div class="clearfix" style="margin-bottom: 10px"></div>
+                        {% endfor %}
+                    </div>
+                    <br />
+                    <a href="#" class="btn btn-sm btn-default" id="add_another_instrument"><span class="glyphicon glyphicon-plus-sign"></span> Add another instrument</a>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    {{ form_row(form.aboutMe) }}
+
+                    {% if app.user.isTeacher %}
+                        {{ form_row(form.hourlyRate) }}
+                    {% endif %}
 
                     {{ form_row(form.genres) }}
 

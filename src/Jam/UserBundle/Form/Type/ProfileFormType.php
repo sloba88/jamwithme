@@ -34,6 +34,10 @@ class ProfileFormType extends BaseType
             'required' => false
         ));
 
+        $builder->add('hourlyRate', 'text', array(
+            'required' => false
+        ));
+
         $builder->add('isVisitor', 'checkbox', array(
             'required' => false,
             'label' => 'Hang around'
