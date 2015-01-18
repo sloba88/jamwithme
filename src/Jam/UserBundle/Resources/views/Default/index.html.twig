@@ -32,6 +32,7 @@
     <script>
 
         $(function() {
+            {# TODO: similar nearby feature will be done later
             _.templateSettings.variable = "mu";
             var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
 
@@ -43,7 +44,8 @@
                     $( ".similar-nearby-box" ).append(musicianBoxTemplate( v ) );
                 });
             });
-
+                #}
+            
             $(".fancybox").fancybox();
         });
     </script>
