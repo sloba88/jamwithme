@@ -87,9 +87,13 @@ $(function () {
         $container.isotope('layout');
     });
 
-    var jamMembersCollectionHolder = $("#jam_members")
-    var musicianInstrumentsCollectionHolder = $("#musician_instruments")
-    var videosCollectionHolder = $("#musician_videos")
+    $("a.my-stuff").on("shown.tab", function (e) {
+        $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+    });
+
+    var jamMembersCollectionHolder = $("#jam_members");
+    var musicianInstrumentsCollectionHolder = $("#musician_instruments");
+    var videosCollectionHolder = $("#musician_videos");
 
     $("#add_another_image").click(function(e){
         e.preventDefault();
@@ -207,10 +211,10 @@ $(function () {
     });
 
     $('#list-tab-btn').on('shown.bs.tab', function (e) {
-        $(".filter-container").prependTo("#list");
+        $('.filter-container').prependTo("#list");
         $('.tabs .active').removeClass('active');
         $(this).addClass('active');
-        $(".filter-container").parents('.tab-content').removeClass('full-screen');
+        $('.filter-container').parents('.tab-content').removeClass('full-screen');
         localStorage.setItem("view", "list");
     });
 

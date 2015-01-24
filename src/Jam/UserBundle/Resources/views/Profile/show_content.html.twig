@@ -60,7 +60,6 @@
                     {% endif %}
                 {% endif %}
                 <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
-                <p>{{ user.aboutMe }}</p>
 
                 {% if app.user != user %}
                     <a href="" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i>Message</a>
@@ -151,8 +150,8 @@
             {% endif %}
 
             <ul class="tabs-activate profile-tabs">
-                <!-- <li><a href="#" data-tab="1" class="is-active">About</a></li> -->
-                <li><a href="#" data-tab="1" class="is-active">My Stuff</a></li>
+                <li><a href="#" data-tab="1" class="is-active">About</a></li>
+                <li><a href="#" data-tab="2" class="my-stuff">My Stuff</a></li>
                 <li class="last">
                     {% if app.user != user %}
                         <ul class="compatibility-box">
@@ -170,7 +169,11 @@
 
             <div class="view-tab-container teacher-text-container">
 
-                <div class="view-tab stuff is-active" data-tab="1">
+                <div class="view-tab about is-active" data-tab="1">
+                    <p>{{ user.aboutMe }}</p>
+                </div>
+
+                <div class="view-tab stuff" data-tab="2">
 
                     <div class="profile-media-wall">
 
