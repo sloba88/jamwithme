@@ -3,7 +3,7 @@
 
 <style>
     .teacher-instruments .teacher-instruments-inner {
-        padding: 20px 20px 0 10px;
+        padding: 20px 0px 0 30px;
     }
     /* line 737, ../sass/jamifind/_main.scss */
     .text-header {
@@ -62,7 +62,7 @@
                 <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
 
                 {% if app.user != user %}
-                    <a href="" class="btn btn-primary"><i class="glyphicon glyphicon-envelope"></i>Message</a>
+                    <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}"><i class="glyphicon glyphicon-envelope"></i>Message</a>
                 {% endif %}
             </div>
         </section>
@@ -255,28 +255,3 @@
     </div>
 
 </div>
-
-
-{% if app.user != user %}
-
-    <!-- Modal -->
-    <div class="modal fade" id="messageModal" data-id="{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Send Message</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="conversation-message-box"></div>
-                    <textarea class="form-control send-message" maxlength="250" data-toID="{{ user.id }}" data-toUsername="{{ user.username }}" cols="3"
-                              placeholder="Say something cool..."></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-{% endif %}

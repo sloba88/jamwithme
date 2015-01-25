@@ -235,20 +235,14 @@ $(function () {
         }
     });
 
-    $('#messageModal').on('show.bs.modal', function (e) {
-        socket.emit('getOurConversation', { userID:  $("#messageModal").data('id')});
-    });
-
     _.templateSettings.variable = "rc";
     var messageTemplate      = _.template($( "#messageTemplate" ).html());
 
     socket.on('ourConversation', function (data) {
-        $( "#messageModal .conversation-message-box").html('');
+        $(".conversation-message-box").html('');
         $.each(data, function( index, value ) {
-            $( "#messageModal .conversation-message-box" ).append(messageTemplate( value ) );
+            $(".conversation-message-box").append(messageTemplate(value));
         });
-
-        $( "#messageModal .conversation-message-box p").fadeIn();
         setTimeout(function(){scrollToBottom()},300);
     });
 
@@ -508,6 +502,31 @@ function conversations() {
 
     //open
     $('.messages-container').on('click', '.message-single', function() {
+        $conversation.removeClass('is-opened-compose');
+        $conversation.addClass('is-opened');
+        $overlay.removeClass('hide');
+
+        $(".conversation-message-box .conversation-single").hide();
+        var user = $(this).data('user');
+        var userID = $(this).data('id');
+        $('*[data-user="'+user+'"]').show();
+        $('*[data-user2="'+user+'"]').show();
+        $(".send-message").data('toid', userID);
+        $(".send-message").data('tousername', user);
+
+        scrollToBottom();
+
+        setTimeout(function(){
+            socket.emit('conversationIsRead', { userID: userID });
+        },500);
+
+    });
+
+    $('.open-conversation').on('click', function(e){
+        e.preventDefault();
+
+        socket.emit('getOurConversation', { userID:  $(this).data('id')});
+
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
         $overlay.removeClass('hide');

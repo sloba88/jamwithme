@@ -2,63 +2,25 @@
 
 {% block main_content %}
 
-        <div class="row messages-header">
-            <div class="col-xs-12">
-                <h1 class="title">Messages</h1>
-                <a href="#" class="btn btn-compose">+ Compose new message</a>
-            </div>
-        </div><!--messages-header ends-->
-
-        <div class="row messages-container">
-            <div class="col-xs-12 conversations-box"></div>
-        </div><!--messages-container ends-->
-
-    <div class="conversation">
-
-        <div class="conversation-close clearfix">
-            <a href="#" class="close-link"><i class="glyphicon glyphicon-remove"></i>close conversation</a>
-        </div><!--conversation-close ends-->
-
-        <div class="conversation-new">
-            <input type="text" class="form-control" placeholder="+ Type a name">
+    <div class="row messages-header">
+        <div class="col-xs-12">
+            <h1 class="title">Messages</h1>
+            <a href="#" class="btn btn-compose">+ Compose new message</a>
         </div>
+    </div><!--messages-header ends-->
 
-        <div class="conversation-container conversation-message-box"></div><!--conversation-container ends-->
-
-        <div class="conversation-send">
-            <form role="form">
-                <textarea class="form-control send-message" rows="3" placeholder="Write message"></textarea>
-                <button type="submit" class="btn btn-primary">Send</button>
-            </form>
-        </div><!--conversation-send ends-->
-
-    </div><!--conversation ends-->
-
-    <div class="overlay hide"></div>
-
-    {#
-
-    <h3>My Messages</h3>
-
-    <div class="row">
-
-    <div class="col-md-3 conversations-box"></div>
-
-    <div class="col-md-9">
-        <div class="conversation-message-box clearfix"></div>
-        <textarea class="form-control send-message" maxlength="250" data-toid="" data-tousername="" rows="3" placeholder="Say something cool..." ></textarea>
-    </div>
-
-    </div>
-
-    #}
+    <div class="row messages-container">
+        <div class="col-xs-12 conversations-box"></div>
+    </div><!--messages-container ends-->
 
     <script type="text/template" id="conversationTemplate">
         <% _.each( rc, function( c, k ){ %>
         <div class="row message-single conversation-box <% if (k == 0 ){ %>first<% } %>" data-user="<%- c.username %>" data-id="<%- c.id %>">
             <div class="col-xs-4 col-sm-3 message-info">
                 <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- c.username %>/avatar" alt="Pic">
+
                 <h3 class="name"><%- c.username %></h3>
+
                 <div class="time">
                     05 Nov 2014
                 </div>
@@ -73,23 +35,6 @@
         <% }); %>
     </script>
 
-    <script type="text/template" id="messageTemplate">
-        <% _.each( rc.messages, function( m ){ %>
-        <% createdAt = new Date(m.createdAt); %>
-        <div class="conversation-single" data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>">
-            <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- m.from.username %>/avatar" alt="Pic">
-            <h4 class="name"><%- m.from.username %></h4>
-            <div class="time">
-                <%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %>
-            </div>
-            <p class="text">
-                <%- m.message %>
-            </p>
-        </div>
-
-        <% }); %>
-    </script>
-
 {% endblock %}
 
 {% block javascripts %}
@@ -98,62 +43,38 @@
 
         var myID = {{ app.user.id }};
 
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
 
-            setTimeout(function(){
-                socket.emit('getMyMessages', { userID: 'myID' });
-            },500);
+            setTimeout(function () {
+                socket.emit('getMyMessages', {userID: 'myID'});
+            }, 500);
 
             _.templateSettings.variable = "rc";
-            var messageTemplate      = _.template($( "#messageTemplate" ).html());
-            var conversationTemplate = _.template($( "#conversationTemplate" ).html());
+            var messageTemplate = _.template($("#messageTemplate").html());
+            var conversationTemplate = _.template($("#conversationTemplate").html());
             var conversations = [];
 
             socket.on('myMessages', function (data) {
 
-                $.each(data, function( index, value ) {
-                    $( ".conversation-message-box" ).append(messageTemplate( value ) );
+                $.each(data, function (index, value) {
+                    $(".conversation-message-box").append(messageTemplate(value));
 
-                    $.each(value.messages, function( index, val ) {
+                    $.each(value.messages, function (index, val) {
                         var other;
-                        if (val.to.id == myID){
+                        if (val.to.id == myID) {
                             other = val.from;
-                        }else{
+                        } else {
                             other = val.to;
                         }
-                        if (!_.findWhere(conversations, other)){
+                        if (!_.findWhere(conversations, other)) {
                             conversations.push(other);
                         }
                     });
                 });
 
-                $( ".conversations-box" ).append( conversationTemplate( conversations ) );
-
-                //$(".conversation-box:first").click();
+                $(".conversations-box").append(conversationTemplate(conversations));
                 scrollToBottom();
-
             });
-/*
-            $(".conversations-box").on('click', '.conversation-box', function(e){
-                //e.preventDefault();
-                $(".conversation-box").removeClass('active');
-                $(this).addClass('active');
-                $(".conversation-message-box p").hide();
-                var user = $(this).data('user');
-                var userID = $(this).data('id');
-                $('*[data-user="'+user+'"]').show();
-                $('*[data-user2="'+user+'"]').show();
-                $(".send-message").data('toid', userID);
-                $(".send-message").data('tousername', user);
-                scrollToBottom();
-
-                //this conversation has been read
-                setTimeout(function(){
-                    socket.emit('conversationIsRead', { userID: userID });
-                },500)
-            });
-            */
-
         });
     </script>
 
