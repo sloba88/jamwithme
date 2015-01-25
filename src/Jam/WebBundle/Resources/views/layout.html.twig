@@ -5,10 +5,12 @@
     {% include "JamWebBundle::navigation.html.twig" %}
 
     <section class="col-sm-7 main-content">
+        <div class="main-content-inner">
 
-        {% block main_content %}{% endblock %}
-        {% block fos_user_content %}{% endblock fos_user_content %}
+            {% block main_content %}{% endblock %}
+            {% block fos_user_content %}{% endblock fos_user_content %}
 
+        </div><!--main content inner ends-->
     </section><!--main-content ends-->
 
     {# why shouts why not general right sidebar #}
