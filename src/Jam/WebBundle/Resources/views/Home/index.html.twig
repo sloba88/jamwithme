@@ -33,7 +33,6 @@
     <div class="filters-area">
         <div class="filters-heading clearfix">
             <h1 class="filters-title">find compatible musicians</h1>
-            <a href="#" data-toggle="collapse" data-target=".filters-by" class="dropup filters-hide"><span class="text">Hide filters</span><span class="caret"></span></a>
         </div>
 
         <form id="main-filter-form">
@@ -68,8 +67,8 @@
 
             <div class="tabs-activate filters-preview">
                 <ul class="clearfix">
-                    <li><a href="#" data-tab="1" class="is-active"><i class="glyphicon glyphicon-th-large"></i>grid</a></li>
-                    <li><a href="#" data-tab="2" id="map-view"><i class="glyphicon glyphicon-map-marker"></i>map</a></li>
+                    <li><a href="#" data-tab="1" class="tab-grid is-active">grid</a></li>
+                    <li><a href="#" data-tab="2" id="map-view" class="tab-map">map</a></li>
                     <li class="last">
                         <input type="checkbox" id="lessons-checkbox" />
                         <label for="lessons-checkbox">Show only people providing lesions</label>
@@ -114,7 +113,7 @@
 
 
     <div class="shouts-feed">
-        <h3><i class=" glyphicon glyphicon-flash"></i>Shouts feed</h3>
+        <h3>Shouts feed</h3>
         <form role="form" action="{{ path('home') }}" method="POST">
             {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3'}}) }}
             {{ form_widget(form.send, {'attr': {'class': 'btn btn-primary'}}) }}
@@ -123,8 +122,6 @@
     </div><!--shouts-feed ends-->
 
     <div class="shouts-listing-container">
-        <a href="#" class="filter">Filter shouts<span class="caret"></span></a>
-
         <div class="shouts-listing"></div><!--shouts-listing ends-->
     </div><!--shouts-listing-container ends-->
 

@@ -1,13 +1,16 @@
 {% block location_widget %}
+    <style>
+        .dropdown-menu{ z-index: 99}
+    </style>
 <div class="location_widget">
     <div class="input-group">
         {{ block('form_widget') }}
         <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="position:relative; top:-8px;">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="position:relative; top:8px;">
                 Map
                 <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu pull-right" style="display:block;visibility:hidden;z-index:999;">
+            <ul class="dropdown-menu pull-right" style="display:block;display:none;">
                 <li>
                     <div id="_location_map" class="location_map" style="width:560px;height:270px;"></div>
                 </li>
