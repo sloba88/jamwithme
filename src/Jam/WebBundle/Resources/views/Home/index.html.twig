@@ -2,6 +2,8 @@
 
 {% block bodyclasses %}page-dashboard{% endblock %}
 
+{% block bodystyle %}background-image: url({{ asset('images/background-dashboard.jpg') }}){% endblock %}
+
 {% block main_content %}
 
 
@@ -79,7 +81,7 @@
 
     </div><!--filters-area ends-->
 
-    <div class="view-tab-container">
+    <div class="view-tab-container with-scrollbar">
         <div class="view-tab people-listing-grid row is-active" data-tab="1">
 
         </div><!--people-listing-grid ends-->
@@ -122,7 +124,8 @@
     </div><!--shouts-feed ends-->
 
     <div class="shouts-listing-container">
-        <div class="shouts-listing"></div><!--shouts-listing ends-->
+        <h4 class="shouts">Shouts</h4>
+        <div class="shouts-listing shouts-listing-filter with-scrollbar"></div><!--shouts-listing ends-->
     </div><!--shouts-listing-container ends-->
 
 
