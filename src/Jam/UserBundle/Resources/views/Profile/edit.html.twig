@@ -4,6 +4,8 @@
     {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
 {% endblock fos_user_content %}
 
+{% block bodyclasses %}page-settings{% endblock %}
+
 {% block javascripts %}
     <link href="{{ asset('/css/jquery.Jcrop.min.css') }}" rel="stylesheet"/>
     <script src="/js/fileupload/vendor/jquery.ui.widget.js"></script>
