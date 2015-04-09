@@ -96,22 +96,26 @@
         </section>
         <!--teacher-instruments ends-->
 
-        <section class="col-sm-4 teacher-favorites reordered">
-            <ul class="tags">
-                {% for g in user.genres %}
+        <section class="col-sm-4 teacher-favorites dark">
+            <div class="tags-container">
+                <ul class="tags">
+                    {% for g in user.genres %}
 
-                    <li><a href="{{ path('musicians', {'s[genres][]' : g.id }) }}">{{ g.name }}</a></li>
+                        <li><a href="{{ path('musicians', {'s[genres][]' : g.id }) }}">{{ g.name }}</a></li>
 
-                    {# calculate compatibility for gerens#}
-                    {% for g2 in app.user.genres %}
-                        {% if g.id == g2.id %}
-                            {% set genresMatch = genresMatch +1 %}
-                        {% endif %}
+                        {# calculate compatibility for gerens#}
+                        {% for g2 in app.user.genres %}
+                            {% if g.id == g2.id %}
+                                {% set genresMatch = genresMatch +1 %}
+                            {% endif %}
+                        {% endfor %}
+
                     {% endfor %}
-
-                {% endfor %}
-            </ul>
-            <div class="favorite-group">
+                </ul>
+                <a href="#" class="show-all-tags"><i class="fa fa-angle-down"></i></a>
+            </div>
+            <!--influencers -->
+            <div class="favorite-group first with-scrollbar">
                 <span>Influencers:</span>
                 {% for a in user.artists %}
                     {{ a.name }},
@@ -123,7 +127,7 @@
                     {% endfor %}
                 {% endfor %}
             </div>
-            <div class="favorite-group">
+            <div class="favorite-group with-scrollbar">
                 <span>Favourite brands:</span>
                 {% for b in user.brands %}
                     {{ b.name }},
@@ -216,7 +220,7 @@
         <section class="col-sm-3 shouts-sidebar">
 
             <div class="shouts-feed">
-                <h3><i class=" glyphicon glyphicon-flash"></i>Shouts feed</h3>
+                <h3>Shouts feed</h3>
             </div>
             <!--shouts-feed ends-->
 

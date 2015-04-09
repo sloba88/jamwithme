@@ -1,3 +1,13 @@
+var availableTags = [{
+    label: "Samuel Adams",
+    icon: "images/search.png",
+    location: "San Francisco, USA"
+}, {
+    label: "Serena Livingston",
+    icon: "images/search.png",
+    location: "Helsinki, Finland"
+}, ];
+
 $(function () {
 
     $(".instrument-select").select2({
@@ -6,12 +16,8 @@ $(function () {
 
     $('select').select2();
 
-    //scrollbar plugin
-    if ($('.view-tab-container').length && $('.shouts-listing').length) {
-        $('.view-tab-container, .shouts-listing').perfectScrollbar({
-            suppressScrollX: true
-        });
-    }
+    //select plugin on dashboard updates height of main container on change
+    $('select').on("change", sidebarHeight);
 
     $('input[type=checkbox]').next('label').prepend('<span></span>');
 
@@ -46,6 +52,28 @@ $(function () {
     sidebarHeight();
 
     peopleGrid();
+
+    //scrollbar plugin
+    scrollbarPlugin();
+
+    //window resize after delay
+    var resizeTimer;
+    $(window).resize(function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            conversationHeight();
+            sidebarHeight();
+            peopleGrid();
+
+            //scrollbar plugin
+            scrollbarPlugin();
+        }, 50);
+    });
+
+    //search
+    autocomplete();
+
+    $('.show-all-tags').on('click', showAllTags);
 
     $(window).resize(function() {
         conversationHeight();
@@ -319,6 +347,44 @@ $(function () {
 
         return false;
     });
+
+    var $searchContainer = $('.search-block-container'),
+        $autocompleteInput = $("#autocomplete"),
+        $searchBlock = $autocompleteInput.parent();
+
+    if ($autocompleteInput.length) {
+
+        //jquery-ui autocomplete
+        $autocompleteInput.autocomplete({
+            delay: 10,
+            minLength: 0,
+            source: availableTags
+            // select: function( event, ui ) {
+            //           window.location.href = ui.item.value;
+            //     }
+        }).data("uiAutocomplete")._renderItem = function(ul, item) {
+            return $("<li />")
+                .data("item.autocomplete", item)
+                .append("<a><img src='" + item.icon + "' />" + "<span class='search-text'>" + item.label + "<span class='search-location'>" + item.location + "</span></span></a>")
+                .appendTo(ul);
+        };
+
+        $searchBlock.addClass('effects-ready');
+
+        $autocompleteInput.focus(function() {
+            $searchBlock.addClass('is-opened');
+        });
+
+        $autocompleteInput.blur(function() {
+            $autocompleteInput.val().length || $searchBlock.removeClass('is-opened');
+        });
+
+        //this is for responsive
+        $('.search-toggle').on('click', function() {
+            $(this).toggleClass('is-active');
+            $searchContainer.toggleClass('is-opened');
+        });
+    }
 });
 
 socket.on('myUnreadMessagesCount', function(data){
@@ -580,5 +646,76 @@ function youtubeParser(url){
         return match[7];
     }else{
 
+    }
+}
+
+function autocomplete() {
+
+    var $searchContainer = $('.search-block-container'),
+        $autocompleteInput = $("#autocomplete"),
+        $searchBlock = $autocompleteInput.parent();
+
+    if ($autocompleteInput.length) {
+
+        //jquery-ui autocomplete
+        $autocompleteInput.autocomplete({
+            delay: 10,
+            minLength: 0,
+            source: availableTags
+            // select: function( event, ui ) {
+            //           window.location.href = ui.item.value;
+            //     }
+        }).data("uiAutocomplete")._renderItem = function(ul, item) {
+            return $("<li />")
+                .data("item.autocomplete", item)
+                .append("<a><img src='" + item.icon + "' />" + "<span class='search-text'>" + item.label + "<span class='search-location'>" + item.location + "</span></span></a>")
+                .appendTo(ul);
+        };
+
+        $searchBlock.addClass('effects-ready');
+
+        $autocompleteInput.focus(function() {
+            $searchBlock.addClass('is-opened');
+        });
+
+        $autocompleteInput.blur(function() {
+            $autocompleteInput.val().length || $searchBlock.removeClass('is-opened');
+        });
+
+        //this is for responsive
+        $('.search-toggle').on('click', function() {
+            $(this).toggleClass('is-active');
+            $searchContainer.toggleClass('is-opened');
+        });
+    }
+}
+
+function showAllTags(e) {
+    e.preventDefault();
+
+    var $this = $(this),
+        $tagsContainer = $this.parent('.tags-container'),
+        $icon = $this.children('.fa');
+
+    if ($tagsContainer.hasClass('opened')) {
+        $tagsContainer.removeClass('opened');
+        $icon.removeClass('fa-angle-up').addClass('fa-angle-down');
+    } else {
+        $tagsContainer.addClass('opened');
+        $icon.removeClass('fa-angle-down').addClass('fa-angle-up');
+    }
+}
+
+function scrollbarPlugin() {
+
+    if ($('.with-scrollbar').length) {
+
+        if ($('.hidden-xs').is(':visible')) {
+            $('.with-scrollbar').perfectScrollbar({
+                suppressScrollX: true
+            });
+        } else {
+            $('.with-scrollbar').perfectScrollbar('destroy'); // Destroy
+        }
     }
 }
