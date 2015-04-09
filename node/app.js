@@ -8,6 +8,8 @@ var app = express();
 var server = app.listen(3000);
 var io = require('socket.io').listen(server);
 
+io.set('origins', '*178.62.189.52:*');
+
 var activeUsers = {};
 
 //TODO: authenticate user
