@@ -1,5 +1,7 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block bodyclasses %}login-page{% endblock %}
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
@@ -7,7 +9,7 @@
     <div>{{ error|trans }}</div>
 {% endif %}
 
-<div class="container-fluid login-page">
+<div class="container-fluid">
 
     <div class="login-container">
         <div class="login-header">
