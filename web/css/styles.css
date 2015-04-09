@@ -8517,6 +8517,7 @@ body {
     background-image: url(../images/background-dashboard.jpg);
     background-position: center top;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* line 15, ../sass/jamifind/_layout.scss */
