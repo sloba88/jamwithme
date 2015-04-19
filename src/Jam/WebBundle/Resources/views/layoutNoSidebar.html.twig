@@ -5,10 +5,10 @@
     {% include "JamWebBundle::navigation.html.twig" %}
 
     <section class="col-sm-10 main-content">
-
-        {% block main_content %}{% endblock %}
-        {% block fos_user_content %}{% endblock fos_user_content %}
-
+        <div class="main-content-inner">
+            {% block main_content %}{% endblock %}
+            {% block fos_user_content %}{% endblock fos_user_content %}
+        </div>
     </section><!--main-content ends-->
 
     <script type="text/template" id="musicianBoxTemplate">
