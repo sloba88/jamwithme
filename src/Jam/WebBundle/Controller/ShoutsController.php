@@ -61,7 +61,7 @@ class ShoutsController extends Controller
 
             $data_array = array(
                 'text' => $s->getText(),
-                'createdAt' => $s->getCreatedAt(),
+                'createdAt' => $s->getCreatedAt()->format('Y-m-d H:i'),
                 'musician' => array(
                     'username' => $m->getUsername(),
                     'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
