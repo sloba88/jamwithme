@@ -1,16 +1,15 @@
-var express = require('express')
-    , http = require('http');
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/jamwithme');
-
-var app = express();
-var server = app.listen(3000);
-var io = require('socket.io').listen(server);
+var express = require('express'),
+    http = require('http'),
+    Message = require('./schema'),
+    mongoose = require('mongoose'),
+    app = express(),
+    server = app.listen(3000),
+    io = require('socket.io').listen(server),
+    activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
 
-var activeUsers = {};
+mongoose.connect('mongodb://localhost:27017/jamwithme');
 
 //TODO: authenticate user
 
@@ -20,35 +19,10 @@ db.once('open', function callback () {
     // yay!
     console.log('connected to MONGO');
 
-    var Message = mongoose.model('Inbox',
-        new mongoose.Schema(
-            {
-                user: {
-                  id: Number,
-                  username: String
-                },
-                messages: [{
-                    from : {
-                        id: Number,
-                        username: String
-                    },
-                    to : {
-                        id: Number,
-                        username: String
-                    },
-                    message : String,
-                    createdAt : Date
-                }],
-                isRead: Boolean
-            }
-        ),
-        'Inbox');
-
     io.on('connection', function (socket) {
         socket.emit('registerConnectedUser', { hello: 'world' });
 
         socket.on('registerUserData', function (data) {
-
             socket.userID   = data.userID;
             socket.username = data.username;
             activeUsers[data.userID] = socket;
@@ -68,7 +42,6 @@ db.once('open', function callback () {
         });
 
         socket.on('newMessage', function (data) {
-
             var m = {
                 from: {
                     id: socket.userID,
@@ -154,7 +127,6 @@ db.once('open', function callback () {
         });
 
         socket.on('conversationIsRead', function (data) {
-
             Message.update({ 'user.id' : socket.userID, isRead: false, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, {
                 isRead: true
             }, function(err, numberAffected, rawResponse) {
