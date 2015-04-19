@@ -86,16 +86,6 @@ fos_user:
             form:
                 type: jam_user_profile
 
-assetic:
-    filters:
-        less:
-            node: /usr/local/bin/node
-            node_paths: [/usr/local/lib/node_modules]
-            apply_to: "\.less$"
-        cssrewrite: ~
-braincrafted_bootstrap:
-    less_filter: less
-
 stof_doctrine_extensions:
     default_locale: en
     orm:
