@@ -117,6 +117,7 @@
             <!--influencers -->
             <div class="favorite-group first with-scrollbar">
                 <span>Influencers:</span>
+                {% if user.artists|length == 0 %}None.{% endif %}
                 {% for a in user.artists %}
                     {{ a.name }},
                     {# calculate compatibility for gerens#}
@@ -138,82 +139,83 @@
 
     <div class="row">
         <section class="col-sm-9 main-content">
-
-            {% if user.isTeacher %}
-                <ul class="text-header clearfix">
-                    <li class="first">
-                        <img src="{{ asset('images/icon-notebook.png') }}" alt="Notebook">
-                        teacher
-                    </li>
-                    {% if user.hourlyRate %}
-                        <li class="rate">
-                            Hourly rate:<span>{{ user.hourlyRate }}</span>
+                {% if user.isTeacher %}
+                    <ul class="text-header clearfix">
+                        <li class="first">
+                            <img src="{{ asset('images/icon-notebook.png') }}" alt="Notebook">
+                            teacher
                         </li>
-                    {% endif %}
+                        {% if user.hourlyRate %}
+                            <li class="rate">
+                                Hourly rate:<span>{{ user.hourlyRate }}</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+
+                <ul class="tabs-activate profile-tabs">
+                    <li><a href="#" data-tab="1" class="is-active">About</a></li>
+                    <li><a href="#" data-tab="2" class="my-stuff">My Stuff</a></li>
+                    <li class="last">
+                        {% if app.user != user %}
+                            <ul class="compatibility-box">
+                                <li>
+                                    <img src="{{ asset('images/icon-compatibility.png') }}" alt="Compatibility">
+                                </li>
+                                <li class="compatibility">
+                                    <span>46%</span>
+                                    compatibility
+                                </li>
+                            </ul>
+                        {% endif %}
+                    </li>
                 </ul>
-            {% endif %}
 
-            <ul class="tabs-activate profile-tabs">
-                <li><a href="#" data-tab="1" class="is-active">About</a></li>
-                <li><a href="#" data-tab="2" class="my-stuff">My Stuff</a></li>
-                <li class="last">
-                    {% if app.user != user %}
-                        <ul class="compatibility-box">
-                            <li>
-                                <img src="{{ asset('images/icon-compatibility.png') }}" alt="Compatibility">
-                            </li>
-                            <li class="compatibility">
-                                <span>46%</span>
-                                compatibility
-                            </li>
-                        </ul>
-                    {% endif %}
-                </li>
-            </ul>
+            <div class="main-content-inner">
 
-            <div class="view-tab-container teacher-text-container">
+                <div class="view-tab-container teacher-text-container with-scrollbar">
 
-                <div class="view-tab about is-active" data-tab="1">
-                    <p>{{ user.aboutMe }}</p>
-                </div>
-
-                <div class="view-tab stuff" data-tab="2">
-
-                    <div class="profile-media-wall">
-
-                        {% if user.images|length == 0 and user.videos|length == 0 %}
-                            <h3>Upload some photos here</h3>
-                        {% endif %}
-
-                        {% if user.images|length > 0 %}
-                            {% for i in user.images %}
-                                <div class="image-holder profile-media-wall-item">
-                                    <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
-                                    {#{% if app.user == user %}
-                                        <div class="profile-media-image-commands">
-                                            <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
-                                            <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                                        </div>
-                                    {% endif %}#}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-
-                        {% for v in user.videos %}
-                            <div class="image-holder profile-media-wall-item">
-                                <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" /></a>
-                            </div>
-                            {#<iframe width="140" height="140" class="profile-media-wall-item fancybox" src="" frameborder="0" allowfullscreen></iframe>#}
-                        {% endfor %}
-
+                    <div class="view-tab about is-active" data-tab="1">
+                        <p>{{ user.aboutMe }}</p>
                     </div>
 
+                    <div class="view-tab stuff" data-tab="2">
+
+                        <div class="profile-media-wall">
+
+                            {% if user.images|length == 0 and user.videos|length == 0 %}
+                                <h3>Upload some photos here</h3>
+                            {% endif %}
+
+                            {% if user.images|length > 0 %}
+                                {% for i in user.images %}
+                                    <div class="image-holder profile-media-wall-item">
+                                        <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                        {#{% if app.user == user %}
+                                            <div class="profile-media-image-commands">
+                                                <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
+                                                <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                            </div>
+                                        {% endif %}#}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            {% for v in user.videos %}
+                                <div class="image-holder profile-media-wall-item">
+                                    <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" /></a>
+                                </div>
+                                {#<iframe width="140" height="140" class="profile-media-wall-item fancybox" src="" frameborder="0" allowfullscreen></iframe>#}
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                    <!--stuff ends-->
+
                 </div>
-                <!--stuff ends-->
-
+                <!--view-tab-container ends-->
             </div>
-            <!--view-tab-container ends-->
-
         </section>
         <!--main-content ends-->
 

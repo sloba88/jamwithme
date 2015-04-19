@@ -42,6 +42,7 @@
 
         {% if app.user %}
         socket.on('registerConnectedUser', function (data) {
+            //TODO: this must be done in Redis
             socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': '{{ app.user.username }}' });
         });
         {% endif %}
