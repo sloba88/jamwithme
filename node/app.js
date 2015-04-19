@@ -80,7 +80,7 @@ db.once('open', function callback () {
                 },
                 message: data.message,
                 createdAt: new Date().getTime()
-            }
+            };
 
             var message = new Message({
                 user: {
