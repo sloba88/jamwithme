@@ -15,14 +15,14 @@
 
     <script type="text/template" id="conversationTemplate">
         <% _.each( rc, function( c, k ){ %>
-        <div class="row message-single conversation-box <% if (k == 0 ){ %>first<% } %>" data-user="<%- c.other.username %>" data-id="<%- c.id %>">
+        <div class="row message-single <% if (c.isRead == false) { %>unread<% } %> conversation-box <% if (k == 0 ){ %>first<% } %>" data-user="<%- c.other.username %>" data-id="<%- c.other.id %>">
             <div class="col-xs-4 col-sm-3 message-info">
                 <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- c.other.username %>/avatar" alt="Pic">
 
                 <h3 class="name"><%- c.other.username %></h3>
 
                 <div class="time">&nbsp;
-                    <%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %>
+                    <%- c.createdAt.toLocaleDateString() %> <%- c.createdAt.toLocaleTimeString() %>
                 </div>
             </div>
             <div class="col-xs-8 col-sm-9 message-content">
@@ -57,22 +57,28 @@
 
                 console.log(data);
 
-                $.each(data, function (index, value) {
-                    $(".conversation-message-box").append(messageTemplate(value));
+                $.each(data, function (index, val) {
+                    //TODO: why am I not getting datetime from server?
+                    val.createdAt = new Date(val.createdAt);
 
-                    $.each(value.messages.reverse(), function (index, val) {
-                        if (val.to.id == myID) {
-                            other = val.from;
-                        } else {
-                            other = val.to;
-                        }
+                    $('.conversation-message-box').append(messageTemplate(val));
+                });
 
-                        if (!_.findWhere(match, other)) {
-                            match.push(other);
-                            val.other = other;
-                            conversations.push(val);
-                        }
-                    });
+                $.each(data.reverse(), function (index, val) {
+                    //TODO: why am I not getting datetime from server?
+                    val.createdAt = new Date(val.createdAt);
+
+                    if (val.to.id == myID) {
+                        other = val.from;
+                    } else {
+                        other = val.to;
+                    }
+
+                    if (!_.findWhere(match, other)) {
+                        match.push(other);
+                        val.other = other;
+                        conversations.push(val);
+                    }
                 });
 
                 $(".conversations-box").append(conversationTemplate(conversations));

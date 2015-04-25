@@ -62,7 +62,7 @@
                 <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
 
                 {% if app.user != user %}
-                    <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}"><i class="glyphicon glyphicon-envelope"></i>Message</a>
+                    <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>Message</a>
                 {% endif %}
             </div>
         </section>

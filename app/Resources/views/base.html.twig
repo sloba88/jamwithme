@@ -195,21 +195,18 @@
 </script>
 
 <script type="text/template" id="messageTemplate">
-    <% _.each( rc.messages, function( m ){ %>
-    <% createdAt = new Date(m.createdAt); %>
-    <div class="conversation-single" data-user="<%- m.to.username %>" data-user2="<%- m.from.username %>">
-        <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- m.from.username %>/avatar" alt="Pic">
-        <h4 class="name"><%- m.from.username %></h4>
+    <% createdAt = new Date(rc.createdAt); %>
+    <div class="conversation-single" data-user="<%- rc.to.username %>" data-user2="<%- rc.from.username %>">
+        <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- rc.from.username %>/avatar" alt="Pic">
+        <h4 class="name"><%- rc.from.username %></h4>
 
         <div class="time">
             <%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %>
         </div>
         <p class="text">
-            <%- m.message %>
+            <%- rc.message %>
         </p>
     </div>
-
-    <% }); %>
 </script>
 
 

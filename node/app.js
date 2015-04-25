@@ -27,21 +27,19 @@ db.once('open', function callback () {
             socket.username = data.username;
             activeUsers[data.userID] = socket;
 
-            Message.find({ user :  data.userID }, function (err, messages) {
-                if (err) return console.error(err);
-                console.log(messages)
-            });
-
-            //get unread messages count
-            Message.find({ 'isRead' :  false, 'user.id' :  socket.userID }, function (err, messages) {
-                if (err) return console.error(err);
-                socket.unreadMessages = messages.length;
-                socket.emit('myUnreadMessagesCount', messages.length);
-            });
+            setTimeout(function(){
+                //get unread messages count
+                Message.find({ 'isRead' :  false, 'owner.id' :  socket.userID }, function (err, messages) {
+                    if (err) return console.error(err);
+                    socket.unreadMessages = messages.length;
+                    socket.emit('myUnreadMessagesCount', messages.length);
+                });
+            }, 1000);
 
         });
 
         socket.on('newMessage', function (data) {
+
             var m = {
                 from: {
                     id: socket.userID,
@@ -51,83 +49,64 @@ db.once('open', function callback () {
                     id: data.to.id,
                     username:data.to.username
                 },
-                message: data.message,
-                createdAt: new Date().getTime()
-            };
-
-            var message = new Message({
-                user: {
+                owner: {
                     id: socket.userID,
                     username: socket.username
                 },
-                otherUser: data.to,
-                messages: [m],
-                isRead: true
-            });
+                message: data.message
+            };
 
-            var messageTo = new Message({
-                user: data.to,
-                otherUser: m.from,
-                messages: [m],
-                isRead: false
-            });
+            var message = new Message(m);
+
+            message.owner = {
+                id: socket.userID,
+                username: socket.username
+            };
+
+            message.isRead = true;
+
+            var messageTo = new Message(m);
+
+            messageTo.owner = {
+                id: data.to.id,
+                username:data.to.username
+            };
 
             //my inbox
-            Message.findOne({'user.id': socket.userID}, function(e, r){
-                if (r == null){
-                    message.save(function (err, m) {
-                        if (err) return console.error(err);
-                        socket.emit('messageSaved', message);
-                    });
-                }else{
-                    r.messages.push(m);
-                    r.save(function(err, res){
-                        socket.emit('messageSaved', message);
-                    });
-                }
+            message.save(function (err, m) {
+                if (err) return console.error(err);
+                socket.emit('messageSaved', message);
             });
 
             //other inbox
-            Message.findOne({'user.id': data.to.id}, function(e, r){
-                if (r == null){
-                    messageTo.save(function (err, m) {
-                        if (err) return console.error(err);
-                        //socket.emit('messageReceived', messageTo);
-                        var socketTo = activeUsers[data.to.id];
-                        if (socketTo){
-                            socketTo.emit('messageReceived', messageTo);
-                        }
-                    });
-                }else{
-                    r.messages.push(m);
-                    r.isRead = false;
-                    r.save(function(err, res){
-                        //socket.emit('messageReceived', messageTo);
-                        var socketTo = activeUsers[data.to.id];
-                        if (socketTo){
-                            socketTo.emit('messageReceived', messageTo);
-                        }
-                    });
+            messageTo.save(function (err, m) {
+                if (err) return console.error(err);
+                //socket.emit('messageReceived', messageTo);
+                var socketTo = activeUsers[data.to.id];
+                if (socketTo){
+                    socketTo.emit('messageReceived', messageTo);
                 }
             });
         });
 
         socket.on('getMyMessages', function (data) {
-            Message.find({ 'user.id' :  socket.userID }, function (err, messages) {
+            Message.find({ 'owner.id' :  socket.userID }).sort( { createdAt: 1 }).exec(function (err, messages) {
                 if (err) return console.error(err);
                 socket.emit('myMessages', messages);
             });
         });
 
         socket.on('getOurConversation', function (data) {
-            Message.find({ 'user.id' :  socket.userID, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, function (err, messages) {
+            Message.find({ 'owner.id' :  socket.userID, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, function (err, messages) {
                 if (err) return console.error(err);
                 socket.emit('ourConversation', messages);
             });
         });
 
         socket.on('conversationIsRead', function (data) {
-            Message.update({ 'user.id' : socket.userID, isRead: false, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, {
+            console.log(data);
+            console.log('read');
+            Message.update({ 'owner.id' : socket.userID, isRead: false, 'from.id' : data.userID }, {
                 isRead: true
             }, function(err, numberAffected, rawResponse) {
                 //handle it

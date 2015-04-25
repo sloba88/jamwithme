@@ -388,6 +388,7 @@ $(function () {
 });
 
 socket.on('myUnreadMessagesCount', function(data){
+    console.log(data);
     if (data!=0){
         $(".inbox .badge").text(data);
     }else{
@@ -593,6 +594,7 @@ function conversations() {
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
         $overlay.removeClass('hide');
+        $(this).removeClass('unread');
 
         $(".conversation-message-box .conversation-single").hide();
         var user = $(this).data('user');
