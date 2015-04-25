@@ -358,14 +358,24 @@ $(function () {
         $autocompleteInput.autocomplete({
             delay: 10,
             minLength: 0,
-            source: availableTags
+            source: function( request, response ) {
+                $.ajax({
+                    url: "/users",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            }
             // select: function( event, ui ) {
             //           window.location.href = ui.item.value;
             //     }
         }).data("uiAutocomplete")._renderItem = function(ul, item) {
             return $("<li />")
                 .data("item.autocomplete", item)
-                .append("<a><img src='" + item.icon + "' />" + "<span class='search-text'>" + item.label + "<span class='search-location'>" + item.location + "</span></span></a>")
+                .append("<a href='/m/" + item.username + "'><img src='/m/" + item.username + "/avatar' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
                 .appendTo(ul);
         };
 
@@ -388,7 +398,6 @@ $(function () {
 });
 
 socket.on('myUnreadMessagesCount', function(data){
-    console.log(data);
     if (data!=0){
         $(".inbox .badge").text(data);
     }else{

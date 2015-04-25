@@ -47,6 +47,23 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/users", name="users_find")
+     * @Template()
+     */
+    public function findAction()
+    {
+        $users = $this->getDoctrine()->getManager()
+            ->createQuery(
+                'SELECT user.id, user.username FROM JamUserBundle:User user ')
+            ->getResult();
+
+        $response = new JsonResponse();
+        $response->setData($users);
+
+        return $response;
+    }
+
+    /**
      * @Route("/user/image/add/", name="upload_user_image")
      * @Template()
      */
