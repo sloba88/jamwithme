@@ -52,10 +52,23 @@ class DefaultController extends Controller
      */
     public function findAction()
     {
+        $request = $this->get('request_stack')->getCurrentRequest();
+        $q = $request->query->get('q');
+
+        if (!$q){
+            throw $this->createNotFoundException('You shall not pass');
+        }
+
         $users = $this->getDoctrine()->getManager()
             ->createQuery(
-                'SELECT user.id, user.username FROM JamUserBundle:User user ')
+                'SELECT user.id, user.username, user.avatar FROM JamUserBundle:User user WHERE user.username LIKE :q ')
+            ->setParameter('q', '%'.$q.'%')
+            ->setMaxResults(8)
             ->getResult();
+
+        foreach ($users AS $k=>$u){
+            $users[$k]['avatar'] = $this->get('liip_imagine.cache.manager')->getBrowserPath('uploads/avatars/'.$u['id'].'/'.$u['avatar'], 'my_thumb');
+        }
 
         $response = new JsonResponse();
         $response->setData($users);

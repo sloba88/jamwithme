@@ -357,7 +357,7 @@ $(function () {
         //jquery-ui autocomplete
         $autocompleteInput.autocomplete({
             delay: 10,
-            minLength: 0,
+            minLength: 2,
             source: function( request, response ) {
                 $.ajax({
                     url: "/users",
@@ -375,7 +375,7 @@ $(function () {
         }).data("uiAutocomplete")._renderItem = function(ul, item) {
             return $("<li />")
                 .data("item.autocomplete", item)
-                .append("<a href='/m/" + item.username + "'><img src='/m/" + item.username + "/avatar' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
+                .append("<a href='/m/" + item.username + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
                 .appendTo(ul);
         };
 
