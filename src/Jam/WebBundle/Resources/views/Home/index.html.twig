@@ -300,12 +300,16 @@
 
         $("#main-filter-form").on('change', function(){
             delay(function(){
-                filterMusicians();
+                if ($('#map-canvas').is(':visible')){
+                    fetchMapData();
+                }else{
+                    filterMusicians();
+                }
+
             }, 500);
         });
 
         filterMusicians();
-
 
         //parse generes
         $.ajax({
