@@ -224,44 +224,46 @@
         </section>
         <!--main-content ends-->
 
-        <section class="col-sm-3 shouts-sidebar">
+        <section class="col-sm-4 col-md-3 hidden-xs shouts-sidebar">
+            <div class="sidebar-inner">
 
-            <div class="shouts-feed">
-                <h3>Shouts feed</h3>
-            </div>
-            <!--shouts-feed ends-->
-
-            <div class="shouts-listing-container">
-                <div class="shouts-listing">
-
-                    {% if user.shouts|length == 0 %}
-                        <h5>No shouts yet.</h5>
-                    {% endif %}
-
-                    {% for s in user.shouts %}
-
-                        <article class="shout-box clearfix">
-                            <a href="{{ app.request.getBaseURL() }}/m/{{ user.username }}" class="musician-box-image-link img-circle">
-                                <img src="{{ app.request.getBaseURL() }}/m/{{ user.username }}/avatar" class="" width="50" />
-                            </a>
-
-                            <div class="shout-text">
-                                <h4 class="name">{{ user.username }}</h4>
-
-                                <div class="time">
-                                    <span>{{ s.createdAt.date }} min</span>ago
-                                </div>
-                                <p>{{ s.text }}</p>
-                            </div>
-                        </article>
-
-                    {% endfor %}
-
+                <div class="shouts-feed">
+                    <h3>Shouts feed</h3>
                 </div>
-                <!--shouts-listing ends-->
-            </div>
-            <!--shouts-listing-container ends-->
+                <!--shouts-feed ends-->
 
+                <div class="shouts-listing-container">
+                    <div class="shouts-listing shouts-listing-feed">
+
+                        {% if user.shouts|length == 0 %}
+                            <h5>No shouts yet.</h5>
+                        {% endif %}
+
+                        {% for s in user.shouts %}
+
+                            <article class="shout-box clearfix">
+                                <a href="{{ app.request.getBaseURL() }}/m/{{ user.username }}" class="musician-box-image-link img-circle">
+                                    <img src="{{ app.request.getBaseURL() }}/m/{{ user.username }}/avatar" class="" width="50" />
+                                </a>
+
+                                <div class="shout-text">
+                                    <h4 class="name">{{ user.username }}</h4>
+
+                                    <div class="time">
+                                        <span>{{ s.createdAt.date }} min</span>ago
+                                    </div>
+                                    <p>{{ s.text }}</p>
+                                </div>
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+                    <!--shouts-listing ends-->
+                </div>
+                <!--shouts-listing-container ends-->
+
+            </div>
         </section>
     </div>
 

@@ -56,6 +56,12 @@ $(function () {
     //scrollbar plugin
     scrollbarPlugin();
 
+    if ($('.view-tab-container').length && $('.shouts-listing').length) {
+        $('.view-tab-container, .shouts-listing').perfectScrollbar({
+            suppressScrollX: true
+        });
+    }
+
     //window resize after delay
     var resizeTimer;
     $(window).resize(function() {
