@@ -21,9 +21,7 @@
 
                 <h3 class="name"><%- c.other.username %></h3>
 
-                <div class="time">&nbsp;
-                    <%- c.createdAt.toLocaleDateString() %> <%- c.createdAt.toLocaleTimeString() %>
-                </div>
+                <div class="time"><%- c.createdAt.toLocaleDateString() %> <%- c.createdAt.toLocaleTimeString() %></div>
             </div>
             <div class="col-xs-8 col-sm-9 message-content">
                 <p><%- c.message %></p>
@@ -57,6 +55,7 @@
 
                 console.log(data);
 
+                $('.conversation-message-box').html('');
                 $.each(data, function (index, val) {
                     //TODO: why am I not getting datetime from server?
                     val.createdAt = new Date(val.createdAt);
@@ -84,6 +83,7 @@
                 $(".conversations-box").append(conversationTemplate(conversations));
                 scrollToBottom();
             });
+
         });
     </script>
 

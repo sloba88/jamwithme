@@ -23,6 +23,10 @@
                 clear: both;
             }
 
+            .ui-autocomplete {
+                z-index: 9999 !important;
+            }
+
             .profile-media-wall-item { margin-bottom: 10px; }
         </style>
 
@@ -78,10 +82,10 @@
 
             <div class="col-xs-12 col-sm-3 search-block-container">
                 <div class="input-group search-block">
-                    <input type="text" id="autocomplete" class="form-control" placeholder="SEARCH" autocomplete=off>
-              <span class="hidden-xs input-group-btn">
-                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-              </span>
+                    <input type="text" id="autocomplete" class="form-control" placeholder="SEARCH" autocomplete="off" />
+                    <span class="hidden-xs input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
                 </div><!-- /input-group -->
             </div><!--search-block-container-->
 
@@ -126,7 +130,7 @@
     <!--conversation-close ends-->
 
     <div class="conversation-new">
-        <input type="text" class="form-control" placeholder="+ Type a name">
+        <input type="text" class="form-control autocomplete" placeholder="+ Type a name">
     </div>
 
     <div class="conversation-container conversation-message-box"></div>
@@ -135,7 +139,7 @@
     <div class="conversation-send">
         <form role="form">
             <textarea class="form-control send-message" rows="3" placeholder="Write message"></textarea>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" class="btn btn-primary send-message-btn">Send</button>
         </form>
     </div>
     <!--conversation-send ends-->

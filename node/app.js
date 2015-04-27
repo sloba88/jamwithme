@@ -40,6 +40,8 @@ db.once('open', function callback () {
 
         socket.on('newMessage', function (data) {
 
+            console.log(data);
+
             var m = {
                 from: {
                     id: socket.userID,

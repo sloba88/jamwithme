@@ -73,6 +73,8 @@ $(function () {
     //search
     autocomplete();
 
+    autocompleteMessageUser();
+
     $('.show-all-tags').on('click', showAllTags);
 
     $(window).resize(function() {
@@ -322,6 +324,10 @@ $(function () {
         }
     });
 
+    $('.send-message-btn').on('click', function(e){
+        e.preventDefault();
+    });
+
     $('.ytvideo').each(function(){
         var src = $(this).attr('href');
         var ytId = youtubeParser(src);
@@ -347,54 +353,6 @@ $(function () {
 
         return false;
     });
-
-    var $searchContainer = $('.search-block-container'),
-        $autocompleteInput = $("#autocomplete"),
-        $searchBlock = $autocompleteInput.parent();
-
-    if ($autocompleteInput.length) {
-
-        //jquery-ui autocomplete
-        $autocompleteInput.autocomplete({
-            delay: 10,
-            minLength: 2,
-            source: function( request, response ) {
-                $.ajax({
-                    url: "/users",
-                    data: {
-                        q: request.term
-                    },
-                    success: function( data ) {
-                        response( data );
-                    }
-                });
-            }
-            // select: function( event, ui ) {
-            //           window.location.href = ui.item.value;
-            //     }
-        }).data("uiAutocomplete")._renderItem = function(ul, item) {
-            return $("<li />")
-                .data("item.autocomplete", item)
-                .append("<a href='/m/" + item.username + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
-                .appendTo(ul);
-        };
-
-        $searchBlock.addClass('effects-ready');
-
-        $autocompleteInput.focus(function() {
-            $searchBlock.addClass('is-opened');
-        });
-
-        $autocompleteInput.blur(function() {
-            $autocompleteInput.val().length || $searchBlock.removeClass('is-opened');
-        });
-
-        //this is for responsive
-        $('.search-toggle').on('click', function() {
-            $(this).toggleClass('is-active');
-            $searchContainer.toggleClass('is-opened');
-        });
-    }
 });
 
 socket.on('myUnreadMessagesCount', function(data){
@@ -649,6 +607,7 @@ function conversations() {
     //compose
     $compose.on('click', function(e){
         $conversation.addClass('is-opened is-opened-compose');
+        $('.conversation-message-box .conversation-single').hide();
         $overlay.removeClass('hide');
     });
 
@@ -693,15 +652,22 @@ function autocomplete() {
         //jquery-ui autocomplete
         $autocompleteInput.autocomplete({
             delay: 10,
-            minLength: 0,
-            source: availableTags
-            // select: function( event, ui ) {
-            //           window.location.href = ui.item.value;
-            //     }
+            minLength: 2,
+            source: function( request, response ) {
+                $.ajax({
+                    url: "/users",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            }
         }).data("uiAutocomplete")._renderItem = function(ul, item) {
             return $("<li />")
                 .data("item.autocomplete", item)
-                .append("<a><img src='" + item.icon + "' />" + "<span class='search-text'>" + item.label + "<span class='search-location'>" + item.location + "</span></span></a>")
+                .append("<a href='/m/" + item.username + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
                 .appendTo(ul);
         };
 
@@ -720,6 +686,43 @@ function autocomplete() {
             $(this).toggleClass('is-active');
             $searchContainer.toggleClass('is-opened');
         });
+    }
+}
+
+function autocompleteMessageUser() {
+
+    var $autocompleteInput = $(".autocomplete");
+
+    if ($autocompleteInput.length) {
+
+        //jquery-ui autocomplete
+        $autocompleteInput.autocomplete({
+            delay: 10,
+            minLength: 2,
+            source: function( request, response ) {
+                $.ajax({
+                    url: "/users",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+            select: function( event, ui ) {
+                $autocompleteInput.val(ui.item.username);
+                $('.conversation-send .send-message').data('tousername', ui.item.username);
+                $('.conversation-send .send-message').data('toid', ui.item.id);
+
+                return false;
+            }
+        }).data("uiAutocomplete")._renderItem = function(ul, item) {
+            return $("<li />")
+                .data("item.autocomplete", item)
+                .append("<a class='user-suggest-messages' data-user='" + item.username + "' data-id='" + item.id + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
+                .appendTo(ul);
+        };
     }
 }
 
