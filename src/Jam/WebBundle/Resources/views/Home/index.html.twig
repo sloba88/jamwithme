@@ -7,7 +7,7 @@
 {% block main_content %}
 
 
-    <div class="row event">
+    <div class="row event" style="display:none">
 
         <div class="col-lg-5 image-box">
             <div class="image-holder">
@@ -59,6 +59,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
                             <label>Set distance</label>
+                            <input type="hidden" name="distance" id="search_form_distance" />
                             <div id="filter-by-distance-slider"></div>
                             <span class="result slide-min pull-left">0</span>
                             <span class="result slide-max pull-right"></span>
@@ -354,6 +355,11 @@
         if ($("#lessons-checkbox").is(':checked')) {
             data += '&isTeacher=1';
         }
+
+        if ( $("#search_form_distance").val() != 0 ){
+            data += $("#search_form_distance").serialize();
+        }
+
         var url = $map.data('url');
 
         $.ajax({

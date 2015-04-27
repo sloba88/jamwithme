@@ -86,33 +86,18 @@ class MusiciansController extends Controller
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $boolFilter);
         }
 
-        if ($searchParams){
-            //$search = new Search();
-            //$search->setGenres($searchParams['genres']);
-            //$search->setCreator($this->container->get('security.context')->getToken()->getUser());
-            //$em = $this->getDoctrine()->getManager();
-            //$em->persist($search);
-            //$em->flush();
-
-
-
-            if (isset($searchParams['distance']) && $me->getLat()){
-                $locationFilter = new \Elastica\Filter\GeoDistance(
-                    'pin',
-                    array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                    (intval($searchParams['distance']) ? intval($searchParams['distance']) : '20') . 'km'
-                );
-                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
-            }
-
-            /* exclude myself in result set */
-            $categoryQuery = new \Elastica\Filter\Term(array('username' => $me->getUsername()));
-            $elasticaBool = new \Elastica\Filter\BoolNot($categoryQuery);
-            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
-
-            //$query = \Elastica\Query::create($elasticaQuery);
-
+        if ($request->query->get('distance') && $me->getLat()){
+            $locationFilter = new \Elastica\Filter\GeoDistance(
+                'pin',
+                array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
+                (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
+            );
+            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
         }
+
+        $categoryQuery = new \Elastica\Filter\Term(array('username' => $me->getUsername()));
+        $elasticaBool = new \Elastica\Filter\BoolNot($categoryQuery);
+        $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
 
         $musicians = $finder->find($elasticaQuery);
 
