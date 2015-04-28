@@ -141,7 +141,7 @@ snc_redis:
         session:
             type: predis
             alias: session
-            dsn: redis://127.0.0.1:7777
+            dsn: redis://%redis_server%
     session:
         client: session
 

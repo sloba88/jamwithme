@@ -20,3 +20,4 @@ parameters:
     soundcloud_app_id: 3d3df354b405eee454308d224d8cfcbd
     soundcloud_app_secret: fc2747acde7219a851947e2c13338438
     node_server: http://127.0.0.1:3000
+    redis_server: 127.0.0.1:6379
