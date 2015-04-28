@@ -373,6 +373,9 @@
             if (result.status == 'success') {
                 filterResults = result;
                 renderGridView();
+                if (result.data.length == 0){
+                    $('.people-listing-grid').html('<br /><p>Didn’t find what you searched for? We can let you know when people with this profile join. <br /><a>Subscribe for this search criteria.</a></p>')
+                }
             }
         });
     }
