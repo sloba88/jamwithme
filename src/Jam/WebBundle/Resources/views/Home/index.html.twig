@@ -32,68 +32,7 @@
 
     </div><!--event ends-->
 
-    <div class="filters-area">
-        <div class="filters-heading clearfix">
-            <h1 class="filters-title">find compatible musicians</h1>
-        </div>
-
-        <form id="main-filter-form">
-            <div class="filters-by in row">
-                <div class="col-sm-12 col-lg-4">
-                    <select class="form-control" data-placeholder="Filter by genres" id="filter-genres" name="genres[]" multiple>
-                        <option value="0">Filter By Genres</option>
-                    </select>
-                </div>
-
-                <div class="col-sm-12 col-lg-4">
-                    <select class="form-control" data-placeholder="Filter by instruments" id="filter-instruments" name="instruments[]" multiple>
-                        <option value="0">Filter By Instruments</option>
-                    </select>
-                </div>
-
-                <div class="col-sm-12 col-lg-4">
-                    <div class="dropdown filter-by-distance">
-                        <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                            Filter by distance
-                            <div><b></b></div>
-                        </a>
-                        <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
-                            <label>Set distance</label>
-                            <input type="hidden" name="distance" id="search_form_distance" />
-                            <div id="filter-by-distance-slider"></div>
-                            <span class="result slide-min pull-left">0</span>
-                            <span class="result slide-max pull-right"></span>
-                        </div>
-                    </div>
-                </div>
-            </div><!--filters-by ends-->
-
-            <div class="tabs-activate filters-preview">
-                <ul class="clearfix">
-                    <li><a href="#" data-tab="1" class="tab-grid is-active">grid</a></li>
-                    <li><a href="#" data-tab="2" id="map-view" class="tab-map">map</a></li>
-                    <li class="last">
-                        <input type="checkbox" id="lessons-checkbox" />
-                        <label for="lessons-checkbox">Show only people providing lesions</label>
-                    </li>
-                </ul>
-            </div><!--filters-preview ends-->
-        </form>
-
-    </div><!--filters-area ends-->
-
-    <div class="view-tab-container with-scrollbar">
-        <div class="view-tab people-listing-grid row is-active" data-tab="1">
-
-        </div><!--people-listing-grid ends-->
-
-        <div class="view-tab map" data-tab="2">
-
-            <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
-
-        </div><!--map ends-->
-
-    </div><!--view-tab-container ends-->
+    {% include "JamWebBundle::Musicians/filter.html.twig" %}
 
 {% endblock %}
 
