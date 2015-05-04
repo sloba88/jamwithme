@@ -300,7 +300,7 @@
         }
 
         if ( $("#search_form_distance").val() != 0 ){
-            data += $("#search_form_distance").serialize();
+            data += '&'+ $("#search_form_distance").serialize();
         }
 
         var url = $map.data('url');
