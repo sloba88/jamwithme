@@ -22,7 +22,7 @@ class RegistrationFormType extends BaseType
         ));
         $builder->add('isVisitor', 'checkbox', array(
             'required' => false,
-            'label' => 'Hang around'
+            'label' => 'Learn an instrument'
         ));
         $builder->add('isJammer', 'checkbox', array(
             'required' => false,

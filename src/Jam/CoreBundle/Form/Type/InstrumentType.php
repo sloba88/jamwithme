@@ -45,8 +45,9 @@ class InstrumentType extends AbstractType
             'choices'   => array(
                 '1'   => 'Beginner',
                 '2'   => 'Average',
-                '3'   => 'Decent',
-                '4'   => 'Professional'
+                '3'   => 'Advanced',
+                '4'   => 'Semi-Professional',
+                '5'   => 'Professional'
             ),
             'label' => 'How good are you?'
         ));

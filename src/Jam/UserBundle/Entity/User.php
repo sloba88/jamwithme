@@ -38,7 +38,6 @@ class User extends BaseUser
     {
         parent::__construct();
         // your own logic
-        $this->jams = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->genres = new ArrayCollection();
     }
@@ -104,23 +103,6 @@ class User extends BaseUser
      * )
      */
     protected $lastName;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="creator")
-     */
-    protected $jamsCreator;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMember", mappedBy="member", cascade={"persist"})
-     */
-    protected $jamsMember;
-
-    /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="memberRequests", cascade={"persist"})
-     */
-    protected $jamsRequests;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -193,6 +175,12 @@ class User extends BaseUser
      *
      */
      private $isJammer = false;
+
+    /**
+     * @ORM\Column(type="smallint", length=1, nullable=true)
+     *
+     */
+    private $commitment;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -293,139 +281,6 @@ class User extends BaseUser
     public function getGenres()
     {
         return $this->genres;
-    }
-
-    /**
-     * Add jams
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jams
-     * @return User
-     */
-    public function addJam(\Jam\CoreBundle\Entity\Jam $jams)
-    {
-        $this->jams[] = $jams;
-
-        return $this;
-    }
-
-    /**
-     * Remove jams
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jams
-     */
-    public function removeJam(\Jam\CoreBundle\Entity\Jam $jams)
-    {
-        $this->jams->removeElement($jams);
-    }
-
-    /**
-     * Get jams
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJams()
-    {
-        return $this->jams;
-    }
-
-    /**
-     * Check if member
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jam
-     * @return User
-     */
-    public function isJamMember(\Jam\CoreBundle\Entity\Jam $jam)
-    {
-        foreach($jam->getJamMembers() AS $member){
-            if($member->getMember()->getId()==$this->getId()){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Check if requested member
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jam
-     * @return User
-     */
-    public function isJamMemberRequested(\Jam\CoreBundle\Entity\Jam $jam)
-    {
-        foreach($jam->getMemberRequests() AS $request){
-            if($request->getId()==$this->getId()){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Add jamsCreator
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jamsCreator
-     * @return User
-     */
-    public function addJamsCreator(\Jam\CoreBundle\Entity\Jam $jamsCreator)
-    {
-        $this->jamsCreator[] = $jamsCreator;
-
-        return $this;
-    }
-
-    /**
-     * Remove jamsCreator
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jamsCreator
-     */
-    public function removeJamsCreator(\Jam\CoreBundle\Entity\Jam $jamsCreator)
-    {
-        $this->jamsCreator->removeElement($jamsCreator);
-    }
-
-    /**
-     * Get jamsCreator
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJamsCreator()
-    {
-        return $this->jamsCreator;
-    }
-
-    /**
-     * Add jamsRequests
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jamsRequests
-     * @return User
-     */
-    public function addJamsRequest(\Jam\CoreBundle\Entity\Jam $jamsRequests)
-    {
-        $this->jamsRequests[] = $jamsRequests;
-
-        return $this;
-    }
-
-    /**
-     * Remove jamsRequests
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jamsRequests
-     */
-    public function removeJamsRequest(\Jam\CoreBundle\Entity\Jam $jamsRequests)
-    {
-        $this->jamsRequests->removeElement($jamsRequests);
-    }
-
-    /**
-     * Get jamsRequests
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJamsRequests()
-    {
-        return $this->jamsRequests;
     }
 
     /**
@@ -1094,5 +949,29 @@ class User extends BaseUser
     public function getHourlyRate()
     {
         return $this->hourlyRate;
+    }
+
+    /**
+     * Set commitment
+     *
+     * @param integer $commitment
+     *
+     * @return User
+     */
+    public function setCommitment($commitment)
+    {
+        $this->commitment = $commitment;
+
+        return $this;
+    }
+
+    /**
+     * Get commitment
+     *
+     * @return integer
+     */
+    public function getCommitment()
+    {
+        return $this->commitment;
     }
 }
