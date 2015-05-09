@@ -1,23 +1,22 @@
+# This file is auto-generated during the composer install
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
-    elastic_host : localhost
-    elastic_port : 9200
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: symfony
+    database_password: symfony-vagrant
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: ThisTokenIsNotSoSecretChangeIt
+    elastic_host: 127.0.0.1
+    elastic_port: 9200
     facebook_app_id: 579440428844182
     facebook_app_secret: cc714025fc8de9146f26690484a02f8a
     soundcloud_app_id: 3d3df354b405eee454308d224d8cfcbd
     soundcloud_app_secret: fc2747acde7219a851947e2c13338438
-    node_server: http://127.0.0.1:3000
+    node_server: 'http://33.33.33.100:3000'
     redis_server: 127.0.0.1:6379

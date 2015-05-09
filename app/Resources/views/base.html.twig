@@ -76,19 +76,22 @@
                 </div>
             </div>
 
-            <div class="col-xs-2 visible-xs">
-                <button class="btn search-toggle" type="button"><i class="glyphicon glyphicon-search"></i></button>
-            </div><!--search-toggle-->
+            {% if is_granted("ROLE_USER") %}
 
-            <div class="col-xs-12 col-sm-3 search-block-container">
-                <div class="input-group search-block">
-                    <input type="text" id="autocomplete" class="form-control" placeholder="SEARCH" autocomplete="off" />
-                    <span class="hidden-xs input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
-                </div><!-- /input-group -->
-            </div><!--search-block-container-->
+                <div class="col-xs-2 visible-xs">
+                    <button class="btn search-toggle" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                </div><!--search-toggle-->
 
+                <div class="col-xs-12 col-sm-3 search-block-container">
+                    <div class="input-group search-block">
+                        <input type="text" id="autocomplete" class="form-control" placeholder="SEARCH" autocomplete="off" />
+                        <span class="hidden-xs input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!--search-block-container-->
+
+            {% endif %}
         </div>
 
     </div>
