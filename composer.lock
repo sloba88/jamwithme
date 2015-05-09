@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "118cb05b827b83ed3eca1aab6e12fc55",
+    "hash": "6136ec5630b09909e7e6cb19d4d4665a",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -994,7 +994,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/adf7fb21e3df81183eb107c0fae004c3df76f54d",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/4451bd07c612f041f72c6ed74075f413e330b56c",
                 "reference": "adf7fb21e3df81183eb107c0fae004c3df76f54d",
                 "shasum": ""
             },
@@ -1134,7 +1134,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/6e5789a598c7151b468298e16a3251ec253cf802",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/19575ef7ff64a3e58dad813a58012dde14994b40",
                 "reference": "6e5789a598c7151b468298e16a3251ec253cf802",
                 "shasum": ""
             },
@@ -1213,7 +1213,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/192c53916942847aee687722af54f431aead0b70",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/92d5624f2a29e74d8fd9d2a94d7ed7998a8c2809",
                 "reference": "192c53916942847aee687722af54f431aead0b70",
                 "shasum": ""
             },
@@ -1355,12 +1355,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "c1cf178d72eb8c97b5547d898201490d33212373"
+                "reference": "c3790c23dbb32bd270da99fa00b42e2c086f906f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/e97748b3333f03ada757b0fc8ececb1b33120b3d",
-                "reference": "c1cf178d72eb8c97b5547d898201490d33212373",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/c3790c23dbb32bd270da99fa00b42e2c086f906f",
+                "reference": "c3790c23dbb32bd270da99fa00b42e2c086f906f",
                 "shasum": ""
             },
             "require": {
@@ -1461,7 +1461,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2014-07-09 10:50:19"
+            "time": "2015-04-29 06:30:49"
         },
         {
             "name": "imagine/imagine",
@@ -1981,7 +1981,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/4bf38928254e5466ddef58347ca20a05907338e2",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/07909ee94a0c1ae2fa12b77154b242f2b8fef0f8",
                 "reference": "4bf38928254e5466ddef58347ca20a05907338e2",
                 "shasum": ""
             },
