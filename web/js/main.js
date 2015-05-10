@@ -1,13 +1,3 @@
-var availableTags = [{
-    label: "Samuel Adams",
-    icon: "images/search.png",
-    location: "San Francisco, USA"
-}, {
-    label: "Serena Livingston",
-    icon: "images/search.png",
-    location: "Helsinki, Finland"
-}, ];
-
 $(function () {
 
     $(".instrument-select").select2({
