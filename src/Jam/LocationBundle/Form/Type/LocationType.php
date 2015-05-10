@@ -17,7 +17,7 @@ class LocationType extends AbstractType
     {
         $builder
                 ->add('address', 'text', array(
-                                'required' => true,
+                                'required' => false,
                                 'label' => false,
                                 'attr' => array(
                                                 'class' => 'form-control',

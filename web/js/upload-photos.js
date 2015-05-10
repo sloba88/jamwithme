@@ -133,9 +133,19 @@ $(function () {
 
         var file = data.result.files;
         if (file.url) {
-            $( ".profile-media-wall" ).append(imageTemplate( file ) );
-            $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+            $('.no-images-yet').remove();
+            $('.profile-media-wall').append(imageTemplate( file ) );
             $("#files").html('');
+
+            setTimeout(function(){
+                $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+
+                if (jQuery().fancybox) {
+                    $(".fancybox").fancybox();
+                }
+
+            }, 500)
+
         } else if (file.error) {
             var error = $('<span class="text-danger"/>').text(file.error);
             $(data.context.children()[index])
@@ -152,7 +162,7 @@ $(function () {
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    $(".remove-image-ajax").on('click', function(e){
+    $('#user_images').on('click', '.remove-image-ajax', function(e){
         e.preventDefault();
         var url = $(this).data('url');
         var image = $(this).parents('.image-holder');
@@ -167,8 +177,6 @@ $(function () {
             }
         });
     });
-
-
 });
 
 function cloneCanvas(oldCanvas) {
