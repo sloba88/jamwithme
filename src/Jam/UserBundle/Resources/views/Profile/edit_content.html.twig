@@ -1,6 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
+
+
 <style>
     #upload_images{
         height: 33px;
@@ -105,16 +107,14 @@
 
                         {{ form_row(form.lastName) }}
 
-                        <div class="col-md-6">
-
-                            {{ form_row(form.gender) }}
-
-                         </div>
-                         <div class="col-md-6">
-
-                            {{ form_row(form.birthDate) }}
-
-                         </div>
+                        <div class="row personal-bio">
+                            <div class="col-xs-5 col-sm-7">
+                                {{ form_row(form.gender) }}
+                            </div>
+                            <div class="col-xs-7 col-sm-5">
+                                {{ form_row(form.birthDate) }}
+                            </div>
+                        </div>
 
                         <div class="clearfix"></div>
 
@@ -202,6 +202,10 @@
                             <input type="file" name="file" id="upload_images" accept="image/*" data-url="{{ path('upload_user_image') }}" multiple >
                         </span>
 
+                        <div id="files" class="files"></div>
+
+                        <div class="clearfix"></div>
+
                         <button type="submit" class="btn btn-primary start btn-sm">
                             <i class="glyphicon glyphicon-upload"></i>
                             <span>Start upload</span>
@@ -211,16 +215,18 @@
                             <div class="progress-bar progress-bar-success"></div>
                         </div>
 
-                        <div id="files" class="files"></div>
-
-                        <div class="clearfix"></div>
-
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Photos</h3>
                             </div>
                             <div class="panel-body">
+
+                                {% if form.vars.value.images|length == 0 %}
+                                    <p class="no-images-yet">No images yet.</p>
+                                {% endif %}
+
                                 <div id="user_images" class="profile-media-wall">
+
                                     {% for i in form.vars.value.images %}
                                         <div class="image-holder profile-media-wall-item">
                                             <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
@@ -250,7 +256,7 @@
                                         <li>{{ form_widget(v.url) }}</li>
                                     {% endfor %}
                                 </ul>
-                                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">Add Another</a>
+                                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">Add Video</a>
                             </div>
                         </div>
 

@@ -2,16 +2,10 @@
 
 namespace Jam\UserBundle\Form\Type;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-use Jam\CoreBundle\Form\DataTransformer\InstrumentTransform;
-use Jam\CoreBundle\Form\Type\VideoType;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Jam\CoreBundle\Form\Type\InstrumentType;
-
 
 class ProfileFormType extends BaseType
 {
@@ -23,13 +17,17 @@ class ProfileFormType extends BaseType
         $builder->add('firstName', 'text', array(
             'required' => false
         ));
+
         $builder->add('lastName', 'text', array(
             'required' => false
         ));
+
         $builder->add('email', 'email', array(
             'disabled' => true
         ));
+
         $builder->add('username');
+
         $builder->add('aboutMe', 'textarea', array(
             'required' => false
         ));
@@ -42,10 +40,12 @@ class ProfileFormType extends BaseType
             'required' => false,
             'label' => 'Hang around'
         ));
+
         $builder->add('isJammer', 'checkbox', array(
             'required' => false,
             'label' => 'Jam'
         ));
+
         $builder->add('isTeacher', 'checkbox', array(
             'required' => false,
             'label' => 'Teach music'
