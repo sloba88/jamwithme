@@ -58,7 +58,7 @@ soundcloud_login:
     pattern: /login/check-soundcloud
 
 jam_soundcloud_login:
-    pattern: /login/soundcloud
+    pattern: /connect/soundcloud
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
