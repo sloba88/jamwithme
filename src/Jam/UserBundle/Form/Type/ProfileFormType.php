@@ -92,13 +92,13 @@ class ProfileFormType extends BaseType
 
         $builder->add('commitment', 'choice', array(
             'choices'   => array(
+                '0' => 'Not available',
                 '1' => '1-2 hours/week',
                 '2' => '2-4 hours/week',
                 '3' => '4-6 hours/week',
                 '4' => 'More than 6 hours/week'
             ),
-            'expanded' => true,
-            'empty_data'  => 0,
+            'expanded' => false,
             'required' => false
         ));
 

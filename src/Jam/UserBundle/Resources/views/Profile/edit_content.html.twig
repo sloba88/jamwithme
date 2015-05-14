@@ -152,7 +152,11 @@
                         {{ form_widget(form.isTeacher) }}
                         {{ form_label(form.isTeacher) }}
 
-                        <div class="clearfix" style="margin-bottom: 10px"></div>
+                        <h4>I am available:</h4>
+
+                        {{ form_widget(form.commitment, { 'attr': {'placeholder' : 'How much can you commit? '} }) }}
+
+                        <div class="clearfix" style="margin-bottom: 25px"></div>
 
                         <div class="col-md-7"><label>What do you play?</label></div>
                         <div class="col-md-5"><label>How good are you?</label></div>
