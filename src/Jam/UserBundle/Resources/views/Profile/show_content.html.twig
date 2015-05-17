@@ -179,6 +179,7 @@
                     <li><a href="#" data-tab="1" class="is-active">About</a></li>
                     <li><a href="#" data-tab="2" class="my-photos">Photos</a></li>
                     <li><a href="#" data-tab="3" class="my-videos">Videos</a></li>
+                    <li><a href="#" data-tab="4" class="my-sounds">Sounds</a></li>
                     <li class="last">
                         {% if app.user != user %}
                             <ul class="compatibility-box">
@@ -240,6 +241,12 @@
                         {% endfor %}
                     </div>
                     <!--videos ends-->
+
+                    <div class="view-tab my-sounds" data-tab="4">
+                        {% if(app.user.getSoundcloudId == '') %}
+                            <a class="connect-with-soundcloud-btn" href="{{ path('jam_soundcloud_login') }}"></a>
+                        {% endif %}
+                    </div>
 
                 </div>
                 <!--view-tab-container ends-->

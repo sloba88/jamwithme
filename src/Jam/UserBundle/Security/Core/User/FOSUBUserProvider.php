@@ -1,6 +1,7 @@
 <?php
 namespace Jam\UserBundle\Security\Core\User;
 
+use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Jam\UserBundle\Entity\UserImage;
@@ -45,7 +46,7 @@ class FOSUBUserProvider extends BaseClass
     {
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
-
+        
         //when the user is registrating
         if (null === $user) {
             $service = $response->getResourceOwner()->getName();
