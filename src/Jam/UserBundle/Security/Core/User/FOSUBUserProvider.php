@@ -1,9 +1,12 @@
 <?php
 namespace Jam\UserBundle\Security\Core\User;
 
+use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Jam\UserBundle\Entity\UserImage;
+use Jam\UserBundle\Security\Core\User\UserProvider\FacebookUserProvider;
+use Jam\UserBundle\Security\Core\User\UserProvider\SoundcloudUserProvider;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class FOSUBUserProvider extends BaseClass
@@ -43,6 +46,57 @@ class FOSUBUserProvider extends BaseClass
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
+        $username = $response->getUsername();
+        $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+
+        $service = $response->getResourceOwner()->getName();
+
+        $firstTimeLogin = (null === $user) ? true : false;
+
+        $setter = 'set'.ucfirst($service);
+        $setterToken = $setter.'AccessToken';
+
+        if ($firstTimeLogin){
+
+            $setterId = $setter.'Id';
+
+            // create new user here
+            $user = $this->userManager->createUser();
+
+            $user->setUsername($username);
+
+            $user->$setterId($user->getUsername());
+            $user->$setterToken($response->getAccessToken());
+
+            $user->setPassword($username);
+            $user->setEnabled(true);
+
+        }
+
+        switch($service)
+        {
+            case 'facebook':
+                $facebookUserProvider = new FacebookUserProvider();
+                $facebookUserProvider->getResourceOwnerData($user, $firstTimeLogin, $response);
+            break;
+            case 'soundcloud':
+                $soundcloudUserProvider = new SoundcloudUserProvider();
+                $soundcloudUserProvider->getResourceOwnerData($user, $firstTimeLogin, $response);
+            break;
+            default:
+                throw new \Exception('No defined resource owner user provider');
+        }
+
+        $this->userManager->updateUser($user);
+
+        if($firstTimeLogin === false){
+            $user = parent::loadUserByOAuthUserResponse($response);
+            $user->$setterToken($response->getAccessToken());
+        }
+
+        return $user;
+
+        /*
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
 
@@ -112,6 +166,8 @@ class FOSUBUserProvider extends BaseClass
         $user->$setter($response->getAccessToken());
 
         return $user;
+
+        */
     }
 
 }
