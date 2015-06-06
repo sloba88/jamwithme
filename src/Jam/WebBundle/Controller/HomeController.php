@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="home", options={"expose"=true})
      * @Template()
      */
     public function indexAction(Request $request)

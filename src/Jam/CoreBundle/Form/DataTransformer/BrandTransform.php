@@ -2,12 +2,11 @@
 namespace Jam\CoreBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
-use Jam\CoreBundle\Entity\Artist;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
+use Doctrine\ORM\EntityManager;
 
-class ArtistTransform implements DataTransformerInterface
+class BrandTransform implements DataTransformerInterface
 {
     protected $entityManager;
 
@@ -22,20 +21,20 @@ class ArtistTransform implements DataTransformerInterface
      * @param  Group|null $group
      * @return string
      */
-    public function transform($artist)
+    public function transform($brands)
     {
-        if (null === $artist) {
+        if (null === $brands) {
             return "";
         }
 
-        $artists = '';
-        foreach ($artist AS $k => $a){
-            if($k!=0) $artists .= ',';
-            $artists .= $a->getName();
+        $brand = '';
+        foreach ($brands AS $k => $a){
+            if($k!=0) $brand .= ',';
+            $brand .= $a->getName();
 
         }
 
-        return $artists;
+        return $brand;
     }
 
     /**
@@ -47,34 +46,29 @@ class ArtistTransform implements DataTransformerInterface
      */
     public function reverseTransform($name)
     {
-        $artistsCollection = new ArrayCollection();
+        $brandsCollection = new ArrayCollection();
 
         if (!$name) {
-            return $artistsCollection;
+            return $brandsCollection;
         }
 
         $names = explode(",", $name);
         foreach($names AS $name){
 
-            $artist = $this->entityManager
-                ->getRepository('JamCoreBundle:Artist')
+            $brand = $this->entityManager
+                ->getRepository('JamCoreBundle:Brand')
                 ->findOneBy(array('name' => $name));
 
-            if (null === $artist){
-                $artist = new Artist();
-                $artist->setName($name);
-            }
-
-            $artistsCollection->add($artist);
+            $brandsCollection->add($brand);
         }
 
-        if (null === $artist) {
+        if (null === $brand) {
             throw new TransformationFailedException(sprintf(
-                'Artist with ID "%s" does not exist!',
+                'Brand with ID "%s" does not exist!',
                 $name
             ));
         }
 
-        return $artistsCollection;
+        return $brandsCollection;
     }
 }
