@@ -1,5 +1,9 @@
 $(function () {
 
+    // on load of the page: switch to the currently selected tab
+    //var hash = window.location.hash;
+    //$('ul.tabs-activate a[href="' + hash + '"]').trigger('click');
+
     $(".instrument-select").select2({
         placeholder: 'What do you play?'
     });
@@ -8,6 +12,22 @@ $(function () {
 
     //select plugin on dashboard updates height of main container on change
     $('select').on("change", sidebarHeight);
+
+    $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres, #jam_genres").select2({
+        placeholder: 'Whats music do you play?'
+    });
+
+    $("#fos_user_registration_form_brands, #fos_user_profile_form_brands").select2({
+        placeholder: 'Favorite brands?'
+    });
+
+    $("#search_form_genres").select2({
+        placeholder: 'Filter by genres'
+    });
+
+    $("#search_form_instruments").select2({
+        placeholder: 'Filter by instruments'
+    });
 
     $('input[type=checkbox]').next('label').prepend('<span></span>');
 
@@ -80,22 +100,6 @@ $(function () {
 
     //activate tabs
     tabsToggle($('.tabs-activate'));
-
-    $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres, #jam_genres").select2({
-        placeholder: 'Whats music do you play?'
-    });
-
-    $("#fos_user_registration_form_brands, #fos_user_profile_form_brands").select2({
-        placeholder: 'Favorite brands?'
-    });
-
-    $("#search_form_genres").select2({
-        placeholder: 'Filter by genres'
-    });
-
-    $("#search_form_instruments").select2({
-        placeholder: 'Filter by instruments'
-    });
 
     var $container = $('.profile-media-wall').isotope({
         // main isotope options
@@ -236,22 +240,6 @@ $(function () {
         }
     });
 
-    $('#list-tab-btn').on('shown.bs.tab', function (e) {
-        $('.filter-container').prependTo("#list");
-        $('.tabs .active').removeClass('active');
-        $(this).addClass('active');
-        $('.filter-container').parents('.tab-content').removeClass('full-screen');
-        localStorage.setItem("view", "list");
-    });
-
-    $("#map-tab-btn").on('shown.bs.tab', function (e) {
-        $(".filter-container").appendTo(".map-view-container");
-        $('.tabs .active').removeClass('active');
-        $(this).addClass('active');
-        $(".filter-container").parents('.tab-content').addClass('full-screen');
-        localStorage.setItem("view", "map");
-    });
-
     // store the currently selected tab in the hash value
     $("ul.tabs-activate > li > a").on("shown.tab", function (e) {
         var id = $(e.target).attr("href").substr(1);
@@ -283,10 +271,6 @@ $(function () {
         $( ".conversation-message-box" ).append(mess);
         scrollToBottom();
     });
-
-    // on load of the page: switch to the currently selected tab
-    var hash = window.location.hash;
-    $('ul.tabs-activate a[href="' + hash + '"]').trigger('click');
 
     setTimeout(function(){
         $(".flash-message.alert, .flash-message.success").fadeOut();
