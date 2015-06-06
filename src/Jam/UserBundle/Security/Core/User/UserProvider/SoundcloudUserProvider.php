@@ -15,30 +15,18 @@ class SoundcloudUserProvider extends AbstractUserProvider {
      */
     public function getResourceOwnerData(UserInterface $user, $firstTimeLogin, UserResponseInterface $response)
     {
-
-        $responseData = $response->getResponse();
-
         if($firstTimeLogin) {
 
-            $user->setUsername($responseData['username']);
+            $user->setUsername($response->getUsername());
 
             // email not available via soundcloud api
-            $user->setEmail($user->getUsername());
-
-            if ($responseData['first_name'] !== '' && $responseData['first_name'] !== null) {
-                $user->setFirstName($responseData['first_name']);
-            }
-
-            if ($responseData['last_name'] !== '' && $responseData['last_name'] !== null) {
-                $user->setLastName($responseData['last_name']);
-            }
-
-            if ($responseData['description'] !== '' && $responseData['description'] !== null) {
-                $user->setAboutMe($responseData['description']);
-            }
+            $user->setEmail($response->getEmail());
+            $user->setFirstName($response->getFirstName());
+            $user->setLastName($response->getLastName());
+            $user->setAboutMe($response->getDescription());
         }
 
-        $this->setUserPicture($user, $responseData['avatar_url']);
+        $this->setUserPicture($user, $response->getProfilePicture());
 
         return $user;
     }

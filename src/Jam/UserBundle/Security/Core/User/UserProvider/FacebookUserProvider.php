@@ -11,44 +11,19 @@ class FacebookUserProvider extends AbstractUserProvider {
 
     public function getResourceOwnerData(UserInterface $user, $firstTimeLogin, UserResponseInterface $response)
     {
-        $responseData = $response->getResponse();
-
         if($firstTimeLogin){
 
-            if($responseData['email'] !== '' && $responseData['email'] !== null){
-                $user->setEmail($responseData['email']);
-            } else {
-                $user->setEmail($user->getUsername());
-            }
+            $user->setEmail($response->getEmail());
+            $user->setGender($response->getGender());
 
-            if($responseData['gender'] !== '' && $responseData['gender'] !== null){
-                $user->setGender($responseData['gender']);
-            }
-
-            $this->setUserName($user, $responseData);
+            //$this->setUserName($user, $responseData);
+            $user->setFirstName($response->getFirstName());
+            $user->setLastName($response->getLastName());
+            $user->setUsername($response->getCleanUsername());
         }
 
-        $this->setUserPicture($user, $responseData['picture']['data']['url']);
+        $this->setUserPicture($user, $response->getProfilePicture());
 
         return $user;
     }
-
-    private function setUserName(UserInterface $user, array $responseData)
-    {
-
-        if($responseData['name'] !== '' && $responseData['name'] !== null){
-
-            $userNameArray = explode(' ', $responseData['name']);
-
-            if(count($userNameArray) === 2){
-                // probably first name and last name
-                $user->setFirstName($userNameArray[0]);
-                $user->setLastName($userNameArray[1]);
-
-                $cleanUsername = str_replace(" ", ".", strtolower($responseData['name']));
-                $user->setUsername($cleanUsername);
-            }
-        }
-    }
-
 }
