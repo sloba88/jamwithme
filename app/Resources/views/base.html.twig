@@ -13,6 +13,7 @@
         <link href="{{ asset('/css/select2.css') }}" rel="stylesheet"/>
         <link href="{{ asset('/css/perfect-scrollbar.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/main.css') }}" rel="stylesheet">
 
         <style>
             html body #map-canvas {
@@ -168,6 +169,8 @@
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script src="http://connect.soundcloud.com/sdk.js"></script>
+<script src="https://w.soundcloud.com/player/api.js"></script>
 
 {% block javascripts %}{% endblock %}
 
