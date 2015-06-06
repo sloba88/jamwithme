@@ -574,6 +574,18 @@ class User extends BaseUser
         return $this->brands;
     }
 
+    /**
+     * Set brands
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function setBrands($brands)
+    {
+        $this->brands[] = $brands;
+
+        return $this;
+    }
+
     public function getLat()
     {
         return $this->location ? $this->location->getLat() : false;

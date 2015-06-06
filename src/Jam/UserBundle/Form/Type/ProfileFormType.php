@@ -66,13 +66,7 @@ class ProfileFormType extends BaseType
             'required' => false
         ));
 
-        $builder->add('brands', 'entity', array(
-            'class' => 'JamCoreBundle:Brand',
-            'query_builder' => function(EntityRepository $er) {
-                    return $er->createQueryBuilder('u');
-                },
-            'property' => "name",
-            'multiple' => true,
+        $builder->add('brands', 'brand_type', array(
             'required' => false
         ));
 

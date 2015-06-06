@@ -17,10 +17,6 @@ $(function () {
         placeholder: 'Whats music do you play?'
     });
 
-    $("#fos_user_registration_form_brands, #fos_user_profile_form_brands").select2({
-        placeholder: 'Favorite brands?'
-    });
-
     $("#search_form_genres").select2({
         placeholder: 'Filter by genres'
     });
@@ -202,6 +198,33 @@ $(function () {
         select: function( event, ui ) {
             $("#log").empty();
             $("#log").append(ui.item ? ui.item.id + ' ' + ui.item.label : '(nothing)');
+        }
+    });
+
+    $("#fos_user_profile_form_brands").select2({
+        placeholder: "Favourite Brands?",
+        minimumInputLength: 2,
+        multiple: true,
+        initSelection : function (element, callback) {
+            var data = [];
+            $(element.val().split(",")).each(function () {
+                data.push({id: this, text: this});
+            });
+            callback(data);
+        },
+        ajax: {
+            url: Routing.generate('api_brands'),
+            results: function (data) {
+                return {results: $.map( data, function(item) {
+                    return {
+                        text: item.name,
+                        value: item.name,
+                        id: item.name
+                    }
+                })}
+
+            },
+            cache: true
         }
     });
 
