@@ -169,8 +169,10 @@ hwi_oauth:
             paths:
                 email:          email
                 profilepicture: picture.data.url
+            user_response_class: Jam\UserBundle\Security\Core\User\Response\FacebookResponse
         soundcloud:
             type:                soundcloud
             client_id:           "%soundcloud_app_id%"
             client_secret:       "%soundcloud_app_secret%"
+            user_response_class: Jam\UserBundle\Security\Core\User\Response\SoundcloudResponse
     # here you will add one (or more) configurations for resource owners
