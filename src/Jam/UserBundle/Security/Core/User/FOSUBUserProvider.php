@@ -5,6 +5,9 @@ use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
 use Jam\UserBundle\Entity\UserImage;
+use Jam\UserBundle\Security\Core\User\UserProvider\FacebookUserProvider;
+use Jam\UserBundle\Security\Core\User\UserProvider\SoundcloudUserProvider;
+use Jam\UserBundle\Security\Core\User\UserProvider\UserProviderFactory;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class FOSUBUserProvider extends BaseClass
@@ -46,71 +49,39 @@ class FOSUBUserProvider extends BaseClass
     {
         $username = $response->getUsername();
         $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
-        
-        //when the user is registrating
-        if (null === $user) {
-            $service = $response->getResourceOwner()->getName();
-            $setter = 'set'.ucfirst($service);
-            $setter_id = $setter.'Id';
-            $setter_token = $setter.'AccessToken';
+
+        $service = $response->getResourceOwner()->getName();
+
+        $firstTimeLogin = (null === $user) ? true : false;
+
+        $setter = 'set'.ucfirst($service);
+        $setterToken = $setter.'AccessToken';
+
+        if ($firstTimeLogin){
+
+            $setterId = $setter.'Id';
+
             // create new user here
             $user = $this->userManager->createUser();
-            $user->$setter_id($username);
-            $user->$setter_token($response->getAccessToken());
-            //I have set all requested data with the user's username
-            //modify here with relevant data
-            $user->setPassword($username);
 
+            $user->setUsername($username);
+
+            $user->$setterId($user->getUsername());
+            $user->$setterToken($response->getAccessToken());
+
+            $user->setPlainPassword($username);
             $user->setEnabled(true);
-
-            if ($response->getEmail()){
-                $user->setEmail($response->getEmail());
-            }else{
-                $user->setEmail($username);
-            }
-
-            if ($response->getProfilePicture()){
-                $photo = new UserImage();
-                $photo->setPath($response->getProfilePicture());
-                $user->addExternalImage($photo);
-            }
-
-            $allFields = $response->getResponse();
-
-            if (isset($allFields['gender'])){
-                if ($allFields['gender']=='male'){
-                    $user->setGender('1');
-                }else if($allFields['gender']=='female'){
-                    $user->setGender('2');
-                }
-            }
-
-            if (isset($allFields['name'])){
-                $cleanUsername = str_replace(" ", ".", $allFields['name']);
-                $user->setUsername($cleanUsername);
-            }else{
-                $user->setUsername($username);
-            }
-
-            $this->userManager->updateUser($user);
-            return $user;
-        }else{
-            if ($response->getProfilePicture() && $user->getImages()->count() == 0){
-                $photo = new UserImage();
-                $photo->setPath($response->getProfilePicture());
-                $user->addExternalImage($photo);
-                $this->userManager->updateUser($user);
-            }
         }
 
-        //if user exists - go with the HWIOAuth way
-        $user = parent::loadUserByOAuthUserResponse($response);
+        $userProvider = UserProviderFactory::create($service);
+        $userProvider->getResourceOwnerData($user, $firstTimeLogin, $response);
 
-        $serviceName = $response->getResourceOwner()->getName();
-        $setter = 'set' . ucfirst($serviceName) . 'AccessToken';
+        $this->userManager->updateUser($user);
 
-        //update access token
-        $user->$setter($response->getAccessToken());
+        if($firstTimeLogin === false){
+            $user = parent::loadUserByOAuthUserResponse($response);
+            $user->$setterToken($response->getAccessToken());
+        }
 
         return $user;
     }
