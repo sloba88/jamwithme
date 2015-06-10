@@ -1,9 +1,9 @@
-body {
+/*body {
     background-color: #F2ECE8;
     padding-bottom: 40px;
     padding-top: 60px;
 }
-
+*/
 body{
     /*cornsilk*/
     /*ivory*/
@@ -12,7 +12,7 @@ body{
     /*oldlace*/
 }
 
-.bar {
+/*.bar {
     height: 18px;
     background: green;
 }
@@ -511,4 +511,4 @@ a{
     .container {
         width: 1300px;
     }
-}
+}*/
