@@ -8250,28 +8250,28 @@ button.close {
 
 @font-face {
   font-family: "Hind Medium";
-  src: url('../fonts/hind/hind-medium-webfont.eot?1432330383');
-  src: url('../fonts/hind/hind-medium-webfont.eot?&1432330383#iefix') format('embedded-opentype'), url('../fonts/hind/hind-medium-webfont.woff?1432330383') format('woff'), url('../fonts/hind/hind-medium-webfont.ttf?1432330383') format('truetype'), url('../fonts/hind/hind-medium-webfont.svg?1432330383') format('svg');
+  src: url('../fonts/hind/hind-medium-webfont.eot?1415398060');
+  src: url('../fonts/hind/hind-medium-webfont.eot?&1415398060#iefix') format('embedded-opentype'), url('../fonts/hind/hind-medium-webfont.woff?1415398060') format('woff'), url('../fonts/hind/hind-medium-webfont.ttf?1415398060') format('truetype'), url('../fonts/hind/hind-medium-webfont.svg?1415398060') format('svg');
 }
 @font-face {
   font-family: "Hind Semibold";
-  src: url('../fonts/hind/hind-semibold-webfont.eot?1432330383');
-  src: url('../fonts/hind/hind-semibold-webfont.eot?&1432330383#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1432330383') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1432330383') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1432330383') format('svg');
+  src: url('../fonts/hind/hind-semibold-webfont.eot?1416173782');
+  src: url('../fonts/hind/hind-semibold-webfont.eot?&1416173782#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1416173782') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1416173782') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1416173782') format('svg');
 }
 @font-face {
   font-family: "Hind Bold";
-  src: url('../fonts/hind/hind-bold-webfont.eot?1432330383');
-  src: url('../fonts/hind/hind-bold-webfont.eot?&1432330383#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1432330383') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1432330383') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1432330383') format('svg');
+  src: url('../fonts/hind/hind-bold-webfont.eot?1420891071');
+  src: url('../fonts/hind/hind-bold-webfont.eot?&1420891071#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1420891071') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1420891071') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1420891071') format('svg');
 }
 @font-face {
   font-family: "CooperHewitt Bold";
-  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1432330383');
-  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1432330383#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1432330383') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1432330383') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1432330383') format('svg');
+  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1415713461');
+  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1415713461#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1415713461') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1415713461') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1415713461') format('svg');
 }
 @font-face {
   font-family: "CooperHewitt Book";
-  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?1432330383');
-  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?&1432330383#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.woff?1432330383') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.ttf?1432330383') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.svg?1432330383') format('svg');
+  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?1415914673');
+  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?&1415914673#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.woff?1415914673') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.ttf?1415914673') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.svg?1415914673') format('svg');
 }
 /* line 42, ../sass/jamifind/_mixins.scss */
 .select2-container.form-control .select2-choice,
@@ -8490,7 +8490,7 @@ ul {
   top: 9px;
   width: 11px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close.icon-close-hover {
   background-position: 0 -91px;
 }
@@ -9174,7 +9174,7 @@ header {
 .sidebar .sidebar-list .dashboard {
   background-position: 0 -219px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .dashboard:active, .sidebar .sidebar-list .dashboard.icon-dashboard-active {
   background-position: 0 -173px;
 }
@@ -9186,7 +9186,7 @@ header {
 .sidebar .sidebar-list .profile {
   background-position: 0 -840px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .profile:active, .sidebar .sidebar-list .profile.icon-profile-active {
   background-position: 0 -794px;
 }
@@ -9198,7 +9198,7 @@ header {
 .sidebar .sidebar-list .events {
   background-position: 0 -311px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .events:active, .sidebar .sidebar-list .events.icon-events-active {
   background-position: 0 -265px;
 }
@@ -9210,7 +9210,7 @@ header {
 .sidebar .sidebar-list .messages {
   background-position: 0 -749px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .messages:active, .sidebar .sidebar-list .messages.icon-messages-active {
   background-position: 0 -707px;
 }
@@ -9226,7 +9226,7 @@ header {
 .sidebar .sidebar-list .settings {
   background-position: 0 -932px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .settings:active, .sidebar .sidebar-list .settings.icon-settings-active {
   background-position: 0 -886px;
 }
@@ -9238,7 +9238,7 @@ header {
 .sidebar .sidebar-list .logout {
   background-position: 0 -552px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .logout:active, .sidebar .sidebar-list .logout.icon-logout-active {
   background-position: 0 -508px;
 }
@@ -9802,7 +9802,7 @@ header {
 .filters-preview .tab-grid {
   background-position: 0 -454px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-grid:active, .filters-preview .tab-grid.icon-grid-active {
   background-position: 0 -402px;
 }
@@ -9815,7 +9815,7 @@ header {
   background-position: 0 -653px;
   padding-left: 37px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-map:active, .filters-preview .tab-map.icon-map-active {
   background-position: 0 -597px;
 }
