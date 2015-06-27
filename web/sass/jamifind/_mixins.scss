@@ -1,0 +1,116 @@
+//responsive
+@mixin respond-to($media) {
+
+	@if $media == desktopLg {
+		@media only screen and (min-width: $screen-lg) { @content; }
+	}
+
+	@if $media == desktopMd {
+		@media only screen and (max-width: $screen-lg - 1px) { @content; }
+	}
+	
+	@if $media == tablet {
+		@media only screen and (max-width: $screen-md - 1px) { @content; }
+	}
+
+	@if $media == tabletOnly {
+		@media only screen and (max-width: $screen-md - 1px) and (min-width: $screen-sm) { @content; }
+	}
+	
+	@elseif $media == handhelds {
+		@media only screen and (max-width: $screen-sm - 1px) { @content; }
+	}
+
+	@elseif $media == mediumHandhelds {
+		@media only screen and (max-width: 480px) { @content; }	
+	}
+
+	@elseif $media == nonHandhelds {
+		@media only screen and (min-width: $screen-sm) { @content; }
+	}
+
+	// @elseif $media == smallHandhelds {
+	// 	@media only screen and (max-width: 480px) { @content; }	
+	// }
+
+
+	// @elseif $media == handhelds-mediumHandhelds {
+	// 	@media only screen and (max-width: $screen-sm) and (min-width: 550px) { @content; }
+	// }	
+}
+
+%custom-select {
+	background: #eee;
+	border: 1px solid $brand-primary;
+	border-radius: 2px;
+	box-shadow: none;
+	color: #000;
+	font-size: 15px;
+	height: 38px;
+	line-height: 38px;
+
+	> div,
+	.select2-arrow {
+		background: $brand-primary;
+		border: none;
+		border-radius: 0;
+		display: block;
+		height: 100%;
+		position: absolute;
+		right: 0;
+		top: 0;
+		text-align: center;
+		width: 38px;
+
+		b {
+			@extend %caret;
+			background: none;
+			color: $brand-secondary;
+			border-width: 6px!important;
+			margin: 0;
+		}
+	}
+}
+
+%tags {
+
+	li {
+		margin: 0 2px 4px 0;
+		position: relative;
+	}
+
+	a {
+		@include transition(all 0.3s ease);
+		background: $brand-secondary;
+		color: #000;
+		display: block;
+		font-size: 11px;
+		padding: 2px 7px 1px;
+
+		&:hover {
+			opacity: 0.8;
+			text-decoration: none;
+		}
+	}
+}
+
+%search {
+	width: 100%;
+
+	.btn {
+		background: #363636;				
+	}
+
+	.ui-autocomplete-input {
+		background: #363636;
+		@include respond-to(handhelds) {
+			background: #fff;
+			border: 1px solid $brand-primary;
+			color: $color-primary;
+		}
+	}
+}
+// @include respond-to(smallHandhelds) {
+// 	float: none;
+// 	margin-bottom: 10px;
+// }

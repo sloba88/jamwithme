@@ -1,0 +1,77 @@
+h1,h2,h3,h4,h5,h6 {
+	font-family: "CooperHewitt Bold";
+}
+
+h3 {
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 16px;
+	text-transform: uppercase;
+}
+
+a {
+
+	&:focus {
+		outline: none;
+		text-decoration: none;
+	}
+}
+
+.link {
+	color: $brand-secondary;
+	font-size: 13px;
+
+	&:hover,
+	&:focus {
+		color: $brand-secondary;
+	}
+}
+
+.form-control {
+	border: 1px solid $color-primary;
+	border-radius: 0;
+	resize: none;
+
+	&:focus {
+		box-shadow: none;
+		border-color: $brand-secondary;
+	}
+}
+
+.btn {
+
+	i {
+		margin-right: 5px;
+		position: relative;
+		top: 2px;
+	}
+}
+
+.btn-primary {
+	@include transition(background 0.3s ease, opacity 0.3s ease);
+	background: $brand-secondary;
+	border: none;
+	border-radius: 0;
+	color: $color-primary;
+	font-size: 15px;
+	text-transform: uppercase;
+	width: 100%;
+
+	&:hover,
+	&:focus, 
+	&.focus, 
+	&:active:focus, 
+	&.focus:active, 
+	&.active:focus, 
+	&.active.focus {
+		background: $brand-secondary;
+		color: inherit;
+		opacity: 0.8;
+	}
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}

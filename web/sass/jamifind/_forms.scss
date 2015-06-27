@@ -1,0 +1,103 @@
+//checkbox
+input[type="checkbox"],
+input[type="radio"] {
+	display:none;
+}
+
+input[type="checkbox"] + label span,
+input[type="radio"] + label span {
+	cursor:pointer;
+	display: inline-block;
+	height: 17px;
+	margin: 0 8px 0 0;
+	position: relative;
+	top: -2px;
+	vertical-align: middle;
+	width: 17px;
+}
+
+input[type="checkbox"] + label span {
+	@include icons-sprite(checkbox-unchecked);
+}
+
+input[type="radio"] + label span {
+	@include icons-sprite(radio-unchecked);
+	top: 1px;
+}
+
+input[type="checkbox"]:checked + label span {
+	@include icons-sprite(checkbox-checked);
+	top: -5px;
+}
+
+input[type="radio"]:checked + label span {
+	@include icons-sprite(radio-checked);
+}
+
+//settings page
+.page-settings {
+
+	// .main-content {
+	// 	padding-right: 0;
+	// }
+
+	// .main-content-inner {
+	// 	margin-right: 5px;
+	// 	padding-right: 15px;
+	// }
+
+	.panel {
+		border-radius: 0;
+	}
+
+	.panel-default > .panel-heading {
+		background: $color-primary;
+		border-radius: 0;
+		color: #fff;
+	}
+}
+
+.birth-date-container {
+
+	.select2-container {
+		margin-bottom: 10px;
+	}
+}
+
+.location_widget {
+
+	.input-group-btn {
+		vertical-align: top;
+	}
+
+	.dropdown-toggle {
+		border: 1px solid $color-primary;
+		border-radius: 0;
+	}
+
+	.dropdown-menu {
+		padding: 0;
+	}
+}
+
+.add-another-video {
+	margin-top: 10px;
+}
+
+.profile-media-image-commands {
+	background: $brand-primary;
+	padding: 2px 5px;
+
+	a {
+		color: #fff;
+
+		&:hover, &:focus {
+			color: #fff;
+		}
+	}
+
+	a[class*="remove-image"] {
+		float: right;
+		margin-top: 2px;
+	}
+}

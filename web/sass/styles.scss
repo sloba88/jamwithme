@@ -1,0 +1,25 @@
+//must include partials
+@import "bootstrap-compass";
+// @import "bootstrap-variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+//global partials
+@import "jamifind/sprite/icons";
+@import "jamifind/fonts";
+@import "jamifind/variables";
+@import "jamifind/mixins";
+@import "jamifind/typography";
+
+
+//styling partials
+@import "jamifind/custom";
+@import "jamifind/layout";
+@import "jamifind/forms";
+@import "jamifind/header";
+@import "jamifind/sidebar";
+@import "jamifind/shouts";
+@import "jamifind/main";
+@import "jamifind/messages";
+@import "jamifind/login";

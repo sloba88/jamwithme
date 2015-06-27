@@ -1,0 +1,184 @@
+.sidebar-inner {
+	background: rgba(43,42,59, 0.95);
+	border-left: $border;
+	@include respond-to(handhelds) {
+		background: rgba(43,42,59, 1);
+	}
+}
+
+.sidebar {
+	padding-right: 0;
+	@include respond-to(handhelds) {
+		@include transition(left 0.1s linear);
+		background: rgba(43,42,59, 1);
+		bottom: 0;
+		left: -160px;
+		overflow: auto;
+		padding: 0;
+		position: fixed;
+		top: 0px;
+		width: 160px;
+		z-index: 200;
+
+		&.is-active {
+			left: -1px;
+		}
+	}
+
+	.sidebar-inner {
+		@include respond-to(handhelds) {
+			background: none;
+		}
+	}
+
+	.profile-info {
+		border-bottom: $border;
+		padding: 15px;
+		@include respond-to(tablet) {
+			padding: 15px 5px;
+		}
+		@include respond-to(handhelds) {
+			padding: 15px;
+		}
+
+		.user-image {
+			margin-left: 10%;
+			width: 76px;
+		}
+
+		.user-name {
+			color: #fff;
+			margin: 25px 0 10px;
+			overflow: hidden;
+			text-align: left;
+		}
+	}
+
+	.sidebar-nav,
+	.sidebar-logout {
+		padding: 25px 0 15px 15px;
+	}
+
+	.sidebar-logout {
+		bottom: 0;
+		position: absolute;
+		@include respond-to(handhelds) {
+			margin-bottom: 0;
+			position: relative;
+		}
+	}
+
+	.sidebar-nav {
+		border-bottom: $border;		
+	}
+
+	.sidebar-list {
+		padding: 0;
+
+		li {
+			border-right: 5px solid transparent;
+			list-style: none;
+			margin-bottom: 25px;
+			padding-right: 15px;
+
+			a {
+				color: #fff;
+				display: block;
+				font-size: 13px;
+				padding-left: 30px;
+				position: relative;
+				text-transform: uppercase;
+
+				&:focus {
+					text-decoration: none;
+				}
+
+				.badge {
+					background: #fff;
+					border-radius: 0;
+					color: $brand-primary;
+					font-family: "Hind Bold";
+					font-weight: normal;
+					left: 11px;
+					line-height: 12px;
+					padding: 2px 5px 0;
+					position: absolute;
+					top: -5px;
+				}
+			}
+
+			&:hover {
+
+				a {
+					@include transition(all 0.2s ease);
+					color: $brand-secondary;
+					text-decoration: none;
+				}
+			}
+
+			&.active {
+				border-right: 5px solid $brand-secondary;
+
+				a {
+					color: $brand-secondary;
+				}
+			}
+
+			&.last {
+				margin-bottom: 0;
+			}
+		}
+
+		.dashboard {
+			@include icons-sprite(icon-dashboard);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-dashboard-active);
+			}
+		}
+
+		.profile {
+			@include icons-sprite(icon-profile);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-profile-active);
+			}
+		}
+
+		.events {
+			@include icons-sprite(icon-events);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-events-active);
+			}
+		}
+
+		.messages {
+			@include icons-sprite(icon-messages, $offset-y: 3px);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-messages-active, $offset-y: 3px);
+
+				.badge {
+					background: $brand-secondary;
+				}
+			}
+		}
+
+		.settings {
+			@include icons-sprite(icon-settings);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-settings-active);
+			}
+		}
+
+		.logout {
+			@include icons-sprite(icon-logout, $offset-y: 2px);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-logout-active, $offset-y: 2px);
+			}
+		}
+	}
+}
