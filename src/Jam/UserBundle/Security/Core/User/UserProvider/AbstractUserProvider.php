@@ -26,9 +26,7 @@ abstract class AbstractUserProvider {
     protected function setUserPicture(UserInterface $user, $pictureUrl)
     {
         if ($pictureUrl !== '' && $pictureUrl !== null ) {
-            $photo = new UserImage();
-            $photo->setPath($pictureUrl);
-            $user->addExternalImage($photo);
+            $user->setAvatar($pictureUrl);
         }
 
         return $user;
