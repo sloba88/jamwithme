@@ -115,6 +115,8 @@ liip_imagine:
             quality: 75
             filters:
                 relative_resize: { scale: 0.5 }
+        my_medium_:
+            quality: 75
         my_medium_1:
             quality: 75
             filters:
