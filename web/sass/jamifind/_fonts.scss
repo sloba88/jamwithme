@@ -1,0 +1,11 @@
+@import "compass/css3";
+
+@include font-face("Hind Medium", font-files( "hind/hind-medium-webfont.woff", "hind/hind-medium-webfont.ttf", "hind/hind-medium-webfont.svg" ), "hind/hind-medium-webfont.eot" );
+
+@include font-face("Hind Semibold", font-files( "hind/hind-semibold-webfont.woff", "hind/hind-semibold-webfont.ttf", "hind/hind-semibold-webfont.svg" ), "hind/hind-semibold-webfont.eot" );
+
+@include font-face("Hind Bold", font-files( "hind/hind-bold-webfont.woff", "hind/hind-bold-webfont.ttf", "hind/hind-bold-webfont.svg" ), "hind/hind-bold-webfont.eot" );
+
+@include font-face("CooperHewitt Bold", font-files( "cooper-hewit/cooperhewitt-bold-webfont.woff", "cooper-hewit/cooperhewitt-bold-webfont.ttf", "cooper-hewit/cooperhewitt-bold-webfont.svg" ), "cooper-hewit/cooperhewitt-bold-webfont.eot" );
+
+@include font-face("CooperHewitt Book", font-files( "cooper-hewit/cooperhewitt-book-webfont.woff", "cooper-hewit/cooperhewitt-book-webfont.ttf", "cooper-hewit/cooperhewitt-book-webfont.svg" ), "cooper-hewit/cooperhewitt-book-webfont.eot" );

@@ -1,0 +1,194 @@
+.shouts-sidebar {
+    padding-left: 0;
+    @include respond-to(tablet) {
+        padding-right: 0;
+    }
+
+    .profile-completion {
+    	border-bottom: $border;
+    	border-right: $border;
+        height: 100px;
+        padding: 20px 12px 0;
+
+        .pick {
+            float: left;
+            position: relative;
+        }
+
+        .pick-outer {
+            position: relative;
+            z-index: 10;
+        }
+
+        .pick-inner {
+            background: url(../images/pick-inner.png) no-repeat;
+            background-position: center bottom;
+            background-size: 43px 50px;
+            bottom: 4px;
+            height: 0;
+            left: 4px;
+            position: absolute;
+            transition: all 2s ease;
+            width: 43px;
+        }
+
+        .profile-completion-text {
+            margin-left: 60px;
+
+            h3 {
+                color: #fff;
+                margin: 15px 0 5px;
+
+                span {
+                    font-size: 18px;
+                    display: inline-block;
+                    margin-right: 7px;
+                }
+            }
+        }
+    }
+
+    .shouts-feed {
+        border-bottom: $border;
+        border-right: $border;
+        padding: 18px 15px 18px 10px;
+
+        h3 {
+            @include icons-sprite(icon-flash, $offset-x: 7px);
+            color: #fff;
+            font-size: 16px;
+            padding: 2px 0 2px 30px;
+        }
+
+        textarea {
+            margin-bottom: 10px;
+        }
+    }
+
+    .shouts-listing-container {
+        border-right: $border;
+        padding: 7px 15px 0 10px;
+
+        .shouts {
+            color: #fff;
+            font-size: 16px;
+            text-align: right;
+            text-transform: uppercase;
+        }
+
+        .shouts-listing {
+            clear: both;
+            overflow: hidden;
+            padding-right: 15px;
+            position: relative;
+            // width: 105%;
+        }
+
+        .shout-box {
+            position: relative;
+            margin-bottom: 20px;
+
+            img {
+                left: 0;
+                position: absolute;
+                top: 0;
+            }
+
+            .shout-text {
+                background: #fff;
+                border-top: 4px solid $brand-secondary;
+                margin-left: 60px;
+                padding: 10px 10px;
+                position: relative;
+                z-index: 10;
+
+                &:after {
+                    border-top: 8px solid transparent;
+                    border-bottom: 8px solid transparent;
+                    border-right: 9px solid #fff;
+                    content: '';
+                    height: 0;
+                    left: -9px;
+                    position: absolute;
+                    top: 25px;
+                    width: 0;
+                }
+            }
+        }
+
+        .name {
+            margin: 0 0 5px;
+
+            a {
+                @include transition(all 0.2s ease);
+                color: inherit;
+                font-family: "CooperHewitt Bold";
+                font-size: 14px;
+                text-transform: uppercase;
+
+                &:hover, &:focus {
+                    color: $brand-secondary;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .time {
+            color: #878595;
+            font-size: 12px;
+            margin-bottom: 5px;
+
+            span {
+                margin-right: 3px;
+            }
+        }
+
+        p {
+            line-height: 18px;
+
+            &:last-child {
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .teacher-container & {
+        // background: #fff;
+        padding-left: 0;
+
+        .sidebar-inner {
+            border-left: none;
+        }
+
+        .shouts-feed,
+        .shouts-listing-container {
+            background: #fff;
+            border-right: none;
+        }
+
+        .shouts-feed {
+            border-bottom: 4px solid $brand-primary;
+            padding: 12px 5px 0;
+
+            h3 {
+                color: $brand-primary;
+                font-size: 14px;
+                margin-top: 12px;
+            }
+        }
+
+        .shouts-listing-container {
+            padding-right: 0;
+            padding-top: 15px;
+
+            .shout-box {
+
+                .shout-text {
+                    border-top: none;
+                    padding-bottom: 0;
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+}

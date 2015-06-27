@@ -1,0 +1,63 @@
+html, body {
+	min-height: 100%;
+}
+
+body {
+	background: $brand-primary;
+	color: $color-primary;
+	font-family: "Hind Medium";
+	padding-top: 70px;
+	overflow: hidden;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: cover;
+	@include respond-to(tablet) {
+		overflow: auto;
+	}
+	@include respond-to(handhelds) {
+		padding-top: 78px;
+	}
+}
+
+.container-fluid {
+	max-width: 1400px;
+}
+
+.main-fluid {
+	@include transition(left 0.1s linear);
+	left: 0;
+	position: relative;
+
+	&.is-active {
+		position: fixed;
+		width: 100%;
+		@include respond-to(handhelds) {
+			left: 154px;
+		}
+	}
+}
+
+.main-row {
+	@include respond-to(tablet) {
+		margin-right: 0;
+	}
+	@include respond-to(handhelds) {
+		margin: 0 -10px;
+	}
+}
+
+.main-content {
+	background: #fff;
+	padding: 20px 20px 10px;
+	@include respond-to(tablet) {
+		padding-top: 15px;
+	}
+	@include respond-to(handhelds) {
+		padding: 30px 10px 20px;
+	}
+}
+
+.main-content-inner.with-scrollbar {
+	padding-right: 1.5%;
+	width: 101.5%;
+}

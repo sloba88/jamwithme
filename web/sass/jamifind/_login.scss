@@ -1,0 +1,199 @@
+.login-page {
+	background: url(../images/background-login.jpg) no-repeat;
+	background-size: cover;
+	min-height: 600px;
+	overflow: auto;
+
+	&.signup-page {
+		background-image: url(../images/background-signup.jpg);
+	}
+}
+
+.login-container {
+	margin: 100px auto;
+	width: 385px;
+	@include respond-to(handhelds) {
+		margin: 30px auto;
+	}
+	@include respond-to(mediumHandhelds) {
+		margin: 30px 15px;
+		width: auto;
+	}
+}
+
+.login-header {
+	background: rgba(43,42,59, 0.95);
+	height: 66px;
+	position: relative;	
+	@include respond-to(mediumHandhelds) {
+		height: 53px;
+	}
+
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		z-index: 10;
+	}
+
+	&:before {
+		background: url(../images/login-header-left.png) no-repeat;
+		bottom: 10px;
+		height: 20px;
+		left: 0;
+		width: 53px;
+		@include respond-to(mediumHandhelds) {
+			background-size: 100%;
+			width: 33px;
+		}
+	}
+
+	&:after {
+		background: url(../images/login-header-right.png) no-repeat;
+		bottom: 0;
+		height: 42px;
+		right: 0;
+		width: 42px;
+		@include respond-to(mediumHandhelds) {
+			background-position: center bottom;
+			background-size: 100%;
+			width: 33px;
+		}
+	}
+
+	h1 {
+		color: #fff;
+		font-size: 26px;
+		font-weight: normal;
+		margin: 0;
+		padding-top: 25px;
+		text-align: center;
+		text-transform: uppercase;
+		@include respond-to(mediumHandhelds) {
+			font-size: 18px;
+			padding-top: 18px;
+		}
+	}
+}
+
+.login-body {
+	background: #fff;
+	padding: 15px 35px 10px;
+	@include respond-to(mediumHandhelds) {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.form-control {
+		border: 2px solid #414141;
+		height: 40px;
+		font-size: 15px;
+	}
+
+	.btn-submit {
+		font-size: 14px;
+		padding: 9px 12px;
+	}
+
+	.separator {
+		border-top: 2px solid #414141;
+		margin-top: 25px;
+		position: relative;
+		text-align: center;
+
+		img {
+			background: #fff;
+			padding: 0 10px;
+			position: relative;
+			top: -15px;
+		}
+	}
+
+	.select-label {
+		display: block;
+		font-family: "Hind Semibold";
+		font-size: 14px;
+		font-weight: normal;
+		text-align: center;
+		text-transform: uppercase;
+	}
+}
+
+.login-buttons {
+
+	.btn {
+		color: #fff;
+		font-family: "Hind Semibold";
+		font-size: 14px;
+		margin-bottom: 15px;
+		position: relative;
+		@include respond-to(mediumHandhelds) {
+			padding-left: 55px;
+			text-align: left;
+		}		
+
+		&.facebook {
+			background: #336699;
+		}
+
+		&.soundcloud {
+			background: #f85d0f;
+		}
+
+		i {
+			font-size: 22px;
+			left: 10px;
+			position: absolute;
+			top: 5px;
+		}
+	}
+}
+
+.login-footer {
+	background: $brand-primary;
+	color: #fff;
+	font-family: "CooperHewitt Book";
+	font-size: 15px;
+	height: 46px;
+	margin-top: 15px;
+	text-align: center;
+
+	a {
+		display: inline-block;
+		font-size: 15px;
+		margin-left: 7px;
+		font-family: "CooperHewitt Bold";
+		padding-top: 12px;
+		text-transform: uppercase;
+		@include respond-to(mediumHandhelds) {
+			font-size: 14px;
+			padding-top: 14px;
+		}
+	}
+}
+
+.checkboxes-list {
+	border: 2px solid #414141;		
+}
+
+.checkboxes-list {
+	margin: 0;
+	padding: 15px;
+
+	li:not(.last) {
+		margin-bottom: 10px;
+	}
+
+	label {
+		font-weight: normal;
+		margin: 0;
+		text-transform: uppercase;
+	}
+
+	input[type="checkbox"] + label span {
+		top: 0;
+	}
+
+	input[type="checkbox"]:checked + label span {
+		top: -3px;
+	}
+}

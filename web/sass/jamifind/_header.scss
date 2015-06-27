@@ -1,0 +1,205 @@
+header {
+	background: #000;
+	height: 70px;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 100;
+	@include respond-to(handhelds) {
+		@include transition(left 0.1s linear);
+		height: 78px;
+		width: 100%;
+
+		&.is-active {
+			left: 159px;
+		}
+	}
+}
+
+.navbar-brand {
+	height: auto;
+	padding: 14px 14px 0px 14px;
+	@include respond-to(handhelds) {
+		float: none;
+		text-align: center;
+	}
+
+	a {
+		display: inline-block;
+		@include respond-to(handhelds) {
+			text-align: center;
+		}
+	}
+
+	.outer {
+		color: #a7a7af;
+		font-size: 12px;
+		left: -4px;
+		position: relative;
+		top: 9px;
+		@include respond-to(handhelds) {
+			display: block;
+			font-size: 9.5px;
+			left: auto;
+			right: -20px;
+			top: -8px;
+		}
+
+		span {
+			@include respond-to(handhelds) {
+				display: none;
+			}
+		}
+	}
+}
+
+.navbar-toggle {
+	border-radius: 0;
+	float: none;
+	margin: 20px 0 0;
+
+	&:hover, &:focus, &.is-active {
+
+		.icon-bar {
+			background: #fff;
+		}
+	}
+
+	.icon-bar {
+		background: $brand-secondary;
+		border-radius: 0;
+		height: 3px;
+		width: 16px;
+	}
+}
+
+.search-toggle {
+	background: none;
+	color: $brand-secondary;
+	float: right;
+	font-size: 18px;
+	margin: 22px 0 0;
+	padding: 5px;
+
+	&:hover, &:focus, &.is-active {
+		color: #fff;
+	} 
+}
+
+.search-block-container {
+	padding-left: 0;
+	padding-top: 18px;
+	@include respond-to(handhelds) {
+		background: $brand-secondary;
+		bottom: -64px;
+		display: none;
+		left: 0;
+		padding: 15px;
+		position: absolute;
+		right: 0;
+		z-index: 20;
+
+		&.is-opened {
+			display: block;
+		}
+	}
+
+	.search-block {
+		@include transition(width 0.5s ease);
+		float: right;
+		width: 122px;
+		@include respond-to(handhelds) {
+			float: none;
+			width: 100%;
+		}
+
+		&:hover, &.is-opened {
+			@extend %search;
+		}
+	}
+
+	.effects-ready {
+
+		.btn, .ui-autocomplete-input {
+			@include transition(background 0.3s ease);
+		}
+	}
+
+	.btn {
+		background: transparent;
+		border: none;
+		border-radius: 0;
+		color: $brand-secondary;
+		font-size: 15px;
+		height: 34px;
+		margin: 0!important;
+
+		i {
+			top: 3px;
+		}
+	}
+}
+
+//autocomplete search
+.ui-autocomplete-input {
+	background: transparent;
+	border: none;
+	color: #fff;
+	font-size: 15px;
+	text-transform: uppercase;
+	@include respond-to(handhelds) {
+		background: #fff;
+		border: 1px solid $color-primary;
+	}
+}
+
+.ui-autocomplete {
+	background: #fff;
+	border: 2px solid $brand-primary;
+	@include respond-to(desktopLg) {
+		width: 285px!important;
+	}
+
+	a {
+		color: $color-primary;		
+	}
+
+	.ui-menu-item {
+		border: none;
+		margin: 0;
+		overflow: hidden;
+		padding: 10px 8px;
+
+		&.ui-state-focus {
+			@include transition(background 0.3s ease);
+			background: $brand-secondary;	
+
+			a {
+				color: $color-primary;
+				font-weight: normal;
+			}
+		}
+	}
+
+	img,
+	.search-text {
+		float: left;
+	}
+
+	.search-text {
+		font-family: "CooperHewitt Bold";
+		font-size: 15px;
+		line-height: 17px;
+		max-width: 233px;
+		padding-left: 15px;
+		text-transform: uppercase;
+	}
+
+	.search-location {
+		display: block;
+		font-family: "Hind Medium";
+		font-size: 11px;
+		text-transform: none;
+	}
+}
