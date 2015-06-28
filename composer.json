@@ -45,7 +45,8 @@
         "friendsofsymfony/rest-bundle": "dev-master",
         "snc/redis-bundle": "1.1.*",
         "predis/predis": "0.8.x-dev",
-        "braincrafted/bootstrap-bundle": "dev-master"
+        "braincrafted/bootstrap-bundle": "dev-master",
+        "misd/guzzle-bundle": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [

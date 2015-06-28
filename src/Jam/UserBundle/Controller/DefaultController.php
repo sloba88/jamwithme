@@ -2,6 +2,7 @@
 
 namespace Jam\UserBundle\Controller;
 
+
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
@@ -255,4 +256,5 @@ class DefaultController extends Controller
 
         return $response;
     }
+
 }
