@@ -25,7 +25,14 @@ class DefaultController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
 
-        return array('user' => $user);
+        $soundcloudService = $this->get('soundcloud_connector');
+        $tracks = $soundcloudService->getUserTracks($user);
+
+        return array(
+            'user' => $user,
+            'userTracks' => json_encode($tracks),
+            'soundcloudClientId' => $this->container->getParameter('soundcloud_app_id')
+        );
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Jam\UserBundle\Security\Core\User;
 
+use FOS\UserBundle\Model\UserInterface;
 use Guzzle\Service\Client;
 use Jam\UserBundle\Entity\User;
 use Jam\UserBundle\Entity\UserImage;
@@ -158,6 +159,27 @@ class SoundcloudConnector {
         }
 
         return $user;
+    }
+
+    public function getUserTracks(UserInterface $user)
+    {
+
+        $this->client->setBaseUrl($this->soundcloudApiUrl);
+
+        $tracks = array();
+
+        try {
+            $url = 'users/'.$user->getSoundcloudId().'/tracks?client_id='.$this->soundcloudClientId;
+            $tracksReq = $this->client->get($url);
+
+            $tracksResponse = $tracksReq->send();
+            $tracks = json_decode($tracksResponse->getBody(true));
+        } catch (\Exception $e) {
+            /* TODO log about not being able to retrieve tracks for user */
+        }
+
+        return $tracks;
+
     }
 
 }
