@@ -355,22 +355,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add external path image
-     *
-     * @param \Jam\CoreBundle\Model\Image $images
-     * @return User
-     */
-    public function addExternalImage(UserImage $image)
-    {
-        if (!$this->hasImage($image)) {
-            $image->setUser($this);
-            $this->images->add($image);
-        }
-
-        return $this;
-    }
-
-    /**
      * Remove images
      *
      * @param \Jam\CoreBundle\Model\Image $images
@@ -790,15 +774,10 @@ class User extends BaseUser
     public function getAvatar()
     {
         if ($this->avatar){
-            if (strpos($this->avatar, 'http') !== false) {
-                return $this->avatar;
-            }else{
-                return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
-            }
+            return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
         }else{
             return 'images/placeholder-user.jpg';
         }
-
     }
 
     /**

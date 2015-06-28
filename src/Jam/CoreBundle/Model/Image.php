@@ -164,7 +164,11 @@ class Image implements ImageInterface
             return;
         }
 
-        $new_file_name = time().'_'.$this->getFile()->getClientOriginalName();
+        if (method_exists($this->getFile(), 'getClientOriginalName')){
+            $new_file_name = time().'_'.$this->getFile()->getClientOriginalName();
+        }else{
+            $new_file_name = time().'_.jpg';
+        }
 
         // move takes the target directory and then the
         // target filename to move to
