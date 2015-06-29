@@ -54,11 +54,11 @@ facebook_login:
 jam_facebook_login:
     pattern: /connect/facebook
 
-soundcloud_login:
-    pattern: /login/check-soundcloud
-
 jam_soundcloud_login:
     pattern: /connect/soundcloud
+
+soundcloud_login:
+    pattern: /login/check-soundcloud
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
