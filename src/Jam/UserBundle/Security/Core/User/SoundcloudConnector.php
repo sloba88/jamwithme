@@ -7,6 +7,8 @@ use Guzzle\Service\Client;
 use Jam\UserBundle\Entity\User;
 use Jam\UserBundle\Entity\UserImage;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Filesystem;
 
 class SoundcloudConnector {
 
@@ -153,9 +155,28 @@ class SoundcloudConnector {
         }
 
         if ($soundcloudUserData->avatar_url !== '' && $soundcloudUserData->avatar_url !== null) {
-            $userPicture = new UserImage();
-            $userPicture->setPath($soundcloudUserData->avatar_url);
-            $user->addExternalImage($userPicture);
+
+            //TODO: this is duplicate
+            $test = '/tmp/tmp.jpeg';
+
+            $picture = file_get_contents($soundcloudUserData->avatar_url);
+            file_put_contents($test, $picture);
+
+            $fs = new Filesystem();
+            if (!$fs->exists('uploads/avatars/'.$user->getId())){
+
+                try {
+                    $fs->mkdir('uploads/avatars/'.$user->getId());
+                } catch (IOException $e) {
+                    echo "An error occurred while creating your directory at ".$e->getPath();
+                }
+            }
+
+            $fs->copy($test, 'uploads/avatars/'.$user->getId().'/'.$user->getId().'.jpeg');
+
+            $user->setAvatar($user->getId().'.jpeg');
+
+
         }
 
         return $user;
