@@ -2,11 +2,10 @@
 
 namespace Jam\UserBundle\Security\Core\User\UserProvider;
 
-
 use FOS\UserBundle\Model\UserInterface;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
-use Jam\UserBundle\Entity\UserImage;
-
+use Symfony\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Filesystem;
 
 abstract class AbstractUserProvider {
 
@@ -26,12 +25,28 @@ abstract class AbstractUserProvider {
     protected function setUserPicture(UserInterface $user, $pictureUrl)
     {
         if ($pictureUrl !== '' && $pictureUrl !== null ) {
-            $photo = new UserImage();
-            $photo->setPath($pictureUrl);
-            $user->addExternalImage($photo);
+
+            $test = '/tmp/tmp.jpeg';
+
+            $picture = file_get_contents($pictureUrl);
+            file_put_contents($test, $picture);
+
+            $fs = new Filesystem();
+            if (!$fs->exists('uploads/avatars/'.$user->getId())){
+
+                try {
+                    $fs->mkdir('uploads/avatars/'.$user->getId());
+                } catch (IOException $e) {
+                    echo "An error occurred while creating your directory at ".$e->getPath();
+                }
+            }
+
+            $fs->copy($test, 'uploads/avatars/'.$user->getId().'/'.$user->getId().'.jpeg');
+
+            $user->setAvatar($user->getId().'.jpeg');
+
         }
 
         return $user;
     }
-
 }

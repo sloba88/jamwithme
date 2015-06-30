@@ -355,22 +355,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add external path image
-     *
-     * @param \Jam\CoreBundle\Model\Image $images
-     * @return User
-     */
-    public function addExternalImage(UserImage $image)
-    {
-        if (!$this->hasImage($image)) {
-            $image->setUser($this);
-            $this->images->add($image);
-        }
-
-        return $this;
-    }
-
-    /**
      * Remove images
      *
      * @param \Jam\CoreBundle\Model\Image $images
@@ -794,7 +778,6 @@ class User extends BaseUser
         }else{
             return 'images/placeholder-user.jpg';
         }
-
     }
 
     /**

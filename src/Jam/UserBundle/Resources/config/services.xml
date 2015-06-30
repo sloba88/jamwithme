@@ -65,6 +65,22 @@
             </argument>
         </service>
 
+        <service id="soundcloud_connector" class="Jam\UserBundle\Security\Core\User\SoundcloudConnector">
+            <call method="setClient">
+                <argument type="service" id="guzzle.client" />
+            </call>
+            <call method="setSoundcloudData">
+                <argument type="collection">
+                    <argument type="string">%soundcloud_api_url%</argument>
+                    <argument type="string">%soundcloud_app_id%</argument>
+                    <argument type="string">%soundcloud_app_secret%</argument>
+                </argument>
+            </call>
+            <call method="setRouter">
+                <argument type="service" id="router"></argument>
+            </call>
+        </service>
+
     </services>
 
 </container>

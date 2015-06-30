@@ -2,6 +2,7 @@
 
 namespace Jam\UserBundle\Controller;
 
+
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
@@ -24,7 +25,14 @@ class DefaultController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
 
-        return array('user' => $user);
+        $soundcloudService = $this->get('soundcloud_connector');
+        $tracks = $soundcloudService->getUserTracks($user);
+
+        return array(
+            'user' => $user,
+            'userTracks' => json_encode($tracks),
+            'soundcloudClientId' => $this->container->getParameter('soundcloud_app_id')
+        );
     }
 
     /**
@@ -39,11 +47,9 @@ class DefaultController extends Controller
         //make logic to check if it is external image here!
         //store to Mongo or Redis maybe to fetch it faster?
 
-        if (strpos($user->getAvatar(),'http') !== false) {
-            return $this->redirect($user->getAvatar());
-        }else{
-            return $this->redirect($this->get('liip_imagine.cache.manager')->getBrowserPath($user->getAvatar(), $size));
-        }
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+
+        return $this->redirect($cacheManager->getBrowserPath($user->getAvatar(), $size));
     }
 
     /**
@@ -212,8 +218,6 @@ class DefaultController extends Controller
      */
     public function setAvatarAction($id)
     {
-        $request = $this->get('request_stack')->getCurrentRequest();
-
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }else{
@@ -255,4 +259,5 @@ class DefaultController extends Controller
 
         return $response;
     }
+
 }

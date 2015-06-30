@@ -35,9 +35,10 @@
 
         $(function() {
 
+            var soundcloudClientId = '{{ soundcloudClientId }}';
+
             SC.initialize({
-                client_id: '3d3df354b405eee454308d224d8cfcbd',
-                redirect_uri: Routing.generate('home')
+                client_id: soundcloudClientId
             });
 
             $('a[data-tab="4"]').click(function(e){
@@ -45,33 +46,29 @@
                 var userId = '{{ app.request.get('username') }}';
                 var $this = $(e.currentTarget);
 
-                var userSoundcloudId = '{{ app.request.get('soundcloud_id') }}';
+                var userSoundcloudId = '{{ user.getSoundcloudId }}';
 
                 if(userSoundcloudId !== ''){
-                    SC.get("/tracks", {
-                        user_id: userId,
-                        limit: 100
-                    }, function (tracks) {
 
-                        if(tracks.length > 0){
-                            for(var i = 0; i < tracks.length; i++){
-                                var track = tracks[i];
+                    var tracks = {{ userTracks|raw }};
 
-                                var iframe = $('<iframe />', {
-                                    id: 'iframe'+track.id,
-                                    width: '100%',
-                                    height: '166',
-                                    scrolling: 'no',
-                                    frameborder: 'no',
-                                    src: 'https://w.soundcloud.com/player/?url='+track.uri
-                                });
+                    if(tracks.length > 0){
+                        for(var i = 0; i < tracks.length; i++){
+                            var track = tracks[i];
 
-                                $('div[data-tab="'+$this.attr('data-tab')+'"]').append(iframe);
-                                SC.Widget(iframe[0]);
-                            }
+                            var iframe = $('<iframe />', {
+                                id: 'iframe'+track.id,
+                                width: '100%',
+                                height: '166',
+                                scrolling: 'no',
+                                frameborder: 'no',
+                                src: 'https://w.soundcloud.com/player/?url='+track.uri
+                            });
+
+                            $('div[data-tab="'+$this.attr('data-tab')+'"]').append(iframe);
+                            SC.Widget(iframe[0]);
                         }
-
-                    });
+                    }
                 }
             });
 

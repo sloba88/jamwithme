@@ -16,7 +16,8 @@ parameters:
     elastic_port: 9200
     facebook_app_id: 579440428844182
     facebook_app_secret: cc714025fc8de9146f26690484a02f8a
-    soundcloud_app_id: 3d3df354b405eee454308d224d8cfcbd
-    soundcloud_app_secret: fc2747acde7219a851947e2c13338438
+    soundcloud_app_id: 77d5f5cdb23c2b5204afd8598a491ec5
+    soundcloud_app_secret: 3b11d260d5a54e207e24d726f88941ec
     node_server: 'http://33.33.33.100:3000'
     redis_server: 127.0.0.1:6379
+    soundcloud_api_url: https://api.soundcloud.com/

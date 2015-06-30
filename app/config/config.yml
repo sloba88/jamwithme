@@ -111,6 +111,8 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [200, 140], mode: outbound }
+                upscale: { min: [200, 140] }
+                crop: { start: [0, 0], size: [200, 140] }
         my_medium:
             quality: 75
             filters:
@@ -131,17 +133,32 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [140, 280], mode: outbound }
-
 snc_redis:
     clients:
         default:
             type: predis
             alias: default
-            dsn: redis://localhost
+            dsn: redis://%redis_server%
+        cache:
+            type: predis
+            alias: cache
+            dsn: redis://%redis_server%
+            logging: true
         session:
             type: predis
             alias: session
             dsn: redis://%redis_server%
+    doctrine:
+        metadata_cache:
+            client: cache
+            entity_manager: default          # the name of your entity_manager connection
+            document_manager: default        # the name of your document_manager connection
+        result_cache:
+            client: cache
+            entity_manager: [default, read]  # you may specify multiple entity_managers
+        query_cache:
+            client: cache
+            entity_manager: default
     session:
         client: session
 
