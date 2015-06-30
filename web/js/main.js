@@ -1,4 +1,4 @@
-$(function () {
+$(function() {
 
     // on load of the page: switch to the currently selected tab
     //var hash = window.location.hash;
@@ -94,9 +94,6 @@ $(function () {
         sidebarHeight();
     });
 
-    //activate tabs
-    tabsToggle($('.tabs-activate'));
-
     var $container = $('.profile-media-wall').isotope({
         // main isotope options
         itemSelector: '.profile-media-wall-item',
@@ -109,51 +106,54 @@ $(function () {
         }
     });
 
-    $container.imagesLoaded( function() {
+    //activate tabs
+    tabsToggle($('.tabs-activate'));
+
+    $container.imagesLoaded(function() {
         $container.isotope('layout');
     });
 
-    $("a.my-stuff").on("shown.tab", function (e) {
-        $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+    $("a.my-stuff").on("shown.tab", function(e) {
+        $('.profile-media-wall').isotope('reloadItems').isotope();
     });
 
     var jamMembersCollectionHolder = $("#jam_members");
     var musicianInstrumentsCollectionHolder = $("#musician_instruments");
     var videosCollectionHolder = $("#musician_videos");
 
-    $("#add_another_image").click(function(e){
+    $("#add_another_image").click(function(e) {
         e.preventDefault();
         addCollectionForm(imagesCollectionHolder, 'images');
     });
 
-    $("#add_another_member").on('click', function(e){
+    $("#add_another_member").on('click', function(e) {
         e.preventDefault();
         addCollectionForm(jamMembersCollectionHolder, 'members');
     });
 
-    $("#add_another_instrument").on('click', function(e){
+    $("#add_another_instrument").on('click', function(e) {
         e.preventDefault();
         addCollectionForm(musicianInstrumentsCollectionHolder, 'instruments');
     });
 
-    $("#add_another_video").on('click', function(e){
+    $("#add_another_video").on('click', function(e) {
         e.preventDefault();
         addCollectionForm(videosCollectionHolder, 'instruments');
     });
 
-    $(".price-type").click(function(){
+    $(".price-type").click(function() {
         $('.price-type').attr('checked', false);
         $(this).prop('checked', true).attr('checked', true);
         $("#ad_price").val('');
     });
 
-    $("body").on('click', '.set-profile-photo', function(e){
+    $("body").on('click', '.set-profile-photo', function(e) {
         e.preventDefault();
         var url = $(this).data('url');
         $.ajax({
             url: url
-        }).done(function( result ) {
-            if (result.status == 'success'){
+        }).done(function(result) {
+            if (result.status == 'success') {
                 window.location.reload();
             }
         });
@@ -164,7 +164,7 @@ $(function () {
         $(".fancybox").fancybox();
     }
 
-    $("#addPhotosToggle").on('click', function(e){
+    $("#addPhotosToggle").on('click', function(e) {
         e.preventDefault();
         $(".profile-add-photos").fadeToggle();
         $(this).toggleClass('active');
@@ -172,19 +172,19 @@ $(function () {
         $("#addUserRecommendationToggle").removeClass('active');
     });
 
-    $("#fos_user_profile_form_artists2" ).autocomplete({
-        source: function( request, response ) {
+    $("#fos_user_profile_form_artists2").autocomplete({
+        source: function(request, response) {
             $.ajax({
                 url: "http://developer.echonest.com/api/v4/artist/suggest",
                 dataType: "jsonp",
                 data: {
                     results: 12,
                     api_key: "AVZ7NYSNWRRUQVWXS",
-                    format:"jsonp",
-                    name:request.term
+                    format: "jsonp",
+                    name: request.term
                 },
-                success: function( data ) {
-                    response( $.map( data.response.artists, function(item) {
+                success: function(data) {
+                    response($.map(data.response.artists, function(item) {
                         return {
                             label: item.name,
                             value: item.name,
@@ -195,7 +195,7 @@ $(function () {
             });
         },
         minLength: 3,
-        select: function( event, ui ) {
+        select: function(event, ui) {
             $("#log").empty();
             $("#log").append(ui.item ? ui.item.id + ' ' + ui.item.label : '(nothing)');
         }
@@ -205,23 +205,28 @@ $(function () {
         placeholder: "Favourite Brands?",
         minimumInputLength: 2,
         multiple: true,
-        initSelection : function (element, callback) {
+        initSelection: function(element, callback) {
             var data = [];
-            $(element.val().split(",")).each(function () {
-                data.push({id: this, text: this});
+            $(element.val().split(",")).each(function() {
+                data.push({
+                    id: this,
+                    text: this
+                });
             });
             callback(data);
         },
         ajax: {
             url: Routing.generate('api_brands'),
-            results: function (data) {
-                return {results: $.map( data, function(item) {
-                    return {
-                        text: item.name,
-                        value: item.name,
-                        id: item.name
-                    }
-                })}
+            results: function(data) {
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            text: item.name,
+                            value: item.name,
+                            id: item.name
+                        }
+                    })
+                }
 
             },
             cache: true
@@ -232,31 +237,36 @@ $(function () {
         placeholder: "Favourite Artists?",
         minimumInputLength: 2,
         multiple: true,
-        initSelection : function (element, callback) {
+        initSelection: function(element, callback) {
             var data = [];
-            $(element.val().split(",")).each(function () {
-                data.push({id: this, text: this});
+            $(element.val().split(",")).each(function() {
+                data.push({
+                    id: this,
+                    text: this
+                });
             });
             callback(data);
         },
         ajax: {
             url: "http://developer.echonest.com/api/v4/artist/suggest",
             dataType: "jsonp",
-            results: function (data) {
+            results: function(data) {
                 //console.log(data);
-                return {results: $.map( data.response.artists, function(item) {
-                    return {
-                        text: item.name,
-                        value: item.name,
-                        id: item.name
-                    }
-                })}
+                return {
+                    results: $.map(data.response.artists, function(item) {
+                        return {
+                            text: item.name,
+                            value: item.name,
+                            id: item.name
+                        }
+                    })
+                }
             },
-            data: function (term, page) {
+            data: function(term, page) {
                 return {
                     results: 12,
                     api_key: "AVZ7NYSNWRRUQVWXS",
-                    format:"jsonp",
+                    format: "jsonp",
                     name: term
                 };
             }
@@ -264,56 +274,58 @@ $(function () {
     });
 
     // store the currently selected tab in the hash value
-    $("ul.tabs-activate > li > a").on("shown.tab", function (e) {
-        var id = $(e.target).attr("href").substr(1);
-        window.location.hash = id;
-        if (id=='media'){
-            $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
-        }
-    });
+    // $("ul.tabs-activate > li > a").on("shown.tab", function (e) {
+    //     var id = $(e.target).attr("href").substr(1);
+    //     window.location.hash = id;
+    //     if (id=='media'){
+    //         $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
+    //     }
+    // });
 
     _.templateSettings.variable = "rc";
-    var messageTemplate      = _.template($( "#messageTemplate" ).html());
+    var messageTemplate = _.template($("#messageTemplate").html());
 
-    socket.on('ourConversation', function (data) {
+    socket.on('ourConversation', function(data) {
         $(".conversation-message-box").html('');
-        $.each(data, function( index, value ) {
+        $.each(data, function(index, value) {
             $(".conversation-message-box").append(messageTemplate(value));
         });
-        setTimeout(function(){scrollToBottom()},300);
+        setTimeout(function() {
+            scrollToBottom()
+        }, 300);
     });
 
-    socket.on('messageSaved', function (data) {
-        var mess = $(messageTemplate( data )).show();
-        $( ".conversation-message-box" ).append(mess);
+    socket.on('messageSaved', function(data) {
+        var mess = $(messageTemplate(data)).show();
+        $(".conversation-message-box").append(mess);
         scrollToBottom();
     });
 
-    socket.on('messageReceived', function (data) {
-        var mess = $(messageTemplate( data )).show();
-        $( ".conversation-message-box" ).append(mess);
+    socket.on('messageReceived', function(data) {
+        var mess = $(messageTemplate(data)).show();
+        $(".conversation-message-box").append(mess);
         scrollToBottom();
     });
 
-    setTimeout(function(){
+    setTimeout(function() {
         $(".flash-message.alert, .flash-message.success").fadeOut();
-    },3000);
+    }, 3000);
 
-    $("#addUserRecommendationToggle").on('click', function(){
+    $("#addUserRecommendationToggle").on('click', function() {
         $(this).toggleClass('active');
         $(".profile-write-recommendation").fadeToggle();
         $(".profile-add-photos").hide();
         $("#addPhotosToggle").removeClass('active');
     });
 
-    $(".send-message").on('keyup', function(e){
-        if(e.which == 13) {
+    $(".send-message").on('keyup', function(e) {
+        if (e.which == 13) {
             var self = $(this);
             var value = $(this).val();
             var toID = $(this).data('toid');
             var toUsername = $(this).data('tousername');
 
-            if ($.trim(value)=='') return false;
+            if ($.trim(value) == '') return false;
 
             socket.emit('newMessage', {
                 message: value,
@@ -327,30 +339,30 @@ $(function () {
         }
     });
 
-    $('.send-message-btn').on('click', function(e){
+    $('.send-message-btn').on('click', function(e) {
         e.preventDefault();
     });
 
-    $('.ytvideo').each(function(){
+    $('.ytvideo').each(function() {
         var src = $(this).attr('href');
         var ytId = youtubeParser(src);
-        var ytImg = 'http://img.youtube.com/vi/'+ytId+'/0.jpg';
+        var ytImg = 'http://img.youtube.com/vi/' + ytId + '/0.jpg';
         $(this).find('img').attr('src', ytImg);
     });
 
     $('.ytvideo').on('click', function() {
         $.fancybox({
-            'padding'		: 0,
-            'autoScale'		: false,
-            'transitionIn'	: 'none',
-            'transitionOut'	: 'none',
-            'width'			: 640,
-            'height'		: 385,
-            'href'			: this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
-            'type'			: 'swf',
-            'swf'			: {
-                'wmode'				: 'transparent',
-                'allowfullscreen'	: 'true'
+            'padding': 0,
+            'autoScale': false,
+            'transitionIn': 'none',
+            'transitionOut': 'none',
+            'width': 640,
+            'height': 385,
+            'href': this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+            'type': 'swf',
+            'swf': {
+                'wmode': 'transparent',
+                'allowfullscreen': 'true'
             }
         });
 
@@ -358,10 +370,10 @@ $(function () {
     });
 });
 
-socket.on('myUnreadMessagesCount', function(data){
-    if (data!=0){
+socket.on('myUnreadMessagesCount', function(data) {
+    if (data != 0) {
         $(".inbox .badge").text(data);
-    }else{
+    } else {
         $(".inbox .badge").text('');
     }
 });
@@ -379,23 +391,23 @@ function addCollectionForm(collectionHolder, type) {
 
 function readURL(input) {
     if (input.files && input.files[0]) {
-        if(input.files[0].size>3000000){
+        if (input.files[0].size > 3000000) {
             alert('Photo is too big. Please upload a file that is less than 3MB');
             $(input).val(null);
             return false;
         }
-        var image  = new Image();
+        var image = new Image();
         var reader = new FileReader();
         reader.readAsDataURL(input.files[0]);
-        reader.onload = function (e) {
+        reader.onload = function(e) {
             //parent parent is stupid
 
-            image.src    = e.target.result;
+            image.src = e.target.result;
             image.onload = function() {
                 var w = this.width,
                     h = this.height;
 
-                if(w<320 || h<190){
+                if (w < 320 || h < 190) {
                     alert('Please choose a picture larger than 320x190');
                     $(input).val('');
                     return false;
@@ -407,7 +419,7 @@ function readURL(input) {
                 image_holder.find('.make-primary-image').parent().show();
                 image_holder.find('.remove-image').show();
                 image_holder.find('.upload').hide();
-                if($('.image-preview').length==1){
+                if ($('.image-preview').length == 1) {
                     image_holder.find('.make-primary-image').prop('checked', true).attr('checked', true);
                 }
             };
@@ -415,8 +427,8 @@ function readURL(input) {
     }
 }
 
-function scrollToBottom(){
-    var wtf    = $('.conversation-message-box');
+function scrollToBottom() {
+    var wtf = $('.conversation-message-box');
     var height = wtf[0].scrollHeight;
     wtf.scrollTop(height);
 }
@@ -479,10 +491,10 @@ function peopleGrid() {
 
 function tabsToggle(object) {
     var $btns = object.find('a'); //all buttons
-    $viewTabContainer = $('.view-tab-container');//tabs container
+    $viewTabContainer = $('.view-tab-container'); //tabs container
     $viewTab = $viewTabContainer.find('.view-tab'); //all tabs
 
-    var speed = 100;
+    var speed = 0;
 
     //add active classes on load
     // $btns.eq(0).addClass('is-active');
@@ -492,27 +504,44 @@ function tabsToggle(object) {
         e.preventDefault();
 
         var $thisBtn = $(this), //this button
-            btnDataTab = $thisBtn.data('tab'); //this button data
+            btnDataTab = $thisBtn.data('tab'), //this button data
+            hash = $thisBtn.data('tab'); //this data tab
+
 
         if (!$thisBtn.hasClass('is-active')) {
             $btns.removeClass('is-active');
             $thisBtn.addClass('is-active');
 
+            //add hash
+            window.location.hash = hash;
+
             $viewTab.each(function() {
                 var $thisTab = $(this); //this tab
                 if ($thisTab.data('tab') == btnDataTab) {
                     $viewTab.fadeOut(speed).removeClass('is-active');
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $thisTab.fadeIn(speed).addClass('is-active');
                         $thisBtn.trigger('shown.tab');
                     }, speed)
                 }
             });
-
-        } else {
-            return false;
         }
     });
+
+    //read hash
+    var currentHash = window.location.hash.substr(1);
+
+    if (currentHash.length) {
+        object.find('a').each(function() {
+            if (currentHash == $(this).data('tab')) {
+                $(this).trigger('click');
+            }
+
+            if (currentHash == 'media') {
+                $('.profile-media-wall').isotope('reloadItems').isotope();
+            }
+        });
+    }
 }
 
 function sidebarHeight() {
@@ -569,23 +598,27 @@ function conversations() {
         $(".conversation-message-box .conversation-single").hide();
         var user = $(this).data('user');
         var userID = $(this).data('id');
-        $('*[data-user="'+user+'"]').show();
-        $('*[data-user2="'+user+'"]').show();
+        $('*[data-user="' + user + '"]').show();
+        $('*[data-user2="' + user + '"]').show();
         $(".send-message").data('toid', userID);
         $(".send-message").data('tousername', user);
 
         scrollToBottom();
 
-        setTimeout(function(){
-            socket.emit('conversationIsRead', { userID: userID });
-        },500);
+        setTimeout(function() {
+            socket.emit('conversationIsRead', {
+                userID: userID
+            });
+        }, 500);
 
     });
 
-    $('.open-conversation').on('click', function(e){
+    $('.open-conversation').on('click', function(e) {
         e.preventDefault();
 
-        socket.emit('getOurConversation', { userID:  $(this).data('id')});
+        socket.emit('getOurConversation', {
+            userID: $(this).data('id')
+        });
 
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
@@ -594,21 +627,23 @@ function conversations() {
         $(".conversation-message-box .conversation-single").hide();
         var user = $(this).data('user');
         var userID = $(this).data('id');
-        $('*[data-user="'+user+'"]').show();
-        $('*[data-user2="'+user+'"]').show();
+        $('*[data-user="' + user + '"]').show();
+        $('*[data-user2="' + user + '"]').show();
         $(".send-message").data('toid', userID);
         $(".send-message").data('tousername', user);
 
         scrollToBottom();
 
-        setTimeout(function(){
-            socket.emit('conversationIsRead', { userID: userID });
-        },500);
+        setTimeout(function() {
+            socket.emit('conversationIsRead', {
+                userID: userID
+            });
+        }, 500);
 
     });
 
     //compose
-    $compose.on('click', function(e){
+    $compose.on('click', function(e) {
         $conversation.addClass('is-opened is-opened-compose');
         $('.conversation-message-box .conversation-single').hide();
         $overlay.removeClass('hide');
@@ -634,12 +669,12 @@ function conversationHeight() {
     $conversationContainer.height(conversationHeight - coneversationCloseHeight - coneversationSendHeight - 30);
 }
 
-function youtubeParser(url){
+function youtubeParser(url) {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
-    if (match&&match[7].length==11){
+    if (match && match[7].length == 11) {
         return match[7];
-    }else{
+    } else {
 
     }
 }
@@ -656,14 +691,14 @@ function autocomplete() {
         $autocompleteInput.autocomplete({
             delay: 10,
             minLength: 2,
-            source: function( request, response ) {
+            source: function(request, response) {
                 $.ajax({
                     url: "/users",
                     data: {
                         q: request.term
                     },
-                    success: function( data ) {
-                        response( data );
+                    success: function(data) {
+                        response(data);
                     }
                 });
             }
@@ -702,18 +737,18 @@ function autocompleteMessageUser() {
         $autocompleteInput.autocomplete({
             delay: 10,
             minLength: 2,
-            source: function( request, response ) {
+            source: function(request, response) {
                 $.ajax({
                     url: "/users",
                     data: {
                         q: request.term
                     },
-                    success: function( data ) {
-                        response( data );
+                    success: function(data) {
+                        response(data);
                     }
                 });
             },
-            select: function( event, ui ) {
+            select: function(event, ui) {
                 $autocompleteInput.val(ui.item.username);
                 $('.conversation-send .send-message').data('tousername', ui.item.username);
                 $('.conversation-send .send-message').data('toid', ui.item.id);
@@ -754,7 +789,7 @@ function scrollbarPlugin() {
                 suppressScrollX: true
             });
         } else {
-            $('.with-scrollbar').perfectScrollbar('destroy'); // Destroy
+            $('.with-scrollbar').perfectScrollbar('destroy');
         }
     }
 }
