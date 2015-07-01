@@ -10,6 +10,10 @@
 		@extend %custom-select;
 	}
 
+	.select2-choice {
+		overflow: visible;
+	}
+
 	.select2-chosen {
 		color: #000;
 		font-size: 15px;		
@@ -41,6 +45,10 @@
 
 	.select2-search {
 		margin-top: 5px;
+
+		input {
+			padding-top: 2px;
+		}
 	}
 
 	.select2-highlighted {

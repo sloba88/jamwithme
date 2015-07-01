@@ -1257,17 +1257,24 @@
 	}
 }
 
-.settings-row {
-	@include respond-to(nonHandhelds) {
-		margin: 0;
-	}
-
+.page-settings{
+	
 	.checkboxes-list {
 		margin-bottom: 20px;
 	}
 
 	#add_another_instrument {
 		margin-bottom: 20px;
+    min-width: 260px;
+    width: auto;
+    @include respond-to(tablet) {
+			width: 100%;
+    }
+
+    i {
+    	margin-right: 3px;
+    	top: 2px;
+    }
 	}
 }
 

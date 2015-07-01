@@ -8250,28 +8250,28 @@ button.close {
 
 @font-face {
   font-family: "Hind Medium";
-  src: url('../fonts/hind/hind-medium-webfont.eot?1415398060');
-  src: url('../fonts/hind/hind-medium-webfont.eot?&1415398060#iefix') format('embedded-opentype'), url('../fonts/hind/hind-medium-webfont.woff?1415398060') format('woff'), url('../fonts/hind/hind-medium-webfont.ttf?1415398060') format('truetype'), url('../fonts/hind/hind-medium-webfont.svg?1415398060') format('svg');
+  src: url('../fonts/hind/hind-medium-webfont.eot?1435436332');
+  src: url('../fonts/hind/hind-medium-webfont.eot?&1435436332#iefix') format('embedded-opentype'), url('../fonts/hind/hind-medium-webfont.woff?1435436332') format('woff'), url('../fonts/hind/hind-medium-webfont.ttf?1435436332') format('truetype'), url('../fonts/hind/hind-medium-webfont.svg?1435436332') format('svg');
 }
 @font-face {
   font-family: "Hind Semibold";
-  src: url('../fonts/hind/hind-semibold-webfont.eot?1416173782');
-  src: url('../fonts/hind/hind-semibold-webfont.eot?&1416173782#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1416173782') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1416173782') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1416173782') format('svg');
+  src: url('../fonts/hind/hind-semibold-webfont.eot?1435436332');
+  src: url('../fonts/hind/hind-semibold-webfont.eot?&1435436332#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1435436332') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1435436332') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1435436332') format('svg');
 }
 @font-face {
   font-family: "Hind Bold";
-  src: url('../fonts/hind/hind-bold-webfont.eot?1420891071');
-  src: url('../fonts/hind/hind-bold-webfont.eot?&1420891071#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1420891071') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1420891071') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1420891071') format('svg');
+  src: url('../fonts/hind/hind-bold-webfont.eot?1435436332');
+  src: url('../fonts/hind/hind-bold-webfont.eot?&1435436332#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1435436332') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1435436332') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1435436332') format('svg');
 }
 @font-face {
   font-family: "CooperHewitt Bold";
-  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1415713461');
-  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1415713461#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1415713461') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1415713461') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1415713461') format('svg');
+  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1435436332');
+  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1435436332#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1435436332') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1435436332') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1435436332') format('svg');
 }
 @font-face {
   font-family: "CooperHewitt Book";
-  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?1415914673');
-  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?&1415914673#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.woff?1415914673') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.ttf?1415914673') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.svg?1415914673') format('svg');
+  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?1435436332');
+  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?&1435436332#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.woff?1435436332') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.ttf?1435436332') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.svg?1435436332') format('svg');
 }
 /* line 42, ../sass/jamifind/_mixins.scss */
 .select2-container.form-control .select2-choice,
@@ -8417,17 +8417,19 @@ a:focus {
   border-radius: 0;
   color: #18152b;
   font-size: 15px;
+  line-height: 20px;
+  padding: 7px 12px 5px;
   text-transform: uppercase;
   width: 100%;
 }
-/* line 60, ../sass/jamifind/_typography.scss */
+/* line 62, ../sass/jamifind/_typography.scss */
 .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active:focus, .btn-primary.focus:active, .btn-primary.active:focus, .btn-primary.active.focus {
   background: #fabc09;
   color: inherit;
   opacity: 0.8;
 }
 
-/* line 73, ../sass/jamifind/_typography.scss */
+/* line 75, ../sass/jamifind/_typography.scss */
 ul {
   list-style: none;
   margin: 0;
@@ -8442,37 +8444,45 @@ ul {
   padding: 0;
 }
 /* line 13, ../sass/jamifind/_custom.scss */
+.select2-container.form-control .select2-choice {
+  overflow: visible;
+}
+/* line 17, ../sass/jamifind/_custom.scss */
 .select2-container.form-control .select2-chosen {
   color: #000;
   font-size: 15px;
 }
-/* line 18, ../sass/jamifind/_custom.scss */
+/* line 22, ../sass/jamifind/_custom.scss */
 .select2-container.form-control .select2-search-field {
   line-height: 24px;
 }
-/* line 25, ../sass/jamifind/_custom.scss */
+/* line 29, ../sass/jamifind/_custom.scss */
 .select2-container.form-control.select2-dropdown-open .select2-choice {
   border: 1px solid #aaa;
 }
 
-/* line 36, ../sass/jamifind/_custom.scss */
+/* line 40, ../sass/jamifind/_custom.scss */
 .select2-drop {
   background: #eee;
   border: 1px solid #aaa;
   border-top: none;
   margin-top: 0px;
 }
-/* line 42, ../sass/jamifind/_custom.scss */
+/* line 46, ../sass/jamifind/_custom.scss */
 .select2-drop .select2-search {
   margin-top: 5px;
 }
-/* line 46, ../sass/jamifind/_custom.scss */
+/* line 49, ../sass/jamifind/_custom.scss */
+.select2-drop .select2-search input {
+  padding-top: 2px;
+}
+/* line 54, ../sass/jamifind/_custom.scss */
 .select2-drop .select2-highlighted {
   background: #fabc09;
   color: #000;
 }
 
-/* line 56, ../sass/jamifind/_custom.scss */
+/* line 64, ../sass/jamifind/_custom.scss */
 .select2-container-multi .select2-choices .select2-search-choice {
   background: #3b385e;
   border: none;
@@ -8481,7 +8491,7 @@ ul {
   color: #fff;
   padding: 9px 22px 8px 5px;
 }
-/* line 64, ../sass/jamifind/_custom.scss */
+/* line 72, ../sass/jamifind/_custom.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close {
   background-position: 0 -132px;
   left: auto;
@@ -8490,20 +8500,20 @@ ul {
   top: 9px;
   width: 11px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close.icon-close-hover {
   background-position: 0 -91px;
 }
-/* line 72, ../sass/jamifind/_custom.scss */
+/* line 80, ../sass/jamifind/_custom.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:focus {
   background-position: 0 -91px;
 }
 
-/* line 83, ../sass/jamifind/_custom.scss */
+/* line 91, ../sass/jamifind/_custom.scss */
 .tooltip.in {
   opacity: 1;
 }
-/* line 87, ../sass/jamifind/_custom.scss */
+/* line 95, ../sass/jamifind/_custom.scss */
 .tooltip .tooltip-inner {
   background: #fff;
   border: 2px solid #2b2a3b;
@@ -8517,19 +8527,19 @@ ul {
   white-space: nowrap;
 }
 
-/* line 102, ../sass/jamifind/_custom.scss */
+/* line 110, ../sass/jamifind/_custom.scss */
 .ui-slider {
   background: #dddddd;
   border: none;
   border-radius: 0;
   height: 12px;
 }
-/* line 108, ../sass/jamifind/_custom.scss */
+/* line 116, ../sass/jamifind/_custom.scss */
 .ui-slider .ui-slider-range {
   background: #4a4874;
   border-radius: 0;
 }
-/* line 113, ../sass/jamifind/_custom.scss */
+/* line 121, ../sass/jamifind/_custom.scss */
 .ui-slider .ui-slider-handle {
   background: #2b2a3b;
   border: none;
@@ -8540,40 +8550,40 @@ ul {
   width: 20px;
 }
 
-/* line 127, ../sass/jamifind/_custom.scss */
+/* line 135, ../sass/jamifind/_custom.scss */
 .tabs-activate .is-active {
   color: #000;
   cursor: default;
 }
-/* line 131, ../sass/jamifind/_custom.scss */
+/* line 139, ../sass/jamifind/_custom.scss */
 .tabs-activate .is-active:hover {
   color: inherit;
 }
-/* line 134, ../sass/jamifind/_custom.scss */
+/* line 142, ../sass/jamifind/_custom.scss */
 .tabs-activate .is-active:hover i {
   color: #fabc09;
 }
-/* line 139, ../sass/jamifind/_custom.scss */
+/* line 147, ../sass/jamifind/_custom.scss */
 .tabs-activate .is-active i {
   color: #fabc09;
 }
 
-/* line 145, ../sass/jamifind/_custom.scss */
+/* line 153, ../sass/jamifind/_custom.scss */
 .view-tab {
   display: none;
 }
-/* line 148, ../sass/jamifind/_custom.scss */
+/* line 156, ../sass/jamifind/_custom.scss */
 .view-tab.is-active {
   display: block;
 }
 
-/* line 154, ../sass/jamifind/_custom.scss */
+/* line 162, ../sass/jamifind/_custom.scss */
 .with-scrollbar {
   position: relative;
   overflow: hidden;
 }
 
-/* line 165, ../sass/jamifind/_custom.scss */
+/* line 173, ../sass/jamifind/_custom.scss */
 .shouts-listing-filter > .ps-scrollbar-y-rail > .ps-scrollbar-y,
 .shouts-listing-filter > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y,
 .shouts-listing-filter:hover > .ps-scrollbar-y-rail > .ps-scrollbar-y,
@@ -8581,7 +8591,7 @@ ul {
   background-color: #fff;
 }
 
-/* line 179, ../sass/jamifind/_custom.scss */
+/* line 187, ../sass/jamifind/_custom.scss */
 .view-tab-container > .ps-scrollbar-y-rail > .ps-scrollbar-y,
 .view-tab-container > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y,
 .view-tab-container:hover > .ps-scrollbar-y-rail > .ps-scrollbar-y,
@@ -9174,7 +9184,7 @@ header {
 .sidebar .sidebar-list .dashboard {
   background-position: 0 -219px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .dashboard:active, .sidebar .sidebar-list .dashboard.icon-dashboard-active {
   background-position: 0 -173px;
 }
@@ -9186,7 +9196,7 @@ header {
 .sidebar .sidebar-list .profile {
   background-position: 0 -840px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .profile:active, .sidebar .sidebar-list .profile.icon-profile-active {
   background-position: 0 -794px;
 }
@@ -9198,7 +9208,7 @@ header {
 .sidebar .sidebar-list .events {
   background-position: 0 -311px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .events:active, .sidebar .sidebar-list .events.icon-events-active {
   background-position: 0 -265px;
 }
@@ -9210,7 +9220,7 @@ header {
 .sidebar .sidebar-list .messages {
   background-position: 0 -749px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .messages:active, .sidebar .sidebar-list .messages.icon-messages-active {
   background-position: 0 -707px;
 }
@@ -9226,7 +9236,7 @@ header {
 .sidebar .sidebar-list .settings {
   background-position: 0 -932px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .settings:active, .sidebar .sidebar-list .settings.icon-settings-active {
   background-position: 0 -886px;
 }
@@ -9238,7 +9248,7 @@ header {
 .sidebar .sidebar-list .logout {
   background-position: 0 -552px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .logout:active, .sidebar .sidebar-list .logout.icon-logout-active {
   background-position: 0 -508px;
 }
@@ -9802,7 +9812,7 @@ header {
 .filters-preview .tab-grid {
   background-position: 0 -454px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-grid:active, .filters-preview .tab-grid.icon-grid-active {
   background-position: 0 -402px;
 }
@@ -9815,7 +9825,7 @@ header {
   background-position: 0 -653px;
   padding-left: 37px;
 }
-/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.1/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-map:active, .filters-preview .tab-map.icon-map-active {
   background-position: 0 -597px;
 }
@@ -10862,53 +10872,60 @@ header {
   margin-right: 5px;
 }
 
-@media only screen and (min-width: 768px) {
-  /* line 1260, ../sass/jamifind/_main.scss */
-  .settings-row {
-    margin: 0;
+/* line 1262, ../sass/jamifind/_main.scss */
+.page-settings .checkboxes-list {
+  margin-bottom: 20px;
+}
+/* line 1266, ../sass/jamifind/_main.scss */
+.page-settings #add_another_instrument {
+  margin-bottom: 20px;
+  min-width: 260px;
+  width: auto;
+}
+@media only screen and (max-width: 991px) {
+  /* line 1266, ../sass/jamifind/_main.scss */
+  .page-settings #add_another_instrument {
+    width: 100%;
   }
 }
-/* line 1265, ../sass/jamifind/_main.scss */
-.settings-row .checkboxes-list {
-  margin-bottom: 20px;
-}
-/* line 1269, ../sass/jamifind/_main.scss */
-.settings-row #add_another_instrument {
-  margin-bottom: 20px;
+/* line 1274, ../sass/jamifind/_main.scss */
+.page-settings #add_another_instrument i {
+  margin-right: 3px;
+  top: 2px;
 }
 
-/* line 1276, ../sass/jamifind/_main.scss */
+/* line 1283, ../sass/jamifind/_main.scss */
 .personal-bio .radio label {
   padding-left: 0;
 }
 
-/* line 1283, ../sass/jamifind/_main.scss */
+/* line 1290, ../sass/jamifind/_main.scss */
 .settings-instruments .form-control, .settings-skill .form-control {
   margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1288, ../sass/jamifind/_main.scss */
+  /* line 1295, ../sass/jamifind/_main.scss */
   .settings-instruments {
     margin-bottom: 20px;
   }
 }
 
-/* line 1294, ../sass/jamifind/_main.scss */
+/* line 1301, ../sass/jamifind/_main.scss */
 .profile-media-wall-item {
   margin-bottom: 15px;
 }
-/* line 1297, ../sass/jamifind/_main.scss */
+/* line 1304, ../sass/jamifind/_main.scss */
 .profile-media-wall-item img {
   width: 100%;
 }
 
-/* line 1302, ../sass/jamifind/_main.scss */
+/* line 1309, ../sass/jamifind/_main.scss */
 #musician_instruments .row {
   margin-top: 15px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 1305, ../sass/jamifind/_main.scss */
+  /* line 1312, ../sass/jamifind/_main.scss */
   #musician_instruments .row > div {
     margin-top: 15px;
   }
