@@ -122,7 +122,6 @@
         }
     });
 
-
     var map;
     var $map = $('#map-canvas');
     var distanceCircle;
@@ -276,6 +275,37 @@
         //activates tooltip
         $("[data-toggle=tooltip]").tooltip();
 
+        $('body').on('click', '#subscribeToSearch', function(e){
+            e.preventDefault();
+            var data = {};
+            data.genres = [];
+            data.instruments = [];
+
+            $('#filter-genres option:selected').each(function () {
+                if ($(this).length) {
+                    data.genres.push($(this).text())
+                }
+            });
+
+            $('#filter-instruments option:selected').each(function () {
+                if ($(this).length) {
+                    data.instruments.push($(this).text())
+                }
+            });
+
+            data.distance = $('#search_form_distance').val();
+            data.isTeacher = $('#lessons-checkbox').val();
+
+            $.ajax({
+                url: Routing.generate('subscribe_search_add'),
+                data: $.param(data)
+            }).done(function( result ) {
+                if (result.status == 'success') {
+                    addMessage('success', 'Subscription to this search made successfully');
+                }
+            });
+        });
+
     });
 
     var markers = [];
@@ -313,7 +343,7 @@
                 filterResults = result;
                 renderGridView();
                 if (result.data.length == 0){
-                    $('.people-listing-grid').html('<br /><p>Didn’t find what you searched for? We can let you know when people with this profile join. <br /><a>Subscribe for this search criteria.</a></p>')
+                    $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
                 }
             }
         });
@@ -481,6 +511,21 @@
         }
         // alert(extp.length);
         return extp;
+    }
+
+    function addMessage(type, message, temp){
+        var notification = _.template($('#alertTemplate').html());
+        if (typeof temp =='undefined') {
+            temp = 'temp';
+        }else {
+            temp = '';
+        }
+        $('.fixed-alerts-container').append(notification({ type : type, message : message, temp : temp }));
+        setTimeout(function(){
+            $('.fixed-alerts-container').children('.temp:last').alert('close');
+        },4000);
+
+        return true;
     }
 
 </script>

@@ -113,17 +113,19 @@
             {% endif %}
         {% endif %}
 
-        {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="flash-message alert alert-success">
-                <em>{{ flashMessage }}</em>
-            </div>
-        {% endfor %}
+        <div class="fixed-alerts-container">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="flash-message alert alert-success">
+                    <em>{{ flashMessage }}</em>
+                </div>
+            {% endfor %}
 
-        {% for flashMessage in app.session.flashbag.get('error') %}
-            <div class="flash-message alert alert-danger">
-                <em>{{ flashMessage }}</em>
-            </div>
-        {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="flash-message alert alert-danger">
+                    <em>{{ flashMessage }}</em>
+                </div>
+            {% endfor %}
+        </div>
 
         {% block body %}{% endblock %}
 
@@ -223,6 +225,12 @@
     </div>
 </script>
 
+<script type="text/template" id="alertTemplate">
+    <div class="alert alert-<%- rc.type %> fade in <%- rc.temp %>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%- rc.message %>
+    </div>
+</script>
 
 </body>
 </html>

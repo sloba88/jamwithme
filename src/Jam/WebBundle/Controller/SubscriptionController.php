@@ -2,6 +2,7 @@
 
 namespace Jam\WebBundle\Controller;
 
+use Jam\CoreBundle\Entity\Search;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,6 +36,46 @@ class SubscriptionController extends Controller
             $em->flush();
             $response = new Response( json_encode(array('status' => 'success')));
         }
+
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @Route("/subscription/search/add", name="subscribe_search_add", options={"expose"=true})
+     * @Template()
+     */
+    public function searchSaveAction(Request $request)
+    {
+        $form = $request->query->all();
+
+        $search = new Search();
+
+        $search->setIsSubscribed(true);
+        $search->setCreator($this->getUser());
+
+        if ($form['isTeacher'] == 'on'){
+            $search->setIsTeacher(TRUE);
+        } else{
+            $search->setIsTeacher(FALSE);
+        }
+
+        if (isset($form['distance'])){
+            $search->setDistance($form['distance']);
+        }
+
+        if (isset($form['genres'])){
+            $search->setGenres(json_encode($form['genres']));
+        }
+
+        if (isset($form['instruments'])){
+            $search->setInstruments(json_encode($form['instruments']));
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($search);
+        $em->flush();
+        $response = new Response( json_encode(array('status' => 'success')));
 
         $response->headers->set('Content-Type', 'application/json');
         return $response;
