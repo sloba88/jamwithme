@@ -81,6 +81,11 @@
             </call>
         </service>
 
+        <service id="fos_user.listener.location_change" class="Jam\UserBundle\EventListener\ProfileEditedListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
     </services>
 
 </container>
