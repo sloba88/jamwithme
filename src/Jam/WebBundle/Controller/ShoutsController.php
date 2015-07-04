@@ -51,7 +51,13 @@ class ShoutsController extends Controller
 
         foreach($shouts AS $s){
 
+            /** @var $m \Jam\UserBundle\Entity\User */
             $m = $s->getCreator();
+
+            if (!$m->getLocation()){
+                //for now don't show shouts without user location
+                continue;
+            }
 
             if ($m->getImages()->first()){
                 $image = $m->getImages()->first()->getWebPath();
