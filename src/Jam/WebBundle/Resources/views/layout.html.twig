@@ -27,7 +27,7 @@
                 <div class="people-info">
                     <h3 class="name"><%- rc.username %></h3>
                     <% if (rc.location) { %><div class="location"> <%- rc.location %></div><% } %>
-                    <img class="instrument" src="{{ asset('images/icon-electric-guitar-v2.png') }}" alt="Guitar">
+                    <img class="instrument" src="{{ asset('assets/images/icon-electric-guitar-v2.png') }}" alt="Guitar">
                     <ul class="tags">
                         <% _.each( rc.genres, function(v, k){ %>
                         <% if (k < 3){ %><li><%- v %></li><% } %>
@@ -35,7 +35,7 @@
                     </ul>
                     <ul class="compatibility-box">
                         <li>
-                            <img src="{{ asset('images/icon-compatibility-white.png') }}" alt="Compatibility">
+                            <img src="{{ asset('assets/images/icon-compatibility-white.png') }}" alt="Compatibility">
                         </li>
                         <li class="compatibility">
                             <span>46%</span>
