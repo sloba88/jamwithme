@@ -50,7 +50,9 @@
 
     <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
-        var _username = '{{ app.user.username }}';
+        {% if is_granted("ROLE_USER") %}
+            var _username = '{{ app.user.username }}';
+        {% endif %}
         var socket = io('{{ node_server }}');
 
         socket.io.on('connect_error', function(){
