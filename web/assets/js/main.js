@@ -1,8 +1,12 @@
-$(function() {
 
-    // on load of the page: switch to the currently selected tab
-    //var hash = window.location.hash;
-    //$('ul.tabs-activate a[href="' + hash + '"]').trigger('click');
+_.templateSettings.variable = "rc";
+var shoutBoxTemplate     = _.template($( "#shoutBoxTemplate" ).html());
+var notificationTemplate = _.template($('#notificationTemplate').html());
+var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
+var musicianMapBoxTemplate     = _.template($( "#musicianMapBoxTemplate" ).html());
+var messageTemplate = _.template($("#messageTemplate").html());
+
+$(function() {
 
     $(".instrument-select").select2({
         placeholder: 'What do you play?'
@@ -281,9 +285,6 @@ $(function() {
     //         $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
     //     }
     // });
-
-    _.templateSettings.variable = "rc";
-    var messageTemplate = _.template($("#messageTemplate").html());
 
     socket.on('ourConversation', function(data) {
         $(".conversation-message-box").html('');
@@ -792,4 +793,18 @@ function scrollbarPlugin() {
             $('.with-scrollbar').perfectScrollbar('destroy');
         }
     }
+}
+
+function addMessage(type, message, temp){
+    if (typeof temp =='undefined') {
+        temp = 'temp';
+    }else {
+        temp = '';
+    }
+    $('.fixed-alerts-container').append(notificationTemplate({ type : type, message : message, temp : temp }));
+    setTimeout(function(){
+        $('.fixed-alerts-container').children('.temp:last').alert('close');
+    },4000);
+
+    return true;
 }

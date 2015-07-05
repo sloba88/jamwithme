@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'JamWebBundle::layout.html.twig' %}
 
 {% block body %}
 
@@ -41,7 +41,7 @@
 
         $(function() {
 
-            {% if user is defined %}
+            {% if user is defined and userTracks is defined %}
                 {# TODO: separate JS and twig variables, make this more like function #}
                 SC.initialize({
                     client_id: '{{ soundcloud_app_id }}'
