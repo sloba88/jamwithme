@@ -14,12 +14,12 @@
     <script type="text/template" id="musicianBoxTemplate">
         <div class="col-lg-3">
             <div class="people-grid">
-                <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar/medium_thumb" alt="<%- mu.username %>" class="img-responsive">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/medium_thumb" alt="<%- rc.username %>" class="img-responsive">
                 <div class="people-info people-info-right">
-                    <h3 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a> <br /></h3>
-                    <% if (mu.location) { %><div class="location"> <%- mu.location %></div><% } %>
+                    <h3 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>"><%- rc.username %></a> <br /></h3>
+                    <% if (rc.location) { %><div class="location"> <%- rc.location %></div><% } %>
                     <ul class="tags">
-                        <% _.each( mu.genres, function(v, k){ %>
+                        <% _.each( rc.genres, function(v, k){ %>
                         <% if (k < 3){ %><li><%- v %></li><% } %>
                         <% }); %>
                     </ul>
