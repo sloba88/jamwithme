@@ -49,7 +49,8 @@
     <script src="{{ node_server }}/socket.io/socket.io.js"></script>
 
     <script>
-        baseURL = '{{ app.request.getBaseURL() }}';
+        var baseURL = '{{ app.request.getBaseURL() }}';
+        var _username = '{{ app.user.username }}';
         var socket = io('{{ node_server }}');
 
         socket.io.on('connect_error', function(){
@@ -59,7 +60,7 @@
         {% if app.user %}
         socket.on('registerConnectedUser', function (data) {
             //TODO: this must be done in Redis
-            socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': '{{ app.user.username }}' });
+            socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': _username });
         });
         {% endif %}
     </script>
