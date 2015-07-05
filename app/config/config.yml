@@ -41,7 +41,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        ["JamUserBundle", "FOSUserBundle"]
+    bundles:        ["JamWebBundle", "JamUserBundle", "FOSUserBundle"]
     node: %node_bin_path%/node
     filters:
         cssrewrite: ~
