@@ -65,6 +65,7 @@ input[type="radio"]:checked + label span {
 }
 
 .location_widget {
+	background: red;
 
 	.input-group-btn {
 		vertical-align: top;
@@ -77,6 +78,10 @@ input[type="radio"]:checked + label span {
 
 	.dropdown-menu {
 		padding: 0;
+	}
+
+	.form-group {
+		@extend %clearfix;
 	}
 }
 

@@ -114,8 +114,10 @@
 
         {% if is_granted("ROLE_USER") %}
             {% if not app.user.location %}
-                <div class="flash-message warning alert-warning">
-                    <em>Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.</em>
+                <div class="flash-message col-xs-12">
+                    <div class="warning alert-warning">
+                        Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.
+                    </div>
                 </div>
             {% endif %}
         {% endif %}
@@ -196,47 +198,12 @@
     </div>
 </script>
 
-<script type="text/template" id="shoutBoxTemplate">
-    <% mu = rc.musician %>
-    <article class="shout-box clearfix <% if(mu.teacher){ %>teacher<% } %>">
-        <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
-            <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
-        </a>
-        <div class="shout-text">
-            <h4 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a></h4>
-            <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
-            <div class="time">
-                <span><%- rc.createdAt %> </span>
-            </div>
-            <p><%- rc.text %></p>
-        </div>
-    </article>
-
-</script>
-
-<script type="text/template" id="musicianMapBoxTemplate">
-    <div class="musician-map-box <% if(rc.teacher){ %>teacher<% } %>">
-        <a href="<%- rc.url %>"><img src="<%- rc.image %>" />
-            <p><%- rc.username %></p>
-        </a>
-        <div class="clearfix"></div>
-            <span class="musician-map-box-genres">
-                <% _.each( rc.genres, function(v, k){ %>
-                    <% if (k!=0){ %>|<% } %>
-                    <%- v %>
-                <% }); %>
-            </span>
-    </div>
-</script>
-
 <script type="text/template" id="notificationTemplate">
     <div class="alert alert-<%- rc.type %> fade in <%- rc.temp %>">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <%- rc.message %>
     </div>
 </script>
-
-{% block extra_templates %}{% endblock %}
 
 {% block javascripts %}
 
@@ -267,11 +234,11 @@
     <script src="https://w.soundcloud.com/player/api.js"></script>
 
     {% for fm in app.session.flashbag.get('success') %}
-    <script> $(function () { addMessage('success', '{{ fm }}'); });</script>
+    <script> $(function () { window.parent.addMessage('success', '{{ fm }}'); });</script>
     {% endfor %}
 
     {% for fm in app.session.flashbag.get('info') %}
-    <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
+    <script> $(function () { window.parent.addMessage('info', '{{ fm }}', false); });</script>
     {% endfor %}
 
 {% endblock %}
