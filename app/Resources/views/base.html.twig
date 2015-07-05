@@ -113,17 +113,19 @@
             {% endif %}
         {% endif %}
 
-        {% for flashMessage in app.session.flashbag.get('success') %}
-            <div class="flash-message alert alert-success">
-                <em>{{ flashMessage }}</em>
-            </div>
-        {% endfor %}
+        <div class="fixed-alerts-container">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="flash-message alert alert-success">
+                    <em>{{ flashMessage }}</em>
+                </div>
+            {% endfor %}
 
-        {% for flashMessage in app.session.flashbag.get('error') %}
-            <div class="flash-message alert alert-danger">
-                <em>{{ flashMessage }}</em>
-            </div>
-        {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="flash-message alert alert-danger">
+                    <em>{{ flashMessage }}</em>
+                </div>
+            {% endfor %}
+        </div>
 
         {% block body %}{% endblock %}
 
@@ -153,30 +155,6 @@
     <!--conversation-send ends-->
 
 </div><!--conversation ends-->
-
-
-<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-<!--<script src="https://code.jquery.com/jquery.js"></script>-->
-<script src="{{ asset('/js/jquery.js') }}"></script>
-<script src="{{ asset('/js/select2.min.js') }}"></script>
-<!-- Include all JavaScripts, compiled by Assetic -->
-<script src="{{ asset('/js/bootstrap.js') }}"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script src="{{ asset('/js/vendor/bootstrap-typeahead.js') }}"></script>
-<script src="{{ asset('/js/vendor/jquery-ui.min.js') }}"></script>
-<script src="{{ asset('bundles/jamlocation/jquery.ui.addresspicker.js') }}"></script>
-<script src="{{ asset('bundles/jamlocation/location.js') }}"></script>
-<script src="{{ asset('js/vendor/underscore-min.js') }}"></script>
-<script src="{{ asset('js/vendor/isotope.pkgd.min.js') }}"></script>
-<script src="{{ asset('js/vendor/imagesloaded.pkgd.min.js') }}"></script>
-<script src="{{ asset('js/vendor/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-<script src="http://connect.soundcloud.com/sdk.js"></script>
-<script src="https://w.soundcloud.com/player/api.js"></script>
-
-{% block javascripts %}{% endblock %}
 
 <div class="modal fade" id="imageCropModalTemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -223,6 +201,35 @@
     </div>
 </script>
 
+<script type="text/template" id="notificationTemplate">
+    <div class="alert alert-<%- rc.type %> fade in <%- rc.temp %>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <%- rc.message %>
+    </div>
+</script>
+
+<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+<!--<script src="https://code.jquery.com/jquery.js"></script>-->
+<script src="{{ asset('/js/jquery.js') }}"></script>
+<script src="{{ asset('/js/select2.min.js') }}"></script>
+<!-- Include all JavaScripts, compiled by Assetic -->
+<script src="{{ asset('/js/bootstrap.js') }}"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="{{ asset('/js/vendor/bootstrap-typeahead.js') }}"></script>
+<script src="{{ asset('/js/vendor/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('bundles/jamlocation/jquery.ui.addresspicker.js') }}"></script>
+<script src="{{ asset('bundles/jamlocation/location.js') }}"></script>
+<script src="{{ asset('js/vendor/underscore-min.js') }}"></script>
+<script src="{{ asset('js/vendor/isotope.pkgd.min.js') }}"></script>
+<script src="{{ asset('js/vendor/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{ asset('js/vendor/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+<script src="http://connect.soundcloud.com/sdk.js"></script>
+<script src="https://w.soundcloud.com/player/api.js"></script>
+
+{% block javascripts %}{% endblock %}
 
 </body>
 </html>

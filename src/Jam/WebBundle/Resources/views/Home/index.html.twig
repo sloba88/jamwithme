@@ -70,7 +70,7 @@
 
 
     <script type="text/template" id="shoutBoxTemplate">
-        <% mu = sh.musician %>
+        <% mu = rc.musician %>
         <article class="shout-box clearfix <% if(mu.teacher){ %>teacher<% } %>">
             <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
                 <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
@@ -79,26 +79,26 @@
                 <h4 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a></h4>
                 <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
                 <div class="time">
-                    <span><%- sh.createdAt %> </span>
+                    <span><%- rc.createdAt %> </span>
                 </div>
-                <p><%- sh.text %></p>
+                <p><%- rc.text %></p>
             </div>
         </article>
 
     </script>
 
     <script type="text/template" id="musicianMapBoxTemplate">
-        <div class="musician-map-box <% if(mu.teacher){ %>teacher<% } %>">
-            <a href="<%- mu.url %>"><img src="<%- mu.image %>" />
-                <p><%- mu.username %></p>
+        <div class="musician-map-box <% if(rc.teacher){ %>teacher<% } %>">
+            <a href="<%- rc.url %>"><img src="<%- rc.image %>" />
+                <p><%- rc.username %></p>
             </a>
             <div class="clearfix"></div>
             <span class="musician-map-box-genres">
-                    <% _.each( mu.genres, function(v, k){ %>
-                        <% if (k!=0){ %>|<% } %>
-                        <%- v %>
-                    <% }); %>
-                </span>
+                <% _.each( rc.genres, function(v, k){ %>
+                    <% if (k!=0){ %>|<% } %>
+                    <%- v %>
+                <% }); %>
+            </span>
         </div>
     </script>
 
@@ -108,8 +108,11 @@
 
 <script>
 
-    _.templateSettings.variable = "sh";
+    _.templateSettings.variable = "rc";
     var shoutBoxTemplate     = _.template($( "#shoutBoxTemplate" ).html());
+    var notificationTemplate = _.template($('#notificationTemplate').html());
+    var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
+    var musicianMapBoxTemplate     = _.template($( "#musicianMapBoxTemplate" ).html());
 
     $.ajax({
         url: baseURL+'/shouts/find'
@@ -121,7 +124,6 @@
             });
         }
     });
-
 
     var map;
     var $map = $('#map-canvas');
@@ -276,12 +278,40 @@
         //activates tooltip
         $("[data-toggle=tooltip]").tooltip();
 
+        $('body').on('click', '#subscribeToSearch', function(e){
+            e.preventDefault();
+            var data = {};
+            data.genres = [];
+            data.instruments = [];
+
+            $('#filter-genres option:selected').each(function () {
+                if ($(this).length) {
+                    data.genres.push($(this).text())
+                }
+            });
+
+            $('#filter-instruments option:selected').each(function () {
+                if ($(this).length) {
+                    data.instruments.push($(this).text())
+                }
+            });
+
+            data.distance = $('#search_form_distance').val();
+            data.isTeacher = $('#lessons-checkbox').val();
+
+            $.ajax({
+                url: Routing.generate('subscribe_search_add'),
+                data: $.param(data)
+            }).done(function( result ) {
+                if (result.status == 'success') {
+                    $('.people-listing-grid').html(notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully', temp : 'temp' }));
+                }
+            });
+        });
+
     });
 
     var markers = [];
-    _.templateSettings.variable = "mu";
-    var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
-    var musicianMapBoxTemplate     = _.template($( "#musicianMapBoxTemplate" ).html());
     var filterResults;
 
     function filterMusicians(){
@@ -313,7 +343,7 @@
                 filterResults = result;
                 renderGridView();
                 if (result.data.length == 0){
-                    $('.people-listing-grid').html('<br /><p>Didn’t find what you searched for? We can let you know when people with this profile join. <br /><a>Subscribe for this search criteria.</a></p>')
+                    $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
                 }
             }
         });
@@ -481,6 +511,20 @@
         }
         // alert(extp.length);
         return extp;
+    }
+
+    function addMessage(type, message, temp){
+        if (typeof temp =='undefined') {
+            temp = 'temp';
+        }else {
+            temp = '';
+        }
+        $('.fixed-alerts-container').append(notificationTemplate({ type : type, message : message, temp : temp }));
+        setTimeout(function(){
+            $('.fixed-alerts-container').children('.temp:last').alert('close');
+        },4000);
+
+        return true;
     }
 
 </script>

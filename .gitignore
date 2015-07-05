@@ -16,3 +16,4 @@
 /node/node_modules/*
 .DS_Store
 .sass-cache/*
+/web/vendor/

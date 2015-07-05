@@ -8,11 +8,6 @@ jam_web:
     type:     annotation
     prefix:   /
 
-jam_core:
-    resource: "@JamCoreBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

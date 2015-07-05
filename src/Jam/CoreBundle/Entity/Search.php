@@ -32,16 +32,32 @@ class Search
     private $creator;
 
     /**
-     * @var collection
+     * @var string
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre")
-     * @ORM\JoinTable(
-     *      name="search_genres",
-     *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)}
-     * )
+     * @ORM\Column(name="genres", type="text", length=1000)
      */
-    private $genres;
+    private $genres = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instruments", type="text", length=1000)
+     */
+    private $instruments = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_teacher", type="boolean", length=1)
+     */
+    private $isTeacher;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_subscribed", type="boolean", length=1)
+     */
+    private $isSubscribed = false;
 
     /**
      * @var integer
@@ -71,7 +87,6 @@ class Search
      */
     public function __construct()
     {
-        $this->genres = new ArrayCollection();
     }
 
     /**
@@ -154,49 +169,6 @@ class Search
     }
 
     /**
-     * Add genres
-     *
-     * @param \Jam\CoreBundle\Entity\Genre $genres
-     * @return Search
-     */
-    public function addGenre(\Jam\CoreBundle\Entity\Genre $genres)
-    {
-        $this->genres[] = $genres;
-
-        return $this;
-    }
-
-    /**
-     * Remove genres
-     *
-     * @param \Jam\CoreBundle\Entity\Genre $genres
-     */
-    public function removeGenre(\Jam\CoreBundle\Entity\Genre $genres)
-    {
-        $this->genres->removeElement($genres);
-    }
-
-    /**
-     * Get genres
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGenres()
-    {
-        return $this->genres;
-    }
-
-    /**
-     * Set genres
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function setGenres(ArrayCollection $genres)
-    {
-        $this->genres = $genres;
-    }
-
-    /**
      * Set distance
      *
      * @param integer $distance
@@ -217,5 +189,101 @@ class Search
     public function getDistance()
     {
         return $this->distance;
+    }
+
+    /**
+     * Set instruments
+     *
+     * @param string $instruments
+     *
+     * @return Search
+     */
+    public function setInstruments($instruments)
+    {
+        $this->instruments = $instruments;
+
+        return $this;
+    }
+
+    /**
+     * Get instruments
+     *
+     * @return string
+     */
+    public function getInstruments()
+    {
+        return $this->instruments;
+    }
+
+    /**
+     * Set isTeacher
+     *
+     * @param boolean $isTeacher
+     *
+     * @return Search
+     */
+    public function setIsTeacher($isTeacher)
+    {
+        $this->isTeacher = $isTeacher;
+
+        return $this;
+    }
+
+    /**
+     * Get isTeacher
+     *
+     * @return boolean
+     */
+    public function getIsTeacher()
+    {
+        return $this->isTeacher;
+    }
+
+    /**
+     * Set isSubscribed
+     *
+     * @param boolean $isSubscribed
+     *
+     * @return Search
+     */
+    public function setIsSubscribed($isSubscribed)
+    {
+        $this->isSubscribed = $isSubscribed;
+
+        return $this;
+    }
+
+    /**
+     * Get isSubscribed
+     *
+     * @return boolean
+     */
+    public function getIsSubscribed()
+    {
+        return $this->isSubscribed;
+    }
+
+    /**
+     * Set genres
+     *
+     * @param string $genres
+     *
+     * @return Search
+     */
+    public function setGenres($genres)
+    {
+        $this->genres = $genres;
+
+        return $this;
+    }
+
+    /**
+     * Get genres
+     *
+     * @return string
+     */
+    public function getGenres()
+    {
+        return $this->genres;
     }
 }
