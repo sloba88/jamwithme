@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
-        {% block stylesheets %}
-            {% stylesheets
-            'vendor/font-awesome/css/font-awesome.css'
-            'vendor/select2/select2.css'
-            'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
-            'assets/css/styles.css'
-            filter='cssrewrite' filter='?uglifycss'
-            %}
-            <link rel="stylesheet" href="{{ asset_url }}">
-            {% endstylesheets %}
-        {% endblock %}
+    {% block stylesheets %}
+        {% stylesheets
+        'vendor/font-awesome/css/font-awesome.css'
+        'vendor/select2/select2.css'
+        'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
+        'assets/css/styles.css'
+        filter='cssrewrite' filter='?uglifycss'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
 
-        {% block bottomstylesheets %}{% endblock %}
+    {% block bottomstylesheets %}{% endblock %}
 
-        <style>
-            {# TODO: move this to css files#}
-            html body #map-canvas {
-                height: 600px;
-                margin: 0px;
-                padding: 0px;
-                width: 100%;
-                clear: both;
-            }
+    <style>
+        {# TODO: move this to css files#}
+        html body #map-canvas {
+            height: 600px;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            clear: both;
+        }
 
-            .ui-autocomplete {
-                z-index: 9999 !important;
-            }
+        .ui-autocomplete {
+            z-index: 9999 !important;
+        }
 
-            .profile-media-wall-item { margin-bottom: 10px; }
-        </style>
+        .profile-media-wall-item { margin-bottom: 10px; }
+    </style>
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="{{ node_server }}/socket.io/socket.io.js"></script>
@@ -51,7 +51,7 @@
     <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
         {% if is_granted("ROLE_USER") %}
-            var _username = '{{ app.user.username }}';
+        var _username = '{{ app.user.username }}';
         {% endif %}
         var socket = io('{{ node_server }}');
 
@@ -117,10 +117,8 @@
 
         {% if is_granted("ROLE_USER") %}
             {% if not app.user.location %}
-                <div class="flash-message col-xs-12">
-                    <div class="warning alert-warning">
-                        Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.
-                    </div>
+                <div class="flash-message warning alert-warning">
+                    <em>Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.</em>
                 </div>
             {% endif %}
         {% endif %}
@@ -201,12 +199,47 @@
     </div>
 </script>
 
+<script type="text/template" id="shoutBoxTemplate">
+    <% mu = rc.musician %>
+    <article class="shout-box clearfix <% if(mu.teacher){ %>teacher<% } %>">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>" class="musician-box-image-link img-circle">
+            <img src="{{ app.request.getBaseURL() }}/m/<%- mu.username %>/avatar" class="" width="50" />
+        </a>
+        <div class="shout-text">
+            <h4 class="name"><a href="{{ app.request.getBaseURL() }}/m/<%- mu.username %>"><%- mu.username %></a></h4>
+            <% if (mu.location) { %><span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> <%- mu.location %></span><% } %>
+            <div class="time">
+                <span><%- rc.createdAt %> </span>
+            </div>
+            <p><%- rc.text %></p>
+        </div>
+    </article>
+
+</script>
+
+<script type="text/template" id="musicianMapBoxTemplate">
+    <div class="musician-map-box <% if(rc.teacher){ %>teacher<% } %>">
+        <a href="<%- rc.url %>"><img src="<%- rc.image %>" />
+            <p><%- rc.username %></p>
+        </a>
+        <div class="clearfix"></div>
+            <span class="musician-map-box-genres">
+                <% _.each( rc.genres, function(v, k){ %>
+                    <% if (k!=0){ %>|<% } %>
+                    <%- v %>
+                <% }); %>
+            </span>
+    </div>
+</script>
+
 <script type="text/template" id="notificationTemplate">
     <div class="alert alert-<%- rc.type %> fade in <%- rc.temp %>">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <%- rc.message %>
     </div>
 </script>
+
+{% block extra_templates %}{% endblock %}
 
 {% block javascripts %}
 
@@ -237,11 +270,11 @@
     <script src="https://w.soundcloud.com/player/api.js"></script>
 
     {% for fm in app.session.flashbag.get('success') %}
-    <script> $(function () { window.parent.addMessage('success', '{{ fm }}'); });</script>
+    <script> $(function () { addMessage('success', '{{ fm }}'); });</script>
     {% endfor %}
 
     {% for fm in app.session.flashbag.get('info') %}
-    <script> $(function () { window.parent.addMessage('info', '{{ fm }}', false); });</script>
+    <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
     {% endfor %}
 
 {% endblock %}
