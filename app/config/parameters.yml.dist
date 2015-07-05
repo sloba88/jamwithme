@@ -21,3 +21,4 @@ parameters:
     node_server: 'http://33.33.33.100:3000'
     redis_server: 127.0.0.1:6379
     soundcloud_api_url: https://api.soundcloud.com/
+    node_bin_path: /usr/local/bin

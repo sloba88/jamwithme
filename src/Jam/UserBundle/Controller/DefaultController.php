@@ -30,8 +30,7 @@ class DefaultController extends Controller
 
         return array(
             'user' => $user,
-            'userTracks' => json_encode($tracks),
-            'soundcloudClientId' => $this->container->getParameter('soundcloud_app_id')
+            'userTracks' => json_encode($tracks)
         );
     }
 
