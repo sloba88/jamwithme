@@ -85,6 +85,19 @@
 	}
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 2dppx)  {
+	.select2-search-choice-close {
+		background-image: url(../images/icons/icon-close.png) !important;
+		background-repeat: no-repeat !important;
+		background-position: 0 0 !important;
+		background-size: 11px 11px !important;
+
+		&:hover {
+			background-image: url(../images/icons/icon-close-hover.png) !important;
+		}
+	}
+}
+
 //tooltip
 .tooltip {
 
@@ -187,6 +200,27 @@
 		> .ps-scrollbar-y {
 			background-color: $brand-primary;
 		}
+	}
+}
+
+//alerts
+.flash-message {
+	@include respond-to(tablet) {
+		padding: 0;
+	}
+}
+
+.alert-warning {
+	background: rgba(250, 188, 9, 0.95);
+	border: $border;
+	color: $color-primary;
+	padding: 10px 20px;
+	@include respond-to(handhelds) {
+		padding: 10px 15px;
+	}
+
+	a {
+		color: #fff;
 	}
 }
 

@@ -12,12 +12,13 @@
         'vendor/font-awesome/css/font-awesome.css'
         'vendor/select2/select2.css'
         'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
-        'assets/css/styles.css'
         filter='cssrewrite' filter='?uglifycss'
         %}
         <link rel="stylesheet" href="{{ asset_url }}">
         {% endstylesheets %}
     {% endblock %}
+
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
     {% block bottomstylesheets %}{% endblock %}
 
@@ -117,8 +118,10 @@
 
         {% if is_granted("ROLE_USER") %}
             {% if not app.user.location %}
-                <div class="flash-message warning alert-warning">
-                    <em>Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.</em>
+                <div class="flash-message col-xs-12">
+                    <div class="warning alert-warning">
+                        Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.
+                    </div>
                 </div>
             {% endif %}
         {% endif %}

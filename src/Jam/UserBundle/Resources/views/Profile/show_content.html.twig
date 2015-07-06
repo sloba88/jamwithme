@@ -74,31 +74,33 @@
 
         <section class="col-sm-3 teacher-instruments">
             <div class="teacher-instruments-inner">
+                <div class="row">
 
-                {% if user.instruments|length == 0 %}
-                    <div class="col-sm-10">No instruments yet.</div>
-                {% endif %}
+                    {% if user.instruments|length == 0 %}
+                        <div class="col-sm-10">No instruments yet.</div>
+                    {% endif %}
 
-                {% for i in user.instruments %}
-                    <div class="col-sm-7">
-                        <a href="{{ path('musicians', {'s[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
-                        <span class="main">main</span>
-                    </div>
+                    {% for i in user.instruments %}
+                        <div class="col-xs-6">
+                            <a href="{{ path('musicians', {'s[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
+                            <span class="main">main</span>
+                        </div>
 
-                    <div class="col-sm-5">
-                        <ul>
-                            {% for l in 1..i.skillLevel %}
-                                <li><span class="active"></span></li>
-                            {% endfor %}
-                            {% if 4-i.skillLevel !=0 %}
-                                {% for l in 1..(4-i.skillLevel) %}
-                                    <li><span></span></li>
+                        <div class="col-xs-6">
+                            <ul>
+                                {% for l in 1..i.skillLevel %}
+                                    <li><span class="active"></span></li>
                                 {% endfor %}
-                            {% endif %}
-                        </ul>
+                                {% if 4-i.skillLevel !=0 %}
+                                    {% for l in 1..(4-i.skillLevel) %}
+                                        <li><span></span></li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
 
-                    </div>
-                {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </section>
         <!--teacher-instruments ends-->
@@ -160,7 +162,7 @@
     </div>
 
     <div class="row">
-        <section class="col-sm-9 main-content">
+        <section class="col-sm-8 col-md-9 main-content">
                 {% if user.isTeacher %}
                     <ul class="text-header clearfix">
                         <li class="first">

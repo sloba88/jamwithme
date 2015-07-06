@@ -585,7 +585,8 @@
 .teacher-container {
 
 	.main-content {
-		padding-top: 5px;
+		background: #fff;
+		padding: 5px 15px;
 	}
 
 	.teacher-header {
@@ -1005,7 +1006,7 @@
 		@include respond-to(handhelds) {
 			background: #3b385e;
 			height: auto;
-			padding: 10px 15px;
+			padding: 10px 0;
 		}
 
 		.col-xs-6 {
