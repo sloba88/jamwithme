@@ -1,6 +1,3 @@
-{% set genresMatch = 0 %}
-{% set artistsMatch = 0 %}
-
 <style>
     .teacher-instruments .teacher-instruments-inner {
         padding: 20px 0px 0 30px;
@@ -45,7 +42,12 @@
 
 {# TODO: TEACHER #}
 
-<div class="col-sm-10 teacher-container grey">
+{% if is_granted("ROLE_USER") %}
+    <div class="col-sm-10 teacher-container grey">
+{% else %}
+    <div class="col-sm-8 teacher-container grey" style="margin-top:65px">
+{% endif %}
+
     <div class="row teacher-header">
         <section class="col-sm-5 teacher-info">
             <div class="teacher-info-inner">
@@ -64,7 +66,7 @@
                     {% endif %}
                     <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
 
-                    {% if app.user != user %}
+                    {% if is_granted("ROLE_USER") and app.user != user %}
                         <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>Message</a>
                     {% endif %}
                 </div>
@@ -115,16 +117,7 @@
                     <div class="tags-container">
                         <ul class="tags">
                             {% for g in user.genres %}
-
                                 <li><a href="{{ path('musicians', {'s[genres][]' : g.id }) }}">{{ g.name }}</a></li>
-
-                                {# calculate compatibility for gerens#}
-                                {% for g2 in app.user.genres %}
-                                    {% if g.id == g2.id %}
-                                        {% set genresMatch = genresMatch +1 %}
-                                    {% endif %}
-                                {% endfor %}
-
                             {% endfor %}
                         </ul>
                         <a href="#" class="show-all-tags"><i class="fa fa-angle-down"></i></a>
@@ -138,12 +131,6 @@
                     <div class="favorite-group-inner with-scrollbar">
                         {% for a in user.artists %}
                             {{ a.name }},
-                            {# calculate compatibility for gerens#}
-                            {% for g2 in app.user.artists %}
-                                {% if a.name == g2.name %}
-                                    {% set artistsMatch = artistsMatch +1 %}
-                                {% endif %}
-                            {% endfor %}
                         {% endfor %}
                     </div>
                 </div>
@@ -161,142 +148,136 @@
         </section>
     </div>
 
-    <div class="row">
-        <section class="col-sm-8 col-md-9 main-content">
-                {% if user.isTeacher %}
-                    <ul class="text-header clearfix">
-                        <li class="first">
-                            <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook">
-                            teacher
-                        </li>
-                        {% if user.hourlyRate %}
-                            <li class="rate">
-                                Hourly rate:<span>{{ user.hourlyRate }}</span>
+    {% if is_granted("ROLE_USER") %}
+
+        <div class="row">
+            <section class="col-sm-8 col-md-9 main-content">
+                    {% if user.isTeacher %}
+                        <ul class="text-header clearfix">
+                            <li class="first">
+                                <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook">
+                                teacher
                             </li>
-                        {% endif %}
+                            {% if user.hourlyRate %}
+                                <li class="rate">
+                                    Hourly rate:<span>{{ user.hourlyRate }}</span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+
+                    <ul class="tabs-activate profile-tabs">
+                        <li><a href="#" data-tab="1" class="is-active">About</a></li>
+                        <li><a href="#" data-tab="2" class="my-photos">Photos</a></li>
+                        <li><a href="#" data-tab="3" class="my-videos">Videos</a></li>
+                        <li><a href="#" data-tab="4" class="my-sounds">Sounds</a></li>
+                        <li class="last">
+                            {% if app.user != user %}
+                                <ul class="compatibility-box">
+                                    <li>
+                                        <img src="{{ asset('assets/images/icon-compatibility.png') }}" alt="Compatibility">
+                                    </li>
+                                    <li class="compatibility">
+                                        <span>46%</span>
+                                        compatibility
+                                    </li>
+                                </ul>
+                            {% endif %}
+                        </li>
                     </ul>
-                {% endif %}
 
-                <ul class="tabs-activate profile-tabs">
-                    <li><a href="#" data-tab="1" class="is-active">About</a></li>
-                    <li><a href="#" data-tab="2" class="my-photos">Photos</a></li>
-                    <li><a href="#" data-tab="3" class="my-videos">Videos</a></li>
-                    <li><a href="#" data-tab="4" class="my-sounds">Sounds</a></li>
-                    <li class="last">
-                        {% if app.user != user %}
-                            <ul class="compatibility-box">
-                                <li>
-                                    <img src="{{ asset('assets/images/icon-compatibility.png') }}" alt="Compatibility">
-                                </li>
-                                <li class="compatibility">
-                                    <span>46%</span>
-                                    compatibility
-                                </li>
-                            </ul>
-                        {% endif %}
-                    </li>
-                </ul>
+                <div class="main-content-inner">
 
-            <div class="main-content-inner">
+                    <div class="view-tab-container teacher-text-container with-scrollbar">
 
-                <div class="view-tab-container teacher-text-container with-scrollbar">
+                        <div class="view-tab about is-active" data-tab="1">
+                            <p>{{ user.aboutMe }}</p>
+                        </div>
 
-                    <div class="view-tab about is-active" data-tab="1">
-                        <p>{{ user.aboutMe }}</p>
-                    </div>
+                        <div class="view-tab my-photos" data-tab="2">
 
-                    <div class="view-tab my-photos" data-tab="2">
+                            <div class="profile-media-wall">
 
-                        <div class="profile-media-wall">
+                                {% if user.images|length == 0 %}
+                                    <h3>Upload some photos here</h3>
+                                {% endif %}
 
-                            {% if user.images|length == 0 %}
-                                <h3>Upload some photos here</h3>
+                                {% for i in user.images %}
+                                    <div class="image-holder profile-media-wall-item">
+                                        <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                        <!--photos ends-->
+
+                        <div class="view-tab my-videos" data-tab="3">
+
+                            {% if user.videos|length == 0 %}
+                                <h3>Put some videos here</h3>
                             {% endif %}
 
-                            {% for i in user.images %}
+                            {% for v in user.videos %}
                                 <div class="image-holder profile-media-wall-item">
-                                    <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
-                                    {#{% if app.user == user %}
-                                        <div class="profile-media-image-commands">
-                                            <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
-                                            <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                                        </div>
-                                    {% endif %}#}
+                                    <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" /></a>
                                 </div>
+                                {#<iframe width="140" height="140" class="profile-media-wall-item fancybox" src="" frameborder="0" allowfullscreen></iframe>#}
                             {% endfor %}
+                        </div>
+                        <!--videos ends-->
+
+                        <div class="view-tab my-sounds" data-tab="4">
+
                         </div>
 
                     </div>
-                    <!--photos ends-->
-
-                    <div class="view-tab my-videos" data-tab="3">
-
-                        {% if user.videos|length == 0 %}
-                            <h3>Put some videos here</h3>
-                        {% endif %}
-
-                        {% for v in user.videos %}
-                            <div class="image-holder profile-media-wall-item">
-                                <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" /></a>
-                            </div>
-                            {#<iframe width="140" height="140" class="profile-media-wall-item fancybox" src="" frameborder="0" allowfullscreen></iframe>#}
-                        {% endfor %}
-                    </div>
-                    <!--videos ends-->
-
-                    <div class="view-tab my-sounds" data-tab="4">
-                        {% if(app.user.getSoundcloudId == '') %}
-                            <a class="connect-with-soundcloud-btn" href="{{ path('connect_soundcloud') }}"></a>
-                        {% endif %}
-                    </div>
-
+                    <!--view-tab-container ends-->
                 </div>
-                <!--view-tab-container ends-->
-            </div>
-        </section>
-        <!--main-content ends-->
+            </section>
+            <!--main-content ends-->
 
-        <section class="col-sm-4 col-md-3 hidden-xs shouts-sidebar">
-            <div class="sidebar-inner">
+            <section class="col-sm-4 col-md-3 hidden-xs shouts-sidebar">
+                <div class="sidebar-inner">
 
-                <div class="shouts-feed">
-                    <h3>Shouts feed</h3>
-                </div>
-                <!--shouts-feed ends-->
+                    <div class="shouts-feed">
+                        <h3>Shouts feed</h3>
+                    </div>
+                    <!--shouts-feed ends-->
 
-                <div class="shouts-listing-container">
-                    <div class="shouts-listing shouts-listing-feed">
+                    <div class="shouts-listing-container">
+                        <div class="shouts-listing shouts-listing-feed">
 
-                        {% if user.shouts|length == 0 %}
-                            <h5>No shouts yet.</h5>
-                        {% endif %}
+                            {% if user.shouts|length == 0 %}
+                                <h5>No shouts yet.</h5>
+                            {% endif %}
 
-                        {% for s in user.shouts %}
+                            {% for s in user.shouts %}
 
-                            <article class="shout-box clearfix">
-                                <a href="{{ app.request.getBaseURL() }}/m/{{ user.username }}" class="musician-box-image-link img-circle">
-                                    <img src="{{ app.request.getBaseURL() }}/m/{{ user.username }}/avatar" class="" width="50" />
-                                </a>
+                                <article class="shout-box clearfix">
+                                    <a href="{{ app.request.getBaseURL() }}/m/{{ user.username }}" class="musician-box-image-link img-circle">
+                                        <img src="{{ app.request.getBaseURL() }}/m/{{ user.username }}/avatar" class="" width="50" />
+                                    </a>
 
-                                <div class="shout-text">
-                                    <h4 class="name">{{ user.username }}</h4>
+                                    <div class="shout-text">
+                                        <h4 class="name">{{ user.username }}</h4>
 
-                                    <div class="time">
-                                        <span>{{ s.createdAt.date }} min</span>ago
+                                        <div class="time">
+                                            <span>{{ s.createdAt.date }} min</span>ago
+                                        </div>
+                                        <p>{{ s.text }}</p>
                                     </div>
-                                    <p>{{ s.text }}</p>
-                                </div>
-                            </article>
+                                </article>
 
-                        {% endfor %}
+                            {% endfor %}
 
+                        </div>
+                        <!--shouts-listing ends-->
                     </div>
-                    <!--shouts-listing ends-->
+                    <!--shouts-listing-container ends-->
+
                 </div>
-                <!--shouts-listing-container ends-->
-
-            </div>
-        </section>
-    </div>
-
+            </section>
+        </div>
+    {% endif %}
 </div>

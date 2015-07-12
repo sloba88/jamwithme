@@ -48,6 +48,7 @@ class SecurityController extends ContainerAware
             'last_username' => $lastUsername,
             'error'         => $error,
             'csrf_token' => $csrfToken,
+            'route' => $request->get('_route')
         ));
     }
 
@@ -65,7 +66,11 @@ class SecurityController extends ContainerAware
             return new RedirectResponse('/');
         }
 
-        $template = sprintf('FOSUserBundle:Security:login.html.twig');
+        if ($data['route'] != 'fos_user_security_login') {
+            $template = sprintf('JamUserBundle:Security:login_content.html.twig');
+        }else{
+            $template = sprintf('FOSUserBundle:Security:login.html.twig');
+        }
 
         return $this->container->get('templating')->renderResponse($template, $data);
     }
