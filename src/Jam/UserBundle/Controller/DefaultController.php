@@ -90,9 +90,14 @@ class DefaultController extends Controller
         $request = $this->get('request_stack')->getCurrentRequest();
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            $user = $this->container->get('security.context')->getToken()->getUser();
+            $user = $this->getUser();
         }else{
             throw $this->createNotFoundException('You shall not pass');
+        }
+
+        if ($user->getImages()->count() > 19) {
+            //images limit reached
+            return false;
         }
 
         $file = $request->files->get('file');
@@ -103,7 +108,7 @@ class DefaultController extends Controller
         $userImage->setFile($file);
         $user->addImage($userImage);
 
-        $image = $this->resizeImage($userImage, $request->request->all());
+        $this->resizeImage($userImage, $request->request->all());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);

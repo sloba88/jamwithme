@@ -2,7 +2,7 @@ $(function () {
 
     var que = [];
 
-    $(".start").on('click', function(e){
+    $('.start').on('click', function(e){
         e.preventDefault();
         if (que.length > 0){
             $.each(que, function(q, e){
@@ -13,8 +13,7 @@ $(function () {
         que = [];
     });
 
-    _.templateSettings.variable = "rc";
-    var imageTemplate      = _.template($( "#imageTemplate" ).html());
+    var imageTemplate = _.template($('#imageTemplate').html());
 
     var imageIndex = 0;
     $('#upload_images').fileupload({
@@ -29,8 +28,9 @@ $(function () {
             .test(window.navigator.userAgent),
         previewMaxWidth: 800,
         previewMaxHeight: 800,
-        imageMaxWidth: 1000,
-        imageMaxHeight: 1000,
+        imageMaxWidth: 800,
+        imageMaxHeight: 800,
+        disableExifThumbnail: true,
         imageCrop: false,
         previewCrop: false
     }).on('fileuploadadd', function (e, data) {
@@ -62,15 +62,16 @@ $(function () {
             file = data.files[index],
             node = $(data.context.children()[index]);
         if (file.preview) {
-            node
-                .prepend('<br>')
+            node.prepend('<br>')
                 .prepend(file.preview);
+
+            console.log(file);
 
             $(file.preview).wrap( "<a class='preview-thumb'></a>");
 
-            var modalCropContainer = $("#imageCropModalTemplate").clone();
+            var modalCropContainer = $('#imageCropModalTemplate').clone();
             var newImage = cloneCanvas(file.preview);
-            modalCropContainer.find(".modal-body").html(newImage);
+            modalCropContainer.find('.modal-body').html(newImage);
             modalCropContainer.find('.modal-dialog').width(newImage.width+40);
             node.append(modalCropContainer);
 
@@ -135,13 +136,13 @@ $(function () {
         if (file.url) {
             $('.no-images-yet').remove();
             $('.profile-media-wall').append(imageTemplate( file ) );
-            $("#files").html('');
+            $('#files').html('');
 
             setTimeout(function(){
                 $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
 
                 if (jQuery().fancybox) {
-                    $(".fancybox").fancybox();
+                    $('.fancybox').fancybox();
                 }
 
             }, 500)
