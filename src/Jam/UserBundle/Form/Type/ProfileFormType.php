@@ -114,6 +114,8 @@ class ProfileFormType extends BaseType
         $builder->add('videos', 'collection', array(
             'type' => 'video_type',
             'allow_add'    => true,
+            'delete_empty' => true,
+            'allow_delete' => true
         ));
 
     }

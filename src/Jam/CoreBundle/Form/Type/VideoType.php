@@ -30,8 +30,12 @@ class VideoType extends AbstractType
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $user = $this->securityContext->getToken()->getUser();
             $musicianVideo = $event->getForm()->getData();
-            $musicianVideo->setCreator($user);
-            $musicianVideo->setUrl($musicianVideo->getUrl());
+
+            if ($musicianVideo){
+                $musicianVideo->setCreator($user);
+                $musicianVideo->setUrl($musicianVideo->getUrl());
+            }
+
             /*
             if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $musicianVideo->getUrl(), $match)) {
                 $video_id = $match[1];
