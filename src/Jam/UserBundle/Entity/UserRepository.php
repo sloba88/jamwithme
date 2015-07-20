@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function isEmailUnique($email)
+    {
+
+        $qb = $this->getEntityManager()->createQueryBuilder('u');
+        $qb->select('u')
+            ->from('JamUserBundle:User', 'u')
+            ->where('u.email = :email')
+            ->setParameter('email', $email);
+
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+
+        return (count($result) > 0) ? false : true;
+
+    }
 }
