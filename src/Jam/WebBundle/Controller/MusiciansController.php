@@ -105,6 +105,8 @@ class MusiciansController extends Controller
 
         foreach($musicians AS $m){
 
+            /* @var $m \Jam\UserBundle\Entity\User */
+
             //TODO: NOT FIRST IMAGE ANYMORE
             if ($m->getImages()->first()){
                 $image = $m->getImages()->first()->getWebPath();
@@ -130,6 +132,7 @@ class MusiciansController extends Controller
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
+                'instrument' => $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName(),
                 'location' => $location
             );
 

@@ -31,7 +31,7 @@
                 <div class="people-info">
                     <h3 class="name"><%- rc.username %></h3>
                     <% if (rc.location) { %><div class="location"> <%- rc.location %></div><% } %>
-                    <img class="instrument" src="{{ asset('assets/images/icon-electric-guitar-v2.png') }}" alt="Guitar">
+                    <img class="instrument icon-<%- rc.instrument %>" src="{{ asset('assets/images/icon-electric-guitar-v2.png') }}" alt="<%- rc.instrument %>">
                     <ul class="tags">
                         <% _.each( rc.genres, function(v, k){ %>
                         <% if (k < 3){ %><li><%- v %></li><% } %>

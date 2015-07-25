@@ -36,6 +36,12 @@ class Instrument
     private $musicians;
 
     /**
+     * @ORM\ManyToOne(targetEntity="InstrumentCategory", cascade={"persist"})
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     **/
+    private $category;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -106,5 +112,53 @@ class Instrument
     public function getMusicians()
     {
         return $this->musicians;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Jam\CoreBundle\Entity\Instrument $parent
+     *
+     * @return Instrument
+     */
+    public function setParent(\Jam\CoreBundle\Entity\Instrument $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Jam\CoreBundle\Entity\Instrument
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Jam\CoreBundle\Entity\InstrumentCategory $category
+     *
+     * @return Instrument
+     */
+    public function setCategory(\Jam\CoreBundle\Entity\InstrumentCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Jam\CoreBundle\Entity\InstrumentCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
