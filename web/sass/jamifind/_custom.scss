@@ -224,3 +224,23 @@
 	}
 }
 
+.alert {
+	border: 1px solid #41404f;
+	border-radius: 0;
+	color: #18152b;
+	margin: 0;
+	padding: 10px 20px;
+
+	&.alert-success {
+		background-color: rgba(153, 203, 135, 0.95);
+	}
+}
+
+.fixed-alerts-container {
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1000;
+}
+

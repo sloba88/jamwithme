@@ -790,7 +790,12 @@ function scrollbarPlugin() {
                 suppressScrollX: true
             });
         } else {
-            $('.with-scrollbar').perfectScrollbar('destroy');
+            $('.with-scrollbar').each(function(){
+                var self = $(this);
+                if (self.hasClass('.ps-container')){
+                    self.perfectScrollbar('destroy');
+                }
+            });
         }
     }
 }
