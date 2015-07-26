@@ -263,7 +263,6 @@
     '@JamLocationBundle/Resources/public/location.js'
     'bundles/fosjsrouting/js/router.js'
     'js/fos_js_routes.js'
-    'assets/js/main.js'
     filter='?uglifyjs2'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -284,6 +283,8 @@
 
 
 {% block bottom_javascripts %}{% endblock %}
+
+<script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 </html>
