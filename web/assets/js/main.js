@@ -392,7 +392,7 @@ function addCollectionForm(collectionHolder, type) {
 
     // increase the index with one for the next item
     collectionHolder.data('index', index + 1);
-    collectionHolder.find('.row').append(newForm);
+    collectionHolder.append(newForm);
 }
 
 function readURL(input) {
