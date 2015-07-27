@@ -1,9 +1,8 @@
-
 _.templateSettings.variable = "rc";
-var shoutBoxTemplate     = _.template($( "#shoutBoxTemplate" ).html());
+var shoutBoxTemplate = _.template($("#shoutBoxTemplate").html());
 var notificationTemplate = _.template($('#notificationTemplate').html());
-var musicianBoxTemplate     = _.template($( "#musicianBoxTemplate" ).html());
-var musicianMapBoxTemplate     = _.template($( "#musicianMapBoxTemplate" ).html());
+var musicianBoxTemplate = _.template($("#musicianBoxTemplate").html());
+var musicianMapBoxTemplate = _.template($("#musicianMapBoxTemplate").html());
 var messageTemplate = _.template($("#messageTemplate").html());
 
 $(function() {
@@ -63,14 +62,17 @@ $(function() {
 
     peopleGrid();
 
-    //scrollbar plugin
-    scrollbarPlugin();
+    //menu for mobile devices
+    menu();
 
     if ($('.view-tab-container').length && $('.shouts-listing').length) {
         $('.view-tab-container, .shouts-listing').perfectScrollbar({
             suppressScrollX: true
         });
     }
+
+    //scrollbar on settings page - photos
+    // $('.page-settings').find()
 
     //window resize after delay
     var resizeTimer;
@@ -255,7 +257,6 @@ $(function() {
             url: "http://developer.echonest.com/api/v4/artist/suggest",
             dataType: "jsonp",
             results: function(data) {
-                //console.log(data);
                 return {
                     results: $.map(data.response.artists, function(item) {
                         return {
@@ -369,6 +370,9 @@ $(function() {
 
         return false;
     });
+
+    //scrollbar plugin
+    scrollbarPlugin();
 });
 
 socket.on('myUnreadMessagesCount', function(data) {
@@ -781,6 +785,29 @@ function showAllTags(e) {
     }
 }
 
+function menu() {
+    var $header = $('header'),
+        $mainFluid = $('.main-fluid'),
+        $sidebar = $('.sidebar'),
+        $navbarToggle = $('.navbar-toggle');
+
+    $navbarToggle.on('click', function() {
+        $sidebar.toggleClass('is-active');
+        $header.toggleClass('is-active');
+        $mainFluid.toggleClass('is-active');
+    });
+
+    var resizeTimerMenu;
+    $(window).resize(function() {
+        clearTimeout(resizeTimerMenu);
+        resizeTimerMenu = setTimeout(function() {
+            $sidebar.removeClass('is-active');
+            $header.removeClass('is-active');
+            $mainFluid.removeClass('is-active');
+        }, 50);
+    });
+}
+
 function scrollbarPlugin() {
 
     if ($('.with-scrollbar').length) {
@@ -790,9 +817,9 @@ function scrollbarPlugin() {
                 suppressScrollX: true
             });
         } else {
-            $('.with-scrollbar').each(function(){
+            $('.with-scrollbar').each(function() {
                 var self = $(this);
-                if (self.hasClass('.ps-container')){
+                if (self.hasClass('ps-container')) {
                     self.perfectScrollbar('destroy');
                 }
             });
@@ -800,16 +827,20 @@ function scrollbarPlugin() {
     }
 }
 
-function addMessage(type, message, temp){
-    if (typeof temp =='undefined') {
+function addMessage(type, message, temp) {
+    if (typeof temp == 'undefined') {
         temp = 'temp';
-    }else {
+    } else {
         temp = '';
     }
-    $('.fixed-alerts-container').append(notificationTemplate({ type : type, message : message, temp : temp }));
-    setTimeout(function(){
+    $('.fixed-alerts-container').append(notificationTemplate({
+        type: type,
+        message: message,
+        temp: temp
+    }));
+    setTimeout(function() {
         $('.fixed-alerts-container').children('.temp:last').alert('close');
-    },4000);
+    }, 4000);
 
     return true;
 }

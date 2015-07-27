@@ -1006,7 +1006,7 @@
 		@include respond-to(handhelds) {
 			background: #3b385e;
 			height: auto;
-			padding: 10px 0;
+			padding: 10px 15px;
 		}
 
 		.col-xs-6 {
@@ -1266,16 +1266,103 @@
 
 	#add_another_instrument {
 		margin-bottom: 20px;
-    min-width: 260px;
-    width: auto;
-    @include respond-to(tablet) {
+		min-width: 260px;
+		width: auto;
+		@include respond-to(tablet) {
 			width: 100%;
-    }
+		}
 
-    i {
-    	margin-right: 3px;
-    	top: 2px;
-    }
+		i {
+			margin-right: 3px;
+			top: 2px;
+		}
+	}
+
+	#upload_images {
+		height: 33px;
+		width: 110px;
+	}
+
+	.preview-thumb canvas{
+		width: 80px;
+	}
+
+	#files {
+
+		input {
+			display: none;
+		}
+
+		.preview-container {
+			float: left;
+		}
+
+		.preview-thumb{
+			padding: 5px;
+		}
+	}
+
+	.jcrop-keymgr {
+		opacity: 0;
+	}
+
+	.fileinput-button {
+		margin-bottom: 6px;
+		position: relative;
+	}
+
+	.fileinput-button input {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		opacity: 0;
+		direction: ltr;
+		cursor: pointer;
+	}
+
+	.progress {
+		margin-top: 10px;
+	}
+
+	.profile-media-wall {
+		min-height: 140px;
+		max-height: 350px;
+
+		.image-holder {
+			position: relative;
+			background-color: #000;
+
+			&:hover {
+
+				.fancybox {
+					opacity: 0.8;
+				}
+
+				.profile-media-image-commands {
+					display: block;
+				}
+			}
+		}
+
+		.fancybox {
+			@include transition(opacity 0.5s ease-in-out);
+		}
+	}
+
+	.profile-media-image-commands {
+		display: none;
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		background-color: #000;
+		padding: 2px;
+	}
+
+	.location_widget .ui-autocomplete-input {
+		color: #000;
+		border: 1px solid #18152b;
 	}
 }
 
@@ -1287,7 +1374,7 @@
 }
 
 .settings-instruments, .settings-skill {
-	
+
 	.form-control {
 		margin-bottom: 10px;
 	}
