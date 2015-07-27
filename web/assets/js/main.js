@@ -385,13 +385,14 @@ socket.on('myUnreadMessagesCount', function(data) {
 
 
 function addCollectionForm(collectionHolder, type) {
+    //TODO: remove this crap
     var prototype = collectionHolder.data('prototype');
     var index = collectionHolder.data('index');
     var newForm = prototype.replace(/__name__/g, index);
 
     // increase the index with one for the next item
     collectionHolder.data('index', index + 1);
-    collectionHolder.append(newForm);
+    collectionHolder.find('.row').append(newForm);
 }
 
 function readURL(input) {
@@ -527,6 +528,11 @@ function tabsToggle(object) {
                     setTimeout(function() {
                         $thisTab.fadeIn(speed).addClass('is-active');
                         $thisBtn.trigger('shown.tab');
+
+                        if (hash == 'media') {
+                            $('.profile-media-wall').isotope('reloadItems').isotope();
+                        }
+
                     }, speed)
                 }
             });

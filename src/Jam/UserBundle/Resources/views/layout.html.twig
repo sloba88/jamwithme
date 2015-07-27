@@ -1,16 +1,20 @@
 {% extends 'JamWebBundle::layout.html.twig' %}
 
+{% if not is_granted("ROLE_USER") %}
+    {% block bodyclasses %}login-page-user{% endblock %}
+{% endif %}
+
 {% block body %}
 
     {% if is_granted("ROLE_USER") %}
         {% include "JamWebBundle::navigation.html.twig" %}
     {% else %}
-        <aside class="col-sm-4 sidebar">
-            <div class="sidebar-inner">
+        <div class="col-md-4">
+            <div class="login-container">
                 {{ app.session.set('preview', 'true') }}
                 {{ render(controller('FOSUserBundle:Security:login')) }}
             </div>
-        </aside>
+        </div>
     {% endif %}
 
     {% block fos_user_content %}{% endblock fos_user_content %}
