@@ -119,10 +119,6 @@ $(function() {
         $container.isotope('layout');
     });
 
-    $("a.my-stuff").on("shown.tab", function(e) {
-        $('.profile-media-wall').isotope('reloadItems').isotope();
-    });
-
     var jamMembersCollectionHolder = $("#jam_members");
     var musicianInstrumentsCollectionHolder = $("#musician_instruments");
     var videosCollectionHolder = $("#musician_videos");
@@ -529,7 +525,7 @@ function tabsToggle(object) {
                         $thisTab.fadeIn(speed).addClass('is-active');
                         $thisBtn.trigger('shown.tab');
 
-                        if (hash == 'media') {
+                        if (hash == 'media' || hash == 'photos') {
                             $('.profile-media-wall').isotope('reloadItems').isotope();
                         }
 

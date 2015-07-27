@@ -183,11 +183,11 @@
 
                     <div class="view-tab-container teacher-text-container with-scrollbar">
 
-                        <div class="view-tab about is-active" data-tab="1">
-                            <p>{{ user.aboutMe }}</p>
+                        <div class="view-tab about is-active" data-tab="about">
+                            <p>{{ user.aboutMe|default("Nothing yet here.") }}</p>
                         </div>
 
-                        <div class="view-tab my-photos" data-tab="2">
+                        <div class="view-tab my-photos" data-tab="photos">
 
                             <div class="profile-media-wall">
 
@@ -205,10 +205,10 @@
                         </div>
                         <!--photos ends-->
 
-                        <div class="view-tab my-videos" data-tab="3">
+                        <div class="view-tab my-videos" data-tab="videos">
 
                             {% if user.videos|length == 0 %}
-                                <h3>Put some videos here</h3>
+                                <p>Put some videos here</p>
                             {% endif %}
 
                             {% for v in user.videos %}
@@ -220,7 +220,7 @@
                         </div>
                         <!--videos ends-->
 
-                        <div class="view-tab my-sounds" data-tab="4">
+                        <div class="view-tab my-sounds" data-tab="sounds">
 
                         </div>
 

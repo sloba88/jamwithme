@@ -46,11 +46,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    {#
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="{{ node_server }}/socket.io/socket.io.js"></script>
 
     <script>
-        var baseURL = '{{ app.request.getBaseURL() }}';
         {% if is_granted("ROLE_USER") %}
         var _username = '{{ app.user.username }}';
         {% endif %}
@@ -62,11 +62,12 @@
 
         {% if app.user %}
         socket.on('registerConnectedUser', function (data) {
-            //TODO: this must be done in Redis
             socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': _username });
         });
         {% endif %}
     </script>
+    #}
+    <script>var baseURL = '{{ app.request.getBaseURL() }}';var socket = {}; socket.on = function(){}</script>
 
 </head>
 <body class="{% block bodyclasses %}{% endblock %}" style="{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}">
