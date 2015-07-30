@@ -1,8 +1,11 @@
 {% extends 'JamWebBundle::layout.html.twig' %}
 
+{% set bodyclass = "" %}
 {% if not is_granted("ROLE_USER") %}
-    {% block bodyclasses %}login-page-user{% endblock %}
+    {% set bodyclass = "login-page-user" %}
 {% endif %}
+
+{% block bodyclasses %}{{ bodyclass }}{% endblock %}
 
 {% block body %}
 
