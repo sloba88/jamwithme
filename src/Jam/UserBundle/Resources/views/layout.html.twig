@@ -93,6 +93,17 @@
                 });
             {% endif %}
 
+            {% if user is defined %}
+                if ($('.compatibility').length > 0){
+                    $.ajax({
+                        url: Routing.generate('api_compatibility', { id: '{{ user.getId }}' }),
+                        success: function(data) {
+                            $('.compatibility span').text(data + '%');
+                        }
+                    });
+                }
+            {% endif %}
+
             $().fancybox();
         });
     </script>
