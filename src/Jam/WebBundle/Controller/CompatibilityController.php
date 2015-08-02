@@ -23,37 +23,62 @@ class CompatibilityController extends Controller
         $me = $this->getUser();
 
         $compatibility = 0;
+        $possibleMatches = 0;
+        $totalMatches = 0;
+
+        $artistIndex = 8;
+        $genresIndex = 5;
+        $ageIndex = 4;
 
         /* calculate artists */
+        $matchedIndexes = array();
         foreach ($user->getArtists() AS $k1 => $v1){
             foreach ($me->getArtists() AS $k2 => $v2){
-                if ($v1 == $v2){
-                    $compatibility += 6;
+                if (in_array($k2, $matchedIndexes)) continue;
+                if ($v1->getId() == $v2->getId()){
+                    $compatibility += $artistIndex;
+                    $totalMatches ++;
+                    //if matched skip it next time
+                    array_push($matchedIndexes, $k2);
                 }else{
-                    $compatibility -= 3;
+                    //$compatibility -= 2;
                 }
             }
         }
 
+        $possibleMatches += min($user->getArtists()->count(), $me->getArtists()->count()) * $artistIndex;
+
         /* calculate genres */
+        $matchedIndexes = array();
         foreach ($user->getGenres() AS $k1 => $v1){
             foreach ($me->getGenres() AS $k2 => $v2){
+                if (in_array($k2, $matchedIndexes)) continue;
                 if ($v1->getId() == $v2->getId()){
-                    $compatibility += 5;
+                    $compatibility += $genresIndex;
+                    $totalMatches ++;
+                    //if matched skip it next time
+                    array_push($matchedIndexes, $k2);
                 }else{
-                    $compatibility -= 2;
+                    //$compatibility -= 2;
                 }
             }
         }
+
+        $possibleMatches += min($user->getGenres()->count(), $me->getGenres()->count()) + $genresIndex;
 
         /* calculate age */
         if ($user->getAge() && $me->getAge()){
             $ageDiff = abs(intval($user->getAge()) - intval($me->getAge()));
             if ($ageDiff < 5){
-                $compatibility += 5;
+                $compatibility += $ageIndex;
+                $totalMatches ++;
             }
         }
 
-        return new JsonResponse($compatibility);
+        $possibleMatches += $ageIndex;
+
+        $matchesIndex = (100 / $possibleMatches) * $compatibility;
+
+        return new JsonResponse(intval($matchesIndex));
     }
 }
