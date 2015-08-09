@@ -14,7 +14,7 @@
             <div class="sidebar-nav">
                 <ul class="sidebar-list">
                     <li class="dashboard {% if app.request.attributes.get('_route') == 'home' %}active{% endif %}"><a href="{{ path('home') }}">Dashboard</a></li>
-                    <li class="profile {% if app.request.attributes.get('_route') in ['musician_profile', 'fos_user_profile_show'] %}active{% endif %}"><a href="{{ path('musician_profile', {'username': app.user.username}) }}">Profile</a></li>
+                    <li class="profile {% if app.request.attributes.get('_route') == 'fos_user_profile_show' or ( app.request.attributes.get('_route') == 'musician_profile' and app.user.id == user.id ) %}active{% endif %}"><a href="{{ path('musician_profile', {'username': app.user.username}) }}">Profile</a></li>
                     <li class="messages {% if app.request.attributes.get('_route') == 'inbox' %}active{% endif %}"><a href="{{ path('inbox') }}" class="inbox"><span class="badge"></span>Messages</a></li>
                     <li class="settings last {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}"><a href="{{ path('fos_user_profile_edit') }}">Settings</a></li>
                 </ul>
