@@ -197,3 +197,35 @@
 		top: -3px;
 	}
 }
+
+//login with preview
+.login-page-user {
+	overflow: auto;
+
+	.login-container {
+		@media only screen and (max-width: $screen-lg - 1px) and (min-width: $screen-md) {// > 991px and < 1200px
+			width: auto;
+
+			h1 {
+				font-size: 20px;
+			}
+
+			.login-body {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+		}
+		@include respond-to(tablet) {
+			margin-bottom: 20px;
+		}
+	}
+
+	.teacher-container {
+		@media only screen and (min-width: $screen-md) {// > 991px
+			margin-top: 100px;
+		}
+		@include respond-to(tablet) {
+			margin-bottom: 30px;
+		}
+	}
+}

@@ -60,9 +60,16 @@ body {
 	}
 
 	&.col-sm-10 {
+		background: #fff;
+		padding-bottom: 10px;
 		padding-right: 15px;
 		@include respond-to(tablet) {
 			padding-right: 0;
+		}
+
+		> .main-content-inner {
+			padding-bottom: 0;
+			padding-top: 0;
 		}
 	}
 }
