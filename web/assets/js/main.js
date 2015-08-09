@@ -524,10 +524,10 @@ function tabsToggle(object) {
                 var $thisTab = $(this); //this tab
                 if ($thisTab.data('tab') == btnDataTab) {
                     $viewTab.fadeOut(speed).removeClass('is-active');
-                    setTimeout(function() {
+                    // setTimeout(function() {
                         $thisTab.fadeIn(speed).addClass('is-active');
                         $thisBtn.trigger('shown.tab');
-                    }, speed)
+                    // }, speed)
                 }
             });
         }

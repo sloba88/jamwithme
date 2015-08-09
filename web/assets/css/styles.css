@@ -11145,6 +11145,11 @@ header {
   }
 }
 
+/* line 1411, ../../sass/jamifind/_main.scss */
+.people-grid .people-info .instrument path {
+  fill: #ff0000 !important;
+}
+
 /* line 3, ../../sass/jamifind/_messages.scss */
 .messages-header .title,
 .messages-header .btn-compose {
