@@ -54,13 +54,18 @@
         {% endif %}
 
 
-    <div class="shouts-feed">
+    <div class="shouts-feed" id="shoutsFeed">
         <h3>Shouts feed</h3>
-        <form role="form" action="{{ path('home') }}" method="POST">
-            {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3'}}) }}
-            {{ form_widget(form.send, {'attr': {'class': 'btn btn-primary'}}) }}
-            {{ form_widget(form._token) }}
-        </form>
+        {% if shoutedToday %}
+            <p style="color: #FFFFFF">Shout again in:</p>
+            <p id="shoutCountdown" style="color: #FFFFFF"></p>
+        {% else %}
+            <form role="form" action="{{ path('home') }}" method="POST">
+                {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3'}}) }}
+                {{ form_widget(form.send, {'attr': {'class': 'btn btn-primary'}}) }}
+                {{ form_widget(form._token) }}
+            </form>
+        {% endif %}
     </div><!--shouts-feed ends-->
 
     <div class="shouts-listing-container">
@@ -71,11 +76,19 @@
 {% endblock %}
 
 {% block bottom_javascripts %}
+
+    <script>
+        var shoutedToday = ('{{ shoutedToday }}' == 1) ? true : false;
+    </script>
+
     {% javascripts
     'assets/js/filter.js'
     'assets/js/map.js'
+    'vendor/jquery.countdown/dist/jquery.countdown.min.js'
+    '@JamWebBundle/Resources/public/js/shout.js'
     filter='?uglifyjs2'
     %}
+
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
