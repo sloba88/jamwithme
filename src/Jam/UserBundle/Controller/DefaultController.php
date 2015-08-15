@@ -69,14 +69,10 @@ class DefaultController extends Controller
 
         $users = $this->getDoctrine()->getManager()
             ->createQuery(
-                'SELECT user.id, user.username, user.avatar FROM JamUserBundle:User user WHERE user.username LIKE :q ')
+                'SELECT user.id, user.username, user.avatar FROM JamUserBundle:User user WHERE user.username LIKE :q OR user.firstName LIKE :q OR user.lastName LIKE :q ')
             ->setParameter('q', '%'.$q.'%')
             ->setMaxResults(8)
             ->getResult();
-
-        foreach ($users AS $k=>$u){
-            $users[$k]['avatar'] = $this->get('liip_imagine.cache.manager')->getBrowserPath('uploads/avatars/'.$u['id'].'/'.$u['avatar'], 'my_thumb');
-        }
 
         $response = new JsonResponse();
         $response->setData($users);
