@@ -11,6 +11,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Table(name="shouts")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Jam\CoreBundle\Entity\ShoutRepository")
  */
 class Shout
 {

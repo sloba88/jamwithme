@@ -16,6 +16,7 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $shoutedToday = count($this->getDoctrine()->getRepository('JamCoreBundle:Shout')->getTodaysShout()) > 0;
         $shout = new Shout();
 
         $form = $this->createFormBuilder($shout)
@@ -49,6 +50,9 @@ class HomeController extends Controller
             return $this->redirect($this->generateUrl('home'));
         }
 
-        return array('form' => $form->createView());
+        return array(
+            'form' => $form->createView(),
+            'shoutedToday' => $shoutedToday
+        );
     }
 }
