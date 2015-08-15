@@ -189,16 +189,18 @@ class SoundcloudConnector {
 
         $tracks = array();
 
-        try {
-            $url = 'users/'.$user->getSoundcloudId().'/tracks?client_id='.$this->soundcloudClientId;
-            $tracksReq = $this->client->get($url);
+        if ($user->getSoundcloudId() !== null) {
+            try {
+                $url = 'users/'.$user->getSoundcloudId().'/tracks?client_id='.$this->soundcloudClientId;
+                $tracksReq = $this->client->get($url);
 
-            $tracksResponse = $tracksReq->send();
-            $tracks = json_decode($tracksResponse->getBody(true));
-        } catch (\Exception $e) {
-            /* TODO log about not being able to retrieve tracks for user */
+                $tracksResponse = $tracksReq->send();
+                $tracks = json_decode($tracksResponse->getBody(true));
+            } catch (\Exception $e) {
+                /* TODO log about not being able to retrieve tracks for user */
+            }
         }
-
+        
         return $tracks;
 
     }
