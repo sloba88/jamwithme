@@ -124,6 +124,8 @@ class MusiciansController extends Controller
                 $location = false;
             }
 
+            $instrument = $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName();
+
             $data_array = array(
                 'username' => $m->getUsername(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
@@ -132,7 +134,8 @@ class MusiciansController extends Controller
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
-                'instrument' => $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName(),
+                'instrument' => $instrument,
+                'icon' => file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg"),
                 'location' => $location
             );
 
