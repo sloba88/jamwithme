@@ -6,13 +6,16 @@ namespace Jam\UserBundle\Controller;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
+use Jam\UserBundle\Entity\User;
 use Jam\UserBundle\Entity\UserImage;
+use Jam\UserBundle\Form\Type\EmailType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DefaultController extends Controller
 {
@@ -264,4 +267,36 @@ class DefaultController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("reset-email", name="reset_email")
+     */
+    public function resetEmailAction()
+    {
+        $user = new User();
+        $form = $this->createForm(new EmailType(), $user);
+
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        if ($request->getMethod() === 'POST') {
+
+            $email = $request->get('email');
+
+            $isUnique = $this->getDoctrine()->getRepository('JamUserBundle:User')->isEmailUnique($email);
+
+            if ($isUnique && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $user = $this->get('security.token_storage')->getToken()->getUser();
+                $user->setEmail($email);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+
+                $redirect = new RedirectResponse($this->generateUrl('home'));
+                return $redirect;
+            }
+        }
+
+        return $this->render('JamUserBundle:Profile:reset_email.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
 }

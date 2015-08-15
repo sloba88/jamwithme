@@ -86,6 +86,12 @@
             <argument type="service" id="fos_user.user_manager" />
         </service>
 
+        <service id="jam.user_request" class="Jam\UserBundle\EventListener\UserResponseListener">
+            <tag name="kernel.event_listener" event="kernel.response" method="onUserResponse" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="router" />
+        </service>
+
     </services>
 
 </container>
