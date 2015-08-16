@@ -200,7 +200,7 @@ class SoundcloudConnector {
                 /* TODO log about not being able to retrieve tracks for user */
             }
         }
-        
+
         return $tracks;
 
     }
