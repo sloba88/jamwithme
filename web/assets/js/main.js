@@ -239,6 +239,12 @@ $(function() {
         }
     });
 
+    $("#fos_user_profile_form_brands").select2("container").find("ul.select2-choices").sortable({
+        containment: 'parent',
+        start: function() { $("#fos_user_profile_form_brands").select2("onSortStart"); },
+        update: function() { $("#fos_user_profile_form_brands").select2("onSortEnd"); }
+    });
+
     $("#fos_user_profile_form_artists").select2({
         placeholder: "Favourite Artists?",
         minimumInputLength: 2,

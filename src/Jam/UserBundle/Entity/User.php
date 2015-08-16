@@ -39,6 +39,7 @@ class User extends BaseUser
         // your own logic
         $this->images = new ArrayCollection();
         $this->genres = new ArrayCollection();
+        $this->brands = new ArrayCollection();
     }
 
     /**
@@ -64,18 +65,6 @@ class User extends BaseUser
      * )
      */
     protected $artists;
-
-    /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Brand", inversedBy="musicians", cascade={"persist"})
-     * @ORM\JoinTable(
-     *      name="musicians_brands",
-     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=false)}
-     * )
-     */
-    protected $brands;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -144,6 +133,13 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"} )
      */
     private $instruments;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianBrand", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
+     */
+    private $brands;
 
     /**
      * @ORM\Column(type="smallint", length=1, nullable=true)
@@ -522,51 +518,6 @@ class User extends BaseUser
     public function setArtists(ArrayCollection $artists)
     {
         $this->artists = $artists;
-    }
-
-    /**
-     * Add brands
-     *
-     * @param \Jam\CoreBundle\Entity\Brand $brands
-     * @return User
-     */
-    public function addBrand(\Jam\CoreBundle\Entity\Brand $brands)
-    {
-        $this->brands[] = $brands;
-
-        return $this;
-    }
-
-    /**
-     * Remove brands
-     *
-     * @param \Jam\CoreBundle\Entity\Brand $brands
-     */
-    public function removeBrand(\Jam\CoreBundle\Entity\Brand $brands)
-    {
-        $this->brands->removeElement($brands);
-    }
-
-    /**
-     * Get brands
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getBrands()
-    {
-        return $this->brands;
-    }
-
-    /**
-     * Set brands
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function setBrands($brands)
-    {
-        $this->brands[] = $brands;
-
-        return $this;
     }
 
     public function getLat()
@@ -967,5 +918,46 @@ class User extends BaseUser
     public function getCommitment()
     {
         return $this->commitment;
+    }
+
+    /**
+     * Add brand
+     *
+     * @param \Jam\CoreBundle\Entity\MusicianBrand $brand
+     *
+     * @return User
+     */
+    public function addBrand(\Jam\CoreBundle\Entity\MusicianBrand $brand)
+    {
+        $this->brands[] = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Remove brand
+     *
+     * @param \Jam\CoreBundle\Entity\MusicianBrand $brand
+     */
+    public function removeBrand(\Jam\CoreBundle\Entity\MusicianBrand $brand)
+    {
+        $this->brands->removeElement($brand);
+    }
+
+    /**
+     * Get brands
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBrands()
+    {
+        return $this->brands;
+    }
+
+    public function setBrands(ArrayCollection $brands){
+
+        $this->brands = $brands;
+
+        return $this;
     }
 }

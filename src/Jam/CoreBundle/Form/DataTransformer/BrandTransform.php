@@ -2,6 +2,7 @@
 namespace Jam\CoreBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Jam\CoreBundle\Entity\MusicianBrand;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\ORM\EntityManager;
@@ -30,7 +31,7 @@ class BrandTransform implements DataTransformerInterface
         $brand = '';
         foreach ($brands AS $k => $a){
             if($k!=0) $brand .= ',';
-            $brand .= $a->getName();
+            $brand .= $a->getBrand()->getName();
 
         }
 
@@ -48,25 +49,33 @@ class BrandTransform implements DataTransformerInterface
     {
         $brandsCollection = new ArrayCollection();
 
-        if (!$name) {
+        if (!$name || $name == '') {
             return $brandsCollection;
         }
 
         $names = explode(",", $name);
-        foreach($names AS $name){
+
+        foreach($names AS $k=>$name){
+
+            $musicianBrand = new MusicianBrand();
 
             $brand = $this->entityManager
                 ->getRepository('JamCoreBundle:Brand')
                 ->findOneBy(array('name' => $name));
 
-            $brandsCollection->add($brand);
-        }
+            if (null === $brand) {
+                throw new TransformationFailedException(sprintf(
+                    'Brand with ID "%s" does not exist!',
+                    $name
+                ));
+            }
 
-        if (null === $brand) {
-            throw new TransformationFailedException(sprintf(
-                'Brand with ID "%s" does not exist!',
-                $name
-            ));
+            $musicianBrand->setBrand($brand);
+            $musicianBrand->setPosition($k);
+
+            $this->entityManager->persist($musicianBrand);
+
+            $brandsCollection->add($musicianBrand);
         }
 
         return $brandsCollection;

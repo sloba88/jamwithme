@@ -18,13 +18,13 @@ class BrandType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addViewTransformer($this->brandTransformer, true);
+        $builder->addModelTransformer($this->brandTransformer);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'class' => 'Jam\CoreBundle\Entity\Brand',
+            'class' => 'Jam\CoreBundle\Entity\MusicianBrand',
             'required' => false,
         ));
     }
