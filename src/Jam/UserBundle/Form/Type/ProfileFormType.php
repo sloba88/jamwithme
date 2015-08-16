@@ -54,6 +54,7 @@ class ProfileFormType extends BaseType
         $builder->add('instruments', 'collection', array(
             'type' => 'instrument_type',
             'allow_add' => true,
+            'allow_delete' => true
         ));
 
         $builder->add('genres', 'entity', array(

@@ -34,7 +34,7 @@ class MusicianBrand
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Brand", inversedBy="musicians")
+     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Brand")
      * @ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=false)
      */
     private $brand;

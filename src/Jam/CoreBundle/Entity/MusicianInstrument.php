@@ -3,6 +3,7 @@
 namespace Jam\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Instrument
@@ -22,10 +23,11 @@ class MusicianInstrument
     private $id;
 
     /**
-     * @var integer
+     * @var User $musician
      *
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="instruments")
-     * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)
      */
     private $musician;
 
@@ -33,7 +35,7 @@ class MusicianInstrument
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Instrument", inversedBy="musicians")
-     * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=false)
      */
     private $instrument;
 

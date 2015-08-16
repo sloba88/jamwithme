@@ -37,13 +37,6 @@ class Brand
     private $parent;
 
     /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", mappedBy="brands" )
-     */
-    private $musicians;
-
-    /**
      * Get id
      *
      * @return integer 
@@ -74,46 +67,6 @@ class Brand
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->musicians = new ArrayCollection();
-    }
-
-    /**
-     * Add musicians
-     *
-     * @param \Jam\UserBundle\Entity\User $musicians
-     * @return Instrument
-     */
-    public function addMusician(\Jam\UserBundle\Entity\User $musicians)
-    {
-        $this->musicians[] = $musicians;
-
-        return $this;
-    }
-
-    /**
-     * Remove musicians
-     *
-     * @param \Jam\UserBundle\Entity\User $musicians
-     */
-    public function removeMusician(\Jam\UserBundle\Entity\User $musicians)
-    {
-        $this->musicians->removeElement($musicians);
-    }
-
-    /**
-     * Get musicians
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMusicians()
-    {
-        return $this->musicians;
     }
 
     /**

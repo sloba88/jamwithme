@@ -130,7 +130,7 @@ class User extends BaseUser
     /**
      * @var collection
      *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"} )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
     private $instruments;
 
@@ -957,6 +957,13 @@ class User extends BaseUser
     public function setBrands(ArrayCollection $brands){
 
         $this->brands = $brands;
+
+        return $this;
+    }
+
+    public function setInstruments(ArrayCollection $instruments){
+
+        $this->instruments = $instruments;
 
         return $this;
     }
