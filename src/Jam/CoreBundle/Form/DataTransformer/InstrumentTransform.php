@@ -28,15 +28,11 @@ class InstrumentTransform implements \Symfony\Component\Form\DataTransformerInte
      */
     public function transform($instrument)
     {
-        if ('' === $instrument) {
-            return "";
-        }
-
         if (null === $instrument) {
             return "";
         }
 
-        return $instrument;
+        return $instrument->getName();
     }
 
     /**
@@ -48,6 +44,8 @@ class InstrumentTransform implements \Symfony\Component\Form\DataTransformerInte
      */
     public function reverseTransform($number)
     {
+        var_dump($number);
+
         if (!$number) {
             return null;
         }
@@ -58,7 +56,7 @@ class InstrumentTransform implements \Symfony\Component\Form\DataTransformerInte
 
         $instrument = $this->om
             ->getRepository('JamCoreBundle:Instrument')
-            ->findOneBy(array('id' => $number))
+            ->findOneBy(array('name' => $number))
         ;
 
         if (null === $instrument) {

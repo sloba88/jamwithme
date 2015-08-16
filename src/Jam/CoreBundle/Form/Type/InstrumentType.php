@@ -16,7 +16,7 @@ class InstrumentType extends AbstractType
 
     protected $securityContext;
 
-    public function __construct(InstrumentTransform $instrumentTransform,SecurityContext $securityContext)
+    public function __construct(InstrumentTransform $instrumentTransform, SecurityContext $securityContext)
     {
         $this->instrumentTransform = $instrumentTransform;
         $this->securityContext = $securityContext;
@@ -25,31 +25,17 @@ class InstrumentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            $builder->create('instrument', 'entity', array(
-                'class' => 'JamCoreBundle:Instrument',
-                'query_builder' => function(EntityRepository $er) {
-                        return $er->createQueryBuilder('u');
-                    },
-                'property' => "name",
-                'multiple' => false,
-                'required' => false,
+            $builder->create('instrument', 'hidden', array(
                 'attr' => array(
                     'class'=> 'instrument-select'
-                ),
-                'label' => 'What do you play?'
-            ))
-                ->addModelTransformer($this->instrumentTransform)
+                )
+            ))->addModelTransformer($this->instrumentTransform)
         );
 
-        $builder->add('skillLevel', 'choice', array(
-            'choices'   => array(
-                '1'   => 'Beginner',
-                '2'   => 'Average',
-                '3'   => 'Advanced',
-                '4'   => 'Semi-Professional',
-                '5'   => 'Professional'
-            ),
-            'label' => 'How good are you?'
+        $builder->add('skillLevel', 'hidden', array(
+            'attr' => array(
+                'class'=> 'skill-select'
+            )
         ));
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {

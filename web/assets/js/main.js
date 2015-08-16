@@ -7,16 +7,45 @@ var messageTemplate = _.template($("#messageTemplate").html());
 
 $(function() {
 
-    $(".instrument-select").select2({
-        placeholder: 'What do you play?'
-    });
-
     $('select').select2();
+
+    if ($('#musician_instruments').length > 0){
+        var instrumentTemplate = _.template($("#instrumentBoxTemplate").html());
+
+        if ($('#musician_instruments .row').length == 0){
+            //there are no instruments in settings, add some
+            $('#musician_instruments').append(instrumentTemplate({'num': 0}));
+        }
+
+        initInstrumentSelection();
+
+        $("#add_another_instrument").on('click', function(e) {
+            e.preventDefault();
+            var length = $('#musician_instruments .row').length;
+            $('#musician_instruments').append(instrumentTemplate({'num': length}));
+
+            initInstrumentSelection();
+        });
+
+        $('#musician_instruments').sortable({
+            handle: ".handle",
+            update: function( event, ui ) {
+                $('#musician_instruments .row').each(function(k, v){
+                    $(this).find('input[type=hidden]').each(function(){
+                        var name = $(this).attr('name');
+                        name = name.replace(/(\d+)/g, k);
+                        $(this).attr('name', name);
+                    });
+                });
+            }
+        });
+
+    }
 
     //select plugin on dashboard updates height of main container on change
     $('select').on("change", sidebarHeight);
 
-    $("#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres, #jam_genres").select2({
+    $('#fos_user_profile_form_genres, #form_genres, #fos_user_registration_form_genres, #jam_genres').select2({
         placeholder: 'Whats music do you play?'
     });
 
@@ -24,14 +53,14 @@ $(function() {
         placeholder: 'Filter by genres'
     });
 
-    $("#search_form_instruments").select2({
+    $('#search_form_instruments').select2({
         placeholder: 'Filter by instruments'
     });
 
     $('input[type=checkbox]').next('label').prepend('<span></span>');
 
     //activates tooltip
-    $("[data-toggle=tooltip]").tooltip();
+    $('[data-toggle=tooltip]').tooltip();
 
     //activates slider
     $("#filter-by-distance-slider").slider({
@@ -130,16 +159,6 @@ $(function() {
     $("#add_another_image").click(function(e) {
         e.preventDefault();
         addCollectionForm(imagesCollectionHolder, 'images');
-    });
-
-    $("#add_another_member").on('click', function(e) {
-        e.preventDefault();
-        addCollectionForm(jamMembersCollectionHolder, 'members');
-    });
-
-    $("#add_another_instrument").on('click', function(e) {
-        e.preventDefault();
-        addCollectionForm(musicianInstrumentsCollectionHolder, 'instruments');
     });
 
     $("#add_another_video").on('click', function(e) {
@@ -870,4 +889,37 @@ function addMessage(type, message, temp) {
     }, 4000);
 
     return true;
+}
+
+function initInstrumentSelection(){
+    $(".instrument-select").select2({
+        placeholder: 'What do you play?',
+        minimumInputLength: 0,
+        initSelection: function(element, callback) {
+            var data = {id: element.val(), text: element.val()};
+            callback(data);
+        },
+        ajax: {
+            url: Routing.generate('api_instruments'),
+            results: function(data) {
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            text: item.name,
+                            value: item.id,
+                            id: item.name
+                        }
+                    })
+                }
+
+            },
+            cache: true
+        }
+    });
+
+    $(".skill-select").select2({
+        placeholder: 'How good are you?',
+        data: instrumentSkills
+    });
+
 }

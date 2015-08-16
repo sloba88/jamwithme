@@ -39,7 +39,7 @@
                     {% for i in user.instruments %}
                         <div class="col-xs-6">
                             <a href="{{ path('musicians', {'s[instruments][]' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
-                            <span class="main">main</span>
+                            {% if loop.first %}<span class="main">main</span>{% endif %}
                         </div>
 
                         <div class="col-xs-6">
