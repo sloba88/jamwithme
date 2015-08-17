@@ -248,6 +248,7 @@
 </div>
 
 <script>
+    var instrumentNames = {{ render(controller('JamWebBundle:Instruments:get')) }};
     var instrumentSkills = {{ render(controller('JamWebBundle:Instruments:getSkills')) }};
 </script>
 

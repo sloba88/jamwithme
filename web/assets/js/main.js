@@ -894,27 +894,7 @@ function addMessage(type, message, temp) {
 function initInstrumentSelection(){
     $(".instrument-select").select2({
         placeholder: 'What do you play?',
-        minimumInputLength: 0,
-        initSelection: function(element, callback) {
-            var data = {id: element.val(), text: element.val()};
-            callback(data);
-        },
-        ajax: {
-            url: Routing.generate('api_instruments'),
-            results: function(data) {
-                return {
-                    results: $.map(data, function(item) {
-                        return {
-                            text: item.name,
-                            value: item.id,
-                            id: item.name
-                        }
-                    })
-                }
-
-            },
-            cache: true
-        }
+        data: instrumentNames
     });
 
     $(".skill-select").select2({
