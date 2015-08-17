@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Elastica\Util;
+use Symfony\Component\HttpFoundation\Response;
 
 class MusiciansController extends Controller
 {
@@ -43,7 +44,7 @@ class MusiciansController extends Controller
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $searchParams = $request->query->get('search_form');
-        $me = $this->container->get('security.context')->getToken()->getUser();
+        $me = $this->getUser();
         $response = new JsonResponse();
 
         if ($searchParams && isset($searchParams['me'])){
@@ -295,5 +296,25 @@ class MusiciansController extends Controller
         ));
 
         return $response;
+    }
+
+    public function getUniqueIconsAction($username)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        $icons = '';
+        $unique = array();
+
+        foreach ($user->getInstruments() AS $cat){
+            $instrument = $cat->getInstrument()->getCategory()->getName();
+            if (!in_array($instrument, $unique)){
+                $icons .= file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg");
+                array_push($unique, $instrument);
+            }
+        }
+
+        return new Response($icons);
+
     }
 }

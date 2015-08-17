@@ -1,5 +1,13 @@
 {# TODO: TEACHER #}
 
+<style>
+    .instruments-profile-icons svg{
+        width: 30px;
+        height: 30px;
+        float: left;
+    }
+</style>
+
 <div class="col-md-10 teacher-container grey">
 
     <div class="row teacher-header">
@@ -18,6 +26,11 @@
                             </div>
                         {% endif %}
                     {% endif %}
+
+                    <div class="instruments-profile-icons">
+                        {% render(controller('JamWebBundle:Musicians:getUniqueIcons', {'username': user.username })) %}
+                    </div>
+
                     <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
 
                     {% if is_granted("ROLE_USER") and app.user != user %}
