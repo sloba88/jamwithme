@@ -99,6 +99,12 @@ class User extends BaseUser
     protected $aboutMe;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     *
+     */
+    protected $education;
+
+    /**
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"all"})
@@ -966,5 +972,29 @@ class User extends BaseUser
         $this->instruments = $instruments;
 
         return $this;
+    }
+
+    /**
+     * Set education
+     *
+     * @param string $education
+     *
+     * @return User
+     */
+    public function setEducation($education)
+    {
+        $this->education = $education;
+
+        return $this;
+    }
+
+    /**
+     * Get education
+     *
+     * @return string
+     */
+    public function getEducation()
+    {
+        return $this->education;
     }
 }

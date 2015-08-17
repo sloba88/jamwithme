@@ -158,7 +158,11 @@
                     <div class="view-tab-container teacher-text-container with-scrollbar">
 
                         <div class="view-tab about is-active" data-tab="about">
+                            {% if user.isTeacher %}<h6>Overview</h6>{% endif %}
                             <p>{{ user.aboutMe|default("Nothing yet here.") }}</p>
+
+                            {% if user.isTeacher %}<h6>Education</h6>{% endif %}
+                            <p>{{ user.education|default("Nothing yet here.") }}</p>
                         </div>
 
                         <div class="view-tab my-photos" data-tab="photos">

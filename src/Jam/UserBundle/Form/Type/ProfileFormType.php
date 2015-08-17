@@ -32,6 +32,10 @@ class ProfileFormType extends BaseType
             'required' => false
         ));
 
+        $builder->add('education', 'textarea', array(
+            'required' => false
+        ));
+
         $builder->add('hourlyRate', 'text', array(
             'required' => false
         ));
@@ -77,6 +81,7 @@ class ProfileFormType extends BaseType
 
         $builder->add('gender', 'choice', array(
             'choices'   => array(
+            '' => 'Won\'t say',
             '1' => 'Male',
             '2' => 'Female',
         ),
