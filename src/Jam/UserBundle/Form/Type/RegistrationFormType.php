@@ -26,7 +26,8 @@ class RegistrationFormType extends BaseType
         ));
         $builder->add('isJammer', 'checkbox', array(
             'required' => false,
-            'label' => 'Jam'
+            'label' => 'Jam',
+            'data' => true
         ));
         $builder->add('isTeacher', 'checkbox', array(
             'required' => false,

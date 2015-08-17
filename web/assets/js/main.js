@@ -9,6 +9,8 @@ $(function() {
 
     $('select').select2();
 
+    $('.info-popover').popover();
+
     if ($('#musician_instruments').length > 0){
         var instrumentTemplate = _.template($("#instrumentBoxTemplate").html());
 
@@ -27,19 +29,27 @@ $(function() {
             initInstrumentSelection();
         });
 
+        function renameInstrumentFormNames() {
+            $('#musician_instruments .row').each(function(k, v){
+                $(this).find('input[type=hidden]').each(function(){
+                    var name = $(this).attr('name');
+                    name = name.replace(/(\d+)/g, k);
+                    $(this).attr('name', name);
+                });
+            });
+        }
+
         $('#musician_instruments').sortable({
             handle: ".handle",
             update: function( event, ui ) {
-                $('#musician_instruments .row').each(function(k, v){
-                    $(this).find('input[type=hidden]').each(function(){
-                        var name = $(this).attr('name');
-                        name = name.replace(/(\d+)/g, k);
-                        $(this).attr('name', name);
-                    });
-                });
+                renameInstrumentFormNames();
             }
         });
-
+        $('#musician_instruments').on('click', '.remove-instrument', function(e){
+            e.preventDefault();
+            $(this).closest('.row').remove();
+            renameInstrumentFormNames();
+        });
     }
 
     //select plugin on dashboard updates height of main container on change

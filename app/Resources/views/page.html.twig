@@ -73,6 +73,7 @@
 
     {% javascripts
     'vendor/jquery/jquery.js'
+    'vendor/bootstrap/dist/js/bootstrap.js'
     filter='?uglifyjs2'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -83,6 +84,7 @@
 <script>
     $(function() {
         $('input[type=checkbox]').next('label').prepend('<span></span>');
+        $('.info-popover').popover();
     });
 </script>
 </body>
