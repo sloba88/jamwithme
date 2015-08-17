@@ -46,7 +46,7 @@ $(function() {
             url: Routing.generate('api_instruments')
         }).done(function( result ) {
             $.each(result, function(k, v){
-                $('#filter-instruments').append('<option value="'+v.id+'">'+ v.name + '</option>');
+                $('#filter-instruments').append('<option value="'+v.id+'">'+ v.text + '</option>');
             });
 
             $('select').select2();
