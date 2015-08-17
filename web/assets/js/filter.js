@@ -39,7 +39,7 @@ $(function() {
         url: Routing.generate('api_genres')
     }).done(function( result ) {
         $.each(result, function(k, v){
-            $('#filter-genres').append('<option value="'+v.id+'">'+ v.name + '</option>');
+            $('#filter-genres').append('<option value="'+v.id+'">'+ v.text + '</option>');
         });
         //parse instruments
         $.ajax({

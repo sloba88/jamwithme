@@ -24,7 +24,7 @@ class GenresController extends Controller
 
         foreach ($results AS $k=>$g){
             $res[$k]['id'] = $g->getId();
-            $res[$k]['name'] = $g->getName();
+            $res[$k]['text'] = $g->getName();
         }
 
         return new JsonResponse($res);

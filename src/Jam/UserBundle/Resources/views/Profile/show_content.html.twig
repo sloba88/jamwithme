@@ -84,7 +84,7 @@
                     <div class="tags-container">
                         <ul class="tags">
                             {% for g in user.genres %}
-                                <li><a href="{{ path('musicians', {'s[genres][]' : g.id }) }}">{{ g.name }}</a></li>
+                                <li><a href="{{ path('musicians', {'s[genres][]' : g.genre.id }) }}">{{ g.genre.name }}</a></li>
                             {% endfor %}
                         </ul>
                         <a href="#" class="show-all-tags"><i class="fa fa-angle-down"></i></a>

@@ -2,12 +2,9 @@
 
 namespace Jam\WebBundle\Controller;
 
-use Doctrine\ORM\EntityRepository;
-use Jam\CoreBundle\Entity\Genre;
 use Jam\CoreBundle\Entity\Jam;
 use Jam\CoreBundle\Entity\JamImage;
 use Jam\CoreBundle\Entity\JamMember;
-use Jam\CoreBundle\Form\Type\GenreType;
 use Jam\CoreBundle\Form\Type\JamType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

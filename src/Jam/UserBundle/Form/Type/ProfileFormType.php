@@ -61,13 +61,7 @@ class ProfileFormType extends BaseType
             'allow_delete' => true
         ));
 
-        $builder->add('genres', 'entity', array(
-            'class' => 'JamCoreBundle:Genre',
-            'query_builder' => function(EntityRepository $er) {
-                return $er->createQueryBuilder('u');
-            },
-            'property' => "name",
-            'multiple' => true,
+        $builder->add('genres', 'genre_type', array(
             'required' => false
         ));
 

@@ -42,17 +42,13 @@ class User extends BaseUser
         $this->brands = new ArrayCollection();
     }
 
+
     /**
-     * @var collection
+     * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Genre", inversedBy="musicians", cascade={"persist"})
-     * @ORM\JoinTable(
-     *      name="musicians_genres",
-     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)}
-     * )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGenre", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
-    protected $genres;
+    private $genres;
 
     /**
      * @var collection
@@ -249,39 +245,6 @@ class User extends BaseUser
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Add genres
-     *
-     * @param \Jam\CoreBundle\Entity\Genre $genres
-     * @return User
-     */
-    public function addGenre(\Jam\CoreBundle\Entity\Genre $genres)
-    {
-        $this->genres[] = $genres;
-
-        return $this;
-    }
-
-    /**
-     * Remove genres
-     *
-     * @param \Jam\CoreBundle\Entity\Genre $genres
-     */
-    public function removeGenre(\Jam\CoreBundle\Entity\Genre $genres)
-    {
-        $this->genres->removeElement($genres);
-    }
-
-    /**
-     * Get genres
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGenres()
-    {
-        return $this->genres;
     }
 
     /**
@@ -547,10 +510,12 @@ class User extends BaseUser
     {
         $genres = array();
 
-        if ($this->genres->count()==0) $genres;
-
-        foreach ($this->genres AS $g){
-            array_push($genres, $g->getName());
+        if ($this->genres->count()==0) {
+            return $genres;
+        }else{
+            foreach ($this->genres AS $g){
+                array_push($genres, $g->getGenre()->getName());
+            }
         }
 
         return $genres;
@@ -996,5 +961,39 @@ class User extends BaseUser
     public function getEducation()
     {
         return $this->education;
+    }
+
+    /**
+     * Add genre
+     *
+     * @param \Jam\CoreBundle\Entity\MusicianGenre $genre
+     *
+     * @return User
+     */
+    public function addGenre(\Jam\CoreBundle\Entity\MusicianGenre $genre)
+    {
+        $this->genres[] = $genre;
+
+        return $this;
+    }
+
+    /**
+     * Remove genre
+     *
+     * @param \Jam\CoreBundle\Entity\MusicianGenre $genre
+     */
+    public function removeGenre(\Jam\CoreBundle\Entity\MusicianGenre $genre)
+    {
+        $this->genres->removeElement($genre);
+    }
+
+    /**
+     * Get genres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGenres()
+    {
+        return $this->genres;
     }
 }
