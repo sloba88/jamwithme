@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Jam\CoreBundle\Services\ShoutCounter;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,11 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $shoutedToday = count($this->getDoctrine()->getRepository('JamCoreBundle:Shout')->getTodaysShout()) > 0;
+        /**
+         * @var ShoutCounter
+         */
+        $shoutCounter = $this->get('shout.counter');
+
         $shout = new Shout();
 
         $form = $this->createFormBuilder($shout)
@@ -52,7 +57,7 @@ class HomeController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'shoutedToday' => $shoutedToday
+            'shoutCounter' => $shoutCounter
         );
     }
 }

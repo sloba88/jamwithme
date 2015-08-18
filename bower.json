@@ -32,7 +32,6 @@
     "Jcrop": "0.9.12",
     "imagesloaded": "3.1.8",
     "font-awesome": "4.2.0",
-    "fancybox": "2.1.5",
-    "jquery.countdown": "2.1.0"
+    "fancybox": "2.1.5"
   }
 }

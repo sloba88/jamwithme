@@ -1,15 +1,24 @@
 $(function(){
-    if (shoutedToday) {
+    if (seconds > 0) {
+        var count = seconds;
+        var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
 
-        var tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        tomorrow.setHours(0,0,0,0);
+        function timer() {
+            count = count - 1;
+            if (count == -1) {
+                $('#shoutCountdown').text('');
+                clearInterval(counter);
 
-        $('#shoutCountdown').countdown(tomorrow, function(event){
-            $(event.currentTarget).text(event.strftime('%H:%M:%S'));
-        })
-        .on('finish.countdown', function(){
-            location.reload();
-        });
+                location.reload();
+            }
+
+            var seconds = count % 60;
+            var minutes = Math.floor(count / 60);
+            var hours = Math.floor(minutes / 60);
+            minutes %= 60;
+            hours %= 60;
+
+            document.getElementById("shoutCountdown").innerHTML = hours + ":" + minutes + ":" + seconds;
+        }
     }
 });
