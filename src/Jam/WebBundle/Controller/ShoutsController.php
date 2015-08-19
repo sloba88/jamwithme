@@ -6,10 +6,12 @@ use Elastica\Query\Bool;
 use Elastica\Query\Match;
 use Elastica\Query\MatchAll;
 use Jam\CoreBundle\Entity\Search;
+use Jam\CoreBundle\Entity\Shout;
 use Jam\CoreBundle\Form\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Elastica\Util;
@@ -68,6 +70,7 @@ class ShoutsController extends Controller
             $data_array = array(
                 'text' => $s->getText(),
                 'createdAt' => $s->getCreatedAt()->format('Y-m-d H:i'),
+                'id' => $s->getId(),
                 'musician' => array(
                     'username' => $m->getUsername(),
                     'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
@@ -91,6 +94,34 @@ class ShoutsController extends Controller
             'status'    => 'success',
             'data' => $musicians_data
         ));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/shouts/{id}", name="remove_shout", options={"expose"=true})
+     * @Method({"DELETE"})
+     */
+    public function removeShoutAction()
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+        $shout = $this->getDoctrine()->getRepository('JamCoreBundle:Shout')->find($request->get('id'));
+        $responseData = array(
+            'success' => false
+        );
+
+        if ($shout instanceof Shout) {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->remove($shout);
+            $em->flush();
+            $responseData['success'] = true;
+        } else {
+            $responseData['message'] = 'Shout not found';
+        }
+
+        $response = new JsonResponse();
+        $response->setData($responseData);
 
         return $response;
     }

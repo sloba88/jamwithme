@@ -259,6 +259,22 @@ $(function() {
         return false;
     });
 
+    $(document).on('click', '.remove-shout', function(e){
+        var element = $(e.currentTarget);
+        $.ajax({
+            url: Routing.generate('remove_shout', {id: $(e.currentTarget).attr('id')}),
+            type: 'DELETE',
+            success: function(result) {
+                if (result.success) {
+                    element.parents(".shout-box").remove();
+                }
+            },
+            complete: function() {
+
+            }
+        });
+    });
+
     //scrollbar plugin
     scrollbarPlugin();
 });
