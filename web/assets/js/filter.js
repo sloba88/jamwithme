@@ -102,6 +102,23 @@ $(function() {
         });
     });
 
+    //activates slider
+    $('#filter-by-distance-slider').slider({
+        range: "min",
+        value: $('#search_form_distance').val(),
+        min: 0,
+        max: 20,
+        step: 2,
+        create: function(event, ui) {
+            var selection = $('#filter-by-distance-slider').slider('value');
+            $('.slide-max').text(selection + 'km');
+        },
+        slide: function(event, ui) {
+            $('.slide-max').text(ui.value + 'km');
+            $('#search_form_distance').val(ui.value).trigger('change');
+        }
+    });
+
 });
 
 function renderGridView() {

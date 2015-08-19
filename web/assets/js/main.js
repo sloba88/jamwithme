@@ -31,23 +31,6 @@ $(function() {
     //activates tooltip
     $('[data-toggle=tooltip]').tooltip();
 
-    //activates slider
-    $("#filter-by-distance-slider").slider({
-        range: "min",
-        value: $("#search_form_distance").val(),
-        min: 0,
-        max: 20,
-        step: 2,
-        create: function(event, ui) {
-            var selection = $("#filter-by-distance-slider").slider("value");
-            $('.slide-max').text(selection + 'km');
-        },
-        slide: function(event, ui) {
-            $('.slide-max').text(ui.value + 'km');
-            $("#search_form_distance").val(ui.value).trigger('change');
-        }
-    });
-
     profileCompletion();
 
     filtersToggle();
@@ -117,31 +100,32 @@ $(function() {
         $container.isotope('layout');
     });
 
-    $("a.my-stuff").on("shown.tab", function(e) {
-        $('.profile-media-wall').isotope('reloadItems').isotope();
+    $('.profile-tabs a').on('shown.tab', function(e) {
+        if ($(this).data('tab') == 'media'){
+            $('.profile-media-wall').isotope('reloadItems').isotope();
+        }
     });
 
     var jamMembersCollectionHolder = $("#jam_members");
-    var musicianInstrumentsCollectionHolder = $("#musician_instruments");
     var videosCollectionHolder = $("#musician_videos");
 
-    $("#add_another_image").click(function(e) {
+    $('#add_another_image').click(function(e) {
         e.preventDefault();
         addCollectionForm(imagesCollectionHolder, 'images');
     });
 
-    $("#add_another_video").on('click', function(e) {
+    $('#add_another_video').on('click', function(e) {
         e.preventDefault();
         addCollectionForm(videosCollectionHolder, 'instruments');
     });
 
-    $(".price-type").click(function() {
+    $('.price-type').click(function() {
         $('.price-type').attr('checked', false);
         $(this).prop('checked', true).attr('checked', true);
         $("#ad_price").val('');
     });
 
-    $("body").on('click', '.set-profile-photo', function(e) {
+    $('body').on('click', '.set-profile-photo', function(e) {
         e.preventDefault();
         var url = $(this).data('url');
         $.ajax({
@@ -165,15 +149,6 @@ $(function() {
         $(".profile-write-recommendation").hide();
         $("#addUserRecommendationToggle").removeClass('active');
     });
-
-    // store the currently selected tab in the hash value
-    // $("ul.tabs-activate > li > a").on("shown.tab", function (e) {
-    //     var id = $(e.target).attr("href").substr(1);
-    //     window.location.hash = id;
-    //     if (id=='media'){
-    //         $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
-    //     }
-    // });
 
     socket.on('ourConversation', function(data) {
         $(".conversation-message-box").html('');
@@ -428,10 +403,6 @@ function tabsToggle(object) {
         object.find('a').each(function() {
             if (currentHash == $(this).data('tab')) {
                 $(this).trigger('click');
-            }
-
-            if (currentHash == 'media') {
-                $('.profile-media-wall').isotope('reloadItems').isotope();
             }
         });
     }
@@ -705,7 +676,6 @@ function scrollbarPlugin() {
             thisChildrenHeight = $this.children().height();
 
         if (thisChildrenHeight > thisHeight) {
-            console.log('asdada')
             if ($('.hidden-xs').is(':visible')) {
                 $withScrollbar.perfectScrollbar({
                     suppressScrollX: true
@@ -717,23 +687,6 @@ function scrollbarPlugin() {
             }
         }
     });
-
-
-        // if ($(this).children().height() > $(this).height()) {
-
-            // if ($('.hidden-xs').is(':visible')) {
-            //     $withScrollbar.perfectScrollbar({
-            //         suppressScrollX: true
-            //     });
-            // } else {
-            //     $withScrollbar.each(function() {
-            //         var self = $(this);
-            //         if (self.hasClass('ps-container')) {
-            //             self.perfectScrollbar('destroy');
-            //         }
-            //     });
-            // }
-        // }
 }
 
 function addMessage(type, message, temp) {
@@ -752,17 +705,4 @@ function addMessage(type, message, temp) {
     }, 4000);
 
     return true;
-}
-
-function initInstrumentSelection(){
-    $(".instrument-select").select2({
-        placeholder: 'What do you play?',
-        data: instrumentNames
-    });
-
-    $(".skill-select").select2({
-        placeholder: 'How good are you?',
-        data: instrumentSkills
-    });
-
 }
