@@ -1,7 +1,9 @@
 <?php
 namespace Jam\CoreBundle\Form\Type;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
+use Jam\CoreBundle\Entity\MusicianInstrument;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Jam\CoreBundle\Form\DataTransformer\InstrumentTransform;
@@ -38,11 +40,23 @@ class InstrumentType extends AbstractType
             )
         ));
 
+        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $musicianInstrument = $event->getData();
+
+            if ($musicianInstrument['skillLevel'] && $musicianInstrument['instrument'] == '' ){
+                $event->setData(null);
+            }
+        });
+
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $user = $this->securityContext->getToken()->getUser();
             $musicianInstrument = $event->getForm()->getData();
-            $musicianInstrument->setMusician($user);
+
+            if ($musicianInstrument != null){
+                $musicianInstrument->setMusician($user);
+            }
         });
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
