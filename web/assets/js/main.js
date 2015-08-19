@@ -101,8 +101,9 @@ $(function() {
     });
 
     $('.profile-tabs a').on('shown.tab', function(e) {
-        if ($(this).data('tab') == 'media'){
-            $('.profile-media-wall').isotope('reloadItems').isotope();
+        var tab = $(this).data('tab');
+        if (['media', 'photos'].indexOf(tab != -1 )){
+            $('.profile-media-wall').isotope('layout');
         }
     });
 
