@@ -1,1 +1,8 @@
 services:
+
+    shout.counter:
+        class: Jam\CoreBundle\Services\ShoutCounter
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+            - [setTokenStorage, ["@security.token_storage"]]
+            - [setShout]
