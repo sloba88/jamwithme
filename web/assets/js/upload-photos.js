@@ -179,6 +179,21 @@ $(function () {
             }
         });
     });
+
+    $('body').on('click', '.set-profile-photo', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        var url = Routing.generate('set_avatar', {'id': id});
+        $.ajax({
+            url: url
+        }).done(function(data) {
+            if (data.status == 'success') {
+                var src = $('.profile-info .user-image').attr('src');
+                $('.profile-info .user-image').attr('src', src + '?' +new Date().getTime());
+                addMessage(data.status, data.message);
+            }
+        });
+    });
 });
 
 function cloneCanvas(oldCanvas) {

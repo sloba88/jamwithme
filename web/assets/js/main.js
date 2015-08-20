@@ -121,19 +121,6 @@ $(function() {
         $("#ad_price").val('');
     });
 
-    $('body').on('click', '.set-profile-photo', function(e) {
-        e.preventDefault();
-        var url = $(this).data('url');
-        $.ajax({
-            url: url
-        }).done(function(result) {
-            if (result.status == 'success') {
-                window.location.reload();
-            }
-        });
-
-    });
-
     if (jQuery().fancybox) {
         $(".fancybox").fancybox();
     }
