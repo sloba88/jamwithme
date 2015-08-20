@@ -106,10 +106,7 @@ class ProfileFormType extends BaseType
 
         $builder->add('images', 'collection', array(
             'type' => new ImageType(),
-            'allow_add' => true,
-            'by_reference' => false,
             'label' => false,
-            'allow_delete' => true
         ));
 
         $builder->add('videos', 'collection', array(

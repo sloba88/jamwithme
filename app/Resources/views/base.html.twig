@@ -262,12 +262,13 @@
 
     '@JamLocationBundle/Resources/public/jquery.ui.addresspicker.js'
     '@JamLocationBundle/Resources/public/location.js'
-    'bundles/fosjsrouting/js/router.js'
-    'js/fos_js_routes.js'
     filter='?uglifyjs2'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 
     <script src="http://connect.soundcloud.com/sdk.js"></script>
     <script src="https://w.soundcloud.com/player/api.js"></script>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e683624a71efafae03dcf9627cf51c97",
+    "hash": "f9218df7ebfb5cf3f3821e6c0efe569e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -994,7 +994,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/620fcf523b506155372dca6f0fea9f48c3659c6a",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/678dbc9dff935c11231612a7ae11261441bb1468",
                 "reference": "adf7fb21e3df81183eb107c0fae004c3df76f54d",
                 "shasum": ""
             },
@@ -1067,22 +1067,22 @@
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
-            "version": "1.5.4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
-                "reference": "539a6ac0c1fb6b010f92a1c877426a4caa5abba1"
+                "reference": "cc33cfd500cb056808a9f937d6c2e589b23ba936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/539a6ac0c1fb6b010f92a1c877426a4caa5abba1",
-                "reference": "539a6ac0c1fb6b010f92a1c877426a4caa5abba1",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/cc33cfd500cb056808a9f937d6c2e589b23ba936",
+                "reference": "cc33cfd500cb056808a9f937d6c2e589b23ba936",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
-                "symfony/console": "~2.0",
-                "symfony/framework-bundle": "~2.0",
+                "symfony/console": "~2.3",
+                "symfony/framework-bundle": "~2.3",
                 "symfony/serializer": "~2.0",
                 "willdurand/jsonp-callback-validator": "~1.0"
             },
@@ -1092,7 +1092,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "2.0-dev"
                 }
             },
             "autoload": {
@@ -1121,7 +1121,7 @@
                 "javascript",
                 "routing"
             ],
-            "time": "2015-01-23 02:44:26"
+            "time": "2015-07-31 09:51:44"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -1134,7 +1134,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/b63307ce86bd1318ea3325bf9fa6a005665191c7",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/3a19b352643b36be51e7bf8cca3035783f500304",
                 "reference": "6e5789a598c7151b468298e16a3251ec253cf802",
                 "shasum": ""
             },
@@ -1213,7 +1213,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/3efbc08a97f218d0a4524dee926fc4381e3d0947",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/336d9cd8ba0c5a462b3e70be144a7bef5377b219",
                 "reference": "192c53916942847aee687722af54f431aead0b70",
                 "shasum": ""
             },
@@ -1454,7 +1454,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/d7caff8257d7b5807f2f56d03d7bddca6484265b",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/2ca54c138ed8a536ee4bd2ae2850103631e7c128",
                 "reference": "d7caff8257d7b5807f2f56d03d7bddca6484265b",
                 "shasum": ""
             },
@@ -2078,7 +2078,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/64c1c43f2b87433d4f93951676ea56c006034249",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/d7325b2ea6ecd3d574397c70abca1fb3a36cdb2c",
                 "reference": "4bf38928254e5466ddef58347ca20a05907338e2",
                 "shasum": ""
             },
@@ -2395,7 +2395,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/4123fcd85d61354c6c9900db76c9597dbd129bf6",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/192dfd61e54c3d32c9526bba03365fff818e17e4",
                 "reference": "4123fcd85d61354c6c9900db76c9597dbd129bf6",
                 "shasum": ""
             },
@@ -2755,7 +2755,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/2ff8473e33e224af87dc00d48a552a35a75115af",
+                "url": "https://api.github.com/repos/stof/StofDoctrineExtensionsBundle/zipball/7b3144572617b0555f9a443317dbc2f9cf5b524e",
                 "reference": "2ff8473e33e224af87dc00d48a552a35a75115af",
                 "shasum": ""
             },
@@ -3414,7 +3414,7 @@
         "friendsofsymfony/elastica-bundle": 20,
         "jms/serializer-bundle": 20,
         "hwi/oauth-bundle": 20,
-        "friendsofsymfony/jsrouting-bundle": 0,
+        "friendsofsymfony/jsrouting-bundle": 20,
         "friendsofsymfony/rest-bundle": 20,
         "predis/predis": 20,
         "braincrafted/bootstrap-bundle": 20

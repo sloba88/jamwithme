@@ -1,6 +1,12 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
+<style>
+    #musician_videos li {
+        margin-bottom: 5px;
+    }
+</style>
+
 <div class="col-sm-10 main-content">
     <div class="main-content-inner with-scrollbar">
 
@@ -192,7 +198,6 @@
                                                     <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
                                                     <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                                 </div>
-                                                <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
                                             </div>
                                         {% endfor %}
                                     </div>
@@ -209,9 +214,12 @@
                                     <h3 class="panel-title">Youtube Videos</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <ul id="musician_videos" data-prototype="{{ form_widget(form.videos.vars.prototype)|e }}">
-                                        {% for v in form.videos %}
-                                            <li>{{ form_widget(v.url) }}</li>
+                                    <ul id="musician_videos">
+                                        {% for v in form.vars.value.videos %}
+                                            <li data-id="{{ v.id }}">
+                                                <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+                                                <a href="" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                                            </li>
                                         {% endfor %}
                                     </ul>
                                     <a href="#" id="add_another_video" class="btn btn-primary add-another-video">Add Video</a>
@@ -271,8 +279,27 @@
             <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][skillLevel]" class="skill-select form-control" />
         </div>
         <div class="col-md-2" style="padding-top:10px">
-            <a href="" class="remove-instrument" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>&nbsp
+            <a href="" class="remove-instrument text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>&nbsp
             <a class="handle" title="re-order"><span class="handle glyphicon glyphicon-sort"></span></a>
         </div>
     </div>
 </script>
+
+<script type="text/template" id="videoAddBoxTemplate">
+    <li>
+        <div class="input-group">
+            <input type="text" class="form-control youtube-url" placeholder="Paste Youtube link here">
+          <span class="input-group-btn">
+            <button class="btn btn-default save-video" type="button">Save</button>
+          </span>
+        </div><!-- /input-group -->
+    </li>
+</script>
+
+<script type="text/template" id="videoBoxTemplate">
+    <li data-id="<%- rc.id %>">
+        <a class="ytvideo" rel="group" href="<%- rc.url %>&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+        <a href="#" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
+    </li>
+</script>
+

@@ -514,7 +514,7 @@ class User extends BaseUser
             return $genres;
         }else{
             foreach ($this->genres AS $g){
-                array_push($genres, $g->getGenre()->getName());
+                array_push($genres, $g->getGegetName());
             }
         }
 
