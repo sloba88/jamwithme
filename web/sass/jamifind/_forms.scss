@@ -101,24 +101,26 @@ input[type="radio"]:checked + label span {
 	}
 }
 
-.add-another-video {
-	margin-top: 10px;
-}
-
 .profile-media-image-commands {
 	background: $brand-primary;
+	height: 28px;
 	padding: 2px 5px;
 
 	a {
 		color: #fff;
 
 		&:hover, &:focus {
-			color: #fff;
+			color: $brand-secondary;
+			text-decoration: none;
 		}
 	}
 
 	a[class*="remove-image"] {
 		float: right;
 		margin-top: 2px;
+
+		&:hover, &:focus {
+			color: $brand-secondary;
+		}
 	}
 }

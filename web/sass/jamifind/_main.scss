@@ -220,28 +220,11 @@
 		@include respond-to(handhelds) {
 			font-size: 20px;
 		}
+
+		.main-content.col-sm-10 & {
+			padding-top: 20px;
+		}
 	}
-
-	// .filters-hide {
-	// 	color: $color-primary;
-	// 	float: right;
-	// 	font-size: 13px;
-	// 	margin-top: 9px;
-	// 	text-transform: uppercase;
-
-	// 	&:hover {
-	// 		color: $brand-secondary;
-	// 		text-decoration: none;
-	// 	}
-
-	// 	.caret {
-	// 		border-width: 5px;
-	// 		color: $brand-secondary;
-	// 		margin-left: 7px;
-	// 		position: relative;
-	// 		top: -1px;
-	// 	}
-	// }
 }
 
 .filters-by {
@@ -506,7 +489,12 @@
 			bottom: 4px;
 			position: absolute;
 			right: 3px;
+			text-align: center;
 			width: 30px;
+
+			> * {
+				max-height: 30px;
+			}
 
 			path {
 				fill: $brand-secondary;
@@ -1264,6 +1252,10 @@
 }
 
 .page-settings {
+
+	.main-content.col-sm-10 {
+		padding-right: 0;
+	}
 	
 	.checkboxes-list {
 		margin-bottom: 20px;
@@ -1287,12 +1279,13 @@
 		}
 	}
 
-	#upload_images {
-		height: 33px;
-		width: 110px;
-	}
+	// #upload_images {
+	// 	height: 33px;
+	// 	width: 100%;
+	// }
 
-	.preview-thumb canvas{
+	.preview-thumb canvas {
+		display: block;
 		width: 80px;
 	}
 
@@ -1304,10 +1297,16 @@
 
 		.preview-container {
 			float: left;
+
+			p {
+				margin: 0;
+			}
 		}
 
-		.preview-thumb{
+		.preview-thumb {
+			display: inline-block;
 			padding: 5px;
+			vertical-align: top;
 		}
 	}
 
@@ -1318,29 +1317,38 @@
 	.fileinput-button {
 		margin-bottom: 6px;
 		position: relative;
+		// width: 255px;
 	}
 
 	.fileinput-button input {
-		position: absolute;
-		top: 0;
-		right: 0;
+		cursor: pointer;
+		direction: ltr;
+		height: 33px;
 		margin: 0;
 		opacity: 0;
-		direction: ltr;
-		cursor: pointer;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
 	}
 
 	.progress {
 		margin-top: 10px;
 	}
 
+	.panel-images {
+		padding-right: 0;
+	}
+
 	.profile-media-wall {
 		min-height: 140px;
 		max-height: 350px;
+		padding-right: 15px;
 
 		.image-holder {
-			position: relative;
 			background-color: #000;
+			overflow: hidden;
+			position: relative;
 
 			&:hover {
 
@@ -1348,30 +1356,48 @@
 					opacity: 0.8;
 				}
 
-				.profile-media-image-commands {
-					display: block;
+				.profile-media-image-commands {			
+					@include translateY(0);
 				}
 			}
 		}
 
 		.fancybox {
-			@include transition(opacity 0.5s ease-in-out);
+			@include transition(opacity 0.5s ease);
 		}
 	}
 
 	.profile-media-image-commands {
-		display: none;
+		@include transition(all 0.2s ease);
+		background-color: #000;
+		left: 0;
+		padding: 3px 10px;
 		position: absolute;
 		right: 0;
-		left: 0;
 		top: 0;
-		background-color: #000;
-		padding: 2px;
+		@include translateY(-28px);
 	}
 
 	.location_widget .ui-autocomplete-input {
 		color: #000;
 		border: 1px solid #18152b;
+	}
+
+	.add-another-video {
+
+		i {
+			top: 0;
+		}
+	}
+
+	.btn-save {
+		padding-left: 30px;
+
+		+ i {
+			left: 67px;
+			position: absolute;
+			top: 9px;
+		}
 	}
 }
 

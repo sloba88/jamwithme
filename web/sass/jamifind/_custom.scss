@@ -244,3 +244,25 @@
 	z-index: 1000;
 }
 
+//autocomplete
+.ui-helper-hidden-accessible {
+	display: none;
+}
+
+//modal
+.modal-footer {
+	margin: 0;
+	padding: 15px 0;
+
+	> .first {
+		text-align: left;
+	}
+
+	.btn-primary {
+		width: 200px;
+
+		i {
+			top: 0;
+		}
+	}
+}

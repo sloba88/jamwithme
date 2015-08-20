@@ -566,6 +566,9 @@ function autocomplete() {
                         response(data);
                     }
                 });
+            },
+            messages: {
+                noResults: ''
             }
         }).data("uiAutocomplete")._renderItem = function(ul, item) {
             return $("<li />")
@@ -612,6 +615,9 @@ function autocompleteMessageUser() {
                         response(data);
                     }
                 });
+            },
+            messages: {
+                noResults: ''
             },
             select: function(event, ui) {
                 $autocompleteInput.val(ui.item.username);

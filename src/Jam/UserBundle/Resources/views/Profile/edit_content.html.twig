@@ -154,20 +154,25 @@
                     <div class="row">
                         <div class="col-md-8">
 
-                            <span class="btn btn-success btn-sm fileinput-button">
-                                <i class="glyphicon glyphicon-plus"></i>
-                                <span>Add files...</span>
-                                <input type="file" name="file" id="upload_images" accept="image/*" data-url="{{ path('upload_user_image') }}" multiple >
-                            </span>
+                            <div class="row">
 
-                            <div id="files" class="files"></div>
+                                <div class="col-md-6">
+                                    <span class="btn btn-primary fileinput-button">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        <span>Add files...</span>
+                                        <input type="file" name="file" id="upload_images" accept="image/*" data-url="{{ path('upload_user_image') }}" multiple >
+                                    </span>
+                                </div>
 
-                            <div class="clearfix"></div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary start">
+                                        <i class="glyphicon glyphicon-upload"></i>
+                                        <span>Start upload</span>
+                                    </button>
+                                </div>
+                            </div>
 
-                            <button type="submit" class="btn btn-primary start btn-sm">
-                                <i class="glyphicon glyphicon-upload"></i>
-                                <span>Start upload</span>
-                            </button>
+                            <div id="files" class="files clearfix"></div>
 
                             <div id="progress" class="progress">
                                 <div class="progress-bar progress-bar-success"></div>
@@ -177,7 +182,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Photos</h3>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body panel-images">
 
                                     {% if form.vars.value.images|length == 0 %}
                                         <p class="no-images-yet">No images yet.</p>
@@ -189,7 +194,7 @@
                                             <div class="image-holder profile-media-wall-item">
                                                 <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                                                 <div class="profile-media-image-commands">
-                                                    <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a> |
+                                                    <a href="#" class="set-profile-photo" data-url="{{ path('set_avatar', {id: i.id}) }}">Set as avatar</a>
                                                     <a href="#" class="remove-image-ajax" data-url="{{ path('remove_user_image', {id: i.id}) }}" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                                 </div>
                                                 <div class="hidden">{{ form_widget(form.images[loop.index0]) }}</div>
@@ -214,7 +219,10 @@
                                             <li>{{ form_widget(v.url) }}</li>
                                         {% endfor %}
                                     </ul>
-                                    <a href="#" id="add_another_video" class="btn btn-primary add-another-video">Add Video</a>
+                                    <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                                        <i class="fa fa-youtube-play"></i>
+                                        Add Video
+                                    </a>
                                 </div>
                             </div>
 
@@ -248,8 +256,9 @@
             {{ form_widget(form._token) }}
             <hr />
             <div class="row">
-                <div class="col-md-3">
-                    <input type="submit" class="btn btn-primary" value="Save" />
+                <div class="col-md-2">
+                    <input type="submit" class="btn btn-primary btn-save" value="Save" />
+                    <i class="fa fa-check"></i>
                 </div>
             </div>
         </form>
