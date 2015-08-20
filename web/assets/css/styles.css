@@ -8788,24 +8788,28 @@ body {
   }
 }
 /* line 70, ../../sass/jamifind/_layout.scss */
+.page-musicians-filter .main-content.col-sm-10 {
+  padding-right: 0;
+}
+/* line 74, ../../sass/jamifind/_layout.scss */
 .main-content.col-sm-10 > .main-content-inner {
   padding-bottom: 0;
   padding-top: 0;
 }
 
-/* line 77, ../../sass/jamifind/_layout.scss */
+/* line 81, ../../sass/jamifind/_layout.scss */
 .main-content-inner {
   background: #fff;
   padding: 20px 20px 10px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 77, ../../sass/jamifind/_layout.scss */
+  /* line 81, ../../sass/jamifind/_layout.scss */
   .main-content-inner {
     padding-top: 15px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 77, ../../sass/jamifind/_layout.scss */
+  /* line 81, ../../sass/jamifind/_layout.scss */
   .main-content-inner {
     padding: 5px 15px;
   }
