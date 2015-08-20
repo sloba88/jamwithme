@@ -115,28 +115,10 @@ $(function() {
         addCollectionForm(imagesCollectionHolder, 'images');
     });
 
-    $('#add_another_video').on('click', function(e) {
-        e.preventDefault();
-        addCollectionForm(videosCollectionHolder, 'instruments');
-    });
-
     $('.price-type').click(function() {
         $('.price-type').attr('checked', false);
         $(this).prop('checked', true).attr('checked', true);
         $("#ad_price").val('');
-    });
-
-    $('body').on('click', '.set-profile-photo', function(e) {
-        e.preventDefault();
-        var url = $(this).data('url');
-        $.ajax({
-            url: url
-        }).done(function(result) {
-            if (result.status == 'success') {
-                window.location.reload();
-            }
-        });
-
     });
 
     if (jQuery().fancybox) {
@@ -209,14 +191,9 @@ $(function() {
         e.preventDefault();
     });
 
-    $('.ytvideo').each(function() {
-        var src = $(this).attr('href');
-        var ytId = youtubeParser(src);
-        var ytImg = 'http://img.youtube.com/vi/' + ytId + '/0.jpg';
-        $(this).find('img').attr('src', ytImg);
-    });
+    parseYTVideoImages();
 
-    $('.ytvideo').on('click', function() {
+    $('body').on('click', '.ytvideo', function() {
         $.fancybox({
             'padding': 0,
             'autoScale': false,
@@ -712,4 +689,13 @@ function addMessage(type, message, temp) {
     }, 4000);
 
     return true;
+}
+
+function parseYTVideoImages() {
+    $('.ytvideo').each(function() {
+        var src = $(this).attr('href');
+        var ytId = youtubeParser(src);
+        var ytImg = 'http://img.youtube.com/vi/' + ytId + '/0.jpg';
+        $(this).find('img').attr('src', ytImg);
+    });
 }

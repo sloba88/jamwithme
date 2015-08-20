@@ -26,6 +26,7 @@ class Video
     /**
      * @var integer
      *
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="videos")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=true)
      */

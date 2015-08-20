@@ -22,13 +22,48 @@ $(function() {
     $('#musician_instruments').sortable({
         handle: '.handle',
         update: function( event, ui ) {
-            renameInstrumentFormNames();
+            renameCollectionNames($('#musician_instruments .row'));
         }
     });
+
     $('#musician_instruments').on('click', '.remove-instrument', function(e){
         e.preventDefault();
         $(this).closest('.row').remove();
-        renameInstrumentFormNames();
+        renameCollectionNames($('#musician_instruments .row'));
+    });
+
+    $('#musician_videos').on('click', '.save-video', function(){
+        var url = $(this).closest('li').find('.youtube-url').val();
+        var self = $(this);
+        $.ajax({
+            method: "POST",
+            url: Routing.generate('video_create'),
+            data: { 'url' : url }
+        }).done(function(data) {
+            if (data.status == 'success') {
+                self.closest('li').remove();
+
+                var videoTemplate = _.template($('#videoBoxTemplate').html());
+                $('#musician_videos').append(videoTemplate({'id' : data.id, 'url': data.url }));
+                parseYTVideoImages();
+
+                addMessage(data.status, data.message);
+            }
+        });
+    });
+
+    $('#musician_videos').on('click', '.remove-video', function(e){
+        e.preventDefault();
+        var self = $(this);
+        var id = $(this).closest('li').data('id');
+        $.ajax({
+           url: Routing.generate('video_remove', {'id': id})
+        }).done(function(data){
+            if (data.status == 'success') {
+                self.closest('li').remove();
+                addMessage(data.status, data.message);
+            }
+        });
     });
 
     $('#fos_user_profile_form_artists2').autocomplete({
@@ -157,6 +192,14 @@ $(function() {
         update: function() { $('#fos_user_profile_form_artists').select2('onSortEnd'); }
     });
 
+    if ($('#musician_videos').length > 0){
+        $('#add_another_video').on('click', function(e) {
+            e.preventDefault();
+            var videoTemplate = _.template($('#videoAddBoxTemplate').html());
+            $('#musician_videos').append(videoTemplate());
+        });
+    }
+
 });
 
 function initInstrumentSelection(){
@@ -171,8 +214,8 @@ function initInstrumentSelection(){
     });
 }
 
-function renameInstrumentFormNames() {
-    $('#musician_instruments .row').each(function(k, v){
+function renameCollectionNames($selection) {
+    $selection.each(function(k, v){
         $(this).find('input[type=hidden]').each(function(){
             var name = $(this).attr('name');
             name = name.replace(/(\d+)/g, k);

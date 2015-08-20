@@ -41,7 +41,7 @@
         "friendsofsymfony/elastica-bundle": "dev-master",
         "jms/serializer-bundle": "0.13.*@dev",
         "hwi/oauth-bundle": "0.4.x-dev",
-        "friendsofsymfony/jsrouting-bundle": "@stable",
+        "friendsofsymfony/jsrouting-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "dev-master",
         "snc/redis-bundle": "1.1.*",
         "predis/predis": "0.8.x-dev",

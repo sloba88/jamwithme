@@ -165,16 +165,32 @@ $(function () {
 
     $('#user_images').on('click', '.remove-image-ajax', function(e){
         e.preventDefault();
-        var url = $(this).data('url');
         var image = $(this).parents('.image-holder');
+        var id = $(this).data('id');
         $.ajax({
-            url: url
-        }).done(function( result ) {
-            if (result.status == 'success'){
+            url: Routing.generate('remove_user_image', {'id': id})
+        }).done(function( data ) {
+            if (data.status == 'success'){
                 image.fadeOut(400, function(){
                     image.remove();
                     $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
                 });
+                addMessage(data.status, data.message);
+            }
+        });
+    });
+
+    $('body').on('click', '.set-profile-photo', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        var url = Routing.generate('set_avatar', {'id': id});
+        $.ajax({
+            url: url
+        }).done(function(data) {
+            if (data.status == 'success') {
+                var src = $('.profile-info .user-image').attr('src');
+                $('.profile-info .user-image').attr('src', src + '?' +new Date().getTime());
+                addMessage(data.status, data.message);
             }
         });
     });

@@ -58,7 +58,8 @@ class ProfileFormType extends BaseType
         $builder->add('instruments', 'collection', array(
             'type' => 'instrument_type',
             'allow_add' => true,
-            'allow_delete' => true
+            'allow_delete' => true,
+            'delete_empty' => true
         ));
 
         $builder->add('genres', 'genre_type', array(
@@ -105,10 +106,7 @@ class ProfileFormType extends BaseType
 
         $builder->add('images', 'collection', array(
             'type' => new ImageType(),
-            'allow_add' => true,
-            'by_reference' => false,
             'label' => false,
-            'allow_delete' => true
         ));
 
         $builder->add('videos', 'collection', array(

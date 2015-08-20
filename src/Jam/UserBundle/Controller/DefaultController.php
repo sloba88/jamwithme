@@ -122,8 +122,8 @@ class DefaultController extends Controller
                 'type' => $file->getClientMimeType(),
                 'size' => $file->getClientSize(),
                 'setAvatarUrl' => $this->generateUrl('set_avatar', array('id' => $userImage->getId())),
-                'deleteUrl' => '',
-                'deleteType' => 'DELETE'
+                'deleteType' => 'DELETE',
+                'id' => $userImage->getId()
             )
         ));
 
@@ -131,13 +131,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/user/image/remove/{id}", name="remove_user_image")
+     * @Route("/user/image/remove/{id}", name="remove_user_image", options={"expose"=true})
      * @Template()
      */
     public function removeImageAction($id)
     {
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            $user = $this->container->get('security.context')->getToken()->getUser();
+            $user = $this->getUser();
         }else{
             throw $this->createNotFoundException('You shall not pass');
         }
@@ -157,7 +157,8 @@ class DefaultController extends Controller
 
         $response = new JsonResponse();
         $response->setData(array(
-            'status' => 'success'
+            'status' => 'success',
+            'message' => 'Image removed successfully.'
         ));
 
         return $response;
@@ -216,13 +217,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/user/set/avatar/{id}", name="set_avatar")
+     * @Route("/user/set/avatar/{id}", name="set_avatar", options={"expose"=true})
      * @Template()
      */
     public function setAvatarAction($id)
     {
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            $user = $this->container->get('security.context')->getToken()->getUser();
+            $user = $this->getUser();
         }else{
             throw $this->createNotFoundException('You shall not pass');
         }
@@ -251,14 +252,15 @@ class DefaultController extends Controller
 
         //move file also to different folder
 
-
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
 
         $response = new JsonResponse();
         $response->setData(array(
-            'status' => 'success'));
+            'status' => 'success',
+            'message' => 'Avatar changed successfully.'
+        ));
 
         return $response;
     }
