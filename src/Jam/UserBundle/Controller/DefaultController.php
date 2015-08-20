@@ -122,8 +122,8 @@ class DefaultController extends Controller
                 'type' => $file->getClientMimeType(),
                 'size' => $file->getClientSize(),
                 'setAvatarUrl' => $this->generateUrl('set_avatar', array('id' => $userImage->getId())),
-                'deleteUrl' => '',
-                'deleteType' => 'DELETE'
+                'deleteType' => 'DELETE',
+                'id' => $userImage->getId()
             )
         ));
 
@@ -131,7 +131,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/user/image/remove/{id}", name="remove_user_image")
+     * @Route("/user/image/remove/{id}", name="remove_user_image", options={"expose"=true})
      * @Template()
      */
     public function removeImageAction($id)
@@ -157,7 +157,8 @@ class DefaultController extends Controller
 
         $response = new JsonResponse();
         $response->setData(array(
-            'status' => 'success'
+            'status' => 'success',
+            'message' => 'Image removed successfully.'
         ));
 
         return $response;

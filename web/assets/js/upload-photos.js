@@ -165,16 +165,17 @@ $(function () {
 
     $('#user_images').on('click', '.remove-image-ajax', function(e){
         e.preventDefault();
-        var url = $(this).data('url');
         var image = $(this).parents('.image-holder');
+        var id = $(this).data('id');
         $.ajax({
-            url: url
-        }).done(function( result ) {
-            if (result.status == 'success'){
+            url: Routing.generate('remove_user_image', {'id': id})
+        }).done(function( data ) {
+            if (data.status == 'success'){
                 image.fadeOut(400, function(){
                     image.remove();
                     $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
                 });
+                addMessage(data.status, data.message);
             }
         });
     });
