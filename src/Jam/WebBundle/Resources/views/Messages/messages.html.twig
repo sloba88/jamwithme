@@ -33,21 +33,22 @@
 
 {% endblock %}
 
-{% block javascripts %}
+{% block bottom_javascripts %}
 
     <script>
 
         var myID = {{ app.user.id }};
 
-        jQuery(document).ready(function () {
+        $(document).ready(function () {
 
-            setTimeout(function () {
-                socket.emit('getMyMessages', {userID: 'myID'});
-            }, 500);
+            if (typeof socket.emit != 'undefined'){
+                setTimeout(function () {
+                    socket.emit('getMyMessages', {userID: 'myID'});
+                }, 500);
+            }
 
-            _.templateSettings.variable = "rc";
-            var messageTemplate = _.template($("#messageTemplate").html());
-            var conversationTemplate = _.template($("#conversationTemplate").html());
+            var messageTemplate = _.template($('#messageTemplate').html());
+            var conversationTemplate = _.template($('#conversationTemplate').html());
             var conversations = [];
             var match = [];
 
@@ -80,7 +81,7 @@
                     }
                 });
 
-                $(".conversations-box").append(conversationTemplate(conversations));
+                $('.conversations-box').append(conversationTemplate(conversations));
                 scrollToBottom();
             });
 

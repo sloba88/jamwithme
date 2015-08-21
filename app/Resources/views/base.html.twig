@@ -67,7 +67,11 @@
         {% endif %}
     </script>
     #}
-    <script>var baseURL = '{{ app.request.getBaseURL() }}';var socket = {}; socket.on = function(){}</script>
+    <script>
+        var baseURL = '{{ app.request.getBaseURL() }}';
+        var socket = {};
+        socket.on = function(){}
+    </script>
 
 </head>
 <body class="{% block bodyclasses %}{% endblock %}" style="{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}">
