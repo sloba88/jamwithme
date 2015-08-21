@@ -133,6 +133,12 @@ class MusiciansController extends Controller
                 $icon = '';
             }
 
+            if ($m->getIsTeacher() == true) {
+                $teacherIcon = file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/Teacher.svg");
+            }else{
+                $teacherIcon = '';
+            }
+
             $data_array = array(
                 'username' => $m->getUsername(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
@@ -143,7 +149,8 @@ class MusiciansController extends Controller
                 'genres' => $m->getGenresNamesArray(),
                 'instrument' => $instrument,
                 'icon' => $icon,
-                'location' => $location
+                'location' => $location,
+                'teacherIcon' => $teacherIcon
             );
 
             if ($m->getIsTeacher()){

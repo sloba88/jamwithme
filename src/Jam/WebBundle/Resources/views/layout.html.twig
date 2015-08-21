@@ -32,6 +32,7 @@
                     <h3 class="name"><%- rc.username %></h3>
                     <span class="instrument" title="<%- rc.instrument %>">
                         <%= rc.icon %>
+                        <%= rc.teacherIcon %>
                     </span>
                     <ul class="tags">
                         <% _.each( rc.genres, function(v, k){ %>
@@ -39,9 +40,6 @@
                         <% }); %>
                     </ul>
                     <ul class="compatibility-box">
-                        <li>
-                            <img src="{{ asset('assets/images/icon-compatibility-white.png') }}" alt="Compatibility">
-                        </li>
                         <li class="compatibility">
                             <span>46%</span>
                             compatibility
