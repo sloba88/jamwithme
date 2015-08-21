@@ -12,3 +12,13 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+jam_user:
+    resource: "@JamUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+jam_web:
+    resource: "@JamWebBundle/Controller/"
+    type:     annotation
+    prefix:   /

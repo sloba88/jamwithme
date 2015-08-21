@@ -699,3 +699,9 @@ function parseYTVideoImages() {
         $(this).find('img').attr('src', ytImg);
     });
 }
+
+function imgError(image, size) {
+    image.onerror = "";
+    image.src = Routing.generate('default_avatar', {'size': size});
+    return true;
+}

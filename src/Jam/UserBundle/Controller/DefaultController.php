@@ -55,6 +55,16 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/default-avatar/{size}", name="default_avatar", options={"expose"=true})
+     * @Template()
+     */
+    public function defaultAvatarAction($size = 'my_thumb')
+    {
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+        return $this->redirect($cacheManager->getBrowserPath('assets/images/placeholder-user.jpg', $size));
+    }
+
+    /**
      * @Route("/users", name="users_find")
      * @Template()
      */

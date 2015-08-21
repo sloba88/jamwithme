@@ -27,7 +27,7 @@
     <script type="text/template" id="musicianBoxTemplate">
         <div class="col-sm-6 col-md-4 col-lg-3">
             <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="people-grid">
-                <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/medium_thumb" alt="<%- rc.username %>" class="img-responsive">
+                <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/medium_thumb" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
                 <div class="people-info">
                     <h3 class="name"><%- rc.username %></h3>
                     <span class="instrument" title="<%- rc.instrument %>">
