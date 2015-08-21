@@ -161,8 +161,10 @@
                             {% if user.isTeacher %}<h6>Overview</h6>{% endif %}
                             <p>{{ user.aboutMe|default("Nothing yet here.") }}</p>
 
-                            {% if user.isTeacher %}<h6>Education</h6>{% endif %}
-                            <p>{{ user.education|default("Nothing yet here.") }}</p>
+                            {% if user.isTeacher %}
+                                <h6>Education</h6>
+                                <p>{{ user.education|default("Nothing yet here.") }}</p>
+                            {% endif %}
                         </div>
 
                         <div class="view-tab my-photos" data-tab="photos">
