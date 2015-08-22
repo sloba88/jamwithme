@@ -29,6 +29,8 @@
                         {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password' }}) }}
                     </div>
 
+                    {{ form_errors(form.plainPassword.first) }}
+
                     <div class="form-group">
                         {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repeat Password' }}) }}
                     </div>
