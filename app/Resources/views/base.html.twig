@@ -71,6 +71,9 @@
         var baseURL = '{{ app.request.getBaseURL() }}';
         var socket = {};
         socket.on = function(){}
+        {% if is_granted("ROLE_USER") %}
+            var _username = '{{ app.user.username }}';
+        {% endif %}
     </script>
 
 </head>

@@ -91,7 +91,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/user/image/add/", name="upload_user_image")
+     * @Route("/user/image/add/", name="upload_user_image", options={"expose"=true})
      * @Template()
      */
     public function uploadImageAction()
