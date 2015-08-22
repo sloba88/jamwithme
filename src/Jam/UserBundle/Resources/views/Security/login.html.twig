@@ -6,10 +6,6 @@
 
 {% block fos_user_content %}
 
-    {% if error %}
-        <div>{{ error|trans }}</div>
-    {% endif %}
-
     <div class="container-fluid">
         <div class="login-container">
             {% include 'JamUserBundle:Security:login_content.html.twig' %}
