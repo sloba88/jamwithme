@@ -2,7 +2,7 @@ $(function () {
 
     var que = [];
 
-    $('.start').on('click', function(e){
+    $('.start-upload').on('click', function(e){
         e.preventDefault();
         if (que.length > 0){
             $.each(que, function(q, e){
@@ -48,6 +48,9 @@ $(function () {
             que.push(data);
             node.appendTo(data.context);
         });
+
+        $('.start-upload').show();
+
     }).on('fileuploadsubmit', function (e, data) {
         var inputs = data.context.find(':input');
         if (inputs.filter(function () {
@@ -117,17 +120,20 @@ $(function () {
 
     }).on('fileuploadprogressall', function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
-        $('#progress .progress-bar').css(
+        var $progressBar = $('#progress .progress-bar');
+        $('#progress').show();
+        $progressBar.css(
             'width',
             progress + '%'
         );
         if (progress==100){
             setTimeout(function(){
                 //window.location.reload();
-                $('#progress .progress-bar').css(
+                $progressBar.css(
                     'width',
                     0 + '%'
                 );
+                $('#progress').hide();
             },2000)
         }
     }).on('fileuploaddone', function (e, data) {
@@ -145,7 +151,9 @@ $(function () {
                     $('.fancybox').fancybox();
                 }
 
-            }, 500)
+            }, 500);
+
+            $('.start-upload').hide();
 
         } else if (file.error) {
             var error = $('<span class="text-danger"/>').text(file.error);
