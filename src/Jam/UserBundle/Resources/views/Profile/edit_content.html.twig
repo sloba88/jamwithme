@@ -241,24 +241,26 @@
                 </div>
                 <div class="view-tab" data-tab="networks">
 
-                    <h4>Facebook</h4>
-                    {% if app.user.facebookId %}
-                        <!--add buttons -->
-                        <a href="#">Connected</a>
-                    {% else %}
-                        <a class="connect-with-facebook-btn" href="{{ path('jam_facebook_login') }}" ></a>
-                    {% endif %}
+                    <div class="login-buttons col-md-4">
+                        <h4>Facebook</h4>
+                        {% if app.user.facebookId %}
+                            <a href="#">Connected</a>
+                        {% else %}
+                            <a class="btn btn-primary facebook" href="{{ path('jam_facebook_login') }}">
+                                <i class="fa fa-facebook-square"></i>connect with facebook</a>
+                        {% endif %}
 
-                    <br />
+                        <br />
 
-                    <h4>Soundcloud</h4>
-                    {% if app.user.soundcloudId %}
-                        <!--add buttons -->
-                        <a href="#">Connected</a>
-                    {% else %}
-                        <a href="{{ path('connect_soundcloud') }}" class="connect-with-soundcloud-btn" ></a>
-                    {% endif %}
+                        <h4>Soundcloud</h4>
+                        {% if app.user.soundcloudId %}
+                            <a href="#">Connected</a>
+                        {% else %}
+                            <a class="btn btn-primary soundcloud" href="{{ path('connect_soundcloud') }}">
+                                <i class="fa fa-soundcloud"></i>connect with soundcloud</a>
+                        {% endif %}
 
+                    </div><!-- login buttons -->
                 </div>
             </div>
 
