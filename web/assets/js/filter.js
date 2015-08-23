@@ -126,6 +126,10 @@ function renderGridView() {
     $.each(filterResults.data, function (k, v) {
         $(".people-listing-grid").append(musicianBoxTemplate(v));
     });
+
+    if ($('.people-listing-grid').width() > 1000){
+        $('.musician-box-container').removeClass('col-lg-3').addClass('col-lg-2');
+    }
 }
 
 function filterMusicians(){

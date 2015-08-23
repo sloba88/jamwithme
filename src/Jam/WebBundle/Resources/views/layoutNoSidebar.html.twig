@@ -12,34 +12,3 @@
     </section><!--main-content ends-->
 
 {% endblock %}
-
-{% block extra_templates %}
-    <script type="text/template" id="musicianBoxTemplate">
-        <div class="col-sm-6 col-md-4 col-lg-2">
-            <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="people-grid">
-                <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/medium_thumb" alt="<%- rc.username %>" class="img-responsive">
-                <div class="people-info">
-                    <h3 class="name"><%- rc.username %></h3>
-                    <% if (rc.location) { %><div class="location"> <%- rc.location %></div><% } %>
-                    <img class="instrument" src="{{ asset('assets/images/icon-electric-guitar-v2.png') }}" alt="Guitar">
-                    <ul class="tags">
-                        <% _.each( rc.genres, function(v, k){ %>
-                        <% if (k < 3){ %><li><%- v %></li><% } %>
-                        <% }); %>
-                    </ul>
-                    <ul class="compatibility-box">
-                        <li>
-                            <img src="{{ asset('assets/images/icon-compatibility-white.png') }}" alt="Compatibility">
-                        </li>
-                        <li class="compatibility">
-                            <span>46%</span>
-                            compatibility
-                        </li>
-                    </ul>
-                </div>
-            </a><!--people-grid ends-->
-        </div>
-
-    </script>
-
-{% endblock %}

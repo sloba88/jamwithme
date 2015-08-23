@@ -47,14 +47,14 @@ class MusiciansController extends Controller
         $me = $this->getUser();
         $response = new JsonResponse();
 
-        if ($searchParams && isset($searchParams['me'])){
+        if ($searchParams && isset($searchParams['me'])) {
             //if searching nearby to other user
             $me = $this->getDoctrine()
                 ->getRepository('JamUserBundle:User')
                 ->find($searchParams['me']);
         }
 
-        if (!$me->getLocation()){
+        if (!$me->getLocation()) {
             $response->setData(array(
                 'status'    => 'error',
                 'data' => array()
@@ -108,13 +108,6 @@ class MusiciansController extends Controller
 
             /* @var $m \Jam\UserBundle\Entity\User */
 
-            //TODO: NOT FIRST IMAGE ANYMORE
-            if ($m->getImages()->first()){
-                $image = $m->getImages()->first()->getWebPath();
-            } else{
-                $image = '/images/placeholder-user.jpg';
-            }
-
             if ($m->getLocation()){
                 if ($m->getLocation()->getNeighborhood() != ""){
                     $location = $m->getLocation()->getNeighborhood(). ', '.$m->getLocation()->getAdministrativeAreaLevel3();
@@ -143,7 +136,6 @@ class MusiciansController extends Controller
                 'username' => $m->getUsername(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
                 'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
-                'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
