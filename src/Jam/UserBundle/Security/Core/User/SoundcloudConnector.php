@@ -2,6 +2,7 @@
 
 namespace Jam\UserBundle\Security\Core\User;
 
+use Doctrine\ORM\EntityManager;
 use FOS\UserBundle\Model\UserInterface;
 use Guzzle\Service\Client;
 use Jam\UserBundle\Entity\User;
@@ -36,6 +37,16 @@ class SoundcloudConnector {
      * @var string
      */
     private $soundcloudClientSecret;
+
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
+
+    public function setEntityManager(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     public function setClient(Client $client)
     {
@@ -134,50 +145,16 @@ class SoundcloudConnector {
     {
         $user = new User();
 
-        $user->setSoundcloudAccessToken($soundcloudTokenData->access_token);
-        $user->setSoundcloudId($soundcloudUserData->id);
-        $user->setUsername($soundcloudUserData->username);
-        $user->setPlainPassword($user->getUsername());
-        $user->setEnabled(true);
+        $this->setUserData($user, $soundcloudUserData, $soundcloudTokenData);
 
-        $user->setEmail($user->getUsername());
+        // todo faulty solution; 2x calling flush method
 
-        if ($soundcloudUserData->first_name !== '' && $soundcloudUserData->first_name !== null) {
-            $user->setFirstName($soundcloudUserData->first_name);
-        }
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
 
-        if ($soundcloudUserData->last_name !== '' && $soundcloudUserData->last_name !== null) {
-            $user->setLastName($soundcloudUserData->last_name);
-        }
+        $this->setUserAvatar($user, $soundcloudUserData->avatar_url);
 
-        if ($soundcloudUserData->description !== '' && $soundcloudUserData->description !== null) {
-            $user->setAboutMe($soundcloudUserData->description);
-        }
-
-        if ($soundcloudUserData->avatar_url !== '' && $soundcloudUserData->avatar_url !== null) {
-
-            //TODO: this is duplicate
-            $test = '/tmp/tmp.jpeg';
-
-            $picture = file_get_contents($soundcloudUserData->avatar_url);
-            file_put_contents($test, $picture);
-
-            $fs = new Filesystem();
-            if (!$fs->exists('uploads/avatars/'.$user->getId())){
-
-                try {
-                    $fs->mkdir('uploads/avatars/'.$user->getId());
-                } catch (IOException $e) {
-                    echo "An error occurred while creating your directory at ".$e->getPath();
-                }
-            }
-
-            $fs->copy($test, 'uploads/avatars/'.$user->getId().'/'.$user->getId().'.jpeg');
-
-            $user->setAvatar($user->getId().'.jpeg');
-
-
-        }
+        $this->entityManager->flush();
 
         return $user;
     }
@@ -202,6 +179,57 @@ class SoundcloudConnector {
         }
 
         return $tracks;
+    }
+
+    private function setUserData(User $user, \stdClass $soundcloudUserData, \stdClass $soundcloudTokenData)
+    {
+        $user->setSoundcloudAccessToken($soundcloudTokenData->access_token);
+        $user->setSoundcloudId($soundcloudUserData->id);
+        $user->setUsername($soundcloudUserData->username);
+        $user->setPlainPassword($user->getUsername());
+        $user->setEnabled(true);
+
+        $user->setEmail($user->getUsername());
+
+        if ($soundcloudUserData->first_name !== '' && $soundcloudUserData->first_name !== null) {
+            $user->setFirstName($soundcloudUserData->first_name);
+        }
+
+        if ($soundcloudUserData->last_name !== '' && $soundcloudUserData->last_name !== null) {
+            $user->setLastName($soundcloudUserData->last_name);
+        }
+
+        if ($soundcloudUserData->description !== '' && $soundcloudUserData->description !== null) {
+            $user->setAboutMe($soundcloudUserData->description);
+        }
+    }
+
+    private function setUserAvatar(User $user, $avatarUrl)
+    {
+
+        if ($avatarUrl !== '' && $avatarUrl !== null) {
+
+            //TODO: this is duplicate
+            $test = '/tmp/tmp.jpeg';
+
+            $picture = file_get_contents($avatarUrl);
+            file_put_contents($test, $picture);
+
+            $fs = new Filesystem();
+            if (!$fs->exists('uploads/avatars/'.$user->getId())){
+
+                try {
+                    $fs->mkdir('uploads/avatars/'.$user->getId());
+                } catch (IOException $e) {
+                    echo "An error occurred while creating your directory at ".$e->getPath();
+                }
+            }
+
+            $fs->copy($test, 'uploads/avatars/'.$user->getId().'/'.$user->getId().'.jpeg');
+
+            $user->setAvatar($user->getId().'.jpeg');
+
+        }
 
     }
 

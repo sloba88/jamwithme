@@ -88,6 +88,9 @@
             <call method="setRouter">
                 <argument type="service" id="router"></argument>
             </call>
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"></argument>
+            </call>
         </service>
 
         <service id="fos_user.listener.location_change" class="Jam\UserBundle\EventListener\ProfileEditedListener">
