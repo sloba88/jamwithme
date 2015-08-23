@@ -26,7 +26,9 @@ class ProfileFormType extends BaseType
             'disabled' => true
         ));
 
-        $builder->add('username');
+        $builder->add('username', null, array(
+            'label' => 'Username *'
+        ));
 
         $builder->add('aboutMe', 'textarea', array(
             'required' => false
