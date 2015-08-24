@@ -400,7 +400,7 @@ function sidebarHeight() {
             $(this).height(windowHeight - offsetTop);
         });
 
-        $mainContentInner.height(windowHeight - $mainContentInner.offset().top - 10);
+        $mainContentInner.height(windowHeight - $mainContentInner.offset().top);
 
         $('.shouts-listing.shouts-listing-filter').height($sidebarInner.height() - 366);
 
@@ -637,7 +637,8 @@ function menu() {
     $navbarToggle.on('click', function() {
         $sidebar.toggleClass('is-active');
         $header.toggleClass('is-active');
-        $mainFluid.toggleClass('is-active');
+        $mainFluid.toggleClass('is-active')
+        $('body').toggleClass('modal-open');
     });
 
     var resizeTimerMenu;
