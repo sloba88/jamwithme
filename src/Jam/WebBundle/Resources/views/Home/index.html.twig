@@ -32,7 +32,7 @@
 
     </div><!--event ends-->
 
-    {% include "JamWebBundle::Musicians/filter.html.twig" %}
+    {{ render(controller('JamWebBundle:Search:filter' )) }}
 
 {% endblock %}
 

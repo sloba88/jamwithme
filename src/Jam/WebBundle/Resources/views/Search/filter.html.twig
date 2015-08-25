@@ -6,11 +6,11 @@
     <form id="main-filter-form">
         <div class="filters-by in row">
             <div class="col-sm-12 col-lg-4">
-                <select class="form-control" data-placeholder="Filter by genres" id="filter-genres" name="genres[]" multiple></select>
+                {{ form_widget(form.genres) }}
             </div>
 
             <div class="col-sm-12 col-lg-4">
-                <select class="form-control" data-placeholder="Filter by instruments" id="filter-instruments" name="instruments[]" multiple></select>
+                {{ form_widget(form.instruments) }}
             </div>
 
             <div class="col-sm-12 col-lg-4">

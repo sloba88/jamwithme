@@ -22,19 +22,9 @@ class MusiciansController extends Controller
      * @Route("/musicians", name="musicians")
      * @Template()
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $musicians = $this->getDoctrine()
-            ->getRepository('JamUserBundle:User')
-            ->findAll();
-
-        $form = $this->createForm(new SearchType(), null, array(
-            'method' => 'GET'
-        ));
-
-        $form->handleRequest($request);
-
-        return array('musicians' => $musicians, 'form' => $form->createView());
+        return array();
     }
 
     /**
@@ -69,13 +59,13 @@ class MusiciansController extends Controller
         $finder = $this->container->get('fos_elastica.finder.searches.user');
         $elasticaQuery = new MatchAll();
 
-        if ($genres){
-            $categoryQuery = new \Elastica\Filter\Terms('genres.id', $genres);
+        if ($genres!=''){
+            $categoryQuery = new \Elastica\Filter\Terms('genres.genre.id', explode(",", $genres));
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
         }
 
-        if ($instruments){
-            $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', $instruments);
+        if ($instruments!=''){
+            $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', explode(",", $instruments));
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
         }
 
@@ -133,24 +123,26 @@ class MusiciansController extends Controller
 
         /*
          *
-         * DOCTRINE ORDER HACK
+         * DOCTRINE ORDER UGLY HACK
          * //TODO: how to order by compatibility inside elastica??
          *
          */
 
-        $query = "SELECT musician, compatibility.value
+        if (count($ids) > 0){
+            $query = "SELECT musician, compatibility.value
             FROM JamUserBundle:User musician
             JOIN JamCoreBundle:Compatibility compatibility
             WHEN compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId();
 
-        $query .= " WHERE musician.id IN (" . implode(",", $ids) . ")";
-        $query .= " ORDER BY compatibility.value DESC ";
+            $query .= " WHERE musician.id IN (" . implode(",", $ids) . ")";
+            $query .= " ORDER BY compatibility.value DESC ";
 
-        $musicians = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
+            $musicians = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
+        }
 
         /*
          *
-         * DOCTRINE ORDER HACK
+         * DOCTRINE ORDER UGLY HACK
          *
          */
 

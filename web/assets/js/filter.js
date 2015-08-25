@@ -1,6 +1,3 @@
-var qd = {};
-decodeURIComponent(location.search).substr(1).split("&").forEach(function(item) {(item.split("=")[0] in qd) ? qd[item.split("=")[0]].push(item.split("=")[1]) : qd[item.split("=")[0]] = [item.split("=")[1],]});
-
 $(function() {
 
     $.ajax({
@@ -38,38 +35,29 @@ $(function() {
     $.ajax({
         url: Routing.generate('api_genres')
     }).done(function( result ) {
-        $.each(result, function(k, v){
-            $('#filter-genres').append('<option value="'+v.id+'">'+ v.text + '</option>');
-        });
-        //parse instruments
-        $.ajax({
-            url: Routing.generate('api_instruments')
-        }).done(function( result ) {
-            $.each(result, function(k, v){
-                $('#filter-instruments').append('<option value="'+v.id+'">'+ v.text + '</option>');
-            });
-
-            $('select').select2();
-
-            if (qd['s[genres][]']){
-                $("#filter-genres").select2('val', qd['s[genres][]']);
-                $("#filter-genres").trigger('change');
-            }
-
-            if (qd['s[instruments][]']){
-                $("#filter-instruments").select2('val', qd['s[instruments][]']);
-                $("#filter-instruments").trigger('change');
-            }
-
-            filterMusicians();
+        $('.filter-genres').select2({
+            data: result,
+            multiple: true
         });
     });
+
+    //parse instruments
+    $.ajax({
+        url: Routing.generate('api_instruments')
+    }).done(function( result ) {
+        $('.filter-instruments').select2({
+            data: result,
+            multiple: true
+        });
+    });
+
+    filterMusicians();
 
     //activate tabs
     tabsToggle($('.tabs-activate'));
 
     //activates tooltip
-    $("[data-toggle=tooltip]").tooltip();
+    $('[data-toggle=tooltip]').tooltip();
 
     $('body').on('click', '#subscribeToSearch', function(e){
         e.preventDefault();
@@ -77,13 +65,13 @@ $(function() {
         data.genres = [];
         data.instruments = [];
 
-        $('#filter-genres option:selected').each(function () {
+        $('.filter-genres option:selected').each(function () {
             if ($(this).length) {
                 data.genres.push($(this).text())
             }
         });
 
-        $('#filter-instruments option:selected').each(function () {
+        $('.filter-instruments option:selected').each(function () {
             if ($(this).length) {
                 data.instruments.push($(this).text())
             }
@@ -137,12 +125,12 @@ function renderGridView() {
 function filterMusicians(){
     var data='';
 
-    if ( $("#filter-genres").val() != 0 ){
-        data += $("#filter-genres").serialize();
+    if ( $("input.filter-genres").val() != "" ){
+        data += $(".filter-genres").serialize();
     }
 
-    if ( $("#filter-instruments").val() != 0 ){
-        data += $("#filter-instruments").serialize();
+    if ( $("input.filter-instruments").val() != "" ){
+        data += $(".filter-instruments").serialize();
     }
 
     if ($("#lessons-checkbox").is(':checked')) {

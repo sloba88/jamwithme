@@ -1,35 +1,55 @@
 <?php
 namespace Jam\CoreBundle\Form\Type;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\EntityManager;
+use Jam\CoreBundle\Form\DataTransformer\GenreTransform;
+use Jam\CoreBundle\Form\DataTransformer\InstrumentTransform;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Jam\CoreBundle\Form\Type\JamMemberType;
 
 class SearchType extends AbstractType
 {
+
+    private $entityManager;
+
+    private $genreTransformer;
+
+    private $instrumentTransformer;
+
+    public function __construct(EntityManager $entityManager, GenreTransform $genreTransformer, InstrumentTransform $instrumentTransformer)
+    {
+        $this->entityManager = $entityManager;
+        $this->genreTransformer = $genreTransformer;
+        $this->instrumentTransformer = $instrumentTransformer;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $builder->add(
+            $builder->create('genres', 'text', array(
+                'required' => false,
+                'mapped' => false,
+                'attr' => array(
+                    'class'=> 'filter-genres',
+                    'placeholder' => 'Filter by genres'
+                )
+            ))->addModelTransformer($this->genreTransformer)
+        );
+
+        $builder->add(
+            $builder->create('instruments', 'text', array(
+                'required' => false,
+                'mapped' => false,
+                'attr' => array(
+                    'class'=> 'filter-instruments',
+                    'placeholder' => 'Filter by instruments'
+                )
+            ))->addModelTransformer($this->instrumentTransformer)
+        );
+
         $builder
-            ->add('genres', 'entity', array(
-                'class' => 'JamCoreBundle:Genre',
-                'query_builder' => function (EntityRepository $er) {
-                        return $er->createQueryBuilder('u');
-                    },
-                'property' => "name",
-                'multiple' => true,
-                'required' => false
-            ))
-            ->add('instruments', 'entity', array(
-                'class' => 'JamCoreBundle:Instrument',
-                'query_builder' => function (EntityRepository $er) {
-                        return $er->createQueryBuilder('u');
-                    },
-                'property' => "name",
-                'multiple' => true,
-                'required' => false
-            ))
             ->add('isTeacher', 'checkbox', array(
                 'label' => 'Only people providing lesions'
             ))
@@ -42,7 +62,6 @@ class SearchType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            //'data_class' => 'Jam\CoreBundle\Entity\Search',
             'csrf_protection' => false
         ));
     }

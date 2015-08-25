@@ -47,6 +47,10 @@ class GenreTransform implements DataTransformerInterface
      */
     public function reverseTransform($ids)
     {
+        if (is_array($ids)){
+            return implode(",", $ids);
+        }
+
         $genresCollection = new ArrayCollection();
 
         if (!$ids || $ids == '') {
