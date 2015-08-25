@@ -130,6 +130,8 @@ function renderGridView() {
     if ($('.people-listing-grid').width() > 1000){
         $('.musician-box-container').removeClass('col-lg-3').addClass('col-lg-2');
     }
+
+    $('.people-listing-grid').removeClass('loading-content');
 }
 
 function filterMusicians(){
