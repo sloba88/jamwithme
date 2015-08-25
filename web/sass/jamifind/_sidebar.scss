@@ -8,10 +8,10 @@
 
 .sidebar {
 	padding-right: 0;
+	// @include respond-to(tablet) {
+	// 	padding-left: 0;
+	// }
 	@include respond-to(tablet) {
-		padding-left: 0;
-	}
-	@include respond-to(handhelds) {
 		@include transition(left 0.1s linear);
 		background: rgba(43,42,59, 1);
 		bottom: 0;
@@ -23,8 +23,24 @@
 		width: 160px;
 		z-index: 200;
 
+		&:after {
+			@include transition(left 0.1s linear);
+			background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+			bottom: 0;
+			content: "";
+			left: 0;
+			right: -42px;
+			top: 76px;
+			z-index: -1;
+		}
+
 		&.is-active {
 			left: -1px;
+
+			&:after {
+				position: fixed;				
+				left: 159px;
+			}
 		}
 	}
 

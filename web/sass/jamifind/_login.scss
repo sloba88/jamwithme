@@ -200,6 +200,10 @@
 	input[type="checkbox"]:checked + label span {
 		top: -3px;
 	}
+
+	.glyphicon {
+		cursor: default;
+	}
 }
 
 //login with preview

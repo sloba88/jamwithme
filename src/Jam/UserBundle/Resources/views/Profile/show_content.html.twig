@@ -13,7 +13,7 @@
 {% else %}
     <div class="col-sm-8 teacher-container grey">
 {% endif %}
-
+        
     <div class="row teacher-header">
         <section class="col-sm-5 teacher-info">
             <div class="teacher-info-inner">
@@ -31,10 +31,6 @@
                         {% endif %}
                     {% endif %}
 
-                    <div class="instruments-profile-icons">
-                        {% render(controller('JamWebBundle:Musicians:getUniqueIcons', {'username': user.username })) %}
-                    </div>
-
                     <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
 
                     {% if is_granted("ROLE_USER") and app.user != user %}
@@ -42,6 +38,24 @@
                     {% endif %}
                 </div>
             </div>
+
+            <div class="instruments-profile-icons">
+                {% render(controller('JamWebBundle:Musicians:getUniqueIcons', {'username': user.username })) %}
+            </div>
+
+            {% if user.isTeacher %}
+                <ul class="text-header clearfix">
+                    <li class="first">
+                        <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook" class="icon-teacher">
+                        teacher
+                    </li>
+                    {% if user.hourlyRate %}
+                        <li class="rate">
+                            - Hourly rate:<span>&euro;{{ user.hourlyRate }}</span>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
         </section>
         <!--teacher-info ends-->
 
@@ -122,21 +136,8 @@
     {% if is_granted("ROLE_USER") %}
 
         <div class="row">
-            <section class="col-sm-8 col-md-9 main-content">
-                    {% if user.isTeacher %}
-                        <ul class="text-header clearfix">
-                            <li class="first">
-                                <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook">
-                                teacher
-                            </li>
-                            {% if user.hourlyRate %}
-                                <li class="rate">
-                                    Hourly rate:<span>{{ user.hourlyRate }}</span>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    {% endif %}
-
+            <section class="col-sm-8 main-content">
+                    
                     <ul class="tabs-activate profile-tabs">
                         <li><a href="#" data-tab="about" class="is-active">About</a></li>
                         <li><a href="#" data-tab="photos" class="my-photos">Photos</a></li>
@@ -211,7 +212,7 @@
             </section>
             <!--main-content ends-->
 
-            <section class="col-sm-4 col-md-3 hidden-xs shouts-sidebar">
+            <section class="col-sm-4 hidden-xs shouts-sidebar">
                 <div class="sidebar-inner">
 
                     <div class="shouts-feed">

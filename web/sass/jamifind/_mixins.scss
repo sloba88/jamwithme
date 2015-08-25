@@ -114,7 +114,7 @@
 
 	.ui-autocomplete-input {
 		background: #363636;
-		@include respond-to(handhelds) {
+		@include respond-to(tablet) {
 			background: #fff;
 			border: 1px solid $brand-primary;
 			color: $color-primary;

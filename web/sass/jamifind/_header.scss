@@ -6,7 +6,7 @@ header {
 	right: 0;
 	top: 0;
 	z-index: 100;
-	@include respond-to(handhelds) {
+	@include respond-to(tablet) {
 		@include transition(left 0.1s linear);
 		height: 78px;
 		width: 100%;
@@ -20,14 +20,14 @@ header {
 .navbar-brand {
 	height: auto;
 	padding: 14px 14px 0px 14px;
-	@include respond-to(handhelds) {
+	@include respond-to(tablet) {
 		float: none;
 		text-align: center;
 	}
 
 	a {
 		display: inline-block;
-		@include respond-to(handhelds) {
+		@include respond-to(tablet) {
 			text-align: center;
 		}
 	}
@@ -38,7 +38,7 @@ header {
 		left: -4px;
 		position: relative;
 		top: 9px;
-		@include respond-to(handhelds) {
+		@include respond-to(tablet) {
 			display: block;
 			font-size: 9.5px;
 			left: auto;
@@ -47,7 +47,7 @@ header {
 		}
 
 		span {
-			@include respond-to(handhelds) {
+			@include respond-to(tablet) {
 				display: none;
 			}
 		}
@@ -58,6 +58,9 @@ header {
 	border-radius: 0;
 	float: none;
 	margin: 20px 0 0;
+	@include respond-to(tablet) {
+		display: block;
+	}
 
 	&:hover, &:focus, &.is-active {
 
@@ -90,7 +93,7 @@ header {
 .search-block-container {
 	padding-left: 0;
 	padding-top: 18px;
-	@include respond-to(handhelds) {
+	@include respond-to(tablet) {
 		background: $brand-secondary;
 		bottom: -64px;
 		display: none;
@@ -98,6 +101,7 @@ header {
 		padding: 15px;
 		position: absolute;
 		right: 0;
+		width: 100%;
 		z-index: 20;
 
 		&.is-opened {
@@ -109,7 +113,7 @@ header {
 		@include transition(width 0.5s ease);
 		float: right;
 		width: 122px;
-		@include respond-to(handhelds) {
+		@include respond-to(tablet) {
 			float: none;
 			width: 100%;
 		}
@@ -120,6 +124,9 @@ header {
 
 		.form-control {
 			background: transparent;
+			@include respond-to(tablet) {
+				background: #fff;
+			}
 		}
 	}
 
@@ -152,7 +159,7 @@ header {
 	color: #fff;
 	font-size: 15px;
 	text-transform: uppercase;
-	@include respond-to(handhelds) {
+	@include respond-to(tablet) {
 		background: #fff;
 		border: 1px solid $color-primary;
 	}
