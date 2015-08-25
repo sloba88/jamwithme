@@ -12,7 +12,7 @@ fos_elastica:
                         genres:
                             type: "object"
                             properties:
-                                id: ~
+                                genre.id: ~
                         instruments:
                             type: "object"
                             properties:

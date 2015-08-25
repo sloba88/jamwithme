@@ -990,22 +990,22 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSElasticaBundle.git",
-                "reference": "adf7fb21e3df81183eb107c0fae004c3df76f54d"
+                "reference": "678dbc9dff935c11231612a7ae11261441bb1468"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/FriendsOfSymfony/FOSElasticaBundle/zipball/678dbc9dff935c11231612a7ae11261441bb1468",
-                "reference": "adf7fb21e3df81183eb107c0fae004c3df76f54d",
+                "reference": "678dbc9dff935c11231612a7ae11261441bb1468",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2",
                 "psr/log": "~1.0",
-                "ruflin/elastica": ">=0.90.10.0, <1.5-dev",
+                "ruflin/elastica": ">=0.90.10.0, <2.2-dev",
                 "symfony/console": "~2.1",
                 "symfony/form": "~2.1",
                 "symfony/framework-bundle": "~2.3",
-                "symfony/property-access": "~2.2"
+                "symfony/property-access": "~2.3"
             },
             "require-dev": {
                 "doctrine/doctrine-bundle": "~1.2",
@@ -1063,7 +1063,7 @@
                 "propel",
                 "search"
             ],
-            "time": "2015-04-05 21:20:26"
+            "time": "2015-08-19 22:48:53"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -1454,7 +1454,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/2ca54c138ed8a536ee4bd2ae2850103631e7c128",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/d0b9a9ef41b819f7daad27062036c67269fdc8bf",
                 "reference": "d7caff8257d7b5807f2f56d03d7bddca6484265b",
                 "shasum": ""
             },

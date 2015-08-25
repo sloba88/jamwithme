@@ -42,7 +42,6 @@ class User extends BaseUser
         $this->brands = new ArrayCollection();
     }
 
-
     /**
      * @var ArrayCollection
      *

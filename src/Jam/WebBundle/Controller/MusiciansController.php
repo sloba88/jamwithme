@@ -5,6 +5,7 @@ namespace Jam\WebBundle\Controller;
 use Elastica\Query\Bool;
 use Elastica\Query\Match;
 use Elastica\Query\MatchAll;
+use Jam\CoreBundle\Entity\Compatibility;
 use Jam\CoreBundle\Entity\Search;
 use Jam\CoreBundle\Form\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,6 +47,8 @@ class MusiciansController extends Controller
         $searchParams = $request->query->get('search_form');
         $me = $this->getUser();
         $response = new JsonResponse();
+        $genres = $request->query->get('genres');
+        $instruments = $request->query->get('instruments');
 
         if ($searchParams && isset($searchParams['me'])) {
             //if searching nearby to other user
@@ -63,19 +66,16 @@ class MusiciansController extends Controller
             return $response;
         }
 
-        //$finder = $this->container->get('fos_elastica.index');
-        //$finder->refresh();
-
         $finder = $this->container->get('fos_elastica.finder.searches.user');
         $elasticaQuery = new MatchAll();
 
-        if ($request->query->get('genres')){
-            $categoryQuery = new \Elastica\Filter\Terms('genres.id', $request->query->get('genres'));
+        if ($genres){
+            $categoryQuery = new \Elastica\Filter\Terms('genres.id', $genres);
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
         }
 
-        if ($request->query->get('instruments')){
-            $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', $request->query->get('instruments'));
+        if ($instruments){
+            $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', $instruments);
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
         }
 
@@ -102,10 +102,61 @@ class MusiciansController extends Controller
 
         $musicians = $finder->find($elasticaQuery);
 
+
+        $em = $this->getDoctrine()->getManager();
+        $ids = array();
+        foreach ($musicians AS $m){
+            array_push($ids, $m->getId());
+            //Check if they have compatibility calculated and sort them by it
+
+            $query = "SELECT compatibility
+            FROM JamCoreBundle:Compatibility compatibility
+            JOIN JamUserBundle:User musician
+            WHEN (compatibility.musician2 = " . $m->getId() . " AND compatibility.musician = " .$me->getId() . " )
+            OR (compatibility.musician = " . $m->getId() . " AND compatibility.musician2 = " .$me->getId() . " ) ";
+
+            $res = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
+
+            if (!$res){
+                $compatibility = new Compatibility();
+                $compatibility->setMusician($me);
+                $compatibility->setMusician2($m);
+                $compatibility->calculate();
+
+                $em->persist($compatibility);
+            }
+        }
+
+        $em->flush();
+
         $musicians_data = array();
 
-        foreach($musicians AS $m){
+        /*
+         *
+         * DOCTRINE ORDER HACK
+         * //TODO: how to order by compatibility inside elastica??
+         *
+         */
 
+        $query = "SELECT musician, compatibility.value
+            FROM JamUserBundle:User musician
+            JOIN JamCoreBundle:Compatibility compatibility
+            WHEN compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId();
+
+        $query .= " WHERE musician.id IN (" . implode(",", $ids) . ")";
+        $query .= " ORDER BY compatibility.value DESC ";
+
+        $musicians = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
+
+        /*
+         *
+         * DOCTRINE ORDER HACK
+         *
+         */
+
+
+        foreach($musicians AS $music){
+            $m = $music[0];
             /* @var $m \Jam\UserBundle\Entity\User */
 
             if ($m->getLocation()){
@@ -142,7 +193,8 @@ class MusiciansController extends Controller
                 'instrument' => $instrument,
                 'icon' => $icon,
                 'location' => $location,
-                'teacherIcon' => $teacherIcon
+                'teacherIcon' => $teacherIcon,
+                'compatibility' => $music['value']
             );
 
             if ($m->getIsTeacher()){
