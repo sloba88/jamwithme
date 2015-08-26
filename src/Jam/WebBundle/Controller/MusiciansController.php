@@ -132,7 +132,8 @@ class MusiciansController extends Controller
             $query = "SELECT musician, compatibility.value
             FROM JamUserBundle:User musician
             JOIN JamCoreBundle:Compatibility compatibility
-            WHEN compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId();
+            WHEN (compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId() . " )
+            OR (compatibility.musician = musician AND compatibility.musician2 = " .$this->getUser()->getId() . " ) ";
 
             $query .= " WHERE musician.id IN (" . implode(",", $ids) . ")";
             $query .= " ORDER BY compatibility.value DESC ";
