@@ -46,7 +46,7 @@ assetic:
     filters:
         cssrewrite: ~
         less:
-            node_paths: [%node_bin_path%/../lib/node_modules]
+            node_paths: [%node_modules_path%/node_modules]
             apply_to: "\.less$"
             preserve_comments: false
 
