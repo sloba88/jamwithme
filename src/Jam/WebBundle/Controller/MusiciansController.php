@@ -95,10 +95,14 @@ class MusiciansController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $ids = array();
+
+        $em->createQuery('DELETE FROM JamCoreBundle:Compatibility')->execute();
+
         foreach ($musicians AS $m){
             array_push($ids, $m->getId());
             //Check if they have compatibility calculated and sort them by it
 
+            /* TODO: For now clear every time
             $query = "SELECT compatibility
             FROM JamCoreBundle:Compatibility compatibility
             JOIN JamUserBundle:User musician
@@ -108,13 +112,14 @@ class MusiciansController extends Controller
             $res = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
 
             if (!$res){
+            */
                 $compatibility = new Compatibility();
                 $compatibility->setMusician($me);
                 $compatibility->setMusician2($m);
                 $compatibility->calculate();
 
                 $em->persist($compatibility);
-            }
+            //}
         }
 
         $em->flush();

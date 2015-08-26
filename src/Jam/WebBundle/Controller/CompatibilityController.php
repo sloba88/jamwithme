@@ -30,7 +30,7 @@ class CompatibilityController extends Controller
             WHEN (compatibility.musician2 = " . $m->getId() . " AND compatibility.musician = " .$me->getId() . " )
             OR (compatibility.musician = " . $m->getId() . " AND compatibility.musician2 = " .$me->getId() . " ) ";
 
-        $compatibility = $this->getDoctrine()->getManager()->createQuery($query)->getSingleResult();
+        $compatibility = $em->createQuery($query)->getResult();
 
         if (!$compatibility){
             $compatibility = new Compatibility();
@@ -40,6 +40,8 @@ class CompatibilityController extends Controller
 
             $em->persist($compatibility);
             $em->flush();
+        }else{
+            $compatibility = $compatibility[0];
         }
 
         return new JsonResponse($compatibility->getValue());
