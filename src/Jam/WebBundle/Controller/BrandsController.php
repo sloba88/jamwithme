@@ -14,18 +14,19 @@ class BrandsController extends Controller
      * @Route("/api/brands", name="api_brands", options={"expose"=true})
      * @Template()
      */
-    public function getAction(Request $request)
+    public function getAction()
     {
-        $results = $this->getDoctrine()
-            ->getRepository('JamCoreBundle:Brand')
-            ->findAll();
+        $request = $this->get('request_stack')->getCurrentRequest();
 
-        $res = array();
+        $q = $request->query->get('q');
 
-        foreach ($results AS $k=>$g){
-            $res[$k]['id'] = $g->getId();
-            $res[$k]['name'] = $g->getName();
-        }
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery(
+                "SELECT b.id, b.name FROM JamCoreBundle:Brand b
+                WHERE b.name LIKE :q "
+            )->setParameter('q', '%'.$q.'%');
+
+        $res = $query->getResult();
 
         return new JsonResponse($res);
     }
