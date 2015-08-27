@@ -94,7 +94,7 @@ $(function() {
     $('#filter-by-distance-slider').slider({
         range: "min",
         value: $('#search_form_distance').val(),
-        min: 0,
+        min: 2,
         max: 20,
         step: 2,
         create: function(event, ui) {
@@ -104,8 +104,11 @@ $(function() {
         slide: function(event, ui) {
             $('.slide-max').text(ui.value + 'km');
             $('#search_form_distance').val(ui.value).trigger('change');
+            $('#filter-by-distance-btn span').text(ui.value + 'km around you');
         }
     });
+
+    $('#filter-by-distance-btn span').text($('#search_form_distance').val() + 'km around you');
 
 });
 

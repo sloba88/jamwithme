@@ -42,6 +42,7 @@ function initializeMap() {
     drawRadius($("#search_form_distance").val());
 
     renderMapView();
+    scrollbarPlugin();
 }
 
 function getLocation(){
@@ -155,21 +156,24 @@ function renderMapView() {
 function fetchMapData(){
     var data='';
 
-    if ( $("#filter-genres").val() != 0 ){
-        data += $("#filter-genres").serialize();
+    if ( $("input.filter-genres").val() != "" ){
+        data += $(".filter-genres").serialize();
     }
 
-    if ( $("#filter-instruments").val() != 0 ){
-        data += $("#filter-instruments").serialize();
+    if ( $("input.filter-instruments").val() != "" ){
+        data += $(".filter-instruments").serialize();
     }
 
     if ($("#lessons-checkbox").is(':checked')) {
         data += '&isTeacher=1';
     }
 
+    if ( $("#search_form_distance").val() != 0 ){
+        data += '&'+ $("#search_form_distance").serialize();
+    }
+
     var url = $map.data('url');
     var infowindow = null;
-    $( ".people-listing-grid").html('');
     $.ajax({
         url: url,
         data: data
@@ -178,8 +182,6 @@ function fetchMapData(){
             deleteMarkers();
             drawRadius($("#search_form_distance").val());
             $.each(result.data, function(k, v){
-
-                $( ".people-listing-grid" ).append(musicianBoxTemplate( v ) );
 
                 icon = iconBase + 'pal4/icon39.png';
 
@@ -205,7 +207,8 @@ function fetchMapData(){
 
             });
 
-            $(".list-view-container > div ").addClass('col-md-4');
+            filterResults = result;
+            renderGridView();
 
             //add myself on map
             addMyselfOnMap(map);
