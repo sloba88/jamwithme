@@ -86,9 +86,11 @@ class MusiciansController extends Controller
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
         }
 
-        $categoryQuery = new \Elastica\Filter\Term(array('username' => $me->getUsername()));
-        $elasticaBool = new \Elastica\Filter\BoolNot($categoryQuery);
+        $idsFilter = new \Elastica\Filter\Ids();
+        $idsFilter->setIds(array($me->getId()));
+        $elasticaBool = new \Elastica\Filter\BoolNot($idsFilter);
         $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
+
 
         $musicians = $finder->find($elasticaQuery);
 
