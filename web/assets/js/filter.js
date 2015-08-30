@@ -113,7 +113,6 @@ $(function() {
 });
 
 function renderGridView() {
-    $(".people-listing-grid").html('');
     $.each(filterResults.data, function (k, v) {
         $(".people-listing-grid").append(musicianBoxTemplate(v));
     });
@@ -145,6 +144,8 @@ function filterMusicians(){
     }
 
     var url = $map.data('url');
+
+    $('.people-listing-grid').html('').addClass('loading-content');
 
     $.ajax({
         url: url,
