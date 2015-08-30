@@ -177,7 +177,7 @@
                             <div class="profile-media-wall">
 
                                 {% if user.images|length == 0 %}
-                                    <h3>Upload some photos here</h3>
+                                    <h3>No photos yet.</h3>
                                 {% endif %}
 
                                 {% for i in user.images %}
@@ -193,7 +193,7 @@
                         <div class="view-tab my-videos" data-tab="videos">
 
                             {% if user.videos|length == 0 %}
-                                <p>Put some videos here</p>
+                                <p>No videos yet.</p>
                             {% endif %}
 
                             {% for v in user.videos %}
