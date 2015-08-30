@@ -111,6 +111,12 @@
             <argument type="service" id="router" />
         </service>
 
+        <service id="jam.location_set" class="Jam\LocationBundle\EventListener\LocationSetListener">
+            <tag name="kernel.event_listener" event="kernel.request" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="fos_user.user_manager" />
+        </service>
+
     </services>
 
 </container>
