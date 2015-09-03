@@ -65,20 +65,16 @@ $(function() {
         data.genres = [];
         data.instruments = [];
 
-        $('.filter-genres option:selected').each(function () {
-            if ($(this).length) {
-                data.genres.push($(this).text())
-            }
-        });
+        if ($('#genres').val() !== '') {
+            data.genres = $('#genres').val().split(',');
+        }
 
-        $('.filter-instruments option:selected').each(function () {
-            if ($(this).length) {
-                data.instruments.push($(this).text())
-            }
-        });
+        if ($('#instruments').val() !== '') {
+            data.instruments = $('#instruments').val().split(',');
+        }
 
         data.distance = $('#search_form_distance').val();
-        data.isTeacher = $('#lessons-checkbox').val();
+        data.isTeacher = $('#lessons-checkbox').is(':checked');
 
         $.ajax({
             url: Routing.generate('subscribe_search_add'),
