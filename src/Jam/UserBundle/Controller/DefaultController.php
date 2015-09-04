@@ -28,6 +28,10 @@ class DefaultController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
 
+        if (!$user){
+            throw $this->createNotFoundException('User not found.');
+        }
+
         $soundcloudService = $this->get('soundcloud_connector');
         $tracks = $soundcloudService->getUserTracks($user);
 

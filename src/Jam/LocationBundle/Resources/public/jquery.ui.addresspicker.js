@@ -9,7 +9,7 @@
  *   jquery.ui.core.js
  *   jquery.ui.widget.js
  *   jquery.ui.autocomplete.js
- */
+
 (function( $, undefined ) {
 
     $.widget( "ui.addresspicker", {
@@ -316,3 +316,5 @@
     }
 
 })( jQuery );
+
+    */

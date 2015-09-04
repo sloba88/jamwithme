@@ -1,23 +1,62 @@
+'use strict';
 
-var map;
-var $map = $('#map-canvas');
-var distanceCircle;
-var bounds = null;
-var donut;
-var iconBase = 'https://maps.google.com/mapfiles/kml/';
+$.fn.mapGraph = function() {
 
-var markers = [];
-var filterResults;
+    var mapContainer = $('#map'),
+        myLocation = [mapContainer.data('lat'), mapContainer.data('lng')],
+        map = L.map('map').setView(myLocation, 14),
+        geojsonLayer,
+        info = L.control(),
+        resultsAjax = null,
+        myFocusedIcon = L.divIcon({className: 'glyphicon glyphicon-map-marker active'}),
+        myIcon = L.divIcon({className: 'glyphicon glyphicon-map-marker'});
 
-var delay = (function(){
-    var timer = 0;
-    return function(callback, ms){
-        clearTimeout (timer);
-        timer = setTimeout(callback, ms);
-    };
-})();
+    var myIcon = L.icon({
+        iconUrl: 'http://33.33.33.100/media/cache/my_medium_1/uploads/avatars/9/1440171180_aRgO9LG_700b%20(2).jpg',
+        iconSize:     [40, 40],
+        iconAnchor:   [20, 20],
+        className: 'mapIcon'
+    });
 
-function initializeMap() {
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a>',
+        maxZoom: 16,
+        minZoom: 2,
+        noWrap: true
+    }).addTo(map);
+
+    var myLocationMarker = L.marker(myLocation, {icon: myIcon}).addTo(map);
+
+    function placeMarkers() {
+        $.each(filterResults, function(k, v){
+
+            if (v.icon == "") {
+              var iconSource = '<div class="no-icon"></div>';
+            } else {
+                var iconSource = v.icon;
+            }
+
+            var i = L.divIcon({
+                html: iconSource,
+                iconSize:     [40, 40],
+                className: 'mapIcon'
+            });
+
+            L.marker([v.lat, v.lng], {icon: i}).addTo(map);
+        });
+    }
+
+    placeMarkers();
+
+};
+
+
+/*function initializeMap() {
+
+
+
+    scrollbarPlugin();
+
 
     var mapOptions = {
         zoom: 12,
@@ -43,8 +82,19 @@ function initializeMap() {
 
     renderMapView();
     scrollbarPlugin();
-}
 
+
+}*/
+
+var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+
+/*
 function getLocation(){
     if (navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -262,3 +312,5 @@ function drawCircle(point, radius, dir) {
     // alert(extp.length);
     return extp;
 }
+
+*/
