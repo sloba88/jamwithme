@@ -6,3 +6,9 @@ services:
             - [setEntityManager, ["@doctrine.orm.entity_manager"]]
             - [setTokenStorage, ["@security.token_storage"]]
             - [setShout]
+
+    search.subscriber.cron:
+        class: Jam\CoreBundle\Services\SearchSubscriberCron
+        calls:
+            - [setEntityManager, ["@doctrine.orm.entity_manager"]]
+            - [setElasticUserFinder, ["@fos_elastica.finder.searches.user"]]

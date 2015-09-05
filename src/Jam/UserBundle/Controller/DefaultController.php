@@ -307,4 +307,14 @@ class DefaultController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * @Route("search-test-cron", name="search_test_cron")
+     */
+    public function searchCronTestAction()
+    {
+        $searchSubscriber = $this->get('search.subscriber.cron');
+
+        $searchSubscriber->execute();
+    }
 }

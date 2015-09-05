@@ -5,9 +5,14 @@ namespace Jam\UserBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Jam\CoreBundle\Entity\Genre;
+use Jam\CoreBundle\Entity\Instrument;
+use Jam\CoreBundle\Entity\MusicianGenre;
+use Jam\CoreBundle\Entity\MusicianInstrument;
 use Jam\LocationBundle\Entity\Location;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Jam\UserBundle\Entity\User;
 
 class LoadUserData extends AbstractFixture implements FixtureInterface, ContainerAwareInterface
 {
@@ -28,6 +33,8 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     {
         $userManager = $this->container->get('fos_user.user_manager');
 
+        $entityManager = $this->container->get('doctrine.orm.entity_manager');
+
         $user = $userManager->createUser();
 
         $user->setUsername('test');
@@ -44,7 +51,9 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
 
         $userManager->updateUser($user);
 
-        //
+        /**
+         * @var User
+         */
         $user = $userManager->createUser();
 
         $user->setUsername('slobodan');
@@ -59,6 +68,31 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $location->setLng('24.879227');
         $user->setLocation($location);
 
+        $guitar = new MusicianInstrument();
+
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Electric Guitar')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
+
+        $heavyMetal = new MusicianGenre();
+
+        $heavyMetal->setMusician($user);
+        $heavyMetal->setGenre($manager->getRepository('JamCoreBundle:Genre')->findOneBy(array('name' => 'Heavy Metal')));
+        $heavyMetal->setPosition(1);
+
+        $user->addGenre($heavyMetal);
+        /*
+        $guitar = $entityManager->getRepository('JamCoreBundle:MusicianInstrument')->findOneBy(array('name' => 'Electric Guitar'));
+        if ($guitar instanceof Instrument) {
+            $user->addInstrument($guitar);
+        }
+
+        $heavyMetal = $entityManager->getRepository('JamCoreBundle:Genre')->findOneBy(array('name' => 'Heavy Metal'));
+        if ($heavyMetal instanceof Genre) {
+            $user->addGenre($heavyMetal);
+        }
+        */
         $userManager->updateUser($user);
 
         //
