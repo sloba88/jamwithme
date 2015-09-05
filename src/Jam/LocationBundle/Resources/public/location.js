@@ -1,5 +1,5 @@
 $(function() {
-
+/*
     $('.location_widget').each(function() {
         var widget = $(this),
             widget_location = widget.find('[id$="_location"]')
@@ -65,5 +65,5 @@ $(function() {
         });
 
     })
-
+*/
 });

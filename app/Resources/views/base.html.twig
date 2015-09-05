@@ -13,6 +13,7 @@
         'vendor/select2/select2.css'
         'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
         'vendor/jquery-ui/themes/base/jquery-ui.css'
+        'vendor/leaflet-dist/leaflet.css'
         filter='cssrewrite' filter='?uglifycss'
         %}
         <link rel="stylesheet" href="{{ asset_url }}">
@@ -25,12 +26,27 @@
 
     <style>
         {# TODO: move this to css files#}
-        html body #map-canvas {
-            height: 600px;
+        #map {
+            height: 400px;
             margin: 0px;
             padding: 0px;
             width: 100%;
             clear: both;
+        }
+
+        #map .mapIcon{
+            border-radius: 20px;
+            background-color: #fff;
+            border: 1px solid #eaeaea;
+        }
+
+        #map .no-icon{
+            background-image: url('/assets/images/logo-icon.png');
+            background-position: center center;
+            background-size: 80%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
         }
 
         .ui-autocomplete {
@@ -299,8 +315,6 @@
 {% block extra_templates %}{% endblock %}
 
 {% block javascripts %}
-
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
     {% javascripts
     'vendor/jquery/jquery.js'

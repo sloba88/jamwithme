@@ -1,3 +1,5 @@
+var filterResults = [];
+
 $(function() {
 
     $.ajax({
@@ -13,7 +15,7 @@ $(function() {
 
     $('#map-view').on('click', function(){
         delay(function(){
-            initializeMap();
+            $('body').mapGraph();
         }, 500);
     });
 
@@ -113,7 +115,7 @@ $(function() {
 });
 
 function renderGridView() {
-    $.each(filterResults.data, function (k, v) {
+    $.each(filterResults, function (k, v) {
         $(".people-listing-grid").append(musicianBoxTemplate(v));
     });
 
@@ -143,19 +145,21 @@ function filterMusicians(){
         data += '&'+ $("#search_form_distance").serialize();
     }
 
-    var url = $map.data('url');
-
     $('.people-listing-grid').html('').addClass('loading-content');
 
     $.ajax({
-        url: url,
+        url: Routing.generate('musicians_find'),
         data: data
     }).done(function( result ) {
         if (result.status == 'success') {
-            filterResults = result;
+            filterResults = result.data;
             renderGridView();
             if (result.data.length == 0){
                 $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
+            }
+
+            if (window.location.hash == '#map'){
+                $('body').mapGraph();
             }
         }
     });
