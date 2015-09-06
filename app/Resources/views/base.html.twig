@@ -34,10 +34,10 @@
             clear: both;
         }
 
-        #map .mapIcon{
-            border-radius: 20px;
+        #map .mapIcon svg, #map .mapIcon img{
             background-color: #fff;
-            border: 1px solid #eaeaea;
+            padding: 2px;
+            border-radius: 20px;
         }
 
         #map .no-icon{
@@ -98,6 +98,7 @@
     #}
     <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
+        var myIcon = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
         var socket = {};
         socket.on = function(){}
         {% if is_granted("ROLE_USER") %}
@@ -309,7 +310,32 @@
             </div>
         </a><!--people-grid ends-->
     </div>
+</script>
 
+<script type="text/template" id="musicianMapTemplate">
+    <div class="musician-map-box-container">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>">
+            <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/my_thumb" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
+            <div class="people-info">
+                <h3 class="name"><%- rc.username %></h3>
+                    <span class="instrument" title="<%- rc.instrument %>">
+                        <%= rc.icon %>
+                        <%= rc.teacherIcon %>
+                    </span>
+                <ul class="tags">
+                    <% _.each( rc.genres, function(v, k){ %>
+                    <% if (k < 3){ %><li><%- v %></li><% } %>
+                    <% }); %>
+                </ul>
+                <ul class="compatibility-box">
+                    <li class="compatibility">
+                        <span><%= rc.compatibility %>%</span>
+                        compatibility
+                    </li>
+                </ul>
+            </div>
+        </a><!--people-grid ends-->
+    </div>
 </script>
 
 {% block extra_templates %}{% endblock %}

@@ -1,4 +1,5 @@
 var filterResults = [];
+var initializedMap = false;
 
 $(function() {
 
@@ -15,7 +16,10 @@ $(function() {
 
     $('#map-view').on('click', function(){
         delay(function(){
-            $('body').mapGraph();
+            if (initializedMap == false ){
+                initializedMap = initMap();
+                placeMarkers();
+            }
         }, 500);
     });
 
@@ -158,8 +162,9 @@ function filterMusicians(){
                 $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
             }
 
-            if (window.location.hash == '#map'){
-                $('body').mapGraph();
+            if (initializedMap != false ){
+                placeMarkers();
+                drawRadius();
             }
         }
     });
