@@ -12,3 +12,7 @@ services:
         calls:
             - [setEntityManager, ["@doctrine.orm.entity_manager"]]
             - [setElasticUserFinder, ["@fos_elastica.finder.searches.user"]]
+            - [setTwig, ["@templating"]]
+            - [setMailer, ["@mailer"]]
+            - [setLogger, ["@logger"]]
+            - [checkMailParams, [%mailer_user%, %mailer_password%]]
