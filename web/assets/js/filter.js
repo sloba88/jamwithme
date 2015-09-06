@@ -125,14 +125,16 @@ function filterMusicians(){
 
     if ( $("input.filter-genres").val() != "" ){
         data += $(".filter-genres").serialize();
+        data += '&';
     }
 
     if ( $("input.filter-instruments").val() != "" ){
         data += $(".filter-instruments").serialize();
+        data += '&';
     }
 
     if ($("#lessons-checkbox").is(':checked')) {
-        data += '&isTeacher=1';
+        data += 'isTeacher=1';
     }
 
     if ( $("#search_form_distance").val() != 0 ){

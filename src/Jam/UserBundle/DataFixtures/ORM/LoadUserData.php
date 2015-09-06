@@ -69,30 +69,18 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setLocation($location);
 
         $guitar = new MusicianInstrument();
-
         $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Electric Guitar')));
         $guitar->setMusician($user);
         $guitar->setSkillLevel(2);
         $user->addInstrument($guitar);
 
         $heavyMetal = new MusicianGenre();
-
         $heavyMetal->setMusician($user);
         $heavyMetal->setGenre($manager->getRepository('JamCoreBundle:Genre')->findOneBy(array('name' => 'Heavy Metal')));
         $heavyMetal->setPosition(1);
 
         $user->addGenre($heavyMetal);
-        /*
-        $guitar = $entityManager->getRepository('JamCoreBundle:MusicianInstrument')->findOneBy(array('name' => 'Electric Guitar'));
-        if ($guitar instanceof Instrument) {
-            $user->addInstrument($guitar);
-        }
 
-        $heavyMetal = $entityManager->getRepository('JamCoreBundle:Genre')->findOneBy(array('name' => 'Heavy Metal'));
-        if ($heavyMetal instanceof Genre) {
-            $user->addGenre($heavyMetal);
-        }
-        */
         $userManager->updateUser($user);
 
         //

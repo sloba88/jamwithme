@@ -11,7 +11,7 @@ use Elastica\Filter\Term;
 use Elastica\Filter\Terms;
 use Elastica\Query\Bool;
 use Elastica\Query\Filtered;
-use Elastica\Query\Ids;
+use Elastica\Filter\Ids;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Jam\CoreBundle\Entity\Search;
 
@@ -46,6 +46,10 @@ class SearchSubscriberCron {
                 if ($search instanceof Search) {
                     if ($search->getIsSubscribed()) {
                         $searchResults = $this->getElasticSearchResult($search);
+
+                        if (is_array($searchResults) && count($searchResults)) {
+                            var_dump($searchResults);exit;
+                        }
                     }
                 }
             }
@@ -70,20 +74,24 @@ class SearchSubscriberCron {
      */
     private function getElasticSearchResult(Search $search)
     {
-        $elasticaQuery = new MatchAll();
+
+        $elasticaQuery = new \Elastica\Query\MatchAll();
+
+        $instruments = json_decode($search->getInstruments());
+        $genres = json_decode($search->getGenres());
 
         if ($search->getInstruments() !== '') {
-            $instrumentsQuery = new Terms('instruments.instrument.id', explode(',', $search->getInstruments()));
+            $instrumentsQuery = new Terms('instruments.instrument.id', $instruments);
             $elasticaQuery = new Filtered($elasticaQuery, $instrumentsQuery);
         }
 
 
         if ($search->getGenres() !== '') {
-            $genresQuery = new Terms('genres.genre.id', explode(',', $search->getGenres()));
+            $genresQuery = new Terms('genres.genre.id', $genres);
             $elasticaQuery = new Filtered($elasticaQuery, $genresQuery);
         }
 
-        /*
+
         if ($search->getIsTeacher()) {
             $boolFilter = new Bool();
             $teacherTerm = new Term();
@@ -91,7 +99,7 @@ class SearchSubscriberCron {
             $boolFilter->addMust($teacherTerm);
             $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
         }
-        */
+
         if ($search->getCreator()->getLat() && $search->getDistance()) {
             $locationFilter = new GeoDistance(
                 'pin',
