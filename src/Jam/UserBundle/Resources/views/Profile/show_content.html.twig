@@ -115,7 +115,7 @@
                     {% if user.artists|length == 0 %}None.{% endif %}
                     <div class="favorite-group-inner with-scrollbar">
                         {% for a in user.artists %}
-                            {{ a.name }},
+                            {{ a.name }}{% if not loop.last %},{% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                     {% if user.brands|length == 0 %}None.{% endif %}
                     <div class="favorite-group-inner with-scrollbar">
                         {% for b in user.brands %}
-                            {{ b.brand.name }},
+                            {{ b.brand.name }}{% if not loop.last %},{% endif %}
                         {% endfor %}
                     </div>
                 </div>
