@@ -7,6 +7,7 @@ ASSETS          = $(CONSOLE) assets:install --symlink web
 ASSETIC_DEV     = $(CONSOLE) assetic:dump
 ASSETIC_PROD    = $(CONSOLE) assetic:dump --env=prod
 DUMP_ROUTE      = $(CONSOLE) fos:js-routing:dump
+ELASTIC_INDEX   = $(CONSOLE) fos:elastica:populate
 
 default: help
 
@@ -23,6 +24,7 @@ dev:
 	$(DUMP_ROUTE)
 	$(ASSETS)
 	$(ASSETIC_DEV)
+	$(ELASTIC_INDEX)
 
 prod:
 	$(COMPOSER)
@@ -31,6 +33,7 @@ prod:
 	$(CC) --env=prod
 	$(ASSETS)
 	$(ASSETIC_PROD)
+	$(ELASTIC_INDEX)
 
 assets-dev:
 	$(CC)
