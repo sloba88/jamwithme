@@ -81,12 +81,20 @@ class Search
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     protected $updatedAt;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="users", type="array", nullable=true)
+     */
+    private $users;
     
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->users = array();
     }
 
     /**
@@ -285,5 +293,44 @@ class Search
     public function getGenres()
     {
         return $this->genres;
+    }
+
+    /**
+     * Set users
+     *
+     * @param array $users
+     *
+     * @return Search
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get users
+     *
+     * @return array
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    public function getSortedIntegerUsers()
+    {
+        $results = array();
+
+        if (is_array($this->users) && count($this->users) > 0) {
+            foreach ($this->users as $userId) {
+                $results[] = (int) $userId;
+            }
+
+            sort($results, SORT_NUMERIC);
+        }
+
+        return $results;
     }
 }

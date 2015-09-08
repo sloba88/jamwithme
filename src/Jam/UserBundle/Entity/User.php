@@ -995,4 +995,9 @@ class User extends BaseUser
     {
         return $this->genres;
     }
+
+    public function getFullName()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }
