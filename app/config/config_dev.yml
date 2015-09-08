@@ -29,5 +29,8 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
+snc_redis:
+    doctrine: ~
+
 #swiftmailer:
 #    delivery_address: me@example.com

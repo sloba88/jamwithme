@@ -1,3 +1,6 @@
+var filterResults = [];
+var initializedMap = false;
+
 $(function() {
 
     $.ajax({
@@ -13,7 +16,10 @@ $(function() {
 
     $('#map-view').on('click', function(){
         delay(function(){
-            initializeMap();
+            if (initializedMap == false ){
+                initializedMap = initMap();
+                placeMarkers();
+            }
         }, 500);
     });
 
@@ -65,20 +71,16 @@ $(function() {
         data.genres = [];
         data.instruments = [];
 
-        $('.filter-genres option:selected').each(function () {
-            if ($(this).length) {
-                data.genres.push($(this).text())
-            }
-        });
+        if ($('#genres').val() !== '') {
+            data.genres = $('#genres').val().split(',');
+        }
 
-        $('.filter-instruments option:selected').each(function () {
-            if ($(this).length) {
-                data.instruments.push($(this).text())
-            }
-        });
+        if ($('#instruments').val() !== '') {
+            data.instruments = $('#instruments').val().split(',');
+        }
 
         data.distance = $('#search_form_distance').val();
-        data.isTeacher = $('#lessons-checkbox').val();
+        data.isTeacher = $('#lessons-checkbox').is(':checked');
 
         $.ajax({
             url: Routing.generate('subscribe_search_add'),
@@ -94,7 +96,7 @@ $(function() {
     $('#filter-by-distance-slider').slider({
         range: "min",
         value: $('#search_form_distance').val(),
-        min: 0,
+        min: 2,
         max: 20,
         step: 2,
         create: function(event, ui) {
@@ -104,14 +106,16 @@ $(function() {
         slide: function(event, ui) {
             $('.slide-max').text(ui.value + 'km');
             $('#search_form_distance').val(ui.value).trigger('change');
+            $('#filter-by-distance-btn span').text(ui.value + 'km around you');
         }
     });
+
+    $('#filter-by-distance-btn span').text($('#search_form_distance').val() + 'km around you');
 
 });
 
 function renderGridView() {
-    $(".people-listing-grid").html('');
-    $.each(filterResults.data, function (k, v) {
+    $.each(filterResults, function (k, v) {
         $(".people-listing-grid").append(musicianBoxTemplate(v));
     });
 
@@ -127,31 +131,38 @@ function filterMusicians(){
 
     if ( $("input.filter-genres").val() != "" ){
         data += $(".filter-genres").serialize();
+        data += '&';
     }
 
     if ( $("input.filter-instruments").val() != "" ){
         data += $(".filter-instruments").serialize();
+        data += '&';
     }
 
     if ($("#lessons-checkbox").is(':checked')) {
-        data += '&isTeacher=1';
+        data += 'isTeacher=1';
     }
 
     if ( $("#search_form_distance").val() != 0 ){
         data += '&'+ $("#search_form_distance").serialize();
     }
 
-    var url = $map.data('url');
+    $('.people-listing-grid').html('').addClass('loading-content');
 
     $.ajax({
-        url: url,
+        url: Routing.generate('musicians_find'),
         data: data
     }).done(function( result ) {
         if (result.status == 'success') {
-            filterResults = result;
+            filterResults = result.data;
             renderGridView();
             if (result.data.length == 0){
                 $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
+            }
+
+            if (initializedMap != false ){
+                placeMarkers();
+                drawRadius();
             }
         }
     });

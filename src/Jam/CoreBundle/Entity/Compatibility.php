@@ -25,7 +25,7 @@ class Compatibility
     /**
      * @var User $musician
      *
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="compatibilities")
      * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)
      */
     private $musician;
@@ -165,7 +165,7 @@ class Compatibility
         foreach ($user->getGenres() AS $k1 => $v1){
             foreach ($me->getGenres() AS $k2 => $v2){
                 if (in_array($k2, $matchedIndexes)) continue;
-                if ($v1->getId() == $v2->getId()){
+                if ($v1->getGenre()->getId() == $v2->getGenre()->getId()){
                     $compatibility += $genresIndex;
                     $totalMatches ++;
                     //if matched skip it next time
@@ -176,7 +176,7 @@ class Compatibility
             }
         }
 
-        $possibleMatches += min($user->getGenres()->count(), $me->getGenres()->count()) + $genresIndex;
+        $possibleMatches += min($user->getGenres()->count(), $me->getGenres()->count()) * $genresIndex;
 
         /* calculate age */
         if ($user->getAge() && $me->getAge()){

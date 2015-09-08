@@ -16,16 +16,12 @@ class InstrumentsController extends Controller
      */
     public function getAction()
     {
-        $results = $this->getDoctrine()
-            ->getRepository('JamCoreBundle:Instrument')
-            ->findAll();
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery(
+                "SELECT i.id, i.name AS text FROM JamCoreBundle:Instrument i"
+            );
 
-        $res = array();
-
-        foreach ($results AS $k=>$g){
-            $res[$k]['id'] = $g->getId();
-            $res[$k]['text'] = $g->getName();
-        }
+        $res = $query->getResult();
 
         return new JsonResponse($res);
     }

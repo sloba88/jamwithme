@@ -95,6 +95,9 @@
             <call method="setRouter">
                 <argument type="service" id="router"></argument>
             </call>
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.default_entity_manager"></argument>
+            </call>
         </service>
 
         <service id="fos_user.listener.location_change" class="Jam\UserBundle\EventListener\ProfileEditedListener">
@@ -108,8 +111,10 @@
             <argument type="service" id="router" />
         </service>
 
-        <service id="fos_user.listener.custom_property" class="Jam\UserBundle\EventListener\CustomPropertyListener">
-            <tag name="kernel.event_subscriber" />
+        <service id="jam.location_set" class="Jam\LocationBundle\EventListener\LocationSetListener">
+            <tag name="kernel.event_listener" event="kernel.request" />
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="fos_user.user_manager" />
         </service>
 
     </services>

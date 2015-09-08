@@ -28,6 +28,10 @@ class DefaultController extends Controller
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
 
+        if (!$user){
+            throw $this->createNotFoundException('User not found.');
+        }
+
         $soundcloudService = $this->get('soundcloud_connector');
         $tracks = $soundcloudService->getUserTracks($user);
 
@@ -306,5 +310,15 @@ class DefaultController extends Controller
         return $this->render('JamUserBundle:Profile:reset_email.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+     * @Route("search-test-cron", name="search_test_cron")
+     */
+    public function searchCronTestAction()
+    {
+        $searchSubscriber = $this->get('search.subscriber.cron');
+
+        $searchSubscriber->execute();
     }
 }

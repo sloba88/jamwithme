@@ -45,8 +45,12 @@ assetic:
     node: %node_bin_path%/node
     filters:
         cssrewrite: ~
+        uglifycss:
+            bin: %node_modules_path%/node_modules/uglifycss
+        uglifyjs2:
+            bin: %node_modules_path%/node_modules/uglify-js/bin/uglifyjs
         less:
-            node_paths: [%node_bin_path%/../lib/node_modules]
+            node_paths: [%node_modules_path%/node_modules]
             apply_to: "\.less$"
             preserve_comments: false
 
@@ -75,6 +79,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    delivery_address: grbatinic.bogdan@gmail.com
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
@@ -166,17 +171,17 @@ snc_redis:
             type: predis
             alias: session
             dsn: redis://%redis_server%
-#    doctrine:
-#        metadata_cache:
-#            client: cache
-#            entity_manager: default          # the name of your entity_manager connection
-#            document_manager: default        # the name of your document_manager connection
-#        result_cache:
-#            client: cache
-#            entity_manager: [default, read]  # you may specify multiple entity_managers
-#        query_cache:
-#            client: cache
-#            entity_manager: default
+    doctrine:
+        metadata_cache:
+            client: cache
+            entity_manager: default          # the name of your entity_manager connection
+            document_manager: default        # the name of your document_manager connection
+        result_cache:
+            client: cache
+            entity_manager: [default, read]  # you may specify multiple entity_managers
+        query_cache:
+            client: cache
+            entity_manager: default
     session:
         client: session
 

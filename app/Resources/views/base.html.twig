@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Jamifind | find musicians near you{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     {% block stylesheets %}
@@ -13,6 +13,7 @@
         'vendor/select2/select2.css'
         'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
         'vendor/jquery-ui/themes/base/jquery-ui.css'
+        'vendor/leaflet-dist/leaflet.css'
         filter='cssrewrite' filter='?uglifycss'
         %}
         <link rel="stylesheet" href="{{ asset_url }}">
@@ -25,12 +26,27 @@
 
     <style>
         {# TODO: move this to css files#}
-        html body #map-canvas {
-            height: 600px;
+        #map {
+            height: 400px;
             margin: 0px;
             padding: 0px;
             width: 100%;
             clear: both;
+        }
+
+        #map .mapIcon svg, #map .mapIcon img{
+            background-color: #fff;
+            padding: 2px;
+            border-radius: 20px;
+        }
+
+        #map .no-icon{
+            background-image: url('/assets/images/logo-icon.png');
+            background-position: center center;
+            background-size: 80%;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
         }
 
         .ui-autocomplete {
@@ -82,6 +98,7 @@
     #}
     <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
+        var myIcon = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
         var socket = {};
         socket.on = function(){}
         {% if is_granted("ROLE_USER") %}
@@ -109,7 +126,7 @@
             <div class="col-xs-8 col-md-9">
                 <div class="navbar-brand">
                     <a href="{{ path('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Logo"></a>
-                    <span class="outer"><span>.</span> Bringing Musicians Together</span>
+                    <span class="outer"><span>BETA</span> <!--Bringing Musicians Together--></span>
                 </div>
             </div>
 
@@ -293,14 +310,37 @@
             </div>
         </a><!--people-grid ends-->
     </div>
+</script>
 
+<script type="text/template" id="musicianMapTemplate">
+    <div class="musician-map-box-container">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>">
+            <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/my_thumb" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
+            <div class="people-info">
+                <h3 class="name"><%- rc.username %></h3>
+                    <span class="instrument" title="<%- rc.instrument %>">
+                        <%= rc.icon %>
+                        <%= rc.teacherIcon %>
+                    </span>
+                <ul class="tags">
+                    <% _.each( rc.genres, function(v, k){ %>
+                    <% if (k < 3){ %><li><%- v %></li><% } %>
+                    <% }); %>
+                </ul>
+                <ul class="compatibility-box">
+                    <li class="compatibility">
+                        <span><%= rc.compatibility %>%</span>
+                        compatibility
+                    </li>
+                </ul>
+            </div>
+        </a><!--people-grid ends-->
+    </div>
 </script>
 
 {% block extra_templates %}{% endblock %}
 
 {% block javascripts %}
-
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
     {% javascripts
     'vendor/jquery/jquery.js'

@@ -99,6 +99,7 @@ $(function() {
         placeholder: 'Favourite Brands?',
         minimumInputLength: 2,
         multiple: true,
+        quietMillis: 250,
         initSelection: function(element, callback) {
             var data = [];
             $(element.val().split(',')).each(function() {
@@ -111,6 +112,11 @@ $(function() {
         },
         ajax: {
             url: Routing.generate('api_brands'),
+            data: function (term, page) {
+                return {
+                    q: term // search term
+                };
+            },
             results: function(data) {
                 return {
                     results: $.map(data, function(item) {

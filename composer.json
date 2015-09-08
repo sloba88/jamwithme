@@ -43,7 +43,7 @@
         "hwi/oauth-bundle": "0.4.x-dev",
         "friendsofsymfony/jsrouting-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "dev-master",
-        "snc/redis-bundle": "1.1.*",
+        "snc/redis-bundle": "dev-master",
         "predis/predis": "0.8.x-dev",
         "braincrafted/bootstrap-bundle": "dev-master",
         "misd/guzzle-bundle": "~1.0"

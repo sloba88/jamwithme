@@ -16,14 +16,14 @@
             <div class="col-sm-12 col-lg-4">
                 <div class="dropdown filter-by-distance">
                     <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                        Filter by distance
+                        <span>Filter by distance</span>
                         <div><b></b></div>
                     </a>
                     <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
                         <label>Set distance</label>
                         <input type="hidden" name="distance" value="10" id="search_form_distance" />
                         <div id="filter-by-distance-slider"></div>
-                        <span class="result slide-min pull-left">0</span>
+                        <span class="result slide-min pull-left">2km</span>
                         <span class="result slide-max pull-right"></span>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
 
     <div class="view-tab map" data-tab="map">
 
-        <div id="map-canvas" data-url="{{ path('musicians_find') }}" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
+        <div id="map" data-lat="{{ app.user.location.lat|default('') }}" data-lng="{{ app.user.location.lng|default('') }}"></div>
 
     </div><!--map ends-->
 

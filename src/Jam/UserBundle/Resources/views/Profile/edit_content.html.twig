@@ -10,7 +10,7 @@
 <div class="col-md-10 main-content">
     <div class="main-content-inner with-scrollbar">
 
-        <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+        <form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit">
 
             {{ form_errors(form) }}
 
@@ -137,9 +137,7 @@
 
                             {% if app.user.isTeacher %}
                                 {{ form_row(form.education) }}
-                            {% endif %}
 
-                            {% if app.user.isTeacher %}
                                 {{ form_row(form.hourlyRate) }}
                             {% endif %}
 

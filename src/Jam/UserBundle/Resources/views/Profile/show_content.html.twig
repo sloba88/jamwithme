@@ -115,17 +115,18 @@
                     {% if user.artists|length == 0 %}None.{% endif %}
                     <div class="favorite-group-inner with-scrollbar">
                         {% for a in user.artists %}
-                            {{ a.name }},
+                            {{ a.name }}{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </div>
                 </div>
+                
                 <!-- brands -->
                 <div class="favorite-group">
                     <span>Favourite brands:</span>
                     {% if user.brands|length == 0 %}None.{% endif %}
                     <div class="favorite-group-inner with-scrollbar">
                         {% for b in user.brands %}
-                            {{ b.brand.name }},
+                            {{ b.brand.name }}{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -177,7 +178,7 @@
                             <div class="profile-media-wall">
 
                                 {% if user.images|length == 0 %}
-                                    <h3>Upload some photos here</h3>
+                                    <p>No photos yet.</p>
                                 {% endif %}
 
                                 {% for i in user.images %}
@@ -193,7 +194,7 @@
                         <div class="view-tab my-videos" data-tab="videos">
 
                             {% if user.videos|length == 0 %}
-                                <p>Put some videos here</p>
+                                <p>No videos yet.</p>
                             {% endif %}
 
                             {% for v in user.videos %}

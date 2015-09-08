@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+{# todo create some email master templates #}
+<html>
+
+    <head>
+
+    </head>
+
+    <body>
+        <p>Users you might be intrested in:</p>
+
+        {% for user in users %}
+            <p>
+                <a href="{{ url('musician_profile', {'username': user.username}) }}">{{ user.fullName }}</a>
+            </p>
+        {% endfor %}
+    </body>
+</html>

@@ -86,19 +86,25 @@ class MusiciansController extends Controller
             $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
         }
 
-        $categoryQuery = new \Elastica\Filter\Term(array('username' => $me->getUsername()));
-        $elasticaBool = new \Elastica\Filter\BoolNot($categoryQuery);
+        $idsFilter = new \Elastica\Filter\Ids();
+        $idsFilter->setIds(array($me->getId()));
+        $elasticaBool = new \Elastica\Filter\BoolNot($idsFilter);
         $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
+
 
         $musicians = $finder->find($elasticaQuery);
 
 
         $em = $this->getDoctrine()->getManager();
         $ids = array();
+
+        $em->createQuery('DELETE FROM JamCoreBundle:Compatibility')->execute();
+
         foreach ($musicians AS $m){
             array_push($ids, $m->getId());
             //Check if they have compatibility calculated and sort them by it
 
+            /* TODO: For now clear every time
             $query = "SELECT compatibility
             FROM JamCoreBundle:Compatibility compatibility
             JOIN JamUserBundle:User musician
@@ -108,13 +114,14 @@ class MusiciansController extends Controller
             $res = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
 
             if (!$res){
+            */
                 $compatibility = new Compatibility();
                 $compatibility->setMusician($me);
                 $compatibility->setMusician2($m);
                 $compatibility->calculate();
 
                 $em->persist($compatibility);
-            }
+            //}
         }
 
         $em->flush();
@@ -132,7 +139,8 @@ class MusiciansController extends Controller
             $query = "SELECT musician, compatibility.value
             FROM JamUserBundle:User musician
             JOIN JamCoreBundle:Compatibility compatibility
-            WHEN compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId();
+            WHEN (compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId() . " )
+            OR (compatibility.musician = musician AND compatibility.musician2 = " .$this->getUser()->getId() . " ) ";
 
             $query .= " WHERE musician.id IN (" . implode(",", $ids) . ")";
             $query .= " ORDER BY compatibility.value DESC ";

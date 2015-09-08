@@ -16,16 +16,13 @@ class GenresController extends Controller
      */
     public function getAction(Request $request)
     {
-        $results = $this->getDoctrine()
-            ->getRepository('JamCoreBundle:Genre')
-            ->findAll();
 
-        $res = array();
+        $query = $this->getDoctrine()->getManager()
+            ->createQuery(
+                "SELECT g.id, g.name AS text FROM JamCoreBundle:Genre g"
+            );
 
-        foreach ($results AS $k=>$g){
-            $res[$k]['id'] = $g->getId();
-            $res[$k]['text'] = $g->getName();
-        }
+        $res = $query->getResult();
 
         return new JsonResponse($res);
     }
