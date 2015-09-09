@@ -41,3 +41,9 @@ Dump assets
 ```
 php app/console assetic:dump
 ```
+
+Clear redis cache
+
+```
+redis-cli flushall
+```
