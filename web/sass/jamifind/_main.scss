@@ -350,15 +350,15 @@
 }
 
 .view-tab-container {
-	overflow: hidden;
+	// overflow: hidden;
 	position: relative;
 
 	&.with-scrollbar {
 		padding-right: 10px;
 		width: 102%;
-		@include respond-to(tablet) {
-			width: 104%;
-		}
+		// @include respond-to(tablet) {
+		// 	width: 104%;
+		// }
 		@include respond-to(handhelds) {
 			padding-right: 0;
 			width: 100%;
@@ -379,19 +379,21 @@
 		// 		clear: left;
 		// 	}
 		// }
-		@include respond-to(handhelds) {
-			padding: 0;
-		}
+		// @include respond-to(handhelds) {
+		// 	padding: 0;
+		// }
 	}
 }
 
 .people-grid {
 	border: 2px solid #414141;
 	display: block;
-	margin: 10px 0;
-	min-height: 115px;
+	margin: 2px 0;
 	overflow: hidden;
 	position: relative;
+	@include respond-to(desktopLg) {
+		min-height: 135px;
+	}
 
 	&:hover {
 		text-decoration: none;
@@ -434,23 +436,29 @@
 		right: 0;
 		min-height: 50%;
 		@include respond-to(desktopMd) {
-			background-size: 100%;
+			background-size: 101%;
 		}
 		@include respond-to(tablet) {
-			background: #eaeaea;
-			color: $color-primary;
+			background: $brand-primary;
 			position: relative;
 		}
 		@include respond-to(tabletOnly) {
 			height: 163px;
 		}
+		@include respond-to(handhelds) {
+			height: 120px;
+		}
 
 		.compatibility-box {
 			bottom: 5px;
 			display: none;
-			left: 10px;
+			// left: 10px;
 			position: absolute;
 			@include respond-to(tablet) {
+				display: block!important;
+				position: relative;
+			}
+			.touch-device & {
 				display: block!important;
 				position: relative;
 			}
@@ -462,13 +470,15 @@
 			line-height: 18px;
 			margin-bottom: 2px;
 			@include respond-to(tablet) {
-				color: $color-primary;
 				font-size: 15px;
 				line-height: 20px;
 				margin-top: 5px;
 			}
 			@include respond-to(tabletOnly) {
 				width: 112%;
+			}
+			@include respond-to(handhelds) {
+				max-height: 40px;
 			}
 		}
 
@@ -518,6 +528,7 @@
 				font-size: 11px;
 				margin: 0 0 4px;
 				padding: 2px 5px 1px;
+				white-space: nowrap;
 			}
 		}
 
@@ -541,12 +552,16 @@
 	.compatibility {
 		font-size: 9px;
 		font-weight: bold;
-		margin: 0 10px 0 6px;
+		// margin: 0 10px 0 6px;
+		margin: 0;
 		text-transform: uppercase;
 
 		span {
-			display: block;
+			// display: block;
 			font-size: 14px;
+			@include respond-to(handhelds) {
+				font-size: 12px;
+			}
 		}
 	}
 
@@ -1229,6 +1244,7 @@
 
 			&.is-active {
 				border-bottom: 4px solid $brand-secondary;
+				color: $brand-secondary;
 			}
 		}
 
@@ -1318,6 +1334,7 @@
 
 	.main-content.col-md-10 {
 		background: transparent;
+		padding-bottom: 0;
 		// padding-right: 0;
 	}
 	
@@ -1499,11 +1516,11 @@
 }
 
 #musician_instruments .row {
-	margin-top: 15px;
+	// margin-top: 5px;
 
 	> div {
-		@include respond-to(handhelds) {
-			margin-top: 15px;
-		}
+		// @include respond-to(handhelds) {
+			margin: 10px 0px;
+		// }
 	}
 }

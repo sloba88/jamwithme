@@ -7,6 +7,9 @@ var messageTemplate = _.template($("#messageTemplate").html());
 
 $(function() {
 
+    //checks if touch device
+    checkTouchDevice();
+
     $('select').select2();
 
     $('.info-popover').popover();
@@ -224,6 +227,15 @@ socket.on('myUnreadMessagesCount', function(data) {
     }
 });
 
+function checkTouchDevice() {
+    var is_touch_device = 'ontouchstart' in document.documentElement;
+    if (is_touch_device) {
+        $('html').addClass('touch-device');
+        alert("touch is enabled!")
+    } else {
+        $('html').addClass('no-touch-device');
+    }
+}
 
 function addCollectionForm(collectionHolder, type) {
     var prototype = collectionHolder.data('prototype');
