@@ -2,18 +2,18 @@
 
 namespace Jam\WebBundle\Controller;
 
-use Elastica\Query\Bool;
-use Elastica\Query\Match;
+use Elastica\Filter\Bool;
+use Elastica\Filter\BoolNot;
+use Elastica\Filter\Ids;
+use Elastica\Filter\Term;
+use Elastica\Filter\Terms;
+use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
 use Jam\CoreBundle\Entity\Compatibility;
-use Jam\CoreBundle\Entity\Search;
-use Jam\CoreBundle\Form\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Elastica\Util;
 use Symfony\Component\HttpFoundation\Response;
 
 class MusiciansController extends Controller
@@ -60,21 +60,21 @@ class MusiciansController extends Controller
         $elasticaQuery = new MatchAll();
 
         if ($genres!=''){
-            $categoryQuery = new \Elastica\Filter\Terms('genres.genre.id', explode(",", $genres));
-            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
+            $categoryQuery = new Terms('genres.genre.id', explode(",", $genres));
+            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
         }
 
         if ($instruments!=''){
-            $categoryQuery = new \Elastica\Filter\Terms('instruments.instrument.id', explode(",", $instruments));
-            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $categoryQuery);
+            $categoryQuery = new Terms('instruments.instrument.id', explode(",", $instruments));
+            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
         }
 
         if ($request->query->get('isTeacher')){
-            $boolFilter = new \Elastica\Filter\Bool();
-            $filter1 = new \Elastica\Filter\Term();
+            $boolFilter = new Bool();
+            $filter1 = new Term();
             $filter1->setTerm('isTeacher', '1');
             $boolFilter->addMust($filter1);
-            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $boolFilter);
+            $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
         }
 
         if ($request->query->get('distance') && $me->getLat()){
@@ -83,13 +83,13 @@ class MusiciansController extends Controller
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
                 (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
             );
-            $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
+            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
         }
 
-        $idsFilter = new \Elastica\Filter\Ids();
+        $idsFilter = new Ids();
         $idsFilter->setIds(array($me->getId()));
-        $elasticaBool = new \Elastica\Filter\BoolNot($idsFilter);
-        $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $elasticaBool);
+        $elasticaBool = new BoolNot($idsFilter);
+        $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
 
 
         $musicians = $finder->find($elasticaQuery);

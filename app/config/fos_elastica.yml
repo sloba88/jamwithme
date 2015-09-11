@@ -8,6 +8,8 @@ fos_elastica:
                 user:
                     mappings:
                         username: ~
+                        firstName: ~
+                        lastName: ~
                         pin: { type: geo_point }
                         genres:
                             type: "object"

@@ -81,17 +81,17 @@ class DefaultController extends Controller
             throw $this->createNotFoundException('You shall not pass');
         }
 
-        $users = $this->getDoctrine()->getManager()
-            ->createQuery(
-                'SELECT user.id, user.username, user.avatar FROM JamUserBundle:User user WHERE user.username LIKE :q OR user.firstName LIKE :q OR user.lastName LIKE :q ')
-            ->setParameter('q', '%'.$q.'%')
-            ->setMaxResults(8)
-            ->getResult();
+        $finder = $this->container->get('fos_elastica.finder.searches.user');
+        $results = $finder->find($q);
 
-        $response = new JsonResponse();
-        $response->setData($users);
+        $data = array();
+        foreach ($results AS $r) {
+            $data[]['id'] = $r->getId();
+            $data[]['username'] = $r->getUsername();
+            $data[]['avatar'] = $r->getAvatar();
+        }
 
-        return $response;
+        return new JsonResponse($data);
     }
 
     /**
