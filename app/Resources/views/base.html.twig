@@ -34,13 +34,13 @@
             clear: both;
         }
 
-        #map .mapIcon svg, #map .mapIcon img{
+        #map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img{
             background-color: #fff;
             padding: 2px;
             border-radius: 20px;
         }
 
-        #map .no-icon{
+        #map .no-icon, #_location_map .no-icon{
             background-image: url('/assets/images/logo-icon.png');
             background-position: center center;
             background-size: 80%;
@@ -98,11 +98,15 @@
     #}
     <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
-        var myIcon = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
         var socket = {};
+        var _user = {};
         socket.on = function(){}
         {% if is_granted("ROLE_USER") %}
             var _username = '{{ app.user.username }}';
+            _user.username = '{{ app.user.username }}';
+            _user.lat = '{{ app.user.location.lat|default('') }}';
+            _user.lng = '{{ app.user.location.lng|default('') }}';
+            _user.avatar = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
         {% endif %}
     </script>
 
@@ -352,9 +356,6 @@
     'vendor/isotope/dist/isotope.pkgd.js'
     'vendor/imagesloaded/imagesloaded.js'
     'vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js'
-
-    '@JamLocationBundle/Resources/public/jquery.ui.addresspicker.js'
-    '@JamLocationBundle/Resources/public/location.js'
     filter='?uglifyjs2'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>

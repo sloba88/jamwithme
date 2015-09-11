@@ -2,9 +2,9 @@
 
 _.templateSettings.variable = 'rc';
 var mapContainer = $('#map'),
-    myLocation = [mapContainer.data('lat'), mapContainer.data('lng')],
+    myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
-        html: '<img src="'+myIcon+'" />',
+        html: '<img src="'+_user.avatar+'" />',
         iconSize:     [40, 40],
         className: 'mapIcon'
     }),

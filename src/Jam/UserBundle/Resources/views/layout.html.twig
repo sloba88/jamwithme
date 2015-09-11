@@ -37,6 +37,7 @@
 {% block bottom_javascripts %}
 
     {% javascripts
+    'vendor/leaflet-dist/leaflet.js'
     'vendor/blueimp-file-upload/js/vendor/jquery.ui.widget.js'
     'vendor/blueimp-load-image/js/load-image.all.min.js'
     'vendor/blueimp-canvas-to-blob/js/canvas-to-blob.js'
@@ -49,6 +50,7 @@
     'vendor/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'
     'vendor/fancybox/source/jquery.fancybox.pack.js'
     'assets/js/settings.js'
+    '@JamLocationBundle/Resources/public/location.js'
     filter='?uglifyjs2'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
