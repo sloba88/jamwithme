@@ -1,10 +1,25 @@
 {% block location_widget %}
     <style>
-        .dropdown-menu{ z-index: 99}
+        ul.location-results {
+            position: absolute;
+            z-index: 999999;
+            background-color: #fff;
+            width: 100%;
+            padding: 10px;
+            box-shadow: 0px 5px 10px silver;
+            list-style-type: none;
+            display: none;
+        }
+
+        ul.location-results a:hover{
+            color: #fabc09;
+        }
+
     </style>
 <div class="location_widget">
     <div class="input-group">
         {{ form_widget(form, { 'class' : 'clearfix' }) }}
+        <ul class="location-results"></ul>
         <div class="input-group-btn">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 Map

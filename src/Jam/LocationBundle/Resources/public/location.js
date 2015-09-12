@@ -1,7 +1,8 @@
 
 var myLocation = [_user.lat, _user.lng],
     map,
-    showMap = false;
+    showMap = false,
+    myLocationMarker,
     circle = false;
     L.Icon.Default.imagePath = '/vendor/leaflet-dist/images';
 
@@ -46,10 +47,16 @@ var markerDragEnd = function(e){
 
             var displayAddress = '';
 
-            displayAddress += data.address.road ? data.address.road : '';
-            displayAddress += data.address.suburb ? ', '+ data.address.suburb : '';
-            displayAddress += data.address.city ? ', '+ data.address.city : '';
-            displayAddress += data.address.country ? ', '+ data.address.country : '';
+            displayAddress += data.address.road ? data.address.road + ', ' : '';
+            displayAddress += data.address.suburb ? data.address.suburb + ', ' : '';
+            displayAddress += data.address.neighbourhood ? data.address.neighbourhood + ', ' : '';
+            displayAddress += data.address.city ? data.address.city + ', ' : '';
+            displayAddress += data.address.town ? data.address.town + ', ' : '';
+            displayAddress += data.address.village ? data.address.village + ', ' : '';
+            displayAddress += data.address.island ? data.address.island + ', ' : '';
+            displayAddress += data.address.country ? data.address.country + ', ' : '';
+
+            displayAddress = displayAddress.replace(/,\s*$/, "");
 
             $('#fos_user_profile_form_location_address').val(displayAddress);
         }
@@ -75,7 +82,7 @@ $(function() {
                 noWrap: true
             }).addTo(map);
 
-            var myLocationMarker = L.marker(myLocation, {
+            myLocationMarker = L.marker(myLocation, {
                 draggable: true
             }).addTo(map);
 
@@ -94,6 +101,51 @@ $(function() {
 
             showMap = true;
         }
+
+        $('body').on('keyup', '#fos_user_profile_form_location_address', function(e){
+            var value = $(this).val();
+            var self = $(this);
+
+            if (value.length > 2){
+                $.ajax({
+                    url: location.protocol + '//nominatim.openstreetmap.org/search?q='+value+'&format=json&polygon=1&addressdetails=1&accept-language=en&countrycodes=fi',
+                    cache: true,
+                    success: function(data){
+                        console.log(data);
+                        $('.location-results').html('').hide();
+                        if (data.length > 1){
+                            $.each(data, function(k, v){
+
+                                var displayAddress = '';
+
+                                displayAddress += v.address.road ? v.address.road + ', ' : '';
+                                displayAddress += v.address.suburb ? v.address.suburb + ', ' : '';
+                                displayAddress += v.address.neighbourhood ? v.address.neighbourhood + ', ' : '';
+                                displayAddress += v.address.city ? v.address.city + ', ' : '';
+                                displayAddress += v.address.town ? v.address.town + ', ' : '';
+                                displayAddress += v.address.village ? v.address.village + ', ' : '';
+                                displayAddress += v.address.island ? v.address.island + ', ' : '';
+                                displayAddress += v.address.country ? v.address.country + ', ' : '';
+
+                                displayAddress = displayAddress.replace(/,\s*$/, "");
+
+                                $('.location-results').append('<li><a href="#" data-lat="'+ v.lat+'" data-lng="'+ v.lon+'">'+ displayAddress +'</a></li>').show();
+                            });
+                        }
+                    }
+                });
+            }else {
+                $('.location-results').html('').hide();
+            }
+        });
+
+        $('body').on('click', '.location-results a', function(e){
+            e.preventDefault();
+            myLocationMarker.setLatLng(new L.LatLng(Number($(this).data('lat')), Number($(this).data('lng'))));
+            map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
+            $('.location-results').css({'display': 'none'});
+            $('#fos_user_profile_form_location_address').val($(this).text());
+        });
 
 
         $('.location_widget').find('*').on('focus', function(e) {
