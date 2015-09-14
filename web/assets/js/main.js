@@ -231,7 +231,6 @@ function checkTouchDevice() {
     var is_touch_device = 'ontouchstart' in document.documentElement;
     if (is_touch_device) {
         $('html').addClass('touch-device');
-        alert("touch is enabled!")
     } else {
         $('html').addClass('no-touch-device');
     }
