@@ -28,6 +28,8 @@ function initMap(){
     map.on('zoomend', function(){
         resizeIcons();
     });
+
+    drawRadius();
 }
 
 function resizeIcons(){
