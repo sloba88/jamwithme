@@ -75,38 +75,31 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {#
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="{{ node_server }}/socket.io/socket.io.js"></script>
 
     <script>
-        {% if is_granted("ROLE_USER") %}
-        var _username = '{{ app.user.username }}';
-        {% endif %}
-        var socket = io('{{ node_server }}');
-
-        socket.io.on('connect_error', function(){
-            socket.io.disconnect();
-        });
-
-        {% if app.user %}
-        socket.on('registerConnectedUser', function (data) {
-            socket.emit('registerUserData', { userID: '{{ app.user.id }}', 'username': _username });
-        });
-        {% endif %}
-    </script>
-    #}
-    <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
-        var socket = {};
         var _user = {};
-        socket.on = function(){}
         {% if is_granted("ROLE_USER") %}
             var _username = '{{ app.user.username }}';
             _user.username = '{{ app.user.username }}';
             _user.lat = '{{ app.user.location.lat|default('') }}';
             _user.lng = '{{ app.user.location.lng|default('') }}';
             _user.avatar = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
+
+            var socket = new io.connect('{{ node_server }}');
+
+            socket.on('connect_error', function(){
+                socket.io.disconnect();
+            });
+
+            {% if app.user %}
+            socket.on('registerConnectedUser', function () {
+                socket.emit('registerUserData', { 'sessionId': '{{ app.session.id }}' });
+            });
+            {% endif %}
+
         {% endif %}
     </script>
 
@@ -381,6 +374,7 @@
 {% block bottom_javascripts %}{% endblock %}
 
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('assets/js/messaging.js') }}"></script>
 
 </body>
 </html>

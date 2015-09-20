@@ -1,10 +1,13 @@
 var http = require('http'),
     mongoose = require('mongoose'),
     express = require('express'),
+    redis = require('redis'),
+    redisClient = redis.createClient(),
     Message = require('./schema'),
     app = express(),
     server = app.listen(3000),
     io = require('socket.io').listen(server),
+    PHPUnserialize = require('php-unserialize'),
     activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
@@ -23,19 +26,27 @@ db.once('open', function callback () {
         socket.emit('registerConnectedUser', { hello: 'world' });
 
         socket.on('registerUserData', function (data) {
-            socket.userID   = data.userID;
-            socket.username = data.username;
-            activeUsers[data.userID] = socket;
 
-            setTimeout(function(){
-                //get unread messages count
-                Message.find({ 'isRead' :  false, 'owner.id' :  socket.userID }, function (err, messages) {
-                    if (err) return console.error(err);
-                    socket.unreadMessages = messages.length;
-                    socket.emit('myUnreadMessagesCount', messages.length);
-                });
-            }, 1000);
+            authenticateUser(data.sessionId, function(data){
 
+                if (data == null) {
+                    return false;
+                }
+
+                socket.userID   = data.userId;
+                socket.username = data.username;
+                activeUsers[data.userID] = socket;
+
+                setTimeout(function(){
+                    //get unread messages count
+                    Message.find({ 'isRead' :  false, 'owner.id' :  socket.userID }, function (err, messages) {
+                        if (err) return console.error(err);
+                        socket.unreadMessages = messages.length;
+                        socket.emit('myUnreadMessagesCount', messages.length);
+                    });
+                }, 1000);
+
+            });
         });
 
         socket.on('newMessage', function (data) {
@@ -121,4 +132,23 @@ db.once('open', function callback () {
     });
 });
 
+function authenticateUser(sessionId, callback) {
+    redisClient.get('session:'+sessionId, function (err, user) {
+        if (err) {
+            console.log('error authenticating');
+            return false;
+        } else {
+            console.log('authenticated');
+        }
+        if (user === null) {
+            callback(null);
+        } else {
+            var sess = PHPUnserialize.unserializeSession(user);
+            var data = [];
+            data['userId'] = sess._sf2_attributes.__userId;
+            data['username'] = sess._sf2_attributes.__username;
+            callback(data);
+        }
+    });
+}
 
