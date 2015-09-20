@@ -134,7 +134,15 @@ $(function() {
 
                                 displayAddress = displayAddress.replace(/,\s*$/, "");
 
-                                $('.location-results').append('<li><a href="#" data-lat="'+ v.lat+'" data-lng="'+ v.lon+'">'+ displayAddress +'</a></li>').show();
+                                var element = $('<li />').append($('<a/>', {
+                                    href: '#',
+                                    'data-lat': v.lat,
+                                    'data-lng': v.lon,
+                                    text: displayAddress,
+                                    'data-all': JSON.stringify(v)
+                                }));
+                                
+                                $('.location-results').append(element).show();
                             });
                         }
                     }
@@ -150,6 +158,18 @@ $(function() {
             map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
             $('.location-results').css({'display': 'none'});
             $('#fos_user_profile_form_location_address').val($(this).text());
+
+            var data = $(this).data('all');
+
+            $('[id$="_location_locality"]').val(data.address.city);
+            $('[id$="_location_neighborhood"]').val(data.address.suburb);
+            $('[id$="_administrative_area_level_3"]').val(data.address.city);
+            $('[id$="_location_country"]').val(data.address.country);
+            $('[id$="_location_route"]').val(data.address.road);
+            $('[id$="_location_zip"]').val(data.address.postcode);
+            $('[id$="_location_lat"]').val(data.lat);
+            $('[id$="_location_lng"]').val(data.lon);
+
         });
 
 
