@@ -6,6 +6,11 @@ var myLocation = [_user.lat, _user.lng],
     circle = false;
     L.Icon.Default.imagePath = '/vendor/leaflet-dist/images';
 
+
+if (_user.lat == '') {
+    myLocation = [60.1576083, 24.8740487];
+}
+
 //TODO: this is duplicate
 function resizeIcons(){
     var iconSize = map.getZoom() * 2;

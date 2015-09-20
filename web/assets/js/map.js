@@ -13,6 +13,10 @@ var mapContainer = $('#map'),
     markers = new L.FeatureGroup(),
     musicianMapTemplate = _.template($('#musicianMapTemplate').html());
 
+if (_user.lat == '') {
+    myLocation = [60.1576083, 24.8740487];
+}
+
 function initMap(){
     map = L.map('map').setView(myLocation, 14);
 
