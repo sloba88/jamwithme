@@ -231,8 +231,10 @@
 <script type="text/template" id="messageTemplate">
     <% createdAt = new Date(rc.createdAt); %>
     <div class="conversation-single" data-user="<%- rc.to.username %>" data-user2="<%- rc.from.username %>">
-        <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- rc.from.username %>/avatar" alt="Pic">
-        <h4 class="name"><%- rc.from.username %></h4>
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.from.username %>">
+            <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- rc.from.username %>/avatar" alt="Pic">
+            <h4 class="name"><%- rc.from.username %></h4>
+        </a>
 
         <div class="time">
             <%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %>
