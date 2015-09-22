@@ -1,0 +1,73 @@
+{% extends 'JamWebBundle::layout.html.twig' %}
+
+{% block bodyclasses %}page-dashboard page-teachers{% endblock %}
+
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
+
+{% block main_content %}
+
+<div class="filters-area">
+    <div class="filters-heading clearfix">
+        <h1 class="filters-title">find music teachers nearby</h1>
+    </div>
+
+    {{ render(controller('JamWebBundle:Search:filter' )) }}
+
+{% endblock %}
+
+{% block right_sidebar_content %}
+
+        {% if is_granted("ROLE_USER") and app.user.profileFulfilment != 100 %}
+            <div class="profile-completion clearfix">
+                <div class="pick">
+                    <div class="pick-outer">
+                        <img src="{{ asset('assets/images/pick-outer.png') }}" alt="Profile completion">
+                    </div>
+                    <span class="pick-inner"></span>
+                </div>
+                    <div class="profile-completion-text">
+                        <h3><span>{{ app.user.profileFulfilment }}%</span>profile completion</h3>
+                        <a href="{{ path('fos_user_profile_edit') }}" class="link">fill out your profile</a>
+                    </div>
+            </div><!--profile-completion ends-->
+        {% endif %}
+
+
+    <div class="shouts-feed" id="shoutsFeed">
+        <h3>Shouts feed</h3>
+        {% if shoutCounter.canShout == false %}
+            <p style="color: #FFFFFF">Shout again in:</p>
+            <p id="shoutCountdown" style="color: #FFFFFF"></p>
+        {% else %}
+            <form role="form" action="{{ path('home') }}" method="POST">
+                {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3'}}) }}
+                {{ form_widget(form.send, {'attr': {'class': 'btn btn-primary'}}) }}
+                {{ form_widget(form._token) }}
+            </form>
+        {% endif %}
+    </div><!--shouts-feed ends-->
+
+    <div class="shouts-listing-container">
+        <h4 class="shouts">Shouts</h4>
+        <div class="shouts-listing shouts-listing-filter with-scrollbar"></div><!--shouts-listing ends-->
+    </div><!--shouts-listing-container ends-->
+
+{% endblock %}
+
+{% block bottom_javascripts %}
+
+    <script>
+        var seconds = ('{{ shoutCounter.canShout }}' == 0) ? {{ shoutCounter.secondsDifference }} : 0;
+    </script>
+
+    {% javascripts
+    'vendor/leaflet-dist/leaflet.js'
+    'assets/js/filter.js'
+    'assets/js/map.js'
+    '@JamWebBundle/Resources/public/js/shout.js'
+    filter='?uglifyjs2'
+    %}
+
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
