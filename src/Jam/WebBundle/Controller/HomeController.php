@@ -39,13 +39,58 @@ class HomeController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $me = $this->container->get('security.context')->getToken()->getUser();
-
-            if (!$me){
+            if (!$this->getUser()){
                 throw $this->createNotFoundException('You shall not pass');
             }
 
-            $shout->setCreator($me);
+            $shout->setCreator($this->getUser());
+            $em->persist($shout);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->set('success', 'You have shouted successfully.');
+
+            return $this->redirect($this->generateUrl('home'));
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'shoutCounter' => $shoutCounter
+        );
+    }
+
+    /**
+     * @Route("/teachers", name="teachers", options={"expose"=true})
+     * @Template()
+     */
+    public function teachersAction(Request $request)
+    {
+        /**
+         * @var ShoutCounter
+         */
+        $shoutCounter = $this->get('shout.counter');
+        $shout = new Shout();
+
+        $form = $this->createFormBuilder($shout)
+            ->add('text', 'textarea', array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'Say something cool...',
+                    'maxlength' => 250
+                )
+            ))
+            ->add('send', 'submit')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            if (!$this->getUser()){
+                throw $this->createNotFoundException('You shall not pass');
+            }
+
+            $shout->setCreator($this->getUser());
             $em->persist($shout);
             $em->flush();
 

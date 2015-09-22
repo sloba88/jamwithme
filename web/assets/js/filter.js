@@ -80,7 +80,7 @@ $(function() {
         }
 
         data.distance = $('#search_form_distance').val();
-        data.isTeacher = $('#lessons-checkbox').is(':checked');
+        data.isTeacher = $('body.page-teachers').length > 0;
 
         $.ajax({
             url: Routing.generate('subscribe_search_add'),
@@ -139,9 +139,7 @@ function filterMusicians(){
         data += '&';
     }
 
-    if ($("#lessons-checkbox").is(':checked')) {
-        data += 'isTeacher=1';
-    }
+    data += 'isTeacher='+$('body.page-teachers').length;
 
     if ( $("#search_form_distance").val() != 0 ){
         data += '&'+ $("#search_form_distance").serialize();
