@@ -117,6 +117,18 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         //
         $user = $userManager->createUser();
 
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Electric Guitar')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Acoustic Guitar')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
+
         $user->setUsername('mäentakanen');
         $user->setFirstName('Salomo');
         $user->setLastName('Mäentakanen');
@@ -124,11 +136,18 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setPlainPassword('test');
         $user->setEnabled(true);
         $user->setLocation($location);
+        $user->setIsTeacher(true);
 
         $userManager->updateUser($user);
 
         //
         $user = $userManager->createUser();
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Drums')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
 
         $user->setUsername('rada');
         $user->setFirstName('Radmila');
