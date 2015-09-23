@@ -33,7 +33,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
     {
         $userManager = $this->container->get('fos_user.user_manager');
 
-        $entityManager = $this->container->get('doctrine.orm.entity_manager');
+        /* @var $user \Jam\UserBundle\Entity\User */
 
         $user = $userManager->createUser();
 
@@ -43,6 +43,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('test2@test.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+        $user->setAboutMe("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting");
 
         $location = new Location();
         $location->setLat('60.163718');
@@ -88,7 +89,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
 
         $user->setUsername('malusev');
         $user->setFirstName('Marija');
-        $user->setLastName('Malusev');
+        $user->setLastName('Stanic');
         $user->setEmail('malusev.marija@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
@@ -109,6 +110,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('alexa.mcquin666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+        $user->setLocation($location);
 
         $userManager->updateUser($user);
 
@@ -121,6 +123,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('salomo666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+        $user->setLocation($location);
 
         $userManager->updateUser($user);
 
@@ -133,6 +136,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('radmila.zelic666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+        $user->setLocation($location);
 
         $userManager->updateUser($user);
 
@@ -145,6 +149,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('pierre.emmanuel666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+        $user->setLocation($location);
 
         $userManager->updateUser($user);
 
