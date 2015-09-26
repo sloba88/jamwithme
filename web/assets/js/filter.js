@@ -22,6 +22,7 @@ $(function() {
                 fetchMapData();
             }else{
                 filterMusicians();
+                filterShouts();
             }
         }, 500);
     });
