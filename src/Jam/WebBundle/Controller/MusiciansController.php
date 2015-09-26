@@ -35,18 +35,10 @@ class MusiciansController extends Controller
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $request->getSession()->save();
-        $searchParams = $request->query->get('search_form');
         $me = $this->getUser();
         $response = new JsonResponse();
         $genres = $request->query->get('genres');
         $instruments = $request->query->get('instruments');
-
-        if ($searchParams && isset($searchParams['me'])) {
-            //if searching nearby to other user
-            $me = $this->getDoctrine()
-                ->getRepository('JamUserBundle:User')
-                ->find($searchParams['me']);
-        }
 
         if (!$me->getLocation()) {
             $response->setData(array(

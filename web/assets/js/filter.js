@@ -3,17 +3,6 @@ var initializedMap = false;
 
 $(function() {
 
-    $.ajax({
-        url: baseURL+'/shouts/find'
-        //data: data
-    }).done(function( result ) {
-        if (result.status == 'success'){
-            $.each(result.data, function(k, v){
-                $( ".shouts-listing" ).prepend(shoutBoxTemplate( v ) );
-            });
-        }
-    });
-
     $('#map-view').on('click', function(){
         delay(function(){
             if (initializedMap == false ){
@@ -58,6 +47,8 @@ $(function() {
     });
 
     filterMusicians();
+
+    filterShouts();
 
     //activate tabs
     tabsToggle($('.tabs-activate'));
@@ -126,7 +117,7 @@ function renderGridView() {
     $('.people-listing-grid').removeClass('loading-content');
 }
 
-function filterMusicians(){
+function getFilterData() {
     var data='';
 
     if ( $("input.filter-genres").val() != "" ){
@@ -141,15 +132,19 @@ function filterMusicians(){
 
     data += 'isTeacher='+$('body.page-teachers').length;
 
-    if ( $("#search_form_distance").val() != 0 ){
+    if ( $('#search_form_distance').val() != 0 ){
         data += '&'+ $("#search_form_distance").serialize();
     }
 
+    return data;
+}
+
+function filterMusicians(){
     $('.people-listing-grid').html('').addClass('loading-content');
 
     $.ajax({
         url: Routing.generate('musicians_find'),
-        data: data
+        data: getFilterData()
     }).done(function( result ) {
         if (result.status == 'success') {
             filterResults = result.data;
@@ -162,6 +157,21 @@ function filterMusicians(){
                 placeMarkers();
                 drawRadius();
             }
+        }
+    });
+}
+
+function filterShouts() {
+    $('.shouts-listing').html('');
+
+    $.ajax({
+        url: Routing.generate('shouts_find'),
+        data: getFilterData()
+    }).done(function( result ) {
+        if (result.status == 'success'){
+            $.each(result.data, function(k, v){
+                $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
+            });
         }
     });
 }

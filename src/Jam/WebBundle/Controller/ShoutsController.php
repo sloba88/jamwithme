@@ -2,11 +2,11 @@
 
 namespace Jam\WebBundle\Controller;
 
-use Elastica\Query\Bool;
-use Elastica\Query\Match;
+use Elastica\Filter\Bool;
+use Elastica\Filter\Term;
+use Elastica\Filter\Terms;
+use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
-use Jam\CoreBundle\Entity\Search;
-use Jam\CoreBundle\Form\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -17,36 +17,52 @@ use Elastica\Util;
 class ShoutsController extends Controller
 {
     /**
-     * @Route("/shouts/find", name="shouts_find")
+     * @Route("/shouts/find", name="shouts_find", options={"expose"=true})
      * @Template()
      */
     public function findAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
-        $searchParams = $request->query->get('search_form');
-        $me = $this->container->get('security.context')->getToken()->getUser();
+        $me = $this->getUser();
+        $response = new JsonResponse();
+        $genres = $request->query->get('genres');
+        $instruments = $request->query->get('instruments');
 
         $finder = $this->container->get('fos_elastica.finder.searches.shout');
         $elasticaQuery = new MatchAll();
 
-        if ($searchParams){
+        if ($genres!=''){
+            $categoryQuery = new Terms('genres.genre.id', explode(",", $genres));
+            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
+        }
 
-            if (isset($searchParams['distance']) && $me->getLat()){
-                $locationFilter = new \Elastica\Filter\GeoDistance(
-                    'pin',
-                    array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                    (intval($searchParams['distance']) ? intval($searchParams['distance']) : '20') . 'km'
-                );
-                $elasticaQuery = new \Elastica\Query\Filtered($elasticaQuery, $locationFilter);
-            }
+        if ($instruments!=''){
+            $categoryQuery = new Terms('instruments.instrument.id', explode(",", $instruments));
+            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
+        }
+
+        if ($request->query->get('isTeacher')){
+            $boolFilter = new Bool();
+            $filter1 = new Term();
+            $filter1->setTerm('isTeacher', '1');
+            $boolFilter->addMust($filter1);
+            $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
+        }
+
+        if ($request->query->get('distance') && $me->getLat()){
+            $locationFilter = new \Elastica\Filter\GeoDistance(
+                'pin',
+                array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
+                (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
+            );
+            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
         }
 
         $sortQuery = \Elastica\Query::create($elasticaQuery);
         $sortQuery->addSort(array('createdAt' => array('order' => 'ASC')));
 
-        $shouts = $finder->find($sortQuery);
+        $shouts = $finder->find($elasticaQuery);
 
-        $response = new JsonResponse();
         $musicians_data = array();
 
         foreach($shouts AS $s){

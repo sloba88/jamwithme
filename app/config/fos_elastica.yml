@@ -35,7 +35,7 @@ fos_elastica:
                         creator:
                             type: "object"
                             properties:
-                                pin: ~
+                                pin: { type: geo_point }
                         createdAt: { type: date }
                     persistence:
                         driver: orm
