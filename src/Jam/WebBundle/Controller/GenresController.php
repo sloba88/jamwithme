@@ -16,7 +16,7 @@ class GenresController extends Controller
      */
     public function getAction(Request $request)
     {
-
+        $request->getSession()->save();
         $query = $this->getDoctrine()->getManager()
             ->createQuery(
                 "SELECT g.id, g.name AS text FROM JamCoreBundle:Genre g"

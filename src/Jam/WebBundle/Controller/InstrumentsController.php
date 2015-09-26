@@ -14,8 +14,9 @@ class InstrumentsController extends Controller
      * @Route("/api/instruments", name="api_instruments", options={"expose"=true})
      * @Template()
      */
-    public function getAction()
+    public function getAction(Request $request)
     {
+        $request->getSession()->save();
         $query = $this->getDoctrine()->getManager()
             ->createQuery(
                 "SELECT i.id, i.name AS text FROM JamCoreBundle:Instrument i"
