@@ -8,12 +8,7 @@
     }
 </style>
 
-{% if is_granted("ROLE_USER") %}
-    <div class="col-md-10 teacher-container grey">
-{% else %}
-    <div class="col-sm-8 teacher-container grey">
-{% endif %}
-        
+<div class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-sm-8{% endif %} teacher-container grey">
     <div class="row teacher-header">
         <section class="col-sm-5 teacher-info">
             <div class="teacher-info-inner">
@@ -105,7 +100,9 @@
                                 <li><a href="{{ path('musicians', {'genres' : g.genre.id }) }}">{{ g.genre.name }}</a></li>
                             {% endfor %}
                         </ul>
-                        <a href="#" class="show-all-tags"><i class="fa fa-angle-down"></i></a>
+                        {% if user.genres|length > 3 %}
+                            <a href="#" class="show-all-tags"><i class="fa fa-angle-down"></i></a>
+                        {% endif %}
                     </div>
                 {% endif %}
 
@@ -204,7 +201,9 @@
                         <!--videos ends-->
 
                         <div class="view-tab my-sounds" data-tab="sounds">
-
+                            {% if (user.getSoundcloudId == "") %}
+                                <p>No sounds yet.</p>
+                            {% endif %}
                         </div>
 
                     </div>
