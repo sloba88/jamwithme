@@ -20,15 +20,6 @@ if (_user.lat == '') {
 function initMap(){
     map = L.map('map').setView(myLocation, 14);
 
-    /*
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a>',
-        maxZoom: 16,
-        minZoom: 2,
-        noWrap: true
-    }).addTo(map);
-    */
-
     L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
         attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
         subdomains: '1234',
@@ -69,7 +60,7 @@ function drawRadius(){
 function placeMarkers(){
 
     map.removeLayer(markers);
-    markers = new L.FeatureGroup();
+    markers = new L.markerClusterGroup();
 
     $.each(filterResults, function(k, v){
 
