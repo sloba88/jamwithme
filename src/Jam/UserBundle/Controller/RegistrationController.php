@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
+use JMS\TranslationBundle\Annotation\Desc;
 
 /**
  * Controller managing the registration
@@ -92,7 +93,9 @@ class RegistrationController extends ContainerAware
         $user = $this->container->get('fos_user.user_manager')->findUserByEmail($email);
 
         if (null === $user) {
-            throw new NotFoundHttpException(sprintf('The user with email "%s" does not exist', $email));
+            /** @Desc("The user with %email% does not exist") */
+            $msg = $this->container->get('translator')->transChoice('exception.nonexistent.user', $email);
+            throw new NotFoundHttpException($msg);
         }
 
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:checkEmail.html.twig', array(
@@ -111,7 +114,9 @@ class RegistrationController extends ContainerAware
         $user = $userManager->findUserByConfirmationToken($token);
 
         if (null === $user) {
-            throw new NotFoundHttpException(sprintf('The user with confirmation token "%s" does not exist', $token));
+            /** @Desc("The user with confirmation token %token% does not exist") */
+            $msg = $this->container->get('translator')->transChoice('exception.user.missing.token', $token);
+            throw new NotFoundHttpException($msg);
         }
 
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
@@ -142,7 +147,7 @@ class RegistrationController extends ContainerAware
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
+            throw new AccessDeniedException($this->container->get('translator')->trans('exception.this.user.does.not.have.access.to.this.section'));
         }
 
         return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.twig', array(

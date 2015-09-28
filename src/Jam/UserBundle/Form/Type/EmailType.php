@@ -14,14 +14,14 @@ class EmailType extends AbstractType {
     {
         $builder->add('email', 'email', array(
             'required' => true,
-            'label' => 'Email',
+            'label' => 'label.email',
             'attr' => array(
                 'class' => 'form-control col-sm-5',
-                'placeholder' => 'Email'
+                'placeholder' => 'placeholder.email'
             )
         ))
         ->add('save', 'submit', array(
-            'label' => 'Save'
+            'label' => 'label.save'
         ));
     }
 

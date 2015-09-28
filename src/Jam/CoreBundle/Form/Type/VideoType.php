@@ -22,7 +22,7 @@ class VideoType extends AbstractType
     {
         $builder->add('url', 'text', array(
             'attr' => array(
-                'placeholder' => 'URL'
+                'placeholder' => 'placeholder.url'
             ),
             'label' => false
         ));

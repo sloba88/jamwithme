@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="4c2a8fe7eaf24721cc7a9f0175115bd4" resname="Message">
+        <source>Message</source>
+        <target>__Message</target>
+      </trans-unit>
+      <trans-unit id="2091afdde36d5bba0ce6835475a1f2e2" resname="hourly.rate">
+        <source>hourly.rate</source>
+        <target>__hourly.rate</target>
+      </trans-unit>
+      <trans-unit id="ae9b94fae3fc4daf34c463f568c01a1e" resname="no.genres.yet">
+        <source>no.genres.yet</source>
+        <target>__no.genres.yet</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

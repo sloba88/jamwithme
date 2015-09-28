@@ -31,10 +31,10 @@
                         {% endif %}
                     {% endif %}
 
-                    <div class="bio">{{ user.genderText }}{% if user.age %}, {{ user.age }} years{% endif %}</div>
+                    <div class="bio">{{ user.genderText }}{% if user.age %}, {{ 'user.age'|transchoice(user.age)|desc('%user.age% years old') }}{% endif %}</div>
 
                     {% if is_granted("ROLE_USER") and app.user != user %}
-                        <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>Message</a>
+                        <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>{{ 'button.message'|trans }}</a>
                     {% endif %}
                 </div>
             </div>
@@ -47,11 +47,11 @@
                 <ul class="text-header clearfix">
                     <li class="first">
                         <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook" class="icon-teacher">
-                        teacher
+                        {{ 'text.teacher'|trans }}
                     </li>
                     {% if user.hourlyRate %}
                         <li class="rate">
-                            - Hourly rate:<span>&euro;{{ user.hourlyRate }}</span>
+                            - {{ 'text.hourly.rate'|trans }}:<span>&euro;{{ user.hourlyRate }}</span>
                         </li>
                     {% endif %}
                 </ul>
@@ -64,13 +64,13 @@
                 <div class="row">
 
                     {% if user.instruments|length == 0 %}
-                        <div class="col-sm-10">No instruments yet.</div>
+                        <div class="col-sm-10">{{ 'text.no.instruments.yet'|trans }}</div>
                     {% endif %}
 
                     {% for i in user.instruments %}
                         <div class="col-xs-6">
                             <a href="{{ path('musicians', {'instruments' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
-                            {% if loop.first %}<span class="main">main</span>{% endif %}
+                            {% if loop.first %}<span class="main">{{ 'text.main'|trans }}</span>{% endif %}
                         </div>
 
                         <div class="col-xs-6">
@@ -97,7 +97,7 @@
 
                 <!-- genres -->
                 {% if user.genres|length == 0 %}
-                <div class="tags-container">No genres yet.</div>
+                <div class="tags-container">{{ 'text.no.genres.yet'|trans }}</div>
                 {% else %}
                     <div class="tags-container">
                         <ul class="tags">
@@ -111,8 +111,8 @@
 
                 <!-- influencers -->
                 <div class="favorite-group first">
-                    <span>Influencers:</span>
-                    {% if user.artists|length == 0 %}None.{% endif %}
+                    <span>{{ 'text.influencers'|trans }}:</span>
+                    {% if user.artists|length == 0 %}{{ 'text.none'|trans }}{% endif %}
                     <div class="favorite-group-inner with-scrollbar">
                         {% for a in user.artists %}
                             {{ a.name }}{% if not loop.last %}, {% endif %}
@@ -122,7 +122,7 @@
                 
                 <!-- brands -->
                 <div class="favorite-group">
-                    <span>Favourite brands:</span>
+                    <span>{{ 'text.favourite.brands'|trans }}:</span>
                     {% if user.brands|length == 0 %}None.{% endif %}
                     <div class="favorite-group-inner with-scrollbar">
                         {% for b in user.brands %}
@@ -140,10 +140,10 @@
             <section class="col-sm-8 main-content">
                     
                     <ul class="tabs-activate profile-tabs">
-                        <li><a href="#" data-tab="about" class="is-active">About</a></li>
-                        <li><a href="#" data-tab="photos" class="my-photos">Photos</a></li>
-                        <li><a href="#" data-tab="videos" class="my-videos">Videos</a></li>
-                        <li><a href="#" data-tab="sounds" class="my-sounds">Sounds</a></li>
+                        <li><a href="#" data-tab="about" class="is-active">{{ 'text.about'|trans }}</a></li>
+                        <li><a href="#" data-tab="photos" class="my-photos">{{ 'text.photos'|trans }}</a></li>
+                        <li><a href="#" data-tab="videos" class="my-videos">{{ 'text.videos'|trans }}</a></li>
+                        <li><a href="#" data-tab="sounds" class="my-sounds">{{ 'text.sounds'|trans }}</a></li>
                         <li class="last">
                             {% if app.user != user %}
                                 <ul class="compatibility-box">
@@ -152,7 +152,7 @@
                                     </li>
                                     <li class="compatibility">
                                         <span></span>
-                                        compatibility
+                                        {{ 'text.compatibility'|trans }}
                                     </li>
                                 </ul>
                             {% endif %}
@@ -164,12 +164,12 @@
                     <div class="view-tab-container teacher-text-container with-scrollbar">
 
                         <div class="view-tab about is-active" data-tab="about">
-                            {% if user.isTeacher %}<h6>Overview</h6>{% endif %}
-                            <p>{{ user.aboutMe|default("Nothing yet here.") }}</p>
+                            {% if user.isTeacher %}<h6>{{ 'text.overview'|trans }}</h6>{% endif %}
+                            <p>{{ user.aboutMe|default('text.nothing.yet.here'|trans) }}</p>
 
                             {% if user.isTeacher %}
                                 <h6>Education</h6>
-                                <p>{{ user.education|default("Nothing yet here.") }}</p>
+                                <p>{{ user.education|default('text.nothing.yet.here'|trans) }}</p>
                             {% endif %}
                         </div>
 
@@ -178,7 +178,7 @@
                             <div class="profile-media-wall">
 
                                 {% if user.images|length == 0 %}
-                                    <p>No photos yet.</p>
+                                    <p>{{ 'text.no.photos.yet'|trans }}</p>
                                 {% endif %}
 
                                 {% for i in user.images %}
@@ -194,7 +194,7 @@
                         <div class="view-tab my-videos" data-tab="videos">
 
                             {% if user.videos|length == 0 %}
-                                <p>No videos yet.</p>
+                                <p>{{ 'text.no.videos.yet'|trans }}</p>
                             {% endif %}
 
                             {% for v in user.videos %}
@@ -217,7 +217,7 @@
                 <div class="sidebar-inner">
 
                     <div class="shouts-feed">
-                        <h3>Shouts feed</h3>
+                        <h3>{{ 'text.shouts.feed'|trans }}</h3>
                     </div>
                     <!--shouts-feed ends-->
 
@@ -225,7 +225,7 @@
                         <div class="shouts-listing shouts-listing-feed">
 
                             {% if user.shouts|length == 0 %}
-                                <h5>No shouts yet.</h5>
+                                <h5>{{ 'text.no.shouts.yet'|trans }}</h5>
                             {% endif %}
 
                             {% for s in user.shouts %}
@@ -239,7 +239,7 @@
                                         <h4 class="name">{{ user.username }}</h4>
 
                                         <div class="time">
-                                            <span>{{ s.createdAt.date }} min</span>ago
+                                            <span>{{ s.createdAt.date|format('d.m.Y H:i') }}</span>
                                         </div>
                                         <p>{{ s.text }}</p>
                                     </div>

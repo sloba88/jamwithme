@@ -33,7 +33,7 @@ class SearchType extends AbstractType
                 'mapped' => false,
                 'attr' => array(
                     'class'=> 'filter-genres',
-                    'placeholder' => 'Filter by genres'
+                    'placeholder' => 'placeholder.filter.by.genres'
                 )
             ))->addModelTransformer($this->genreTransformer)
         );
@@ -44,18 +44,18 @@ class SearchType extends AbstractType
                 'mapped' => false,
                 'attr' => array(
                     'class'=> 'filter-instruments',
-                    'placeholder' => 'Filter by instruments'
+                    'placeholder' => 'placeholder.filter.by.instruments'
                 )
             ))->addModelTransformer($this->instrumentTransformer)
         );
 
         $builder
             ->add('isTeacher', 'checkbox', array(
-                'label' => 'Only people providing lesions'
+                'label' => 'label.only.people.providing.lessons'
             ))
             ->add('distance', 'number', array(
                 'data' => 4,
-                'label' => 'Distance (km)'
+                'label' => 'label.distance(km)'
             ));
     }
 

@@ -27,11 +27,13 @@ class HomeController extends Controller
             ->add('text', 'textarea', array(
                 'label' => false,
                 'attr' => array(
-                    'placeholder' => 'Say something cool...',
+                    'placeholder' => 'label.say.something.cool',
                     'maxlength' => 250
                 )
             ))
-            ->add('send', 'submit')
+            ->add('send', 'submit', array(
+                'label' => 'label.send'
+            ))
             ->getForm();
 
         $form->handleRequest($request);
@@ -40,14 +42,14 @@ class HomeController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             if (!$this->getUser()){
-                throw $this->createNotFoundException('You shall not pass');
+                throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
             }
 
             $shout->setCreator($this->getUser());
             $em->persist($shout);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'You have shouted successfully.');
+            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.you.have.shouted.successfully.'));
 
             return $this->redirect($this->generateUrl('home'));
         }
@@ -74,7 +76,7 @@ class HomeController extends Controller
             ->add('text', 'textarea', array(
                 'label' => false,
                 'attr' => array(
-                    'placeholder' => 'Say something cool...',
+                    'placeholder' => 'label.say.something.cool',
                     'maxlength' => 250
                 )
             ))
@@ -87,14 +89,14 @@ class HomeController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             if (!$this->getUser()){
-                throw $this->createNotFoundException('You shall not pass');
+                throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
             }
 
             $shout->setCreator($this->getUser());
             $em->persist($shout);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'You have shouted successfully.');
+            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.you.have.shouted.successfully.'));
 
             return $this->redirect($this->generateUrl('home'));
         }

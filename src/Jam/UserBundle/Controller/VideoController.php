@@ -34,7 +34,7 @@ class VideoController extends Controller
 
         return new JsonResponse(array(
             'status' => 'success',
-            'message' => 'Video added successfully',
+            'message' => $this->get('translator')->trans('message.video.added.successfully'),
             'url' => $video->getUrl(),
             'id' => $video->getId()
         ));
@@ -60,7 +60,7 @@ class VideoController extends Controller
 
         return new JsonResponse(array(
             'status' => 'success',
-            'message' => 'Video removed successfully'
+            'message' => $this->get('translator')->trans('message.video.removed.successfully')
         ));
     }
 }

@@ -21,7 +21,7 @@ class ImageType extends AbstractType
 
         $builder->add('is_default', 'radio', array(
             'required' => false,
-            'label' => 'Make this primary',
+            'label' => 'label.make.this.primary',
             'attr'  => array(
                 'class' => 'make-primary-image'
             )

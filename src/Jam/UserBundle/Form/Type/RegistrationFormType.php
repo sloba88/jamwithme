@@ -14,24 +14,42 @@ class RegistrationFormType extends BaseType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('email');
-        $builder->add('username');
+        $builder->add('email', 'email', array(
+            'attr' => array(
+                'placeholder' => 'label.email'
+            )
+        ));
+        $builder->add('username', 'text', array(
+            'attr' => array(
+                'placeholder' => 'label.username'
+            )
+        ));
         $builder->add('plainPassword', 'repeated', array(
             'type' => 'password',
-            'invalid_message' => 'fos_user.password.mismatch'
+            'invalid_message' => 'fos_user.password.mismatch',
+            'first_options' => array(
+                'attr' => array(
+                    'placeholder' => 'label.password'
+                )
+            ),
+            'second_options' => array(
+                'attr' => array(
+                    'placeholder' => 'label.repeat.password'
+                )
+            )
         ));
         $builder->add('isVisitor', 'checkbox', array(
             'required' => false,
-            'label' => 'Learn an instrument'
+            'label' => 'label.learn.an.instrument'
         ));
         $builder->add('isJammer', 'checkbox', array(
             'required' => false,
-            'label' => 'Jam',
+            'label' => 'label.jam',
             'data' => true
         ));
         $builder->add('isTeacher', 'checkbox', array(
             'required' => false,
-            'label' => 'Teach music'
+            'label' => 'label.teach.music'
         ));
     }
 

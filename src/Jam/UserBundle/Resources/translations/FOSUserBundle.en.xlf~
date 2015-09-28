@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="ce5bf551379459c1c61d2a204061c455" resname="Location">
+        <source>Location</source>
+        <target>__Location</target>
+      </trans-unit>
+      <trans-unit id="e9ade8c73d8a8ea7b6f53956dc36608b" resname="registration.check_email">
+        <source>registration.check_email</source>
+        <target>__registration.check_email</target>
+      </trans-unit>
+      <trans-unit id="bb2651b3e78f1ff513c944f3209a3730" resname="registration.confirmed">
+        <source>registration.confirmed</source>
+        <target>__registration.confirmed</target>
+      </trans-unit>
+      <trans-unit id="fb66cf456ffdbe3e3d15d7ec70a48ba3" resname="registration.back">
+        <source>registration.back</source>
+        <target>__registration.back</target>
+      </trans-unit>
+      <trans-unit id="90997929bcfdafefc75086643afea54d" resname="registration.email.subject">
+        <source>registration.email.subject</source>
+        <target>__registration.email.subject</target>
+      </trans-unit>
+      <trans-unit id="9671dfcb489e04d7ece6c484bf2d92d9" resname="registration.email.message">
+        <source>registration.email.message</source>
+        <target>__registration.email.message</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
