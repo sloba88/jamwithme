@@ -60,7 +60,9 @@ function drawRadius(){
 function placeMarkers(){
 
     map.removeLayer(markers);
-    markers = new L.markerClusterGroup();
+    markers = new L.markerClusterGroup({
+        maxClusterRadius: 30,
+    });
 
     $.each(filterResults, function(k, v){
 

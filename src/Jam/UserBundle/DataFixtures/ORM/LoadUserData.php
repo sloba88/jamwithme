@@ -46,8 +46,11 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setAboutMe("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting");
 
         $location = new Location();
-        $location->setLat('60.163718');
-        $location->setLng('24.915447');
+        $location->setLat('60.15917175');
+        $location->setLng('24.88327687623');
+        $location->setAddress('Pajalahdentie, Lauttasaari, Helsinki, Finland');
+        $location->setNeighborhood('Lauttasaari');
+        $location->setAdministrativeAreaLevel3('Helsinki');
         $user->setLocation($location);
 
         $userManager->updateUser($user);
@@ -65,8 +68,9 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEnabled(true);
 
         $location = new Location();
-        $location->setLat('60.158294');
-        $location->setLng('24.879227');
+        $location->setLat('60.1570861');
+        $location->setLng('24.8692208');
+        $location->setAddress('Isokaari, Lauttasaari, Helsinki, Finland');
         $user->setLocation($location);
 
         $guitar = new MusicianInstrument();
@@ -87,12 +91,18 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         //
         $user = $userManager->createUser();
 
-        $user->setUsername('malusev');
+        $user->setUsername('mstanic');
         $user->setFirstName('Marija');
         $user->setLastName('Stanic');
         $user->setEmail('malusev.marija@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Drums')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(5);
+        $user->addInstrument($guitar);
 
         $location = new Location();
         $location->setLat('60.173282');
@@ -104,13 +114,19 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         //
         $user = $userManager->createUser();
 
-        $user->setUsername('alexander666');
+        $user->setUsername('alexanderSax');
         $user->setFirstName('Alexander');
         $user->setLastName('McQuin');
         $user->setEmail('alexa.mcquin666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
         $user->setLocation($location);
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Saxophone')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
 
         $userManager->updateUser($user);
 
@@ -135,8 +151,12 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('salomo666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
-        $user->setLocation($location);
         $user->setIsTeacher(true);
+
+        $location = new Location();
+        $location->setLat('60.155294');
+        $location->setLng('24.879237');
+        $user->setLocation($location);
 
         $userManager->updateUser($user);
 
@@ -149,12 +169,16 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $guitar->setSkillLevel(2);
         $user->addInstrument($guitar);
 
-        $user->setUsername('rada');
-        $user->setFirstName('Radmila');
-        $user->setLastName('Zelic Josimov');
-        $user->setEmail('radmila.zelic666@gmail.com');
+        $user->setUsername('anna');
+        $user->setFirstName('Anna');
+        $user->setLastName('Hamalainen');
+        $user->setEmail('anna@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+
+        $location = new Location();
+        $location->setLat('60.158594');
+        $location->setLng('24.879227');
         $user->setLocation($location);
 
         $userManager->updateUser($user);
@@ -168,6 +192,85 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEmail('pierre.emmanuel666@gmail.com');
         $user->setPlainPassword('test');
         $user->setEnabled(true);
+
+        $location = new Location();
+        $location->setLat('60.158299');
+        $location->setLng('24.879227');
+        $user->setLocation($location);
+
+        $userManager->updateUser($user);
+
+        //
+        $user = $userManager->createUser();
+
+        $user->setUsername('kampa');
+        $user->setFirstName('Aleksi');
+        $user->setLastName('Kemppainen');
+        $user->setEmail('alek@gmail.com');
+        $user->setPlainPassword('test');
+        $user->setEnabled(true);
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Piano')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
+
+        $location = new Location();
+        $location->setLat('60.152299');
+        $location->setLng('24.878227');
+        $location->setCountry('Finland');
+        $location->setAddress('Helsinki');
+        $user->setLocation($location);
+
+        $userManager->updateUser($user);
+
+        //
+        $user = $userManager->createUser();
+
+        $user->setUsername('mikkoHel');
+        $user->setFirstName('Mikko');
+        $user->setLastName('Niskanen');
+        $user->setEmail('mikko@gmail.com');
+        $user->setPlainPassword('test');
+        $user->setEnabled(true);
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'DJ')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
+
+        $location = new Location();
+        $location->setLat('60.1544259');
+        $location->setLng('24.879927');
+        $location->setCountry('Finland');
+        $location->setAddress('Helsinki');
+        $user->setLocation($location);
+
+        $userManager->updateUser($user);
+
+        //
+        $user = $userManager->createUser();
+
+        $user->setUsername('noor82');
+        $user->setFirstName('Noora');
+        $user->setLastName('Koistinen');
+        $user->setEmail('noora@gmail.com');
+        $user->setPlainPassword('test');
+        $user->setEnabled(true);
+
+        $guitar = new MusicianInstrument();
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Vocals')));
+        $guitar->setMusician($user);
+        $guitar->setSkillLevel(2);
+        $user->addInstrument($guitar);
+
+        $location = new Location();
+        $location->setLat('60.154299');
+        $location->setLng('24.879327');
+        $location->setCountry('Finland');
+        $location->setAddress('Helsinki');
         $user->setLocation($location);
 
         $userManager->updateUser($user);
