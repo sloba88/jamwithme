@@ -61,7 +61,15 @@ function placeMarkers(){
 
     map.removeLayer(markers);
     markers = new L.markerClusterGroup({
-        maxClusterRadius: 30,
+        maxClusterRadius: 30
+    });
+
+    markers.on('animationend', function (a) {
+        resizeIcons();
+    });
+
+    markers.on('spiderfied', function (a) {
+        resizeIcons();
     });
 
     $.each(filterResults, function(k, v){
