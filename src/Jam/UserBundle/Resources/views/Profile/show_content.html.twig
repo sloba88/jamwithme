@@ -2,8 +2,8 @@
 
 <style>
     .instruments-profile-icons svg{
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         float: left;
     }
 </style>
@@ -17,7 +17,8 @@
                 </div>
 
                 <div class="info">
-                    <h1>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</h1>
+                    <h1>{{ user.username }}</h1>
+                    <p>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</p>
                     {% if user.location %}
                         {% if user.location.getAdministrativeAreaLevel3 %}
                             <div class="location">
