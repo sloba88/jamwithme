@@ -1,7 +1,8 @@
 {# TODO: TEACHER #}
 
 <style>
-    .instruments-profile-icons svg{
+
+    .teacher-info .instruments-profile-icons svg{
         width: 20px;
         height: 20px;
         float: left;
@@ -28,7 +29,7 @@
                     {% if user.location %}
                         {% if user.location.getAdministrativeAreaLevel3 %}
                             <div class="location">
-                                {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}
+                                <i class="fa fa-map-marker"></i> {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}
                             </div>
                         {% endif %}
                     {% endif %}
