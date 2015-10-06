@@ -6,6 +6,11 @@
         height: 20px;
         float: left;
     }
+
+    .tags-container span{
+        color: #fff;
+        font-family: "Hind Medium";
+    }
 </style>
 
 <div class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-sm-8{% endif %} teacher-container grey">
@@ -93,7 +98,7 @@
 
                 <!-- genres -->
                 {% if user.genres|length == 0 %}
-                <div class="tags-container">No genres yet.</div>
+                <div class="tags-container"><span>No genres yet.</span></div>
                 {% else %}
                     <div class="tags-container">
                         <ul class="tags">
