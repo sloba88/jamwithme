@@ -100,6 +100,18 @@
             color: #999;
         }*/
 
+        .people-grid .people-info {
+            padding: 10px 10px 5px 10px;
+        }
+
+        .people-grid .people-info .tags{
+            height: 44px;
+        }
+
+        .people-grid .people-info .name{
+            padding-right: 20px;
+        }
+
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -328,9 +340,9 @@
                     <span class="instrument" title="<%- rc.instrument %>">
                         <%= rc.icon %>
                     </span>
-                <ul class="tags">
+                <ul class="tags" >
                     <% _.each( rc.genres, function(v, k){ %>
-                    <% if (k < 3){ %><li><%- v %></li><% } %>
+                    <% if (k < 3){ %><li <% if (rc.genres.length > 3){ %>style="font-size:10px"<% } %>><%- v %></li><% } %>
                     <% }); %>
                 </ul>
                 <ul class="compatibility-box">

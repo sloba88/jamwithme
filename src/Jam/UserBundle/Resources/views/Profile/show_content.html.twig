@@ -1,11 +1,18 @@
 {# TODO: TEACHER #}
 
 <style>
-    .instruments-profile-icons svg{
-        width: 30px;
-        height: 30px;
+
+    .teacher-info .instruments-profile-icons svg{
+        width: 20px;
+        height: 20px;
         float: left;
     }
+
+    .tags-container span{
+        color: #fff;
+        font-family: "Hind Medium";
+    }
+
 </style>
 
 <div class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-sm-8{% endif %} teacher-container grey">
@@ -17,11 +24,12 @@
                 </div>
 
                 <div class="info">
-                    <h1>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</h1>
+                    <h1>{{ user.username }}</h1>
+                    <p>{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}</p>
                     {% if user.location %}
                         {% if user.location.getAdministrativeAreaLevel3 %}
                             <div class="location">
-                                {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}
+                                <i class="fa fa-map-marker"></i> {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}
                             </div>
                         {% endif %}
                     {% endif %}
@@ -104,7 +112,7 @@
 
                 <!-- genres -->
                 {% if user.genres|length == 0 %}
-                <div class="tags-container">No genres yet.</div>
+                <div class="tags-container"><span>No genres yet.</span></div>
                 {% else %}
                     <div class="tags-container">
                         <ul class="tags">
