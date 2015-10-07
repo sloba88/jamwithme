@@ -31,6 +31,18 @@
                     {% if is_granted("ROLE_USER") and app.user != user %}
                         <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>Message</a>
                     {% endif %}
+
+                    {% if app.user != user %}
+                        <ul class="compatibility-box visible-xs">
+                            <li>
+                                <img src="{{ asset('assets/images/icon-compatibility.png') }}" alt="Compatibility">
+                            </li>
+                            <li class="compatibility">
+                                <span></span>
+                                compatibility
+                            </li>
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
 
@@ -59,7 +71,7 @@
                 <div class="row">
 
                     {% if user.instruments|length == 0 %}
-                        <div class="col-sm-10">No instruments yet.</div>
+                        <div class="col-xs-12 empty-message">No instruments yet.</div>
                     {% endif %}
 
                     {% for i in user.instruments %}
@@ -141,7 +153,7 @@
                         <li><a href="#" data-tab="photos" class="my-photos">Photos</a></li>
                         <li><a href="#" data-tab="videos" class="my-videos">Videos</a></li>
                         <li><a href="#" data-tab="sounds" class="my-sounds">Sounds</a></li>
-                        <li class="last">
+                        <li class="last hidden-xs">
                             {% if app.user != user %}
                                 <ul class="compatibility-box">
                                     <li>
