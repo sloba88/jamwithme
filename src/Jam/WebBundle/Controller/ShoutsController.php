@@ -24,7 +24,6 @@ class ShoutsController extends Controller
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $me = $this->getUser();
-        $response = new JsonResponse();
         $genres = $request->query->get('genres');
         $instruments = $request->query->get('instruments');
 
@@ -63,17 +62,40 @@ class ShoutsController extends Controller
 
         $shouts = $finder->find($elasticaQuery);
 
+        return $this->formatResponse($shouts);
+    }
+
+    /**
+     * @Route("/shouts/{username}", name="user_shouts", options={"expose"=true})
+     * @Template()
+     */
+    public function getAction($username)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        if (!$user) {
+            throw $this->createNotFoundException('No such user.');
+        }
+
+        $shouts = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Shout')
+            ->findBy(array('creator' => $user));
+
+        return $this->formatResponse($shouts);
+    }
+
+    private function formatResponse($results)
+    {
+        $me = $this->getUser();
+        $response = new JsonResponse();
         $musicians_data = array();
 
-        foreach($shouts AS $s){
+        foreach($results AS $s){
 
             /** @var $m \Jam\UserBundle\Entity\User */
+            /** @var $s \Jam\CoreBundle\Entity\Shout */
             $m = $s->getCreator();
-
-            if (!$m->getLocation()){
-                //for now don't show shouts without user location
-                continue;
-            }
 
             if ($m->getImages()->first()){
                 $image = $m->getImages()->first()->getWebPath();

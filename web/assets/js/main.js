@@ -575,3 +575,22 @@ function imgError(image, size) {
     image.src = Routing.generate('default_avatar', {'size': size});
     return true;
 }
+
+function getUserShouts() {
+    $('.shouts-listing').html('');
+    var username = $('.shouts-sidebar').data('username');
+
+    $.ajax({
+        url: Routing.generate('user_shouts', {'username': username})
+    }).done(function( result ) {
+        if (result.status == 'success'){
+            $.each(result.data, function(k, v){
+                $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
+            });
+
+            if (result.data.length == 0) {
+                $( '.shouts-listing' ).html('<h5>No shouts yet.</h5>');
+            }
+        }
+    });
+}
