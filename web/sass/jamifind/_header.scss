@@ -8,7 +8,7 @@ header {
 	z-index: 100;
 	@include respond-to(tablet) {
 		@include transition(left 0.1s linear);
-		height: 78px;
+		// height: 78px;
 		width: 100%;
 
 		&.is-active {

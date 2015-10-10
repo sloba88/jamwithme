@@ -8696,6 +8696,89 @@ ul {
   top: 0;
 }
 
+/* line 271, ../../sass/jamifind/_custom.scss */
+#map {
+  height: 400px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  clear: both;
+}
+
+/* line 279, ../../sass/jamifind/_custom.scss */
+#map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img {
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 20px;
+  opacity: .9;
+}
+
+/* line 286, ../../sass/jamifind/_custom.scss */
+#map .no-icon, #_location_map .no-icon {
+  background-image: url("../images/logo-icon.png");
+  background-position: center center;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 295, ../../sass/jamifind/_custom.scss */
+#map .musician-map-box-container svg {
+  max-height: 30px;
+  max-width: 30px;
+}
+
+/* line 300, ../../sass/jamifind/_custom.scss */
+.ui-autocomplete {
+  z-index: 9999 !important;
+}
+
+/* line 304, ../../sass/jamifind/_custom.scss */
+.profile-media-wall-item {
+  margin-bottom: 10px;
+}
+
+/* line 306, ../../sass/jamifind/_custom.scss */
+.loading-content {
+  background-image: url("../images/loader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.4;
+}
+
+/* line 313, ../../sass/jamifind/_custom.scss */
+.people-listing-grid {
+  min-height: 350px;
+}
+
+/* line 317, ../../sass/jamifind/_custom.scss */
+.sidebar-nav .teachers svg {
+  width: 23px;
+  float: left;
+  fill: gray;
+}
+
+/* line 323, ../../sass/jamifind/_custom.scss */
+.sidebar-nav .teachers:hover svg, .sidebar-nav .teachers.active svg {
+  fill: #fabc09;
+}
+
+/* line 327, ../../sass/jamifind/_custom.scss */
+.select2-container-multi .select2-choices .select2-search-field input {
+  background: #fff !important;
+}
+
+/* line 331, ../../sass/jamifind/_custom.scss */
+.select2-container.form-control .select2-choice, .select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn {
+  background: #fff;
+}
+
+/* line 335, ../../sass/jamifind/_custom.scss */
+.select2-choice.select2-default span.select2-chosen {
+  color: #999;
+}
+
 /* line 1, ../../sass/jamifind/_layout.scss */
 html, body {
   min-height: 100%;
@@ -8716,12 +8799,6 @@ body {
   /* line 5, ../../sass/jamifind/_layout.scss */
   body {
     overflow: auto;
-  }
-}
-@media only screen and (max-width: 767px) {
-  /* line 5, ../../sass/jamifind/_layout.scss */
-  body {
-    padding-top: 78px;
   }
 }
 
@@ -8908,28 +8985,32 @@ input[type="radio"]:checked + label span {
 .location_widget .btn-default:hover {
   background: #fabc09;
 }
+/* line 103, ../../sass/jamifind/_forms.scss */
+.location_widget .leaflet-container {
+  width: 100% !important;
+}
 
-/* line 104, ../../sass/jamifind/_forms.scss */
+/* line 108, ../../sass/jamifind/_forms.scss */
 .profile-media-image-commands {
   background: #2b2a3b;
   height: 28px;
   padding: 2px 5px;
 }
-/* line 109, ../../sass/jamifind/_forms.scss */
+/* line 113, ../../sass/jamifind/_forms.scss */
 .profile-media-image-commands a {
   color: #fff;
 }
-/* line 112, ../../sass/jamifind/_forms.scss */
+/* line 116, ../../sass/jamifind/_forms.scss */
 .profile-media-image-commands a:hover, .profile-media-image-commands a:focus {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 118, ../../sass/jamifind/_forms.scss */
+/* line 122, ../../sass/jamifind/_forms.scss */
 .profile-media-image-commands a[class*="remove-image"] {
   float: right;
   margin-top: 2px;
 }
-/* line 122, ../../sass/jamifind/_forms.scss */
+/* line 126, ../../sass/jamifind/_forms.scss */
 .profile-media-image-commands a[class*="remove-image"]:hover, .profile-media-image-commands a[class*="remove-image"]:focus {
   color: #fabc09;
 }
@@ -8951,7 +9032,6 @@ header {
     -o-transition: left 0.1s linear;
     -webkit-transition: left 0.1s linear;
     transition: left 0.1s linear;
-    height: 78px;
     width: 100%;
   }
   /* line 14, ../../sass/jamifind/_header.scss */
@@ -9233,7 +9313,7 @@ header {
     content: "";
     left: 0;
     right: -42px;
-    top: 76px;
+    top: 70px;
     z-index: -1;
   }
   /* line 37, ../../sass/jamifind/_sidebar.scss */
@@ -10355,113 +10435,125 @@ header {
   display: table-cell;
   vertical-align: top;
 }
+/* line 655, ../../sass/jamifind/_main.scss */
+.teacher-info .teacher-info-inner .compatibility-box {
+  bottom: 13px;
+  left: 200px;
+  position: absolute;
+}
+@media only screen and (max-width: 480px) {
+  /* line 655, ../../sass/jamifind/_main.scss */
+  .teacher-info .teacher-info-inner .compatibility-box {
+    left: 170px;
+  }
+}
 @media only screen and (min-width: 768px) {
-  /* line 656, ../../sass/jamifind/_main.scss */
+  /* line 665, ../../sass/jamifind/_main.scss */
   .teacher-info .instruments-profile-icons {
     float: left;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 656, ../../sass/jamifind/_main.scss */
+  /* line 665, ../../sass/jamifind/_main.scss */
   .teacher-info .instruments-profile-icons {
     display: block;
     overflow: hidden;
   }
 }
-/* line 665, ../../sass/jamifind/_main.scss */
+/* line 674, ../../sass/jamifind/_main.scss */
 .teacher-info .instruments-profile-icons svg {
   width: 30px;
   height: 30px;
   float: left;
 }
-/* line 672, ../../sass/jamifind/_main.scss */
+/* line 681, ../../sass/jamifind/_main.scss */
 .teacher-info .text-header {
   margin-top: 13px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 672, ../../sass/jamifind/_main.scss */
+  /* line 681, ../../sass/jamifind/_main.scss */
   .teacher-info .text-header {
     margin-left: 10px;
     padding-left: 135px;
   }
 }
 @media only screen and (max-width: 1199px) {
-  /* line 672, ../../sass/jamifind/_main.scss */
+  /* line 681, ../../sass/jamifind/_main.scss */
   .teacher-info .text-header {
     padding-left: 95px;
   }
 }
 @media only screen and (max-width: 991px) {
-  /* line 672, ../../sass/jamifind/_main.scss */
+  /* line 681, ../../sass/jamifind/_main.scss */
   .teacher-info .text-header {
     padding-left: 85px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 672, ../../sass/jamifind/_main.scss */
+  /* line 681, ../../sass/jamifind/_main.scss */
   .teacher-info .text-header {
     padding-left: 0;
   }
 }
-/* line 689, ../../sass/jamifind/_main.scss */
+/* line 698, ../../sass/jamifind/_main.scss */
 .teacher-info .rate {
   font-size: 13px;
   text-transform: uppercase;
 }
-/* line 693, ../../sass/jamifind/_main.scss */
+/* line 702, ../../sass/jamifind/_main.scss */
 .teacher-info .rate span {
   font-family: "CooperHewitt Bold";
   font-size: 15px;
   margin-left: 3px;
 }
-/* line 700, ../../sass/jamifind/_main.scss */
+/* line 709, ../../sass/jamifind/_main.scss */
 .teacher-info .profile-picture {
   width: 130px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 700, ../../sass/jamifind/_main.scss */
+  /* line 709, ../../sass/jamifind/_main.scss */
   .teacher-info .profile-picture {
     width: 80px;
   }
 }
-/* line 706, ../../sass/jamifind/_main.scss */
+/* line 715, ../../sass/jamifind/_main.scss */
 .login-page-user .teacher-info .profile-picture {
   width: 100px;
 }
-/* line 711, ../../sass/jamifind/_main.scss */
+/* line 720, ../../sass/jamifind/_main.scss */
 .teacher-info .icon-teacher {
   width: 25px;
 }
-/* line 717, ../../sass/jamifind/_main.scss */
+/* line 726, ../../sass/jamifind/_main.scss */
 .teacher-info .info {
   line-height: 18px;
   padding-left: 15px;
   width: 100%;
 }
 @media only screen and (max-width: 767px) {
-  /* line 717, ../../sass/jamifind/_main.scss */
+  /* line 726, ../../sass/jamifind/_main.scss */
   .teacher-info .info {
     height: auto;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 732, ../../sass/jamifind/_main.scss */
+  /* line 741, ../../sass/jamifind/_main.scss */
   .teacher-info .info.with-icon h1 {
     padding-right: 35px;
   }
 }
-/* line 739, ../../sass/jamifind/_main.scss */
+/* line 748, ../../sass/jamifind/_main.scss */
 .teacher-info .info .availability {
   color: #18152b;
   margin-top: 20px;
   text-align: left;
 }
-/* line 744, ../../sass/jamifind/_main.scss */
+/* line 753, ../../sass/jamifind/_main.scss */
 .teacher-info .info .availability img {
   margin-right: 6px;
   top: -1px;
 }
-/* line 750, ../../sass/jamifind/_main.scss */
+/* line 759, ../../sass/jamifind/_main.scss */
 .teacher-info .info h1 {
   color: #18152b;
   font-size: 20px;
@@ -10470,25 +10562,25 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 1199px) {
-  /* line 750, ../../sass/jamifind/_main.scss */
+  /* line 759, ../../sass/jamifind/_main.scss */
   .teacher-info .info h1 {
     font-size: 18px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 750, ../../sass/jamifind/_main.scss */
+  /* line 759, ../../sass/jamifind/_main.scss */
   .teacher-info .info h1 {
     margin-bottom: 5px;
   }
 }
-/* line 769, ../../sass/jamifind/_main.scss */
+/* line 778, ../../sass/jamifind/_main.scss */
 .teacher-info .info .blockquote {
   background: url(../images/quote.png) no-repeat 0 2px;
   line-height: 16px;
   padding-left: 12px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 769, ../../sass/jamifind/_main.scss */
+  /* line 778, ../../sass/jamifind/_main.scss */
   .teacher-info .info .blockquote {
     bottom: 55px;
     left: 15px;
@@ -10496,7 +10588,7 @@ header {
     right: 15px;
   }
 }
-/* line 781, ../../sass/jamifind/_main.scss */
+/* line 790, ../../sass/jamifind/_main.scss */
 .teacher-info .info .btn {
   bottom: 47px;
   font-family: "Hind Semibold";
@@ -10505,36 +10597,36 @@ header {
   width: 146px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 781, ../../sass/jamifind/_main.scss */
+  /* line 790, ../../sass/jamifind/_main.scss */
   .teacher-info .info .btn {
     bottom: 10px;
     left: 15px;
   }
 }
-/* line 796, ../../sass/jamifind/_main.scss */
+/* line 805, ../../sass/jamifind/_main.scss */
 .teacher-info .text-header li {
   display: inline-block;
 }
 
-/* line 802, ../../sass/jamifind/_main.scss */
+/* line 811, ../../sass/jamifind/_main.scss */
 .teacher-favorites {
   background: #fff;
   border-bottom: 1px solid #2b2a3b;
   padding: 15px 0 17px 15px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 802, ../../sass/jamifind/_main.scss */
+  /* line 811, ../../sass/jamifind/_main.scss */
   .teacher-favorites {
     padding-left: 15px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 810, ../../sass/jamifind/_main.scss */
+  /* line 819, ../../sass/jamifind/_main.scss */
   .teacher-favorites.light {
     padding-bottom: 45px;
   }
 }
-/* line 816, ../../sass/jamifind/_main.scss */
+/* line 825, ../../sass/jamifind/_main.scss */
 .teacher-favorites .favorite-group {
   border-left: 5px solid #dadadf;
   height: 55px;
@@ -10543,36 +10635,36 @@ header {
   padding-left: 15px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 816, ../../sass/jamifind/_main.scss */
+  /* line 825, ../../sass/jamifind/_main.scss */
   .teacher-favorites .favorite-group {
     border: none;
     height: auto;
     padding-left: 0;
   }
 }
-/* line 828, ../../sass/jamifind/_main.scss */
+/* line 837, ../../sass/jamifind/_main.scss */
 .teacher-favorites .favorite-group span {
   color: #4a4874;
   display: block;
   font-family: "Hind Semibold";
   text-transform: uppercase;
 }
-/* line 835, ../../sass/jamifind/_main.scss */
+/* line 844, ../../sass/jamifind/_main.scss */
 .teacher-favorites .favorite-group > .ps-scrollbar-y-rail {
   opacity: 0.6;
 }
-/* line 840, ../../sass/jamifind/_main.scss */
+/* line 849, ../../sass/jamifind/_main.scss */
 .teacher-favorites .favorite-group-inner {
   height: 37px;
   padding-right: 15px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 840, ../../sass/jamifind/_main.scss */
+  /* line 849, ../../sass/jamifind/_main.scss */
   .teacher-favorites .favorite-group-inner {
     height: auto;
   }
 }
-/* line 848, ../../sass/jamifind/_main.scss */
+/* line 857, ../../sass/jamifind/_main.scss */
 .teacher-favorites .tags-container {
   padding-right: 35px;
   position: absolute;
@@ -10580,16 +10672,16 @@ header {
   z-index: 10;
 }
 @media only screen and (max-width: 991px) {
-  /* line 848, ../../sass/jamifind/_main.scss */
+  /* line 857, ../../sass/jamifind/_main.scss */
   .teacher-favorites .tags-container {
     padding-right: 25px;
   }
 }
-/* line 857, ../../sass/jamifind/_main.scss */
+/* line 866, ../../sass/jamifind/_main.scss */
 .teacher-favorites .tags-container.opened .tags {
   max-height: 160px;
 }
-/* line 862, ../../sass/jamifind/_main.scss */
+/* line 871, ../../sass/jamifind/_main.scss */
 .teacher-favorites .show-all-tags {
   -moz-transition: opacity 0.3s ease;
   -o-transition: opacity 0.3s ease;
@@ -10605,16 +10697,16 @@ header {
   width: 20px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 862, ../../sass/jamifind/_main.scss */
+  /* line 871, ../../sass/jamifind/_main.scss */
   .teacher-favorites .show-all-tags {
     right: 0;
   }
 }
-/* line 876, ../../sass/jamifind/_main.scss */
+/* line 885, ../../sass/jamifind/_main.scss */
 .teacher-favorites .show-all-tags:hover, .teacher-favorites .show-all-tags:focus {
   opacity: 0.8;
 }
-/* line 881, ../../sass/jamifind/_main.scss */
+/* line 890, ../../sass/jamifind/_main.scss */
 .teacher-favorites .tags {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -10623,11 +10715,11 @@ header {
   max-height: 25px;
   overflow: hidden;
 }
-/* line 886, ../../sass/jamifind/_main.scss */
+/* line 895, ../../sass/jamifind/_main.scss */
 .teacher-favorites .tags > li a {
   font-size: 13px;
 }
-/* line 891, ../../sass/jamifind/_main.scss */
+/* line 900, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark {
   border-left: 1px solid #2b2a3b;
   background: none;
@@ -10635,26 +10727,26 @@ header {
   border-bottom: none;
 }
 @media only screen and (max-width: 991px) {
-  /* line 891, ../../sass/jamifind/_main.scss */
+  /* line 900, ../../sass/jamifind/_main.scss */
   .teacher-favorites.dark {
     padding-right: 0;
   }
 }
-/* line 900, ../../sass/jamifind/_main.scss */
+/* line 909, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark .teacher-favorites-inner {
   background: #3b385e;
   border-bottom: 1px solid #2b2a3b;
   padding: 15px 0 3px 15px;
   position: relative;
 }
-/* line 907, ../../sass/jamifind/_main.scss */
+/* line 916, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark .tags-container {
   background: #3b385e;
   left: 15px;
   padding-bottom: 10px;
   top: 15px;
 }
-/* line 914, ../../sass/jamifind/_main.scss */
+/* line 923, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark .favorite-group {
   border-left: none;
   color: #fff;
@@ -10662,25 +10754,25 @@ header {
   line-height: 18px;
   padding-left: 0;
 }
-/* line 921, ../../sass/jamifind/_main.scss */
+/* line 930, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark .favorite-group.first {
   margin-top: 40px;
 }
-/* line 925, ../../sass/jamifind/_main.scss */
+/* line 934, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark .favorite-group span {
   color: #9998a7;
 }
-/* line 930, ../../sass/jamifind/_main.scss */
+/* line 939, ../../sass/jamifind/_main.scss */
 .teacher-favorites.dark .favorite-group-inner {
   height: 37px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 934, ../../sass/jamifind/_main.scss */
+  /* line 943, ../../sass/jamifind/_main.scss */
   .teacher-favorites.dark .show-all-tags {
     right: 3px;
   }
 }
-/* line 943, ../../sass/jamifind/_main.scss */
+/* line 952, ../../sass/jamifind/_main.scss */
 .teacher-favorites.light .tags-container {
   background: #fff;
   bottom: 12px;
@@ -10688,35 +10780,35 @@ header {
   padding-top: 10px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 943, ../../sass/jamifind/_main.scss */
+  /* line 952, ../../sass/jamifind/_main.scss */
   .teacher-favorites.light .tags-container {
     left: 15px;
   }
 }
-/* line 953, ../../sass/jamifind/_main.scss */
+/* line 962, ../../sass/jamifind/_main.scss */
 .teacher-favorites.light .show-all-tags {
   top: 10px;
 }
 
-/* line 959, ../../sass/jamifind/_main.scss */
+/* line 968, ../../sass/jamifind/_main.scss */
 .teacher-lessons {
   padding-bottom: 9px;
   padding-left: 0;
   text-align: center;
 }
 @media only screen and (max-width: 991px) {
-  /* line 959, ../../sass/jamifind/_main.scss */
+  /* line 968, ../../sass/jamifind/_main.scss */
   .teacher-lessons {
     padding-right: 0;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 959, ../../sass/jamifind/_main.scss */
+  /* line 968, ../../sass/jamifind/_main.scss */
   .teacher-lessons {
     padding: 0;
   }
 }
-/* line 970, ../../sass/jamifind/_main.scss */
+/* line 979, ../../sass/jamifind/_main.scss */
 .teacher-lessons .teacher-lessons-inner {
   background: #fff url(../images/transparent-bg-lessons.png) no-repeat left -15px;
   border-bottom: 1px solid #2b2a3b;
@@ -10724,20 +10816,20 @@ header {
   height: 193px;
 }
 @media only screen and (max-width: 1199px) {
-  /* line 970, ../../sass/jamifind/_main.scss */
+  /* line 979, ../../sass/jamifind/_main.scss */
   .teacher-lessons .teacher-lessons-inner {
     padding: 20px 10px 0 20px;
   }
 }
 @media only screen and (max-width: 991px) {
-  /* line 970, ../../sass/jamifind/_main.scss */
+  /* line 979, ../../sass/jamifind/_main.scss */
   .teacher-lessons .teacher-lessons-inner {
     padding-top: 15px;
     padding-bottom: 15px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 970, ../../sass/jamifind/_main.scss */
+  /* line 979, ../../sass/jamifind/_main.scss */
   .teacher-lessons .teacher-lessons-inner {
     background: #2b2a3b;
     height: auto;
@@ -10745,25 +10837,25 @@ header {
   }
 }
 @media only screen and (max-width: 1199px) {
-  /* line 988, ../../sass/jamifind/_main.scss */
+  /* line 997, ../../sass/jamifind/_main.scss */
   .teacher-lessons .teacher-lessons-inner > img {
     width: 130px;
   }
 }
 @media only screen and (max-width: 991px) {
-  /* line 988, ../../sass/jamifind/_main.scss */
+  /* line 997, ../../sass/jamifind/_main.scss */
   .teacher-lessons .teacher-lessons-inner > img {
     margin: 0 0 0 15px;
     width: 90px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 988, ../../sass/jamifind/_main.scss */
+  /* line 997, ../../sass/jamifind/_main.scss */
   .teacher-lessons .teacher-lessons-inner > img {
     width: auto;
   }
 }
-/* line 1002, ../../sass/jamifind/_main.scss */
+/* line 1011, ../../sass/jamifind/_main.scss */
 .teacher-lessons h2 {
   color: #fff;
   font-size: 15px;
@@ -10774,20 +10866,20 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 991px) {
-  /* line 1002, ../../sass/jamifind/_main.scss */
+  /* line 1011, ../../sass/jamifind/_main.scss */
   .teacher-lessons h2 {
     height: 55px;
     padding: 0 0 0 15px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 1002, ../../sass/jamifind/_main.scss */
+  /* line 1011, ../../sass/jamifind/_main.scss */
   .teacher-lessons h2 {
     height: auto;
     margin-bottom: 25px;
   }
 }
-/* line 1020, ../../sass/jamifind/_main.scss */
+/* line 1029, ../../sass/jamifind/_main.scss */
 .teacher-lessons .bottom {
   display: table;
   left: -12%;
@@ -10796,7 +10888,7 @@ header {
   width: 108%;
 }
 @media only screen and (max-width: 1199px) {
-  /* line 1020, ../../sass/jamifind/_main.scss */
+  /* line 1029, ../../sass/jamifind/_main.scss */
   .teacher-lessons .bottom {
     left: auto;
     margin-top: 30px;
@@ -10804,29 +10896,29 @@ header {
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 1020, ../../sass/jamifind/_main.scss */
+  /* line 1029, ../../sass/jamifind/_main.scss */
   .teacher-lessons .bottom {
     margin-top: 25px;
     width: 100%;
   }
 }
-/* line 1036, ../../sass/jamifind/_main.scss */
+/* line 1045, ../../sass/jamifind/_main.scss */
 .teacher-lessons .bottom > div {
   display: table-cell;
 }
 @media only screen and (max-width: 991px) {
-  /* line 1036, ../../sass/jamifind/_main.scss */
+  /* line 1045, ../../sass/jamifind/_main.scss */
   .teacher-lessons .bottom > div {
     display: block;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 1036, ../../sass/jamifind/_main.scss */
+  /* line 1045, ../../sass/jamifind/_main.scss */
   .teacher-lessons .bottom > div {
     display: table-cell;
   }
 }
-/* line 1045, ../../sass/jamifind/_main.scss */
+/* line 1054, ../../sass/jamifind/_main.scss */
 .teacher-lessons .bottom > div.hourly-rate {
   color: #fff;
   font-size: 13px;
@@ -10834,55 +10926,55 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 1199px) {
-  /* line 1045, ../../sass/jamifind/_main.scss */
+  /* line 1054, ../../sass/jamifind/_main.scss */
   .teacher-lessons .bottom > div.hourly-rate {
     text-align: center;
   }
 }
-/* line 1054, ../../sass/jamifind/_main.scss */
+/* line 1063, ../../sass/jamifind/_main.scss */
 .teacher-lessons .bottom > div.hourly-rate span {
   font-size: 18px;
   display: inline-block;
   margin-left: 4px;
 }
 
-/* line 1064, ../../sass/jamifind/_main.scss */
+/* line 1073, ../../sass/jamifind/_main.scss */
 .teacher-instruments {
   color: #fff;
   font-family: "Hind Semibold";
   padding: 0;
   text-transform: uppercase;
 }
-/* line 1070, ../../sass/jamifind/_main.scss */
+/* line 1079, ../../sass/jamifind/_main.scss */
 .teacher-instruments .teacher-instruments-inner {
   background: url(../images/transparent-bg-lessons-v2.png) no-repeat 0 -15px #eaeaea;
   height: 193px;
   padding: 20px 5px 0 40px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 1070, ../../sass/jamifind/_main.scss */
+  /* line 1079, ../../sass/jamifind/_main.scss */
   .teacher-instruments .teacher-instruments-inner {
     padding: 15px 0 0 38px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 1070, ../../sass/jamifind/_main.scss */
+  /* line 1079, ../../sass/jamifind/_main.scss */
   .teacher-instruments .teacher-instruments-inner {
     background: #3b385e;
     height: auto;
     padding: 10px 15px;
   }
 }
-/* line 1083, ../../sass/jamifind/_main.scss */
+/* line 1092, ../../sass/jamifind/_main.scss */
 .teacher-instruments .teacher-instruments-inner .col-xs-6 {
   margin-bottom: 7px;
 }
-/* line 1086, ../../sass/jamifind/_main.scss */
+/* line 1095, ../../sass/jamifind/_main.scss */
 .teacher-instruments .teacher-instruments-inner .col-xs-6:nth-child(2n+1) {
   clear: left;
   padding-right: 0;
 }
-/* line 1092, ../../sass/jamifind/_main.scss */
+/* line 1101, ../../sass/jamifind/_main.scss */
 .teacher-instruments .teacher-instruments-inner a {
   color: #fff;
   display: inline-block;
@@ -10890,34 +10982,44 @@ header {
   line-height: 15px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 1092, ../../sass/jamifind/_main.scss */
+  /* line 1101, ../../sass/jamifind/_main.scss */
   .teacher-instruments .teacher-instruments-inner a {
     font-size: 11px;
   }
 }
-/* line 1101, ../../sass/jamifind/_main.scss */
+/* line 1110, ../../sass/jamifind/_main.scss */
 .teacher-instruments .teacher-instruments-inner a:hover, .teacher-instruments .teacher-instruments-inner a:focus {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 1108, ../../sass/jamifind/_main.scss */
+/* line 1116, ../../sass/jamifind/_main.scss */
+.teacher-instruments .teacher-instruments-inner .empty-message {
+  text-transform: none;
+}
+@media only screen and (min-width: 768px) {
+  /* line 1116, ../../sass/jamifind/_main.scss */
+  .teacher-instruments .teacher-instruments-inner .empty-message {
+    text-align: center;
+  }
+}
+/* line 1124, ../../sass/jamifind/_main.scss */
 .teacher-instruments span.main {
   color: #9998a7;
   display: block;
   font-size: 10px;
 }
-/* line 1114, ../../sass/jamifind/_main.scss */
+/* line 1130, ../../sass/jamifind/_main.scss */
 .teacher-instruments ul {
   line-height: 15px;
   list-style: none;
   padding: 0;
 }
-/* line 1119, ../../sass/jamifind/_main.scss */
+/* line 1135, ../../sass/jamifind/_main.scss */
 .teacher-instruments ul li {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 1123, ../../sass/jamifind/_main.scss */
+/* line 1139, ../../sass/jamifind/_main.scss */
 .teacher-instruments ul li span {
   background: #9998a7;
   display: inline-block;
@@ -10925,37 +11027,37 @@ header {
   vertical-align: middle;
   width: 11px;
 }
-/* line 1130, ../../sass/jamifind/_main.scss */
+/* line 1146, ../../sass/jamifind/_main.scss */
 .teacher-instruments ul li span.active {
   background: url(../images/sample.png) no-repeat;
 }
 
-/* line 1138, ../../sass/jamifind/_main.scss */
+/* line 1154, ../../sass/jamifind/_main.scss */
 .availability {
   color: #b5c61e;
   padding-right: 5px;
   text-align: left;
 }
 @media only screen and (max-width: 1199px) {
-  /* line 1138, ../../sass/jamifind/_main.scss */
+  /* line 1154, ../../sass/jamifind/_main.scss */
   .availability {
     text-align: center;
   }
 }
-/* line 1146, ../../sass/jamifind/_main.scss */
+/* line 1162, ../../sass/jamifind/_main.scss */
 .availability img {
   margin-right: 3px;
   position: relative;
   top: -2px;
 }
 
-/* line 1153, ../../sass/jamifind/_main.scss */
+/* line 1169, ../../sass/jamifind/_main.scss */
 .teacher-text-header {
   border-bottom: 1px solid #18152b;
   margin: 16px 0 7px;
   padding: 0 0 7px;
 }
-/* line 1158, ../../sass/jamifind/_main.scss */
+/* line 1174, ../../sass/jamifind/_main.scss */
 .teacher-text-header li {
   color: #18152b;
   float: right;
@@ -10966,54 +11068,54 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 767px) {
-  /* line 1158, ../../sass/jamifind/_main.scss */
+  /* line 1174, ../../sass/jamifind/_main.scss */
   .teacher-text-header li {
     float: none;
     margin-bottom: 10px;
   }
 }
-/* line 1171, ../../sass/jamifind/_main.scss */
+/* line 1187, ../../sass/jamifind/_main.scss */
 .teacher-text-header li.first {
   float: left;
 }
 @media only screen and (max-width: 767px) {
-  /* line 1171, ../../sass/jamifind/_main.scss */
+  /* line 1187, ../../sass/jamifind/_main.scss */
   .teacher-text-header li.first {
     float: none;
   }
 }
-/* line 1177, ../../sass/jamifind/_main.scss */
+/* line 1193, ../../sass/jamifind/_main.scss */
 .teacher-text-header li.first img {
   margin-left: 5px;
   margin-right: 15px;
 }
-/* line 1183, ../../sass/jamifind/_main.scss */
+/* line 1199, ../../sass/jamifind/_main.scss */
 .teacher-text-header li.guitar {
   margin-right: 30px;
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  /* line 1183, ../../sass/jamifind/_main.scss */
+  /* line 1199, ../../sass/jamifind/_main.scss */
   .teacher-text-header li.guitar {
     margin-right: 15px;
   }
 }
-/* line 1189, ../../sass/jamifind/_main.scss */
+/* line 1205, ../../sass/jamifind/_main.scss */
 .teacher-text-header li.guitar img {
   margin-left: 15px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 1194, ../../sass/jamifind/_main.scss */
+  /* line 1210, ../../sass/jamifind/_main.scss */
   .teacher-text-header li.rate {
     margin-top: -2px;
   }
 }
-/* line 1199, ../../sass/jamifind/_main.scss */
+/* line 1215, ../../sass/jamifind/_main.scss */
 .teacher-text-header li.rate span {
   font-size: 18px;
   margin-left: 10px;
 }
 
-/* line 1207, ../../sass/jamifind/_main.scss */
+/* line 1223, ../../sass/jamifind/_main.scss */
 .profile-tabs {
   border-bottom: 4px solid #2b2a3b;
   list-style: none;
@@ -11021,22 +11123,22 @@ header {
   padding: 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 1207, ../../sass/jamifind/_main.scss */
+  /* line 1223, ../../sass/jamifind/_main.scss */
   .profile-tabs {
     border-bottom: none;
   }
 }
-/* line 1216, ../../sass/jamifind/_main.scss */
+/* line 1232, ../../sass/jamifind/_main.scss */
 .profile-tabs > li {
   display: inline-block;
 }
 @media only screen and (max-width: 767px) {
-  /* line 1216, ../../sass/jamifind/_main.scss */
+  /* line 1232, ../../sass/jamifind/_main.scss */
   .profile-tabs > li {
     display: block;
   }
 }
-/* line 1222, ../../sass/jamifind/_main.scss */
+/* line 1238, ../../sass/jamifind/_main.scss */
 .profile-tabs > li a {
   -moz-transition: color 0.3s ease, border-color 0.3s ease;
   -o-transition: color 0.3s ease, border-color 0.3s ease;
@@ -11053,7 +11155,7 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 767px) {
-  /* line 1222, ../../sass/jamifind/_main.scss */
+  /* line 1238, ../../sass/jamifind/_main.scss */
   .profile-tabs > li a {
     border-color: #2b2a3b;
     display: block;
@@ -11061,78 +11163,78 @@ header {
     padding-right: 0;
   }
 }
-/* line 1240, ../../sass/jamifind/_main.scss */
+/* line 1256, ../../sass/jamifind/_main.scss */
 .profile-tabs > li a:hover {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 1245, ../../sass/jamifind/_main.scss */
+/* line 1261, ../../sass/jamifind/_main.scss */
 .profile-tabs > li a.is-active {
   border-bottom: 4px solid #fabc09;
   color: #fabc09;
 }
-/* line 1251, ../../sass/jamifind/_main.scss */
+/* line 1267, ../../sass/jamifind/_main.scss */
 .profile-tabs > li.last {
   float: right;
   margin-top: 10px;
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  /* line 1251, ../../sass/jamifind/_main.scss */
+  /* line 1267, ../../sass/jamifind/_main.scss */
   .profile-tabs > li.last {
     margin-top: 3px;
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  /* line 1258, ../../sass/jamifind/_main.scss */
+  /* line 1274, ../../sass/jamifind/_main.scss */
   .profile-tabs > li.last .compatibility-box {
     width: 90px;
   }
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  /* line 1263, ../../sass/jamifind/_main.scss */
+  /* line 1279, ../../sass/jamifind/_main.scss */
   .profile-tabs > li.last .compatibility-box > li {
     display: initial;
     margin: 0;
   }
 }
-/* line 1269, ../../sass/jamifind/_main.scss */
+/* line 1285, ../../sass/jamifind/_main.scss */
 .profile-tabs > li.last .compatibility-box > li:first-child {
   float: left;
 }
 @media only screen and (max-width: 991px) and (min-width: 768px) {
-  /* line 1275, ../../sass/jamifind/_main.scss */
+  /* line 1291, ../../sass/jamifind/_main.scss */
   .profile-tabs > li.last span {
     display: inline-block;
     margin: 3px 0 0 7px;
   }
 }
-/* line 1284, ../../sass/jamifind/_main.scss */
+/* line 1300, ../../sass/jamifind/_main.scss */
 .profile-tabs .compatibility {
   margin-right: 0;
 }
 
-/* line 1291, ../../sass/jamifind/_main.scss */
+/* line 1307, ../../sass/jamifind/_main.scss */
 .teacher-text-container h6 {
   color: #000;
   font-size: 15px;
 }
-/* line 1296, ../../sass/jamifind/_main.scss */
+/* line 1312, ../../sass/jamifind/_main.scss */
 .teacher-text-container p {
   color: #2b2a3b;
   font-size: 15px;
   line-height: 19px;
   margin-bottom: 20px;
 }
-/* line 1303, ../../sass/jamifind/_main.scss */
+/* line 1319, ../../sass/jamifind/_main.scss */
 .teacher-text-container .link {
   display: inline-block;
   margin-left: 10px;
 }
-/* line 1308, ../../sass/jamifind/_main.scss */
+/* line 1324, ../../sass/jamifind/_main.scss */
 .teacher-text-container .quote {
   position: relative;
 }
-/* line 1311, ../../sass/jamifind/_main.scss */
+/* line 1327, ../../sass/jamifind/_main.scss */
 .teacher-text-container .quote:before {
   background: url(../images/quote.png) no-repeat;
   content: '';
@@ -11142,80 +11244,80 @@ header {
   top: 2px;
   width: 7px;
 }
-/* line 1322, ../../sass/jamifind/_main.scss */
+/* line 1338, ../../sass/jamifind/_main.scss */
 .teacher-text-container .quoted {
   font-size: 13px;
   line-height: 16px;
 }
-/* line 1326, ../../sass/jamifind/_main.scss */
+/* line 1342, ../../sass/jamifind/_main.scss */
 .teacher-text-container .quoted img {
   float: left;
   margin-right: 5px;
 }
 
-/* line 1335, ../../sass/jamifind/_main.scss */
+/* line 1351, ../../sass/jamifind/_main.scss */
 .page-settings .main-content.col-md-10 {
   background: transparent;
   padding-bottom: 0;
 }
-/* line 1341, ../../sass/jamifind/_main.scss */
+/* line 1357, ../../sass/jamifind/_main.scss */
 .page-settings .checkboxes-list {
   margin-bottom: 20px;
 }
-/* line 1345, ../../sass/jamifind/_main.scss */
+/* line 1361, ../../sass/jamifind/_main.scss */
 .page-settings .profile-tabs {
   margin-top: 20px;
 }
-/* line 1349, ../../sass/jamifind/_main.scss */
+/* line 1365, ../../sass/jamifind/_main.scss */
 .page-settings #add_another_instrument {
   margin-bottom: 20px;
   min-width: 260px;
   width: auto;
 }
 @media only screen and (max-width: 991px) {
-  /* line 1349, ../../sass/jamifind/_main.scss */
+  /* line 1365, ../../sass/jamifind/_main.scss */
   .page-settings #add_another_instrument {
     width: 100%;
   }
 }
-/* line 1357, ../../sass/jamifind/_main.scss */
+/* line 1373, ../../sass/jamifind/_main.scss */
 .page-settings #add_another_instrument i {
   margin-right: 3px;
   top: 2px;
 }
-/* line 1368, ../../sass/jamifind/_main.scss */
+/* line 1384, ../../sass/jamifind/_main.scss */
 .page-settings .preview-thumb canvas {
   display: block;
   width: 80px;
 }
-/* line 1375, ../../sass/jamifind/_main.scss */
+/* line 1391, ../../sass/jamifind/_main.scss */
 .page-settings #files input {
   display: none;
 }
-/* line 1379, ../../sass/jamifind/_main.scss */
+/* line 1395, ../../sass/jamifind/_main.scss */
 .page-settings #files .preview-container {
   float: left;
 }
-/* line 1382, ../../sass/jamifind/_main.scss */
+/* line 1398, ../../sass/jamifind/_main.scss */
 .page-settings #files .preview-container p {
   margin: 0;
 }
-/* line 1387, ../../sass/jamifind/_main.scss */
+/* line 1403, ../../sass/jamifind/_main.scss */
 .page-settings #files .preview-thumb {
   display: inline-block;
   padding: 5px;
   vertical-align: top;
 }
-/* line 1394, ../../sass/jamifind/_main.scss */
+/* line 1410, ../../sass/jamifind/_main.scss */
 .page-settings .jcrop-keymgr {
   opacity: 0;
 }
-/* line 1398, ../../sass/jamifind/_main.scss */
+/* line 1414, ../../sass/jamifind/_main.scss */
 .page-settings .fileinput-button {
   margin-bottom: 6px;
   position: relative;
 }
-/* line 1404, ../../sass/jamifind/_main.scss */
+/* line 1420, ../../sass/jamifind/_main.scss */
 .page-settings .fileinput-button input {
   cursor: pointer;
   direction: ltr;
@@ -11227,45 +11329,39 @@ header {
   top: 0;
   width: 100%;
 }
-/* line 1416, ../../sass/jamifind/_main.scss */
+/* line 1432, ../../sass/jamifind/_main.scss */
 .page-settings .progress {
   margin-top: 10px;
 }
-/* line 1420, ../../sass/jamifind/_main.scss */
-.page-settings .panel-images {
-  padding-right: 0;
-}
-/* line 1424, ../../sass/jamifind/_main.scss */
+/* line 1440, ../../sass/jamifind/_main.scss */
 .page-settings .profile-media-wall {
   min-height: 140px;
-  max-height: 350px;
-  padding-right: 15px;
 }
-/* line 1429, ../../sass/jamifind/_main.scss */
+/* line 1445, ../../sass/jamifind/_main.scss */
 .page-settings .profile-media-wall .image-holder {
   background-color: #000;
   overflow: hidden;
   position: relative;
 }
-/* line 1436, ../../sass/jamifind/_main.scss */
+/* line 1452, ../../sass/jamifind/_main.scss */
 .page-settings .profile-media-wall .image-holder:hover .fancybox {
   opacity: 0.8;
 }
-/* line 1440, ../../sass/jamifind/_main.scss */
+/* line 1456, ../../sass/jamifind/_main.scss */
 .page-settings .profile-media-wall .image-holder:hover .profile-media-image-commands {
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
-/* line 1446, ../../sass/jamifind/_main.scss */
+/* line 1462, ../../sass/jamifind/_main.scss */
 .page-settings .profile-media-wall .fancybox {
   -moz-transition: opacity 0.5s ease;
   -o-transition: opacity 0.5s ease;
   -webkit-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease;
 }
-/* line 1451, ../../sass/jamifind/_main.scss */
+/* line 1467, ../../sass/jamifind/_main.scss */
 .page-settings .profile-media-image-commands {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -11282,21 +11378,21 @@ header {
   -webkit-transform: translateY(-28px);
   transform: translateY(-28px);
 }
-/* line 1462, ../../sass/jamifind/_main.scss */
+/* line 1478, ../../sass/jamifind/_main.scss */
 .page-settings .location_widget .ui-autocomplete-input {
   color: #000;
   border: 1px solid #18152b;
 }
-/* line 1469, ../../sass/jamifind/_main.scss */
+/* line 1485, ../../sass/jamifind/_main.scss */
 .page-settings .add-another-video i {
   top: 0;
 }
-/* line 1474, ../../sass/jamifind/_main.scss */
+/* line 1490, ../../sass/jamifind/_main.scss */
 .page-settings .btn-save {
   margin-bottom: 10px;
   padding-left: 30px;
 }
-/* line 1478, ../../sass/jamifind/_main.scss */
+/* line 1494, ../../sass/jamifind/_main.scss */
 .page-settings .btn-save + i {
   left: 0;
   margin: 0 auto;
@@ -11307,33 +11403,33 @@ header {
   width: 0;
 }
 
-/* line 1492, ../../sass/jamifind/_main.scss */
+/* line 1508, ../../sass/jamifind/_main.scss */
 .personal-bio .radio label {
   padding-left: 0;
 }
 
-/* line 1499, ../../sass/jamifind/_main.scss */
+/* line 1515, ../../sass/jamifind/_main.scss */
 .settings-instruments .form-control, .settings-skill .form-control {
   margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 1504, ../../sass/jamifind/_main.scss */
+  /* line 1520, ../../sass/jamifind/_main.scss */
   .settings-instruments {
     margin-bottom: 20px;
   }
 }
 
-/* line 1510, ../../sass/jamifind/_main.scss */
+/* line 1526, ../../sass/jamifind/_main.scss */
 .profile-media-wall-item {
   margin-bottom: 15px;
 }
-/* line 1513, ../../sass/jamifind/_main.scss */
+/* line 1529, ../../sass/jamifind/_main.scss */
 .profile-media-wall-item img {
   width: 100%;
 }
 
-/* line 1521, ../../sass/jamifind/_main.scss */
+/* line 1537, ../../sass/jamifind/_main.scss */
 #musician_instruments .row > div {
   margin: 10px 0px;
 }

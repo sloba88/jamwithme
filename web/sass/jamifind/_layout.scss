@@ -14,9 +14,9 @@ body {
 	@include respond-to(tablet) {
 		overflow: auto;
 	}
-	@include respond-to(handhelds) {
-		padding-top: 78px;
-	}
+	// @include respond-to(handhelds) {
+	// 	padding-top: 78px;
+	// }
 }
 
 .container-fluid {

@@ -266,3 +266,72 @@
 		}
 	}
 }
+
+//map
+#map {
+	height: 400px;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	clear: both;
+}
+
+#map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img{
+	background-color: #fff;
+	padding: 2px;
+	border-radius: 20px;
+	opacity: .9;
+}
+
+#map .no-icon, #_location_map .no-icon{
+	background-image: url('../images/logo-icon.png');
+	background-position: center center;
+	background-size: 80%;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+}
+
+#map .musician-map-box-container svg{
+	max-height: 30px;
+	max-width: 30px;
+}
+
+.ui-autocomplete {
+	z-index: 9999 !important;
+}
+
+.profile-media-wall-item { margin-bottom: 10px; }
+
+.loading-content{
+	background-image: url('../images/loader.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	opacity: 0.4;
+}
+
+.people-listing-grid{
+	min-height: 350px;
+}
+
+.sidebar-nav .teachers svg{
+	width: 23px;
+	float: left;
+	fill: gray;
+}
+
+.sidebar-nav .teachers:hover svg,.sidebar-nav .teachers.active svg{
+	fill: #fabc09;
+}
+
+.select2-container-multi .select2-choices .select2-search-field input{
+	background: #fff !important;
+}
+
+.select2-container.form-control .select2-choice, .select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn{
+	background: #fff;
+}
+
+.select2-choice.select2-default span.select2-chosen{
+	color: #999;
+}

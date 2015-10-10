@@ -651,6 +651,15 @@
 			display: table-cell;
 			vertical-align: top;
 		}
+
+		.compatibility-box {
+			bottom: 13px;
+			left: 200px;
+			position: absolute;
+			@include respond-to(mediumHandhelds) {
+				left: 170px;
+			}
+		}
 	}
 
 	.instruments-profile-icons {
@@ -1103,6 +1112,13 @@
 				text-decoration: none;
 			}
 		}
+
+		.empty-message {
+			text-transform: none;
+			@include respond-to(nonHandhelds) {
+				text-align: center;
+			}
+		}
 	}
 
 	span.main {
@@ -1418,13 +1434,13 @@
 	}
 
 	.panel-images {
-		padding-right: 0;
+		// padding-right: 0;
 	}
 
 	.profile-media-wall {
 		min-height: 140px;
-		max-height: 350px;
-		padding-right: 15px;
+		// max-height: 350px;
+		// padding-right: 15px;
 
 		.image-holder {
 			background-color: #000;
