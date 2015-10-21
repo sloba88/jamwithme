@@ -23,6 +23,8 @@ class HomeController extends Controller
         $shoutCounter = $this->get('shout.counter');
         $shout = new Shout();
 
+        $locale = $request->getLocale();
+
         $form = $this->createFormBuilder($shout)
             ->add('text', 'textarea', array(
                 'label' => false,

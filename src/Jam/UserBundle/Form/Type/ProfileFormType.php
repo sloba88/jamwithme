@@ -119,6 +119,15 @@ class ProfileFormType extends BaseType
             'allow_delete' => true
         ));
 
+        $builder->add('locale', 'choice', array(
+            'choices' => array(
+                'en' => 'English',
+            ),
+            'required' => false,
+            'empty_data' => null,
+            'placeholder' => 'value.select.language'
+        ));
+
     }
 
     public function getName()
