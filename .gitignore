@@ -15,3 +15,7 @@
 /web/uploads/*
 /node/node_modules/*
 .DS_Store
+.sass-cache/*
+/web/vendor/
+/web/css/
+/web/js/
