@@ -30,7 +30,7 @@
             {% endfor %}
         </ul>
 
-        <a href="#" id="add_another_member" class="btn bnt-default">Add another member</a>
+        <a href="#" id="add_another_member" class="btn bnt-default">{{ 'text.add.another.member'|trans }}</a>
 
     </div>
 
@@ -176,6 +176,7 @@
                     });
                 }).on('fileuploadfail', function (e, data) {
                     $.each(data.files, function (index, file) {
+                        // todo return translated message from backend
                         var error = $('<span class="text-danger"/>').text('File upload failed.');
                         $(data.context.children()[index])
                                 .append('<br>')

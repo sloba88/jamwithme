@@ -46,7 +46,7 @@ class JamController extends Controller
                 $creator = $this->container->get('security.context')->getToken()->getUser();
                 $jam->setCreator($creator);
             } else {
-                throw $this->createNotFoundException('This user does not exist');
+                throw $this->createNotFoundException($this->get('translator')->trans('exception.this.user.does.not.exist'));
             }
 
             $jamMember = new JamMember();
@@ -59,7 +59,7 @@ class JamController extends Controller
             $em->persist($jam);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'Jam created successfully.');
+            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.created.successfully'));
 
             return $this->redirect($this->generateUrl('home'));
         }
@@ -80,7 +80,9 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('slug' => $slug, 'creator' => $musician));
 
-        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) {
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
+        }
 
         $form = $this->createForm(new JamType(), $jam);
 
@@ -96,7 +98,7 @@ class JamController extends Controller
             $em->persist($jam);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->set('success', 'Jam updated successfully.');
+            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.updated.successfully'));
 
             return $this->redirect($this->generateUrl('home'));
         }
@@ -114,7 +116,7 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('slug' => $slug));
 
-        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
         return array('jam' => $jam);
     }
@@ -129,16 +131,16 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('slug' => $slug));
 
-        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $musician = $this->container->get('security.context')->getToken()->getUser();
             if ($musician->isJamMember($jam)) {
-                throw $this->createNotFoundException('You are already in the jam');
+                throw $this->createNotFoundException($this->get('translator')->trans('excpetion.you.are.already.in.the.jam'));
             } else {
 
                 if ($musician->isJamMemberRequested($jam)) {
-                    $this->get('session')->getFlashBag()->set('error', 'Request already sent.');
+                    $this->get('session')->getFlashBag()->set('error', $this->get('translator')->trans('message.request.already.sent'));
                     return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
                 }
 
@@ -148,10 +150,10 @@ class JamController extends Controller
                 $em->persist($jam);
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->set('success', 'Jam request sent successfully.');
+                $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.request.sent.successfully'));
             }
         } else {
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
@@ -171,11 +173,11 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('slug' => $slug));
 
-        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             if ($musician->isJamMember($jam)) {
-                throw $this->createNotFoundException('You are already in the jam');
+                throw $this->createNotFoundException($this->get('translator')->trans('excpetion.you.are.already.in.the.jam'));
             } else {
 
                 $jam->removeMemberRequest($musician);
@@ -185,10 +187,10 @@ class JamController extends Controller
                 $em->persist($jam);
                 $em->flush();
 
-                $this->get('session')->getFlashBag()->set('success', 'Jam request accepted successfully.');
+                $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.request.accepted.successfully'));
             }
         } else {
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
@@ -206,16 +208,16 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('slug' => $slug));
 
-        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }else{
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         if(!$user->isJamMember($jam)){
-            throw $this->createNotFoundException('You are not this jam member.');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.are.not.this.jam.member.'));
         }
 
         $file = $request->files->get('file');
@@ -253,17 +255,17 @@ class JamController extends Controller
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $user = $this->container->get('security.context')->getToken()->getUser();
         }else{
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         $jam = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
             ->findOneBy(array('slug' => $slug));
 
-        if (!$jam) throw $this->createNotFoundException('The jam does not exist');
+        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
         if(!$user->isJamMember($jam)){
-            throw $this->createNotFoundException('You are not this jam member.');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.are.not.this.jam.member.'));
         }
 
         $jamImage = $this->getDoctrine()
@@ -271,7 +273,7 @@ class JamController extends Controller
             ->find($id);
 
         if(!$jamImage){
-            throw $this->createNotFoundException('Image not found.');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.image.not.found'));
         }
 
         $jam->removeImage($jamImage);

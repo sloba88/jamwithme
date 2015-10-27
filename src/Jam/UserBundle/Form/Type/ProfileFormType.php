@@ -27,7 +27,7 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('username', null, array(
-            'label' => 'Username *'
+            'label' => 'label.username *'
         ));
 
         $builder->add('aboutMe', 'textarea', array(
@@ -40,22 +40,22 @@ class ProfileFormType extends BaseType
 
         $builder->add('hourlyRate', 'text', array(
             'required' => false,
-            'label' => 'Hourly rate &euro;'
+            'label' => 'label.hourly.rate.&.euro'
         ));
 
         $builder->add('isVisitor', 'checkbox', array(
             'required' => false,
-            'label' => 'Learn an instrument'
+            'label' => 'label.learn.an.instrument'
         ));
 
         $builder->add('isJammer', 'checkbox', array(
             'required' => false,
-            'label' => 'Jam'
+            'label' => 'label.jam'
         ));
 
         $builder->add('isTeacher', 'checkbox', array(
             'required' => false,
-            'label' => 'Teach music'
+            'label' => 'label.teach.music'
         ));
 
         $builder->add('instruments', 'collection', array(
@@ -79,9 +79,9 @@ class ProfileFormType extends BaseType
 
         $builder->add('gender', 'choice', array(
             'choices'   => array(
-            '' => 'Won\'t say',
-            '1' => 'Male',
-            '2' => 'Female',
+            '' => 'value.won\'t.say',
+            '1' => 'value.male',
+            '2' => 'value.female',
         ),
             'expanded' => true,
             'empty_data'  => 0,
@@ -90,18 +90,18 @@ class ProfileFormType extends BaseType
 
         $builder->add('commitment', 'choice', array(
             'choices'   => array(
-                '0' => 'Not available',
-                '1' => '1-2 hours/week',
-                '2' => '2-4 hours/week',
-                '3' => '4-6 hours/week',
-                '4' => 'More than 6 hours/week'
+                '0' => 'value.not.available',
+                '1' => 'value.1-2.hours/week',
+                '2' => 'value.2-4.hours/week',
+                '3' => 'value.4-6.hours/week',
+                '4' => 'value.more.than.6.hours/week'
             ),
             'expanded' => false,
             'required' => false
         ));
 
         $builder->add('birthDate', 'date', array(
-            'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+            'empty_value' => array('year' => 'value.year', 'month' => 'value.month', 'day' => 'value.day'),
             'widget' => 'choice',
             'years' => range(1920, date('Y')),
             'required' => false
@@ -117,6 +117,15 @@ class ProfileFormType extends BaseType
             'allow_add'    => true,
             'delete_empty' => true,
             'allow_delete' => true
+        ));
+
+        $builder->add('locale', 'choice', array(
+            'choices' => array(
+                'en' => 'English',
+            ),
+            'required' => false,
+            'empty_data' => null,
+            'placeholder' => 'value.select.language'
         ));
 
     }

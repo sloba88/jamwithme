@@ -27,7 +27,10 @@ class SubscriptionController extends Controller
 
         if ($subscriber){
             //subscriber exist
-            $response = new Response( json_encode(array('status' => 'error', 'message' => 'You have already subscribed.')));
+            $response = new Response( json_encode(array(
+                'status' => 'error',
+                'message' => $this->get('translator')->trans('message.you.have.already.subscribed'))
+            ));
         }else{
             $subscription = new Subscription();
             $subscription->setEmail($email);

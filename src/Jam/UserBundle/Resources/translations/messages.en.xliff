@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2015-10-20T22:57:50Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="4ecd9c38578a9a814133c133266c1d667c932598" resname="button.message">
+        <source>button.message</source>
+        <target state="new">button.message</target>
+        <jms:reference-file line="37">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="17faad85a87a3e84000ba3dbeb09d219118d36e4" resname="exception.file.not.sent">
+        <source>exception.file.not.sent</source>
+        <target state="new">exception.file.not.sent</target>
+        <jms:reference-file line="118">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b77ba07ed548c6d212f96544a292078ceeac41ef" resname="exception.nonexistent.user">
+        <source>The user with %email% does not exist</source>
+        <target state="new">The user with %email% does not exist</target>
+        <jms:reference-file line="97">UserBundle/Controller/RegistrationController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="664755ae94dc7ff54ee4b6bcefb764bcd1c9fc17" resname="exception.there.is.no.image.with.that.id">
+        <source>exception.there.is.no.image.with.that.id</source>
+        <target state="new">exception.there.is.no.image.with.that.id</target>
+        <jms:reference-file line="163">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="49bf409d86c4843754d867e9801429d982d5988a" resname="exception.this.user.does.not.have.access.to.this.section">
+        <source>exception.this.user.does.not.have.access.to.this.section</source>
+        <target state="new">exception.this.user.does.not.have.access.to.this.section</target>
+        <jms:reference-file line="150">UserBundle/Controller/RegistrationController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="afab1ae1ed81be884b55f1d767f6be89fedce37d" resname="exception.user.missing.token">
+        <source>The user with confirmation token %token% does not exist</source>
+        <target state="new">The user with confirmation token %token% does not exist</target>
+        <jms:reference-file line="118">UserBundle/Controller/RegistrationController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="af3a8f6c0987800eee8acf5684b1d8b74d4f7279" resname="exception.user.not.found">
+        <source>exception.user.not.found</source>
+        <target state="new">exception.user.not.found</target>
+        <jms:reference-file line="32">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="282726c208fb740e6b048a45abebc2027ac874a7" resname="exception.you.shall.not.pass">
+        <source>exception.you.shall.not.pass</source>
+        <target state="new">exception.you.shall.not.pass</target>
+        <jms:reference-file line="81">UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="108">UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="156">UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="242">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="fc8413fdfd53e23e0f6ad278406aa827b4548642" resname="label.email">
+        <source>label.email</source>
+        <target state="new">label.email</target>
+        <jms:reference-file line="17">Form/Type/EmailType.php</jms:reference-file>
+        <jms:reference-file line="19">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="75c245aee7b5b7520bbffd469891cbae51ea2199" resname="label.hourly.rate.&amp;.euro">
+        <source><![CDATA[label.hourly.rate.&.euro]]></source>
+        <target state="new"><![CDATA[label.hourly.rate.&.euro]]></target>
+        <jms:reference-file line="43">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="368bd668fb54c259299b5158b88a030cd48465dc" resname="label.jam">
+        <source>label.jam</source>
+        <target state="new">label.jam</target>
+        <jms:reference-file line="53">Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="47">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="791c3f485e574255328e2de0d2f6650e86b764fd" resname="label.learn.an.instrument">
+        <source>label.learn.an.instrument</source>
+        <target state="new">label.learn.an.instrument</target>
+        <jms:reference-file line="48">Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="43">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2f8d0f4697c011829ef8e01cf9284b98f119d8e8" resname="label.make.this.primary">
+        <source>label.make.this.primary</source>
+        <target state="new">label.make.this.primary</target>
+        <jms:reference-file line="24">Form/Type/ImageType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
+        <source>label.password</source>
+        <target state="new">label.password</target>
+        <jms:reference-file line="32">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="02424dc8f20c80b7a6e14c68f1a6e82d19e163a7" resname="label.repeat.password">
+        <source>label.repeat.password</source>
+        <target state="new">label.repeat.password</target>
+        <jms:reference-file line="37">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="55cffc19f3a44f22339fbd0f3c607a75d5e2cbd0" resname="label.save">
+        <source>label.save</source>
+        <target state="new">label.save</target>
+        <jms:reference-file line="24">Form/Type/EmailType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="be40ff74163e44cd5a6b6df4aaa63b7305f7d29c" resname="label.teach.music">
+        <source>label.teach.music</source>
+        <target state="new">label.teach.music</target>
+        <jms:reference-file line="58">Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="52">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="05353914133c4c4be543a454c6da7e36249a974a" resname="label.username">
+        <source>label.username</source>
+        <target state="new">label.username</target>
+        <jms:reference-file line="24">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="25a80b8e7ea871ede2aafbe69bdb1a9d84bbd113" resname="label.username *">
+        <source>label.username *</source>
+        <target state="new">label.username *</target>
+        <jms:reference-file line="30">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9f5b34b9504cd5007e322b514f3f7f672df43c2e" resname="message.an.error.occurred.while.creating.your.directory.at">
+        <source>message.an.error.occurred.while.creating.your.directory.at</source>
+        <target state="new">message.an.error.occurred.while.creating.your.directory.at</target>
+        <jms:reference-file line="259">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
+        <source>message.avatar.changed.successfully.</source>
+        <target state="new">message.avatar.changed.successfully.</target>
+        <jms:reference-file line="276">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5ae26a7b2b4b91e62745ad264586ea433a76b3e7" resname="message.image.removed.successfully">
+        <source>message.image.removed.successfully</source>
+        <target state="new">message.image.removed.successfully</target>
+        <jms:reference-file line="175">UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4a7218ae13a4aadf6290c8e4b6ca5201468dcdcb" resname="message.video.added.successfully">
+        <source>message.video.added.successfully</source>
+        <target state="new">message.video.added.successfully</target>
+        <jms:reference-file line="37">UserBundle/Controller/VideoController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b1a17b1dbeeba43f3287cd2cef4e967918ed10e8" resname="message.video.removed.successfully">
+        <source>message.video.removed.successfully</source>
+        <target state="new">message.video.removed.successfully</target>
+        <jms:reference-file line="63">UserBundle/Controller/VideoController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a48049e16c5ec4d87665a13afc16594b5856c89a" resname="placeholder.email">
+        <source>placeholder.email</source>
+        <target state="new">placeholder.email</target>
+        <jms:reference-file line="20">Form/Type/EmailType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7e89d7b663f5d30bc59a4e90144ba6201b710e09" resname="text.about">
+        <source>text.about</source>
+        <target state="new">text.about</target>
+        <jms:reference-file line="143">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eca2677497d3dcc0270a946b3a34cecdfe30d32b" resname="text.compatibility">
+        <source>text.compatibility</source>
+        <target state="new">text.compatibility</target>
+        <jms:reference-file line="155">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2e20968a744643c99e8897315b9f9b4942787d63" resname="text.favourite.brands">
+        <source>text.favourite.brands</source>
+        <target state="new">text.favourite.brands</target>
+        <jms:reference-file line="125">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
+        <source>text.hourly.rate</source>
+        <target state="new">text.hourly.rate</target>
+        <jms:reference-file line="54">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6ecacd72464b6c917c203c4a7fbfba7bbd30b050" resname="text.influencers">
+        <source>text.influencers</source>
+        <target state="new">text.influencers</target>
+        <jms:reference-file line="114">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e36c68c715a8d2e7cff7ed8b28894106a09e7f6f" resname="text.main">
+        <source>text.main</source>
+        <target state="new">text.main</target>
+        <jms:reference-file line="73">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dd9dc66b90ac8b145304356de037fcd33ce44bd6" resname="text.no.genres.yet">
+        <source>text.no.genres.yet</source>
+        <target state="new">text.no.genres.yet</target>
+        <jms:reference-file line="100">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9870347989ce44d3b0c7be6d6dfb6f760c4fd0ce" resname="text.no.instruments.yet">
+        <source>text.no.instruments.yet</source>
+        <target state="new">text.no.instruments.yet</target>
+        <jms:reference-file line="67">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8043317f413def204b3cf26a42a87479ce505751" resname="text.no.photos.yet">
+        <source>text.no.photos.yet</source>
+        <target state="new">text.no.photos.yet</target>
+        <jms:reference-file line="181">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a262c14efc215ba53a951b3911a499ccc6e638b4" resname="text.no.shouts.yet">
+        <source>text.no.shouts.yet</source>
+        <target state="new">text.no.shouts.yet</target>
+        <jms:reference-file line="228">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="70c59d342651494cc356a1ccc1f43a60ffdab6f2" resname="text.no.videos.yet">
+        <source>text.no.videos.yet</source>
+        <target state="new">text.no.videos.yet</target>
+        <jms:reference-file line="197">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c30c7e4fb4f2610e518069cd3866462bba38e1d6" resname="text.none">
+        <source>text.none</source>
+        <target state="new">text.none</target>
+        <jms:reference-file line="115">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c7c856ea746bb625aecea2d1eaf59ac74bc12160" resname="text.nothing.yet.here">
+        <source>text.nothing.yet.here</source>
+        <target state="new">text.nothing.yet.here</target>
+        <jms:reference-file line="168">views/Profile/show_content.html.twig</jms:reference-file>
+        <jms:reference-file line="172">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="772be84a289a7cb2f7c205a35cc92b9640489c13" resname="text.overview">
+        <source>text.overview</source>
+        <target state="new">text.overview</target>
+        <jms:reference-file line="167">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="73fed8ae430db28975086890a117073a45358c0d" resname="text.photos">
+        <source>text.photos</source>
+        <target state="new">text.photos</target>
+        <jms:reference-file line="144">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
+        <source>text.shouts.feed</source>
+        <target state="new">text.shouts.feed</target>
+        <jms:reference-file line="220">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cc1608d5be0cdb333e8ebc975d569abb6c958742" resname="text.sounds">
+        <source>text.sounds</source>
+        <target state="new">text.sounds</target>
+        <jms:reference-file line="146">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2fec9859a69131cb02cf1c5c002bc73f504720c3" resname="text.teacher">
+        <source>text.teacher</source>
+        <target state="new">text.teacher</target>
+        <jms:reference-file line="50">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8f4c120ffe167d6a85ebf54807c44183ff9c26c1" resname="text.videos">
+        <source>text.videos</source>
+        <target state="new">text.videos</target>
+        <jms:reference-file line="145">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6b7cc5ab625a26401b804c3f5f47c5269f714841" resname="user.age">
+        <source>%user.age% years old</source>
+        <target state="new">%user.age% years old</target>
+        <jms:reference-file line="34">views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8daf2dfd1b8bdbad584847be53794dd3f6f17f5f" resname="value.1-2.hours/week">
+        <source>value.1-2.hours/week</source>
+        <target state="new">value.1-2.hours/week</target>
+        <jms:reference-file line="94">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="84c2c806ef84e96b6e86f813661b88ea13dc849e" resname="value.2-4.hours/week">
+        <source>value.2-4.hours/week</source>
+        <target state="new">value.2-4.hours/week</target>
+        <jms:reference-file line="95">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9db5b9c9e4587f5f617a3d663ca93613e478d01b" resname="value.4-6.hours/week">
+        <source>value.4-6.hours/week</source>
+        <target state="new">value.4-6.hours/week</target>
+        <jms:reference-file line="96">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="130fd4a1e337ac6b52068217125cd7b123c2644d" resname="value.day">
+        <source>value.day</source>
+        <target state="new">value.day</target>
+        <jms:reference-file line="104">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3b2e6693c5bc99e570377662ab007fe1d175da10" resname="value.female">
+        <source>value.female</source>
+        <target state="new">value.female</target>
+        <jms:reference-file line="84">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="918432a0aae43851e63f119399af67b8aad0245b" resname="value.male">
+        <source>value.male</source>
+        <target state="new">value.male</target>
+        <jms:reference-file line="83">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="913637919b1670069cb5aa6cf44e9fd319ae561c" resname="value.month">
+        <source>value.month</source>
+        <target state="new">value.month</target>
+        <jms:reference-file line="104">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="13237544be5e5cb36cc359cc3a172d2e5885f577" resname="value.more.than.6.hours/week">
+        <source>value.more.than.6.hours/week</source>
+        <target state="new">value.more.than.6.hours/week</target>
+        <jms:reference-file line="97">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ea96c56a3658a4dea1ebc1e6edb9e5431370e04b" resname="value.not.available">
+        <source>value.not.available</source>
+        <target state="new">value.not.available</target>
+        <jms:reference-file line="93">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1a1442c3317998c8e5a5b27f66f99f85b3653e52" resname="value.won't.say">
+        <source>value.won't.say</source>
+        <target state="new">value.won't.say</target>
+        <jms:reference-file line="82">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="44d5bf2b5b93a81aec75c7ebd59160281c1c9970" resname="value.year">
+        <source>value.year</source>
+        <target state="new">value.year</target>
+        <jms:reference-file line="104">Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

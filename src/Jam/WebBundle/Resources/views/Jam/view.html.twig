@@ -2,15 +2,15 @@
 
 {% block body %}
 
-    <h2>Jam name: {{ jam.name }}</h2>
+    <h2>{{ 'text.jam.name'|transchoice(jam.name)|desc('Jam name: %jam.name%') }}</h2>
 
     <div class="col-md-6">
 
-        <h3>Description:</h3>
+        <h3>{{ 'text.description'|trans }}:</h3>
 
         <p>{{ jam.description }}</p>
 
-        <h3>Members:</h3>
+        <h3>{{ 'text.members'|trans }}:</h3>
 
             {% for m in jam.jamMembers %}
                 {% if m.member %}
@@ -26,7 +26,7 @@
 
         <div class="clearfix"></div>
 
-        <h3>Genres:</h3>
+        <h3>{{ 'text.genres'|trans }}:</h3>
 
         <ul>
             {% for j in jam.genres %}
@@ -38,9 +38,9 @@
             {% if(app.user.isjammember(jam)) %}
             {% else %}
                 {% if(app.user.isjammemberRequested(jam)) %}
-                    <a href="#">Request sent</a>
+                    <a href="#">{{ 'text.request.sent'|trans }}</a>
                 {% else %}
-                    <a href="{{ path('join_jam_request', {'slug': jam.slug}) }}">Join request</a>
+                    <a href="{{ path('join_jam_request', {'slug': jam.slug}) }}">{{ 'text.join.request'|trans }}</a>
                 {% endif %}
             {% endif %}
         {% endif %}
@@ -48,10 +48,10 @@
         <br />
         {% if is_granted("ROLE_USER") %}
             {% if (app.user.id == jam.creator.id) %}
-                <p>Jam requests:</p>
+                <p>{{ 'text.jam.requests'|trans }}:</p>
                 <ul>
                     {% for m in jam.memberRequests %}
-                        <li>{{ m.username }} <a href="{{ path('jam_accept', {'slug': jam.slug, 'user_id': m.id}) }}">Accept</a> / <a href="">Deny</a></li>
+                        <li>{{ m.username }} <a href="{{ path('jam_accept', {'slug': jam.slug, 'user_id': m.id}) }}">{{ 'text.accept'|trans }}</a> / <a href="">{{ 'text.deny'|trans }}</a></li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -66,7 +66,7 @@
 
         {% if is_granted("ROLE_USER") %}
             {% if (app.user.id == jam.creator.id) %}
-                <a href="{{ path('edit_jam', { 'slug' : jam.slug } ) }}" class="btn btn-default">Edit</a>
+                <a href="{{ path('edit_jam', { 'slug' : jam.slug } ) }}" class="btn btn-default">{{ 'text.edit'|trans }}</a>
             {% endif %}
         {% endif %}
     </div>

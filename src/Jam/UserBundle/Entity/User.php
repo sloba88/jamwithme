@@ -191,6 +191,12 @@ class User extends BaseUser
     protected $hourlyRate;
 
     /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     * @var string
+     */
+    protected $locale;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -999,5 +1005,29 @@ class User extends BaseUser
     public function getFullName()
     {
         return $this->firstName . ' ' . $this->lastName;
+    }
+
+    /**
+     * Set locale
+     *
+     * @param string $locale
+     *
+     * @return User
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * Get locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

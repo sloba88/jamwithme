@@ -8,7 +8,7 @@
 
 <div class="filters-area">
     <div class="filters-heading clearfix">
-        <h1 class="filters-title">find music teachers nearby</h1>
+        <h1 class="filters-title">{{ 'text.find.music.teachers.nearby'|trans }}</h1>
     </div>
 
     {{ render(controller('JamWebBundle:Search:filter' )) }}
@@ -26,17 +26,17 @@
                     <span class="pick-inner"></span>
                 </div>
                     <div class="profile-completion-text">
-                        <h3><span>{{ app.user.profileFulfilment }}%</span>profile completion</h3>
-                        <a href="{{ path('fos_user_profile_edit') }}" class="link">fill out your profile</a>
+                        <h3><span>{{ app.user.profileFulfilment }}%</span>{{ 'text.profile.completion'|trans }}</h3>
+                        <a href="{{ path('fos_user_profile_edit') }}" class="link">{{ 'text.fill.out.your.profile'|trans }}</a>
                     </div>
             </div><!--profile-completion ends-->
         {% endif %}
 
 
     <div class="shouts-feed" id="shoutsFeed">
-        <h3>Shouts feed</h3>
+        <h3>{{ 'text.shouts.feed'|trans }}</h3>
         {% if shoutCounter.canShout == false %}
-            <p style="color: #FFFFFF">Shout again in:</p>
+            <p style="color: #FFFFFF">{{ 'text.shout.again.in'|trans }}:</p>
             <p id="shoutCountdown" style="color: #FFFFFF"></p>
         {% else %}
             <form role="form" action="{{ path('home') }}" method="POST">
@@ -48,7 +48,7 @@
     </div><!--shouts-feed ends-->
 
     <div class="shouts-listing-container">
-        <h4 class="shouts">Shouts</h4>
+        <h4 class="shouts">{{ 'text.shouts'|trans }}</h4>
         <div class="shouts-listing shouts-listing-filter with-scrollbar"></div><!--shouts-listing ends-->
     </div><!--shouts-listing-container ends-->
 

@@ -29,7 +29,7 @@ class DefaultController extends Controller
         $user = $userManager->findUserByUsername($username);
 
         if (!$user){
-            throw $this->createNotFoundException('User not found.');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.user.not.found'));
         }
 
         $soundcloudService = $this->get('soundcloud_connector');
@@ -78,7 +78,7 @@ class DefaultController extends Controller
         $q = $request->query->get('q');
 
         if (!$q){
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         $finder = $this->container->get('fos_elastica.finder.searches.user');
@@ -105,7 +105,7 @@ class DefaultController extends Controller
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
         }else{
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         if ($user->getImages()->count() > 19) {
@@ -115,7 +115,7 @@ class DefaultController extends Controller
 
         $file = $request->files->get('file');
 
-        if ($file=='') throw $this->createNotFoundException('File not sent');
+        if ($file=='') throw $this->createNotFoundException($this->get('translator')->trans('exception.file.not.sent'));
 
         $userImage = new UserImage();
         $userImage->setFile($file);
@@ -153,14 +153,14 @@ class DefaultController extends Controller
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
         }else{
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         $userImage = $this->getDoctrine()
             ->getRepository('JamUserBundle:UserImage')
             ->find($id);
 
-        if (!$userImage) throw $this->createNotFoundException('There is no image with that id');
+        if (!$userImage) throw $this->createNotFoundException($this->get('translator')->trans('exception.there.is.no.image.with.that.id'));
 
         $userImage->setUser(null);
 
@@ -172,7 +172,7 @@ class DefaultController extends Controller
         $response = new JsonResponse();
         $response->setData(array(
             'status' => 'success',
-            'message' => 'Image removed successfully.'
+            'message' => $this->get('translator')->trans('message.image.removed.successfully')
         ));
 
         return $response;
@@ -239,7 +239,7 @@ class DefaultController extends Controller
         if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
         }else{
-            throw $this->createNotFoundException('You shall not pass');
+            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
         $allImages = $user->getImages();
@@ -256,7 +256,7 @@ class DefaultController extends Controller
                     try {
                         $fs->mkdir('uploads/avatars/'.$user->getId());
                     } catch (IOException $e) {
-                        echo "An error occurred while creating your directory at ".$e->getPath();
+                        $this->get('translator')->trans('message.an.error.occurred.while.creating.your.directory.at').$e->getPath();
                     }
                 }
 
@@ -273,7 +273,7 @@ class DefaultController extends Controller
         $response = new JsonResponse();
         $response->setData(array(
             'status' => 'success',
-            'message' => 'Avatar changed successfully.'
+            'message' => $this->get('translator')->trans('message.avatar.changed.successfully.')
         ));
 
         return $response;

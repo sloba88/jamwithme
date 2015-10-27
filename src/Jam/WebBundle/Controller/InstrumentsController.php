@@ -34,26 +34,27 @@ class InstrumentsController extends Controller
     public function getSkillsAction()
     {
         //TODO: put this to some config
+        $translator = $this->get('translator');
         $res = array(
             array(
                 'id' => 1,
-                'text' => 'Beginner'
+                'text' => $translator->trans('value.beginner')
             ),
             array(
                 'id' => 2,
-                'text' => 'Average'
+                'text' => $translator->trans('value.average')
             ),
             array(
                 'id' => 3,
-                'text' => 'Advanced'
+                'text' => $translator->trans('value.advanced')
             ),
             array(
                 'id' => 4,
-                'text' => 'Semi-Professional'
+                'text' => $translator->trans('value.semi-professional')
             ),
             array(
                 'id' => 5,
-                'text' => 'Professional'
+                'text' => $translator->trans('professional')
             )
         );
 

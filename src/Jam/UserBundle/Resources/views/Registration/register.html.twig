@@ -10,7 +10,7 @@
 
         <div class="login-container">
             <div class="login-header">
-                <h1>sign up to jamifind</h1>
+                <h1>{{ 'text.sign.up.to.jamifind'|trans }}</h1>
             </div>
 
             <div class="login-body">
@@ -18,25 +18,25 @@
                 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
 
                     <div class="form-group">
-                        {{ form_widget(form.username, {'attr': {'placeholder': 'Username' }}) }}
+                        {{ form_widget(form.username) }}
                     </div>
 
                     <div class="form-group">
-                        {{ form_widget(form.email, {'attr': {'placeholder': 'Email' }}) }}
+                        {{ form_widget(form.email) }}
                     </div>
 
                     <div class="form-group">
-                        {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Password' }}) }}
+                        {{ form_widget(form.plainPassword.first) }}
                     </div>
 
                     {{ form_errors(form.plainPassword.first) }}
 
                     <div class="form-group">
-                        {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Repeat Password' }}) }}
+                        {{ form_widget(form.plainPassword.second) }}
                     </div>
 
                     <div class="form-group">
-                        <label class="select-label">I want to:</label>
+                        <label class="select-label">{{ 'text.i.want.to'|trans }}:</label>
 
                         <ul class="checkboxes-list">
                             <li>
@@ -61,7 +61,7 @@
                     {{ form_widget(form._token) }}
                     {{ form_errors(form) }}
 
-                    <input type="submit" class="btn btn-primary" value="Sign Up"/>
+                    <input type="submit" class="btn btn-primary" value="{{ 'button.sign.up'|trans }}"/>
 
                     <div class="separator">
                         <img src="{{ asset('assets/images/separator-image.png') }}" alt="Hand">
@@ -70,15 +70,15 @@
                 </form>
 
                 <div class="login-buttons">
-                    <a href="{{ path('jam_facebook_login') }}" class="btn btn-primary facebook"><i class="fa fa-facebook-square"></i>sign up with facebook</a>
-                    <a href="{{ path('jam_soundcloud_login') }}" class="btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>sign up with soundcloud</a>
+                    <a href="{{ path('jam_facebook_login') }}" class="btn btn-primary facebook"><i class="fa fa-facebook-square"></i>{{ 'button.sign.up.with.facebook'|trans }}</a>
+                    <a href="{{ path('jam_soundcloud_login') }}" class="btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>{{ 'button.sign.up.with.soundcloud'|trans }}</a>
                 </div>
 
             </div>
 
             <div class="login-footer">
-                Already have an account?
-                <a href="{{ path('fos_user_security_login') }}" class="link">login</a>
+                {{ 'text.already.have.an.account'|trans }}
+                <a href="{{ path('fos_user_security_login') }}" class="link">{{ 'button.login'|trans }}</a>
             </div>
 
         </div><!--login-container ends-->

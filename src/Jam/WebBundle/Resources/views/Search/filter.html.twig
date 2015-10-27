@@ -11,14 +11,14 @@
             <div class="col-sm-12 col-lg-4">
                 <div class="dropdown filter-by-distance">
                     <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                        <span>Filter by distance</span>
+                        <span>{{ 'text.filter.by.distance'|trans }}</span>
                         <div><b></b></div>
                     </a>
                     <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
-                        <label>Set distance</label>
+                        <label>{{ 'text.set.distance'|trans }}</label>
                         <input type="hidden" name="distance" value="10" id="search_form_distance" />
                         <div id="filter-by-distance-slider"></div>
-                        <span class="result slide-min pull-left">2km</span>
+                        <span class="result slide-min pull-left">{{ 'text.2.kilometers'|trans }}</span>
                         <span class="result slide-max pull-right"></span>
                     </div>
                 </div>
@@ -27,8 +27,8 @@
 
         <div class="tabs-activate filters-preview">
             <ul class="clearfix">
-                <li><a href="#" data-tab="grid" class="tab-grid is-active">grid</a></li>
-                <li><a href="#" data-tab="map" id="map-view" class="tab-map">map</a></li>
+                <li><a href="#" data-tab="grid" class="tab-grid is-active">{{ 'text.grid'|trans }}</a></li>
+                <li><a href="#" data-tab="map" id="map-view" class="tab-map">{{ 'text.map'|trans }}</a></li>
             </ul>
         </div><!--filters-preview ends-->
     </form>
