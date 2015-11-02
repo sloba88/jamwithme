@@ -2,7 +2,7 @@ var http = require('http'),
     mongoose = require('mongoose'),
     express = require('express'),
     redis = require('redis'),
-    redisClient = redis.createClient(),
+    redisClient = redis.createClient('6379', 'redis_1'),
     Message = require('./schema'),
     app = express(),
     server = app.listen(3000),
@@ -12,7 +12,7 @@ var http = require('http'),
 
 //io.set('origins', '*178.62.189.52:*');
 
-mongoose.connect('mongodb://localhost:27017/jamwithme');
+mongoose.connect('mongodb://mongo_1:27017/jamwithme');
 
 //TODO: authenticate user
 

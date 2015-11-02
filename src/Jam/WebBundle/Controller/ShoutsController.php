@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Elastica\Util;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class ShoutsController extends Controller
 {
