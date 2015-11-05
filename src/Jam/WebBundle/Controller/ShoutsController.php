@@ -9,6 +9,7 @@ use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
 use Jam\CoreBundle\Form\Type\SearchType;
 use Jam\CoreBundle\Entity\Shout;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
