@@ -83,6 +83,7 @@
 		position: absolute;
 		@include respond-to(handhelds) {
 			margin-bottom: 0;
+			padding-bottom: 0;
 			position: relative;
 		}
 	}
