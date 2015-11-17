@@ -7,7 +7,7 @@
     </header>
     <body>
       <trans-unit id="ee25a6280d8577295d8939c79833988ea62c32e2" resname="button.map">
-        <source>button.map</source>
+        <source>map</source>
         <target state="new">Map</target>
         <jms:reference-file line="25">views/Form/fields.html.twig</jms:reference-file>
       </trans-unit>

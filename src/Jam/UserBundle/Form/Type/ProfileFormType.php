@@ -27,7 +27,7 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('username', null, array(
-            'label' => 'label.username *'
+            'label' => 'label.username'
         ));
 
         $builder->add('aboutMe', 'textarea', array(
