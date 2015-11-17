@@ -56,7 +56,7 @@ $(function() {
     }
 
     //scrollbar on settings page - photos
-    $('.page-settings').find('.profile-media-wall').perfectScrollbar({
+    $('.profile-media-wall').perfectScrollbar({
         suppressScrollX: true
     });
 
@@ -225,7 +225,7 @@ function readURL(input) {
             image.src = e.target.result;
             image.onload = function() {
                 var w = this.width,
-                    h = this.height;
+                h = this.height;
 
                 if (w < 320 || h < 190) {
                     alert('Please choose a picture larger than 320x190');
@@ -255,7 +255,7 @@ function scrollToBottom() {
 
 function profileCompletion() {
     var numberText = $('.profile-completion-text span').text(),
-        number = numberText.slice(0, -1);
+    number = numberText.slice(0, -1);
 
     var $pickInner = $('.pick-inner');
 
@@ -264,8 +264,8 @@ function profileCompletion() {
 
 function filtersToggle() {
     var $filtersBy = $('.filters-by'),
-        $filtersHide = $('.filters-hide'),
-        $filtersHideText = $filtersHide.children('.text');
+    $filtersHide = $('.filters-hide'),
+    $filtersHideText = $filtersHide.children('.text');
 
     $filtersBy.on('hidden.bs.collapse', function() {
         $filtersHide.removeClass('dropup');
@@ -283,8 +283,8 @@ function peopleGrid() {
 
     $peopleGrid.on('mouseenter', '.people-grid', function() {
         var $this = $(this),
-            $tags = $this.find('.tags'),
-            $compatibilityBox = $this.find('.compatibility-box');
+        $tags = $this.find('.tags'),
+        $compatibilityBox = $this.find('.compatibility-box');
 
         $this.addClass('hovered');
 
@@ -299,8 +299,8 @@ function peopleGrid() {
 
     $peopleGrid.on('mouseleave', '.people-grid', function() {
         var $this = $(this),
-            $tags = $this.find('.tags'),
-            $compatibilityBox = $this.find('.compatibility-box');
+        $tags = $this.find('.tags'),
+        $compatibilityBox = $this.find('.compatibility-box');
 
         $this.removeClass('hovered');
 
@@ -328,9 +328,9 @@ function tabsToggle(object) {
             hash = $thisBtn.data('tab'); //this data tab
 
 
-        if (!$thisBtn.hasClass('is-active')) {
-            $btns.removeClass('is-active');
-            $thisBtn.addClass('is-active');
+            if (!$thisBtn.hasClass('is-active')) {
+                $btns.removeClass('is-active');
+                $thisBtn.addClass('is-active');
 
             //add hash
             window.location.hash = hash;
@@ -343,8 +343,8 @@ function tabsToggle(object) {
                         $thisTab.fadeIn(speed).addClass('is-active');
                         $thisBtn.trigger('shown.tab');
                     // }, speed)
-                }
-            });
+        }
+    });
         }
     });
 
@@ -362,11 +362,12 @@ function tabsToggle(object) {
 
 function sidebarHeight() {
     var windowHeight = $(window).height(),
-        $mainContentInner = $('.main-content-inner'),
-        $sidebarInner = $('.sidebar-inner'),
-        $viewTabContainer = $mainContentInner.children('.view-tab-container'),
-        eventDivHeight = $mainContentInner.children('.event').height(),
-        filtersAreaHeight = $mainContentInner.children('.filters-area').height();
+    $mainContentInner = $('.main-content-inner'),
+    $sidebarInner = $('.sidebar-inner'),
+    $viewTabContainer = $mainContentInner.children('.view-tab-container'),
+    eventDivHeight = $mainContentInner.children('.event').height(),
+    filtersAreaHeight = $mainContentInner.children('.filters-area').height(),
+    paddings;
 
     if ($mainContentInner.length && $('.hidden-xs').is(':visible')) {
         $sidebarInner.each(function() {
@@ -374,7 +375,13 @@ function sidebarHeight() {
             $(this).height(windowHeight - offsetTop);
         });
 
-        $mainContentInner.height(windowHeight - $mainContentInner.offset().top);
+        if ($('.page-settings').length) {
+            paddings = 0;
+        } else {
+            paddings = 30;
+        }
+
+        $mainContentInner.height(windowHeight - $mainContentInner.offset().top - paddings); //30px is for padding top and bottom
 
         $('.shouts-listing.shouts-listing-filter').height($sidebarInner.height() - 366);
 
@@ -411,8 +418,8 @@ function youtubeParser(url) {
 function autocomplete() {
 
     var $searchContainer = $('.search-block-container'),
-        $autocompleteInput = $("#autocomplete"),
-        $searchBlock = $autocompleteInput.parent();
+    $autocompleteInput = $("#autocomplete"),
+    $searchBlock = $autocompleteInput.parent();
 
     if ($autocompleteInput.length) {
 
@@ -436,9 +443,9 @@ function autocomplete() {
             }
         }).data("uiAutocomplete")._renderItem = function(ul, item) {
             return $("<li />")
-                .data("item.autocomplete", item)
-                .append("<a href='" + baseURL + "/m/" + item.username + "'><img src='" + baseURL + "/m/" + item.username + "/avatar/my_thumb' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
-                .appendTo(ul);
+            .data("item.autocomplete", item)
+            .append("<a href='" + baseURL + "/m/" + item.username + "'><img src='" + baseURL + "/m/" + item.username + "/avatar/my_thumb' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
+            .appendTo(ul);
         };
 
         $searchBlock.addClass('effects-ready');
@@ -492,9 +499,9 @@ function autocompleteMessageUser() {
             }
         }).data("uiAutocomplete")._renderItem = function(ul, item) {
             return $("<li />")
-                .data("item.autocomplete", item)
-                .append("<a class='user-suggest-messages' data-user='" + item.username + "' data-id='" + item.id + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
-                .appendTo(ul);
+            .data("item.autocomplete", item)
+            .append("<a class='user-suggest-messages' data-user='" + item.username + "' data-id='" + item.id + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
+            .appendTo(ul);
         };
     }
 }
@@ -503,8 +510,8 @@ function showAllTags(e) {
     e.preventDefault();
 
     var $this = $(this),
-        $tagsContainer = $this.parent('.tags-container'),
-        $icon = $this.children('.fa');
+    $tagsContainer = $this.parent('.tags-container'),
+    $icon = $this.children('.fa');
 
     if ($tagsContainer.hasClass('opened')) {
         $tagsContainer.removeClass('opened');
@@ -517,9 +524,9 @@ function showAllTags(e) {
 
 function menu() {
     var $header = $('header'),
-        $mainFluid = $('.main-fluid'),
-        $sidebar = $('.sidebar'),
-        $navbarToggle = $('.navbar-toggle');
+    $mainFluid = $('.main-fluid'),
+    $sidebar = $('.sidebar'),
+    $navbarToggle = $('.navbar-toggle');
 
     $navbarToggle.on('click', function() {
         $sidebar.toggleClass('is-active');
@@ -544,8 +551,8 @@ function scrollbarPlugin() {
 
     $withScrollbar.each(function() {
         var $this = $(this),
-            thisHeight = $(this).height(),
-            thisChildrenHeight = $this.children().height();
+        thisHeight = $(this).height(),
+        thisChildrenHeight = $this.children().height();
 
         if (thisChildrenHeight > thisHeight) {
             if ($('.hidden-xs').is(':visible')) {

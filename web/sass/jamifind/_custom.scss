@@ -347,12 +347,12 @@
 		margin: 5px;
 	}
 
-	.musician-map-box-container a {
-		@include transition(color 0.1s ease);
+	.musician-map-box-container > a {
+		// @include transition(color 0.1s ease);
 		color: $color-primary;
 
 		&:hover {
-			color: $brand-secondary;
+			// color: $brand-secondary;
 			text-decoration: none;
 		}
 	}
@@ -367,10 +367,23 @@
 	}
 
 	.instrument {
-		float: right;
+		clear: left;
+		float: left;
 		height: 30px;
+		margin-left: 5px;
 		text-align: center;
 		width: 30px;
+	}
+
+	.tags {
+		@extend %tags;
+		margin-left: 65px;
+	}
+
+	.compatibility-box {
+		float: right;
+    margin-right: 8px;
+    margin-top: 7px;
 	}
 
 	a.leaflet-popup-close-button {

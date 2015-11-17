@@ -1346,6 +1346,12 @@
 	}
 }
 
+//image holder on page settings and on my profile
+.profile-media-wall {
+	min-height: 140px;
+	max-height: 55vh;
+}
+
 .page-settings {
 
 	.main-content.col-md-10 {
@@ -1454,8 +1460,8 @@
 	}
 
 	.profile-media-wall {
-		min-height: 140px;
-		max-height: 55vh;
+		// min-height: 140px;
+		// max-height: 55vh;
 		// padding-right: 15px;
 
 		.image-holder {
