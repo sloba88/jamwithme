@@ -46,85 +46,85 @@ input[type="radio"]:checked + label span {
 	// 	padding-right: 15px;
 	// }
 
-	.panel {
-		border-radius: 0;
-	}
+	// .panel {
+	// 	border-radius: 0;
+	// }
 
-	.panel-default > .panel-heading {
-		background: $color-primary;
-		border-radius: 0;
-		color: #fff;
-	}
+	// .panel-default > .panel-heading {
+	// 	background: $color-primary;
+	// 	border-radius: 0;
+	// 	color: #fff;
+	// }
 }
 
-.birth-date-container {
+// .birth-date-container {
 
-	.select2-container {
-		margin-bottom: 10px;
-	}
-}
+// 	.select2-container {
+// 		margin-bottom: 10px;
+// 	}
+// }
 
-.location_widget {
+// .location_widget {
 
-	.input-group-btn {
-		vertical-align: top;
-	}
+// 	.input-group-btn {
+// 		vertical-align: top;
+// 	}
 
-	.dropdown-toggle {
-		border: 1px solid $color-primary;
-		border-radius: 0;
-	}
+// 	.dropdown-toggle {
+// 		border: 1px solid $color-primary;
+// 		border-radius: 0;
+// 	}
 
-	.dropdown-menu {
-		padding: 0;
-	}
+// 	.dropdown-menu {
+// 		padding: 0;
+// 	}
 
-	.form-group {
-		@extend %clearfix;
-		margin-bottom: 0;
-	}
+// 	.form-group {
+// 		@extend %clearfix;
+// 		margin-bottom: 0;
+// 	}
 
-	.input-group-btn {
-		position: static;
-	}
+// 	.input-group-btn {
+// 		position: static;
+// 	}
 
-	.dropdown-menu.pull-right {
-		left: 0;
-	}
+// 	.dropdown-menu.pull-right {
+// 		left: 0;
+// 	}
 
-	.btn-default {
-		@include transition(background 0.2s ease);
+// 	.btn-default {
+// 		@include transition(background 0.2s ease);
 
-		&:hover {
-			background: $brand-secondary;
-		}
-	}
+// 		&:hover {
+// 			background: $brand-secondary;
+// 		}
+// 	}
 
-	.leaflet-container {
-		width: 100% !important;
-	}
-}
+// 	.leaflet-container {
+// 		width: 100% !important;
+// 	}
+// }
 
-.profile-media-image-commands {
-	background: $brand-primary;
-	height: 28px;
-	padding: 2px 5px;
+// .profile-media-image-commands {
+// 	background: $brand-primary;
+// 	height: 28px;
+// 	padding: 2px 5px;
 
-	a {
-		color: #fff;
+// 	a {
+// 		color: #fff;
 
-		&:hover, &:focus {
-			color: $brand-secondary;
-			text-decoration: none;
-		}
-	}
+// 		&:hover, &:focus {
+// 			color: $brand-secondary;
+// 			text-decoration: none;
+// 		}
+// 	}
 
-	a[class*="remove-image"] {
-		float: right;
-		margin-top: 2px;
+// 	a[class*="remove-image"] {
+// 		float: right;
+// 		margin-top: 2px;
 
-		&:hover, &:focus {
-			color: $brand-secondary;
-		}
-	}
-}
+// 		&:hover, &:focus {
+// 			color: $brand-secondary;
+// 		}
+// 	}
+// }

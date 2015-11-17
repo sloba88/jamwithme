@@ -335,3 +335,47 @@
 .select2-choice.select2-default span.select2-chosen{
 	color: #999;
 }
+
+//leaflaet
+.leaflet-container  {
+
+	.leaflet-popup-content-wrapper {
+		border-radius: 5px;
+	}
+
+	.leaflet-popup-content {
+		margin: 5px;
+	}
+
+	.musician-map-box-container a {
+		@include transition(color 0.1s ease);
+		color: $color-primary;
+
+		&:hover {
+			color: $brand-secondary;
+			text-decoration: none;
+		}
+	}
+
+	.img-responsive {
+		float: left;
+		margin: 0 15px 10px 0;
+	}
+
+	.name {
+		margin: 0 20px 10px 0;
+	}
+
+	.instrument {
+		float: right;
+		height: 30px;
+		text-align: center;
+		width: 30px;
+	}
+
+	a.leaflet-popup-close-button {
+		height: 22px;
+		padding: 4px;
+		width: 22px;
+	}
+}

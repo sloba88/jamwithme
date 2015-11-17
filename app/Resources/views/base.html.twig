@@ -361,7 +361,7 @@
 
 <script type="text/template" id="musicianMapTemplate">
     <div class="musician-map-box-container">
-        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="clearfix">
             <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/my_thumb" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
             <div class="people-info">
                 <h3 class="name"><%- rc.username %></h3>
