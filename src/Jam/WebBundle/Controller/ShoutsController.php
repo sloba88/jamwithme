@@ -70,7 +70,7 @@ class ShoutsController extends Controller
 
     /**
      * @Route("/shouts/{username}", name="user_shouts", options={"expose"=true})
-     * @Template()
+     * @Method({"GET"})
      */
     public function getAction($username)
     {
