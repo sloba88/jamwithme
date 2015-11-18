@@ -190,7 +190,7 @@
       </trans-unit>
       <trans-unit id="70c59d342651494cc356a1ccc1f43a60ffdab6f2" resname="text.no.videos.yet">
         <source>text.no.videos.yet</source>
-        <target state="new">no videos yet</target>
+        <target state="new">No videos yet.</target>
         <jms:reference-file line="197">views/Profile/show_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c30c7e4fb4f2610e518069cd3866462bba38e1d6" resname="text.none">
