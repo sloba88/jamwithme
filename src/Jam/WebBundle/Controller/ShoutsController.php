@@ -88,7 +88,7 @@ class ShoutsController extends Controller
         return $this->formatResponse($shouts);
     }
 
-    private function formatResponse($results)
+    private function formatResponse($results, $message = false)
     {
         $me = $this->getUser();
         $response = new JsonResponse();
@@ -131,7 +131,8 @@ class ShoutsController extends Controller
 
         $response->setData(array(
             'status'    => 'success',
-            'data' => $musicians_data
+            'data' => $musicians_data,
+            'message' => $message
         ));
 
         return $response;
@@ -164,4 +165,55 @@ class ShoutsController extends Controller
 
         return $response;
     }
+
+    /**
+     * @Route("/shout/add", name="create_shout", options={"expose"=true})
+     * @Method({"POST"})
+     */
+    public function createShoutAction()
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        //TODO: put this form in separate file
+        $form = $this->createFormBuilder(new Shout())
+            ->add('text', 'textarea', array(
+                'label' => false,
+                'attr' => array(
+                    'placeholder' => 'label.say.something.cool',
+                    'maxlength' => 250
+                )
+            ))
+            ->add('send', 'submit', array(
+                'label' => 'label.send'
+            ))
+            ->getForm();
+
+        $form->handleRequest($request);
+        $responseData = array();
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            if (!$this->getUser()){
+                $responseData['success'] = false;
+                $responseData['message'] = $this->get('translator')->trans('exception.you.shall.not.pass');
+            }
+
+            $shout = $form->getData();
+            $shout->setCreator($this->getUser());
+            $em->persist($shout);
+            $em->flush();
+
+            return $this->formatResponse(array($shout), 'You have shouted successfully!');
+        }else{
+            $responseData['success'] = false;
+            $responseData['message'] = 'Form not valid';
+        }
+
+        $response = new JsonResponse();
+        $response->setData($responseData);
+
+        return $response;
+    }
+
 }

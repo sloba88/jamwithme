@@ -21,40 +21,20 @@ class HomeController extends Controller
          * @var ShoutCounter
          */
         $shoutCounter = $this->get('shout.counter');
-        $shout = new Shout();
 
-        $locale = $request->getLocale();
-
-        $form = $this->createFormBuilder($shout)
-            ->add('text', 'textarea', array(
-                'label' => false,
-                'attr' => array(
-                    'placeholder' => 'label.say.something.cool',
-                    'maxlength' => 250
-                )
-            ))
-            ->add('send', 'submit', array(
-                'label' => 'label.send'
-            ))
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            if (!$this->getUser()){
-                throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
-            }
-
-            $shout->setCreator($this->getUser());
-            $em->persist($shout);
-            $em->flush();
-
-            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.you.have.shouted.successfully.'));
-
-            return $this->redirect($this->generateUrl('home'));
-        }
+        //TODO: put this form in separate file
+        $form = $this->createFormBuilder(new Shout())
+        ->add('text', 'textarea', array(
+        'label' => false,
+        'attr' => array(
+            'placeholder' => 'label.say.something.cool',
+            'maxlength' => 250
+        )
+    ))
+        ->add('send', 'submit', array(
+            'label' => 'label.send'
+        ))
+        ->getForm();
 
         return array(
             'form' => $form->createView(),

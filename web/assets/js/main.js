@@ -170,6 +170,23 @@ $(function() {
         return false;
     });
 
+    $(document).on('click', '#shoutSend', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: Routing.generate('create_shout'),
+            data: $('#shoutForm').serialize(),
+            type: 'POST',
+            success: function(result) {
+                addMessage(result.status, result.message);
+                if (result.status == 'success'){
+                    $.each(result.data, function(k, v){
+                        $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
+                    });
+                }
+            }
+        });
+    });
+
     $(document).on('click', '.remove-shout', function(e){
         var element = $(e.currentTarget);
         $.ajax({
