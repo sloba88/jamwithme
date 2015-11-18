@@ -206,6 +206,14 @@ $(function() {
         });
     }
 
+    $('body').on('change', '#fos_user_profile_form_isTeacher', function(){
+        if ($(this).is(':checked')){
+            $('.teacherSpecific').fadeIn();
+        } else {
+            $('.teacherSpecific').fadeOut();
+        }
+    });
+
 });
 
 function initInstrumentSelection(){

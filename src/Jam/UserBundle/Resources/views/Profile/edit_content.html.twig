@@ -137,11 +137,11 @@
 
                             {{ form_row(form.aboutMe) }}
 
-                            {% if app.user.isTeacher %}
+                            <div class="teacherSpecific {% if not app.user.isTeacher %}hide{% endif %}" >
                                 {{ form_row(form.education) }}
 
                                 {{ form_row(form.hourlyRate) }}
-                            {% endif %}
+                            </div>
 
                             {{ form_row(form.genres) }}
 
