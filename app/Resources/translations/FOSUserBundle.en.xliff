@@ -13,22 +13,22 @@
       </trans-unit>
       <trans-unit id="abcfee3dcaccf158d515be3c8e3157c1776196ab" resname="button.login">
         <source>button.login</source>
-        <target state="new">button.login</target>
+        <target state="new">login</target>
         <jms:reference-file line="81">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="18083eb93db5b5f75c36c38ff07a0b1b151cb206" resname="button.sign.up">
         <source>button.sign.up</source>
-        <target state="new">button.sign.up</target>
+        <target state="new">sign up</target>
         <jms:reference-file line="64">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f5706f0ec0d9b8ba315eb5966b4e9c9e48d6c1da" resname="button.sign.up.with.facebook">
         <source>button.sign.up.with.facebook</source>
-        <target state="new">button.sign.up.with.facebook</target>
+        <target state="new">sign up with facebook</target>
         <jms:reference-file line="73">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eb1a179fccbb77d19c5c41f0b7d9c8ba9eb93fa7" resname="button.sign.up.with.soundcloud">
         <source>button.sign.up.with.soundcloud</source>
-        <target state="new">button.sign.up.with.soundcloud</target>
+        <target state="new">sign up with soundcloud</target>
         <jms:reference-file line="74">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a0a8fbc70fe82997f8a2ff89090f523ee63f72a" resname="registration.confirmed">
@@ -54,27 +54,27 @@ the Team.
       </trans-unit>
       <trans-unit id="ea081c43c04590700107f38612ab44a6d01fbbe1" resname="text.already.have.an.account">
         <source>text.already.have.an.account</source>
-        <target state="new">text.already.have.an.account</target>
+        <target state="new">already have an account?</target>
         <jms:reference-file line="80">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">
         <source>text.back</source>
-        <target state="new">text.back</target>
+        <target state="new">back</target>
         <jms:reference-file line="13">views/Registration/confirmed.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5d2f7d85139f1298e0ff991af04994b6a1b805b4" resname="text.check_email">
         <source>text.check_email</source>
-        <target state="new">text.check_email</target>
+        <target state="new">check_email</target>
         <jms:reference-file line="6">views/Registration/checkEmail.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4133af078fc4b6b40cb604f1fa0c3f106973d866" resname="text.i.want.to">
         <source>text.i.want.to</source>
-        <target state="new">text.i.want.to</target>
+        <target state="new">i want to</target>
         <jms:reference-file line="39">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cbe5975526ce5dcbcecc4e8c9dc65969248c8a20" resname="text.sign.up.to.jamifind">
         <source>text.sign.up.to.jamifind</source>
-        <target state="new">text.sign.up.to.jamifind</target>
+        <target state="new">sign up to jamifind</target>
         <jms:reference-file line="13">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
     </body>
