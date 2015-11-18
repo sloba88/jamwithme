@@ -6,11 +6,6 @@
 
 {% block main_content %}
 
-<div class="filters-area">
-    <div class="filters-heading clearfix">
-        <h1 class="filters-title">{{ 'text.find.music.teachers.nearby'|trans }}</h1>
-    </div>
-
     {{ render(controller('JamWebBundle:Search:filter' )) }}
 
 {% endblock %}

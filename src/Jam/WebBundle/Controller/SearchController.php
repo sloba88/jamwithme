@@ -24,6 +24,9 @@ class SearchController extends Controller
 
         $form->handleRequest($request);
 
-        return array('form' => $form->createView());
+        return array(
+            'form' => $form->createView(),
+            'route' => $request->get('_route')
+        );
     }
 }

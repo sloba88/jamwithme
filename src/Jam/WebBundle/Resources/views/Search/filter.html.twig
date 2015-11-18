@@ -1,3 +1,15 @@
+{% set filterTitle = "find compatible musicians" %}
+
+{% if (route == 'teachers') %}
+    {% set filterTitle = 'text.find.music.teachers.nearby'|trans %}
+{% endif %}
+
+
+<div class="filters-area">
+    <div class="filters-heading clearfix">
+        <h1 class="filters-title">{{ filterTitle }}</h1>
+    </div>
+
     <form id="main-filter-form">
         <div class="filters-by in row">
             <div class="col-sm-12 col-lg-4">
