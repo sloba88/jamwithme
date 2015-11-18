@@ -93,8 +93,8 @@ $(function() {
         // options for cellsByRow layout mode
         // options for masonry layout mode
         masonry: {
-            columnWidth: 140,
-            gutter: 10
+            columnWidth: 120,
+            gutter: 5
         }
     });
 
