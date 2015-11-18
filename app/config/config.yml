@@ -14,7 +14,6 @@ framework:
     csrf_protection: ~
     validation:
         enabled: true
-        api: 2.4
         enable_annotations: true
     templating:
         engines: ['twig']

@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="f48ccf84018671218aac090abf90770212497b70" resname="fos_user.email.already_used">
         <source>fos_user.email.already_used</source>
-        <target state="new">fos_user.email.already_used</target>
+        <target state="new">User with this email already exists</target>
       </trans-unit>
       <trans-unit id="d0e28536be754aebc7ef73cdc6cf0d729311ce1d" resname="fos_user.email.blank">
         <source>fos_user.email.blank</source>
@@ -49,7 +49,7 @@
       </trans-unit>
       <trans-unit id="77c8ec07f205976bbed1a3ce90fdc458891bb81d" resname="fos_user.username.already_used">
         <source>fos_user.username.already_used</source>
-        <target state="new">fos_user.username.already_used</target>
+        <target state="new">Username already used</target>
       </trans-unit>
       <trans-unit id="312a20b0239a4236f4b08e4e0ed35153a03667d0" resname="fos_user.username.blank">
         <source>fos_user.username.blank</source>
