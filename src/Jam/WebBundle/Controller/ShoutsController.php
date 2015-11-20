@@ -21,7 +21,7 @@ class ShoutsController extends Controller
 {
     /**
      * @Route("/shouts/find", name="shouts_find", options={"expose"=true})
-     * @Template()
+     * @Method({"GET"})
      */
     public function findAction()
     {
@@ -205,13 +205,25 @@ class ShoutsController extends Controller
             $em->flush();
 
             return $this->formatResponse(array($shout), 'You have shouted successfully!');
-        }else{
+        } else {
             $responseData['success'] = false;
             $responseData['message'] = 'Form not valid';
         }
 
         $response = new JsonResponse();
         $response->setData($responseData);
+
+        return $response;
+    }
+
+    /**
+     * @Route("/shout/can", name="can_shout", options={"expose"=true})
+     * @Method({"GET"})
+     */
+    public function canShoutAction()
+    {
+        $response = new JsonResponse();
+        $response->setData($this->get('shout.counter')->getSecondsDifference());
 
         return $response;
     }

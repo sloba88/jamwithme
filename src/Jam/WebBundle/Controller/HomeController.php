@@ -17,11 +17,6 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /**
-         * @var ShoutCounter
-         */
-        $shoutCounter = $this->get('shout.counter');
-
         //TODO: put this form in separate file
         $form = $this->createFormBuilder(new Shout())
         ->add('text', 'textarea', array(
@@ -37,8 +32,7 @@ class HomeController extends Controller
         ->getForm();
 
         return array(
-            'form' => $form->createView(),
-            'shoutCounter' => $shoutCounter
+            'form' => $form->createView()
         );
     }
 
@@ -48,10 +42,6 @@ class HomeController extends Controller
      */
     public function teachersAction(Request $request)
     {
-        /**
-         * @var ShoutCounter
-         */
-        $shoutCounter = $this->get('shout.counter');
         $shout = new Shout();
 
         $form = $this->createFormBuilder($shout)
@@ -84,8 +74,7 @@ class HomeController extends Controller
         }
 
         return array(
-            'form' => $form->createView(),
-            'shoutCounter' => $shoutCounter
+            'form' => $form->createView()
         );
     }
 

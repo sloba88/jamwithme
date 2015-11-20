@@ -30,16 +30,15 @@
 
     <div class="shouts-feed" id="shoutsFeed">
         <h3>{{ 'text.shouts.feed'|trans }}</h3>
-        {% if shoutCounter.canShout == false %}
+        <div class="shouts-countdown-container hidden">
             <p style="color: #FFFFFF">{{ 'text.shout.again.in'|trans }}:</p>
             <p id="shoutCountdown" style="color: #FFFFFF"></p>
-        {% else %}
-            <form role="form" action="{{ path('home') }}" method="POST">
-                {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3'}}) }}
-                {{ form_widget(form.send, {'attr': {'class': 'btn btn-primary'}}) }}
-                {{ form_widget(form._token) }}
-            </form>
-        {% endif %}
+        </div>
+        <form role="form" action="{{ path('home') }}" method="POST" id="shoutForm" class="hidden">
+            {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3', 'maxlength': 200}}) }}
+            {{ form_widget(form.send, {'id': 'shoutSend', 'attr': {'class': 'btn btn-primary'}}) }}
+            {{ form_widget(form._token) }}
+        </form>
     </div><!--shouts-feed ends-->
 
     <div class="shouts-listing-container">
@@ -50,10 +49,6 @@
 {% endblock %}
 
 {% block bottom_javascripts %}
-
-    <script>
-        var seconds = ('{{ shoutCounter.canShout }}' == 0) ? {{ shoutCounter.secondsDifference }} : 0;
-    </script>
 
     {% javascripts
     'vendor/leaflet-dist/leaflet.js'

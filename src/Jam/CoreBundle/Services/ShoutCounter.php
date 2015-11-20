@@ -91,9 +91,4 @@ class ShoutCounter {
             $this->secondsDifference = $tomorrowDate->getTimestamp() - $today->getTimestamp();
         }
     }
-
-
-
-
-
 }

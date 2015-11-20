@@ -172,6 +172,7 @@ $(function() {
 
     $(document).on('click', '#shoutSend', function(e){
         e.preventDefault();
+        var self = $(this);
         $.ajax({
             url: Routing.generate('create_shout'),
             data: $('#shoutForm').serialize(),
@@ -182,6 +183,8 @@ $(function() {
                     $.each(result.data, function(k, v){
                         $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
                     });
+                    checkCanShout();
+                    $('#form_text').val('');
                 }
             }
         });
@@ -195,10 +198,8 @@ $(function() {
             success: function(result) {
                 if (result.success) {
                     element.parents(".shout-box").remove();
+                    checkCanShout();
                 }
-            },
-            complete: function() {
-
             }
         });
     });
