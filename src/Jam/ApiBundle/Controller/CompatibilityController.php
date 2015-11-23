@@ -1,21 +1,17 @@
 <?php
 
-namespace Jam\WebBundle\Controller;
+namespace Jam\ApiBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\FOSRestController;
 use Jam\CoreBundle\Entity\Compatibility;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
-class CompatibilityController extends Controller
+class CompatibilityController extends FOSRestController
 {
     /**
-     * @Route("/api/compatibility/{id}", name="api_compatibility", options={"expose"=true})
-     * @Template()
+     * @Get("/compatibility/{id}", name="api_compatibility")
      */
-    public function getAction($id)
+    public function getCompatibilityAction($id)
     {
         /* @var $m \Jam\UserBundle\Entity\User */
         /* @var $me \Jam\UserBundle\Entity\User */
@@ -44,6 +40,8 @@ class CompatibilityController extends Controller
             $compatibility = $compatibility[0];
         }
 
-        return new JsonResponse($compatibility->getValue());
+        $view = $this->view($compatibility->getValue(), 200);
+
+        return $this->handleView($view);
     }
 }

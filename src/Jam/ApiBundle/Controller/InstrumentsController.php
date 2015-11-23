@@ -1,18 +1,15 @@
 <?php
 
-namespace Jam\WebBundle\Controller;
+namespace Jam\ApiBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class InstrumentsController extends Controller
 {
     /**
-     * @Route("/api/instruments", name="api_instruments", options={"expose"=true})
-     * @Template()
+     * @Get("/api/instruments", name="api_instruments")
      */
     public function getAction(Request $request)
     {
@@ -22,14 +19,14 @@ class InstrumentsController extends Controller
                 "SELECT i.id, i.name AS text FROM JamCoreBundle:Instrument i"
             );
 
-        $res = $query->getResult();
+        $data = $query->getResult();
+        $view = $this->view($data, 200);
 
-        return new JsonResponse($res);
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/api/instruments/skills")
-     * @Template()
+     * @Get("/api/instruments/skills")
      */
     public function getSkillsAction()
     {
@@ -58,6 +55,8 @@ class InstrumentsController extends Controller
             )
         );
 
-        return new JsonResponse($res);
+        $view = $this->view($res, 200);
+
+        return $this->handleView($view);
     }
 }

@@ -32,6 +32,8 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Jam\ApiBundle\JamApiBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

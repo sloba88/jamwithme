@@ -1,3 +1,11 @@
+jam_api:
+    resource: "@JamApiBundle/Controller/"
+    type:     annotation
+    defaults: { _format: json }
+    prefix:   /api
+    options:
+        expose: true
+
 jam_user:
     resource: "@JamUserBundle/Controller/"
     type:     annotation

@@ -1,18 +1,16 @@
 <?php
 
-namespace Jam\WebBundle\Controller;
+namespace Jam\ApiBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class GenresController extends Controller
+class GenresController extends FOSRestController
 {
     /**
-     * @Route("/api/genres", name="api_genres", options={"expose"=true})
-     * @Template()
+     * @Route("/genres", name="api_genres")
      */
     public function getAction(Request $request)
     {
@@ -22,8 +20,9 @@ class GenresController extends Controller
                 "SELECT g.id, g.name AS text FROM JamCoreBundle:Genre g"
             );
 
-        $res = $query->getResult();
+        $data = $query->getResult();
+        $view = $this->view($data, 200);
 
-        return new JsonResponse($res);
+        return $this->handleView($view);
     }
 }

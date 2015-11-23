@@ -183,6 +183,16 @@ snc_redis:
     session:
         client: session
 
+fos_rest:
+    view:
+        mime_types:
+            json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1']
+        view_response_listener: 'force'
+    routing_loader:
+        default_format: json
+    exception:
+        enabled: true
+
 hwi_oauth:
     #this is my custom user provider, created from FOSUBUserProvider - will manage the
     #automatic user registration on your site, with data from the provider (facebook. google, etc.)

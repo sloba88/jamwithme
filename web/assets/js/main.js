@@ -186,6 +186,9 @@ $(function() {
                     checkCanShout();
                     $('#form_text').val('');
                 }
+            },
+            error: function(result){
+                addMessage(result.status, result.message);
             }
         });
     });

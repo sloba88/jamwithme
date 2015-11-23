@@ -174,6 +174,16 @@ class ShoutsController extends Controller
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 
+        if ($this->get('shout.counter')->getSecondsDifference() > 0) {
+            $responseData['success'] = false;
+            $responseData['message'] = 'Form not valid';
+
+            $response = new JsonResponse();
+            $response->setData($responseData);
+
+            return $response;
+        }
+
         //TODO: put this form in separate file
         $form = $this->createFormBuilder(new Shout())
             ->add('text', 'textarea', array(
