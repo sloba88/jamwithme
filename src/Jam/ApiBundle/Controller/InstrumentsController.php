@@ -3,13 +3,13 @@
 namespace Jam\ApiBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\Get;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 
-class InstrumentsController extends Controller
+class InstrumentsController extends FOSRestController
 {
     /**
-     * @Get("/api/instruments", name="api_instruments")
+     * @Get("/instruments", name="api_instruments")
      */
     public function getAction(Request $request)
     {
@@ -26,7 +26,7 @@ class InstrumentsController extends Controller
     }
 
     /**
-     * @Get("/api/instruments/skills")
+     * @Get("/instruments/skills")
      */
     public function getSkillsAction()
     {
