@@ -63,7 +63,7 @@ class LocationSetListener {
         //Array containing all regex-patterns necessary to extract ip-geoinfo from page
         $patterns=array();
         $patterns["domain"] = '#Domain: (.*?)&nbsp;#i';
-        //$patterns["country"] = '#Country: (.*?)&nbsp;#i';
+        $patterns["country"] = '#Country: (.*?)&nbsp;#i';
         $patterns["state"] = '#State/Region: (.*?)<br#i';
         $patterns["town"] = '#City: (.*?)<br#i';
 
