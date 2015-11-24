@@ -6,8 +6,7 @@
     <div class="col-sm-10 main-content">
         <div class="main-content-inner">
             <br />
-            <p>{{ 'registration.confirmed'|transchoice(user.username)|desc('Congrats %user.username%, your acount is now activated') }}</p>
-            {#<p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>#}
+            <p>{{ 'registration.confirmed'|trans({'%username%' : user.username})|desc('Congrats %username%, your acount is now activated') }}</p>
             {% if app.session is not empty %}
                 {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
                 {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'text.back'|trans }}</a></p>{% endif %}

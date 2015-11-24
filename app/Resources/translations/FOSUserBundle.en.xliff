@@ -59,7 +59,7 @@ the Team.
       </trans-unit>
       <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">
         <source>text.back</source>
-        <target state="new">back</target>
+        <target state="new">Home</target>
         <jms:reference-file line="13">views/Registration/confirmed.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5d2f7d85139f1298e0ff991af04994b6a1b805b4" resname="text.check_email">
