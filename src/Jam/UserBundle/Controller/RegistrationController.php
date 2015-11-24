@@ -150,8 +150,8 @@ class RegistrationController extends ContainerAware
             throw new AccessDeniedException($this->container->get('translator')->trans('exception.this.user.does.not.have.access.to.this.section'));
         }
 
-        return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:confirmed.html.twig', array(
-            'user' => $user,
-        ));
+        $this->container->get('session')->getFlashBag()->set('success', $this->container->get('translator')->trans('message.your.account.is.activated.'));
+
+        return new RedirectResponse($this->container->get('router')->generate('home'));
     }
 }

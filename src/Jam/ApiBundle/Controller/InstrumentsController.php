@@ -26,7 +26,7 @@ class InstrumentsController extends FOSRestController
     }
 
     /**
-     * @Get("/instruments/skills")
+     * @Get("/instruments/skills", name="api_instruments_skills")
      */
     public function getSkillsAction()
     {

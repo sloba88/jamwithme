@@ -140,10 +140,15 @@ $(function() {
     });
 
     if ($('#fos_user_profile_form_genres').length > 0){
-        $('#fos_user_profile_form_genres').select2({
-            placeholder: 'Favourite Genres?',
-            multiple: true,
-            data: genresNames
+
+        $.ajax({
+            url: Routing.generate('api_genres')
+        }).done(function(data) {
+            $('#fos_user_profile_form_genres').select2({
+                placeholder: 'Favourite Genres?',
+                multiple: true,
+                data: data
+            });
         });
     }
 
@@ -217,14 +222,23 @@ $(function() {
 });
 
 function initInstrumentSelection(){
-    $('.instrument-select').select2({
-        placeholder: 'What do you play?',
-        data: instrumentNames
+
+    $.ajax({
+        url: Routing.generate('api_instruments')
+    }).done(function(data) {
+        $('.instrument-select').select2({
+            placeholder: 'What do you play?',
+            data: data
+        });
     });
 
-    $('.skill-select').select2({
-        placeholder: 'How good are you?',
-        data: instrumentSkills
+    $.ajax({
+        url: Routing.generate('api_instruments_skills')
+    }).done(function(data) {
+        $('.skill-select').select2({
+            placeholder: 'How good are you?',
+            data: data
+        });
     });
 }
 
