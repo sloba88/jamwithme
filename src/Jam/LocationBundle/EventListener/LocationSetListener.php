@@ -53,8 +53,16 @@ class LocationSetListener {
             //"IP is not valid"
         }
 
+        $ctx = stream_context_create(array('http'=>
+            array(
+                'method' => 'GET',
+                'timeout' => 5,
+            )
+        ));
+        /*
+
         //contact ip-server
-        $response=@file_get_contents('http://www.netip.de/search?query='.$ip);
+        $response=@file_get_contents('http://www.netip.de/search?query='.$ip, false, $ctx);
         if (empty($response))
         {
             //Error contacting Geo-IP-Server
@@ -78,6 +86,18 @@ class LocationSetListener {
         }
 
         return $this->geoCode(implode(", ", $ipInfo));
+
+        */
+
+        $response = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip, false, $ctx));
+
+        $ipInfo[0] = $response['geoplugin_city'];
+        $ipInfo[1] = $response['geoplugin_region'];
+        $ipInfo[2] = $response['geoplugin_regionName'];
+        $ipInfo[3] = $response['geoplugin_countryName'];
+
+        return $this->geoCode(implode(", ", $ipInfo));
+
     }
 
     protected function geoCode($address)

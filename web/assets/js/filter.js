@@ -8,6 +8,7 @@ $(function() {
             if (initializedMap == false ){
                 initializedMap = initMap();
                 placeMarkers();
+                setMyFilterLocation();
             }
         }, 500);
     });

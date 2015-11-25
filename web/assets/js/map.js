@@ -5,20 +5,45 @@ var mapContainer = $('#map'),
     myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
         html: '<img src="'+_user.avatar+'" />',
-        iconSize:     [40, 40],
+        iconSize: [40, 40],
         className: 'mapIcon'
     }),
     map,
     circle = false,
+    myLocationMarker,
     markers = new L.FeatureGroup(),
     musicianMapTemplate = _.template($('#musicianMapTemplate').html());
 
-if (_user.lat == '') {
-    myLocation = [60.1576083, 24.8740487];
+
+function setMyFilterLocation(){
+    if (_user.lat == '' || _user.lng == '') {
+        //if there are no coordinates set try browser get position
+        getLocation(function(myBrowserLocation) {
+            myLocation = myBrowserLocation;
+            if (!myLocation) {
+                myLocation = [60.1576083, 24.8740487];
+            }
+
+            setMyFilterMarker();
+            drawRadius();
+        });
+    }else {
+        setMyFilterMarker();
+        drawRadius();
+    }
+}
+
+function setMyFilterMarker() {
+    myLocationMarker = L.marker(myLocation, {
+        draggable: true,
+        icon: myIcon
+    }).addTo(map);
+
+    map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
 }
 
 function initMap(){
-    map = L.map('map').setView(myLocation, 14);
+    map = L.map('map');
 
     L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
         attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
@@ -30,13 +55,9 @@ function initMap(){
         maxZoom: 20
     }).addTo(map);
 
-    var myLocationMarker = L.marker(myLocation, {icon: myIcon}).addTo(map);
-
     map.on('zoomend', function(){
         resizeIcons();
     });
-
-    drawRadius();
 }
 
 function resizeIcons(){
@@ -108,32 +129,5 @@ var delay = (function(){
         clearTimeout (timer);
         timer = setTimeout(callback, ms);
     };
+
 })();
-
-/*
-function getLocation(){
-    if (navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-    }else{
-        alert("Geolocation is not supported by this browser.");
-    }
-}
-
-function showError(error) {
-    switch(error.code)
-    {
-        case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            alert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            alert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            alert("An unknown error occurred.");
-            break;
-    }
-}
-*/
