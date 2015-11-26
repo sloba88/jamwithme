@@ -14,28 +14,8 @@ var mapContainer = $('#map'),
     markers = new L.FeatureGroup(),
     musicianMapTemplate = _.template($('#musicianMapTemplate').html());
 
-
-function setMyFilterLocation(){
-    if (_user.lat == '' || _user.lng == '') {
-        //if there are no coordinates set try browser get position
-        getLocation(function(myBrowserLocation) {
-            myLocation = myBrowserLocation;
-            if (!myLocation) {
-                myLocation = [60.1576083, 24.8740487];
-            }
-
-            setMyFilterMarker();
-            drawRadius();
-        });
-    }else {
-        setMyFilterMarker();
-        drawRadius();
-    }
-}
-
 function setMyFilterMarker() {
     myLocationMarker = L.marker(myLocation, {
-        draggable: true,
         icon: myIcon
     }).addTo(map);
 
@@ -58,6 +38,9 @@ function initMap(){
     map.on('zoomend', function(){
         resizeIcons();
     });
+
+    console.log('map initialized');
+    return true;
 }
 
 function resizeIcons(){

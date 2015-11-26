@@ -8,16 +8,17 @@ $(function() {
             if (initializedMap == false ){
                 initializedMap = initMap();
                 placeMarkers();
-                setMyFilterLocation();
+                setMyFilterMarker();
+                drawRadius();
             }
         }, 500);
     });
 
-    if (localStorage.view=="list") {
-        $("#list-tab-btn").click();
+    if (localStorage.view=='list') {
+        $('#list-tab-btn').click();
     }
 
-    $("#main-filter-form").on('change', function(){
+    $('#main-filter-form').on('change', function() {
         delay(function(){
             if ($('#map-canvas').is(':visible')){
                 fetchMapData();
@@ -28,7 +29,7 @@ $(function() {
         }, 500);
     });
 
-    //parse generes
+    //parse genres
     $.ajax({
         url: Routing.generate('api_genres')
     }).done(function( result ) {
@@ -48,9 +49,37 @@ $(function() {
         });
     });
 
-    filterMusicians();
+    if (_user.lat == '' || _user.lng == '' || _user.temporaryLocation == '') {
+        //if there are no coordinates set try browser get position
+        getLocation(function(myBrowserLocation) {
+            myLocation = myBrowserLocation;
+            if (!myLocation) {
+                myLocation = [_user.lat, _user.lng];
+                filterMusicians();
+                filterShouts();
+            } else {
+                //save this to db and then do filters
+                $.ajax({
+                    url: Routing.generate('api_set_musician_location'),
+                    type: 'POST',
+                    data: { 'coords': myBrowserLocation.join()}
+                }).done(function( result ) {
 
-    filterShouts();
+                    $('.no-location-message').fadeOut(function (){
+                        $('.no-location-message').remove();
+                    });
+
+                    addMessage(result.status, result.message);
+
+                    filterMusicians();
+                    filterShouts();
+                });
+            }
+        });
+    }else {
+        filterMusicians();
+        filterShouts();
+    }
 
     //activate tabs
     tabsToggle($('.tabs-activate'));
@@ -157,6 +186,7 @@ function filterMusicians(){
 
             if (initializedMap != false ){
                 placeMarkers();
+                setMyFilterMarker();
                 drawRadius();
             }
         }

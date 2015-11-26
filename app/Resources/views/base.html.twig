@@ -132,6 +132,7 @@
             _user.username = '{{ app.user.username }}';
             _user.lat = '{{ app.user.location.lat|default('') }}';
             _user.lng = '{{ app.user.location.lng|default('') }}';
+            _user.temporaryLocation = '{{ app.user.location.isTemporary|default('') }}';
             _user.avatar = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
 
             var socket = new io.connect('{{ node_server }}');
@@ -196,10 +197,9 @@
 
 <div class="container-fluid">
     <div class="row">
-
         {% if is_granted("ROLE_USER") %}
-            {% if not app.user.location %}
-                <div class="flash-message col-xs-12">
+            {% if not app.user.location or app.user.location.isTemporary %}
+                <div class="flash-message col-xs-12 no-location-message">
                     <div class="warning alert-warning">
                         Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.
                     </div>

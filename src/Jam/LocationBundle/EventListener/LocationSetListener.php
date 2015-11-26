@@ -36,6 +36,7 @@ class LocationSetListener {
                     }
 
                     $location = $this->geoCheckIP($ip);
+                    $location->setIsTemporary(true);
                     $user->setLocation($location);
                     $this->userManager->updateUser($user);
                 }
@@ -149,6 +150,32 @@ class LocationSetListener {
         }
 
         return $default;
+    }
+
+    public function reverseGeoCode($coords)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://nominatim.openstreetmap.org/reverse?format=json&lat='.$coords[0].'&lon='. $coords[1].'&zoom=18&addressdetails=1&accept-language=en&email=stanic.slobodan88@gmail.com');
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, '');
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $jsonOutput = json_decode($response, true);
+
+        if(!$jsonOutput) {
+            //TODO exception
+        }
+        else if(count($jsonOutput)<=0) {
+            return null;
+        }
+        else if(count($jsonOutput)>1) {
+            return $this->convertToLocationObject($jsonOutput);
+        }
+        else {
+            return $this->convertToLocationObject($jsonOutput);
+        }
     }
 
 }

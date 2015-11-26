@@ -10,6 +10,7 @@ use Elastica\Filter\Terms;
 use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
 use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
 use Jam\CoreBundle\Entity\Compatibility;
 use Symfony\Component\HttpFoundation\Response;
@@ -188,6 +189,29 @@ class MusiciansController extends FOSRestController
         $view = $this->view(array(
             'status'    => 'success',
             'data' => $musicians_data
+        ), 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
+     * @Post("/musician/location", name="api_set_musician_location")
+     */
+    public function setLocationAction()
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+        $me = $this->getUser();
+
+        $coords = explode(',', $request->request->get('coords'));
+
+        //set user location from coordinates
+        $location = $this->get('jam.location_set')->reverseGeoCode($coords);
+        $me->setLocation($location);
+        $this->get('fos_user.user_manager')->updateUser($me);
+
+        $view = $this->view(array(
+            'status'    => 'success',
+            'message'   => 'Address successfully saved.',
         ), 200);
 
         return $this->handleView($view);

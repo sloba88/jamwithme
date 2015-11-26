@@ -6,23 +6,6 @@ var myLocation = [_user.lat, _user.lng],
     circle = false;
     L.Icon.Default.imagePath = '/vendor/leaflet-dist/images';
 
-
-function setMyLocation() {
-    if (_user.lat == '' || _user.lng == '') {
-        //if there are no coordinates set try browser get position
-        getLocation(function(myBrowserLocation) {
-            myLocation = myBrowserLocation;
-            if (!myLocation) {
-                myLocation = [60.1576083, 24.8740487];
-            }
-            setMyMarker();
-            myLocationMarker.fire('dragend');
-        });
-    }else {
-        setMyMarker();
-    }
-}
-
 function setMyMarker() {
     myLocationMarker = L.marker(myLocation, {
         draggable: true
@@ -70,6 +53,7 @@ var markerDragEnd = function(e) {
             $('[id$="_location_zip"]').val(data.address.postcode);
             $('[id$="_location_lat"]').val(data.lat);
             $('[id$="_location_lng"]').val(data.lon);
+            $('[id$="_location_isTemporary"]').val(false);
 
 
             var displayAddress = '';
@@ -123,7 +107,7 @@ $(function() {
 
     if ($('.location_widget').length > 0 ) {
         initMap();
-        setMyLocation();
+        setMyMarker();
 
         $('body').on('keyup', '#fos_user_profile_form_location_address', function(e){
             var value = $(this).val();
@@ -187,6 +171,7 @@ $(function() {
             $('[id$="_location_zip"]').val(data.address.postcode);
             $('[id$="_location_lat"]').val(data.lat);
             $('[id$="_location_lng"]').val(data.lon);
+            $('[id$="_location_isTemporary"]').val(false);
 
         });
 

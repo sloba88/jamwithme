@@ -83,8 +83,15 @@ class Location
      * @ORM\Column(name="administrative_area_level_3", type="string", length=255, nullable=true)
      */
     protected $administrative_area_level_3;
-    
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_temporary", type="boolean")
+     */
+    protected $isTemporary = false;
+
+    
     public function setAddress($address)
     {
         $this->address = $address;
@@ -241,5 +248,29 @@ class Location
     public function getNeighborhood()
     {
         return $this->neighborhood;
+    }
+
+    /**
+     * Set isTemporary
+     *
+     * @param boolean $isTemporary
+     *
+     * @return Location
+     */
+    public function setIsTemporary($isTemporary)
+    {
+        $this->isTemporary = $isTemporary;
+
+        return $this;
+    }
+
+    /**
+     * Get isTemporary
+     *
+     * @return boolean
+     */
+    public function getIsTemporary()
+    {
+        return $this->isTemporary;
     }
 }

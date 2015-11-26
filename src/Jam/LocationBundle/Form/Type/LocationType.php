@@ -50,7 +50,10 @@ class LocationType extends AbstractType
                     ))
                 ->add('lng', 'hidden', array(
                     'required'      => false
-                    ));
+                    ))
+                ->add('isTemporary', 'hidden', array(
+                    'required'      => false
+                ));
         
     }
  
