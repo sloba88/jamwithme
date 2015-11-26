@@ -2,9 +2,18 @@
 
 {% block body %}
 
-    {% include "JamWebBundle::navigation.html.twig" %}
+    {% if is_granted("ROLE_USER") %}
+        {% include "JamWebBundle::navigation.html.twig" %}
+    {% else %}
+        <div class="col-md-4">
+            <div class="login-container" style="margin-top: 20px;">
+                {{ app.session.set('preview', 'true') }}
+                {{ render(controller('FOSUserBundle:Security:login')) }}
+            </div>
+        </div>
+    {% endif %}
 
-    <section class="col-sm-10 main-content">
+    <section class="{% if is_granted("ROLE_USER") %}col-sm-10{% else %}col-sm-8{% endif %} main-content">
         <div class="main-content-inner">
             {% block main_content %}{% endblock %}
             {% block fos_user_content %}{% endblock fos_user_content %}

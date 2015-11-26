@@ -1,7 +1,312 @@
-{% extends 'JamUserBundle::layout.html.twig' %}
-
-{% block fos_user_content %}
-    {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% extends 'JamUserBundle:Profile:profileLayout.html.twig' %}
 
 {% block bodyclasses %}page-settings{% endblock %}
+
+{% block fos_user_content %}
+    {% trans_default_domain 'FOSUserBundle' %}
+    {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
+
+    <style>
+        #musician_videos li {
+            margin-bottom: 5px;
+        }
+    </style>
+
+    <form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit">
+
+        {{ form_errors(form) }}
+
+        <ul class="tabs-activate profile-tabs" id="myTab">
+            <li><a href="#" data-tab="personal-info" class="is-active">Personal Info</a></li>
+            <li><a href="#" data-tab="musician-info">Musician Info</a></li>
+            <li><a href="#" data-tab="media">Media</a></li>
+            <li><a href="#" data-tab="networks">Networks</a></li>
+        </ul>
+
+        <div class="view-tab-container clearfix">
+
+            <div class="view-tab is-active" data-tab="personal-info">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        {{ form_row(form.username) }}
+
+                        {{ form_row(form.firstName) }}
+
+                        {{ form_row(form.lastName) }}
+
+                        {{ form_row(form.locale) }}
+
+                        <div class="row personal-bio">
+                            <div class="col-xs-5 col-sm-7">
+                                {{ form_row(form.gender) }}
+                            </div>
+                            <div class="col-xs-7 col-sm-5">
+                                {{ form_row(form.birthDate) }}
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        {{ form_row(form.email) }}
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                            {{ form_errors(form.location) }}
+                            <div>
+                                {{ form_widget(form.location) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="view-tab" data-tab="musician-info">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <h4>I want to:</h4>
+
+                        <ul class="checkboxes-list">
+                            <li>
+                                {{ form_widget(form.isVisitor) }}
+                                {{ form_label(form.isVisitor) }}
+                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be able to browse website but you will not appear in searches."></span>
+                            </li>
+                            <li>
+                                {{ form_widget(form.isJammer) }}
+                                {{ form_label(form.isJammer) }}
+                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be able to browse website and people will be able to find you."></span>
+                            </li>
+                            <li class="last">
+                                {{ form_widget(form.isTeacher) }}
+                                {{ form_label(form.isTeacher) }}
+                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be presented as a music teacher."></span>
+                            </li>
+                        </ul>
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <h4>I am available:</h4>
+
+                                {{ form_widget(form.commitment, { 'attr': {'placeholder' : 'How much can you commit? '} }) }}
+
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                What do you play?
+                            </div>
+                            <div class="col-md-5">
+                                How good are you?
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+
+                        <ul id="musician_instruments">
+
+                            {% for f in form.instruments %}
+                                <li class="row">
+                                    <div class="col-md-5">
+                                        {{ form_widget(f.instrument) }}
+                                    </div>
+                                    <div class="col-md-5">
+                                        {{ form_widget(f.skillLevel) }}
+                                    </div>
+                                    <div class="col-md-2" style="padding-top:10px">
+                                        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></span></a>&nbsp
+                                        <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                        <br />
+                        <a href="#" class="btn btn-primary" id="add_another_instrument"><i class="glyphicon glyphicon-plus-sign"></i> Add another instrument</a>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        {{ form_row(form.aboutMe) }}
+
+                        <div class="teacherSpecific {% if not app.user.isTeacher %}hide{% endif %}" >
+                            {{ form_row(form.education) }}
+
+                            {{ form_row(form.hourlyRate) }}
+                        </div>
+
+                        {{ form_row(form.genres) }}
+
+                        {{ form_row(form.brands) }}
+
+                        <div class="clearfix"></div>
+
+                        {{ form_row(form.artists) }}
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="view-tab" data-tab="media">
+
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                            <span class="btn btn-primary fileinput-button">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                <span>Add photos...</span>
+                                <input type="file" name="file" id="upload_images" accept="image/*" multiple >
+                            </span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary start-upload" style="display: none">
+                                    <i class="glyphicon glyphicon-upload"></i>
+                                    <span>Start upload</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="files" class="files clearfix"></div>
+
+                        <div id="progress" class="progress" style="height: 2px; display: none">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Photos</h3>
+                            </div>
+                            <div class="panel-body panel-images">
+
+                                {% if form.vars.value.images|length == 0 %}
+                                    <p class="no-images-yet">No images yet.</p>
+                                {% endif %}
+
+                                <div id="user_images" class="profile-media-wall">
+
+                                    {% for i in form.vars.value.images %}
+                                        <div class="image-holder profile-media-wall-item">
+                                            <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                            <div class="profile-media-image-commands">
+
+                                                <a href="#" class="set-profile-photo" data-id="{{ i.id }}">Set as avatar</a> |
+                                                <a href="#" class="remove-image-ajax" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {# video links #}
+                    <div class="col-md-4">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Youtube Videos</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul id="musician_videos">
+                                    {% for v in form.vars.value.videos %}
+                                        <li data-id="{{ v.id }}">
+                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+                                            <a href="" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                                    <i class="fa fa-youtube-play"></i>
+                                    Add Video
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="view-tab" data-tab="networks">
+
+                <div class="login-buttons col-sm-6 col-md-5 col-lg-4">
+                    <h4>Facebook</h4>
+                    {% if app.user.facebookId %}
+                        <a href="#">Connected</a>
+                    {% else %}
+                        <a class="btn btn-primary facebook" href="{{ path('jam_facebook_login') }}">
+                            <i class="fa fa-facebook-square"></i>connect with facebook</a>
+                    {% endif %}
+
+                    <br />
+
+                    <h4>Soundcloud</h4>
+                    {% if app.user.soundcloudId %}
+                        <a href="#">Connected</a>
+                    {% else %}
+                        <a class="btn btn-primary soundcloud" href="{{ path('connect_soundcloud') }}">
+                            <i class="fa fa-soundcloud"></i>connect with soundcloud</a>
+                    {% endif %}
+
+                </div><!-- login buttons -->
+            </div>
+        </div>
+
+        {{ form_widget(form._token) }}
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <input type="submit" class="btn btn-primary btn-save" value="Save" />
+                <i class="fa fa-check"></i>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/template" id="instrumentBoxTemplate">
+        <div class="row">
+            <div class="col-md-5">
+                <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][instrument]" class="instrument-select form-control" />
+            </div>
+            <div class="col-md-5">
+                <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][skillLevel]" class="skill-select form-control" />
+            </div>
+            <div class="col-md-2" style="padding-top:10px">
+                <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
+                <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/template" id="videoAddBoxTemplate">
+        <li>
+            <div class="input-group">
+                <input type="text" class="form-control youtube-url" placeholder="Paste Youtube link here">
+          <span class="input-group-btn">
+            <button class="btn btn-default save-video" type="button">Save</button>
+          </span>
+            </div><!-- /input-group -->
+        </li>
+    </script>
+
+    <script type="text/template" id="videoBoxTemplate">
+        <li data-id="<%- rc.id %>">
+            <a class="ytvideo" rel="group" href="<%- rc.url %>&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+            <a href="#" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
+        </li>
+    </script>
+
+{% endblock fos_user_content %}

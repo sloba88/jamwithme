@@ -1,4 +1,6 @@
-{% extends 'JamWebBundle::layout.html.twig' %}
+{% extends '::page.html.twig' %}
+
+{# USED ONLY FOR LAYOUTS WHEN NOT LOGGED IN #}
 
 {% set bodyclass = "" %}
 {% if not is_granted("ROLE_USER") %}
@@ -9,109 +11,20 @@
 
 {% block body %}
 
-    {% if is_granted("ROLE_USER") %}
-        {% include "JamWebBundle::navigation.html.twig" %}
-    {% else %}
-        <div class="col-md-4">
-            <div class="login-container">
-                {{ app.session.set('preview', 'true') }}
-                {{ render(controller('FOSUserBundle:Security:login')) }}
-            </div>
+    <div class="col-md-4">
+        <div class="login-container" style="margin-top: 20px;">
+            {{ app.session.set('preview', 'true') }}
+            {{ render(controller('FOSUserBundle:Security:login')) }}
         </div>
-    {% endif %}
+    </div>
 
-    {% block fos_user_content %}{% endblock fos_user_content %}
+    <section class="{% if is_granted("ROLE_USER") %}col-sm-10{% else %}col-sm-8{% endif %} main-content" style="margin-top: 20px;">
+        <div class="main-content-inner">
 
-{% endblock %}
+        {% block fos_user_content %}{% endblock fos_user_content %}
 
-{% block bottomstylesheets %}
-    {% stylesheets
-    'vendor/Jcrop/css/jquery.Jcrop.css'
-    'vendor/fancybox/source/jquery.fancybox.css'
-    filter='cssrewrite' filter='?uglifycss'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-{% endblock %}
-
-{% block bottom_javascripts %}
-
-    {% javascripts
-    'vendor/leaflet-dist/leaflet.js'
-    'vendor/blueimp-file-upload/js/vendor/jquery.ui.widget.js'
-    'vendor/blueimp-load-image/js/load-image.all.min.js'
-    'vendor/blueimp-canvas-to-blob/js/canvas-to-blob.js'
-    'vendor/blueimp-file-upload/js/jquery.iframe-transport.js'
-    'vendor/blueimp-file-upload/js/jquery.fileupload.js'
-    'vendor/blueimp-file-upload/js/jquery.fileupload-process.js'
-    'vendor/blueimp-file-upload/js/jquery.fileupload-image.js'
-    'vendor/Jcrop/js/jquery.Jcrop.js'
-    'assets/js/upload-photos.js'
-    'vendor/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'
-    'vendor/fancybox/source/jquery.fancybox.pack.js'
-    'assets/js/settings.js'
-    '@JamLocationBundle/Resources/public/location.js'
-    filter='?uglifyjs2'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-    <script type="text/javascript">
-
-        $(function() {
-
-            {% if user is defined and userTracks is defined %}
-                {# TODO: separate JS and twig variables, make this more like function #}
-                SC.initialize({
-                    client_id: '{{ soundcloud_app_id }}'
-                });
-
-                $('a.my-sounds').click(function(e){
-
-                    var $this = $(e.currentTarget);
-                    var userSoundcloudId = '{{ user.getSoundcloudId }}';
-
-                    if(userSoundcloudId !== ''){
-
-                        var tracks = {{ userTracks|raw }};
-
-                        if(tracks.length > 0){
-                            for(var i = 0; i < tracks.length; i++){
-                                var track = tracks[i];
-
-                                var iframe = $('<iframe />', {
-                                    id: 'iframe'+track.id,
-                                    width: '100%',
-                                    height: '166',
-                                    scrolling: 'no',
-                                    frameborder: 'no',
-                                    src: 'https://w.soundcloud.com/player/?url='+track.uri
-                                });
-
-                                $('div[data-tab="'+$this.attr('data-tab')+'"]').append(iframe);
-                                SC.Widget(iframe[0]);
-                            }
-                        }
-                    }
-                });
-            {% endif %}
-
-            {% if user is defined %}
-                if ($('.compatibility').length > 0){
-                    $.ajax({
-                        url: Routing.generate('api_compatibility', { id: '{{ user.getId }}' }),
-                        success: function(data) {
-                            $('.compatibility span').text(data + '%');
-                        }
-                    });
-                }
-
-                getUserShouts();
-
-            {% endif %}
-
-            $().fancybox();
-        });
-    </script>
+        </div>
+    </section><!--main-content ends-->
 
 {% endblock %}
+
