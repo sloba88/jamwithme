@@ -1,36 +1,10 @@
 {% extends 'JamWebBundle::layout.html.twig' %}
 
-{% block bodyclasses %}page-dashboard{% endblock %}
+{% block bodyclasses %}page-dashboard {% if app.request.attributes.get('_route') == 'teachers' %}page-teachers{% endif %}{% endblock %}
 
 {% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
 
 {% block main_content %}
-
-
-    <div class="row event" style="display:none">
-
-        <div class="col-lg-5 image-box">
-            <div class="image-holder">
-                <img src="{{ asset('assets/images/events-picture-01.png') }}" alt="Event">
-            </div>
-            <div class="promo">
-                <h4>{{ 'text.upcoming.event'|trans }}</h4>
-                <a href="#" class="link">{{ 'text.view.all'|trans }}<i class="glyphicon glyphicon-play"></i></a>
-            </div>
-        </div>
-
-        <div class="col-lg-7 text-box">
-            <div class="time">05 Sep 2014
-                <a href="#" class="view-details link">{{ 'text.view.details'|trans }}</a>
-            </div>
-            <h3>Kompakt at Oz. Amsterdam KOMPAKT Pop Up store</h3>
-            <p>
-                14:00 - 20:00 | Free entrance<br>
-                Oz. | Oudezijds Achterburgwal 66, Amsterdam
-            </p>
-        </div>
-
-    </div><!--event ends-->
 
     {{ render(controller('JamWebBundle:Search:filter' )) }}
 

@@ -13,6 +13,7 @@ class HomeController extends Controller
 {
     /**
      * @Route("/", name="home", options={"expose"=true})
+     * @Route("/teachers", name="teachers", options={"expose"=true})
      * @Template()
      */
     public function indexAction(Request $request)
@@ -20,58 +21,16 @@ class HomeController extends Controller
         //TODO: put this form in separate file
         $form = $this->createFormBuilder(new Shout())
         ->add('text', 'textarea', array(
-        'label' => false,
-        'attr' => array(
-            'placeholder' => 'label.say.something.cool',
-            'maxlength' => 250
-        )
-    ))
+            'label' => false,
+            'attr' => array(
+                'placeholder' => 'label.say.something.cool',
+                'maxlength' => 250
+            )
+        ))
         ->add('send', 'submit', array(
             'label' => 'label.send'
         ))
         ->getForm();
-
-        return array(
-            'form' => $form->createView()
-        );
-    }
-
-    /**
-     * @Route("/teachers", name="teachers", options={"expose"=true})
-     * @Template()
-     */
-    public function teachersAction(Request $request)
-    {
-        $shout = new Shout();
-
-        $form = $this->createFormBuilder($shout)
-            ->add('text', 'textarea', array(
-                'label' => false,
-                'attr' => array(
-                    'placeholder' => 'label.say.something.cool',
-                    'maxlength' => 250
-                )
-            ))
-            ->add('send', 'submit')
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            if (!$this->getUser()){
-                throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
-            }
-
-            $shout->setCreator($this->getUser());
-            $em->persist($shout);
-            $em->flush();
-
-            $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.you.have.shouted.successfully.'));
-
-            return $this->redirect($this->generateUrl('home'));
-        }
 
         return array(
             'form' => $form->createView()
