@@ -44,7 +44,7 @@
                             {% endif %}
                         {% endif %}
 
-                        <div class="bio">{{ user.genderText }}{% if user.age %}, {{ 'user.age'|transchoice(user.age)|desc('%user.age% years old') }}{% endif %}</div>
+                        <div class="bio">{{ user.genderText }}{% if user.age %}, {{ 'user.age'|trans({'%user.age%' : user.age})|desc('%user.age% years old') }}{% endif %}</div>
 
                         {% if is_granted("ROLE_USER") and app.user != user %}
                             <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>{{ 'button.message'|trans }}</a>
@@ -178,6 +178,7 @@
                                         <img src="{{ asset('assets/images/icon-compatibility.png') }}" alt="Compatibility">
                                     </li>
                                     <li class="compatibility">
+                                        &nbsp;
                                         <span></span>
                                         {{ 'text.compatibility'|trans }}
                                     </li>
