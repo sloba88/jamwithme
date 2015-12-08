@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
 use Jam\CoreBundle\Entity\Shout;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Elastica\Util;
 
 class ShoutsController extends FOSRestController
 {
