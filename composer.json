@@ -44,10 +44,18 @@
         "friendsofsymfony/jsrouting-bundle": "dev-master",
         "friendsofsymfony/rest-bundle": "dev-master",
         "snc/redis-bundle": "dev-master",
-        "predis/predis": "0.8.x-dev",
+        "predis/predis": "dev-master",
         "braincrafted/bootstrap-bundle": "dev-master",
         "misd/guzzle-bundle": "~1.0",
         "jms/translation-bundle": "dev-master"
+    },
+    "require-dev": {
+        "behat/behat":                       "3.*",
+        "behat/symfony2-extension":          "*",
+        "behat/mink":                   "~1.5",
+        "behat/mink-selenium2-driver":  "~1.1",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "1.1"
     },
     "scripts": {
         "post-install-cmd": [

@@ -1,0 +1,25 @@
+default:
+    suites:
+        default:
+            contexts:
+                - Jam\WebBundle\Tests\FeatureContext:
+                    testUsername: 'test'
+                    testPassword: 'test'
+    extensions:
+        Behat\MinkExtension:
+            base_url: "http://33.33.33.100/app_dev.php"
+            default_session: 'selenium2'
+            browser_name: 'firefox'
+            javascript_session: selenium2
+            selenium2:
+                wd_host: 10.0.2.2:4444/wd/hub
+            files_path: 'web/assets/'
+        Behat\Symfony2Extension:
+            kernel:
+                env: test
+                debug: true
+
+local:
+    extensions:
+        Behat\MinkExtension:
+            base_url: "http://33.33.33.100/app_dev.php"

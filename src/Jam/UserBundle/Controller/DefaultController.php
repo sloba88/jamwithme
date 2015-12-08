@@ -74,6 +74,7 @@ class DefaultController extends Controller
      */
     public function findAction()
     {
+        //todo: move this to api
         $request = $this->get('request_stack')->getCurrentRequest();
         $q = $request->query->get('q');
 
