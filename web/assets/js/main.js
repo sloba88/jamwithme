@@ -179,7 +179,7 @@ $(function() {
             type: 'POST',
             success: function(result) {
                 addMessage(result.status, result.message);
-                if (result.status == 'success'){
+                if (result.status === 'success'){
                     $.each(result.data, function(k, v){
                         $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
                     });
@@ -199,9 +199,10 @@ $(function() {
             url: Routing.generate('remove_shout', {id: $(e.currentTarget).attr('id')}),
             type: 'DELETE',
             success: function(result) {
-                if (result.success) {
+                if (result.status === 'success') {
                     element.parents(".shout-box").remove();
                     checkCanShout();
+                    addMessage(result.status, result.message);
                 }
             }
         });

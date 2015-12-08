@@ -4,10 +4,10 @@ function checkCanShout(){
     if ($('#shoutForm').length > 0) {
         $.ajax({
             url: Routing.generate('can_shout'),
-            success: function (seconds) {
+            success: function (data) {
 
-                if (seconds > 0) {
-                    var count = seconds;
+                if (data.data > 0) {
+                    var count = data.data;
 
                     function timer() {
                         count = count - 1;
@@ -18,6 +18,11 @@ function checkCanShout(){
                         }
 
                         var seconds = count % 60;
+
+                        if (seconds < 10) {
+                            seconds = '0' + seconds;
+                        }
+
                         var minutes = Math.floor(count / 60);
                         var hours = Math.floor(minutes / 60);
                         minutes %= 60;

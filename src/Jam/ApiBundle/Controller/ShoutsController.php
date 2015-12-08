@@ -1,12 +1,16 @@
 <?php
 
-namespace Jam\WebBundle\Controller;
+namespace Jam\ApiBundle\Controller;
 
 use Elastica\Filter\Bool;
 use Elastica\Filter\Term;
 use Elastica\Filter\Terms;
 use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
+use FOS\RestBundle\Controller\Annotations\Delete;
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\FOSRestController;
 use Jam\CoreBundle\Form\Type\SearchType;
 use Jam\CoreBundle\Entity\Shout;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -17,11 +21,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Elastica\Util;
 
-class ShoutsController extends Controller
+class ShoutsController extends FOSRestController
 {
     /**
-     * @Route("/shouts/find", name="shouts_find", options={"expose"=true})
-     * @Method({"GET"})
+     * @Get("/shouts/find", name="shouts_find")
      */
     public function findAction()
     {
@@ -69,8 +72,7 @@ class ShoutsController extends Controller
     }
 
     /**
-     * @Route("/shouts/{username}", name="user_shouts", options={"expose"=true})
-     * @Method({"GET"})
+     * @Get("/shouts/{username}", name="user_shouts")
      */
     public function getAction($username)
     {
@@ -129,25 +131,24 @@ class ShoutsController extends Controller
             array_push($musicians_data, $data_array);
         }
 
-        $response->setData(array(
+        $view = $this->view(array(
             'status'    => 'success',
+            'message'   => $message,
             'data' => $musicians_data,
-            'message' => $message
-        ));
+        ), 200);
 
-        return $response;
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/shouts/{id}", name="remove_shout", options={"expose"=true})
-     * @Method({"DELETE"})
+     * @Delete("/shouts/{id}", name="remove_shout")
      */
     public function removeShoutAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $shout = $this->getDoctrine()->getRepository('JamCoreBundle:Shout')->find($request->get('id'));
         $responseData = array(
-            'success' => false
+            'status' => false
         );
 
         if ($shout instanceof Shout) {
@@ -155,27 +156,26 @@ class ShoutsController extends Controller
 
             $em->remove($shout);
             $em->flush();
-            $responseData['success'] = true;
+            $responseData['status'] = 'success';
+            $responseData['message'] = 'Shout removed successfully.';
         } else {
             $responseData['message'] = 'Shout not found';
         }
 
-        $response = new JsonResponse();
-        $response->setData($responseData);
+        $view = $this->view($responseData, 200);
 
-        return $response;
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/shout/add", name="create_shout", options={"expose"=true})
-     * @Method({"POST"})
+     * @Post("/shout/add", name="create_shout")
      */
     public function createShoutAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 
         if ($this->get('shout.counter')->getSecondsDifference() > 0) {
-            $responseData['success'] = false;
+            $responseData['status'] = 'success';
             $responseData['message'] = 'Form not valid';
 
             $response = new JsonResponse();
@@ -205,7 +205,7 @@ class ShoutsController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             if (!$this->getUser()){
-                $responseData['success'] = false;
+                $responseData['status'] = false;
                 $responseData['message'] = $this->get('translator')->trans('exception.you.shall.not.pass');
             }
 
@@ -216,26 +216,26 @@ class ShoutsController extends Controller
 
             return $this->formatResponse(array($shout), 'You have shouted successfully!');
         } else {
-            $responseData['success'] = false;
+            $responseData['status'] = false;
             $responseData['message'] = 'Form not valid';
         }
 
-        $response = new JsonResponse();
-        $response->setData($responseData);
+        $view = $this->view($responseData, 200);
 
-        return $response;
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/shout/can", name="can_shout", options={"expose"=true})
-     * @Method({"GET"})
+     * @Get("/shout/can", name="can_shout")
      */
     public function canShoutAction()
     {
-        $response = new JsonResponse();
-        $response->setData($this->get('shout.counter')->getSecondsDifference());
+        $view = $this->view(array(
+            'status'    => 'success',
+            'data' => $this->get('shout.counter')->getSecondsDifference()
+        ), 200);
 
-        return $response;
+        return $this->handleView($view);
     }
 
 }
