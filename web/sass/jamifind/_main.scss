@@ -426,7 +426,7 @@
 	}
 
 	.people-info {
-		@include transition(all 0.3s ease);
+		@include transition(all 0.2s ease);
 		background: url("../images/transparent-bg-purple-people.png") no-repeat;
 		bottom: 0;
 		color: #fff;
