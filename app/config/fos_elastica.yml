@@ -4,6 +4,7 @@ fos_elastica:
     indexes:
         searches:
             client: default
+            index_name: app_%kernel.environment%
             types:
                 user:
                     mappings:

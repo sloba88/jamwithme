@@ -70,8 +70,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             $connection->close();
         }
         self::runConsole($app, 'doctrine:schema:update', array('--force' => true));
-        //this shiat bellow sillently fail sometimes
         self::runConsole($app, 'doctrine:fixtures:load', array('--append' => true));
+        self::runConsole($app, 'fos:elastica:populate');
     }
 
     /** @AfterStep */
@@ -87,9 +87,9 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     }
 
     /**
-     * @Given /^I am logged in as administrator$/
+     * @Given /^I am logged in as user$/
      */
-    public function iAmLoggedInAsAdministrator()
+    public function iAmLoggedInAsUser()
     {
         $this->getSession()->visit($this->locatePath($this->getMinkParameter('base_url').'/login'));
         $this->fillField('username', $this->testUsername);
