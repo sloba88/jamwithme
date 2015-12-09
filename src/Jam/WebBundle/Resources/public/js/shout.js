@@ -24,7 +24,17 @@ function checkCanShout(){
                         }
 
                         var minutes = Math.floor(count / 60);
+
+                        if (minutes < 10) {
+                            minutes = '0' + minutes;
+                        }
+
                         var hours = Math.floor(minutes / 60);
+
+                        if (hours < 10) {
+                            hours = '0' + hours;
+                        }
+
                         minutes %= 60;
                         hours %= 60;
 
