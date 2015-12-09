@@ -49,7 +49,7 @@ $(function() {
         });
     });
 
-    if (_user.lat == '' || _user.lng == '' || _user.temporaryLocation == '') {
+    if (_user.lat == '' || _user.lng == '' || _user.temporaryLocation == '1') {
         //if there are no coordinates set try browser get position
         getLocation(function(myBrowserLocation) {
             myLocation = myBrowserLocation;
