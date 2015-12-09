@@ -7,7 +7,7 @@ default:
                     testPassword: 'test'
     extensions:
         Behat\MinkExtension:
-            base_url: "http://33.33.33.100/app_dev.php"
+            base_url: "http://33.33.33.100/app_test.php"
             default_session: 'selenium2'
             browser_name: 'firefox'
             javascript_session: selenium2
@@ -22,4 +22,4 @@ default:
 local:
     extensions:
         Behat\MinkExtension:
-            base_url: "http://33.33.33.100/app_dev.php"
+            base_url: "http://33.33.33.100/app_test.php"

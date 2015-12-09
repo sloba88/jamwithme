@@ -61,30 +61,17 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             opcache_reset();
         }
 
-        try {
-            //if doctrine
-            $kernel->getContainer()->get('doctrine');
+        self::runConsole($app, 'doctrine:database:drop', array('--force' => true));
+        self::runConsole($app, 'doctrine:database:create');
 
-            $testDBName = $kernel->getContainer()->getParameter('database_name_test');
-            $liveDBName = $kernel->getContainer()->getParameter('database_name');
-
-            if ($testDBName != $liveDBName) {
-                self::runConsole($app, 'doctrine:database:drop', array('--force' => true));
-                self::runConsole($app, 'doctrine:database:create');
-
-                //Make sure we close the original connection because it lost the reference to the database
-                $connection = $kernel->getContainer()->get('doctrine')->getConnection();
-                if ($connection->isConnected()) {
-                    $connection->close();
-                }
-                self::runConsole($app, 'doctrine:schema:update', array('--force' => true));
-                //this shiat bellow sillently fail sometimes
-                self::runConsole($app, 'doctrine:fixtures:load', array('--append' => true));
-            }
-
-        }catch (\Exception $e){
-            //its propel
+        //Make sure we close the original connection because it lost the reference to the database
+        $connection = $kernel->getContainer()->get('doctrine')->getConnection();
+        if ($connection->isConnected()) {
+            $connection->close();
         }
+        self::runConsole($app, 'doctrine:schema:update', array('--force' => true));
+        //this shiat bellow sillently fail sometimes
+        self::runConsole($app, 'doctrine:fixtures:load', array('--append' => true));
     }
 
     /** @AfterStep */
@@ -106,8 +93,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
     {
         $this->getSession()->visit($this->locatePath($this->getMinkParameter('base_url').'/login'));
         $this->fillField('username', $this->testUsername);
-        $this->fillField('password', $this->testPassword);
-        $this->pressButton('login');
+        $this->fillField('_password', $this->testPassword);
+        $this->pressButton('_submit');
     }
 
     /**
