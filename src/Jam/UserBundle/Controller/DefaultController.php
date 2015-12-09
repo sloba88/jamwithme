@@ -2,7 +2,6 @@
 
 namespace Jam\UserBundle\Controller;
 
-
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
@@ -86,10 +85,10 @@ class DefaultController extends Controller
         $results = $finder->find($q);
 
         $data = array();
-        foreach ($results AS $r) {
-            $data[]['id'] = $r->getId();
-            $data[]['username'] = $r->getUsername();
-            $data[]['avatar'] = $r->getAvatar();
+        foreach ($results AS $k=>$r) {
+            $data[$k]['id'] = $r->getId();
+            $data[$k]['username'] = $r->getUsername();
+            $data[$k]['avatar'] = $r->getAvatar();
         }
 
         return new JsonResponse($data);
