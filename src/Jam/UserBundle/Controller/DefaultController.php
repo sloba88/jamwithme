@@ -102,7 +102,7 @@ class DefaultController extends Controller
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 
-        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
         }else{
             throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
@@ -150,7 +150,7 @@ class DefaultController extends Controller
      */
     public function removeImageAction($id)
     {
-        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
         }else{
             throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
@@ -236,7 +236,7 @@ class DefaultController extends Controller
      */
     public function setAvatarAction($id)
     {
-        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
         }else{
             throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
