@@ -17,6 +17,7 @@ $(function() {
         $('#musician_instruments').append(instrumentTemplate({'num': length}));
 
         initInstrumentSelection();
+        scrollbarPlugin();
     });
 
     $('#musician_instruments').sortable({
@@ -29,6 +30,7 @@ $(function() {
     $('#musician_instruments').on('click', '.remove-instrument', function(e){
         e.preventDefault();
         $(this).closest('.row').remove();
+        scrollbarPlugin();
         renameCollectionNames($('#musician_instruments .row'));
     });
 
@@ -219,6 +221,7 @@ $(function() {
         }
     });
 
+    setTabsHeight();
 });
 
 function initInstrumentSelection(){
@@ -250,4 +253,11 @@ function renameCollectionNames($selection) {
             $(this).attr('name', name);
         });
     });
+}
+
+function setTabsHeight() {
+    if ($(window).width() > 992) {
+        $('.page-settings .view-tab.with-scrollbar').height($(window).height() - 200);
+    }
+    return true;
 }

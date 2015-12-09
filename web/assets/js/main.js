@@ -514,8 +514,7 @@ function autocompleteMessageUser() {
             },
             select: function(event, ui) {
                 $autocompleteInput.val(ui.item.username);
-                $('.conversation-send .send-message').data('tousername', ui.item.username);
-                $('.conversation-send .send-message').data('toid', ui.item.id);
+                $('.conversation-send .send-message').data('tousername', ui.item.username).data('toid', ui.item.id);
 
                 return false;
             }
