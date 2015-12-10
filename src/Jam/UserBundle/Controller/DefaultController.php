@@ -68,7 +68,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/users", name="users_find")
+     * @Route("/users", name="users_find", options={"expose"=true})
      * @Template()
      */
     public function findAction()

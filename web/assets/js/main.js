@@ -458,7 +458,7 @@ function autocomplete() {
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
-                    url: '/users',
+                    url: Routing.generate('users_find'),
                     data: {
                         q: request.term
                     },
@@ -507,7 +507,7 @@ function autocompleteMessageUser() {
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
-                    url: '/users',
+                    url: Routing.generate('users_find'),
                     data: {
                         q: request.term
                     },
