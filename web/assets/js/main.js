@@ -1,9 +1,9 @@
-_.templateSettings.variable = "rc";
-var shoutBoxTemplate = _.template($("#shoutBoxTemplate").html());
+_.templateSettings.variable = 'rc';
+var shoutBoxTemplate = _.template($('#shoutBoxTemplate').html());
 var notificationTemplate = _.template($('#notificationTemplate').html());
-var musicianBoxTemplate = _.template($("#musicianBoxTemplate").html());
-var musicianMapBoxTemplate = _.template($("#musicianMapBoxTemplate").html());
-var messageTemplate = _.template($("#messageTemplate").html());
+var musicianBoxTemplate = _.template($('#musicianBoxTemplate').html());
+var musicianMapBoxTemplate = _.template($('#musicianMapBoxTemplate').html());
+var messageTemplate = _.template($('#messageTemplate').html());
 
 $(function() {
 
@@ -15,13 +15,13 @@ $(function() {
     $('.info-popover').popover();
 
     //select plugin on dashboard updates height of main container on change
-    $('select').on("change", sidebarHeight);
+    $('select').on('change', sidebarHeight);
 
     $('#form_genres, #jam_genres').select2({
         placeholder: 'Whats music do you play?'
     });
 
-    $("#search_form_genres").select2({
+    $('#search_form_genres').select2({
         placeholder: 'Filter by genres'
     });
 
@@ -112,9 +112,6 @@ $(function() {
         }
     });
 
-    var jamMembersCollectionHolder = $("#jam_members");
-    var videosCollectionHolder = $("#musician_videos");
-
     $('#add_another_image').click(function(e) {
         e.preventDefault();
         addCollectionForm(imagesCollectionHolder, 'images');
@@ -123,7 +120,7 @@ $(function() {
     $('.price-type').click(function() {
         $('.price-type').attr('checked', false);
         $(this).prop('checked', true).attr('checked', true);
-        $("#ad_price").val('');
+        $('#ad_price').val('');
     });
 
     if (jQuery().fancybox) {
@@ -135,30 +132,28 @@ $(function() {
                     }
                 },
                 afterLoad: function() {
-                    //this.title = $(this).closest('.profile-media-image-commands').html();
-                    console.log($(this.element));
                     this.title = $(this.element).parent().find('.profile-media-image-commands').html();
                 }
         });
     }
 
-    $("#addPhotosToggle").on('click', function(e) {
+    $('#addPhotosToggle').on('click', function(e) {
         e.preventDefault();
-        $(".profile-add-photos").fadeToggle();
+        $('.profile-add-photos').fadeToggle();
         $(this).toggleClass('active');
-        $(".profile-write-recommendation").hide();
-        $("#addUserRecommendationToggle").removeClass('active');
+        $('.profile-write-recommendation').hide();
+        $('#addUserRecommendationToggle').removeClass('active');
     });
 
     setTimeout(function() {
-        $(".flash-message.alert, .flash-message.success").fadeOut();
+        $('.flash-message.alert, .flash-message.success').fadeOut();
     }, 3000);
 
-    $("#addUserRecommendationToggle").on('click', function() {
+    $('#addUserRecommendationToggle').on('click', function() {
         $(this).toggleClass('active');
-        $(".profile-write-recommendation").fadeToggle();
-        $(".profile-add-photos").hide();
-        $("#addPhotosToggle").removeClass('active');
+        $('.profile-write-recommendation').fadeToggle();
+        $('.profile-add-photos').hide();
+        $('#addPhotosToggle').removeClass('active');
     });
 
     parseYTVideoImages();
@@ -171,7 +166,7 @@ $(function() {
             'transitionOut': 'none',
             'width': 640,
             'height': 385,
-            'href': this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+            'href': this.href.replace(new RegExp('watch\\?v=', 'i'), 'v/'),
             'type': 'swf',
             'swf': {
                 'wmode': 'transparent',
@@ -212,7 +207,7 @@ $(function() {
             type: 'DELETE',
             success: function(result) {
                 if (result.status === 'success') {
-                    element.parents(".shout-box").remove();
+                    element.parents('.shout-box').remove();
                     checkCanShout();
                     addMessage(result.status, result.message);
                 }
@@ -452,7 +447,7 @@ function youtubeParser(url) {
 function autocomplete() {
 
     var $searchContainer = $('.search-block-container'),
-    $autocompleteInput = $("#autocomplete"),
+    $autocompleteInput = $('#autocomplete'),
     $searchBlock = $autocompleteInput.parent();
 
     if ($autocompleteInput.length) {
@@ -463,7 +458,7 @@ function autocomplete() {
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
-                    url: "/users",
+                    url: '/users',
                     data: {
                         q: request.term
                     },
@@ -475,9 +470,9 @@ function autocomplete() {
             messages: {
                 noResults: ''
             }
-        }).data("uiAutocomplete")._renderItem = function(ul, item) {
-            return $("<li />")
-            .data("item.autocomplete", item)
+        }).data('uiAutocomplete')._renderItem = function(ul, item) {
+            return $('<li />')
+            .data('item.autocomplete', item)
             .append("<a href='" + baseURL + "/m/" + item.username + "'><img src='" + baseURL + "/m/" + item.username + "/avatar/my_thumb' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
             .appendTo(ul);
         };
@@ -502,7 +497,7 @@ function autocomplete() {
 
 function autocompleteMessageUser() {
 
-    var $autocompleteInput = $(".autocomplete");
+    var $autocompleteInput = $('.autocomplete');
 
     if ($autocompleteInput.length) {
 
@@ -512,7 +507,7 @@ function autocompleteMessageUser() {
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
-                    url: "/users",
+                    url: '/users',
                     data: {
                         q: request.term
                     },
@@ -530,7 +525,7 @@ function autocompleteMessageUser() {
 
                 return false;
             }
-        }).data("uiAutocomplete")._renderItem = function(ul, item) {
+        }).data('uiAutocomplete')._renderItem = function(ul, item) {
             return $("<li />")
             .data("item.autocomplete", item)
             .append("<a class='user-suggest-messages' data-user='" + item.username + "' data-id='" + item.id + "'><img src='" + item.avatar + "' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
@@ -629,7 +624,7 @@ function parseYTVideoImages() {
 }
 
 function imgError(image, size) {
-    image.onerror = "";
+    image.onerror = '';
     image.src = Routing.generate('default_avatar', {'size': size});
     return true;
 }
