@@ -93,7 +93,7 @@ $(function() {
         // options for cellsByRow layout mode
         // options for masonry layout mode
         masonry: {
-            columnWidth: 120,
+            columnWidth: 240,
             gutter: 5
         }
     });
@@ -127,7 +127,19 @@ $(function() {
     });
 
     if (jQuery().fancybox) {
-        $(".fancybox").fancybox();
+        $('.fancybox').fancybox({
+                'closeEffect': 'none',
+                helpers : {
+                    title: {
+                        type: 'inside'
+                    }
+                },
+                afterLoad: function() {
+                    //this.title = $(this).closest('.profile-media-image-commands').html();
+                    console.log($(this.element));
+                    this.title = $(this.element).parent().find('.profile-media-image-commands').html();
+                }
+        });
     }
 
     $("#addPhotosToggle").on('click', function(e) {

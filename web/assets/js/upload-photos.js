@@ -172,19 +172,20 @@ $(function () {
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    $('#user_images').on('click', '.remove-image-ajax', function(e){
+    $('body').on('click', '.remove-image-ajax', function(e) {
         e.preventDefault();
-        var image = $(this).parents('.image-holder');
         var id = $(this).data('id');
+        var image = $('*[data-image-id="' + id + '"]');
         $.ajax({
             url: Routing.generate('remove_user_image', {'id': id})
         }).done(function( data ) {
-            if (data.status == 'success'){
-                image.fadeOut(400, function(){
+            if (data.status == 'success') {
+                image.fadeOut(400, function() {
                     image.remove();
                     $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
                 });
                 addMessage(data.status, data.message);
+                $.fancybox.close();
             }
         });
     });

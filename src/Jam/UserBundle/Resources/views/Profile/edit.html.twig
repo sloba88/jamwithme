@@ -10,6 +10,15 @@
         #musician_videos li {
             margin-bottom: 5px;
         }
+
+        .add-another-video {
+            margin-bottom: 6px;
+        }
+
+        .fancybox-title .remove-image-ajax {
+            float: right;
+        }
+
     </style>
 
     <form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit">
@@ -195,32 +204,35 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Photos</h3>
                             </div>
-                            <div class="panel-body panel-images">
+                        </div>
 
-                                {% if form.vars.value.images|length == 0 %}
-                                    <p class="no-images-yet">No images yet.</p>
-                                {% endif %}
+                        {% if form.vars.value.images|length == 0 %}
+                            <p class="no-images-yet">No images yet.</p>
+                        {% endif %}
 
-                                <div id="user_images" class="profile-media-wall">
+                        <div id="user_images" class="profile-media-wall">
 
-                                    {% for i in form.vars.value.images %}
-                                        <div class="image-holder profile-media-wall-item">
-                                            <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
-                                            <div class="profile-media-image-commands">
+                            {% for i in form.vars.value.images %}
+                                <div class="image-holder profile-media-wall-item" data-image-id="{{ i.id }}">
+                                    <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                    <div class="profile-media-image-commands">
 
-                                                <a href="#" class="set-profile-photo" data-id="{{ i.id }}">Set as avatar</a> |
-                                                <a href="#" class="remove-image-ajax" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
+                                        <a href="#" class="set-profile-photo" data-id="{{ i.id }}">Set as profile photo</a>
+                                        <a href="#" class="remove-image-ajax" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
 
                     </div>
 
                     {# video links #}
                     <div class="col-md-4">
+
+                        <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                            <i class="fa fa-youtube-play"></i>
+                            Add Video
+                        </a>
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -235,10 +247,6 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
-                                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
-                                    <i class="fa fa-youtube-play"></i>
-                                    Add Video
-                                </a>
                             </div>
                         </div>
 

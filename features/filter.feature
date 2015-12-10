@@ -11,4 +11,7 @@ Feature: Filter
     Then I should see "Slobodan"
     Then I select2 tag ".filter-instruments" with "Drums"
     Then I wait for 1 seconds
-    Then I should see "ANNA"
+    Then I follow "anna"
+    Then I should see "Anna Hamalainen"
+    Then I follow "Drums"
+    Then I should see "mstanic"
