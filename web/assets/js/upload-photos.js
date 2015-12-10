@@ -71,7 +71,7 @@ $(function () {
 
             console.log(file);
 
-            $(file.preview).wrap( "<a class='preview-thumb'></a>");
+            $(file.preview).wrap( '<a class="preview-thumb"></a>');
 
             var modalCropContainer = $('#imageCropModalTemplate').clone();
             var newImage = cloneCanvas(file.preview);
@@ -116,7 +116,7 @@ $(function () {
         if (file.error) {
             node
                 .append('<br>')
-                .append($('<span class="text-danger"/>').text(file.error));
+                .append($('<span class="text-danger" />').text(file.error));
         }
 
     }).on('fileuploadprogressall', function (e, data) {
