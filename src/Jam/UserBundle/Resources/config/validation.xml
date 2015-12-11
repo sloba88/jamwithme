@@ -54,6 +54,14 @@
             </constraint>
         </property>
 
+        <property name="firstName">
+            <constraint name="Jam\CoreBundle\Validator\Constraints\ContainsProfanity" />
+        </property>
+
+        <property name="lastName">
+            <constraint name="Jam\CoreBundle\Validator\Constraints\ContainsProfanity" />
+        </property>
+
         <property name="plainPassword">
             <constraint name="NotBlank">
                 <option name="message">fos_user.password.blank</option>
