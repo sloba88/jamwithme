@@ -21,12 +21,8 @@ $(function() {
 
     $('#main-filter-form').on('change', function() {
         delay(function(){
-            if ($('#map-canvas').is(':visible')){
-                fetchMapData();
-            }else{
-                filterMusicians();
-                filterShouts();
-            }
+            filterMusicians();
+            filterShouts();
         }, 500);
     });
 
@@ -186,7 +182,6 @@ function filterMusicians(){
 
             if (initializedMap != false ){
                 placeMarkers();
-                setMyFilterMarker();
                 drawRadius();
             }
         }
