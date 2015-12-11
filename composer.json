@@ -47,7 +47,8 @@
         "predis/predis": "dev-master",
         "braincrafted/bootstrap-bundle": "dev-master",
         "misd/guzzle-bundle": "~1.0",
-        "jms/translation-bundle": "dev-master"
+        "jms/translation-bundle": "dev-master",
+        "snipe/banbuilder": "dev-master"
     },
     "require-dev": {
         "behat/behat":                       "3.*",
