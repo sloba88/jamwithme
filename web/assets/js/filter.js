@@ -6,6 +6,7 @@ $(function() {
     $('#map-view').on('click', function(){
         delay(function(){
             if (initializedMap == false ){
+                $('#map').height($('.view-tab-container').height() - 10);
                 initializedMap = initMap();
                 placeMarkers();
                 setMyFilterMarker();
@@ -133,7 +134,6 @@ $(function() {
     });
 
     $('#filter-by-distance-btn span').text($('#search_form_distance').val() + 'km around you');
-
 });
 
 function renderGridView() {
