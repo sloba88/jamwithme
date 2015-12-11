@@ -473,7 +473,7 @@ function autocomplete() {
         }).data('uiAutocomplete')._renderItem = function(ul, item) {
             return $('<li />')
             .data('item.autocomplete', item)
-            .append("<a href='" + baseURL + "/m/" + item.username + "'><img src='" + baseURL + "/m/" + item.username + "/avatar/my_thumb' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.username + "</span></span></a>")
+            .append("<a href='" + baseURL + "/m/" + item.username + "'><img src='" + baseURL + "/m/" + item.username + "/avatar/my_thumb' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.fullName + "</span></span></a>")
             .appendTo(ul);
         };
 

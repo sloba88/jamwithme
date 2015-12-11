@@ -82,13 +82,15 @@ class DefaultController extends Controller
         }
 
         $finder = $this->container->get('fos_elastica.finder.searches.user');
-        $results = $finder->find($q);
+        $results = $finder->find($q . '*');
 
         $data = array();
         foreach ($results AS $k=>$r) {
+            /** @var $r User */
             $data[$k]['id'] = $r->getId();
             $data[$k]['username'] = $r->getUsername();
             $data[$k]['avatar'] = $r->getAvatar();
+            $data[$k]['fullName'] = $r->getFullName();
         }
 
         return new JsonResponse($data);
