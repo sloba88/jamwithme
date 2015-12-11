@@ -18,7 +18,8 @@ class GenresController extends FOSRestController
         $query = $this->getDoctrine()->getManager()
             ->createQuery(
                 "SELECT g.id, g.name AS text FROM JamCoreBundle:Genre g"
-            );
+            )
+            ->useResultCache(true);
 
         $data = $query->getResult();
         $view = $this->view($data, 200);
