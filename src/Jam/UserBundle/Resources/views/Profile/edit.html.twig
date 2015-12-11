@@ -241,8 +241,11 @@
                             <div class="panel-body">
                                 <ul id="musician_videos">
                                     {% for v in form.vars.value.videos %}
-                                        <li data-id="{{ v.id }}">
-                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+                                        <li data-id="{{ v.id }}" class="ytvideo-holder">
+                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0">
+                                                <span class="play-icon"></span>
+                                                <img src="" height="140" width="260" />
+                                            </a>
                                             <a href="" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
                                         </li>
                                     {% endfor %}

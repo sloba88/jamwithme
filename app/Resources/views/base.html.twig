@@ -44,6 +44,35 @@
         .people-grid .people-info .name{
             padding-right: 20px;
         }
+        
+        .ytvideo:hover {
+            text-decoration: none;
+        }
+
+        .ytvideo-holder{
+            position: relative;
+            display: block;
+            float: left;
+            padding: 2px;
+        }
+
+        .play-icon {
+            position: absolute;
+            left: 43%;
+            top: 29%;
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 50px solid silver;
+            opacity: 0.6;
+            cursor: pointer;
+            display: none;
+        }
+
+        .ytvideo:hover .play-icon {
+            display: inline-block;
+        }
 
     </style>
 
