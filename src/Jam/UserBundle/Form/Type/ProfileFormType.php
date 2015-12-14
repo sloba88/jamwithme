@@ -124,6 +124,7 @@ class ProfileFormType extends BaseType
                 'en' => 'English',
                 'fi' => 'Finnish',
             ),
+            'label' => 'Language',
             'required' => false,
             'empty_data' => null
         ));
