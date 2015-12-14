@@ -184,7 +184,8 @@ class ShoutsController extends FOSRestController
                 'attr' => array(
                     'placeholder' => 'label.say.something.cool',
                     'maxlength' => 250
-                )
+                ),
+                'required' => true
             ))
             ->add('send', 'submit', array(
                 'label' => 'label.send'
@@ -205,9 +206,14 @@ class ShoutsController extends FOSRestController
             $shout = $form->getData();
             $shout->setCreator($this->getUser());
             $em->persist($shout);
-            $em->flush();
 
-            return $this->formatResponse(array($shout), 'You have shouted successfully!');
+            try {
+                $em->flush();
+                return $this->formatResponse(array($shout), 'You have shouted successfully!');
+            }catch (\Exception $e) {
+                $responseData['status'] = false;
+                $responseData['message'] = $this->get('translator')->trans('exception.you.shall.not.pass');
+            }
         } else {
             $responseData['status'] = false;
             $responseData['message'] = 'Form not valid';

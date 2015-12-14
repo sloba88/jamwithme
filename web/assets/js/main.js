@@ -180,6 +180,13 @@ $(function() {
     $(document).on('click', '#shoutSend', function(e){
         e.preventDefault();
         var self = $(this);
+        var val = $('#shoutForm #form_text').val();
+
+        if (val.trim() === ''){
+            addMessage(false, 'Shout can\'t be empty, don\'t be shy.');
+            return false;
+        }
+
         $.ajax({
             url: Routing.generate('create_shout'),
             data: $('#shoutForm').serialize(),
@@ -194,7 +201,7 @@ $(function() {
                     $('#form_text').val('');
                 }
             },
-            error: function(result){
+            error: function(result) {
                 addMessage(result.status, result.message);
             }
         });
@@ -602,6 +609,11 @@ function addMessage(type, message, temp) {
     } else {
         temp = '';
     }
+
+    if (type === false) {
+        type = 'danger';
+    }
+
     $('.fixed-alerts-container').append(notificationTemplate({
         type: type,
         message: message,
