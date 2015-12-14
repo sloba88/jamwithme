@@ -659,3 +659,7 @@ function getUserShouts() {
         }
     });
 }
+
+function resetPhotosCountIndicator() {
+    $('.panel-photos-header .badge span').text($('.profile-media-wall-item').length);
+}

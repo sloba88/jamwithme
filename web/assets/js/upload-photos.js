@@ -152,6 +152,8 @@ $(function () {
                     $('.fancybox').fancybox();
                 }
 
+                resetPhotosCountIndicator();
+
             }, 500);
 
             $('.start-upload').hide();
@@ -163,6 +165,7 @@ $(function () {
                 .append(error);
         }
     }).on('fileuploadfail', function (e, data) {
+        addMessage(data.jqXHR.responseJSON.success, data.jqXHR.responseJSON.message);
         $.each(data.files, function (index, file) {
             var error = $('<span class="text-danger"/>').text('File upload failed.');
             $(data.context.children()[index])
@@ -186,6 +189,7 @@ $(function () {
                 });
                 addMessage(data.status, data.message);
                 $.fancybox.close();
+                resetPhotosCountIndicator();
             }
         });
     });

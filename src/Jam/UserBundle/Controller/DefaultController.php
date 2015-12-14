@@ -103,6 +103,7 @@ class DefaultController extends Controller
     public function uploadImageAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
+        $response = new JsonResponse();
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
             $user = $this->getUser();
@@ -110,9 +111,14 @@ class DefaultController extends Controller
             throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
-        if ($user->getImages()->count() > 19) {
+        if ($user->getImages()->count() > 20) {
             //images limit reached
-            return false;
+            $response->setData(array(
+                'success' => false,
+                'message' => 'Image limit reached'
+            ));
+            $response->setStatusCode(500);
+            return $response;
         }
 
         $file = $request->files->get('file');
@@ -129,7 +135,6 @@ class DefaultController extends Controller
         $em->persist($user);
         $em->flush();
 
-        $response = new JsonResponse();
         $response->setData(array(
             'files' => array(
                 'url' => $this->get('liip_imagine.cache.manager')->getBrowserPath($userImage->getWebPath(), 'my_medium_'.$userImage->getType()),
