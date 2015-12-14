@@ -10,14 +10,24 @@
         #musician_videos li {
             margin-bottom: 5px;
         }
+
+        .add-another-video {
+            margin-bottom: 6px;
+        }
+
+        .fancybox-title .remove-image-ajax {
+            float: right;
+        }
+
     </style>
 
     <form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit">
 
         {{ form_errors(form) }}
 
+
         <div class="col-md-2 tabs-save">
-            <input type="submit" class="btn btn-primary btn-save" value="Save" />
+            <input type="submit" class="btn btn-primary btn-save" value="{{ 'button.save'|trans }}" />
             <i class="fa fa-check"></i>
         </div>
 
@@ -191,30 +201,28 @@
                             <div class="progress-bar progress-bar-success"></div>
                         </div>
 
-                        <div class="panel panel-default">
+                        <div class="panel panel-default panel-photos-header">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Photos</h3>
+                                <h3 class="panel-title">Photos <span class="badge"><span>({{ form.vars.value.images|length }}</span> / 20)</span></h3>
                             </div>
-                            <div class="panel-body panel-images">
+                        </div>
 
-                                {% if form.vars.value.images|length == 0 %}
-                                    <p class="no-images-yet">No images yet.</p>
-                                {% endif %}
+                        {% if form.vars.value.images|length == 0 %}
+                            <p class="no-images-yet">No images yet.</p>
+                        {% endif %}
 
-                                <div id="user_images" class="profile-media-wall">
+                        <div id="user_images" class="profile-media-wall">
 
-                                    {% for i in form.vars.value.images %}
-                                        <div class="image-holder profile-media-wall-item">
-                                            <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
-                                            <div class="profile-media-image-commands">
+                            {% for i in form.vars.value.images %}
+                                <div class="image-holder profile-media-wall-item" data-image-id="{{ i.id }}">
+                                    <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                    <div class="profile-media-image-commands">
 
-                                                <a href="#" class="set-profile-photo" data-id="{{ i.id }}">Set as avatar</a> |
-                                                <a href="#" class="remove-image-ajax" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
+                                        <a href="#" class="set-profile-photo" data-id="{{ i.id }}">Set as profile photo</a>
+                                        <a href="#" class="remove-image-ajax" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
 
                     </div>
@@ -222,23 +230,32 @@
                     {# video links #}
                     <div class="col-md-4">
 
+                        <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                            <i class="fa fa-youtube-play"></i>
+                            Add Video
+                        </a>
+
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Youtube Videos</h3>
+                                <h3 class="panel-title">Youtube Videos <span class="badge">({{ form.vars.value.videos|length }} / 20)</span></h3>
                             </div>
                             <div class="panel-body">
+
+                                {% if form.vars.value.videos|length == 0 %}
+                                    <p class="no-images-yet">No videos yet.</p>
+                                {% endif %}
+
                                 <ul id="musician_videos">
                                     {% for v in form.vars.value.videos %}
-                                        <li data-id="{{ v.id }}">
-                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+                                        <li data-id="{{ v.id }}" class="ytvideo-holder">
+                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                                <span class="play-icon"></span>
+                                                <img src="" height="140" width="260" />
+                                            </a>
                                             <a href="" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
                                         </li>
                                     {% endfor %}
                                 </ul>
-                                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
-                                    <i class="fa fa-youtube-play"></i>
-                                    Add Video
-                                </a>
                             </div>
                         </div>
 
@@ -275,7 +292,7 @@
         <hr />
         <div class="row">
             <div class="col-md-2">
-                <input type="submit" class="btn btn-primary btn-save" value="Save" />
+                <input type="submit" class="btn btn-primary btn-save" value="{{ 'button.save'|trans }}" />
                 <i class="fa fa-check"></i>
             </div>
         </div>

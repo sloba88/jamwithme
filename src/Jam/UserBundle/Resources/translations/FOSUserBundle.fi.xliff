@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-12-14T14:11:34Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2015-12-14T14:13:54Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -18,8 +18,9 @@
       </trans-unit>
       <trans-unit id="0dfce19eb3a921df65cf84487a8c5f6dd7d9e878" resname="button.save">
         <source>button.save</source>
-        <target state="new">save</target>
+        <target state="new">tallenna</target>
         <jms:reference-file line="29">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="294">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="18083eb93db5b5f75c36c38ff07a0b1b151cb206" resname="button.sign.up">
         <source>button.sign.up</source>
@@ -37,8 +38,8 @@
         <jms:reference-file line="78">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a0a8fbc70fe82997f8a2ff89090f523ee63f72a" resname="registration.confirmed">
-        <source>Congrats %user.username%, your acount is now activated</source>
-        <target state="new">Congrats %username%, your account is now activated!</target>
+        <source>Congrats %username%, your acount is now activated</source>
+        <target state="new">Congrats %username%, your acount is now activated</target>
         <jms:reference-file line="9">views/Registration/confirmed.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6362bc7b7a8f72b782ffd590744ab069327bbe4a" resname="registration.email.message">
@@ -62,12 +63,12 @@
       </trans-unit>
       <trans-unit id="e1470b3c202d9a4fa8e1afa7ed8695917f060ccd" resname="resetting.request.submit">
         <source>resetting.request.submit</source>
-        <target state="new">Send</target>
+        <target state="new">resetting.request.submit</target>
         <jms:reference-file line="13">views/Resetting/request_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7ad41bf8fb30013eb0f31ca027ca8d1dc7a3d96f" resname="resetting.request.username">
         <source>resetting.request.username</source>
-        <target state="new">Username or email</target>
+        <target state="new">resetting.request.username</target>
         <jms:reference-file line="10">views/Resetting/request_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ea081c43c04590700107f38612ab44a6d01fbbe1" resname="text.already.have.an.account">

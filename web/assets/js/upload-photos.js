@@ -71,7 +71,7 @@ $(function () {
 
             console.log(file);
 
-            $(file.preview).wrap( "<a class='preview-thumb'></a>");
+            $(file.preview).wrap( '<a class="preview-thumb"></a>');
 
             var modalCropContainer = $('#imageCropModalTemplate').clone();
             var newImage = cloneCanvas(file.preview);
@@ -116,7 +116,7 @@ $(function () {
         if (file.error) {
             node
                 .append('<br>')
-                .append($('<span class="text-danger"/>').text(file.error));
+                .append($('<span class="text-danger" />').text(file.error));
         }
 
     }).on('fileuploadprogressall', function (e, data) {
@@ -152,6 +152,8 @@ $(function () {
                     $('.fancybox').fancybox();
                 }
 
+                resetPhotosCountIndicator();
+
             }, 500);
 
             $('.start-upload').hide();
@@ -163,6 +165,7 @@ $(function () {
                 .append(error);
         }
     }).on('fileuploadfail', function (e, data) {
+        addMessage(data.jqXHR.responseJSON.success, data.jqXHR.responseJSON.message);
         $.each(data.files, function (index, file) {
             var error = $('<span class="text-danger"/>').text('File upload failed.');
             $(data.context.children()[index])
@@ -172,19 +175,21 @@ $(function () {
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    $('#user_images').on('click', '.remove-image-ajax', function(e){
+    $('body').on('click', '.remove-image-ajax', function(e) {
         e.preventDefault();
-        var image = $(this).parents('.image-holder');
         var id = $(this).data('id');
+        var image = $('*[data-image-id="' + id + '"]');
         $.ajax({
             url: Routing.generate('remove_user_image', {'id': id})
         }).done(function( data ) {
-            if (data.status == 'success'){
-                image.fadeOut(400, function(){
+            if (data.status == 'success') {
+                image.fadeOut(400, function() {
                     image.remove();
                     $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
                 });
                 addMessage(data.status, data.message);
+                $.fancybox.close();
+                resetPhotosCountIndicator();
             }
         });
     });

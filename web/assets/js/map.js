@@ -20,6 +20,7 @@ function setMyFilterMarker() {
     }).addTo(map);
 
     map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
+    resizeIcons();
 }
 
 function initMap(){

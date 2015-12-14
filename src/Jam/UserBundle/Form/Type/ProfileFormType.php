@@ -122,10 +122,11 @@ class ProfileFormType extends BaseType
         $builder->add('locale', 'choice', array(
             'choices' => array(
                 'en' => 'English',
+                'fi' => 'Finnish',
             ),
+            'label' => 'Language',
             'required' => false,
-            'empty_data' => null,
-            'placeholder' => 'value.select.language'
+            'empty_data' => null
         ));
 
     }

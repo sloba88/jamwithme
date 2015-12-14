@@ -6,16 +6,16 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ProfileEditedListener implements EventSubscriberInterface
 {
     private $userManager;
 
-    public function __construct(UserManagerInterface $userManager)
+    public function __construct(UserManagerInterface $userManager, Session $session)
     {
         $this->userManager = $userManager;
+        $this->session = $session;
     }
 
     public static function getSubscribedEvents()
@@ -36,5 +36,7 @@ class ProfileEditedListener implements EventSubscriberInterface
 
             $this->userManager->updateUser($user);
         }
+
+        $this->session->set('_locale', $user->getLocale());
     }
 }

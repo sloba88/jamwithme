@@ -33,54 +33,27 @@
             color: #3b385e;
         }
 
-        /*#map {
-            height: 400px;
-            margin: 0px;
-            padding: 0px;
-            width: 100%;
-            clear: both;
+ /*       .people-grid .people-info {
+            padding: 10px 10px 5px 10px;
         }
 
-        #map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img{
-            background-color: #fff;
-            padding: 2px;
-            border-radius: 20px;
-            opacity: .9;
+        .people-grid .people-info .tags{
+            height: 44px;
         }
 
-        #map .no-icon, #_location_map .no-icon{
-            background-image: url('/assets/images/logo-icon.png');
-            background-position: center center;
-            background-size: 80%;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
+        .people-grid .people-info .name{
+            padding-right: 20px;
+        }
+        
+        .ytvideo:hover {
+            text-decoration: none;
         }
 
-        #map .musician-map-box-container svg{
-            width: 30px;
-        }
-
-        .ui-autocomplete {
-            z-index: 9999 !important;
-        }
-
-        .profile-media-wall-item { margin-bottom: 10px; }
-
-        .loading-content{
-            background-image: url('/assets/images/loader.gif');
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.4;
-        }
-
-        .people-listing-grid{
-            min-height: 350px;
-        }
-
-        .sidebar-nav .teachers svg{
-            width: 23px;
+        .ytvideo-holder{
+            position: relative;
+            display: block;
             float: left;
+<<<<<<< .merge_file_kGwveP
             fill: gray;
         }
 
@@ -102,15 +75,34 @@
 
         /*.people-grid .people-info {
             padding: 10px 10px 5px 10px;
+=======
+            padding: 2px;
+>>>>>>> .merge_file_S9f7VL
         }
 
-        .people-grid .people-info .tags{
-            height: 44px;
+        .play-icon {
+            position: absolute;
+            left: 43%;
+            top: 29%;
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-bottom: 30px solid transparent;
+            border-left: 50px solid silver;
+            opacity: 0.6;
+            cursor: pointer;
+            display: none;
         }
 
+<<<<<<< .merge_file_kGwveP
         .people-grid .people-info .name{
             padding-right: 20px;
         }*/
+/*=======
+        .ytvideo:hover .play-icon {
+            display: inline-block;
+        }
+>>>>>>> .merge_file_S9f7VL*/
 
     </style>
 
@@ -268,8 +260,8 @@
     <div class="image-holder profile-media-wall-item">
         <a class="fancybox" rel="group" href="<%- rc.url %>"><img src="<%- rc.url %>" /></a>
         <div class="profile-media-image-commands">
-            <a href="#" class="remove-image-ajax" data-id="<%- rc.id %>"><span class="glyphicon glyphicon-remove-sign"></span></a>
-            <a href="#" class="set-profile-photo" data-id="<%- rc.id %>">Set as avatar</a>
+            <a href="#" class="remove-image-ajax" data-id="<%- rc.id %>" title="Remove Image"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+            <a href="#" class="set-profile-photo" data-id="<%- rc.id %>" title="Set as profile photo">Set as profile photo</a>
         </div>
     </div>
 </script>
@@ -336,7 +328,7 @@
 
 <script type="text/template" id="musicianBoxTemplate">
     <div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container">
-        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="people-grid">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="people-grid" title="<%- rc.username %>">
             <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/medium_thumb" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
             <div class="people-info">
                 <h3 class="name"><%- rc.username %></h3>

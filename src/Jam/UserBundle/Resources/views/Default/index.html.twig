@@ -225,9 +225,16 @@
                                     <p>{{ 'text.no.videos.yet'|trans }}</p>
                                 {% endif %}
 
+                                <ul>
                                 {% for v in user.videos %}
-                                    <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
+                                    <div class="ytvideo-holder">
+                                        <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                            <span class="play-icon"></span>
+                                            <img src="" height="140" width="260" />
+                                        </a>
+                                    </div>
                                 {% endfor %}
+                                </ul>
                             </div>
                             <!--videos ends-->
 
