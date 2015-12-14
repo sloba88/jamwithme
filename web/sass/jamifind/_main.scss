@@ -392,7 +392,7 @@
 	overflow: hidden;
 	position: relative;
 	@include respond-to(desktopLg) {
-		min-height: 135px;
+		min-height: 116px;
 	}
 
 	&:hover {
@@ -442,9 +442,9 @@
 			background: $brand-primary;
 			position: relative;
 		}
-		@include respond-to(tabletOnly) {
-			height: 163px;
-		}
+		// @include respond-to(tabletOnly) {
+		// 	height: 163px;
+		// }
 		@include respond-to(handhelds) {
 			height: 120px;
 		}
@@ -514,7 +514,7 @@
 
 		.tags {
 			display: none;
-			height: 22px;
+			// height: 22px;
 			margin-top: 5px;
 			overflow: hidden;
 			@include respond-to(tablet) {
@@ -1503,6 +1503,11 @@
 		i {
 			top: 0;
 		}
+	}
+
+	.tabs-save {
+		float: right;
+		margin: 9px 0 0;
 	}
 
 	.btn-save {
