@@ -239,6 +239,11 @@
                                 <h3 class="panel-title">Youtube Videos</h3>
                             </div>
                             <div class="panel-body">
+
+                                {% if form.vars.value.videos|length == 0 %}
+                                    <p class="no-images-yet">No videos yet.</p>
+                                {% endif %}
+
                                 <ul id="musician_videos">
                                     {% for v in form.vars.value.videos %}
                                         <li data-id="{{ v.id }}" class="ytvideo-holder">
