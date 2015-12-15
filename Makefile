@@ -8,7 +8,8 @@ ASSETIC_DEV     = $(CONSOLE) assetic:dump
 ASSETIC_PROD    = $(CONSOLE) assetic:dump --env=prod
 DUMP_ROUTE      = $(CONSOLE) fos:js-routing:dump
 ELASTIC_INDEX   = $(CONSOLE) fos:elastica:populate
-REDIS           = redis-cli
+REDIS           = redis-cli flushall
+SCHEMA          = $(CONSOLE) doctrine:schema:update --force
 
 default: help
 
@@ -19,24 +20,25 @@ help:
 	@echo "assets-prod - Install assets for production"
 
 dev:
+	$(REDIS)
+	$(SCHEMA)
 	$(COMPOSER_UPDATE)
-	$(BOWER) update
+	$(BOWER) --config.analytics=false update
 	$(CC)
 	$(DUMP_ROUTE)
 	$(ASSETS)
 	$(ASSETIC_DEV)
 	$(ELASTIC_INDEX)
-	$(REDIS) flushall
 
 prod:
+	$(REDIS)
 	$(COMPOSER)
-	$(BOWER) install
+	$(BOWER) --config.analytics=false install
 	$(DUMP_ROUTE) --env=prod
 	$(CC) --env=prod
 	$(ASSETS)
 	$(ASSETIC_PROD)
 	$(ELASTIC_INDEX)
-	$(REDIS) flushall
 
 assets-dev:
 	$(CC)
