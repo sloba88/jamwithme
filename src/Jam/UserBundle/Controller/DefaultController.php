@@ -144,7 +144,8 @@ class DefaultController extends Controller
                 'size' => $file->getClientSize(),
                 'setAvatarUrl' => $this->generateUrl('set_avatar', array('id' => $userImage->getId())),
                 'deleteType' => 'DELETE',
-                'id' => $userImage->getId()
+                'id' => $userImage->getId(),
+                'imageType' => $userImage->getType()
             )
         ));
 

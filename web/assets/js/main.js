@@ -94,7 +94,7 @@ $(function() {
         // options for masonry layout mode
         masonry: {
             columnWidth: 120,
-            gutter: 4
+            gutter: 2
         }
     });
 

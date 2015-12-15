@@ -1490,6 +1490,7 @@
 		position: absolute;
 		right: 0;
 		top: 0;
+        font-size: 11px;
 		@include translateY(-28px);
 	}
 
@@ -1619,6 +1620,7 @@
 
 	a {
 		color: #fff;
+        margin-top: 2px;
 
 		&:hover, &:focus {
 			color: $brand-secondary;
@@ -1628,10 +1630,5 @@
 
 	a[class*="remove-image"] {
 		float: right;
-		margin-top: 2px;
-
-		&:hover, &:focus {
-			color: $brand-secondary;
-		}
 	}
 }

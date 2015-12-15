@@ -138,6 +138,7 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [120, 120], mode: outbound }
+                upscale: { min: [120, 120] }
         my_medium_2:
             quality: 75
             filters:
@@ -146,10 +147,14 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [240, 120], mode: outbound }
+                upscale: { min: [240, 120] }
+                crop: { start: [0, 0], size: [240, 120] }
         my_medium_4:
             quality: 75
             filters:
                 thumbnail: { size: [120, 250], mode: outbound }
+                upscale: { min: [120, 250] }
+                crop: { start: [0, 0], size: [120, 250] }
 snc_redis:
     clients:
         default:

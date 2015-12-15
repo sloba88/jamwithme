@@ -214,12 +214,11 @@
                         <div id="user_images" class="profile-media-wall">
 
                             {% for i in form.vars.value.images %}
-                                <div class="image-holder profile-media-wall-item" data-image-id="{{ i.id }}">
+                                <div class="image-holder profile-media-wall-item image-type-{{ i.type }}" data-image-id="{{ i.id }}">
                                     <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                                     <div class="profile-media-image-commands">
-
-                                        <a href="#" class="set-profile-photo" data-id="{{ i.id }}">Set as profile photo</a>
-                                        <a href="#" class="remove-image-ajax" data-id="{{ i.id }}"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+                                        <a href="#" class="set-profile-photo" data-id="{{ i.id }}" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span>{% if i.type not in [1, 4] %} Set as profile photo{% endif %}</a>
+                                        <a href="#" class="remove-image-ajax" data-id="{{ i.id }}" title="Remove photo"><span class="glyphicon glyphicon-remove-sign"></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
                                     </div>
                                 </div>
                             {% endfor %}

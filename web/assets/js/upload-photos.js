@@ -31,6 +31,8 @@ $(function () {
         previewMaxHeight: 800,
         imageMaxWidth: 800,
         imageMaxHeight: 800,
+        previewMinWidth: 75,
+        previewMinHeight: 75,
         disableExifThumbnail: true,
         imageCrop: false,
         previewCrop: false
@@ -77,6 +79,7 @@ $(function () {
             var newImage = cloneCanvas(file.preview);
             modalCropContainer.find('.modal-body').html(newImage);
             modalCropContainer.find('.modal-dialog').width(newImage.width+40);
+            modalCropContainer.find('.modal-dialog').css('minWidth', 460);
             node.append(modalCropContainer);
 
             $(file.preview).on('click', function(){

@@ -33,7 +33,7 @@
             color: #3b385e;
         }
 
- /*       .people-grid .people-info {
+        .people-grid .people-info {
             padding: 10px 10px 5px 10px;
         }
 
@@ -44,7 +44,7 @@
         .people-grid .people-info .name{
             padding-right: 20px;
         }
-        
+
         .ytvideo:hover {
             text-decoration: none;
         }
@@ -53,31 +53,7 @@
             position: relative;
             display: block;
             float: left;
-<<<<<<< .merge_file_kGwveP
-            fill: gray;
-        }
-
-        .sidebar-nav .teachers:hover svg,.sidebar-nav .teachers.active svg{
-            fill: #fabc09;
-        }
-
-        .select2-container-multi .select2-choices .select2-search-field input{
-            background: #fff !important;
-        }
-
-        .select2-container.form-control .select2-choice, .select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn{
-            background: #fff;
-        }
-
-        .select2-choice.select2-default span.select2-chosen{
-            color: #999;
-        }*/
-
-        /*.people-grid .people-info {
-            padding: 10px 10px 5px 10px;
-=======
             padding: 2px;
->>>>>>> .merge_file_S9f7VL
         }
 
         .play-icon {
@@ -94,15 +70,9 @@
             display: none;
         }
 
-<<<<<<< .merge_file_kGwveP
-        .people-grid .people-info .name{
-            padding-right: 20px;
-        }*/
-/*=======
         .ytvideo:hover .play-icon {
             display: inline-block;
         }
->>>>>>> .merge_file_S9f7VL*/
 
     </style>
 
@@ -260,8 +230,8 @@
     <div class="image-holder profile-media-wall-item">
         <a class="fancybox" rel="group" href="<%- rc.url %>"><img src="<%- rc.url %>" /></a>
         <div class="profile-media-image-commands">
-            <a href="#" class="remove-image-ajax" data-id="<%- rc.id %>" title="Remove Image"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
-            <a href="#" class="set-profile-photo" data-id="<%- rc.id %>" title="Set as profile photo">Set as profile photo</a>
+            <a href="#" class="remove-image-ajax" data-id="<%- rc.id %>" title="Remove Image"><span class="glyphicon glyphicon-remove-sign"></span><% if ([1, 4].indexOf(rc.imageType) == -1) { %> Remove<% } %></a>
+            <a href="#" class="set-profile-photo" data-id="<%- rc.id %>" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span><% if ([1, 4].indexOf(rc.imageType) == -1) { %> Set as profile photo<% } %></a>
         </div>
     </div>
 </script>
@@ -328,7 +298,7 @@
 
 <script type="text/template" id="musicianBoxTemplate">
     <div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container">
-        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="people-grid" title="<%- rc.username %>">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.username %>" class="people-grid" alt="<%- rc.username %>">
             <img src="{{ app.request.getBaseURL() }}/m/<%- rc.username %>/avatar/medium_thumb" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
             <div class="people-info">
                 <h3 class="name"><%- rc.username %></h3>
