@@ -257,7 +257,7 @@ function renameCollectionNames($selection) {
 
 function setTabsHeight() {
     if ($(window).width() > 992) {
-        $('.page-settings .view-tab.with-scrollbar').height($(window).height() - 300);
+        $('.page-settings .view-tab.with-scrollbar').height($(window).height() - 250);
     }
     return true;
 }
