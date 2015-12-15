@@ -48,8 +48,8 @@ $(function() {
                 var videoTemplate = _.template($('#videoBoxTemplate').html());
                 $('#musician_videos').append(videoTemplate({'id' : data.id, 'url': data.url }));
                 parseYTVideoImages();
-
                 addMessage(data.status, data.message);
+                scrollbarPlugin();
             }
         });
     });
@@ -208,8 +208,10 @@ $(function() {
     if ($('#musician_videos').length > 0){
         $('#add_another_video').on('click', function(e) {
             e.preventDefault();
-            var videoTemplate = _.template($('#videoAddBoxTemplate').html());
-            $('#musician_videos').append(videoTemplate());
+            if ($('.add-video-box').length == 0) {
+                var videoTemplate = _.template($('#videoAddBoxTemplate').html());
+                $('#musician_videos').prepend(videoTemplate());
+            }
         });
     }
 

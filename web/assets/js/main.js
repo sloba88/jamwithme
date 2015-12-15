@@ -56,9 +56,9 @@ $(function() {
     }
 
     //scrollbar on settings page - photos
-    $('.profile-media-wall').perfectScrollbar({
-        suppressScrollX: true
-    });
+    //$('.profile-media-wall').perfectScrollbar({
+    //    suppressScrollX: true
+    //});
 
     //window resize after delay
     var resizeTimer;
@@ -103,6 +103,7 @@ $(function() {
 
     $container.imagesLoaded(function() {
         $container.isotope('layout');
+        scrollbarPlugin();
     });
 
     $('.profile-tabs a').on('shown.tab', function(e) {
