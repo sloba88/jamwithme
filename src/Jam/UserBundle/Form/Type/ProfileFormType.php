@@ -103,7 +103,7 @@ class ProfileFormType extends BaseType
         $builder->add('birthDate', 'date', array(
             'empty_value' => array('year' => 'value.year', 'month' => 'value.month', 'day' => 'value.day'),
             'widget' => 'choice',
-            'years' => range(1920, date('Y')),
+            'years' => range(date('Y')-8, 1920),
             'required' => false
         ));
 

@@ -54,6 +54,9 @@
                     var tracks = {{ userTracks|raw }};
 
                     if(tracks.length > 0){
+
+                        $('div[data-tab="'+$this.attr('data-tab')+'"]').html('');
+
                         for(var i = 0; i < tracks.length; i++){
                             var track = tracks[i];
 

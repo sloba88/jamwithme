@@ -2,6 +2,10 @@
 
 namespace Jam\ApiBundle\Controller;
 
+use Elastica\Filter\BoolNot;
+use Elastica\Query\Filtered;
+use Elastica\Filter\Ids;
+use Elastica\Query\MatchAll;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 use Jam\CoreBundle\Entity\Compatibility;
@@ -43,5 +47,54 @@ class CompatibilityController extends FOSRestController
         $view = $this->view($compatibility->getValue(), 200);
 
         return $this->handleView($view);
+    }
+
+    /**
+     * @Get("/compatibility-calculate", name="api_compatibility_calculate")
+     */
+    public function setAllCompatibilitiesAction()
+    {
+        $me = $this->getUser();
+
+        $finder = $this->container->get('fos_elastica.finder.searches.user');
+        $elasticaQuery = new MatchAll();
+
+        //get everyone in 50km radius
+        if ($me->getLat()){
+            $locationFilter = new \Elastica\Filter\GeoDistance(
+                'pin',
+                array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
+                50 . 'km'
+            );
+            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
+        }
+
+        $idsFilter = new Ids();
+        $idsFilter->setIds(array($me->getId()));
+        $elasticaBool = new BoolNot($idsFilter);
+        $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
+
+        $musicians = $finder->find($elasticaQuery);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->createQuery("DELETE FROM JamCoreBundle:Compatibility compatibility WHERE compatibility.musician2 = " . $me->getId() . " OR compatibility.musician = " .$me->getId())
+            ->execute();
+
+        foreach ($musicians AS $k=> $m) {
+            $compatibility = new Compatibility();
+            $compatibility->setMusician($me);
+            $compatibility->setMusician2($m);
+            $compatibility->calculate();
+
+            $em->persist($compatibility);
+        }
+
+        $em->flush();
+
+        $view = $this->view(true, 200);
+
+        return $this->handleView($view);
+
     }
 }

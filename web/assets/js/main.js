@@ -56,9 +56,9 @@ $(function() {
     }
 
     //scrollbar on settings page - photos
-    //$('.profile-media-wall').perfectScrollbar({
-    //    suppressScrollX: true
-    //});
+    $('.page-profile .profile-media-wall').perfectScrollbar({
+        suppressScrollX: true
+    });
 
     //window resize after delay
     var resizeTimer;

@@ -122,7 +122,7 @@ class MusiciansController extends FOSRestController
          *
          */
 
-        if (count($ids) > 0){
+        if (count($ids) > 0) {
             $query = "SELECT musician, compatibility.value
             FROM JamUserBundle:User musician
             JOIN JamCoreBundle:Compatibility compatibility
