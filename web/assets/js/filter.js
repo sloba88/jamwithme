@@ -1,5 +1,7 @@
 var filterResults = [];
 var initializedMap = false;
+var loadMoreResults = true;
+var page = 1;
 
 $(function() {
 
@@ -20,6 +22,8 @@ $(function() {
     }
 
     $('#main-filter-form').on('change', function() {
+        //reset page to 1st page
+        page = 1;
         delay(function(){
             filterMusicians();
             filterShouts();
@@ -130,10 +134,19 @@ $(function() {
     });
 
     $('#filter-by-distance-btn span').text($('#search_form_distance').val() + 'km around you');
+
+    $('.view-tab-container').on('ps-y-reach-end', function () {
+
+        if (loadMoreResults === true) {
+            loadMoreResults = false;
+            filterMusicians();
+        }
+    })
+
 });
 
-function renderGridView() {
-    $.each(filterResults, function (k, v) {
+function renderGridView(data) {
+    $.each(data, function (k, v) {
         $(".people-listing-grid").append(musicianBoxTemplate(v));
     });
 
@@ -142,6 +155,8 @@ function renderGridView() {
     }
 
     $('.people-listing-grid').removeClass('loading-content');
+
+    scrollbarPlugin();
 }
 
 function getFilterData() {
@@ -163,27 +178,37 @@ function getFilterData() {
         data += '&'+ $("#search_form_distance").serialize();
     }
 
+    data += '&page='+page;
+
     return data;
 }
 
 function filterMusicians(){
-    $('.people-listing-grid').html('').addClass('loading-content');
+    if (page === 1) {
+        $('.people-listing-grid').html('').addClass('loading-content');
+    }
 
     $.ajax({
         url: Routing.generate('musicians_find'),
         data: getFilterData()
     }).done(function( result ) {
         if (result.status == 'success') {
-            filterResults = result.data;
-            renderGridView();
-            if (result.data.length == 0){
+            filterResults = filterResults.concat(result.data);
+            renderGridView(result.data);
+            if (filterResults.length == 0){
                 $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
+            }
+
+            if (result.data.length !== 0) {
+                page ++;
+                loadMoreResults = true;
             }
 
             if (initializedMap != false ){
                 placeMarkers();
                 drawRadius();
             }
+
         }
     });
 }

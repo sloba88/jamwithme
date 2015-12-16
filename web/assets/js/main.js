@@ -593,7 +593,8 @@ function scrollbarPlugin() {
         if (thisChildrenHeight > thisHeight) {
             if ($('.hidden-xs').is(':visible')) {
                 $withScrollbar.perfectScrollbar({
-                    suppressScrollX: true
+                    suppressScrollX: true,
+                    wheelPropagation: true
                 });
             } else {
                 if ($('.with-scrollbar.ps-container').length) {

@@ -25,6 +25,8 @@ class MusiciansController extends FOSRestController
         $request = $this->get('request_stack')->getCurrentRequest();
         $request->getSession()->save();
         $me = $this->getUser();
+        $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
+        $perPage = 20;
 
         $genres = $request->query->get('genres');
         $instruments = $request->query->get('instruments');
@@ -41,12 +43,12 @@ class MusiciansController extends FOSRestController
         $finder = $this->container->get('fos_elastica.finder.searches.user');
         $elasticaQuery = new MatchAll();
 
-        if ($genres!=''){
+        if ($genres != ''){
             $categoryQuery = new Terms('genres.genre.id', explode(",", $genres));
             $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
         }
 
-        if ($instruments!=''){
+        if ($instruments != ''){
             $categoryQuery = new Terms('instruments.instrument.id', explode(",", $instruments));
             $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
         }
@@ -73,9 +75,12 @@ class MusiciansController extends FOSRestController
         $elasticaBool = new BoolNot($idsFilter);
         $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
 
+        $query = new \Elastica\Query();
+        $query->setQuery($elasticaQuery);
+        $query->setSize($perPage);
+        $query->setFrom(($page - 1) * $perPage);
 
-        $musicians = $finder->find($elasticaQuery);
-
+        $musicians = $finder->find($query);
 
         $em = $this->getDoctrine()->getManager();
         $ids = array();
