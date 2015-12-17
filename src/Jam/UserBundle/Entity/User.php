@@ -197,6 +197,13 @@ class User extends BaseUser
     protected $locale;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Compatibility", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
+     */
+    protected $compatibilities;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -1029,5 +1036,39 @@ class User extends BaseUser
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    /**
+     * Add compatibility
+     *
+     * @param \Jam\CoreBundle\Entity\Compatibility $compatibility
+     *
+     * @return User
+     */
+    public function addCompatibility(\Jam\CoreBundle\Entity\Compatibility $compatibility)
+    {
+        $this->compatibilities[] = $compatibility;
+
+        return $this;
+    }
+
+    /**
+     * Remove compatibility
+     *
+     * @param \Jam\CoreBundle\Entity\Compatibility $compatibility
+     */
+    public function removeCompatibility(\Jam\CoreBundle\Entity\Compatibility $compatibility)
+    {
+        $this->compatibilities->removeElement($compatibility);
+    }
+
+    /**
+     * Get compatibilities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCompatibilities()
+    {
+        return $this->compatibilities;
     }
 }

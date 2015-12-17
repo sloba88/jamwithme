@@ -27,10 +27,42 @@ fos_elastica:
                         model: Jam\UserBundle\Entity\User
                         provider: ~
                         listener:
+
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
-
+                compatibility:
+                    mappings:
+                        musician:
+                            type: "object"
+                            properties:
+                                id: ~
+                        value: ~
+                        musician2:
+                            type: "nested"
+                            properties:
+                                username: ~
+                                firstName: ~
+                                lastName: ~
+                                pin: { type: geo_point }
+                                genres:
+                                    type: "object"
+                                    properties:
+                                        genre.id: ~
+                                instruments:
+                                    type: "object"
+                                    properties:
+                                        instrument.id:
+                                isTeacher:
+                                    type: "boolean"
+                    persistence:
+                        driver: orm
+                        model: Jam\CoreBundle\Entity\Compatibility
+                        provider: ~
+                        listener:
+                        finder: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
                 shout:
                     mappings:
                         creator:

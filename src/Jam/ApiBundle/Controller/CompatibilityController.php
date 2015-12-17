@@ -55,7 +55,6 @@ class CompatibilityController extends FOSRestController
     public function setAllCompatibilitiesAction()
     {
         $me = $this->getUser();
-
         $finder = $this->container->get('fos_elastica.finder.searches.user');
         $elasticaQuery = new MatchAll();
 
@@ -74,7 +73,11 @@ class CompatibilityController extends FOSRestController
         $elasticaBool = new BoolNot($idsFilter);
         $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
 
-        $musicians = $finder->find($elasticaQuery);
+        $query = new \Elastica\Query();
+        $query->setQuery($elasticaQuery);
+        $query->setSize(1000000);
+
+        $musicians = $finder->find($query);
 
         $em = $this->getDoctrine()->getManager();
 

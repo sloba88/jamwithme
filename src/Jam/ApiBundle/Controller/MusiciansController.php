@@ -5,6 +5,7 @@ namespace Jam\ApiBundle\Controller;
 use Elastica\Filter\Bool;
 use Elastica\Filter\BoolNot;
 use Elastica\Filter\Ids;
+use Elastica\Filter\Nested;
 use Elastica\Filter\Term;
 use Elastica\Filter\Terms;
 use Elastica\Query\Filtered;
@@ -40,34 +41,54 @@ class MusiciansController extends FOSRestController
             return $this->handleView($view);
         }
 
-        $finder = $this->container->get('fos_elastica.finder.searches.user');
+        $finder = $this->container->get('fos_elastica.finder.searches.compatibility');
         $elasticaQuery = new MatchAll();
 
         if ($genres != ''){
-            $categoryQuery = new Terms('genres.genre.id', explode(",", $genres));
-            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
+            $categoryQuery = new Terms('musician2.genres.genre.id', explode(",", $genres));
+
+            $nested = new Nested();
+            $nested->setPath("musician2");
+            $nested->setFilter($categoryQuery);
+
+            $elasticaQuery = new Filtered($elasticaQuery, $nested);
         }
 
         if ($instruments != ''){
-            $categoryQuery = new Terms('instruments.instrument.id', explode(",", $instruments));
-            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
+            $categoryQuery = new Terms('musician2.instruments.instrument.id', explode(",", $instruments));
+
+            $nested = new Nested();
+            $nested->setPath("musician2");
+            $nested->setFilter($categoryQuery);
+
+            $elasticaQuery = new Filtered($elasticaQuery, $nested);
         }
 
         if ($request->query->get('isTeacher')){
             $boolFilter = new Bool();
             $filter1 = new Term();
-            $filter1->setTerm('isTeacher', '1');
+            $filter1->setTerm('musician2.isTeacher', '1');
             $boolFilter->addMust($filter1);
-            $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
+
+            $nested = new Nested();
+            $nested->setPath("musician2");
+            $nested->setFilter($boolFilter);
+
+            $elasticaQuery = new Filtered($elasticaQuery, $nested);
         }
 
         if ($request->query->get('distance') && $me->getLat()){
             $locationFilter = new \Elastica\Filter\GeoDistance(
-                'pin',
+                'musician2.pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
                 (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
             );
-            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
+
+            $nested = new Nested();
+            $nested->setPath("musician2");
+            $nested->setFilter($locationFilter);
+
+            $elasticaQuery = new Filtered($elasticaQuery, $nested);
         }
 
         $idsFilter = new Ids();
@@ -75,75 +96,25 @@ class MusiciansController extends FOSRestController
         $elasticaBool = new BoolNot($idsFilter);
         $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
 
+        $boolFilter = new Bool();
+        $filter1 = new Term();
+        $filter1->setTerm('musician.id', $me->getId());
+        $boolFilter->addMust($filter1);
+        $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
+
         $query = new \Elastica\Query();
         $query->setQuery($elasticaQuery);
         $query->setSize($perPage);
         $query->setFrom(($page - 1) * $perPage);
+        $query->addSort(array('value' => array('order' => 'desc')));
 
         $musicians = $finder->find($query);
 
-        $em = $this->getDoctrine()->getManager();
-        $ids = array();
-
-        $em->createQuery('DELETE FROM JamCoreBundle:Compatibility')->execute();
-
-        foreach ($musicians AS $m){
-            array_push($ids, $m->getId());
-            //Check if they have compatibility calculated and sort them by it
-
-            /* TODO: For now clear every time
-            $query = "SELECT compatibility
-            FROM JamCoreBundle:Compatibility compatibility
-            JOIN JamUserBundle:User musician
-            WHEN (compatibility.musician2 = " . $m->getId() . " AND compatibility.musician = " .$me->getId() . " )
-            OR (compatibility.musician = " . $m->getId() . " AND compatibility.musician2 = " .$me->getId() . " ) ";
-
-            $res = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
-
-            if (!$res){
-            */
-                $compatibility = new Compatibility();
-                $compatibility->setMusician($me);
-                $compatibility->setMusician2($m);
-                $compatibility->calculate();
-
-                $em->persist($compatibility);
-            //}
-        }
-
-        $em->flush();
-
         $musicians_data = array();
 
-        /*
-         *
-         * DOCTRINE ORDER UGLY HACK
-         * //TODO: how to order by compatibility inside elastica??
-         *
-         */
-
-        if (count($ids) > 0) {
-            $query = "SELECT musician, compatibility.value
-            FROM JamUserBundle:User musician
-            JOIN JamCoreBundle:Compatibility compatibility
-            WHEN (compatibility.musician2 = musician AND compatibility.musician = " .$this->getUser()->getId() . " )
-            OR (compatibility.musician = musician AND compatibility.musician2 = " .$this->getUser()->getId() . " ) ";
-
-            $query .= " WHERE musician.id IN (" . implode(",", $ids) . ")";
-            $query .= " ORDER BY compatibility.value DESC ";
-
-            $musicians = $this->getDoctrine()->getManager()->createQuery($query)->getResult();
-        }
-
-        /*
-         *
-         * DOCTRINE ORDER UGLY HACK
-         *
-         */
-
-
-        foreach($musicians AS $music){
-            $m = $music[0];
+        foreach($musicians AS $mus){
+            $m = $mus->getMusician2();
+            $value = $mus->getValue();
             /* @var $m \Jam\UserBundle\Entity\User */
 
             if ($m->getLocation()){
@@ -181,7 +152,7 @@ class MusiciansController extends FOSRestController
                 'icon' => $icon,
                 'location' => $location,
                 'teacherIcon' => $teacherIcon,
-                'compatibility' => $music['value']
+                'compatibility' => $value
             );
 
             if ($m->getIsTeacher()){
