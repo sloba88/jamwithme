@@ -23,6 +23,13 @@
 		margin: 30px 15px;
 		width: auto;
 	}
+
+	.signup-page & {
+		margin-top: 20px;
+		@include respond-to(desktopMd) {
+			margin-bottom: 10px;
+		}
+	}
 }
 
 .login-header {
