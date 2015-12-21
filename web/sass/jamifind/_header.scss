@@ -168,12 +168,28 @@ header {
 .ui-autocomplete {
 	background: #fff;
 	border: 2px solid $brand-primary;
+	border-radius: 0;
 	@include respond-to(desktopLg) {
-		width: 285px!important;
+		width: 335px!important;
 	}
 
 	a {
-		color: $color-primary;		
+		@include transition(color 0.2s ease);
+		border: none !important;
+		border-radius: 0 !important;
+		color: $color-primary !important;
+		overflow: hidden;
+		padding: 0 !important;
+
+		&.ui-state-focus {
+			background: none !important;
+			color: $color-primary !important;
+			margin: 0 !important;
+
+			&:hover {
+				color: $brand-secondary !important;				
+			}
+		}		
 	}
 
 	.ui-menu-item {
@@ -193,17 +209,17 @@ header {
 		}
 	}
 
-	img,
-	.search-text {
+	img {
 		float: left;
 	}
 
 	.search-text {
+		display: block;
 		font-family: "CooperHewitt Bold";
 		font-size: 15px;
 		line-height: 17px;
-		max-width: 233px;
-		padding-left: 15px;
+		max-width: 310px;
+		padding-left: 62px;
 		text-transform: uppercase;
 	}
 

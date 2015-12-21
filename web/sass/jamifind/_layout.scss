@@ -104,6 +104,10 @@ body {
 	@include respond-to(handhelds) {
 		padding: 5px 15px;
 	}
+
+	.teacher-container & {
+		padding-top: 0;
+	}
 }
 
 // .main-content-inner.with-scrollbar {
