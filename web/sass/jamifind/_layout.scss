@@ -64,16 +64,33 @@ body {
 		padding-bottom: 10px;
 		padding-right: 15px;
 		@include respond-to(tablet) {
-			padding-right: 0;
+			padding: 0 15px 10px;
 		}
 
 		.page-musicians-filter & {
 			padding-right: 0;
 		}
 
+		.page-settings & {
+			@include respond-to(tablet) {
+				padding: 0 0 10px;
+			}
+
+			> .main-content-inner {
+				@include respond-to(tablet) {
+					padding: 0 15px;
+				}
+				@include respond-to(handhelds) {
+					padding-bottom: 15px;
+				}
+			}
+		}
+
 		> .main-content-inner {
-			padding-bottom: 0;
-			padding-top: 0;
+			padding: 0 0 0 15px;
+			@include respond-to(tablet) {
+				padding: 0;
+			}
 		}
 	}
 }
