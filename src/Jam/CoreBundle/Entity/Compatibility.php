@@ -25,7 +25,7 @@ class Compatibility
     /**
      * @var User $musician
      *
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="compatibilities")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)
      */
     private $musician;

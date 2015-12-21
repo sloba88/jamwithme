@@ -22,12 +22,16 @@ fos_elastica:
                                 instrument.id:
                         isTeacher:
                             type: "boolean"
+                        isJammer:
+                            type: "boolean"
+                        isVisitor:
+                            type: "boolean"
                     persistence:
                         driver: orm
                         model: Jam\UserBundle\Entity\User
                         provider: ~
                         listener:
-
+                            immediate: ~
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
@@ -41,6 +45,7 @@ fos_elastica:
                         musician2:
                             type: "nested"
                             properties:
+                                id: ~
                                 username: ~
                                 firstName: ~
                                 lastName: ~
@@ -55,11 +60,16 @@ fos_elastica:
                                         instrument.id:
                                 isTeacher:
                                     type: "boolean"
+                                isJammer:
+                                    type: "boolean"
+                                isVisitor:
+                                    type: "boolean"
                     persistence:
                         driver: orm
                         model: Jam\CoreBundle\Entity\Compatibility
                         provider: ~
                         listener:
+                            immediate: ~
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
@@ -75,6 +85,7 @@ fos_elastica:
                         model: Jam\CoreBundle\Entity\Shout
                         provider: ~
                         listener:
+                            immediate: ~
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true

@@ -13,8 +13,6 @@ use Elastica\Query\MatchAll;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
-use Jam\CoreBundle\Entity\Compatibility;
-use Symfony\Component\HttpFoundation\Response;
 
 class MusiciansController extends FOSRestController
 {
@@ -28,13 +26,19 @@ class MusiciansController extends FOSRestController
         $me = $this->getUser();
         $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
         $perPage = 20;
+        $distance = intval($request->query->get('distance'));
+
+        if ($distance > 20) {
+            $distance = 20;
+        }
 
         $genres = $request->query->get('genres');
         $instruments = $request->query->get('instruments');
 
         if (!$me->getLocation()) {
             $view = $this->view(array(
-                'status'    => 'error',
+                'message'    => 'No location set.',
+                'success'    => false,
                 'data' => array()
             ), 200);
 
@@ -45,23 +49,11 @@ class MusiciansController extends FOSRestController
         $elasticaQuery = new MatchAll();
 
         if ($genres != ''){
-            $categoryQuery = new Terms('musician2.genres.genre.id', explode(",", $genres));
-
-            $nested = new Nested();
-            $nested->setPath("musician2");
-            $nested->setFilter($categoryQuery);
-
-            $elasticaQuery = new Filtered($elasticaQuery, $nested);
+            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.genres.genre.id', explode(",", $genres)), $elasticaQuery);
         }
 
         if ($instruments != ''){
-            $categoryQuery = new Terms('musician2.instruments.instrument.id', explode(",", $instruments));
-
-            $nested = new Nested();
-            $nested->setPath("musician2");
-            $nested->setFilter($categoryQuery);
-
-            $elasticaQuery = new Filtered($elasticaQuery, $nested);
+            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.instruments.instrument.id', explode(",", $genres)), $elasticaQuery);
         }
 
         if ($request->query->get('isTeacher')){
@@ -81,7 +73,7 @@ class MusiciansController extends FOSRestController
             $locationFilter = new \Elastica\Filter\GeoDistance(
                 'musician2.pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
+                ($distance ? $distance : '20') . 'km'
             );
 
             $nested = new Nested();
@@ -91,11 +83,13 @@ class MusiciansController extends FOSRestController
             $elasticaQuery = new Filtered($elasticaQuery, $nested);
         }
 
+        //kick me out of result set
         $idsFilter = new Ids();
         $idsFilter->setIds(array($me->getId()));
         $elasticaBool = new BoolNot($idsFilter);
         $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
 
+        //show my compatibilities
         $boolFilter = new Bool();
         $filter1 = new Term();
         $filter1->setTerm('musician.id', $me->getId());
@@ -106,7 +100,7 @@ class MusiciansController extends FOSRestController
         $query->setQuery($elasticaQuery);
         $query->setSize($perPage);
         $query->setFrom(($page - 1) * $perPage);
-        $query->addSort(array('value' => array('order' => 'desc')));
+        $query->addSort(array('musician2.isJammer' => array('order' => 'desc'), 'value' => array('order' => 'desc')));
 
         $musicians = $finder->find($query);
 
@@ -168,6 +162,15 @@ class MusiciansController extends FOSRestController
         ), 200);
 
         return $this->handleView($view);
+    }
+
+    private function addToNestedFilter($categoryQuery, $elasticaQuery)
+    {
+        $nested = new Nested();
+        $nested->setPath("musician2");
+        $nested->setFilter($categoryQuery);
+
+        return new Filtered($elasticaQuery, $nested);
     }
 
     /**
