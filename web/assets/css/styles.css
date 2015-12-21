@@ -8961,7 +8961,7 @@ body {
 @media only screen and (max-width: 767px) {
   /* line 98, ../../sass/jamifind/_layout.scss */
   .main-content-inner {
-    padding: 5px 15px;
+    padding: 15px;
   }
 }
 /* line 108, ../../sass/jamifind/_layout.scss */
@@ -9232,27 +9232,28 @@ header {
   border: none !important;
   border-radius: 0 !important;
   color: #18152b !important;
+  min-height: 50px;
   overflow: hidden;
   padding: 0 !important;
 }
-/* line 184, ../../sass/jamifind/_header.scss */
+/* line 185, ../../sass/jamifind/_header.scss */
 .ui-autocomplete a.ui-state-focus {
   background: none !important;
   color: #18152b !important;
   margin: 0 !important;
 }
-/* line 189, ../../sass/jamifind/_header.scss */
+/* line 190, ../../sass/jamifind/_header.scss */
 .ui-autocomplete a.ui-state-focus:hover {
   color: #fabc09 !important;
 }
-/* line 195, ../../sass/jamifind/_header.scss */
+/* line 196, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .ui-menu-item {
   border: none;
   margin: 0;
   overflow: hidden;
   padding: 10px 8px;
 }
-/* line 201, ../../sass/jamifind/_header.scss */
+/* line 202, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .ui-menu-item.ui-state-focus {
   -moz-transition: background 0.3s ease;
   -o-transition: background 0.3s ease;
@@ -9260,16 +9261,16 @@ header {
   transition: background 0.3s ease;
   background: #fabc09;
 }
-/* line 205, ../../sass/jamifind/_header.scss */
+/* line 206, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .ui-menu-item.ui-state-focus a {
   color: #18152b;
   font-weight: normal;
 }
-/* line 212, ../../sass/jamifind/_header.scss */
+/* line 213, ../../sass/jamifind/_header.scss */
 .ui-autocomplete img {
   float: left;
 }
-/* line 216, ../../sass/jamifind/_header.scss */
+/* line 217, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .search-text {
   display: block;
   font-family: "CooperHewitt Bold";
@@ -9279,7 +9280,7 @@ header {
   padding-left: 62px;
   text-transform: uppercase;
 }
-/* line 226, ../../sass/jamifind/_header.scss */
+/* line 227, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .search-location {
   display: block;
   font-family: "Hind Medium";
