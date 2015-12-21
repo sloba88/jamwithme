@@ -24,8 +24,16 @@ class MusiciansController extends FOSRestController
         $request = $this->get('request_stack')->getCurrentRequest();
         $request->getSession()->save();
         $me = $this->getUser();
-        $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
-        $perPage = 20;
+
+        //no limit is used for map view
+        if ($request->query->get('limit') === '0') {
+            $perPage = 5000;
+            $page = 1;
+        } else {
+            $perPage = 20;
+            $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
+        }
+
         $distance = intval($request->query->get('distance'));
 
         if ($distance > 20) {

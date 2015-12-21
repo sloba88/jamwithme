@@ -10,23 +10,30 @@ $(function() {
             if (initializedMap == false ){
                 $('#map').height($('.view-tab-container').height() - 10);
                 initializedMap = initMap();
-                placeMarkers();
                 setMyFilterMarker();
-                drawRadius();
+                mapFilterMusicians();
             }
         }, 500);
     });
 
-    if (localStorage.view=='list') {
-        $('#list-tab-btn').click();
-    }
+    $('#grid-view').on('click', function(){
+        $('.people-listing-grid').html('').addClass('loading-content');
+        renderGridView(filterResults);
+    });
 
     $('#main-filter-form').on('change', function() {
         //reset page to 1st page
         page = 1;
+        filterResults = [];
+        loadMoreResults = true;
         delay(function(){
-            filterMusicians();
-            filterShouts();
+            if ($('#map').is(':visible')) {
+                mapFilterMusicians();
+            } else {
+                filterMusicians();
+                filterShouts();
+            }
+
         }, 500);
     });
 
@@ -146,6 +153,10 @@ $(function() {
 });
 
 function renderGridView(data) {
+    if (filterResults.length == 0 && loadMoreResults == false){
+        $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
+    }
+
     $.each(data, function (k, v) {
         $(".people-listing-grid").append(musicianBoxTemplate(v));
     });
@@ -194,21 +205,32 @@ function filterMusicians(){
     }).done(function( result ) {
         if (result.status == 'success') {
             filterResults = filterResults.concat(result.data);
-            renderGridView(result.data);
-            if (filterResults.length == 0){
-                $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" id="subscribeToSearch">Subscribe for this search criteria.</a></p>')
-            }
-
             if (result.data.length !== 0) {
                 page ++;
                 loadMoreResults = true;
+            } else {
+                loadMoreResults = false;
             }
+            renderGridView(result.data);
+        }
+    });
+}
 
+function mapFilterMusicians() {
+    data = getFilterData();
+    data += '&limit=0';
+
+    $.ajax({
+        url: Routing.generate('musicians_find'),
+        data: data
+    }).done(function( result ) {
+        if (result.status == 'success') {
+            filterResults = result.data;
+            loadMoreResults = false;
             if (initializedMap != false ){
                 placeMarkers();
                 drawRadius();
             }
-
         }
     });
 }
