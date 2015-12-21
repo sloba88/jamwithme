@@ -127,7 +127,7 @@ $(function() {
         range: "min",
         value: $('#search_form_distance').val(),
         min: 2,
-        max: 20,
+        max: 50,
         step: 2,
         create: function(event, ui) {
             var selection = $('#filter-by-distance-slider').slider('value');

@@ -36,8 +36,8 @@ class MusiciansController extends FOSRestController
 
         $distance = intval($request->query->get('distance'));
 
-        if ($distance > 20) {
-            $distance = 20;
+        if ($distance > 50) {
+            $distance = 50;
         }
 
         $genres = $request->query->get('genres');
@@ -81,7 +81,7 @@ class MusiciansController extends FOSRestController
             $locationFilter = new \Elastica\Filter\GeoDistance(
                 'musician2.pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                ($distance ? $distance : '20') . 'km'
+                ($distance ? $distance : '50') . 'km'
             );
 
             $nested = new Nested();
