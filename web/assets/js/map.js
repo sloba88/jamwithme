@@ -33,7 +33,8 @@ function initMap(){
         app_id: 'll2Cde8wIa5h5YgDoW9x',
         app_code: '1LBq52rA1_q-8pj6_67OMg',
         base: 'base',
-        maxZoom: 20
+        maxZoom: 15,
+        minZoom: 9
     }).addTo(map);
 
     map.on('zoomend', function(){
