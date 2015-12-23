@@ -143,7 +143,7 @@ $(function() {
     $('#filter-by-distance-btn span').text($('#search_form_distance').val() + 'km around you');
 
     $('.view-tab-container').on('ps-y-reach-end', function () {
-
+        console.log('end reached');
         if (loadMoreResults === true) {
             loadMoreResults = false;
             filterMusicians();

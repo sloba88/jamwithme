@@ -567,7 +567,7 @@ function menu() {
     $navbarToggle.on('click', function() {
         $sidebar.toggleClass('is-active');
         $header.toggleClass('is-active');
-        $mainFluid.toggleClass('is-active')
+        $mainFluid.toggleClass('is-active');
         $('body').toggleClass('modal-open');
     });
 
