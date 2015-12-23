@@ -1,16 +1,10 @@
-{% extends 'JamWebBundle::layout.html.twig' %}
+{% extends 'JamWebBundle::layoutNoSidebar.html.twig' %}
 
-{% block bodyclasses %}page-dashboard {% if app.request.attributes.get('_route') == 'teachers' %}page-teachers{% endif %}{% endblock %}
+{% block bodyclasses %}page-shouts {% endblock %}
 
 {% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
 
 {% block main_content %}
-
-    {{ render(controller('JamWebBundle:Search:filter' )) }}
-
-{% endblock %}
-
-{% block right_sidebar_content %}
 
     {% include "JamWebBundle:Common:completion.html.twig" %}
 

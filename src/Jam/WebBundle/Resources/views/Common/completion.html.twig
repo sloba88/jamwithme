@@ -1,0 +1,14 @@
+{% if is_granted("ROLE_USER") and app.user.profileFulfilment != 100 %}
+    <div class="profile-completion clearfix">
+        <div class="pick">
+            <div class="pick-outer">
+                <img src="{{ asset('assets/images/pick-outer.png') }}" alt="Profile completion">
+            </div>
+            <span class="pick-inner"></span>
+        </div>
+        <div class="profile-completion-text">
+            <h3><span>{{ app.user.profileFulfilment }}%</span>{{ 'text.profile.completion'|trans }}</h3>
+            <a href="{{ path('fos_user_profile_edit') }}" class="link">{{ 'text.fill.out.your.profile'|trans }}</a>
+        </div>
+    </div><!--profile-completion ends-->
+{% endif %}

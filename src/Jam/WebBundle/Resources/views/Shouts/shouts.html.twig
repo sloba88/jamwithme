@@ -1,0 +1,16 @@
+<div class="shouts-feed" id="shoutsFeed">
+    <h3>{{ 'text.shouts.feed'|trans }}</h3>
+    <div class="shouts-countdown-container hidden">
+        <p style="color: #FFFFFF">{{ 'text.shout.again.in'|trans }}: <span id="shoutCountdown" style="color: #FFFFFF"></span></p>
+    </div>
+    <form role="form" action="{{ path('home') }}" method="POST" id="shoutForm" class="hidden">
+        {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3', 'maxlength': 200}}) }}
+        {{ form_widget(form.send, {'id': 'shoutSend', 'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_widget(form._token) }}
+    </form>
+</div><!--shouts-feed ends-->
+
+<div class="shouts-listing-container">
+    <h4 class="shouts">{{ 'text.shouts'|trans }}</h4>
+    <div class="shouts-listing shouts-listing-filter with-scrollbar"></div><!--shouts-listing ends-->
+</div><!--shouts-listing-container ends-->

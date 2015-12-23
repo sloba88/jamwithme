@@ -3,7 +3,7 @@
 {% block body %}
 
     {% if is_granted("ROLE_USER") %}
-        {% include "JamWebBundle::navigation.html.twig" %}
+        {% include "JamWebBundle:Common:navigation.html.twig" %}
     {% else %}
         <div class="col-lg-4">
             <div class="login-container">
