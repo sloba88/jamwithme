@@ -30,8 +30,8 @@ function initMap(){
         attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
         subdomains: '1234',
         mapID: 'newest',
-        app_id: 'NxWAA1drj1SSpAFLGisv',
-        app_code: 'hhO9UVzvGI8ve56xxixoig',
+        app_id: 'll2Cde8wIa5h5YgDoW9x',
+        app_code: '1LBq52rA1_q-8pj6_67OMg',
         base: 'base',
         maxZoom: 20
     }).addTo(map);
