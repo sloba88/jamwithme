@@ -600,6 +600,13 @@ function scrollbarPlugin() {
                 if ($('.with-scrollbar.ps-container').length) {
                     $(this).perfectScrollbar('destroy');
                 }
+
+                //create same type of event when the bottom of page is reached, for infinite scroll
+                $(window).scroll(function() {
+                    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                        $withScrollbar.trigger('ps-y-reach-end');
+                    }
+                });
             }
         }
     });
