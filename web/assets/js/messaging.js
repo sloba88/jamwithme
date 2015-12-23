@@ -106,16 +106,6 @@ function conversations() {
 
 }
 
-function conversationHeight() {
-    var $conversation = $('.conversation'),
-        $conversationContainer = $conversation.find('.conversation-container'),
-        conversationHeight = $conversation.height(),
-        coneversationCloseHeight = $('.conversation-close').height(),
-        coneversationSendHeight = $('.conversation-send').height();
-
-    $conversationContainer.height(conversationHeight - coneversationCloseHeight - coneversationSendHeight - 30);
-}
-
 function sendMessage(self) {
     var value = self.val();
     var toID = self.data('toid');

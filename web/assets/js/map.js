@@ -1,8 +1,11 @@
 'use strict';
 
+/* global _ */
+/* global _user */
+/* global L */
+
 _.templateSettings.variable = 'rc';
-var mapContainer = $('#map'),
-    myLocation = [_user.lat, _user.lng],
+var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
         html: '<img src="'+_user.avatar+'" />',
         iconSize: [40, 40],

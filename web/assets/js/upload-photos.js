@@ -1,3 +1,15 @@
+'use strict';
+
+/* global Routing */
+
+function resetPhotosCountIndicator() {
+    $('.panel-photos-header .badge span').text($('.profile-media-wall-item').length);
+}
+
+function clearCoords(node ){
+    node.find('input').val('');
+}
+
 $(function () {
 
     var que = [];
@@ -39,7 +51,7 @@ $(function () {
     }).on('fileuploadadd', function (e, data) {
         data.context = $('<div class="preview-container" />').appendTo('#files');
 
-        $.each(data.files, function (index, file) {
+        $.each(data.files, function () {
             var node = $('<p/>')
                 .append('<input type="text" size="4" class="x_cord" id="x1_'+imageIndex+'" name="x1[]" />')
                 .append('<input type="text" size="4" class="y_cord" id="y1_'+imageIndex+'" name="y1[]" />')
@@ -73,7 +85,7 @@ $(function () {
 
             console.log(file);
 
-            $(file.preview).wrap( '<a class="preview-thumb"></a>');
+            $(file.preview).wrap('<a class="preview-thumb"></a>');
 
             var modalCropContainer = $('#imageCropModalTemplate').clone();
             var newImage = cloneCanvas(file.preview);
@@ -86,15 +98,15 @@ $(function () {
                 modalCropContainer.modal('show');
             });
 
-            modalCropContainer.on('shown.bs.modal', function (e) {
-                var jcrop_api;
+            modalCropContainer.on('shown.bs.modal', function () {
+                var jcropApi;
                 $(newImage).Jcrop({
                     onChange:   showCoords,
                     onSelect:   showCoords,
                     onRelease:  clearCoords,
                     minSize: [100, 100]
                 },function(){
-                    jcrop_api = this;
+                    jcropApi = this;
                 });
             });
 
@@ -109,12 +121,7 @@ $(function () {
                 node.find('input.y2_cord').val(c.y2);
                 node.find('input.w_cord').val(c.w);
                 node.find('input.h_cord').val(c.h);
-            };
-
-            function clearCoords(){
-                node.find('input').val('');
-            };
-
+            }
         }
         if (file.error) {
             node
@@ -138,7 +145,7 @@ $(function () {
                     0 + '%'
                 );
                 $('#progress').hide();
-            },2000)
+            }, 2000 );
         }
     }).on('fileuploaddone', function (e, data) {
 
