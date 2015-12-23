@@ -61,7 +61,7 @@ class MusiciansController extends FOSRestController
         }
 
         if ($instruments != ''){
-            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.instruments.instrument.id', explode(",", $genres)), $elasticaQuery);
+            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.instruments.instrument.id', explode(",", $instruments)), $elasticaQuery);
         }
 
         if ($request->query->get('isTeacher')){
