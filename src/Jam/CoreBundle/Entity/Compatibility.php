@@ -140,7 +140,8 @@ class Compatibility
 
         $artistIndex = 8;
         $genresIndex = 5;
-        $ageIndex = 4;
+        $ageIndex = 3;
+        $commitmentIndex = 5;
 
         /* calculate artists */
         $matchedIndexes = array();
@@ -178,6 +179,17 @@ class Compatibility
 
         $possibleMatches += min($user->getGenres()->count(), $me->getGenres()->count()) * $genresIndex;
 
+        /* calculate availability (commitment) */
+        if ($user->getCommitment() && $me->getCommitment()){
+            $commitmentDiff = abs(intval($user->getCommitment()) - intval($me->getCommitment()));
+            if ($commitmentDiff < 2){
+                $compatibility += $commitmentIndex;
+                $totalMatches ++;
+            }
+        }
+
+        $possibleMatches += $commitmentIndex;
+
         /* calculate age */
         if ($user->getAge() && $me->getAge()){
             $ageDiff = abs(intval($user->getAge()) - intval($me->getAge()));
@@ -190,6 +202,10 @@ class Compatibility
         $possibleMatches += $ageIndex;
 
         $matchesIndex = (100 / $possibleMatches) * $compatibility;
+
+        if ($matchesIndex < 20) {
+            $matchesIndex = rand(15, 25);
+        }
 
         $this->value = intval($matchesIndex);
     }
