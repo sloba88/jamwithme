@@ -48,7 +48,8 @@
         "braincrafted/bootstrap-bundle": "dev-master",
         "misd/guzzle-bundle": "~1.0",
         "jms/translation-bundle": "dev-master",
-        "snipe/banbuilder": "dev-master"
+        "snipe/banbuilder": "dev-master",
+        "suncat/mobile-detect-bundle": "0.10.*"
     },
     "require-dev": {
         "behat/behat":                       "3.*",
