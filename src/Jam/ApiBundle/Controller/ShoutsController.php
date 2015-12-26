@@ -212,14 +212,10 @@ class ShoutsController extends FOSRestController
             $shout = $form->getData();
             $shout->setCreator($this->getUser());
             $em->persist($shout);
+            $em->flush();
 
-            try {
-                $em->flush();
-                return $this->formatResponse(array($shout), 'You have shouted successfully!');
-            }catch (\Exception $e) {
-                $responseData['status'] = false;
-                $responseData['message'] = $this->get('translator')->trans('exception.you.shall.not.pass');
-            }
+            return $this->formatResponse(array($shout), 'You have shouted successfully!');
+
         } else {
             $responseData['status'] = false;
             $responseData['message'] = 'Form not valid';

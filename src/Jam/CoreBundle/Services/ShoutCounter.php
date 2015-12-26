@@ -79,16 +79,11 @@ class ShoutCounter {
     private function shoutCheck()
     {
         $today = new \DateTime('now');
-        $shoutInterval = $this->shout->getCreatedAt()->diff($today);
+        $this->secondsDifference = (2 * 60 * 60) - ($today->getTimestamp() - $this->shout->getCreatedAt()->getTimestamp());
 
-        if ($shoutInterval->days < 1) {
-
+        if ($this->secondsDifference > (2 * 60 * 60)) {
             $this->canShout = false;
-
-            $tomorrowDate = clone $this->shout->getCreatedAt();
-            $tomorrowDate->add(new \DateInterval('P1D'));
-
-            $this->secondsDifference = $tomorrowDate->getTimestamp() - $today->getTimestamp();
+            $this->secondsDifference = 0;
         }
     }
 }

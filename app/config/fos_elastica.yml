@@ -84,8 +84,7 @@ fos_elastica:
                         driver: orm
                         model: Jam\CoreBundle\Entity\Shout
                         provider: ~
-                        listener:
-                            immediate: ~
+                        listener: ~
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
