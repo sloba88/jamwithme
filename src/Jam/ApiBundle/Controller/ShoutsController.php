@@ -26,7 +26,7 @@ class ShoutsController extends FOSRestController
         $genres = $request->query->get('genres');
         $instruments = $request->query->get('instruments');
 
-        $perPage = 5;
+        $perPage = 10;
         $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
 
         $finder = $this->container->get('fos_elastica.finder.searches.shout');
