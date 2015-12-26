@@ -26,6 +26,9 @@ class ShoutsController extends FOSRestController
         $genres = $request->query->get('genres');
         $instruments = $request->query->get('instruments');
 
+        $perPage = 5;
+        $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
+
         $finder = $this->container->get('fos_elastica.finder.searches.shout');
         $elasticaQuery = new MatchAll();
 
@@ -56,10 +59,13 @@ class ShoutsController extends FOSRestController
             $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
         }
 
-        $sortQuery = \Elastica\Query::create($elasticaQuery);
-        $sortQuery->addSort(array('createdAt' => array('order' => 'ASC')));
+        $query = new \Elastica\Query();
+        $query->setQuery($elasticaQuery);
+        $query->setSize($perPage);
+        $query->setFrom(($page - 1) * $perPage);
+        $query->addSort(array('createdAt' => array('order' => 'desc')));
 
-        $shouts = $finder->find($elasticaQuery);
+        $shouts = $finder->find($query);
 
         return $this->formatResponse($shouts);
     }
