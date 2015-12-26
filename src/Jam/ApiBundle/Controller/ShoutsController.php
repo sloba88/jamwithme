@@ -12,6 +12,7 @@ use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
 use Jam\CoreBundle\Entity\Shout;
+use Jam\CoreBundle\Form\Type\ShoutType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ShoutsController extends FOSRestController
@@ -183,20 +184,8 @@ class ShoutsController extends FOSRestController
             return $response;
         }
 
-        //TODO: put this form in separate file
-        $form = $this->createFormBuilder(new Shout())
-            ->add('text', 'textarea', array(
-                'label' => false,
-                'attr' => array(
-                    'placeholder' => 'label.say.something.cool',
-                    'maxlength' => 250
-                ),
-                'required' => true
-            ))
-            ->add('send', 'submit', array(
-                'label' => 'label.send'
-            ))
-            ->getForm();
+        $shout = new Shout();
+        $form = $this->createForm(ShoutType::class, $shout);
 
         $form->handleRequest($request);
         $responseData = array();
@@ -209,8 +198,6 @@ class ShoutsController extends FOSRestController
                 $responseData['message'] = $this->get('translator')->trans('exception.you.shall.not.pass');
             }
 
-            $shout = $form->getData();
-            $shout->setCreator($this->getUser());
             $em->persist($shout);
             $em->flush();
 

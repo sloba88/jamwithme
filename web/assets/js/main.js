@@ -635,8 +635,7 @@ $(function() {
 
     $(document).on('click', '#shoutSend', function(e){
         e.preventDefault();
-        var self = $(this);
-        var val = $('#shoutForm #form_text').val();
+        var val = $('#shoutForm #shout_text').val();
 
         if (val.trim() === ''){
             addMessage(false, 'Shout can\'t be empty, don\'t be shy.');
@@ -654,7 +653,7 @@ $(function() {
                         $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
                     });
                     checkCanShout();
-                    $('#form_text').val('');
+                    $('#shout_text').val('');
                 }
             },
             error: function(result) {

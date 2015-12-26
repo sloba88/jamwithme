@@ -2,7 +2,6 @@
 
 namespace Jam\CoreBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -26,6 +25,7 @@ class Shout
     /**
      * @var integer
      *
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="shouts")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=true)
      */

@@ -14,7 +14,7 @@
 
     {% include "JamWebBundle:Common:completion.html.twig" %}
 
-    {% include "JamWebBundle:Shouts:shouts.html.twig" %}
+    {{ render(controller('JamWebBundle:Shouts:shouts' )) }}
 
 {% endblock %}
 
