@@ -61,6 +61,8 @@ class FeatureContext extends MinkContext implements Context, SnippetAcceptingCon
             opcache_reset();
         }
 
+        self::runConsole($app, 'cache:clear');
+
         self::runConsole($app, 'doctrine:database:drop', array('--force' => true));
         self::runConsole($app, 'doctrine:database:create');
 

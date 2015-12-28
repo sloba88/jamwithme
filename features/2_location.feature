@@ -11,5 +11,5 @@ Feature: Filter
     And I follow "settings"
     And I fill in "fos_user_profile_form_location_address" with "Lauttasaari"
     And I follow "Lauttasaari, Helsinki, Finland"
-    And I press "Save"
+    And I press "save-1"
     Then I should see "The profile has been updated"

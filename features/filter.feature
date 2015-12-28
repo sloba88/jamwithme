@@ -8,7 +8,7 @@ Feature: Filter
 
   Scenario: Filtering results
     When I am on the homepage
-    Then I should see "Slobodan"
+    Then I should see "slobodan"
     Then I select2 tag ".filter-instruments" with "Drums"
     Then I wait for 1 seconds
     Then I follow "anna"
