@@ -3,6 +3,9 @@
 /* global baseURL */
 /* global _ */
 /* global Routing */
+/* global bootbox */
+/* global checkCanShout */
+/* global imagesCollectionHolder */
 
 _.templateSettings.variable = 'rc';
 var shoutBoxTemplate = _.template($('#shoutBoxTemplate').html());
@@ -10,6 +13,7 @@ var notificationTemplate = _.template($('#notificationTemplate').html());
 var musicianBoxTemplate = _.template($('#musicianBoxTemplate').html());
 var musicianMapBoxTemplate = _.template($('#musicianMapBoxTemplate').html());
 var messageTemplate = _.template($('#messageTemplate').html());
+var actionConfirmModalTemplate = _.template($('#actionConfirmModalTemplate').html());
 
 function checkTouchDevice() {
     if ('ontouchstart' in document.documentElement) {
@@ -453,7 +457,7 @@ function getUserShouts() {
                 $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
             });
 
-            if (result.data.length == 0) {
+            if (result.data.length === 0) {
                 $( '.shouts-listing' ).html('<h5>No shouts yet.</h5>');
             }
         }
@@ -561,7 +565,7 @@ $(function() {
         scrollbarPlugin();
     });
 
-    $('.profile-tabs a').on('shown.tab', function(e) {
+    $('.profile-tabs a').on('shown.tab', function() {
         var tab = $(this).data('tab');
         if (['media', 'photos'].indexOf(tab != -1 )){
             $('.profile-media-wall').isotope('layout');
@@ -659,6 +663,27 @@ $(function() {
             error: function(result) {
                 addMessage(result.status, result.message);
             }
+        });
+    });
+
+    $(document).on('click', '.action-confirm', function(e){
+        e.stopImmediatePropagation();
+        var self = $(this);
+
+        //programatically create a modal
+        $('body').append(actionConfirmModalTemplate({
+            message: 'Are you sure that you want to remove this?'
+        }));
+
+        $('#actionConfirmModal').modal();
+
+        $('#actionConfirmModal').on('click', '.action-confirm-ok', function() {
+            self.removeClass('action-confirm').trigger('click');
+            $('#actionConfirmModal').modal('hide');
+        });
+
+        $('#actionConfirmModal').on('hidden.bs.modal', function (e) {
+            $('#actionConfirmModal').remove();
         });
     });
 
