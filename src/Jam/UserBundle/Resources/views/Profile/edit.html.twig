@@ -19,6 +19,18 @@
             float: right;
         }
 
+        .crop-coords {
+            display: none;
+        }
+
+        .page-settings #files .preview-thumb {
+            cursor: pointer;
+        }
+
+        .page-settings #files .preview-thumb :hover{
+            outline: 1px solid #eaeaea;
+        }
+
     </style>
 
     <form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit">
@@ -190,7 +202,7 @@
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary start-upload" style="display: none">
                                     <i class="glyphicon glyphicon-upload"></i>
-                                    <span>Start upload</span>
+                                    <span>Upload all</span>
                                 </button>
                             </div>
                         </div>

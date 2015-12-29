@@ -137,8 +137,8 @@ class DefaultController extends Controller
 
         $response->setData(array(
             'files' => array(
-                'url' => $this->get('liip_imagine.cache.manager')->getBrowserPath($userImage->getWebPath(), 'my_medium_'.$userImage->getType()),
-                'thumbnailUrl' => $userImage->getWebPath(),
+                'thumbnailUrl' => $this->get('liip_imagine.cache.manager')->getBrowserPath($userImage->getWebPath(), 'my_medium_'.$userImage->getType()),
+                'url' => '/' . $userImage->getWebPath(),
                 'name' => $userImage->getPath(),
                 'type' => $file->getClientMimeType(),
                 'size' => $file->getClientSize(),
@@ -205,7 +205,7 @@ class DefaultController extends Controller
 
         $image->save($userImage->getAbsolutePath());
 
-        if ($dimensions['w'][0]!=''){
+        if (isset($dimensions['w']) && $dimensions['w'][0]!=''){
             $point = new Point($dimensions['x1'][0], $dimensions['y1'][0]);
             $box = new Box($dimensions['w'][0], $dimensions['h'][0]);
 
