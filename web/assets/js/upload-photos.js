@@ -266,6 +266,13 @@ $(function () {
             self.parents('.preview-container').remove();
             que.splice(index, 1);
         });
+
+        imageCropModal.find('.btn-remove-crop-photo').on('click', function(){
+            imageCropModal.modal('hide');
+            self.parents('.preview-container').remove();
+            que.splice(index, 1);
+        });
+
     });
 
 });
