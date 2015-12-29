@@ -102,7 +102,7 @@ $(function() {
         });
     });
 
-    $musiciansVideos.on('click', '.remove-video', function(e){
+    $(document).on('click', '.remove-video', function(e){
         e.preventDefault();
         var self = $(this);
         var id = $(this).closest('li').data('id');

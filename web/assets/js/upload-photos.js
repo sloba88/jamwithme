@@ -173,7 +173,7 @@ $(function () {
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
-    $('body').on('click', '.remove-image-ajax', function(e) {
+    $(document).on('click', '.remove-image-ajax', function(e) {
         e.preventDefault();
         var id = $(this).data('id');
         var image = $('*[data-image-id="' + id + '"]');
