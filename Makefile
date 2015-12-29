@@ -21,8 +21,8 @@ help:
 
 dev:
 	$(REDIS)
+	$(COMPOSER)
 	$(SCHEMA)
-	$(COMPOSER_UPDATE)
 	$(BOWER) --config.analytics=false update
 	$(CC)
 	$(DUMP_ROUTE)
