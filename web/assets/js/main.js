@@ -671,27 +671,6 @@ $(function() {
         });
     });
 
-    $(document).on('click', '.action-confirm', function(e){
-        e.stopImmediatePropagation();
-        var self = $(this);
-
-        //programatically create a modal
-        $('body').append(actionConfirmModalTemplate({
-            message: 'Are you sure that you want to remove this?'
-        }));
-
-        $('#actionConfirmModal').modal();
-
-        $('#actionConfirmModal').on('click', '.action-confirm-ok', function() {
-            self.removeClass('action-confirm').trigger('click');
-            $('#actionConfirmModal').modal('hide');
-        });
-
-        $('#actionConfirmModal').on('hidden.bs.modal', function (e) {
-            $('#actionConfirmModal').remove();
-        });
-    });
-
     $(document).on('click', '.remove-shout', function(e){
         var element = $(e.currentTarget);
         $.ajax({

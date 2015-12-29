@@ -11,10 +11,6 @@
             margin-bottom: 5px;
         }
 
-        .add-another-video {
-            margin-bottom: 6px;
-        }
-
         .fancybox-title .remove-image-ajax {
             float: right;
         }
@@ -29,6 +25,25 @@
 
         .page-settings #files .preview-thumb :hover{
             outline: 1px solid #eaeaea;
+        }
+
+        .page-settings .add-another-video {
+            width: 200px;
+            margin-bottom: 6px;
+        }
+
+        .page-settings .remove-video {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: black;
+            padding: 2px;
+            font-size: 11px;
+            color: #fff;
+        }
+
+        .page-settings .remove-video:hover {
+            text-decoration: none;
         }
 
     </style>
@@ -46,12 +61,14 @@
         <ul class="tabs-activate profile-tabs" id="myTab">
             <li><a href="#" data-tab="personal-info" class="is-active">Personal Info</a></li>
             <li><a href="#" data-tab="musician-info">Musician Info</a></li>
-            <li><a href="#" data-tab="media">Media</a></li>
+            <li><a href="#" data-tab="photos">Photos</a></li>
+            <li><a href="#" data-tab="videos">Videos</a></li>
             <li><a href="#" data-tab="networks">Networks</a></li>
         </ul>
 
         <div class="view-tab-container clearfix">
 
+            {# PERSONAL INFO #}
             <div class="view-tab is-active with-scrollbar" data-tab="personal-info">
 
                 <div class="row">
@@ -92,6 +109,8 @@
                 </div>
 
             </div>
+
+            {# MUSICIAN INFO #}
             <div class="view-tab with-scrollbar" data-tab="musician-info">
 
                 <div class="row">
@@ -184,10 +203,13 @@
                 </div>
 
             </div>
-            <div class="view-tab with-scrollbar" data-tab="media">
+
+            {# PHOTOS #}
+
+            <div class="view-tab with-scrollbar" data-tab="photos">
 
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
 
                         <div class="row">
 
@@ -230,7 +252,7 @@
                                     <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                                     <div class="profile-media-image-commands">
                                         <a href="#" class="set-profile-photo" data-id="{{ i.id }}" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span>{% if i.type not in [1, 4] %} Set as profile photo{% endif %}</a>
-                                        <a href="#" class="remove-image-ajax" data-id="{{ i.id }}" title="Remove photo"><span class="glyphicon glyphicon-remove-sign"></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
+                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="Remove photo"><span class="glyphicon glyphicon-remove-sign"></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -238,42 +260,47 @@
 
                     </div>
 
-                    {# video links #}
-                    <div class="col-md-4">
-
-                        <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
-                            <i class="fa fa-youtube-play"></i>
-                            Add Video
-                        </a>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Youtube Videos <span class="badge">({{ form.vars.value.videos|length }} / 12)</span></h3>
-                            </div>
-                            <div class="panel-body">
-
-                                {% if form.vars.value.videos|length == 0 %}
-                                    <p class="no-images-yet">No videos yet.</p>
-                                {% endif %}
-
-                                <ul id="musician_videos">
-                                    {% for v in form.vars.value.videos %}
-                                        <li data-id="{{ v.id }}" class="ytvideo-holder">
-                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
-                                                <span class="play-icon"></span>
-                                                <img src="" height="140" width="260" />
-                                            </a>
-                                            <a href="" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
 
             </div>
+
+            <div class="view-tab with-scrollbar" data-tab="videos">
+                <div class="col-md-12">
+
+                    <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                        <i class="fa fa-youtube-play"></i>
+                        Add Video
+                    </a>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Youtube Videos <span class="badge">({{ form.vars.value.videos|length }} / 12)</span></h3>
+                        </div>
+                        <div class="panel-body">
+
+                            {% if form.vars.value.videos|length == 0 %}
+                                <p class="no-images-yet">No videos yet.</p>
+                            {% endif %}
+
+                            <ul id="musician_videos">
+                                {% for v in form.vars.value.videos %}
+                                    <li data-id="{{ v.id }}" class="ytvideo-holder">
+                                        <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                            <span class="play-icon"></span>
+                                            <img src="" height="140" width="260" />
+                                        </a>
+                                        <a href="" class="remove-video action-confirm" title="remove"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            {# NETWORKS #}
+
             <div class="view-tab with-scrollbar" data-tab="networks">
 
                 <div class="login-buttons col-sm-6 col-md-5 col-lg-4">
@@ -336,9 +363,12 @@
     </script>
 
     <script type="text/template" id="videoBoxTemplate">
-        <li data-id="<%- rc.id %>">
-            <a class="ytvideo" rel="group" href="<%- rc.url %>&autoplay=1&showinfo=0&controls=0"><img src="" height="140" width="260" /></a>
-            <a href="#" class="remove-video text-danger" title="remove"><span class="glyphicon glyphicon-remove-circle"></span></a>
+        <li data-id="<%- rc.id %>" class="ytvideo-holder">
+            <a class="ytvideo" rel="group" href="<%- rc.url %>&autoplay=1&showinfo=0&controls=1">
+                <span class="play-icon"></span>
+                <img src="" height="140" width="260" />
+            </a>
+            <a href="" class="remove-video action-confirm" title="remove"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
         </li>
     </script>
 
