@@ -8966,7 +8966,7 @@ body {
 }
 /* line 108, ../../sass/jamifind/_layout.scss */
 .teacher-container .main-content-inner {
-  padding-top: 0;
+  padding: 0 0 10px;
 }
 /* line 112, ../../sass/jamifind/_layout.scss */
 .login-page .main-content-inner {
@@ -9629,7 +9629,7 @@ header {
 }
 /* line 85, ../../sass/jamifind/_shouts.scss */
 .shouts-sidebar .shouts-listing-container .shouts-listing h5 {
-  margin: 7px 20px 10px;
+  margin: 7px 0 10px;
 }
 /* line 90, ../../sass/jamifind/_shouts.scss */
 .shouts-sidebar .shouts-listing-container .shout-box {
