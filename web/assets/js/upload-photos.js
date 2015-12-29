@@ -3,6 +3,7 @@
 /* global Routing */
 /* global addMessage */
 /* global _ */
+/* global isMobile */
 
 _.templateSettings.variable = 'rc';
 var que = [];
@@ -55,7 +56,7 @@ $(function () {
 
     $('#upload_images').fileupload({
         dataType: 'json',
-        autoUpload: false,
+        autoUpload: isMobile,
         url: Routing.generate('upload_user_image'),
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
         maxFileSize: 5000000, // 5 MB
@@ -80,8 +81,6 @@ $(function () {
             node.appendTo(data.context);
         });
 
-        $('.start-upload').show();
-
     }).on('fileuploadsubmit', function (e, data) {
         var inputs = data.context.find(':input');
         if (inputs.filter(function () {
@@ -98,7 +97,7 @@ $(function () {
 
         que.push(data);
 
-        if (file.preview) {
+        if (file.preview && !isMobile) {
             node.prepend('<br>')
                 .prepend(file.preview);
 
@@ -109,7 +108,7 @@ $(function () {
                    $('.preview-thumb').click();
                }
             }, 500 );
-
+            $('.start-upload').show();
         }
         if (file.error) {
             node
@@ -161,10 +160,7 @@ $(function () {
 
 
         } else if (file.error) {
-            var error = $('<span class="text-danger"/>').text(file.error);
-            $(data.context.children()[index])
-                .append('<br>')
-                .append(error);
+            $('#files').append($('<span class="text-danger"/>').text(file.error));
         }
     }).on('fileuploadfail', function (e, data) {
         addMessage(data.jqXHR.responseJSON.success, data.jqXHR.responseJSON.message);

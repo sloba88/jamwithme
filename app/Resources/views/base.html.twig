@@ -239,7 +239,7 @@
 </script>
 
 <script type="text/template" id="imageTemplate">
-    <div class="image-holder profile-media-wall-item">
+    <div class="image-holder profile-media-wall-item image-type-<%- rc.type %>" data-image-id="<%- rc.id %>">
         <a class="fancybox" rel="group" href="<%- rc.url %>"><img src="<%- rc.thumbnailUrl %>" /></a>
         <div class="profile-media-image-commands">
             <a href="#" class="remove-image-ajax" data-id="<%- rc.id %>" title="Remove Image"><span class="glyphicon glyphicon-remove-sign"></span><% if ([1, 4].indexOf(rc.imageType) == -1) { %> Remove<% } %></a>
