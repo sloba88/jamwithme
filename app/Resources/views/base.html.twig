@@ -78,6 +78,10 @@
             border-bottom: 3px solid #FBBC09;
         }
 
+        .crop-coords {
+            display: none;
+        }
+
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -204,35 +208,43 @@
 
 </div><!--conversation ends-->
 
-<div class="modal fade" id="imageCropModalTemplate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Crop Photo</h4>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <div class="col-sm-6 first">
-                    <button type="button" class="btn btn-primary btn-save-changes" data-dismiss="modal">
-                        <i class="fa fa-check"></i>
-                        Save changes
-                    </button>
+<script type="text/template" id="imageCropModalTemplate">
+    <div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Crop and upload photo</h4>
                 </div>
-                <div class="col-sm-6 last">
-                    <button type="button" class="btn btn-primary cancel-crop" data-dismiss="modal">
-                        <i class="fa fa-times"></i>
-                        Cancel
-                    </button>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <div class="col-sm-4 first">
+                        <button type="button" class="btn btn-primary btn-save-changes" data-dismiss="modal">
+                            <i class="fa fa-check"></i>
+                            Save and upload
+                        </button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-default cancel-crop" data-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="col-sm-4 last">
+                        <button type="button" class="btn btn-danger remove-crop-photo" data-dismiss="modal">
+                            <i class="fa fa-times"></i>
+                            Remove
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</script>
 
 <script type="text/template" id="imageTemplate">
     <div class="image-holder profile-media-wall-item">
-        <a class="fancybox" rel="group" href="<%- rc.url %>"><img src="<%- rc.url %>" /></a>
+        <a class="fancybox" rel="group" href="<%- rc.url %>"><img src="<%- rc.thumbnailUrl %>" /></a>
         <div class="profile-media-image-commands">
             <a href="#" class="remove-image-ajax" data-id="<%- rc.id %>" title="Remove Image"><span class="glyphicon glyphicon-remove-sign"></span><% if ([1, 4].indexOf(rc.imageType) == -1) { %> Remove<% } %></a>
             <a href="#" class="set-profile-photo" data-id="<%- rc.id %>" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span><% if ([1, 4].indexOf(rc.imageType) == -1) { %> Set as profile photo<% } %></a>

@@ -1,6 +1,13 @@
 'use strict';
 
 /* global Routing */
+/* global addMessage */
+/* global _ */
+
+_.templateSettings.variable = 'rc';
+var que = [];
+var imageTemplate = _.template($('#imageTemplate').html());
+var imageCropModalTemplate = _.template($('#imageCropModalTemplate').html());
 
 function resetPhotosCountIndicator() {
     $('.panel-photos-header .badge span').text($('.profile-media-wall-item').length);
@@ -10,9 +17,31 @@ function clearCoords(node ){
     node.find('input').val('');
 }
 
-$(function () {
+function cloneCanvas(oldCanvas) {
+    //create a new canvas
+    var newCanvas = document.createElement('canvas');
+    var context = newCanvas.getContext('2d');
 
-    var que = [];
+    //set dimensions
+    newCanvas.width = oldCanvas.width;
+    newCanvas.height = oldCanvas.height;
+
+    //apply the old canvas to the new one
+    context.drawImage(oldCanvas, 0, 0);
+
+    //return the new canvas
+    return newCanvas;
+}
+
+function editCoords(c){
+    var context = $('#imageCropModal');
+    context.find('input.x_cord').val(c.x);
+    context.find('input.y_cord').val(c.y);
+    context.find('input.w_cord').val(c.w);
+    context.find('input.h_cord').val(c.h);
+}
+
+$(function () {
 
     $('.start-upload').on('click', function(e){
         e.preventDefault();
@@ -21,13 +50,9 @@ $(function () {
                 e.submit();
             });
         }
-
         que = [];
     });
 
-    var imageTemplate = _.template($('#imageTemplate').html());
-
-    var imageIndex = 0;
     $('#upload_images').fileupload({
         dataType: 'json',
         autoUpload: false,
@@ -50,17 +75,8 @@ $(function () {
         previewCrop: false
     }).on('fileuploadadd', function (e, data) {
         data.context = $('<div class="preview-container" />').appendTo('#files');
-
         $.each(data.files, function () {
-            var node = $('<p/>')
-                .append('<input type="text" size="4" class="x_cord" id="x1_'+imageIndex+'" name="x1[]" />')
-                .append('<input type="text" size="4" class="y_cord" id="y1_'+imageIndex+'" name="y1[]" />')
-                .append('<input type="text" size="4" class="x2_cord" id="x2_'+imageIndex+'" name="x2[]" />')
-                .append('<input type="text" size="4" class="y2_cord" id="y2_'+imageIndex+'" name="y2[]" />')
-                .append('<input type="text" size="4"  class="w_cord" id="w_'+imageIndex+'" name="w[]" />')
-                .append('<input type="text" size="4"  class="h_cord"id="h_'+imageIndex+'" name="h[]" />');
-            imageIndex++;
-            que.push(data);
+            var node = $('<p/>');
             node.appendTo(data.context);
         });
 
@@ -79,49 +95,21 @@ $(function () {
         var index = data.index,
             file = data.files[index],
             node = $(data.context.children()[index]);
+
+        que.push(data);
+
         if (file.preview) {
             node.prepend('<br>')
                 .prepend(file.preview);
 
-            console.log(file);
+            $(file.preview).wrap('<a class="preview-thumb" data-index="' + (que.length - 1) + '"></a>');
 
-            $(file.preview).wrap('<a class="preview-thumb"></a>');
+            setTimeout(function(){
+               if (que.length === 1) {
+                   $('.preview-thumb').click();
+               }
+            }, 500 );
 
-            var modalCropContainer = $('#imageCropModalTemplate').clone();
-            var newImage = cloneCanvas(file.preview);
-            modalCropContainer.find('.modal-body').html(newImage);
-            modalCropContainer.find('.modal-dialog').width(newImage.width+40);
-            modalCropContainer.find('.modal-dialog').css('minWidth', 460);
-            node.append(modalCropContainer);
-
-            $(file.preview).on('click', function(){
-                modalCropContainer.modal('show');
-            });
-
-            modalCropContainer.on('shown.bs.modal', function () {
-                var jcropApi;
-                $(newImage).Jcrop({
-                    onChange:   showCoords,
-                    onSelect:   showCoords,
-                    onRelease:  clearCoords,
-                    minSize: [100, 100]
-                },function(){
-                    jcropApi = this;
-                });
-            });
-
-            modalCropContainer.find('.cancel-crop').on('click', function(){
-                clearCoords();
-            });
-
-            function showCoords(c){
-                node.find('input.x_cord').val(c.x);
-                node.find('input.y_cord').val(c.y);
-                node.find('input.x2_cord').val(c.x2);
-                node.find('input.y2_cord').val(c.y2);
-                node.find('input.w_cord').val(c.w);
-                node.find('input.h_cord').val(c.h);
-            }
         }
         if (file.error) {
             node
@@ -153,7 +141,7 @@ $(function () {
         if (file.url) {
             $('.no-images-yet').remove();
             $('.profile-media-wall').append(imageTemplate( file ) );
-            $('#files').html('');
+            //$('#files').html('');
 
             setTimeout(function(){
                 $('.profile-media-wall').isotope( 'reloadItems' ).isotope();
@@ -164,9 +152,13 @@ $(function () {
 
                 resetPhotosCountIndicator();
 
-            }, 500);
+            }, 800);
 
-            $('.start-upload').hide();
+            if ( que.length === 0 ) {
+                $('.start-upload').hide();
+                $('#files').html('');
+            }
+
 
         } else if (file.error) {
             var error = $('<span class="text-danger"/>').text(file.error);
@@ -176,7 +168,7 @@ $(function () {
         }
     }).on('fileuploadfail', function (e, data) {
         addMessage(data.jqXHR.responseJSON.success, data.jqXHR.responseJSON.message);
-        $.each(data.files, function (index, file) {
+        $.each(data.files, function (index) {
             var error = $('<span class="text-danger"/>').text('File upload failed.');
             $(data.context.children()[index])
                 .append('<br>')
@@ -218,21 +210,62 @@ $(function () {
             }
         });
     });
+
+    $('body').on('click', '.preview-thumb', function() {
+        var index = $(this).data('index');
+        var file = que[index];
+        var newImage = cloneCanvas(file.files[0].preview);
+        var node;
+        var self = $(this);
+
+        $('body').append(imageCropModalTemplate());
+
+        var imageCropModal = $('#imageCropModal');
+        imageCropModal.find('.modal-body').html(newImage);
+        imageCropModal.find('.modal-dialog').width(newImage.width + 40);
+        imageCropModal.find('.modal-dialog').css('minWidth', 460);
+
+        imageCropModal.modal({
+            'backdrop': 'static',
+            'show' : true
+        });
+
+        imageCropModal.on('hidden.bs.modal', function () {
+            imageCropModal.remove();
+            //re index others
+            $('.preview-thumb').each(function(k){
+                $(this).attr('data-index', k);
+            });
+        });
+
+        imageCropModal.on('shown.bs.modal', function () {
+            var jcropApi;
+            imageCropModal.find('canvas').Jcrop({
+                onChange:   editCoords,
+                onSelect:   editCoords,
+                onRelease:  clearCoords,
+                minSize: [100, 100]
+            },function(){
+                jcropApi = this;
+            });
+
+            node = $('<p class="crop-coords"/>')
+                .append('<input type="text" size="4" class="x_cord" id="x1_0" name="x1[]" />')
+                .append('<input type="text" size="4" class="y_cord" id="y1_0" name="y1[]" />')
+                .append('<input type="text" size="4"  class="w_cord" id="w_0" name="w[]" />')
+                .append('<input type="text" size="4"  class="h_cord"id="h_0" name="h[]" />');
+
+            node.appendTo(imageCropModal.find('.modal-body'));
+
+        });
+
+        imageCropModal.find('.btn-save-changes').on('click', function(){
+            node.appendTo(file.context);
+            file.submit();
+            imageCropModal.modal('hide');
+            self.parents('.preview-container').remove();
+            que.splice(index, 1);
+        });
+    });
+
 });
-
-function cloneCanvas(oldCanvas) {
-
-    //create a new canvas
-    var newCanvas = document.createElement('canvas');
-    var context = newCanvas.getContext('2d');
-
-    //set dimensions
-    newCanvas.width = oldCanvas.width;
-    newCanvas.height = oldCanvas.height;
-
-    //apply the old canvas to the new one
-    context.drawImage(oldCanvas, 0, 0);
-
-    //return the new canvas
-    return newCanvas;
-}
