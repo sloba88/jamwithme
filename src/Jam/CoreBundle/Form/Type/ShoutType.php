@@ -16,9 +16,6 @@ class ShoutType extends AbstractType
                     'placeholder' => 'label.say.something.cool',
                     'maxlength' => 250
                 )
-            ))
-            ->add('send', 'submit', array(
-                'label' => 'label.send'
             ));
     }
 

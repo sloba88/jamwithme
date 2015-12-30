@@ -4,8 +4,8 @@
         <p style="color: #FFFFFF">{{ 'text.shout.again.in'|trans }}: <span id="shoutCountdown" style="color: #FFFFFF"></span></p>
     </div>
     <form role="form" action="{{ path('home') }}" method="POST" id="shoutForm" class="hidden">
-        {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Shout', 'rows': '3', 'maxlength': 200}}) }}
-        {{ form_widget(form.send, {'id': 'shoutSend', 'attr': {'class': 'btn btn-primary'}}) }}
+        {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Write something', 'rows': '3', 'maxlength': 200}}) }}
+        <button type="submit" id="shoutSend" name="shout[send]" class="btn btn-primary btn btn-primary"><i class="fa fa-paper-plane"></i> Send</button>
         {{ form_widget(form._token) }}
     </form>
 </div><!--shouts-feed ends-->
