@@ -76,6 +76,7 @@ class ShoutsController extends FOSRestController
      */
     public function getAction($username)
     {
+        //TODO: put pagination to this, it is fine up to 100 shouts to have it without
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsername($username);
 
