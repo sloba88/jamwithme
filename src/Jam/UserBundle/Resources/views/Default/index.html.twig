@@ -46,6 +46,12 @@
 
                         <div class="bio">{{ user.genderText }}{% if user.age %}, {{ 'user.age'|trans({'%user.age%' : user.age})|desc('%user.age% years old') }}{% endif %}</div>
 
+                        {% if user.isJammer %}
+                            <div class="availability">
+                                <img src="{{ asset('assets/images/available.png') }}" alt="Available">Available
+                            </div>
+                        {% endif %}
+
                         {% if is_granted("ROLE_USER") and app.user != user %}
                             <a href="#" class="btn btn-primary open-conversation" data-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>{{ 'button.message'|trans }}</a>
                         {% endif %}
