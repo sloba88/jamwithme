@@ -1,8 +1,9 @@
-var http = require('http'),
-    mongoose = require('mongoose'),
+'use strict';
+
+var mongoose = require('mongoose'),
     express = require('express'),
     redis = require('redis'),
-    redisClient = redis.createClient('6379', 'redis_1'),
+    redisClient = redis.createClient(),
     Message = require('./schema'),
     app = express(),
     server = app.listen(3000),
@@ -12,9 +13,28 @@ var http = require('http'),
 
 //io.set('origins', '*178.62.189.52:*');
 
-mongoose.connect('mongodb://mongo_1:27017/jamwithme');
+mongoose.connect('mongodb://localhost:27017/jamwithme');
 
-//TODO: authenticate user
+function authenticateUser(sessionId, callback) {
+    redisClient.get('session:'+sessionId, function (err, user) {
+        if (err) {
+            console.log('error authenticating');
+            return false;
+        } else {
+            console.log('authenticated');
+        }
+        if (user === null) {
+            callback(null);
+        } else {
+            var sess = PHPUnserialize.unserializeSession(user);
+            var data = [];
+            data.userId = sess._sf2_attributes.__userId;
+            data.username = sess._sf2_attributes.__username;
+            callback(data);
+        }
+    });
+}
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -29,7 +49,7 @@ db.once('open', function callback () {
 
             authenticateUser(data.sessionId, function(data){
 
-                if (data == null) {
+                if (data === null) {
                     return false;
                 }
 
@@ -86,14 +106,18 @@ db.once('open', function callback () {
             };
 
             //my inbox
-            message.save(function (err, m) {
-                if (err) return console.error(err);
+            message.save(function (err) {
+                if (err) {
+                    return console.error(err);
+                }
                 socket.emit('messageSaved', message);
             });
 
             //other inbox
-            messageTo.save(function (err, m) {
-                if (err) return console.error(err);
+            messageTo.save(function (err) {
+                if (err) {
+                    return console.error(err);
+                }
                 //socket.emit('messageReceived', messageTo);
                 var socketTo = activeUsers[data.to.id];
                 if (socketTo){
@@ -102,16 +126,20 @@ db.once('open', function callback () {
             });
         });
 
-        socket.on('getMyMessages', function (data) {
+        socket.on('getMyMessages', function () {
             Message.find({ 'owner.id' :  socket.userID }).sort( { createdAt: 1 }).exec(function (err, messages) {
-                if (err) return console.error(err);
+                if (err) {
+                    return console.error(err);
+                }
                 socket.emit('myMessages', messages);
             });
         });
 
         socket.on('getOurConversation', function (data) {
             Message.find({ 'owner.id' :  socket.userID, $or: [{ 'messages.to.id' : data.userID }, { 'messages.from.id' : data.userID }] }, function (err, messages) {
-                if (err) return console.error(err);
+                if (err) {
+                    return console.error(err);
+                }
                 socket.emit('ourConversation', messages);
             });
         });
@@ -121,34 +149,13 @@ db.once('open', function callback () {
             console.log('read');
             Message.update({ 'owner.id' : socket.userID, isRead: false, 'from.id' : data.userID }, {
                 isRead: true
-            }, function(err, numberAffected, rawResponse) {
+            }, function(err, numberAffected) {
                 //handle it
                 console.log(numberAffected);
                 socket.unreadMessages -= numberAffected;
                 socket.emit('myUnreadMessagesCount', socket.unreadMessages);
-            })
+            });
         });
 
     });
 });
-
-function authenticateUser(sessionId, callback) {
-    redisClient.get('session:'+sessionId, function (err, user) {
-        if (err) {
-            console.log('error authenticating');
-            return false;
-        } else {
-            console.log('authenticated');
-        }
-        if (user === null) {
-            callback(null);
-        } else {
-            var sess = PHPUnserialize.unserializeSession(user);
-            var data = [];
-            data['userId'] = sess._sf2_attributes.__userId;
-            data['username'] = sess._sf2_attributes.__username;
-            callback(data);
-        }
-    });
-}
-
