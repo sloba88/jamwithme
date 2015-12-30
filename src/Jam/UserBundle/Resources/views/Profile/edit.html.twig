@@ -254,7 +254,7 @@
                                     <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                                     <div class="profile-media-image-commands">
                                         <a href="#" class="set-profile-photo" data-id="{{ i.id }}" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span>{% if i.type not in [1, 4] %} Set as profile photo{% endif %}</a>
-                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="Remove photo"><span class="glyphicon glyphicon-remove-sign"></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
+                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="Remove photo"><i class="fa fa-times"></i></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -291,7 +291,7 @@
                                             <span class="play-icon"></span>
                                             <img src="" height="140" width="260" />
                                         </a>
-                                        <a href="" class="remove-video action-confirm" title="remove"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+                                        <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -370,7 +370,7 @@
                 <span class="play-icon"></span>
                 <img src="" height="140" width="260" />
             </a>
-            <a href="" class="remove-video action-confirm" title="remove"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+            <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
         </li>
     </script>
 
