@@ -13,22 +13,21 @@
         <div class="col-xs-12 conversations-box"></div>
     </div><!--messages-container ends-->
 
+    {# TODO: change class name from message-single to open-conversation because its confusing #}
     <script type="text/template" id="conversationTemplate">
-        <% _.each( rc, function( c, k ){ %>
-        <div class="row message-single <% if (c.isRead == false) { %>unread<% } %> conversation-box <% if (k == 0 ){ %>first<% } %>" data-user="<%- c.other.username %>" data-id="<%- c.other.id %>">
+        <div class="row open-conversation message-single <% if (rc.isRead == false) { %>unread<% } %> conversation-box first" data-id="<%- rc._id %>" data-user="<%- rc.fromData.username %>">
             <div class="col-xs-4 col-sm-3 message-info">
-                <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- c.other.username %>/avatar" alt="Pic">
+                <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- rc._lastMessage.from %>/avatar" alt="<%- rc._lastMessage.from %>">
 
-                <h3 class="name"><%- c.other.username %></h3>
+                <h3 class="name"><%- rc.fromData.username %></h3>
 
-                <div class="time"><%- c.createdAt.toLocaleDateString() %> <%- c.createdAt.toLocaleTimeString() %></div>
+                <div class="time"><%- rc._lastMessage.createdAt.toLocaleDateString() %> <%- rc._lastMessage.createdAt.toLocaleTimeString() %></div>
             </div>
             <div class="col-xs-8 col-sm-9 message-content">
-                <p><%- c.message %></p>
+                 <p><%- rc._lastMessage.message %></p>
                 <i class="fa fa-angle-right"></i>
             </div>
         </div><!--message-one ends-->
-        <% }); %>
     </script>
 
 {% endblock %}
@@ -37,13 +36,11 @@
 
     <script>
 
-        var myID = {{ app.user.id }};
-
         $(document).ready(function () {
 
             if (typeof socket.emit != 'undefined'){
                 setTimeout(function () {
-                    socket.emit('getMyMessages', {userID: 'myID'});
+                    socket.emit('getMyConversations', {userID: '_user.id'});
                 }, 500);
             }
 
@@ -52,10 +49,11 @@
             var conversations = [];
             var match = [];
 
-            socket.on('myMessages', function (data) {
+            socket.on('myConversations', function (data) {
 
                 console.log(data);
 
+                /*
                 $('.conversation-message-box').html('');
                 $.each(data, function (index, val) {
                     //TODO: why am I not getting datetime from server?
@@ -63,6 +61,7 @@
 
                     $('.conversation-message-box').append(messageTemplate(val));
                 });
+
 
                 $.each(data.reverse(), function (index, val) {
                     //TODO: why am I not getting datetime from server?
@@ -80,8 +79,21 @@
                         conversations.push(val);
                     }
                 });
+                */
 
-                $('.conversations-box').append(conversationTemplate(conversations));
+                $.each(data, function (index, val) {
+                    console.log(val);
+                    val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
+
+                    $.each(val.participants, function (index, value) {
+                        if (value !== _user.id) {
+                            val.otherGuy = value;
+                        }
+                    });
+
+                    $('.conversations-box').append(conversationTemplate(val));
+                });
+
                 scrollToBottom();
             });
 

@@ -96,6 +96,7 @@
         {% if is_granted("ROLE_USER") %}
             var _username = '{{ app.user.username }}';
             _user.username = '{{ app.user.username }}';
+            _user.id = '{{ app.user.id }}';
             _user.lat = '{{ app.user.location.lat|default('') }}';
             _user.lng = '{{ app.user.location.lng|default('') }}';
             _user.temporaryLocation = '{{ app.user.location.isTemporary|default('') }}';
@@ -250,10 +251,11 @@
 
 <script type="text/template" id="messageTemplate">
     <% createdAt = new Date(rc.createdAt); %>
-    <div class="conversation-single" data-user="<%- rc.to.username %>" data-user2="<%- rc.from.username %>">
-        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.from.username %>">
-            <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- rc.from.username %>/avatar" alt="Pic">
-            <h4 class="name"><%- rc.from.username %></h4>
+    {# todo: this should be named message-single #}
+    <div class="conversation-single">
+        <a href="{{ app.request.getBaseURL() }}/m/<%- rc.fromData.username %>">
+            <img class="message-picture" src="{{ app.request.getBaseURL() }}/m/<%- rc.fromData.username %>/avatar" alt="Pic">
+            <h4 class="name"><%- rc.fromData.username %></h4>
         </a>
 
         <div class="time">

@@ -9,7 +9,8 @@
     "mongoose": "^3.8.12",
     "socket.io": "1.0.6",
     "redis": "1.0.0",
-    "php-unserialize": "0.0.1"
+    "php-unserialize": "0.0.1",
+    "mysql": ""
   },
   "devDependencies": {},
   "scripts": {

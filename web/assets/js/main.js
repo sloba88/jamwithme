@@ -502,8 +502,6 @@ $(function() {
 
     filtersToggle();
 
-    conversations();
-
     conversationHeight();
 
     sidebarHeight();

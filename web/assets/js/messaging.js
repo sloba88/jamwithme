@@ -1,54 +1,68 @@
+'use strict';
+
+/* global socket */
+/* global scrollToBottom */
+/* global messageTemplate */
+
+var openedConversation = {};
+
 socket.on('ourConversation', function(data) {
     console.log(data);
-    $(".conversation-message-box").html('');
+    openedConversation.id = data[0]._conversation;
+
+    $('.conversation-message-box').html('');
+
     $.each(data, function(index, value) {
-        $(".conversation-message-box").append(messageTemplate(value));
+        $('.conversation-message-box').append(messageTemplate(value));
     });
     setTimeout(function() {
-        scrollToBottom()
+        scrollToBottom();
     }, 300);
 });
 
-socket.on('messageSaved', function(data) {
-    var mess = $(messageTemplate(data)).show();
-    $(".conversation-message-box").append(mess);
+socket.on('messageSaved', function(value) {
+    $('.conversation-message-box').append(messageTemplate(value));
     scrollToBottom();
 });
 
 socket.on('messageReceived', function(data) {
-    var mess = $(messageTemplate(data)).show();
-    $(".conversation-message-box").append(mess);
-    scrollToBottom();
-});
-
-socket.on('myUnreadMessagesCount', function(data) {
-    if (data != 0) {
-        $(".inbox .badge").text(data);
+    //todo: append to right message container, not anyone!!!!!
+    if (data._conversation == openedConversation.id) {
+        var mess = $(messageTemplate(data)).show();
+        $('.conversation-message-box').append(mess);
+        scrollToBottom();
     } else {
-        $(".inbox .badge").text('');
+        socket.emit('getUnreadMessagesCount');
     }
 });
 
-function conversations() {
+socket.on('myUnreadMessagesCount', function(data) {
+    if (data !== 0) {
+        $('.inbox .badge').text(data);
+    } else {
+        $('.inbox .badge').text('');
+    }
+});
+
     var $conversation = $('.conversation'),
         $conversationContainer = $conversation.find('.conversation-container'),
         $compose = $('.messages-header').find('.btn-compose'),
         $overlay = $('.overlay');
 
     //open
+/*
     $('.messages-container').on('click', '.message-single', function() {
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
         $overlay.removeClass('hide');
         $(this).removeClass('unread');
 
-        $(".conversation-message-box .conversation-single").hide();
+        $('.conversation-message-box .conversation-single').hide();
         var user = $(this).data('user');
         var userID = $(this).data('id');
         $('*[data-user="' + user + '"]').show();
         $('*[data-user2="' + user + '"]').show();
-        $(".send-message").data('toid', userID);
-        $(".send-message").data('tousername', user);
+        $('.send-message').data('toid', userID);
 
         scrollToBottom();
 
@@ -59,38 +73,38 @@ function conversations() {
         }, 500);
 
     });
+    */
 
-    $('.open-conversation').on('click', function(e) {
+    $(document).on('click', '.open-conversation', function(e) {
         e.preventDefault();
-
-        socket.emit('getOurConversation', {
-            userID: $(this).data('id')
+        var user = $(this).data('user');
+        var userId = $(this).data('user-id');
+        var conversationId = $(this).data('id');
+        socket.emit('getConversation', {
+            conversationId: conversationId
         });
 
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
         $overlay.removeClass('hide');
 
-        $(".conversation-message-box .conversation-single").hide();
-        var user = $(this).data('user');
-        var userID = $(this).data('id');
-        $('*[data-user="' + user + '"]').show();
-        $('*[data-user2="' + user + '"]').show();
-        $('.send-message').data('toid', userID);
-        $('.send-message').data('tousername', user);
+        $('.conversation-message-box .conversation-single').hide();
+
+        openedConversation.id = conversationId;
+        openedConversation.userId = userId;
 
         scrollToBottom();
 
+        //todo: this can also be better done in backend
         setTimeout(function() {
             socket.emit('conversationIsRead', {
-                userID: userID
+                conversationId: conversationId
             });
-        }, 500);
-
+        }, 500 );
     });
 
     //compose
-    $compose.on('click', function(e) {
+    $compose.on('click', function() {
         $conversation.addClass('is-opened is-opened-compose');
         $('.conversation-message-box .conversation-single').hide();
         $overlay.removeClass('hide');
@@ -104,21 +118,18 @@ function conversations() {
         $overlay.addClass('hide');
     });
 
-}
 
 function sendMessage(self) {
     var value = self.val();
-    var toID = self.data('toid');
-    var toUsername = self.data('tousername');
 
-    if ($.trim(value) == '') return false;
+    if ($.trim(value) === '') {
+        return false;
+    }
 
     socket.emit('newMessage', {
         message: value,
-        to: {
-            id: toID,
-            username: toUsername
-        }
+        conversationId: openedConversation.id,
+        to: openedConversation.userId
     });
 
     self.val('');
