@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
     io = require('socket.io').listen(server),
     PHPUnserialize = require('php-unserialize'),
     mysql      = require('mysql'),
+    promise    = require('promise'),
     //todo : parametrize this
     mysqlConnection = mysql.createConnection({
         host     : 'localhost',
@@ -23,14 +24,17 @@ var mongoose = require('mongoose'),
 
 //io.set('origins', '*178.62.189.52:*');
 
-function getUsernames(mysqlConnection, ids, callback) {
-    var query = 'SELECT id, username from users WHERE id IN (' + ids.toString() +') ;';
-    console.log(query);
-    mysqlConnection.query(query, function(err, rows) {
-        if (err) {
-            throw err;
-        }
-        return callback(rows);
+function getUsernames(mysqlConnection, ids) {
+
+    return new promise(function (fulfill, reject){
+        var query = 'SELECT id, username from users WHERE id IN (' + ids.toString() +') ;';
+        console.log(query);
+        mysqlConnection.query(query, function(err, rows) {
+            if (err) {
+                reject(err);
+            }
+            fulfill(rows);
+        });
     });
 }
 
@@ -106,23 +110,36 @@ function saveMessageTo(socket, data, conversation) {
 
 mongoose.connect('mongodb://localhost:27017/jamwithme');
 
-function authenticateUser(sessionId, callback) {
-    redisClient.get('session:'+sessionId, function (err, user) {
+function authenticateUser(sessionId) {
+    return new promise(function (fulfill, reject) {
+
+        redisClient.get('session:'+sessionId, function (err, user) {
+            if (err) {
+                console.log('error authenticating');
+                reject(err);
+            }
+            if (user === null) {
+                reject(null);
+            } else {
+                console.log('authenticated');
+                var sess = PHPUnserialize.unserializeSession(user);
+                var data = [];
+                data.userId = sess._sf2_attributes.__userId;
+                data.username = sess._sf2_attributes.__username;
+                //callback(data);
+                fulfill(data);
+            }
+        });
+    });
+}
+
+function getUnreadConversations(socket) {
+    Conversation.find({ 'isRead' :  false, 'owner' :  socket.userID }, function (err, messages) {
         if (err) {
-            console.log('error authenticating');
-            return false;
-        } else {
-            console.log('authenticated');
+            return console.error(err);
         }
-        if (user === null) {
-            callback(null);
-        } else {
-            var sess = PHPUnserialize.unserializeSession(user);
-            var data = [];
-            data.userId = sess._sf2_attributes.__userId;
-            data.username = sess._sf2_attributes.__username;
-            callback(data);
-        }
+        socket.unreadMessages = messages.length;
+        socket.emit('myUnreadMessagesCount', messages.length);
     });
 }
 
@@ -137,7 +154,7 @@ mysqlConnection.connect(function(err) {
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function callback () {
-        // yay!
+
         console.log('connected to MONGO');
 
         io.on('connection', function (socket) {
@@ -145,7 +162,7 @@ mysqlConnection.connect(function(err) {
 
             socket.on('registerUserData', function (data) {
 
-                authenticateUser(data.sessionId, function(data){
+                authenticateUser(data.sessionId).then(function(data) {
 
                     if (data === null) {
                         return false;
@@ -157,25 +174,15 @@ mysqlConnection.connect(function(err) {
 
                     setTimeout(function(){
                         //get unread messages count
-                        getUnreadConversations();
+                        getUnreadConversations(socket);
                     }, 1000);
 
                 });
             });
 
             socket.on('getUnreadMessagesCount', function() {
-                getUnreadConversations();
+                getUnreadConversations(socket);
             });
-
-            function getUnreadConversations() {
-                Conversation.find({ 'isRead' :  false, 'owner' :  socket.userID }, function (err, messages) {
-                    if (err) {
-                        return console.error(err);
-                    }
-                    socket.unreadMessages = messages.length;
-                    socket.emit('myUnreadMessagesCount', messages.length);
-                });
-            }
 
             /*
             data.to = user id
@@ -187,9 +194,6 @@ mysqlConnection.connect(function(err) {
                 console.log(data);
 
                 if (data.conversationId === '') {
-                    //there is no conversation so you have to create one
-                    //todo: this is bad
-                    //todo: it doesnt mean that there is no conversation, you should check that
                     data.conversationId = -1;
                 } else {
                     data.conversationId = new mongoose.Types.ObjectId(data.conversationId);
@@ -276,8 +280,7 @@ mysqlConnection.connect(function(err) {
                             users.push(conversations[i]._lastMessage.from);
                         }
 
-                        getUsernames(mysqlConnection, users, function(results){
-                            console.log(conversations.length);
+                        getUsernames(mysqlConnection, users).then(function(results){
                             for( var z=0; z< conversations.length; z++) {
                                 conversations[z].fromData = results[z];
 
@@ -317,9 +320,8 @@ mysqlConnection.connect(function(err) {
                         users.push(messages[i].from);
                     }
 
-                    getUsernames(mysqlConnection, users, function(results){
+                    getUsernames(mysqlConnection, users).then(function(results){
                         for( var z=0; z<messages.length; z++) {
-
                             for( var b=0; b< results.length; b++) {
                                 if (results[b].id == messages[z].from) {
                                     messages[z].fromData = results[b];
@@ -342,7 +344,7 @@ mysqlConnection.connect(function(err) {
                 }, function(err, numberAffected) {
                     //handle it
                     console.log(numberAffected);
-                    socket.unreadMessages -= numberAffected;
+                    socket.unreadMessages -= numberAffected.n;
                     socket.emit('myUnreadMessagesCount', socket.unreadMessages);
                 });
             });

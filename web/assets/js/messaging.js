@@ -37,6 +37,7 @@ socket.on('messageReceived', function(data) {
 });
 
 socket.on('myUnreadMessagesCount', function(data) {
+    console.log('unread count ' + data);
     if (data !== 0) {
         $('.inbox .badge').text(data);
     } else {
