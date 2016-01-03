@@ -349,6 +349,21 @@ mysqlConnection.connect(function(err) {
                 });
             });
 
+            socket.on('checkIsOnline', function(id) {
+                console.log(activeUsers);
+                if (activeUsers[id]) {
+                    socket.emit('isOnline', true);
+                } else {
+                    socket.emit('isOnline', false);
+                }
+            });
+
+            socket.on('disconnect', function() {
+                console.log('Got disconnect!');
+                //remove him from the active users
+                delete activeUsers[socket.userID];
+            });
+
         });
     });
 });

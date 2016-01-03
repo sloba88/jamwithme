@@ -25,6 +25,14 @@ socket.on('messageSaved', function(value) {
     scrollToBottom();
 });
 
+socket.on('isOnline', function(is){
+    if (is) {
+        console.log('online');
+    } else {
+        console.log('not online');
+    }
+});
+
 socket.on('messageReceived', function(data) {
     //todo: append to right message container, not anyone!!!!!
     if (data._conversation == openedConversation.id) {
@@ -147,4 +155,9 @@ $(function() {
         e.preventDefault();
         sendMessage($('.send-message'));
     });
+
+    setTimeout(function() {
+        socket.emit('checkIsOnline', $('.open-conversation').data('user-id'));
+    }, 1000);
+
 });
