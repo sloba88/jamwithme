@@ -47,50 +47,11 @@
             var messageTemplate = _.template($('#messageTemplate').html());
             var conversationTemplate = _.template($('#conversationTemplate').html());
             var conversations = [];
-            var match = [];
 
             socket.on('myConversations', function (data) {
-
                 console.log(data);
-
-                /*
-                $('.conversation-message-box').html('');
                 $.each(data, function (index, val) {
-                    //TODO: why am I not getting datetime from server?
-                    val.createdAt = new Date(val.createdAt);
-
-                    $('.conversation-message-box').append(messageTemplate(val));
-                });
-
-
-                $.each(data.reverse(), function (index, val) {
-                    //TODO: why am I not getting datetime from server?
-                    val.createdAt = new Date(val.createdAt);
-
-                    if (val.to.id == myID) {
-                        other = val.from;
-                    } else {
-                        other = val.to;
-                    }
-
-                    if (!_.findWhere(match, other)) {
-                        match.push(other);
-                        val.other = other;
-                        conversations.push(val);
-                    }
-                });
-                */
-
-                $.each(data, function (index, val) {
-                    console.log(val);
                     val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
-
-                    $.each(val.participants, function (index, value) {
-                        if (value !== _user.id) {
-                            val.otherGuy = value;
-                        }
-                    });
-
                     $('.conversations-box').append(conversationTemplate(val));
                 });
 

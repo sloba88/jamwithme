@@ -274,10 +274,10 @@ mysqlConnection.connect(function(err) {
                     if (conversations.length !== 0){
 
                         var users = [];
-                        //TODO: don't query from loop
                         for( var i=0; i< conversations.length; i++) {
                             //show the last message in the conversation in the frontend
                             users.push(conversations[i]._lastMessage.from);
+                            conversations[i]._lastMessage.message = conversations[i]._lastMessage.message.substring(0, 60) + ' ...';
                         }
 
                         getUsernames(mysqlConnection, users).then(function(results){
