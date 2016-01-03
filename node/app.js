@@ -200,7 +200,7 @@ mysqlConnection.connect(function(err) {
                 }
 
                 //check for my conversation
-                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  data.conversationId }, { 'participants' :  { $in: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
+                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  data.conversationId }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
                     if (err) {
                         console.log(err);
                     }
@@ -310,7 +310,7 @@ mysqlConnection.connect(function(err) {
                     data.conversationId =  new mongoose.Types.ObjectId(data.conversationId);
                 }
 
-                Message.find({ 'owner': socket.userID, $or: [{ '_conversation' :  data.conversationId }, { '_conversation.participants' :  { $in: [data.to, socket.userID ]} } ] }).lean().exec(function (err, messages) {
+                Message.find({ 'owner': socket.userID, $or: [{ '_conversation' :  data.conversationId }, { '_conversation.participants' :  { $all: [data.to, socket.userID ]} } ] }).lean().exec(function (err, messages) {
                     if (err) {
                         return console.error(err);
                     }
