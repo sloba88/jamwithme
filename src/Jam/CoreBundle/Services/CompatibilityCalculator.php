@@ -92,6 +92,13 @@ class CompatibilityCalculator {
             $compatibility->calculate();
 
             $this->em->persist($compatibility);
+
+            $compatibility2 = new Compatibility();
+            $compatibility2->setMusician($m);
+            $compatibility2->setMusician2($me);
+            $compatibility2->setValue($compatibility->getValue());
+
+            $this->em->persist($compatibility2);
         }
 
         $this->em->flush();

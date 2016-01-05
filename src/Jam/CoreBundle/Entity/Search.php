@@ -27,7 +27,7 @@ class Search
      * @var integer
      *
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jamsCreator")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=true)
      */
     private $creator;
@@ -85,6 +85,8 @@ class Search
 
     /**
      * @var array
+     *
+     * This should be named Notified about users as it means all the users that user received email about when he subscribed
      *
      * @ORM\Column(name="users", type="array", nullable=true)
      */
@@ -322,20 +324,5 @@ class Search
     public function getUsers()
     {
         return $this->users;
-    }
-
-    public function getSortedIntegerUsers()
-    {
-        $results = array();
-
-        if (is_array($this->users) && count($this->users) > 0) {
-            foreach ($this->users as $userId) {
-                $results[] = (int) $userId;
-            }
-
-            sort($results, SORT_NUMERIC);
-        }
-
-        return $results;
     }
 }

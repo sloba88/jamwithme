@@ -333,8 +333,8 @@ class DefaultController extends Controller
     {
         $searchSubscriber = $this->get('search.subscriber.cron');
 
-        $searchSubscriber->execute();
+        $emailsSent = $searchSubscriber->execute();
 
-        return new JsonResponse(array('success' => true));
+        return new JsonResponse(array('success' => true, 'emails_sent' => $emailsSent));
     }
 }

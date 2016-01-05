@@ -102,50 +102,36 @@ class SearchSubscriberCron {
     public function execute()
     {
         $searchEntries = $this->entityManager->getRepository('JamCoreBundle:Search')->findBy(array('isSubscribed' => true));
+        $emailCounter = 0;
 
         if (count($searchEntries) > 0) {
-            $emailCounter = 0;
             foreach ($searchEntries as $search) {
                 if ($search instanceof Search) {
                     $searchResults = $this->musiciansSearch->getElasticSearchResult($search);
-                    if($this->searchHasChanges($searchResults, $search)) {
 
-                        $this->sendEmail($searchResults, $search);
-
-                        $search->setUsers($this->formUserIdArray($searchResults));
-                        $this->entityManager->persist($search);
-                        $emailCounter++;
+                    $users = array();
+                    //convert compatibility as result to user object
+                    foreach ($searchResults AS $s) {
+                        if (!in_array($s->getMusician2()->getId(), $search->getUsers())) {
+                            array_push($users, $s->getMusician2());
+                        }
+                    }
+                    if (count($users) > 0) {
+                        if ($this->sendEmail($users, $search)) {
+                            $search->setUsers(array_merge($this->formUserIdArray($users), $search->getUsers()));
+                            $this->entityManager->persist($search);
+                            $emailCounter++;
+                        }
                     }
                 }
             }
             if ($emailCounter > 0) {
                 $this->logger->addInfo('Sent ' .$emailCounter. ' emails for search subscriptions');
-            }
-
-            $this->entityManager->flush();
-        }
-    }
-
-    /**
-     * Check if $search object has changes in user id array, compared to $searchResults array
-     *
-     * @param array $searchResults
-     * @param Search $search
-     * @return bool
-     */
-    private function searchHasChanges(array $searchResults, Search $search)
-    {
-        $changed = (count($searchResults) > 0) ? true : false;
-
-        if ($changed) {
-            if (count($search->getUsers()) > 0) {
-                if ($search->getSortedIntegerUsers() === $this->formUserIdArray($searchResults)) {
-                    $changed = false;
-                }
+                $this->entityManager->flush();
             }
         }
 
-        return $changed;
+        return $emailCounter;
     }
 
     /**
@@ -175,7 +161,7 @@ class SearchSubscriberCron {
      */
     private function sendEmail(array $searchResults, Search $search)
     {
-        $emailBody = $this->twig->render('JamCoreBundle:Email:userSearchSubscription.html.twig', array(
+        $emailBody = $this->twig->render('JamWebBundle:Email:userSearchSubscription.html.twig', array(
             'users' => $searchResults
         ));
 
@@ -185,7 +171,11 @@ class SearchSubscriberCron {
             ->setTo($search->getCreator()->getEmail())
             ->setBody($emailBody, 'text/html');
 
-        $this->mailer->send($message);
+        if ($this->mailer->send($message)) {
+            return true;
+        }
+
+        return false;
     }
 
 }

@@ -48,7 +48,7 @@ class SearchMusicians {
      */
     public function getElasticSearchResult(Search $search, $request = array())
     {
-        $me = $this->tokenStorage->getToken()->getUser();
+        $me = $search->getCreator();
 
         //no limit is used for map view
         if (isset($request['limit']) && $request['limit'] === '0') {
@@ -88,7 +88,7 @@ class SearchMusicians {
             $elasticaQuery = new Filtered($elasticaQuery, $nested);
         }
 
-        if ($request['distance'] && $me->getLat()){
+        if ($distance && $me->getLat()){
             $locationFilter = new \Elastica\Filter\GeoDistance(
                 'musician2.pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),

@@ -228,7 +228,7 @@ $(function() {
         $.ajax({
             url: Routing.generate('subscribe_search_add')
         }).done(function( result ) {
-            if (result.status == 'success') {
+            if (result.success == true) {
                 $('.people-listing-grid').html(notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
             }
         });
