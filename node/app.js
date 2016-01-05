@@ -25,7 +25,6 @@ var mongoose = require('mongoose'),
 //io.set('origins', '*178.62.189.52:*');
 
 function getUsernames(mysqlConnection, ids) {
-
     return new promise(function (fulfill, reject){
         var query = 'SELECT id, username from users WHERE id IN (' + ids.toString() +') ;';
         mysqlConnection.query(query, function(err, rows) {
