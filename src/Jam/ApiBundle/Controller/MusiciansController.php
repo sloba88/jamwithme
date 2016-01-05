@@ -17,6 +17,7 @@ class MusiciansController extends FOSRestController
         $request = $this->get('request_stack')->getCurrentRequest();
         $me = $this->getUser();
         $em = $this->getDoctrine()->getManager();
+        $alreadySubscribed = false;
 
         if (!$me->getLocation()) {
             $view = $this->view(array(
@@ -29,7 +30,6 @@ class MusiciansController extends FOSRestController
         }
 
         //save the search at first
-        //todo: put it in session
         if ($request->query->get('page') == '' || $request->query->get('page') == '1') {
             $search = new Search();
             $search->setDistance($request->query->get('distance'));
@@ -46,6 +46,21 @@ class MusiciansController extends FOSRestController
 
         $request->getSession()->save();
         $musicians = $this->get('search.musicians')->getElasticSearchResult($search, $request->query->all());
+
+        //todo: if there are no results check if he already subscribed to this before showing him subscribe button
+        if (count($musicians) == 0) {
+            $search = $em->getRepository('JamCoreBundle:Search')->findOneBy(array(
+                'creator' => $me,
+                'isSubscribed' => true,
+                'genres' => $request->query->get('genres') ? $request->query->get('genres') : '',
+                'instruments' => $request->query->get('instruments') ? $request->query->get('instruments') : '',
+                'isTeacher' => $request->query->get('isTeacher')
+            ));
+
+            if (count($search) > 0) {
+                $alreadySubscribed = true;
+            }
+        }
 
         $musicians_data = array();
 
@@ -101,7 +116,7 @@ class MusiciansController extends FOSRestController
 
         $view = $this->view(array(
             'status'    => 'success',
-            'searchId'    => $search->getId(),
+            'alreadySubscribed' => $alreadySubscribed,
             'data' => $musicians_data
         ), 200);
 

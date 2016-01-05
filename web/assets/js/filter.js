@@ -83,6 +83,10 @@ function filterMusicians(){
             }
             renderGridView(result.data);
         }
+
+        if (result.alreadySubscribed == true) {
+            $('.people-listing-grid').html('<br /><p>You have already subscribed to this search criteria and will be notified when someone join. </p>');
+        }
     });
 }
 
