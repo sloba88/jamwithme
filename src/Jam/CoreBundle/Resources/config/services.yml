@@ -7,15 +7,21 @@ services:
             - [setTokenStorage, ["@security.token_storage"]]
             - [setShout]
 
+    search.musicians:
+        class: Jam\CoreBundle\Services\SearchMusicians
+        calls:
+            - [setElasticUserFinder, ["@fos_elastica.finder.searches.compatibility"]]
+            - [setTokenStorage, ["@security.token_storage"]]
+
     search.subscriber.cron:
         class: Jam\CoreBundle\Services\SearchSubscriberCron
         calls:
             - [setEntityManager, ["@doctrine.orm.entity_manager"]]
-            - [setElasticUserFinder, ["@fos_elastica.finder.searches.user"]]
             - [setTwig, ["@templating"]]
             - [setMailer, ["@mailer"]]
             - [setLogger, ["@logger"]]
             - [checkMailParams, [%mailer_user%, %mailer_password%]]
+            - [setMusiciansSearch, ["@search.musicians"]]
 
     compatibility.calculator:
             class: Jam\CoreBundle\Services\CompatibilityCalculator

@@ -334,5 +334,7 @@ class DefaultController extends Controller
         $searchSubscriber = $this->get('search.subscriber.cron');
 
         $searchSubscriber->execute();
+
+        return new JsonResponse(array('success' => true));
     }
 }

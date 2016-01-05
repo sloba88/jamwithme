@@ -2,17 +2,10 @@
 
 namespace Jam\ApiBundle\Controller;
 
-use Elastica\Filter\Bool;
-use Elastica\Filter\BoolNot;
-use Elastica\Filter\Ids;
-use Elastica\Filter\Nested;
-use Elastica\Filter\Term;
-use Elastica\Filter\Terms;
-use Elastica\Query\Filtered;
-use Elastica\Query\MatchAll;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
+use Jam\CoreBundle\Entity\Search;
 
 class MusiciansController extends FOSRestController
 {
@@ -22,26 +15,8 @@ class MusiciansController extends FOSRestController
     public function findAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
-        $request->getSession()->save();
         $me = $this->getUser();
-
-        //no limit is used for map view
-        if ($request->query->get('limit') === '0') {
-            $perPage = 5000;
-            $page = 1;
-        } else {
-            $perPage = 20;
-            $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
-        }
-
-        $distance = intval($request->query->get('distance'));
-
-        if ($distance > 50) {
-            $distance = 50;
-        }
-
-        $genres = $request->query->get('genres');
-        $instruments = $request->query->get('instruments');
+        $em = $this->getDoctrine()->getManager();
 
         if (!$me->getLocation()) {
             $view = $this->view(array(
@@ -53,64 +28,24 @@ class MusiciansController extends FOSRestController
             return $this->handleView($view);
         }
 
-        $finder = $this->container->get('fos_elastica.finder.searches.compatibility');
-        $elasticaQuery = new MatchAll();
+        //save the search at first
+        //todo: put it in session
+        if ($request->query->get('page') == '' || $request->query->get('page') == '1') {
+            $search = new Search();
+            $search->setDistance($request->query->get('distance'));
+            $search->setGenres($request->query->get('genres'));
+            $search->setInstruments($request->query->get('instruments'));
+            $search->setIsTeacher($request->query->get('isTeacher'));
 
-        if ($genres != ''){
-            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.genres.genre.id', explode(",", $genres)), $elasticaQuery);
+            $em->persist($search);
+            $em->flush();
+            $request->getSession()->set('searchId', $search->getId());
+        } else {
+            $search = $em->getRepository('JamCoreBundle:Search')->find($request->getSession()->get('searchId'));
         }
 
-        if ($instruments != ''){
-            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.instruments.instrument.id', explode(",", $instruments)), $elasticaQuery);
-        }
-
-        if ($request->query->get('isTeacher')){
-            $boolFilter = new Bool();
-            $filter1 = new Term();
-            $filter1->setTerm('musician2.isTeacher', '1');
-            $boolFilter->addMust($filter1);
-
-            $nested = new Nested();
-            $nested->setPath("musician2");
-            $nested->setFilter($boolFilter);
-
-            $elasticaQuery = new Filtered($elasticaQuery, $nested);
-        }
-
-        if ($request->query->get('distance') && $me->getLat()){
-            $locationFilter = new \Elastica\Filter\GeoDistance(
-                'musician2.pin',
-                array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                ($distance ? $distance : '50') . 'km'
-            );
-
-            $nested = new Nested();
-            $nested->setPath("musician2");
-            $nested->setFilter($locationFilter);
-
-            $elasticaQuery = new Filtered($elasticaQuery, $nested);
-        }
-
-        //kick me out of result set
-        $idsFilter = new Ids();
-        $idsFilter->setIds(array($me->getId()));
-        $elasticaBool = new BoolNot($idsFilter);
-        $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
-
-        //show my compatibilities
-        $boolFilter = new Bool();
-        $filter1 = new Term();
-        $filter1->setTerm('musician.id', $me->getId());
-        $boolFilter->addMust($filter1);
-        $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
-
-        $query = new \Elastica\Query();
-        $query->setQuery($elasticaQuery);
-        $query->setSize($perPage);
-        $query->setFrom(($page - 1) * $perPage);
-        $query->addSort(array('musician2.isJammer' => array('order' => 'desc'), 'value' => array('order' => 'desc')));
-
-        $musicians = $finder->find($query);
+        $request->getSession()->save();
+        $musicians = $this->get('search.musicians')->getElasticSearchResult($search, $request->query->all());
 
         $musicians_data = array();
 
@@ -166,19 +101,11 @@ class MusiciansController extends FOSRestController
 
         $view = $this->view(array(
             'status'    => 'success',
+            'searchId'    => $search->getId(),
             'data' => $musicians_data
         ), 200);
 
         return $this->handleView($view);
-    }
-
-    private function addToNestedFilter($categoryQuery, $elasticaQuery)
-    {
-        $nested = new Nested();
-        $nested->setPath("musician2");
-        $nested->setFilter($categoryQuery);
-
-        return new Filtered($elasticaQuery, $nested);
     }
 
     /**

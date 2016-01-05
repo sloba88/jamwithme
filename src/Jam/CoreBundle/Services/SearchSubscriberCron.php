@@ -2,19 +2,11 @@
 
 namespace Jam\CoreBundle\Services;
 
-
 use Doctrine\ORM\EntityManager;
-use Elastica\Filter\BoolNot;
-use Elastica\Filter\GeoDistance;
-use Elastica\Filter\Term;
-use Elastica\Filter\Terms;
-use Elastica\Query\Bool;
-use Elastica\Query\Filtered;
-use Elastica\Filter\Ids;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Jam\CoreBundle\Entity\Search;
 use Symfony\Bridge\Monolog\Logger;
-use Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 class SearchSubscriberCron {
 
@@ -29,7 +21,7 @@ class SearchSubscriberCron {
     private $elasticUserFinder;
 
     /**
-     * @var TimedTwigEngine
+     * @var TwigEngine
      */
     private $twig;
 
@@ -42,6 +34,11 @@ class SearchSubscriberCron {
      * @var Logger
      */
     private $logger;
+
+    /**
+     * @var SearchMusicians
+     */
+    private $musiciansSearch;
 
     /**
      * @param \Swift_Mailer $mailer
@@ -68,9 +65,9 @@ class SearchSubscriberCron {
     }
 
     /**
-     * @param TimedTwigEngine $twig
+     * @param TwigEngine $twig
      */
-    public function setTwig(TimedTwigEngine $twig)
+    public function setTwig(TwigEngine $twig)
     {
         $this->twig = $twig;
     }
@@ -83,10 +80,19 @@ class SearchSubscriberCron {
         $this->logger = $logger;
     }
 
+    /**
+     * @param $search
+     */
+    public function setMusiciansSearch(SearchMusicians $search)
+    {
+        $this->musiciansSearch = $search;
+    }
+
+
     public function checkMailParams($mailUser, $mailPassword)
     {
         if ($mailUser === null || $mailPassword === null) {
-            throw new \InvalidArgumentException('Email user and password not configured');
+            //throw new \InvalidArgumentException('Email user and password not configured');
         }
     }
 
@@ -101,7 +107,7 @@ class SearchSubscriberCron {
             $emailCounter = 0;
             foreach ($searchEntries as $search) {
                 if ($search instanceof Search) {
-                    $searchResults = $this->getElasticSearchResult($search);
+                    $searchResults = $this->musiciansSearch->getElasticSearchResult($search);
                     if($this->searchHasChanges($searchResults, $search)) {
 
                         $this->sendEmail($searchResults, $search);
@@ -159,61 +165,6 @@ class SearchSubscriberCron {
         }
 
         return $results;
-    }
-
-    /**
-     * Get search result(s) based on $search object parameters
-     *
-     * @param Search $search
-     * @return array
-     */
-    private function getElasticSearchResult(Search $search)
-    {
-
-        $elasticaQuery = new \Elastica\Query\MatchAll();
-
-        $instruments = json_decode($search->getInstruments());
-        $genres = json_decode($search->getGenres());
-
-        if ($search->getInstruments() !== '') {
-            $instrumentsQuery = new Terms('instruments.instrument.id', $instruments);
-            $elasticaQuery = new Filtered($elasticaQuery, $instrumentsQuery);
-        }
-
-
-        if ($search->getGenres() !== '') {
-            $genresQuery = new Terms('genres.genre.id', $genres);
-            $elasticaQuery = new Filtered($elasticaQuery, $genresQuery);
-        }
-
-
-        if ($search->getIsTeacher()) {
-            $boolFilter = new Bool();
-            $teacherTerm = new Term();
-            $teacherTerm->setTerm('isTeacher', '1');
-            $boolFilter->addMust($teacherTerm);
-            $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
-        }
-
-        if ($search->getCreator()->getLat() && $search->getDistance()) {
-            $locationFilter = new GeoDistance(
-                'pin',
-                array(
-                    'lat' => floatval($search->getCreator()->getLat()),
-                    'lon' => floatval($search->getCreator()->getLon()),
-                ),
-                (intval($search->getDistance()) ? intval($search->getDistance()) : '20') . 'km'
-            );
-            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
-        }
-
-
-        $idsFilter =  new Ids();
-        $idsFilter->setIds(array($search->getCreator()->getId()));
-        $elasticaBool = new BoolNot($idsFilter);
-        $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
-
-        return $this->elasticUserFinder->find($elasticaQuery);
     }
 
     /**

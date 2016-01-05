@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Jam
+ * Search
  *
  * @ORM\Table(name="searches")
  * @ORM\Entity
@@ -26,6 +26,7 @@ class Search
     /**
      * @var integer
      *
+     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jamsCreator")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=true)
      */
@@ -208,7 +209,9 @@ class Search
      */
     public function setInstruments($instruments)
     {
-        $this->instruments = $instruments;
+        if ($instruments != NULL) {
+            $this->instruments = $instruments;
+        }
 
         return $this;
     }
@@ -280,7 +283,9 @@ class Search
      */
     public function setGenres($genres)
     {
-        $this->genres = $genres;
+        if ($genres != NULL) {
+            $this->genres = $genres;
+        }
 
         return $this;
     }
