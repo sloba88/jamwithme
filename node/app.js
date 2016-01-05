@@ -28,7 +28,6 @@ function getUsernames(mysqlConnection, ids) {
 
     return new promise(function (fulfill, reject){
         var query = 'SELECT id, username from users WHERE id IN (' + ids.toString() +') ;';
-        console.log(query);
         mysqlConnection.query(query, function(err, rows) {
             if (err) {
                 reject(err);
@@ -58,8 +57,6 @@ function saveMessageFrom(socket, data, conversation) {
             id : socket.userID,
             username: socket.username
         };
-
-        console.log(message);
 
         socket.emit('messageSaved', message);
 
@@ -108,8 +105,6 @@ function saveMessageTo(socket, data, conversation) {
     });
 }
 
-mongoose.connect('mongodb://localhost:27017/jamwithme');
-
 function authenticateUser(sessionId) {
     return new promise(function (fulfill, reject) {
 
@@ -121,12 +116,13 @@ function authenticateUser(sessionId) {
             if (user === null) {
                 reject(null);
             } else {
-                console.log('authenticated');
                 var sess = PHPUnserialize.unserializeSession(user);
                 var data = [];
+                /*jshint camelcase: false */
                 data.userId = sess._sf2_attributes.__userId;
                 data.username = sess._sf2_attributes.__username;
-                //callback(data);
+                /*jshint camelcase: true */
+                console.log('User ' + data.username + ' authenticated.');
                 fulfill(data);
             }
         });
@@ -142,6 +138,8 @@ function getUnreadConversations(socket) {
         socket.emit('myUnreadMessagesCount', messages.length);
     });
 }
+
+mongoose.connect('mongodb://localhost:27017/jamwithme');
 
 mysqlConnection.connect(function(err) {
     if (err) {
@@ -190,8 +188,6 @@ mysqlConnection.connect(function(err) {
             data.message = message text
              */
             socket.on('newMessage', function (data) {
-
-                console.log(data);
 
                 if (data.conversationId === '') {
                     data.conversationId = -1;
@@ -291,7 +287,6 @@ mysqlConnection.connect(function(err) {
                                 }
                             }
 
-                            console.log(conversations);
                             socket.emit('myConversations', conversations);
                         });
 
@@ -303,7 +298,6 @@ mysqlConnection.connect(function(err) {
             });
 
             socket.on('getConversation', function (data) {
-                console.log(data);
                 if (data.conversationId === '') {
                     data.conversationId = -1;
                 } else {
@@ -329,7 +323,6 @@ mysqlConnection.connect(function(err) {
                             }
                         }
 
-                        console.log(messages);
                         socket.emit('ourConversation', messages);
                     });
                 });
@@ -350,7 +343,6 @@ mysqlConnection.connect(function(err) {
             });
 
             socket.on('checkIsOnline', function(id) {
-                console.log(activeUsers);
                 if (activeUsers[id]) {
                     socket.emit('isOnline', true);
                 } else {
@@ -359,7 +351,7 @@ mysqlConnection.connect(function(err) {
             });
 
             socket.on('disconnect', function() {
-                console.log('Got disconnect!');
+                console.log('User ' + socket.username + ' disconnected.');
                 //remove him from the active users
                 delete activeUsers[socket.userID];
             });
