@@ -68,4 +68,27 @@ class SubscriptionController extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+
+    /**
+     * @Route("/subscription/search/remove/{id}", name="subscribe_search_remove", options={"expose"=true})
+     * @Template()
+     */
+    public function searchUnsubscribeAction($id)
+    {
+        $search = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Search')
+            ->findOneBy(array('id' => $id, 'creator' => $this->getUser()));
+
+        if (!$search) {
+            $response = array( 'message' => "No such subscription found. Couldn't unsubscribe.");
+        } else {
+            $search->setIsSubscribed(false);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $response = array( 'message' => "Unsubscribed successfully.");
+        }
+
+        return $response;
+    }
 }
