@@ -2,7 +2,8 @@
 
 /* global socket */
 /* global scrollToBottom */
-/* global messageTemplate */
+/* global _templates */
+/* global addMessage */
 
 var openedConversation = {};
 
@@ -13,7 +14,7 @@ socket.on('ourConversation', function(data) {
     $('.conversation-message-box').html('');
 
     $.each(data, function(index, value) {
-        $('.conversation-message-box').append(messageTemplate(value));
+        $('.conversation-message-box').append(_templates.messageTemplate(value));
     });
     setTimeout(function() {
         scrollToBottom();
@@ -21,7 +22,7 @@ socket.on('ourConversation', function(data) {
 });
 
 socket.on('messageSaved', function(value) {
-    $('.conversation-message-box').append(messageTemplate(value));
+    $('.conversation-message-box').append(_templates.messageTemplate(value));
     scrollToBottom();
 });
 
@@ -34,9 +35,8 @@ socket.on('isOnline', function(is){
 });
 
 socket.on('messageReceived', function(data) {
-    //todo: append to right message container, not anyone!!!!!
     if (data._conversation == openedConversation.id) {
-        var mess = $(messageTemplate(data)).show();
+        var mess = $(_templates.messageTemplate(data)).show();
         $('.conversation-message-box').append(mess);
         scrollToBottom();
     } else {
@@ -45,7 +45,6 @@ socket.on('messageReceived', function(data) {
 });
 
 socket.on('myUnreadMessagesCount', function(data) {
-    console.log('unread count ' + data);
     if (data !== 0) {
         $('.inbox .badge').text(data);
     } else {
@@ -53,40 +52,75 @@ socket.on('myUnreadMessagesCount', function(data) {
     }
 });
 
+socket.on('connect_error', function(){
+    socket.io.disconnect();
+    addMessage('danger', 'There are some problems with messaging application, please try again later');
+});
+
+function sendMessage(self) {
+    var value = self.val();
+
+    if ($.trim(value) === '') {
+        return false;
+    }
+
+    socket.emit('newMessage', {
+        message: value,
+        conversationId: openedConversation.id,
+        to: openedConversation.userId
+    });
+
+    self.val('');
+}
+
+$(function() {
+
+    //only on messages page
+    if ($('.conversations-box').length > 0 ) {
+        if (typeof socket.emit != 'undefined'){
+            setTimeout(function () {
+                socket.emit('getMyConversations', {userID: '_user.id'});
+            }, 500);
+        }
+
+        socket.on('myConversations', function (data) {
+            $.each(data, function (index, val) {
+                val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
+                $('.conversations-box').append(_templates.conversationTemplate(val));
+            });
+
+            scrollToBottom();
+        });
+    }
+
+    $('.send-message').on('keyup', function(e) {
+        if (e.which == 13) {
+            sendMessage($(this));
+        }
+    });
+
+    $('.send-message-btn').on('click', function(e) {
+        e.preventDefault();
+        sendMessage($('.send-message'));
+    });
+
+    setTimeout(function() {
+        socket.emit('checkIsOnline', $('.open-conversation').data('user-id'));
+    }, 1000);
+
     var $conversation = $('.conversation'),
-        $conversationContainer = $conversation.find('.conversation-container'),
         $compose = $('.messages-header').find('.btn-compose'),
         $overlay = $('.overlay');
 
-    //open
-/*
-    $('.messages-container').on('click', '.message-single', function() {
-        $conversation.removeClass('is-opened-compose');
-        $conversation.addClass('is-opened');
-        $overlay.removeClass('hide');
-        $(this).removeClass('unread');
-
-        $('.conversation-message-box .conversation-single').hide();
-        var user = $(this).data('user');
-        var userID = $(this).data('id');
-        $('*[data-user="' + user + '"]').show();
-        $('*[data-user2="' + user + '"]').show();
-        $('.send-message').data('toid', userID);
-
-        scrollToBottom();
-
-        setTimeout(function() {
-            socket.emit('conversationIsRead', {
-                userID: userID
-            });
-        }, 500);
-
-    });
-    */
 
     $(document).on('click', '.open-conversation', function(e) {
         e.preventDefault();
-        var user = $(this).data('user');
+
+        if (!socket.connected) {
+            addMessage('danger', 'There are some problems with messaging application, please try again later');
+            return false;
+        }
+
         var userId = $(this).data('user-id');
         var conversationId = $(this).data('id');
         socket.emit('getConversation', {
@@ -126,38 +160,5 @@ socket.on('myUnreadMessagesCount', function(data) {
         $conversation.removeClass('is-opened');
         $overlay.addClass('hide');
     });
-
-
-function sendMessage(self) {
-    var value = self.val();
-
-    if ($.trim(value) === '') {
-        return false;
-    }
-
-    socket.emit('newMessage', {
-        message: value,
-        conversationId: openedConversation.id,
-        to: openedConversation.userId
-    });
-
-    self.val('');
-}
-
-$(function() {
-    $('.send-message').on('keyup', function(e) {
-        if (e.which == 13) {
-            sendMessage($(this));
-        }
-    });
-
-    $('.send-message-btn').on('click', function(e) {
-        e.preventDefault();
-        sendMessage($('.send-message'));
-    });
-
-    setTimeout(function() {
-        socket.emit('checkIsOnline', $('.open-conversation').data('user-id'));
-    }, 1000);
 
 });

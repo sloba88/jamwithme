@@ -272,7 +272,9 @@ mysqlConnection.connect(function(err) {
                         for( var i=0; i< conversations.length; i++) {
                             //show the last message in the conversation in the frontend
                             users.push(conversations[i]._lastMessage.from);
-                            conversations[i]._lastMessage.message = conversations[i]._lastMessage.message.substring(0, 60) + ' ...';
+                            if (conversations[i]._lastMessage.message.length > 60) {
+                                conversations[i]._lastMessage.message = conversations[i]._lastMessage.message.substring(0, 60) + ' ...';
+                            }
                         }
 
                         getUsernames(mysqlConnection, users).then(function(results){
@@ -281,10 +283,12 @@ mysqlConnection.connect(function(err) {
 
                                 for( var b=0; b< results.length; b++) {
                                     if (b[0] == conversations[z].from) {
-                                        conversations[z].fromData = results[z];
+                                        conversations[z].fromData = results[b];
                                     }
                                 }
                             }
+
+                            console.log(conversations);
 
                             socket.emit('myConversations', conversations);
                         });

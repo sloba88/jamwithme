@@ -4,15 +4,17 @@
 /* global _ */
 /* global Routing */
 /* global checkCanShout */
-/* global imagesCollectionHolder */
 
 _.templateSettings.variable = 'rc';
-var shoutBoxTemplate = _.template($('#shoutBoxTemplate').html());
-var notificationTemplate = _.template($('#notificationTemplate').html());
-var musicianBoxTemplate = _.template($('#musicianBoxTemplate').html());
-var musicianMapBoxTemplate = _.template($('#musicianMapBoxTemplate').html());
-var messageTemplate = _.template($('#messageTemplate').html());
-var actionConfirmModalTemplate = _.template($('#actionConfirmModalTemplate').html());
+var _templates = {};
+_templates.shoutBoxTemplate = _.template($('#shoutBoxTemplate').html());
+_templates.notificationTemplate = _.template($('#notificationTemplate').html());
+_templates.musicianBoxTemplate = _.template($('#musicianBoxTemplate').html());
+_templates.musicianMapBoxTemplate = _.template($('#musicianMapBoxTemplate').html());
+_templates.messageTemplate = _.template($('#messageTemplate').html());
+_templates.actionConfirmModalTemplate = _.template($('#actionConfirmModalTemplate').html());
+_templates.conversationTemplate = _.template($('#conversationTemplate').html());
+_templates.musicianMapTemplate = _.template($('#musicianMapTemplate').html());
 
 var isMobile = false; //initiate as false
 // device detection
@@ -26,16 +28,6 @@ function checkTouchDevice() {
     } else {
         $('html').addClass('no-touch-device');
     }
-}
-
-function addCollectionForm(collectionHolder, type) {
-    var prototype = collectionHolder.data('prototype');
-    var index = collectionHolder.data('index');
-    var newForm = prototype.replace(/__name__/g, index);
-
-    // increase the index with one for the next item
-    collectionHolder.data('index', index + 1);
-    collectionHolder.append(newForm);
 }
 
 function readURL(input) {
@@ -412,29 +404,6 @@ function scrollbarPlugin() {
     });
 }
 
-function addMessage(type, message, temp) {
-    if (typeof temp == 'undefined') {
-        temp = 'temp';
-    } else {
-        temp = '';
-    }
-
-    if (type === false) {
-        type = 'danger';
-    }
-
-    $('.fixed-alerts-container').append(notificationTemplate({
-        type: type,
-        message: message,
-        temp: temp
-    }));
-    setTimeout(function() {
-        $('.fixed-alerts-container').children('.temp:last').alert('close');
-    }, 4000);
-
-    return true;
-}
-
 function parseYTVideoImages() {
     $('.ytvideo').each(function() {
         var src = $(this).attr('href');
@@ -459,7 +428,7 @@ function getUserShouts() {
     }).done(function( result ) {
         if (result.status == 'success'){
             $.each(result.data, function(k, v){
-                $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
+                $( '.shouts-listing' ).prepend(_templates.shoutBoxTemplate( v ) );
             });
 
             if (result.data.length === 0) {
@@ -575,11 +544,6 @@ $(function() {
         }
     });
 
-    $('#add_another_image').click(function(e) {
-        e.preventDefault();
-        addCollectionForm(imagesCollectionHolder, 'images');
-    });
-
     $('.price-type').click(function() {
         $('.price-type').attr('checked', false);
         $(this).prop('checked', true).attr('checked', true);
@@ -657,7 +621,7 @@ $(function() {
                 addMessage(result.status, result.message);
                 if (result.status === 'success'){
                     $.each(result.data, function(k, v){
-                        $( '.shouts-listing' ).prepend(shoutBoxTemplate( v ) );
+                        $( '.shouts-listing' ).prepend(_templates.shoutBoxTemplate( v ) );
                     });
                     checkCanShout();
                     $('#shout_text').val('');
