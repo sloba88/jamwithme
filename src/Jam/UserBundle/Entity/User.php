@@ -345,39 +345,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add jamsMember
-     *
-     * @param \Jam\CoreBundle\Entity\JamMember $jamsMember
-     * @return User
-     */
-    public function addJamsMember(\Jam\CoreBundle\Entity\JamMember $jamsMember)
-    {
-        $this->jamsMember[] = $jamsMember;
-
-        return $this;
-    }
-
-    /**
-     * Remove jamsMember
-     *
-     * @param \Jam\CoreBundle\Entity\JamMember $jamsMember
-     */
-    public function removeJamsMember(\Jam\CoreBundle\Entity\JamMember $jamsMember)
-    {
-        $this->jamsMember->removeElement($jamsMember);
-    }
-
-    /**
-     * Get jamsMember
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJamsMember()
-    {
-        return $this->jamsMember;
-    }
-
-    /**
      * Set gender
      *
      * @param integer $gender

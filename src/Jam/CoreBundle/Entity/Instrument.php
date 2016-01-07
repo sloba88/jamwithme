@@ -36,7 +36,7 @@ class Instrument
     private $musicians;
 
     /**
-     * @ORM\ManyToOne(targetEntity="InstrumentCategory", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="InstrumentCategory", inversedBy="instruments", cascade={"persist"})
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      **/
     private $category;
