@@ -202,7 +202,8 @@ mysqlConnection.connect(function(err) {
                     if (!conversation1) {
                         conversation1 = new Conversation({
                             owner: socket.userID,
-                            participants: [data.to, socket.userID]
+                            participants: [data.to, socket.userID],
+                            isRead: true
                         });
 
                         conversation1.save(function (err, conversation1) {
@@ -261,7 +262,7 @@ mysqlConnection.connect(function(err) {
 
             socket.on('getMyConversations', function () {
 
-                Conversation.find({ 'owner' :  socket.userID }).sort( { createdAt: 1 }).lean().populate('_lastMessage').exec(function (err, conversations) {
+                Conversation.find({ 'owner' :  socket.userID }).sort( { createdAt: -1 }).lean().populate('_lastMessage').exec(function (err, conversations) {
                     if (err) {
                         return console.error(err);
                     }
@@ -269,10 +270,10 @@ mysqlConnection.connect(function(err) {
                     if (conversations.length !== 0){
 
                         var users = [];
-                        for( var i=0; i< conversations.length; i++) {
+                        for( var i=0; i<conversations.length; i++) {
                             //show the last message in the conversation in the frontend
 
-                            for( var g=0; g< conversations[i].participants.length; g++) {
+                            for( var g=0; g<conversations[i].participants.length; g++) {
                                 if (conversations[i].participants[g] != socket.userID) {
                                     users.push(conversations[i].participants[g]);
                                 }
@@ -284,12 +285,14 @@ mysqlConnection.connect(function(err) {
                         }
 
                         getUsernames(mysqlConnection, users).then(function(results){
-                            for( var z=0; z< conversations.length; z++) {
-                                conversations[z].fromData = results[z];
 
-                                for( var b=0; b< results.length; b++) {
-                                    if (b[0] == conversations[z].from) {
-                                        conversations[z].fromData = results[b];
+                            console.log(results);
+
+                            for( var z=0; z<conversations.length; z++) {
+
+                                for( var t=0; t<results.length; t++) {
+                                    if (users[z] == results[t].id) {
+                                        conversations[z].fromData = results[t];
                                     }
                                 }
                             }
