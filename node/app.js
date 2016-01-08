@@ -271,7 +271,13 @@ mysqlConnection.connect(function(err) {
                         var users = [];
                         for( var i=0; i< conversations.length; i++) {
                             //show the last message in the conversation in the frontend
-                            users.push(conversations[i]._lastMessage.from);
+
+                            for( var g=0; g< conversations[i].participants.length; g++) {
+                                if (conversations[i].participants[g] != socket.userID) {
+                                    users.push(conversations[i].participants[g]);
+                                }
+                            }
+
                             if (conversations[i]._lastMessage.message.length > 60) {
                                 conversations[i]._lastMessage.message = conversations[i]._lastMessage.message.substring(0, 60) + ' ...';
                             }

@@ -86,6 +86,7 @@ $(function() {
         socket.on('myConversations', function (data) {
             $.each(data, function (index, val) {
                 val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
+                val.index = index;
                 $('.conversations-box').append(_templates.conversationTemplate(val));
             });
 
