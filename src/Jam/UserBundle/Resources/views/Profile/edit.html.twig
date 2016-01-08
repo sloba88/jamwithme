@@ -338,40 +338,4 @@
         </div>
     </form>
 
-    <script type="text/template" id="instrumentBoxTemplate">
-        <div class="row">
-            <div class="col-md-5">
-                <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][instrument]" class="instrument-select form-control" />
-            </div>
-            <div class="col-md-5">
-                <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][skillLevel]" class="skill-select form-control" />
-            </div>
-            <div class="col-md-2" style="padding-top:10px">
-                <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
-                <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/template" id="videoAddBoxTemplate">
-        <li class="add-video-box">
-            <div class="input-group">
-                <input type="text" class="form-control youtube-url" placeholder="Paste Youtube link here">
-          <span class="input-group-btn">
-            <button class="btn btn-default save-video" type="button">Save</button>
-          </span>
-            </div><!-- /input-group -->
-        </li>
-    </script>
-
-    <script type="text/template" id="videoBoxTemplate">
-        <li data-id="<%- rc.id %>" class="ytvideo-holder">
-            <a class="ytvideo" rel="group" href="<%- rc.url %>&autoplay=1&showinfo=0&controls=1">
-                <span class="play-icon"></span>
-                <img src="" height="140" width="260" />
-            </a>
-            <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
-        </li>
-    </script>
-
 {% endblock fos_user_content %}

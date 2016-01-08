@@ -5,7 +5,6 @@
 /* global L */
 /* global filterResults */
 
-_.templateSettings.variable = 'rc';
 var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
         html: '<img src="'+_user.avatar+'" />',
@@ -100,7 +99,7 @@ function placeMarkers(){
 
         var popup = L.popup({
             'minWidth': 200
-        }).setContent(_templates.musicianMapTemplate(v));
+        }).setContent(window.JST['musicianMapTemplate'](v));
 
         marker.data = v;
         marker.bindPopup(popup);

@@ -12,7 +12,6 @@
 /* global addMessage */
 /* global myLocation */
 /* global scrollbarPlugin */
-/* global _templates */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -28,7 +27,7 @@ function renderGridView(data) {
     }
 
     $.each(data, function (k, v) {
-        $('.people-listing-grid').append(_templates.musicianBoxTemplate(v));
+        $('.people-listing-grid').append(window.JST['musicianBoxTemplate'](v));
     });
 
     if ($('.people-listing-grid').width() > 1000){
@@ -124,7 +123,7 @@ function filterShouts() {
                 loadMoreShoutsResults = false;
             }
             $.each(result.data, function(k, v){
-                $( '.shouts-listing' ).append(_templates.shoutBoxTemplate( v ) );
+                $( '.shouts-listing' ).append(window.JST['shoutBoxTemplate']( v ) );
             });
         }
     });
@@ -231,7 +230,7 @@ $(function() {
             url: Routing.generate('subscribe_search_add')
         }).done(function( result ) {
             if (result.success == true) {
-                $('.people-listing-grid').html(_templates.notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+                $('.people-listing-grid').html(window.JST['notificationTemplate']({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
             }
         });
     });

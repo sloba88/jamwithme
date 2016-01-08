@@ -2,7 +2,6 @@
 
 /* global socket */
 /* global scrollToBottom */
-/* global _templates */
 /* global addMessage */
 
 var openedConversation = {};
@@ -14,7 +13,7 @@ socket.on('ourConversation', function(data) {
     $('.conversation-message-box').html('');
 
     $.each(data, function(index, value) {
-        $('.conversation-message-box').append(_templates.messageTemplate(value));
+        $('.conversation-message-box').append(window.JST['messageTemplate'](value));
     });
     setTimeout(function() {
         scrollToBottom();
@@ -22,7 +21,7 @@ socket.on('ourConversation', function(data) {
 });
 
 socket.on('messageSaved', function(value) {
-    $('.conversation-message-box').append(_templates.messageTemplate(value));
+    $('.conversation-message-box').append(window.JST['messageTemplate'](value));
     scrollToBottom();
 });
 
@@ -36,7 +35,7 @@ socket.on('isOnline', function(is){
 
 socket.on('messageReceived', function(data) {
     if (data._conversation == openedConversation.id) {
-        var mess = $(_templates.messageTemplate(data)).show();
+        var mess = $(window.JST['messageTemplate'](data)).show();
         $('.conversation-message-box').append(mess);
         scrollToBottom();
     } else {
@@ -87,7 +86,7 @@ $(function() {
             $.each(data, function (index, val) {
                 val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
                 val.index = index;
-                $('.conversations-box').append(_templates.conversationTemplate(val));
+                $('.conversations-box').append(window.JST['conversationTemplate'](val));
             });
 
             scrollToBottom();
