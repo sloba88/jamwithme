@@ -4,6 +4,8 @@
 /* global _ */
 /* global Routing */
 /* global checkCanShout */
+/* global addMessage */
+/* global openedConversation */
 
 _.templateSettings.variable = 'rc';
 var _templates = {};
@@ -15,6 +17,7 @@ _templates.messageTemplate = _.template($('#messageTemplate').html());
 _templates.actionConfirmModalTemplate = _.template($('#actionConfirmModalTemplate').html());
 _templates.conversationTemplate = _.template($('#conversationTemplate').html());
 _templates.musicianMapTemplate = _.template($('#musicianMapTemplate').html());
+_templates.searchAutocompleteTemplate = _.template($('#searchAutocompleteTemplate').html());
 
 var isMobile = false; //initiate as false
 // device detection
@@ -27,44 +30,6 @@ function checkTouchDevice() {
         $('html').addClass('touch-device');
     } else {
         $('html').addClass('no-touch-device');
-    }
-}
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        if (input.files[0].size > 3000000) {
-            alert('Photo is too big. Please upload a file that is less than 3MB');
-            $(input).val(null);
-            return false;
-        }
-        var image = new Image();
-        var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
-        reader.onload = function(e) {
-            //parent parent is stupid
-
-            image.src = e.target.result;
-            image.onload = function() {
-                var w = this.width,
-                    h = this.height;
-
-                if (w < 320 || h < 190) {
-                    alert('Please choose a picture larger than 320x190');
-                    $(input).val('');
-                    return false;
-                }
-
-                var imageHolder = $(input).parents('.image-holder');
-                imageHolder.append('<img src="" width="200" />');
-                imageHolder.find('img').attr('src', e.target.result);
-                imageHolder.find('.make-primary-image').parent().show();
-                imageHolder.find('.remove-image').show();
-                imageHolder.find('.upload').hide();
-                if ($('.image-preview').length == 1) {
-                    imageHolder.find('.make-primary-image').prop('checked', true).attr('checked', true);
-                }
-            };
-        };
     }
 }
 
@@ -237,11 +202,10 @@ function youtubeParser(url) {
 function conversationHeight() {
     var $conversation = $('.conversation'),
         $conversationContainer = $conversation.find('.conversation-container'),
-        conversationHeight = $conversation.height(),
         coneversationCloseHeight = $('.conversation-close').height(),
         coneversationSendHeight = $('.conversation-send').height();
 
-    $conversationContainer.height(conversationHeight - coneversationCloseHeight - coneversationSendHeight - 30);
+    $conversationContainer.height($conversation.height() - coneversationCloseHeight - coneversationSendHeight - 30);
 }
 
 function autocomplete() {
@@ -273,7 +237,7 @@ function autocomplete() {
         }).data('uiAutocomplete')._renderItem = function(ul, item) {
             return $('<li />')
                 .data('item.autocomplete', item)
-                .append("<a href='" + baseURL + "/m/" + item.username + "'><img src='" + baseURL + "/m/" + item.username + "/avatar/my_thumb' />" + "<span class='search-text'>" + item.username + "<span class='search-location'>" + item.fullName + "</span></span></a>")
+                .append(_templates.searchAutocompleteTemplate(item))
                 .appendTo(ul);
         };
 
@@ -321,32 +285,18 @@ function autocompleteMessageUser() {
             },
             select: function(event, ui) {
                 $autocompleteInput.val(ui.item.username);
-                $('.conversation-send .send-message').data('tousername', ui.item.username).data('toid', ui.item.id);
+
+                openedConversation.id = '';
+                openedConversation.userId = ui.item.id;
 
                 return false;
             }
         }).data('uiAutocomplete')._renderItem = function(ul, item) {
             return $('<li />')
                 .data('item.autocomplete', item)
-                .append('<a class="user-suggest-messages" data-user="' + item.username + '" data-id="' + item.id + '"><img src="' + item.avatar + '" />' + '<span class="search-text">' + item.username + '<span class="search-location">' + item.username + '</span></span></a>')
+                .append('<a class="user-suggest-messages" data-user="' + item.username + '" data-id="' + item.id + '"><img src="' + baseURL + '/m/' + item.username + '/avatar/my_thumb" />' + '<span class="search-text">' + item.username + '<span class="search-location">' + item.username + '</span></span></a>')
                 .appendTo(ul);
         };
-    }
-}
-
-function showAllTags(e) {
-    e.preventDefault();
-
-    var $this = $(this),
-        $tagsContainer = $this.parent('.tags-container'),
-        $icon = $this.children('.fa');
-
-    if ($tagsContainer.hasClass('opened')) {
-        $tagsContainer.removeClass('opened');
-        $icon.removeClass('fa-angle-up').addClass('fa-angle-down');
-    } else {
-        $tagsContainer.addClass('opened');
-        $icon.removeClass('fa-angle-down').addClass('fa-angle-up');
     }
 }
 
@@ -510,7 +460,21 @@ $(function() {
 
     autocompleteMessageUser();
 
-    $('.show-all-tags').on('click', showAllTags);
+    $('.show-all-tags').on('click', function(e){
+        e.preventDefault();
+
+        var $this = $(this),
+            $tagsContainer = $this.parent('.tags-container'),
+            $icon = $this.children('.fa');
+
+        if ($tagsContainer.hasClass('opened')) {
+            $tagsContainer.removeClass('opened');
+            $icon.removeClass('fa-angle-up').addClass('fa-angle-down');
+        } else {
+            $tagsContainer.addClass('opened');
+            $icon.removeClass('fa-angle-down').addClass('fa-angle-up');
+        }
+    });
 
     $(window).resize(function() {
         conversationHeight();

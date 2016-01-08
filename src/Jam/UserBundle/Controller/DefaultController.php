@@ -20,7 +20,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/m/{username}", name="musician_profile")
-     * @Template()
+     * @Template("JamUserBundle:Profile:show.html.twig")
      */
     public function indexAction($username)
     {

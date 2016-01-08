@@ -1,6 +1,6 @@
 'use strict';
 
-/* global actionConfirmModalTemplate */
+/* global _templates */
 /* global Routing */
 
 function showError(error) {
@@ -76,7 +76,7 @@ $(function() {
         var self = $(this);
 
         //programatically create a modal
-        $('body').append(actionConfirmModalTemplate({
+        $('body').append(_templates.actionConfirmModalTemplate({
             message: 'Are you sure that you want to remove this?'
         }));
 
