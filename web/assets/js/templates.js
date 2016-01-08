@@ -119,10 +119,8 @@ __e( rc.username ) +
 '" class="people-grid" alt="' +
 __e( rc.username ) +
 '">\n        <img src="' +
-((__t = ( baseURL )) == null ? '' : __t) +
-'/m/' +
-__e( rc.username ) +
-'/avatar/medium_thumb" alt="' +
+__e( rc.avatar ) +
+'" alt="' +
 __e( rc.username ) +
 '" class="img-responsive" onerror="imgError(this, \'medium_thumb\');">\n        <div class="people-info">\n            <h3 class="name">' +
 __e( rc.username ) +

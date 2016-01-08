@@ -63,6 +63,7 @@ class MusiciansController extends FOSRestController
         }
 
         $musicians_data = array();
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
 
         foreach($musicians AS $mus){
             $m = $mus->getMusician2();
@@ -93,6 +94,9 @@ class MusiciansController extends FOSRestController
                 $teacherIcon = '';
             }
 
+
+            $avatar = $cacheManager->getBrowserPath($m->getAvatar(), 'medium_thumb');
+
             $data_array = array(
                 'username' => $m->getUsername(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
@@ -104,7 +108,8 @@ class MusiciansController extends FOSRestController
                 'icon' => $icon,
                 'location' => $location,
                 'teacherIcon' => $teacherIcon,
-                'compatibility' => $value
+                'compatibility' => $value,
+                'avatar' => $avatar
             );
 
             if ($m->getIsTeacher()){

@@ -44,9 +44,9 @@ assetic:
     filters:
         cssrewrite: ~
         uglifycss:
-            bin: %node_modules_path%/node_modules/uglifycss
+            bin: %node_bin_path%/uglifycss
         uglifyjs2:
-            bin: %node_modules_path%/node_modules/uglify-js/bin/uglifyjs
+            bin: %node_bin_path%/uglifyjs
         less:
             node_paths: [%node_modules_path%/node_modules]
             apply_to: "\.less$"

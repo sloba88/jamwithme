@@ -123,15 +123,20 @@ $(function() {
 
         var userId = $(this).data('user-id');
         var conversationId = $(this).data('id');
-        socket.emit('getConversation', {
-            conversationId: conversationId
-        });
 
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
         $overlay.removeClass('hide');
 
-        $('.conversation-message-box .conversation-single').hide();
+        if (openedConversation.id === conversationId) {
+            //this conversation is already opened
+        } else {
+            $('.conversation-message-box .conversation-single').hide();
+
+            socket.emit('getConversation', {
+                conversationId: conversationId
+            });
+        }
 
         openedConversation.id = conversationId;
         openedConversation.userId = userId;
