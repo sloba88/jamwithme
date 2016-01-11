@@ -5,7 +5,6 @@
 
     <body style="background-color: #3B385E; font-family: Helvetica Neue, Arial, sans-serif;">
 
-        {# main container #}
         <div style="
             width: 800px;
             margin: 0 auto;
@@ -29,21 +28,8 @@
             <div style="height: 5px; clear: both"></div>
 
         </div>
-        {# main container #}
 
-        <div style="
-            width: 800px;
-            margin: 0 auto;
-            padding: 5px 20px;
-            background-color: #fff;
-            border-top:1px solid black;
-        ">
-            <p style="font-size: 13px; text-align: center">
-                You received this email because you subscribed to this search on <a href="{{ path('home') }}">Jamifind</a>.
-                If you want you can <a href="{{ path('subscribe_search_remove', { 'id': subscriptionId } ) }}">unsubscribe</a>.
-            </p>
-        </div>
-
+        {% block email_footer %}{% endblock %}
 
     </body>
 </html>
