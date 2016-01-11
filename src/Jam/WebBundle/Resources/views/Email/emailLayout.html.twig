@@ -13,7 +13,7 @@
                 padding: 20px;
             ">
                 <div>
-                    <a href="{{ path('home') }}">
+                    <a href="{{ app.request.getSchemeAndHttpHost() ~ path('home') }}">
                         <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('assets/images/logo.png') }}" />
                     </a>
                 </div>
@@ -32,6 +32,8 @@
             </div>
 
             {% block email_footer %}{% endblock %}
+
+            <br /><br /><br />
 
         </body>
     </html>

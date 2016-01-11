@@ -40,10 +40,8 @@
         <source>registration.email.message</source>
         <target>Hello %username%!
 
-To finish activating your account - please visit %confirmationUrl%
+To finish activating your account - please visit:
 
-Regards,
-the Team.
 </target>
         <jms:reference-file line="9">views/Registration/email.txt.twig</jms:reference-file>
       </trans-unit>

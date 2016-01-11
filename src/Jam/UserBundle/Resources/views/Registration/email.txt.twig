@@ -3,8 +3,11 @@
 {% block email_body %}
 
     {% trans_default_domain 'FOSUserBundle' %}
-    
-    {{ 'registration.email.message'|trans({'%user.username%' : user.username })|desc('Hello %user.username%! \n\n To finish activating your account - please visit ') }}
-        <a href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>
+
+    {{ 'registration.email.message'|trans({'%username%' : user.username })|desc('Hello %user.username%! \n\n To finish activating your account - please visit ') }}
+
+    <a href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>
+
+    <p>Regards, <br />the Jamifind team.</p>
 
 {% endblock %}
