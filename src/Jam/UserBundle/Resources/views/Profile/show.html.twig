@@ -107,13 +107,15 @@
 
                             <div class="col-xs-6">
                                 <ul>
-                                    {% for l in 1..i.skillLevel %}
-                                        <li><span class="active"></span></li>
-                                    {% endfor %}
-                                    {% if 5-i.skillLevel !=0 %}
-                                        {% for l in 1..(5-i.skillLevel) %}
-                                            <li><span></span></li>
+                                    {% if i.skillLevel is not null %}
+                                        {% for l in 1..i.skillLevel %}
+                                            <li><span class="active"></span></li>
                                         {% endfor %}
+                                        {% if 5-i.skillLevel !=0 %}
+                                            {% for l in 1..(5-i.skillLevel) %}
+                                                <li><span></span></li>
+                                            {% endfor %}
+                                        {% endif %}
                                     {% endif %}
                                 </ul>
 

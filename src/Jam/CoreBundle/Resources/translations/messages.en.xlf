@@ -8,7 +8,7 @@
     <body>
       <trans-unit id="db231884a579c6f9a861caf1f6b7c3602659a897" resname="email.users.you.might.be.interested.in">
         <source>email.users.you.might.be.interested.in</source>
-        <target state="new">Users you might be interested</target>
+        <target state="new">People you might be interested in</target>
         <jms:reference-file line="10">views/Email/userSearchSubscription.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ee10eb5fd110c42a3796b532059395dac2b2d70c" resname="label.distance(km)">

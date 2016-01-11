@@ -73,7 +73,7 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-    delivery_address: stanic.slobodan88@gmail.com
+    #delivery_address: stanic.slobodan88@gmail.com
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
@@ -82,6 +82,8 @@ fos_user:
     registration:
             form:
                 type: jam_user_registration
+            confirmation:
+                enabled: true
     profile:
             form:
                 type: jam_user_profile
