@@ -9,7 +9,8 @@
 
             <div style="
                 width: 800px;
-                margin: 20px auto;
+                margin: 0 auto;
+                padding: 20px;
             ">
                 <div>
                     <a href="{{ app.request.getSchemeAndHttpHost() ~ path('home') }}">
@@ -30,13 +31,15 @@
 
             </div>
 
-            {% block email_footer %}
+            {% block email_footer %}{% endblock %}
+
                 <div style="
                 width: 800px;
                 margin: 0 auto 20px auto;
                 padding: 20px;
-            ">&nbsp;</div>
-            {% endblock %}
+                color: silver;
+                font-size: 12px;
+            ">&reg; {{ "now"|date("Y") }} Jamifind</div>
 
 
         </body>
