@@ -1,35 +1,37 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-    </head>
+{% block body_html %}
+    <!DOCTYPE HTML>
+    <html>
+        <head>
+        </head>
 
-    <body style="background-color: #3B385E; font-family: Helvetica Neue, Arial, sans-serif;">
+        <body style="background-color: #3B385E; font-family: Helvetica Neue, Arial, sans-serif;">
 
-        <div style="
-            width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        ">
-            <div>
-                <a href="{{ path('home') }}">
-                    <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('assets/images/logo.png') }}" />
-                </a>
+            <div style="
+                width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            ">
+                <div>
+                    <a href="{{ path('home') }}">
+                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('assets/images/logo.png') }}" />
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div style="background-color: #fff;
-            width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        ">
+            <div style="background-color: #fff;
+                width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            ">
 
-            {% block email_body %}{% endblock %}
+                {% block email_body %}{% endblock %}
 
-            <div style="height: 5px; clear: both"></div>
+                <div style="height: 5px; clear: both"></div>
 
-        </div>
+            </div>
 
-        {% block email_footer %}{% endblock %}
+            {% block email_footer %}{% endblock %}
 
-    </body>
-</html>
+        </body>
+    </html>
+{% endblock %}
