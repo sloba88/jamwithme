@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% extends 'JamWebBundle:Email:emailLayout.html.twig' %}
+
+{% block subject %}{{ 'resetting.email.subject'|trans({'%username%': user.username}) }}{% endblock %}
+
+{% block email_body %}
+
+    {{ 'resetting.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+
+    <a href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>
+
+    <p>Regards, <br />the Jamifind team.</p>
+
+{% endblock %}
