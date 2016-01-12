@@ -19,7 +19,7 @@ collections.Conversation = mongoose.model('Conversations',
     new mongoose.Schema(
         {
             owner : Number,
-            participants: [],
+            participants: [Number],
             mirroredConversations: [],
             _lastMessage: { type: mongoose.Schema.Types.ObjectId, ref: 'Messages'},
             createdAt : { type: Date, default: Date.now },
