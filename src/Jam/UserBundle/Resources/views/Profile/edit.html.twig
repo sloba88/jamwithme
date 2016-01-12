@@ -102,6 +102,7 @@
 
                         <div class="form-group">
                             {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                            <span class="glyphicon glyphicon-info-sign info-popover" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="Your location helps us find people around you. You can be specific as you like, we will not show your full address to other people."></span>
                             {{ form_errors(form.location) }}
                             <div>
                                 {{ form_widget(form.location) }}

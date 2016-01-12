@@ -66,6 +66,10 @@ function filterMusicians(){
         $('.people-listing-grid').html('').addClass('loading-content');
     }
 
+    if (_user.temporaryLocation === '1'){
+        return false;
+    }
+
     $.ajax({
         url: Routing.generate('musicians_find'),
         data: getFilterData() + '&page='+page
