@@ -191,7 +191,12 @@ class ShoutsController extends FOSRestController
         $form->handleRequest($request);
         $responseData = array();
 
-        if ($form->isValid()) {
+        $shout->setText($this->cleaner($shout->getText()));
+
+        $validator = $this->get('validator');
+        $errors = $validator->validate($shout);
+
+        if (count($errors) == 0) {
             $em = $this->getDoctrine()->getManager();
 
             if (!$this->getUser()){
@@ -213,6 +218,21 @@ class ShoutsController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    private function cleaner($url) {
+
+        $U = explode(' ',$url);
+
+        $W =array();
+        foreach ($U as $k => $u) {
+            if (stristr($u,'http') || (count(explode('.',$u)) > 1)) {
+                unset($U[$k]);
+                return $this->cleaner( implode(' ',$U));
+            }
+        }
+        return implode(' ',$U);
+    }
+
 
     /**
      * @Get("/shout/can", name="can_shout")
