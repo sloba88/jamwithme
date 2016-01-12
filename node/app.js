@@ -138,7 +138,7 @@ function getUnreadConversations(socket) {
     });
 }
 
-mongoose.connect('mongodb://localhost:27017/jamwithme');
+mongoose.connect('mongodb://localhost:27017/jamifind');
 
 mysqlConnection.connect(function(err) {
     if (err) {
@@ -188,19 +188,37 @@ mysqlConnection.connect(function(err) {
              */
             socket.on('newMessage', function (data) {
 
+                if (data.conversationId === '' && (typeof data.to == 'undefined' || data.to === '')) {
+                    //return false;
+                }
+
                 if (data.conversationId === '') {
                     data.conversationId = null;
                 }
+
+                if (typeof data.to == 'undefined') {
+                    //data.to = null;
+                }
+
+                console.log(data);
+
 
                 //check for my conversation
                 Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
                     if (err) {
                         console.log(err);
                     }
+
+                    console.log(1111111);
+                    console.log(1111111);
+                    console.log(conversation1);
+                    console.log(1111111);
+                    console.log(1111111);
+
                     if (!conversation1) {
                         conversation1 = new Conversation({
                             owner: socket.userID,
-                            participants: [data.to, socket.userID],
+                            participants: [parseInt(data.to), parseInt(socket.userID)],
                             isRead: true
                         });
 
@@ -223,7 +241,7 @@ mysqlConnection.connect(function(err) {
                         if (!conversation2) {
                             conversation2 = new Conversation({
                                 owner: data.to,
-                                participants: [data.to, socket.userID],
+                                participants: [parseInt(data.to), parseInt(socket.userID)],
                                 mirroredConversations: [conversation1._id]
                             });
 

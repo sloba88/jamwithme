@@ -14,10 +14,12 @@ socket.on('ourConversation', function(data) {
     $('.conversation').removeClass('is-opened is-opened-compose').addClass('is-opened');
 
     $.each(data, function(index, value) {
+        value.avatar = baseURL + '/m/' + value.fromData.username + '/avatar';
         $('.conversation-message-box').append(window.JST['messageTemplate'](value));
     });
     setTimeout(function() {
         scrollToBottom();
+        scrollbarPlugin();
     }, 300);
 });
 
