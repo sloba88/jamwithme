@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    </head>
+    <body>
+        <h2>{{ 'email.you.have.recieved.a.message'|trans }}</h2>
+        <p>{{ 'email.sent.on'|trans }}: {{ time|date('d.m.Y H:i') }}</p>
+        <a href="{{ url('inbox') }}">{{ 'email.see.all.messages'|trans }}</a>
+        {{ text }}
+    </body>
+</html>
