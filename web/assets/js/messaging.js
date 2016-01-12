@@ -7,10 +7,11 @@
 var openedConversation = {};
 
 socket.on('ourConversation', function(data) {
-    console.log(data);
     openedConversation.id = data[0]._conversation;
 
     $('.conversation-message-box').html('');
+    $('.conversation-message-box .conversation-single').show();
+    $('.conversation').removeClass('is-opened is-opened-compose').addClass('is-opened');
 
     $.each(data, function(index, value) {
         $('.conversation-message-box').append(window.JST['messageTemplate'](value));
@@ -23,6 +24,17 @@ socket.on('ourConversation', function(data) {
 socket.on('messageSaved', function(value) {
     $('.conversation-message-box').append(window.JST['messageTemplate'](value));
     scrollToBottom();
+
+    if ($('.conversations-box').length > 0) {
+        socket.emit('getMyConversations', {userID: '_user.id'});
+    }
+
+    if (openedConversation.id === '') {
+        openedConversation.id = value._conversation;
+        socket.emit('getConversation', {
+            conversationId: openedConversation.id
+        });
+    }
 });
 
 socket.on('isOnline', function(is){
@@ -83,6 +95,7 @@ $(function() {
         }
 
         socket.on('myConversations', function (data) {
+            $('.conversations-box').html('');
             $.each(data, function (index, val) {
                 val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
                 val.index = index;
@@ -156,6 +169,8 @@ $(function() {
         $conversation.addClass('is-opened is-opened-compose');
         $('.conversation-message-box .conversation-single').hide();
         $overlay.removeClass('hide');
+        openedConversation.id = '';
+        openedConversation.userId = '';
     });
 
     //close
@@ -164,6 +179,9 @@ $(function() {
 
         $conversation.removeClass('is-opened');
         $overlay.addClass('hide');
+        openedConversation.id = '';
+        openedConversation.userId = '';
+        $('.autocomplete').val('');
     });
 
 });

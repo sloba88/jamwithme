@@ -206,7 +206,7 @@ function autocomplete() {
 
         //jquery-ui autocomplete
         $autocompleteInput.autocomplete({
-            delay: 10,
+            delay: 200,
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
@@ -255,7 +255,7 @@ function autocompleteMessageUser() {
 
         //jquery-ui autocomplete
         $autocompleteInput.autocomplete({
-            delay: 10,
+            delay: 200,
             minLength: 2,
             source: function(request, response) {
                 $.ajax({

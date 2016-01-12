@@ -189,13 +189,11 @@ mysqlConnection.connect(function(err) {
             socket.on('newMessage', function (data) {
 
                 if (data.conversationId === '') {
-                    data.conversationId = -1;
-                } else {
-                    data.conversationId = new mongoose.Types.ObjectId(data.conversationId);
+                    data.conversationId = null;
                 }
 
                 //check for my conversation
-                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  data.conversationId }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
+                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
                     if (err) {
                         console.log(err);
                     }
@@ -311,12 +309,10 @@ mysqlConnection.connect(function(err) {
 
             socket.on('getConversation', function (data) {
                 if (data.conversationId === '') {
-                    data.conversationId = -1;
-                } else {
-                    data.conversationId =  new mongoose.Types.ObjectId(data.conversationId);
+                    data.conversationId = null;
                 }
 
-                Message.find({ 'owner': socket.userID, $or: [{ '_conversation' :  data.conversationId }, { '_conversation.participants' :  { $all: [data.to, socket.userID ]} } ] }).lean().exec(function (err, messages) {
+                Message.find({ 'owner': socket.userID, $or: [{ '_conversation' :  new mongoose.Types.ObjectId(data.conversationId) }, { '_conversation.participants' :  { $all: [data.to, socket.userID ]} } ] }).lean().exec(function (err, messages) {
                     if (err) {
                         return console.error(err);
                     }
@@ -342,9 +338,7 @@ mysqlConnection.connect(function(err) {
 
             socket.on('conversationIsRead', function (data) {
 
-                data.conversationId = new mongoose.Types.ObjectId(data.conversationId);
-
-                Conversation.update({ 'owner' : socket.userID, '_id': data.conversationId, isRead: false }, {
+                Conversation.update({ 'owner' : socket.userID, '_id': new mongoose.Types.ObjectId(data.conversationId), isRead: false }, {
                     isRead: true
                 }, function(err, numberAffected) {
                     //handle it
