@@ -189,31 +189,18 @@ mysqlConnection.connect(function(err) {
             socket.on('newMessage', function (data) {
 
                 if (data.conversationId === '' && (typeof data.to == 'undefined' || data.to === '')) {
-                    //return false;
+                    return false;
                 }
 
                 if (data.conversationId === '') {
                     data.conversationId = null;
                 }
 
-                if (typeof data.to == 'undefined') {
-                    //data.to = null;
-                }
-
-                console.log(data);
-
-
                 //check for my conversation
                 Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
                     if (err) {
                         console.log(err);
                     }
-
-                    console.log(1111111);
-                    console.log(1111111);
-                    console.log(conversation1);
-                    console.log(1111111);
-                    console.log(1111111);
 
                     if (!conversation1) {
                         conversation1 = new Conversation({
@@ -301,8 +288,6 @@ mysqlConnection.connect(function(err) {
                         }
 
                         getUsernames(mysqlConnection, users).then(function(results){
-
-                            console.log(results);
 
                             for( var z=0; z<conversations.length; z++) {
 
