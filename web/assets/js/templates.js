@@ -98,8 +98,10 @@ __p += '\n<div class="conversation-single">\n    <a href="' +
 '/m/' +
 __e( rc.fromData.username ) +
 '">\n        <img class="message-picture" src="' +
-((__t = ( rc.avatar )) == null ? '' : __t) +
-'" alt="Pic">\n        <h4 class="name">' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.fromData.username ) +
+'/avatar" alt="Pic">\n        <h4 class="name">' +
 __e( rc.fromData.username ) +
 '</h4>\n    </a>\n\n    <div class="time">\n        ' +
 __e( createdAt.toLocaleDateString() ) +

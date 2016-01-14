@@ -196,6 +196,10 @@ mysqlConnection.connect(function(err) {
                     data.conversationId = null;
                 }
 
+                if (!data.to) {
+                    data.to = '-1';
+                }
+
                 //check for my conversation
                 Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
                     if (err) {
