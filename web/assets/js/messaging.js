@@ -194,6 +194,7 @@ $(function() {
     $('.conversation-close').on('click', '.close-link', function(e) {
         e.preventDefault();
 
+        $('.open-conversation.active').removeClass('active');
         $conversation.removeClass('is-opened');
         $overlay.addClass('hide');
         openedConversation.id = '';
