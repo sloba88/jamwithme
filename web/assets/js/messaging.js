@@ -131,9 +131,7 @@ $(function() {
         $overlay = $('.overlay');
 
 
-    $(document).on('click', '.open-conversation', function(e) {
-        e.preventDefault();
-
+    $(document).on('click', '.open-conversation', function() {
         if (!socket.connected) {
             addMessage('danger', 'There are some problems with messaging application, please try again later');
             return false;
