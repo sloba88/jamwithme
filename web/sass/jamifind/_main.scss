@@ -322,6 +322,13 @@
 				color: $brand-secondary;
 				text-decoration: none;
 			}
+
+			&.is-active {
+
+				&:hover {
+					color: #000;
+				}
+			}
 		}
 
 		label {
@@ -399,7 +406,7 @@
 		text-decoration: none;
 
 		.people-info {
-			min-height: 115%;
+			min-height: 116%;
 			@include respond-to(desktopMd) {
 				min-height: 112%;
 			}
@@ -514,22 +521,22 @@
 
 		.tags {
 			display: none;
-			// height: 22px;
-			margin-top: 5px;
-			overflow: hidden;
-			@include respond-to(tablet) {
-				display: block!important;
-				margin: 10px 0 15px;
-			}
+			// // height: 22px;
+			// margin-top: 5px;
+			// overflow: hidden;
+			// @include respond-to(tablet) {
+			// 	display: block!important;
+			// 	margin: 10px 0 15px;
+			// }
 
-			> li {
-				color: #000;
-				background: $brand-secondary;
-				font-size: 11px;
-				margin: 0 0 4px;
-				padding: 2px 5px 1px;
-				white-space: nowrap;
-			}
+			// > li {
+			// 	color: #000;
+			// 	background: $brand-secondary;
+			// 	font-size: 11px;
+			// 	margin: 0 0 4px;
+			// 	padding: 2px 5px 1px;
+			// 	white-space: nowrap;
+			// }
 		}
 
 		.lessons-box {
@@ -587,7 +594,29 @@
 }
 
 .tags {
-	@extend %tags;
+	margin-top: 5px;
+	overflow: hidden;
+	@include respond-to(tablet) {
+		display: block!important;
+		margin: 10px 0 15px;
+	}
+
+	> li {
+		color: #000;
+		background: $brand-secondary;
+		font-size: 11px;
+		margin: 0 0 4px;
+		padding: 2px 5px 1px;
+		white-space: nowrap;
+
+		a {
+			color: #000;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
 }
 
 //teacher
@@ -897,8 +926,19 @@
 		max-height: 25px;
 		overflow: hidden;
 
-		> li a {
-			font-size: 13px;
+		> li {
+			@include transition(all 0.3s ease);
+			padding: 0;
+
+			&:hover {
+				opacity: 0.8;
+			}
+
+			a {
+				display: block;
+				font-size: 13px;
+				padding: 2px 5px 1px;
+			}
 		}
 	}
 

@@ -5,44 +5,87 @@
   }
 
   .profile-completion {
-   border-bottom: $border;
-   border-right: $border;
-   height: 100px;
-   padding: 20px 10px 0;
+    border-bottom: $border;
+    border-right: $border;
+    height: 100px;
+    padding: 20px 10px 0;
 
-   .pick {
-    float: left;
-    position: relative;
+    .pick {
+      float: left;
+      position: relative;
+    }
+
+    .pick-outer {
+      position: relative;
+      z-index: 10;
+    }
+
+    .pick-inner {
+      background: url(../images/pick-inner.png) no-repeat;
+      background-position: center bottom;
+      background-size: 43px 50px;
+      bottom: 4px;
+      height: 0;
+      left: 4px;
+      position: absolute;
+      transition: all 2s ease;
+      width: 43px;
+    }
+
+    .profile-completion-text {
+      margin-left: 60px;
+
+      h3 {
+        color: #fff;
+        margin: 15px 0 5px;
+
+        span {
+          font-size: 18px;
+          display: inline-block;
+          margin-right: 7px;
+        }
+      }
+    }
   }
 
-  .pick-outer {
-    position: relative;
-    z-index: 10;
-  }
+  .teacher-container & {
+    padding-left: 0;
 
-  .pick-inner {
-    background: url(../images/pick-inner.png) no-repeat;
-    background-position: center bottom;
-    background-size: 43px 50px;
-    bottom: 4px;
-    height: 0;
-    left: 4px;
-    position: absolute;
-    transition: all 2s ease;
-    width: 43px;
-  }
+    .sidebar-inner {
+      background: #fff;
+      border-left: none;
+      padding-right: 10px;
+    }
 
-  .profile-completion-text {
-    margin-left: 60px;
+    .shouts-feed,
+    .shouts-listing-container {
+      background: #fff;
+      border-right: none;
+    }
 
-    h3 {
-      color: #fff;
-      margin: 15px 0 5px;
+    .shouts-feed {
+      border-bottom: 4px solid $brand-primary;
+      margin: 0 10px;
+      padding: 12px 5px 0;
 
-      span {
-        font-size: 18px;
-        display: inline-block;
-        margin-right: 7px;
+      h3 {
+        color: $brand-primary;
+        font-size: 14px;
+        margin-top: 12px;
+      }
+    }
+
+    .shouts-listing-container {
+      padding-right: 0;
+      padding-top: 15px;
+
+      .shout-box {
+
+        .shout-text {
+          border-top: none;
+          padding-bottom: 0;
+          padding-top: 0;
+        }
       }
     }
   }
@@ -50,7 +93,7 @@
 
 .shouts-feed {
   border-bottom: $border;
-  border-right: $border;
+  // border-right: $border;
   padding: 18px 10px;
 
   h3 {
@@ -66,7 +109,7 @@
 }
 
 .shouts-listing-container {
-  border-right: $border;
+  // border-right: $border;
   padding: 7px 0 0 10px;
 
   .shouts {
@@ -171,46 +214,65 @@
   }
 }
 
-.teacher-container & {
-        // background: #fff;
-        padding-left: 0;
+//page shouts
+.page-shouts {
 
-        .sidebar-inner {
-          background: #fff;
-          border-left: none;
-          padding-right: 10px;
-        }
+  .main-content {
+    @include respond-to(handhelds) {
+      padding: 0;
+    }
+  }
 
-        .shouts-feed,
-        .shouts-listing-container {
-          background: #fff;
-          border-right: none;
-        }
+  .main-content-inner {
+    @include respond-to(nonHandhelds) {
+      background: rgba(43,42,59, 0.95);
+      border-left: $border;   
+      border-right: $border;   
+      padding-right: 10px !important;
+    }
+    @include respond-to(handhelds) {
+      background: rgba(43,42,59, 1);
+      padding-right: 0px !important;
+    }
+  }
 
-        .shouts-feed {
-          border-bottom: 4px solid $brand-primary;
-          margin: 0 10px;
-          padding: 12px 5px 0;
+  .shouts-feed {
+    @include respond-to(nonHandhelds) {
+      float: left;
+      width: 50%;
+    }
 
-          h3 {
-            color: $brand-primary;
-            font-size: 14px;
-            margin-top: 12px;
-          }
-        }
+    h3 {
+      margin-top: 0;
+    }
 
-        .shouts-listing-container {
-          padding-right: 0;
-          padding-top: 15px;
-
-          .shout-box {
-
-            .shout-text {
-              border-top: none;
-              padding-bottom: 0;
-              padding-top: 0;
-            }
-          }
-        }
+    textarea {
+      @include respond-to(handhelds) {
+        height: 55px;
       }
     }
+  }
+
+  .shouts-listing-container {
+    clear: both;
+  }
+
+  .shouts {
+    @include respond-to(nonHandhelds) {
+      margin-right: 25px;
+      text-align: left;
+    }
+  }
+
+  .shout-box {
+    @include respond-to(nonHandhelds) {
+      float: left;
+      margin-right: 25px;
+      width: 46.5%;
+
+      &:nth-child(2n+2) {
+        float: right;
+      }
+    }
+  }
+}

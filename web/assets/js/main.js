@@ -198,23 +198,32 @@ function sidebarHeight() {
         filtersAreaHeight = $mainContentInner.children('.filters-area').height(),
         paddings;
 
+    //if main-content-inner exists and it's not mobile
     if ($mainContentInner.length && $('.hidden-xs').is(':visible')) {
+        // sidebar height
         $sidebarInner.each(function() {
             var offsetTop = $(this).offset().top;
             $(this).height(windowHeight - offsetTop);
         });
 
-        if ($('.page-settings').length) {
+        if ($('.page-settings').length || $('.page-shouts ').length) {
             paddings = 0;
         } else {
             paddings = 30;
         }
 
+        //main content inner block
         $mainContentInner.height(windowHeight - $mainContentInner.offset().top - paddings); //30px is for padding top and bottom
 
-        $('.shouts-listing.shouts-listing-filter').height($sidebarInner.height() - 366);
+        if ($('.shouts-listing.shouts-listing-filter').length) {
+            //shouts listing in sidebar
+            var shoutsListSiblHeight = $('.shouts-listing.shouts-listing-filter').offset().top;
+            $('.shouts-listing.shouts-listing-filter').height($sidebarInner.height() - shoutsListSiblHeight + 70);
+        }
 
-        $('.shouts-listing.shouts-listing-feed').height($('.shouts-listing').closest('.sidebar-inner').height() - 73);
+        if ($('.shouts-listing.shouts-listing-feed').length) {
+            $('.shouts-listing.shouts-listing-feed').height($('.shouts-listing').closest('.sidebar-inner').height() - 73);
+        }
 
         // $viewTabContainer.height($mainContentInner.height() - eventDivHeight - filtersAreaHeight - 39);
         if ($viewTabContainer.length) {
@@ -222,7 +231,17 @@ function sidebarHeight() {
                 $viewTabContainer.height(windowHeight - $viewTabContainer.offset().top);
             }, 100);
         }
-    } else if (!$('.hidden-xs').is(':visible')) {
+    } 
+    else if ($('.page-shouts').length && !$('.hidden-xs').is(':visible')) {
+        setTimeout(function() {
+            //main content inner block
+            $mainContentInner.height(windowHeight - $mainContentInner.offset().top - 0); //30px is for padding top and bottom
+            //shouts listing in sidebar
+            var shoutsListSiblHeight = $('.shouts-listing-container').offset().top;
+            $('.shouts-listing.shouts-listing-filter').height($mainContentInner.height() - shoutsListSiblHeight + 26);
+        }, 100);
+    }
+    else if (!$('.hidden-xs').is(':visible')) {
         $mainContentInner.height('');
         $('.shouts-listing.shouts-listing-filter').height('');
         $('.shouts-listing.shouts-listing-feed').height('');
