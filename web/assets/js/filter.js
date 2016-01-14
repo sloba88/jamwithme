@@ -210,9 +210,10 @@ $(function() {
                     });
 
                     addMessage(result.status, result.message);
-
-                    filterMusicians();
-                    filterShouts();
+                    window.location.reload();
+                    //_user.temporaryLocation = '';
+                    //filterMusicians();
+                    //filterShouts();
                 });
             }
         });

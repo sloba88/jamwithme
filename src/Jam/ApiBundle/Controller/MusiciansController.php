@@ -5,7 +5,10 @@ namespace Jam\ApiBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\UserBundle\Event\FormEvent;
 use Jam\CoreBundle\Entity\Search;
+use FOS\UserBundle\FOSUserEvents;
+use Symfony\Component\Form\Form;
 
 class MusiciansController extends FOSRestController
 {
@@ -142,6 +145,10 @@ class MusiciansController extends FOSRestController
         $location = $this->get('jam.location_set')->reverseGeoCode($coords);
         $me->setLocation($location);
         $this->get('fos_user.user_manager')->updateUser($me);
+
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $dispatcher = $this->get('event_dispatcher');
+        $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS);
 
         $view = $this->view(array(
             'status'    => 'success',
