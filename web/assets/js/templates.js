@@ -118,7 +118,11 @@ __p += '<div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container">\n    <a 
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( rc.username ) +
-'" class="people-grid" alt="' +
+'" class="people-grid ';
+ if (rc.teacher){ ;
+__p += 'teacher';
+ } ;
+__p += '" alt="' +
 __e( rc.username ) +
 '">\n        <img src="' +
 __e( rc.avatar ) +

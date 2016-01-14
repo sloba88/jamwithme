@@ -1,5 +1,5 @@
 <div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container">
-    <a href="<%= baseURL %>/m/<%- rc.username %>" class="people-grid" alt="<%- rc.username %>">
+    <a href="<%= baseURL %>/m/<%- rc.username %>" class="people-grid <% if (rc.teacher){ %>teacher<% } %>" alt="<%- rc.username %>">
         <img src="<%- rc.avatar %>" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
         <div class="people-info">
             <h3 class="name"><%- rc.username %></h3>
