@@ -49,11 +49,9 @@ $(function() {
     var $musiciansVideos = $('#musician_videos');
 
     if ($musiciansInstruments.length > 0){
-        var instrumentTemplate = _.template($('#instrumentBoxTemplate').html());
-
         if ($musiciansInstruments.find('.row').length === 0){
             //there are no instruments in settings, add some
-            $musiciansInstruments.append(instrumentTemplate({'num': 0}));
+            $musiciansInstruments.append(window.JST['instrumentBoxTemplate']({'num': 0}));
         }
 
         initInstrumentSelection();
@@ -62,7 +60,7 @@ $(function() {
     $('#add_another_instrument').on('click', function(e) {
         e.preventDefault();
         var length = $musiciansInstruments.find('.row').length;
-        $musiciansInstruments.append(instrumentTemplate({'num': length}));
+        $musiciansInstruments.append(window.JST['instrumentBoxTemplate']({'num': length}));
 
         initInstrumentSelection();
         scrollbarPlugin();
@@ -93,8 +91,7 @@ $(function() {
             if (data.status == 'success') {
                 self.closest('li').remove();
 
-                var videoTemplate = _.template($('#videoBoxTemplate').html());
-                $('#musician_videos').append(videoTemplate({'id' : data.id, 'url': data.url }));
+                $('#musician_videos').append(window.JST['videoBoxTemplate']({'id' : data.id, 'url': data.url }));
                 parseYTVideoImages();
                 addMessage(data.status, data.message);
                 scrollbarPlugin();
@@ -228,8 +225,7 @@ $(function() {
         $('#add_another_video').on('click', function(e) {
             e.preventDefault();
             if ($('.add-video-box').length === 0) {
-                var videoTemplate = _.template($('#videoAddBoxTemplate').html());
-                $('#musician_videos').prepend(videoTemplate());
+                $('#musician_videos').prepend(window.JST['videoAddBoxTemplate']());
             }
         });
     }

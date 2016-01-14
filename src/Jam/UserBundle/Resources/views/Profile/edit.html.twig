@@ -95,11 +95,14 @@
 
                         {{ form_row(form.email) }}
 
+                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default">Change password</a>
+
                     </div>
                     <div class="col-md-6">
 
                         <div class="form-group">
                             {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                            <span class="glyphicon glyphicon-info-sign info-popover" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="Your location helps us find people around you. You can be specific as you like, we will not show your full address to other people."></span>
                             {{ form_errors(form.location) }}
                             <div>
                                 {{ form_widget(form.location) }}
@@ -252,7 +255,7 @@
                                     <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                                     <div class="profile-media-image-commands">
                                         <a href="#" class="set-profile-photo" data-id="{{ i.id }}" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span>{% if i.type not in [1, 4] %} Set as profile photo{% endif %}</a>
-                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="Remove photo"><span class="glyphicon glyphicon-remove-sign"></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
+                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="Remove photo"><i class="fa fa-times"></i></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -289,7 +292,7 @@
                                             <span class="play-icon"></span>
                                             <img src="" height="140" width="260" />
                                         </a>
-                                        <a href="" class="remove-video action-confirm" title="remove"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+                                        <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -335,41 +338,5 @@
             </div>
         </div>
     </form>
-
-    <script type="text/template" id="instrumentBoxTemplate">
-        <div class="row">
-            <div class="col-md-5">
-                <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][instrument]" class="instrument-select form-control" />
-            </div>
-            <div class="col-md-5">
-                <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][skillLevel]" class="skill-select form-control" />
-            </div>
-            <div class="col-md-2" style="padding-top:10px">
-                <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
-                <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/template" id="videoAddBoxTemplate">
-        <li class="add-video-box">
-            <div class="input-group">
-                <input type="text" class="form-control youtube-url" placeholder="Paste Youtube link here">
-          <span class="input-group-btn">
-            <button class="btn btn-default save-video" type="button">Save</button>
-          </span>
-            </div><!-- /input-group -->
-        </li>
-    </script>
-
-    <script type="text/template" id="videoBoxTemplate">
-        <li data-id="<%- rc.id %>" class="ytvideo-holder">
-            <a class="ytvideo" rel="group" href="<%- rc.url %>&autoplay=1&showinfo=0&controls=1">
-                <span class="play-icon"></span>
-                <img src="" height="140" width="260" />
-            </a>
-            <a href="" class="remove-video action-confirm" title="remove"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
-        </li>
-    </script>
 
 {% endblock fos_user_content %}

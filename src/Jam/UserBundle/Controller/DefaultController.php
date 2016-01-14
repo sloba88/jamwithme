@@ -20,7 +20,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/m/{username}", name="musician_profile")
-     * @Template()
+     * @Template("JamUserBundle:Profile:show.html.twig")
      */
     public function indexAction($username)
     {
@@ -47,7 +47,13 @@ class DefaultController extends Controller
     public function avatarAction($username, $size = 'my_thumb')
     {
         $userManager = $this->get('fos_user.user_manager');
-        $user = $userManager->findUserByUsername($username);
+
+        if (is_numeric($username)) {
+            //its id
+            $user = $userManager->findUserBy(array('id'=>$username));
+        } else {
+            $user = $userManager->findUserByUsername($username);
+        }
 
         //make logic to check if it is external image here!
         //store to Mongo or Redis maybe to fetch it faster?
@@ -327,6 +333,8 @@ class DefaultController extends Controller
     {
         $searchSubscriber = $this->get('search.subscriber.cron');
 
-        $searchSubscriber->execute();
+        $emailsSent = $searchSubscriber->execute();
+
+        return new JsonResponse(array('success' => true, 'emails_sent' => $emailsSent));
     }
 }

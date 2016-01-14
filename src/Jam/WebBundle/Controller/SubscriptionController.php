@@ -10,6 +10,7 @@ use Jam\CoreBundle\Entity\Subscription;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+//TODO: move this to API bundle
 class SubscriptionController extends Controller
 {
     /**
@@ -50,37 +51,44 @@ class SubscriptionController extends Controller
      */
     public function searchSaveAction(Request $request)
     {
-        $form = $request->query->all();
+        $search = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Search')
+            ->findOneBy(array('id' => $request->getSession()->get('searchId'), 'creator' => $this->getUser()));
 
-        $search = new Search();
+        if (!$search) {
+            $response = new Response( json_encode(array('success' => false, 'message' => 'No such search' )));
+        } else {
+            $search->setIsSubscribed(true);
 
-        $search->setIsSubscribed(true);
-        $search->setCreator($this->getUser());
-
-        if ($form['isTeacher'] == 'on'){
-            $search->setIsTeacher(TRUE);
-        } else{
-            $search->setIsTeacher(FALSE);
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $response = new Response( json_encode(array('success' => true)));
         }
-
-        if (isset($form['distance'])){
-            $search->setDistance($form['distance']);
-        }
-
-        if (isset($form['genres'])){
-            $search->setGenres(json_encode($form['genres']));
-        }
-
-        if (isset($form['instruments'])){
-            $search->setInstruments(json_encode($form['instruments']));
-        }
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($search);
-        $em->flush();
-        $response = new Response( json_encode(array('status' => 'success')));
 
         $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @Route("/subscription/search/remove/{id}", name="subscribe_search_remove", options={"expose"=true})
+     * @Template()
+     */
+    public function searchUnsubscribeAction($id)
+    {
+        $search = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Search')
+            ->findOneBy(array('id' => $id, 'creator' => $this->getUser()));
+
+        if (!$search) {
+            $response = array( 'message' => "No such subscription found. Couldn't unsubscribe.");
+        } else {
+            $search->setIsSubscribed(false);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $response = array( 'message' => "Unsubscribed successfully.");
+        }
+
         return $response;
     }
 }

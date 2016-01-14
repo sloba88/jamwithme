@@ -24,7 +24,6 @@
                     <value>Profile</value>
                 </option>
             </constraint>
-            <constraint name="Jam\CoreBundle\Validator\Constraints\ContainsProfanity" />
         </property>
 
         <property name="email">
@@ -52,14 +51,6 @@
                     <value>Profile</value>
                 </option>
             </constraint>
-        </property>
-
-        <property name="firstName">
-            <constraint name="Jam\CoreBundle\Validator\Constraints\ContainsProfanity" />
-        </property>
-
-        <property name="lastName">
-            <constraint name="Jam\CoreBundle\Validator\Constraints\ContainsProfanity" />
         </property>
 
         <property name="plainPassword">

@@ -3,8 +3,8 @@
 /* global _ */
 /* global _user */
 /* global L */
+/* global filterResults */
 
-_.templateSettings.variable = 'rc';
 var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
         html: '<img src="'+_user.avatar+'" />',
@@ -14,8 +14,7 @@ var myLocation = [_user.lat, _user.lng],
     map,
     circle = false,
     myLocationMarker,
-    markers = new L.FeatureGroup(),
-    musicianMapTemplate = _.template($('#musicianMapTemplate').html());
+    markers = new L.FeatureGroup();
 
 function setMyFilterMarker() {
     myLocationMarker = L.marker(myLocation, {
@@ -73,20 +72,21 @@ function placeMarkers(){
         maxClusterRadius: 30
     });
 
-    markers.on('animationend', function (a) {
+    markers.on('animationend', function () {
         resizeIcons();
     });
 
-    markers.on('spiderfied', function (a) {
+    markers.on('spiderfied', function () {
         resizeIcons();
     });
 
     $.each(filterResults, function(k, v){
 
-        if (v.icon == "") {
-            var iconSource = '<div class="no-icon"></div>';
+        var iconSource;
+        if (v.icon === '') {
+            iconSource = '<div class="no-icon"></div>';
         } else {
-            var iconSource = v.icon;
+            iconSource = v.icon;
         }
 
         var i = L.divIcon({
@@ -99,7 +99,7 @@ function placeMarkers(){
 
         var popup = L.popup({
             'minWidth': 200
-        }).setContent(musicianMapTemplate(v));
+        }).setContent(window.JST['musicianMapTemplate'](v));
 
         marker.data = v;
         marker.bindPopup(popup);

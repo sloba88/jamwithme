@@ -5,10 +5,7 @@
 /* global _ */
 /* global isMobile */
 
-_.templateSettings.variable = 'rc';
 var que = [];
-var imageTemplate = _.template($('#imageTemplate').html());
-var imageCropModalTemplate = _.template($('#imageCropModalTemplate').html());
 
 function resetPhotosCountIndicator() {
     $('.panel-photos-header .badge span').text($('.profile-media-wall-item').length);
@@ -139,7 +136,7 @@ $(function () {
         var file = data.result.files;
         if (file.url) {
             $('.no-images-yet').remove();
-            $('.profile-media-wall').append(imageTemplate( file ) );
+            $('.profile-media-wall').append(window.JST['imageTemplate']( file ) );
             //$('#files').html('');
 
             setTimeout(function(){
@@ -214,7 +211,7 @@ $(function () {
         var node;
         var self = $(this);
 
-        $('body').append(imageCropModalTemplate());
+        $('body').append(window.JST['imageCropModalTemplate']());
 
         var imageCropModal = $('#imageCropModal');
         imageCropModal.find('.modal-body').html(newImage);

@@ -9669,7 +9669,7 @@ header {
   -o-transition: color 0.2s ease;
   -webkit-transition: color 0.2s ease;
   transition: color 0.2s ease;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 12px;
   padding: 5px;
   position: absolute;
@@ -10685,7 +10685,7 @@ header {
 }
 /* line 819, ../../sass/jamifind/_main.scss */
 .teacher-info .info .btn {
-  bottom: 47px;
+  bottom: 27px;
   font-family: "Hind Semibold";
   font-size: 13px;
   position: absolute;

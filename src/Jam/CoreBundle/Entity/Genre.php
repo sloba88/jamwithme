@@ -30,23 +30,9 @@ class Genre
     private $name;
 
     /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", mappedBy="genres" )
-     */
-    private $musicians;
-
-    /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Jam", mappedBy="genres")
-     */
-    private $jams;
-
-    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -69,84 +55,10 @@ class Genre
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->musicians = new ArrayCollection();
-        $this->jams = new ArrayCollection();
-    }
-
-    /**
-     * Add musicians
-     *
-     * @param \Jam\UserBundle\Entity\User $musicians
-     * @return Instrument
-     */
-    public function addMusician(\Jam\UserBundle\Entity\User $musicians)
-    {
-        $this->musicians[] = $musicians;
-
-        return $this;
-    }
-
-    /**
-     * Remove musicians
-     *
-     * @param \Jam\UserBundle\Entity\User $musicians
-     */
-    public function removeMusician(\Jam\UserBundle\Entity\User $musicians)
-    {
-        $this->musicians->removeElement($musicians);
-    }
-
-    /**
-     * Get musicians
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMusicians()
-    {
-        return $this->musicians;
-    }
-
-    /**
-     * Add jams
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jams
-     * @return Genre
-     */
-    public function addJam(\Jam\CoreBundle\Entity\Jam $jams)
-    {
-        $this->jams[] = $jams;
-
-        return $this;
-    }
-
-    /**
-     * Remove jams
-     *
-     * @param \Jam\CoreBundle\Entity\Jam $jams
-     */
-    public function removeJam(\Jam\CoreBundle\Entity\Jam $jams)
-    {
-        $this->jams->removeElement($jams);
-    }
-
-    /**
-     * Get jams
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getJams()
-    {
-        return $this->jams;
     }
 }

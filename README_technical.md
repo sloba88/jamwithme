@@ -47,3 +47,7 @@ Clear redis cache
 ```
 redis-cli flushall
 ```
+
+```
+sudo npm install -g grunt-cli
+```

@@ -4,6 +4,7 @@ namespace Jam\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Jam
@@ -33,6 +34,7 @@ class Shout
 
     /**
      * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank()
      *
      */
     protected $text;

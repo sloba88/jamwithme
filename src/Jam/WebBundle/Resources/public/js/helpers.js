@@ -1,6 +1,5 @@
 'use strict';
 
-/* global actionConfirmModalTemplate */
 /* global Routing */
 
 function showError(error) {
@@ -45,6 +44,29 @@ window.onerror = function(message, url, lineNumber) {
     });
 };
 
+function addMessage(type, message, temp) {
+    if (typeof temp == 'undefined') {
+        temp = 'temp';
+    } else {
+        temp = '';
+    }
+
+    if (type === false) {
+        type = 'danger';
+    }
+
+    $('.fixed-alerts-container').append(window.JST['notificationTemplate']({
+        type: type,
+        message: message,
+        temp: temp
+    }));
+    setTimeout(function() {
+        $('.fixed-alerts-container').children('.temp:last').alert('close');
+    }, 4000);
+
+    return true;
+}
+
 $(function() {
     $(document).on('click', '.action-confirm', function(e){
         e.stopImmediatePropagation();
@@ -53,7 +75,7 @@ $(function() {
         var self = $(this);
 
         //programatically create a modal
-        $('body').append(actionConfirmModalTemplate({
+        $('body').append(window.JST['actionConfirmModalTemplate']({
             message: 'Are you sure that you want to remove this?'
         }));
 

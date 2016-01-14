@@ -5,6 +5,7 @@ namespace Jam\UserBundle\EventListener;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Model\UserManagerInterface;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -25,18 +26,22 @@ class ProfileEditedListener implements EventSubscriberInterface
         );
     }
 
-    public function onEditSuccess(FormEvent $event)
+    public function onEditSuccess(Event $event)
     {
-        /** @var $user \Jam\UserBundle\Entity\User */
-        $user = $event->getForm()->getData();
+        if ($event instanceof FormEvent) {
 
-        if ($user->getLocation()->getAddress() == "" || $user->getLocation()->getAddress() == NULL){
-            //unset location
-            $user->setLocation(null);
+            /** @var $user \Jam\UserBundle\Entity\User */
+            $user = $event->getForm()->getData();
 
-            $this->userManager->updateUser($user);
+            if ($user->getLocation()->getAddress() == "" || $user->getLocation()->getAddress() == NULL) {
+                //unset location
+                $user->setLocation(null);
+
+                $this->userManager->updateUser($user);
+            }
+
+            $this->session->set('_locale', $user->getLocale());
+
         }
-
-        $this->session->set('_locale', $user->getLocale());
     }
 }

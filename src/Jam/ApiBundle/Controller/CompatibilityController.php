@@ -17,12 +17,11 @@ class CompatibilityController extends FOSRestController
      */
     public function getCompatibilityAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
         /* @var $m \Jam\UserBundle\Entity\User */
         /* @var $me \Jam\UserBundle\Entity\User */
-        $m = $this->getDoctrine()->getManager()->getReference('JamUserBundle:User', $id);
+        $m = $em->getReference('JamUserBundle:User', $id);
         $me = $this->getUser();
-
-        $em = $this->getDoctrine()->getManager();
 
         $query = "SELECT compatibility
             FROM JamCoreBundle:Compatibility compatibility

@@ -44,9 +44,9 @@ assetic:
     filters:
         cssrewrite: ~
         uglifycss:
-            bin: %node_modules_path%/node_modules/uglifycss
+            bin: %node_bin_path%/uglifycss
         uglifyjs2:
-            bin: %node_modules_path%/node_modules/uglify-js/bin/uglifyjs
+            bin: %node_bin_path%/uglifyjs
         less:
             node_paths: [%node_modules_path%/node_modules]
             apply_to: "\.less$"
@@ -73,15 +73,19 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-    delivery_address: stanic.slobodan88@gmail.com
+    #delivery_address: stanic.slobodan88@gmail.com
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
+    service:
+        mailer: fos_user.mailer.twig_swift
     user_class: Jam\UserBundle\Entity\User
     registration:
             form:
                 type: jam_user_registration
+            #confirmation:
+            #    enabled: true
     profile:
             form:
                 type: jam_user_profile
