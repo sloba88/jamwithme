@@ -315,27 +315,41 @@ mysqlConnection.connect(function(err) {
                     data.conversationId = null;
                 }
 
-                Message.find({ 'owner': socket.userID, $or: [{ '_conversation' :  new mongoose.Types.ObjectId(data.conversationId) }, { '_conversation.participants' :  { $all: [data.to, socket.userID ]} } ] }).lean().exec(function (err, messages) {
+                if (!data.to) {
+                    data.to = '-1';
+                }
+
+                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [data.to, socket.userID ]} } ] }).exec(function (err, conversation) {
                     if (err) {
                         return console.error(err);
                     }
 
-                    var users = [];
-                    for( var i=0; i<messages.length; i++) {
-                        users.push(messages[i].from);
-                    }
-
-                    getUsernames(mysqlConnection, users).then(function(results){
-                        for( var z=0; z<messages.length; z++) {
-                            for( var b=0; b< results.length; b++) {
-                                if (results[b].id == messages[z].from) {
-                                    messages[z].fromData = results[b];
-                                }
+                    if (conversation) {
+                        Message.find({ 'owner': socket.userID, '_conversation' :  conversation._id }).lean().exec(function (err, messages) {
+                            if (err) {
+                                return console.error(err);
                             }
-                        }
 
-                        socket.emit('ourConversation', messages);
-                    });
+                            var users = [];
+                            for( var i=0; i<messages.length; i++) {
+                                users.push(messages[i].from);
+                            }
+
+                            getUsernames(mysqlConnection, users).then(function(results){
+                                for( var z=0; z<messages.length; z++) {
+                                    for( var b=0; b< results.length; b++) {
+                                        if (results[b].id == messages[z].from) {
+                                            messages[z].fromData = results[b];
+                                        }
+                                    }
+                                }
+
+                                socket.emit('ourConversation', messages);
+                            });
+                        });
+                    } else {
+                        console.log('no conversation found');
+                    }
                 });
             });
 

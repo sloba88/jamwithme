@@ -3,10 +3,13 @@
 /* global socket */
 /* global scrollToBottom */
 /* global addMessage */
+/* global baseURL */
+/* global scrollbarPlugin */
 
 var openedConversation = {};
 
 socket.on('ourConversation', function(data) {
+    console.log(data);
     openedConversation.id = data[0]._conversation;
 
     $('.conversation-message-box').html('');
@@ -15,7 +18,7 @@ socket.on('ourConversation', function(data) {
 
     $.each(data, function(index, value) {
         value.avatar = baseURL + '/m/' + value.fromData.username + '/avatar';
-        $('.conversation-message-box').append(window.JST['messageTemplate'](value));
+        $('.conversation-message-box').append(window.JST.messageTemplate(value));
     });
     setTimeout(function() {
         scrollToBottom();
@@ -24,7 +27,7 @@ socket.on('ourConversation', function(data) {
 });
 
 socket.on('messageSaved', function(value) {
-    $('.conversation-message-box').append(window.JST['messageTemplate'](value));
+    $('.conversation-message-box').append(window.JST.messageTemplate(value));
     scrollToBottom();
 
     if ($('.conversations-box').length > 0) {
@@ -49,7 +52,7 @@ socket.on('isOnline', function(is){
 
 socket.on('messageReceived', function(data) {
     if (data._conversation == openedConversation.id) {
-        var mess = $(window.JST['messageTemplate'](data)).show();
+        var mess = $(window.JST.messageTemplate(data)).show();
         $('.conversation-message-box').append(mess);
         scrollToBottom();
     } else {
@@ -101,7 +104,7 @@ $(function() {
             $.each(data, function (index, val) {
                 val._lastMessage.createdAt = new Date(val._lastMessage.createdAt);
                 val.index = index;
-                $('.conversations-box').append(window.JST['conversationTemplate'](val));
+                $('.conversations-box').append(window.JST.conversationTemplate(val));
             });
 
             scrollToBottom();
@@ -138,20 +141,34 @@ $(function() {
 
         var userId = $(this).data('user-id');
         var conversationId = $(this).data('id');
+        $('.open-conversation.active').removeClass('active');
+        $(this).addClass('active');
+
+        if (conversationId) {
+            if (openedConversation.id === conversationId) {
+                //this conversation is already opened
+            } else {
+                $('.conversation-message-box .conversation-single').hide();
+
+                socket.emit('getConversation', {
+                    conversationId: conversationId,
+                    to: userId
+                });
+            }
+        } else {
+            if ($conversation.hasClass('is-opened')) {
+
+            } else {
+                socket.emit('getConversation', {
+                    conversationId: conversationId,
+                    to: userId
+                });
+            }
+        }
 
         $conversation.removeClass('is-opened-compose');
         $conversation.addClass('is-opened');
         $overlay.removeClass('hide');
-
-        if (openedConversation.id === conversationId) {
-            //this conversation is already opened
-        } else {
-            $('.conversation-message-box .conversation-single').hide();
-
-            socket.emit('getConversation', {
-                conversationId: conversationId
-            });
-        }
 
         openedConversation.id = conversationId;
         openedConversation.userId = userId;

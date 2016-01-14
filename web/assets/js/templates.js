@@ -23,15 +23,19 @@ __p += '" data-id="' +
 __e( rc._id ) +
 '" data-user="' +
 __e( rc.fromData.username ) +
-'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <img class="message-picture" src="' +
+'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <a href="' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.fromData.username ) +
+'">\n            <img class="message-picture" src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( rc.fromData.username ) +
 '/avatar" alt="' +
 __e( rc._lastMessage.from ) +
-'">\n\n        <h3 class="name">' +
+'">\n            <h3 class="name">' +
 __e( rc.fromData.username ) +
-'</h3>\n\n        <div class="time">' +
+'</h3>\n        </a>\n\n        <div class="time">' +
 __e( rc._lastMessage.createdAt.toLocaleDateString() ) +
 ' ' +
 __e( rc._lastMessage.createdAt.toLocaleTimeString() ) +
