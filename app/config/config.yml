@@ -84,8 +84,8 @@ fos_user:
     registration:
             form:
                 type: jam_user_registration
-            confirmation:
-                enabled: true
+            #confirmation:
+            #    enabled: true
     profile:
             form:
                 type: jam_user_profile
