@@ -23,7 +23,7 @@ dev:
 	$(REDIS)
 	$(COMPOSER)
 	$(SCHEMA)
-	$(BOWER) --config.analytics=false update
+	$(BOWER) --config.analytics=false install
 	$(CC)
 	$(DUMP_ROUTE)
 	$(ASSETS)
