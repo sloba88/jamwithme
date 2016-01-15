@@ -50,6 +50,7 @@ fos_elastica:
                                 firstName: ~
                                 lastName: ~
                                 pin: { type: geo_point }
+                                created_at: { type: date }
                                 genres:
                                     type: "object"
                                     properties:
