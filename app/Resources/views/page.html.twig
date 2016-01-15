@@ -82,6 +82,14 @@
 {% endblock %}
 
 <script>
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
     $(function() {
         $('input[type=checkbox]').next('label').prepend('<span></span>');
         $('.info-popover').popover();
@@ -89,6 +97,21 @@
         $('#fos_user_registration_form_plainPassword_second').bind('cut copy paste',function(e) {
             e.preventDefault();
         });
+
+        $('#fos_user_registration_form_username').on('keyup', function(){
+            var start = this.selectionStart,
+                    end = this.selectionEnd,
+                    str = $(this).val();
+            str = str.replace(/[^A-Za-z0-9 ]/g, '');
+            $(this).val(str);
+
+            this.setSelectionRange(start, end);
+        });
+
+        if (getParameterByName('email')) {
+            $('#fos_user_registration_form_email').val(getParameterByName('email'));
+            $('#fos_user_resetting_request_username').val(getParameterByName('email'));
+        }
     });
 </script>
 </body>

@@ -29,6 +29,11 @@
 
                     {{ form_errors(form.email) }}
 
+                    {% if ((form.email.vars.errors[0] is defined) and (form.email.vars.errors[0].messageTemplate == 'fos_user.email.already_used')) %}
+                        <a href='{{ path('fos_user_resetting_request') }}?email={{ form.vars.value.email }}'>Did you forgot your password?</a>
+                        <br /><br />
+                    {% endif %}
+
                     <div class="form-group">
                         {{ form_widget(form.plainPassword.first) }}
                     </div>
