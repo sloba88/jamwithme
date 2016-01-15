@@ -66,10 +66,15 @@ class User extends BaseUser
      *
      * @Assert\Length(
      *     min=2,
-     *     max="255",
+     *     max="30",
      *     minMessage="The name is too short.",
      *     maxMessage="The name is too long.",
      *     groups={"Profile"}
+     * )
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z ]+$/i",
+     *     htmlPattern = "^[a-zA-Z ]+$",
+     *     message="The numbers are not allowed here"
      * )
      */
     protected $firstName;
@@ -79,10 +84,15 @@ class User extends BaseUser
      *
      * @Assert\Length(
      *     min=2,
-     *     max="255",
+     *     max="30",
      *     minMessage="The name is too short.",
      *     maxMessage="The name is too long.",
      *     groups={"Profile"}
+     * )
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z ]+$/i",
+     *     htmlPattern = "^[a-zA-Z ]+$"
+     *     message="The numbers are not allowed here"
      * )
      */
     protected $lastName;

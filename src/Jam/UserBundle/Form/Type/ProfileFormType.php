@@ -15,11 +15,18 @@ class ProfileFormType extends BaseType
 
         // add your custom field
         $builder->add('firstName', 'text', array(
-            'required' => false
+            'required' => false,
+            'trim' => true,
+            'attr' => array(
+                'maxlength' => 30
+            )
         ));
 
         $builder->add('lastName', 'text', array(
-            'required' => false
+            'required' => false,
+            'attr' => array(
+                'maxlength' => 30
+            )
         ));
 
         $builder->add('email', 'email', array(
@@ -27,7 +34,10 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('username', null, array(
-            'label' => 'label.username'
+            'label' => 'label.username',
+            'attr' => array(
+                'maxlength' => 30
+            )
         ));
 
         $builder->add('aboutMe', 'textarea', array(
@@ -126,7 +136,7 @@ class ProfileFormType extends BaseType
             ),
             'label' => 'Language',
             'required' => false,
-            'empty_data' => null
+            'data' => 'en'
         ));
 
     }

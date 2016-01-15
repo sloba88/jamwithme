@@ -238,5 +238,16 @@ $(function() {
         }
     });
 
+    $('#fos_user_profile_form_firstName, #fos_user_profile_form_lastName').on('keyup', function(){
+        var start = this.selectionStart,
+            end = this.selectionEnd;
+
+        var str = $(this).val();
+        str = str.replace(/ +(?= )/g,'').replace(/[0-9]/g, '');
+        $(this).val(str);
+
+        this.setSelectionRange(start, end);
+    });
+
     setTabsHeight();
 });

@@ -130,7 +130,13 @@ __e( rc.username ) +
 __e( rc.avatar ) +
 '" alt="' +
 __e( rc.username ) +
-'" class="img-responsive" onerror="imgError(this, \'medium_thumb\');">\n        <div class="people-info">\n            <h3 class="name">' +
+'" class="img-responsive" onerror="imgError(this, \'medium_thumb\');">\n        <div class="people-info">\n            <h3 class="name" ';
+ if (rc.username.length > 21) { ;
+__p += ' style="font-size:11px" ';
+ } if (rc.username.length > 16) { ;
+__p += ' style="font-size:13px" ';
+ } ;
+__p += '>' +
 __e( rc.username ) +
 '</h3>\n                    <span class="instrument" title="' +
 __e( rc.instrument ) +

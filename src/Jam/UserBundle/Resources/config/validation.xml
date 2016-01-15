@@ -17,12 +17,22 @@
             <constraint name="Length">
                 <option name="min">2</option>
                 <option name="minMessage">fos_user.username.short</option>
-                <option name="max">255</option>
+                <option name="max">30</option>
                 <option name="maxMessage">fos_user.username.long</option>
                 <option name="groups">
                     <value>Registration</value>
                     <value>Profile</value>
                 </option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/(?!^\d+$)^.+$/i</option>
+                <option name="htmlPattern">(?!^\d+$)^.+$</option>
+                <option name="message">Username can't be number only</option>
+            </constraint>
+            <constraint name="Regex">
+                <option name="pattern">/^[a-zA-Z0-9_]*$/i</option>
+                <option name="htmlPattern">^[a-zA-Z0-9_]*$</option>
+                <option name="message">Only letters and numbers are allowed here.</option>
             </constraint>
         </property>
 
