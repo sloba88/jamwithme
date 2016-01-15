@@ -30,6 +30,12 @@ class ShoutsController extends FOSRestController
         $perPage = 10;
         $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
 
+        if ($request->query->get('distance') > 50) {
+            $distance = 50;
+        } else {
+            $distance = $request->query->get('distance');
+        }
+
         $finder = $this->container->get('fos_elastica.finder.searches.shout');
         $elasticaQuery = new MatchAll();
 
@@ -55,7 +61,7 @@ class ShoutsController extends FOSRestController
             $locationFilter = new \Elastica\Filter\GeoDistance(
                 'pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
+                (intval($distance) ? intval($distance) : '20') . 'km'
             );
             $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
         }
@@ -111,7 +117,7 @@ class ShoutsController extends FOSRestController
 
             $data_array = array(
                 'text' => $s->getText(),
-                'createdAt' => $s->getCreatedAt()->format('Y-m-d H:i'),
+                'createdAt' => $s->getCreatedAtAgo(),
                 'id' => $s->getId(),
                 'musician' => array(
                     'username' => $m->getUsername(),

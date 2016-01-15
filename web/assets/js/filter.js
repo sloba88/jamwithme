@@ -27,7 +27,7 @@ function renderGridView(data) {
     }
 
     $.each(data, function (k, v) {
-        $('.people-listing-grid').append(window.JST['musicianBoxTemplate'](v));
+        $('.people-listing-grid').append(window.JST.musicianBoxTemplate(v));
     });
 
     if ($('.people-listing-grid').width() > 1000){
@@ -58,6 +58,11 @@ function getFilterData() {
         data += '&'+ $('#search_form_distance').serialize();
     }
 
+    if ($('.page-shouts ').length !== 0) {
+        data += '&distance=50';
+        $('.shouts-listing-container h4 a').text('Shouts 50km around you');
+    }
+
     return data;
 }
 
@@ -85,7 +90,7 @@ function filterMusicians(){
             renderGridView(result.data);
         }
 
-        if (result.alreadySubscribed == true && page === 1) {
+        if (result.alreadySubscribed === true && page === 1) {
             $('.people-listing-grid').html('<br /><p>You have already subscribed to this search criteria and will be notified when someone join. </p>');
         }
     });
@@ -127,7 +132,7 @@ function filterShouts() {
                 loadMoreShoutsResults = false;
             }
             $.each(result.data, function(k, v){
-                $( '.shouts-listing' ).append(window.JST['shoutBoxTemplate']( v ) );
+                $( '.shouts-listing' ).append(window.JST.shoutBoxTemplate( v ) );
             });
         }
     });
@@ -218,7 +223,10 @@ $(function() {
             }
         });
     }else {
-        filterMusicians();
+        if ($('.page-shouts ').length === 0) {
+            filterMusicians();
+        }
+
         filterShouts();
     }
 
@@ -234,8 +242,8 @@ $(function() {
         $.ajax({
             url: Routing.generate('subscribe_search_add')
         }).done(function( result ) {
-            if (result.success == true) {
-                $('.people-listing-grid').html(window.JST['notificationTemplate']({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+            if (result.success === true) {
+                $('.people-listing-grid').html(window.JST.notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
             }
         });
     });

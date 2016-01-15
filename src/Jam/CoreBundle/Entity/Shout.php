@@ -156,4 +156,32 @@ class Shout
     {
         return $this->text;
     }
+
+    public function getCreatedAtAgo()
+    {
+        $to_time = $this->getCreatedAt()->getTimestamp();
+        $from_time = time();
+
+        $minutes = abs(($to_time - $from_time) / 60);
+
+        if ($minutes > 60) {
+            //show hours
+            $hours = round($minutes / 60);
+            //if hours > 24 show date
+            if ($hours > 24) {
+                return date("Y-m-d H:i", $to_time);
+            } else {
+                if ($hours == 1) {
+                    return $hours . ' hour ago';
+                }else {
+                    return $hours . ' hours ago';
+                }
+            }
+
+        } else {
+            // show minutes
+            return round($minutes) . " min ago";
+        }
+
+    }
 }
