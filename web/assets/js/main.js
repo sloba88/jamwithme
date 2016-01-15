@@ -244,7 +244,7 @@ function autocomplete() {
         }).data('uiAutocomplete')._renderItem = function(ul, item) {
             return $('<li />')
                 .data('item.autocomplete', item)
-                .append(window.JST['searchAutocompleteTemplate'](item))
+                .append(window.JST.searchAutocompleteTemplate(item))
                 .appendTo(ul);
         };
 
@@ -385,7 +385,7 @@ function getUserShouts() {
     }).done(function( result ) {
         if (result.status == 'success'){
             $.each(result.data, function(k, v){
-                $( '.shouts-listing' ).prepend(window.JST['shoutBoxTemplate'](v));
+                $( '.shouts-listing' ).prepend(window.JST.shoutBoxTemplate(v));
             });
 
             if (result.data.length === 0) {
