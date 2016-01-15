@@ -5,7 +5,7 @@
 
             <div class="profile-info">
                 <a href="{{ path('musician_profile', {'username': app.user.username}) }}">
-                    <img class="user-image" src="{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_medium_1' }) }}" alt="Profile">
+                    <img class="user-image" src="{{ app.user.avatar | imagine_filter('my_medium_1') }}" alt="Profile Photo" />
                 </a>
                 <h3 class="user-name">{{ app.user.username }}</h3>
                 <a href="{{ path('fos_user_profile_edit') }}" class="link">{{ 'text.edit.profile'|trans }}</a>
