@@ -1,6 +1,5 @@
 'use strict';
 
-/* global _ */
 /* global Routing */
 /* global parseYTVideoImages */
 /* global addMessage */
@@ -51,7 +50,7 @@ $(function() {
     if ($musiciansInstruments.length > 0){
         if ($musiciansInstruments.find('.row').length === 0){
             //there are no instruments in settings, add some
-            $musiciansInstruments.append(window.JST['instrumentBoxTemplate']({'num': 0}));
+            $musiciansInstruments.append(window.JST.instrumentBoxTemplate({'num': 0}));
         }
 
         initInstrumentSelection();
@@ -60,7 +59,7 @@ $(function() {
     $('#add_another_instrument').on('click', function(e) {
         e.preventDefault();
         var length = $musiciansInstruments.find('.row').length;
-        $musiciansInstruments.append(window.JST['instrumentBoxTemplate']({'num': length}));
+        $musiciansInstruments.append(window.JST.instrumentBoxTemplate({'num': length}));
 
         initInstrumentSelection();
         scrollbarPlugin();
@@ -91,7 +90,7 @@ $(function() {
             if (data.status == 'success') {
                 self.closest('li').remove();
 
-                $('#musician_videos').append(window.JST['videoBoxTemplate']({'id' : data.id, 'url': data.url }));
+                $('#musician_videos').append(window.JST.videoBoxTemplate({'id' : data.id, 'url': data.url }));
                 parseYTVideoImages();
                 addMessage(data.status, data.message);
                 scrollbarPlugin();
@@ -225,7 +224,7 @@ $(function() {
         $('#add_another_video').on('click', function(e) {
             e.preventDefault();
             if ($('.add-video-box').length === 0) {
-                $('#musician_videos').prepend(window.JST['videoAddBoxTemplate']());
+                $('#musician_videos').prepend(window.JST.videoAddBoxTemplate());
             }
         });
     }
@@ -240,10 +239,19 @@ $(function() {
 
     $('#fos_user_profile_form_firstName, #fos_user_profile_form_lastName').on('keyup', function(){
         var start = this.selectionStart,
-            end = this.selectionEnd;
-
-        var str = $(this).val();
+            end = this.selectionEnd,
+            str = $(this).val();
         str = str.replace(/ +(?= )/g,'').replace(/[0-9]/g, '');
+        $(this).val(str);
+
+        this.setSelectionRange(start, end);
+    });
+
+    $('#fos_user_profile_form_username').on('keyup', function(){
+        var start = this.selectionStart,
+            end = this.selectionEnd,
+            str = $(this).val();
+        str = str.replace(/[^A-Za-z0-9 ]/g, '');
         $(this).val(str);
 
         this.setSelectionRange(start, end);

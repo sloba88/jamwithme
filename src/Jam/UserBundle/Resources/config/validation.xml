@@ -30,8 +30,8 @@
                 <option name="message">Username can't be number only</option>
             </constraint>
             <constraint name="Regex">
-                <option name="pattern">/^[a-zA-Z0-9_]*$/i</option>
-                <option name="htmlPattern">^[a-zA-Z0-9_]*$</option>
+                <option name="pattern">/^[a-zA-Z0-9_ ]*$/i</option>
+                <option name="htmlPattern">^[a-zA-Z0-9_ ]*$</option>
                 <option name="message">Only letters and numbers are allowed here.</option>
             </constraint>
         </property>

@@ -85,6 +85,10 @@
     $(function() {
         $('input[type=checkbox]').next('label').prepend('<span></span>');
         $('.info-popover').popover();
+
+        $('#fos_user_registration_form_plainPassword_second').bind('cut copy paste',function(e) {
+            e.preventDefault();
+        });
     });
 </script>
 </body>
