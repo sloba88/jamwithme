@@ -2,7 +2,7 @@
     <a href="<%= baseURL %>/m/<%- rc.username %>" class="people-grid <% if (rc.teacher){ %>teacher<% } %>" alt="<%- rc.username %>">
         <img src="<%- rc.avatar %>" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
         <div class="people-info">
-            <h3 class="name" <% if (rc.username.length > 21) { %> style="font-size:11px" <% } if (rc.username.length > 16) { %> style="font-size:13px" <% } %>><%- rc.username %></h3>
+            <h3 class="name" title="<%- rc.username %>" <% if (rc.username.length > 21) { %> style="font-size:11px" <% } if (rc.username.length > 16) { %> style="font-size:13px" <% } %>><%- rc.username %></h3>
                     <span class="instrument" title="<%- rc.instrument %>">
                         <%= rc.icon %>
                     </span>

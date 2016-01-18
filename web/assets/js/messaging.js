@@ -3,7 +3,6 @@
 /* global socket */
 /* global scrollToBottom */
 /* global addMessage */
-/* global baseURL */
 /* global scrollbarPlugin */
 
 var openedConversation = {};
@@ -69,7 +68,7 @@ socket.on('myUnreadMessagesCount', function(data) {
 
 socket.on('connect_error', function(){
     socket.io.disconnect();
-    addMessage('danger', 'There are some problems with messaging application, please try again later');
+    //addMessage('danger', 'There are some problems with messaging application, please try again later');
 });
 
 function sendMessage(self) {
