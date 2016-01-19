@@ -173,7 +173,7 @@ snc_redis:
         session:
             type: predis
             alias: session
-            dsn: redis://%redis_server%
+            dsn: redis://%redis_server%/1
     doctrine:
         metadata_cache:
             client: cache
