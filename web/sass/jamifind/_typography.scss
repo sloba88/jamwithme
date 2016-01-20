@@ -39,20 +39,10 @@ a {
 }
 
 .btn {
-
-	i {
-		margin-right: 5px;
-		position: relative;
-		top: 2px;
-	}
-}
-
-.btn-primary {
 	@include transition(background 0.3s ease, opacity 0.3s ease);
-	background: $brand-secondary;
-	border: none;
 	border-radius: 0;
-	color: $color-primary;
+	border: none;
+	color: #fff;
 	font-size: 15px;
 	line-height: 20px;
 	padding: 7px 12px 5px;
@@ -66,9 +56,45 @@ a {
 	&.focus:active, 
 	&.active:focus, 
 	&.active.focus {
+		opacity: 0.7;
+	}
+
+	i {
+		margin-right: 5px;
+		// position: relative;
+		// top: 2px;
+	}
+}
+
+.btn-default {
+	background: #e6e6e6;
+	color: $color-primary;
+
+	&:hover,
+	&:focus, 
+	&.focus, 
+	&:active:focus, 
+	&.focus:active, 
+	&.active:focus, 
+	&.active.focus {
+		background: #e6e6e6;
+		color: inherit;
+	}
+}
+
+.btn-primary {
+	background: $brand-secondary;
+	color: $color-primary;
+
+	&:hover,
+	&:focus, 
+	&.focus, 
+	&:active:focus, 
+	&.focus:active, 
+	&.active:focus, 
+	&.active.focus {
 		background: $brand-secondary;
 		color: inherit;
-		opacity: 0.8;
 	}
 }
 

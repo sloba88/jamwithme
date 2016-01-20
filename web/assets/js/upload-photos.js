@@ -215,8 +215,8 @@ $(function () {
 
         var imageCropModal = $('#imageCropModal');
         imageCropModal.find('.modal-body').html(newImage);
-        imageCropModal.find('.modal-dialog').width(newImage.width + 40);
-        imageCropModal.find('.modal-dialog').css('minWidth', 460);
+        // imageCropModal.find('.modal-dialog').width(newImage.width + 40);
+        // imageCropModal.find('.modal-dialog').css('minWidth', 460);
 
         imageCropModal.modal({
             'backdrop': 'static',
