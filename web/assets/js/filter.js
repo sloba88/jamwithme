@@ -12,6 +12,7 @@
 /* global addMessage */
 /* global myLocation */
 /* global scrollbarPlugin */
+/* global sidebarHeight */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -147,6 +148,7 @@ $(function() {
                 initializedMap = initMap();
                 setMyFilterMarker();
                 mapFilterMusicians();
+                sidebarHeight();
             }
         }, 500);
     });
