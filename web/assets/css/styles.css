@@ -8836,6 +8836,11 @@ ul {
   width: 22px;
 }
 
+/* line 405, ../../sass/jamifind/_custom.scss */
+.jcrop-holder {
+  margin: 0 auto;
+}
+
 /* line 1, ../../sass/jamifind/_layout.scss */
 html, body {
   min-height: 100%;

@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-sm-4 last">
                     <button type="button" class="btn btn-danger btn-remove-crop-photo">
-                        <i class="fa fa-times"></i>
+                        <i class="fa fa-trash-o"></i>
                         Remove
                     </button>
                 </div>
