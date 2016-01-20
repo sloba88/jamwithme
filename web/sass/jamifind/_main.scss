@@ -560,7 +560,7 @@
 		font-size: 9px;
 		font-weight: bold;
 		// margin: 0 10px 0 6px;
-		margin: 0;
+		margin: 2px 0 0;
 		text-transform: uppercase;
 
 		span {
@@ -714,10 +714,7 @@
 			padding-left: 135px;
 		}
 		@include respond-to(desktopMd) {
-			padding-left: 95px;
-		}
-		@include respond-to(tablet) {
-			padding-left: 85px;
+			padding-left: 105px;
 		}
 		@include respond-to(handhelds) {
 			padding-left: 0;
@@ -737,7 +734,10 @@
 
 	.profile-picture {
 		width: 130px;
-		@include respond-to(tablet) {
+		@include respond-to(desktopMd) {
+			width: 100px;
+		}
+		@include respond-to(handhelds) {
 			width: 80px;
 		}
 
@@ -748,19 +748,12 @@
 
 	.icon-teacher {
 		width: 25px;
-		// float: right;
-		// margin-left: 5px;
 	}
 
 	.info {
-		// height: 161px;
-		// position: relative;
 		line-height: 18px;
 		padding-left: 15px;
 		width: 100%;
-		@include respond-to(desktopMd) {
-			// width: 120px;
-		}
 		@include respond-to(handhelds) {
 			height: auto;
 		}
@@ -800,9 +793,9 @@
 			}
 		}
 
-		.bio {
-			// margin-bottom: 7px;
-		}
+		// .bio {
+		// 	margin-bottom: 7px;
+		// }
 
 		.blockquote {
 			background: url(../images/quote.png) no-repeat 0 2px;
@@ -817,14 +810,34 @@
 		}
 
 		.btn {
-			bottom: 27px;
+			bottom: 6px;
 			font-family: "Hind Semibold";
 			font-size: 13px;
 			position: absolute;
+			right: 10px;
 			width: 146px;
-			@include respond-to(tablet) {
+			@media only screen and (max-width: $screen-lg - 1px) and (min-width: $screen-sm) {
+				bottom: 10px;
+				// right: 0;
+				// top: 10px;
+				width: auto;
+			}
+			@include respond-to(handhelds) {
 				bottom: 10px;
 				left: 15px;
+				right: auto;
+			}
+
+			i {
+				@media only screen and (max-width: $screen-lg - 1px) and (min-width: $screen-sm) {
+					margin-right: 0;
+				}
+			}
+
+			span {
+				@media only screen and (max-width: $screen-lg - 1px) and (min-width: $screen-sm) {
+					display: none;
+				}
 			}
 		}
 	}

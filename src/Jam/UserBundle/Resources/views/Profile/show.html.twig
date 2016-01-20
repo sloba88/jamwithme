@@ -54,7 +54,7 @@
 
                         {% if is_granted("ROLE_USER") and app.user != user %}
                             {# todo: how to get conversation id here?? #}
-                            <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>{{ 'button.message'|trans }}</a>
+                            <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i><span>{{ 'button.message'|trans }}</span></a>
                         {% endif %}
 
                         {% if app.user != user %}
