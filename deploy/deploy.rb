@@ -51,6 +51,17 @@ namespace :elastica do
     end
 end
 
+namespace :node do
+    desc 'Node restart messaging service'
+    task :restart do
+        on roles(:web) do
+            execute "forever stopall; cd '#{release_path}/node/'; npm install; forever start app.js"
+        end
+    end
+end
+
 after 'deploy:updated',   'redis:clear'
 
 after 'deploy:updated',   'elastica:populate'
+
+after 'deploy:updated',   'node:restart'

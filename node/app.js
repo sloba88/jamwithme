@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     express = require('express'),
     redis = require('redis'),
-    redisClient = redis.createClient(),
+    redisClient = redis.createClient().select(1),
     collections = require('./schema'),
     Message = collections.Message,
     Conversation = collections.Conversation,
@@ -17,7 +17,7 @@ var mongoose = require('mongoose'),
     mysqlConnection = mysql.createConnection({
         host     : 'localhost',
         user     : 'root',
-        password : 'root',
+        password : '6npGVrq3',
         database : 'jamifind'
     }),
     activeUsers = {};
