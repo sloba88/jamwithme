@@ -29,6 +29,8 @@ ul {
 /*****global styles begins*****/
 body {
 	font-family: 'Open Sans', sans-serif;
+    overflow: auto;
+    padding-top: 55px;
 }
 h1, h2, h3, h5, h6 {
 	font-family: 'Crete Round', serif;
@@ -51,6 +53,11 @@ h2 {
 	font-size: 40px;
 	line-height: 48px;
 }
+
+#multimedia-home h2{
+    text-shadow: 0 0 1px rgba(0,0,0, 0.5);
+}
+
 h3 {
 	font-size: 26px;
 }
@@ -67,7 +74,6 @@ h5 {
 /*****head begins*****/
 header {
 	background: #000;
-	opacity: 0.7;
 	height: 55px;
 	position: fixed;
 	top: 0;
@@ -75,20 +81,22 @@ header {
 	z-index: 200;
 }
 .container {
-	margin: 0 auto;
-	text-align: center;
-	position: relative;
-	width: 860px;
+    position: relative;
 }
 header .container {
-	max-width: 1100px;
+	max-width: 1170px;
 	width: auto;
-	padding: 0 50px;
+	padding: 0 15px;
 }
 .logo {
 	float: left;
 	padding-top: 6px;
 }
+
+.navbar-brand{
+    padding-top: 5px;
+}
+
 .social {
 	float: right;
 	margin-top: 12px;
@@ -108,355 +116,8 @@ header .container {
 	opacity: 1;
 	transition: all 0.2s ease;
 }
-.mapContent {
-	padding: 105px 20px 0 20px;
-	width: auto;
-}
-.mapContent > h4 {
-	margin-top: 20px;
-}
-.mapInteractive {
-	bottom: 0;
-	height: 377px;
-	left: 0;
-	margin: 0 auto;
-	position: absolute;
-	right: 16px;
-	top: 266px;
-	width: 375px;
-	z-index: 10;
-}
-.mapInteractive .icon {
-	position: absolute;
-}
-.mapInteractive .info > img {
-	opacity: 0.8;
-	display: block;
-	transition: all 0.2s ease;
-	cursor: pointer;
-}
-.mapInteractive .info:hover > img {
-	opacity: 1;
-	transition: all 0.2s ease;
-}
-.mapInteractive .icon.main {
-    left: 47%;
-    margin: 0 auto;
-    top: 134px;
-    opacity: 1;
-    cursor: auto;
-    width: 77px;
-}
-.mapInteractive .icon.guitar {
-	left: 188px;
-	top: 7px;
-}
-.mapInteractive .icon.drumms {
-	right: 46px;
-	top: 100px;
-}
-.mapInteractive .icon.teacher {
-    left: 119px;
-    top: 283px;
-}
-.infoBoxSmall {
-	height: 117px;
-	left: -169px;
-	position: absolute;
-	top: -130px;
-	width: 377px;
-	z-index: 20;
-	visibility: hidden;
-	transition: all 0.2s ease;
-}
-.info:hover .infoBoxSmall {
-	visibility: visible;
-	transition: all 0.2s ease;
-}
-.infoBox::before {
-	content: "";
-	position: absolute;
-	z-index: -1;
-	left: 0;
-	width: 100%;
-	opacity: 0.9;
-}
-.infoBoxSmall::before {
-	background: #fff url(../images/infoBox-bg.png) no-repeat scroll right top;
-	height: 117px;
-}
-.infoBoxSmall::after {
-	border-left: 15px solid transparent;
-	border-right: 15px solid transparent;
-	border-top: 11px solid #fff;
-	bottom: -10px;
-	content: "";
-	height: 0;
-	opacity: 0.9;
-	position: absolute;
-	width: 0;
-	left: 48%;
-}
-.profileImage {
-	border-radius: 50%;
-	float: left;
-	overflow: hidden;
-}
-.infoBoxSmall .profileImage {
-	border: 1px solid #fff;
-	margin: 20px 15px 0;
-	box-shadow: 0 0 0 5px #ececed;
-}
-.profileData {
-	float: left;
-	text-align: left;
-}
-.infoBoxSmall .profileData {
-	margin: 11px 0 0;
-	width: 190px;
-}
-.profileData h5 {
-	margin-bottom: 7px;
-}
-.tags li {
-	background: #6fdfff;
-	color: #000;
-	float: left;
-}
-.infoBoxSmall .tags li {
-	font-size: 12px;
-	padding: 4px 7px;
-	margin: 3px;
-}
-.compatibility {
-	float: right;
-	text-transform: uppercase;
-	color: #fff;
-}
-.infoBoxSmall .compatibility {
-	font-size: 8px;
-	font-weight: bold;
-	width: 70px;
-	background: url(../images/compatibility.png) no-repeat center 13px;
-	padding-top: 50px;
-}
-.compatibility span {
-	color: #6fdfff;
-	display: block;
-}
-.infoBoxSmall .compatibility span {
-	font-size: 14px;
-	margin-bottom: 8px;
-}
-.infoBoxSmall.teacher {
-	width: 290px;
-	left: -129px;
-}
-.infoBoxSmall.teacher:before {
-	background: url(../images/piano-bg.png) no-repeat right bottom #fff;
-	height: 117px;
-}
-.infoBoxSmall.teacher .profileData {
-	margin: 18px 0 0;
-	width: 175px;
-}
-.teacher .lessons {
-	font-size: 12px;
-}
 /*****head ends*****/
-/*****profile section begins*****/
-#profileSection h4 {
-	margin: 25px 0 50px;
-}
-.infoBoxBig {
-	width: 100%;
-	height: 257px;
-	position: relative;
-	z-index: 20;
-}
-.infoBoxBig::before {
-	background: #fff url(../images/infoBoxBig-bg.png) no-repeat scroll right top;
-	height: 257px;
-}
-.infoBoxBig .profileImage {
-	border: 3px solid #fff;
-	margin: 33px 33px 0;
-	box-shadow: 0 0 0 9px #ece7e1;
-}
-.infoBoxBig .profileData {
-	margin: 26px 0 0;
-	width: 350px;
-}
-.infoBoxBig .profileData h3 {
-	margin-bottom: 15px;
-}
-.dataInner {
-	font-size: 16px;
-	line-height: 20px;
-	color: #000;
-	display: table;
-	padding-left: 38px;
-	margin: 10px 35px 10px 0;
-}
-.dataInner.location {
-	background: url(../images/data-location.png) no-repeat 3px center;
-	font-weight: 600;
-}
-.dataInner.about {
-	background: url(../images/data-about.png) no-repeat 3px center;
-}
-.dataInner > span {
-	display: table-cell;
-	vertical-align: middle;
-	height: 44px;
-}
-.infoBoxBig .tags {
-	margin-top: 15px;
-}
-.infoBoxBig .tags li {
-	font-size: 16px;
-	padding: 5px 12px;
-	margin: 5px; 
-	transition: all 0.2s ease;
-}
-.infoBoxBig .tags li:hover{
-	color: #fff;
-	background-color: #652978;
-	cursor: pointer;
-	transition: all 0.2s ease;
-}
 
-.infoBoxBig .compatibility {
-	width: 200px;
-	font-size: 13px;
-	font-weight: 600;
-}
-.infoBoxBig .compatibility > div {
-	position: relative;
-}
-.infoBoxBig .compatibility .first {
-	padding-top: 93px;
-	background: url(../images/icon-guitar-big.png) no-repeat 23px 25px;
-}
-.infoBoxBig .compatibility .last {
-	padding-top: 103px;
-	background: url(../images/compatibility-big.png) no-repeat 25px 33px;
-}
-.infoBoxBig .compatibility .last span {
-	font-size: 20px;
-	font-weight: 700;
-	position: absolute;
-	left: 58%;
-	top: 43px;
-}
-.bands {
-	height: 80px; 
-	margin-top: 25px;
-	position: relative;
-	z-index: 20;
-}
-.bands::before {
-	content: '';
-	height: 79px;
-	width: 100%;
-	position: absolute;
-	left: 0;
-	opacity: 0.9;
-	z-index: -1;
-	background: #e9e4de url(../images/bands.png) no-repeat -80px 0;
-}
-.bands .title {
-	font-size: 24px;
-	color: #faf3ec;
-	font-family: 'Crete Round', serif;
-	float: left;
-	padding: 22px;
-	text-align: left;
-}
-.influencers .title {
-	width: 135px;
-}
-.bandsList li {
-	float: left;
-	padding: 12px 6px;
-	font-size: 15px;
-	line-height: 55px;
-}
-.bandsList li img {
-	float: left;
-	margin-right: 10px;
-}
-.brands::before {
-	background-position: 0 0;
-}
-.brands .title {
-	width: 230px;
-}
-.brands .bandsList li img {
-	margin-right: 20px;
-}
-.brands .bandsList li {
-	font-weight: 600;
-	padding: 12px 10px;
-}
-/*****profile section ends*****/
-/*****multimedia begins*****/
-.mediaText {
-	width: 285px;
-	float: left;
-	text-align: left;
-}
-.mediaText h2 {
-	color: #000;
-	background: url(../images/media-icon.png) no-repeat 217px bottom;
-}
-.mediaText p {
-	font-size: 22px;
-	line-height: 26px;
-	color: #252525;
-}
-.mediaImage {
-	float: right;
-}
-/*****multimedia ends*****/
-/*****subscribe begins*****/
-#subscribe .container {
-	width: 735px;
-}
-#subscribe h2 {
-	margin: 0 30px 45px;
-	background: url(../images/tune-icon.png) no-repeat center top;
-	padding-top: 107px;
-}
-.inputField {
-	box-sizing: border-box;
-	height: 76px;
-	background: rgba(255,255,255, 0.9);
-	border: none;
-	outline: none;
-	float: left;
-	width: 555px;
-	padding: 0 20px;
-	font-size: 20px;
-	transition: box-shadow 0.2s ease;
-}
-.inputField:focus {
-	box-shadow: 0 0 4px 0 #652978 inset; 
-	transition: box-shadow 0.2s ease;
-}
-.submitBtn {
-	width: 180px;
-	background: #652978;
-	border: none;
-	outline: none;
-	text-transform: uppercase;
-	font-family: 'Crete Round', serif;
-	height: 76px;
-	color: #fff;
-	font-size: 24px;
-	float: right;
-}
-/*****subscribe ends*****/
 /*****page pagination begins*****/
 ul.underlinemenu {
 	top: 100px;
@@ -504,24 +165,33 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 
 /*****page pagination ends*****/
 /*****parallax backgrounds begins*****/
-#map {
-	background: #8FA1C9 url(../images/map2.jpg) center -56px no-repeat;
+
+.login-container{
+    margin: 20px auto;
+}
+
+.login-header p{
+    font-family: "CooperHewitt Bold";
+    color: #fff;
+    font-size: 26px;
+    font-weight: normal;
+    margin: 0;
+    padding-top: 25px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#register-home {
 	min-height: 700px;
 	overflow: hidden;
 }
-#profileSection {
-	background: url(../images/profile-bg.jpg) 50% 0 repeat fixed; 
-	background-size: cover;
-	min-height: 773px;
-	padding-top: 102px;
-}
-#multimedia {
+#multimedia-home {
 	background: url(../images/media-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
 	min-height: 560px;
 	padding-top: 156px;
 }
-#subscribe {
+#subscribe-home {
 	background: url(../images/subscribe-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
 	min-height: 650px;
@@ -536,6 +206,18 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     position: absolute;
     bottom: 10px;
     left: 38%;
+}
+
+.social li a.fast-subscribe{
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #fff;
+    padding: 2px 10px;
+    position: relative;
+    top: -2px;
 }
 
 /*****parallax backgrounds ends*****/
@@ -704,6 +386,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	header .container {
 		padding: 0 10px;
 	}
+
 	.logo {
 		padding-top: 15px;
 		width: 120px;

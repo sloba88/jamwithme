@@ -12006,10 +12006,7 @@ header {
   min-height: 600px;
   overflow: auto;
 }
-/* line 7, ../../sass/jamifind/_login.scss */
-.login-page.signup-page {
-  background-image: url(../images/background-signup.jpg);
-}
+
 /* line 11, ../../sass/jamifind/_login.scss */
 .login-page .navbar-toggle {
   display: none;
@@ -12031,16 +12028,6 @@ header {
   .login-container {
     margin: 30px 15px;
     width: auto;
-  }
-}
-/* line 27, ../../sass/jamifind/_login.scss */
-.signup-page .login-container {
-  margin-top: 20px;
-}
-@media only screen and (max-width: 1199px) {
-  /* line 27, ../../sass/jamifind/_login.scss */
-  .signup-page .login-container {
-    margin-bottom: 10px;
   }
 }
 
