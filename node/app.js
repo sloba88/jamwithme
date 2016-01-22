@@ -13,17 +13,23 @@ var mongoose = require('mongoose'),
     PHPUnserialize = require('php-unserialize'),
     mysql      = require('mysql'),
     promise    = require('promise'),
-    //todo : parametrize this
-    mysqlConnection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : '6npGVrq3',
-        database : 'jamifind'
-    }),
+    readYaml = require('read-yaml'),
+    mysqlConnection,
     activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
 redisClient.select(1);
+
+var mysqlConfig = readYaml.sync('../app/config/parameters.yml');
+
+/*jshint camelcase: false */
+mysqlConnection = mysql.createConnection({
+    host     : mysqlConfig.parameters.database_host,
+    user     : mysqlConfig.parameters.database_user,
+    password : mysqlConfig.parameters.database_password,
+    database : mysqlConfig.parameters.database_name
+});
+/*jshint camelcase: true */
 
 function getUsernames(mysqlConnection, ids) {
     return new promise(function (fulfill, reject){
