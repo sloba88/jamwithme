@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     express = require('express'),
     redis = require('redis'),
-    redisClient = redis.createClient().select(1),
+    redisClient = redis.createClient(),
     collections = require('./schema'),
     Message = collections.Message,
     Conversation = collections.Conversation,
@@ -23,6 +23,7 @@ var mongoose = require('mongoose'),
     activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
+redisClient.select(1);
 
 function getUsernames(mysqlConnection, ids) {
     return new promise(function (fulfill, reject){
