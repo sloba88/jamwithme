@@ -299,6 +299,8 @@
         <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
     {% endfor %}
 
+    {% block bottomstylesheets %}{% endblock %}
+
     {% block bottom_javascripts %}{% endblock %}
 
     {% if is_granted("ROLE_USER") %}
