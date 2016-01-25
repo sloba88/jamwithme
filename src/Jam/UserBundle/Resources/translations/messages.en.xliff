@@ -146,7 +146,7 @@
       </trans-unit>
       <trans-unit id="4b1ec948ee3ca76e40a8c4a30048f0ab3ab94728" resname="message.your.account.is.activated.">
         <source>message.your.account.is.activated.</source>
-        <target state="new">message.your.account.is.activated.</target>
+        <target state="new">Your account is activated</target>
         <jms:reference-file line="153">UserBundle/Controller/RegistrationController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a48049e16c5ec4d87665a13afc16594b5856c89a" resname="placeholder.email">
