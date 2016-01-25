@@ -1,10 +1,6 @@
-{% extends "::base.html.twig" %}
+{% extends 'JamUserBundle::noAuthLayout.html.twig' %}
 
 {% block bodyclasses %}signup-page{% endblock %}
-
-{% block bottomstylesheets %}
-    <link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
-{% endblock %}
 
 {% block fos_user_content %}
     {% trans_default_domain 'FOSUserBundle' %}
@@ -137,20 +133,5 @@
             <li><a href="#subscribe-home" title="Subscribe"></a></li>
         </ul>
     </section>
-
-{% endblock %}
-
-{% block javascripts %}
-
-    {% javascripts
-    'vendor/jquery/jquery.js'
-    'vendor/bootstrap/dist/js/bootstrap.js'
-    'landing/js/ddscrollspy.js'
-    'landing/js/placeholders.min.js'
-    'landing/js/script.js'
-    filter='?uglifyjs2'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 
 {% endblock %}

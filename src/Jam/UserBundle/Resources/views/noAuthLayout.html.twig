@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{# USED ONLY FOR LOGIN PAGE LAYOUT #}
+
+{% block body %}
+
+    {% block fos_user_content %}{% endblock fos_user_content %}
+
+{% endblock %}
+
+{% block bottomstylesheets %}
+    <link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+
+    {% javascripts
+    'vendor/jquery/jquery.js'
+    'vendor/bootstrap/dist/js/bootstrap.js'
+    'landing/js/ddscrollspy.js'
+    'landing/js/placeholders.min.js'
+    'landing/js/script.js'
+    filter='?uglifyjs2'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}
