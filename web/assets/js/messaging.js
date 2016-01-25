@@ -104,8 +104,6 @@ $(function() {
                 val.index = index;
                 $('.conversations-box').append(window.JST.conversationTemplate(val));
             });
-
-            scrollToBottom();
         });
     }
 
