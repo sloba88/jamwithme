@@ -27,29 +27,29 @@ ul {
 }
 /*****reset ends*****/
 /*****global styles begins*****/
-body {
+body.signup-page {
 	font-family: 'Open Sans', sans-serif;
     overflow: auto;
     padding-top: 55px;
 }
-h1, h2, h3, h5, h6 {
+.signup-page h1, .signup-page h2, .signup-page h3, .signup-page h5, .signup-page h6 {
 	font-family: 'Crete Round', serif;
 }
-h1, h2, h3, h4, h5, h6 {
+.signup-page h1, .signup-page h2, .signup-page h3, .signup-page h4, .signup-page h5, .signup-page h6 {
 	margin: 0;
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-h1, h2, h4 {
+.signup-page h1, .signup-page h2, .signup-page h4 {
 	color: #fff;
 }
-h1 {
+.signup-page h1 {
 	font-size: 46px;
 	line-height: 54px;
 	text-shadow: 0 0 1px rgba(255,255,255, 0.5);
 }
-h2 {
+.signup-page h2 {
 	font-size: 40px;
 	line-height: 48px;
 }
@@ -58,21 +58,21 @@ h2 {
     text-shadow: 0 0 1px rgba(0,0,0, 0.5);
 }
 
-h3 {
+.signup-page h3 {
 	font-size: 26px;
 }
-h4 {
+.signup-page h4 {
 	font-size: 24px;
 }
-h5 {
+.signup-page h5 {
 	font-size: 20px;
 }
-.hide {
+.signup-page .hide {
 	display: none;
 }
 /*****global styles ends*****/
 /*****head begins*****/
-header {
+.signup-page header {
 	background: #000;
 	height: 55px;
 	position: fixed;
@@ -80,20 +80,20 @@ header {
 	width: 100%;
 	z-index: 200;
 }
-.container {
+.signup-page .container {
     position: relative;
 }
-header .container {
+.signup-page header .container {
 	max-width: 1170px;
 	width: auto;
 	padding: 0 15px;
 }
-.logo {
+.signup-page .logo {
 	float: left;
 	padding-top: 6px;
 }
 
-.navbar-brand{
+.signup-page .navbar-brand{
     padding-top: 5px;
 }
 

@@ -6,25 +6,6 @@
 
     {# TODO: TEACHER #}
 
-    <style>
-
-        /*.teacher-info .instruments-profile-icons svg {
-            width: 20px;
-            height: 20px;
-            float: left;
-        }*/
-
-        /*.tags-container span{
-            color: #fff;
-            font-family: "Hind Medium";
-        }*/
-
-        /*.page-profile .main-content-inner {
-            padding: 0;
-        }*/
-
-    </style>
-
     <div class="teacher-container grey">
         <div class="row teacher-header">
             <section class="col-sm-5 teacher-info">
@@ -53,7 +34,6 @@
                         {% endif %}
 
                         {% if is_granted("ROLE_USER") and app.user != user %}
-                            {# todo: how to get conversation id here?? #}
                             <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i><span>{{ 'button.message'|trans }}</span></a>
                         {% endif %}
 

@@ -48,7 +48,9 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
-    {% block bottomstylesheets %}{% endblock %}
+    {% if not is_granted('ROLE_USER') %}
+        <link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
+    {% endif %}
 
     <style>
         {# TODO: move this to css files#}
@@ -131,6 +133,10 @@
         .shouts-listing-container h4 a{
             text-decoration: none;
             color: #fff;
+        }
+
+        .no-auth .main-content-inner{
+            background: none;
         }
 
     </style>
@@ -240,29 +246,7 @@
         </div>
     </header><!--header ends-->
 
-    {% if is_granted('ROLE_USER') %}
-
-        <div class="container-fluid">
-            <div class="row">
-                {% if not app.user.location or app.user.location.isTemporary %}
-                    <div class="flash-message col-xs-12 no-location-message">
-                        <div class="warning alert-warning">
-                            Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.
-                        </div>
-                    </div>
-                {% endif %}
-
-                <div class="fixed-alerts-container col-xs-12"></div>
-
-                {% block body %}{% endblock %}
-
-            </div>
-        </div>
-
-        {% include "JamWebBundle:Messages:conversation.html.twig" %}
-    {% endif %}
-
-    {% block fos_user_content %}{% endblock %}
+    {% block body %}{% endblock %}
 
     {% block javascripts %}
 

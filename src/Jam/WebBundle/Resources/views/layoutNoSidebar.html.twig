@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends '::baseAuth.html.twig' %}
 
-{% block body %}
+{% block auth_content %}
 
     {% if is_granted("ROLE_USER") %}
         {% include "JamWebBundle:Common:navigation.html.twig" %}
@@ -13,7 +13,7 @@
         </div>
     {% endif %}
 
-    <section class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-lg-8{% endif %} main-content">
+    <section class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-lg-8 no-auth{% endif %} main-content">
         <div class="main-content-inner">
             {% block main_content %}{% endblock %}
             {% block fos_user_content %}{% endblock fos_user_content %}

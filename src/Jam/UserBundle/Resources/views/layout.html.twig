@@ -1,4 +1,4 @@
-{% extends '::page.html.twig' %}
+{% extends 'JamUserBundle::noAuthLayout.html.twig' %}
 
 {# USED ONLY FOR LAYOUTS WHEN NOT LOGGED IN #}
 
@@ -8,6 +8,10 @@
 {% endif %}
 
 {% block bodyclasses %}{{ bodyclass }}{% endblock %}
+
+{% block bodystyle %}
+    background-image: url({{ asset('assets/images/background-dashboard.jpg') }})
+{% endblock %}
 
 {% block body %}
 
