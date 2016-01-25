@@ -28,7 +28,8 @@ class DefaultController extends Controller
         $user = $userManager->findUserByUsername($username);
 
         if (!$user){
-            throw $this->createNotFoundException($this->get('translator')->trans('exception.user.not.found'));
+            $this->container->get('session')->getFlashBag()->set('info', $this->get('translator')->trans('exception.user.not.found'));
+            return new RedirectResponse($this->generateUrl('home'));
         }
 
         $soundcloudService = $this->get('soundcloud_connector');

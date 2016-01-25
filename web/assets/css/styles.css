@@ -8664,6 +8664,7 @@ ul {
   right: 0;
   top: 0;
   z-index: 1000;
+  opacity: 0.95;
 }
 
 /* line 248, ../../sass/jamifind/_custom.scss */

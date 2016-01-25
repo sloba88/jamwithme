@@ -3,6 +3,7 @@
 {# USED ONLY FOR LOGIN PAGE LAYOUT #}
 
 {% block body %}
+    <div class="fixed-alerts-container col-xs-12"></div>
 
     {% block fos_user_content %}{% endblock fos_user_content %}
 
@@ -15,6 +16,9 @@
     'vendor/bootstrap/dist/js/bootstrap.js'
     'landing/js/ddscrollspy.js'
     'landing/js/placeholders.min.js'
+    '@JamWebBundle/Resources/public/js/helpers.js'
+    'vendor/underscore/underscore.js'
+    'assets/js/templates.js'
     'landing/js/script.js'
     filter='?uglifyjs2'
     %}

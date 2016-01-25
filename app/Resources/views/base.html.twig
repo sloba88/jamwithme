@@ -139,6 +139,12 @@
             background: none;
         }
 
+        .signup-page .fixed-alerts-container{
+            width: 320px;
+            margin: 0 auto;
+            opacity: .9;
+        }
+
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -281,15 +287,15 @@
         <script src="http://connect.soundcloud.com/sdk.js"></script>
         <script src="https://w.soundcloud.com/player/api.js"></script>
 
-        {% for fm in app.session.flashbag.get('success') %}
-            <script> $(function () { addMessage('success', '{{ fm }}'); });</script>
-        {% endfor %}
-
-        {% for fm in app.session.flashbag.get('info') %}
-            <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
-        {% endfor %}
-
     {% endblock %}
+
+    {% for fm in app.session.flashbag.get('success') %}
+        <script> $(function () { addMessage('success', '{{ fm }}'); });</script>
+    {% endfor %}
+
+    {% for fm in app.session.flashbag.get('info') %}
+        <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
+    {% endfor %}
 
     {% block bottom_javascripts %}{% endblock %}
 

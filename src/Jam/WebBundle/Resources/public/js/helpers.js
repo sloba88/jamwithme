@@ -55,7 +55,7 @@ function addMessage(type, message, temp) {
         type = 'danger';
     }
 
-    $('.fixed-alerts-container').append(window.JST['notificationTemplate']({
+    $('.fixed-alerts-container').append(window.JST.notificationTemplate({
         type: type,
         message: message,
         temp: temp
@@ -75,7 +75,7 @@ $(function() {
         var self = $(this);
 
         //programatically create a modal
-        $('body').append(window.JST['actionConfirmModalTemplate']({
+        $('body').append(window.JST.actionConfirmModalTemplate({
             message: 'Are you sure that you want to remove this?'
         }));
 
