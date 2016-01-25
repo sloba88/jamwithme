@@ -5,24 +5,70 @@
 /* global addMessage */
 /* global scrollbarPlugin */
 
-function initInstrumentSelection() {
-    $.ajax({
-        url: Routing.generate('api_instruments')
-    }).done(function(data) {
-        $('.instrument-select').select2({
-            placeholder: 'What do you play?',
-            data: data
-        });
+var allInstruments = false;
+var allSkills = false;
+
+function setSelect2() {
+
+    $('input.instrument-select').each(function(){
+        var self = $(this);
+        if (self.val()){
+            var selected = $.grep(allInstruments, function(e){ return e.id == self.val(); });
+            selected[0].disabled = true;
+        }
     });
 
-    $.ajax({
-        url: Routing.generate('api_instruments_skills')
-    }).done(function(data) {
-        $('.skill-select').select2({
-            placeholder: 'How good are you?',
-            data: data
+    $('.instrument-select').select2({
+        placeholder: 'What do you play?',
+        data: allInstruments
+    }).on('change', function(t) {
+        var selected = $.grep(allInstruments, function(e){ return e.id == t.val; });
+        selected[0].disabled = true;
+
+        if (t.removed) {
+            var removed = $.grep(allInstruments, function (e) {
+                return e.id == t.removed.id;
+            });
+            removed[0].disabled = false;
+        }
+
+        $('.instrument-select').select2({
+            placeholder: 'What do you play?',
+            data: allInstruments
         });
     });
+}
+
+function initInstrumentSelection() {
+
+    if (allInstruments) {
+        setSelect2();
+    } else {
+        $.ajax({
+            url: Routing.generate('api_instruments')
+        }).done(function(data) {
+            allInstruments = data;
+            setSelect2();
+        });
+    }
+
+    if (allSkills) {
+        $('.skill-select').select2({
+            placeholder: 'How good are you?',
+            data: allSkills
+        });
+    } else {
+        $.ajax({
+            url: Routing.generate('api_instruments_skills')
+        }).done(function(data) {
+            allSkills = data;
+
+            $('.skill-select').select2({
+                placeholder: 'How good are you?',
+                data: allSkills
+            });
+        });
+    }
 }
 
 function renameCollectionNames($selection) {
