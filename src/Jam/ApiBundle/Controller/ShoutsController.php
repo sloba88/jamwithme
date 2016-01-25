@@ -115,6 +115,16 @@ class ShoutsController extends FOSRestController
                 $image = '/images/placeholder-user.jpg';
             }
 
+            $location = '';
+
+            if ($m->getLocation()->getAdministrativeAreaLevel3()) {
+                if ($m->getLocation()->getNeighborhood()) {
+                    $location = $m->getLocation()->getNeighborhood() . ', ' . $m->getLocation()->getAdministrativeAreaLevel3();
+                } else {
+                    $location = $m->getLocation()->getAdministrativeAreaLevel3();
+                }
+            }
+
             $data_array = array(
                 'text' => $s->getText(),
                 'createdAt' => $s->getCreatedAtAgo(),
@@ -127,7 +137,7 @@ class ShoutsController extends FOSRestController
                     'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                     'me' => $me == $m->getUsername() ? true : false,
                     'genres' => $m->getGenresNamesArray(),
-                    'location' => $m->getLocation()->getAdministrativeAreaLevel3(),
+                    'location' => $location,
                 )
             );
 
