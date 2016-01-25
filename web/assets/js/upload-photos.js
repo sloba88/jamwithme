@@ -197,7 +197,7 @@ $(function () {
             url: url
         }).done(function(data) {
             if (data.status == 'success') {
-                var src = $('.profile-info .user-image').attr('src');
+                var src = Routing.generate('musician_avatar', {'username': _user.username, 'size' : 'my_medium_1'});
                 $('.profile-info .user-image').attr('src', src + '?' +new Date().getTime());
                 addMessage(data.status, data.message);
             }

@@ -42,7 +42,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/m/{username}/avatar/{size}", name="musician_avatar")
+     * @Route("/m/{username}/avatar/{size}", name="musician_avatar", options={"expose"=true})
      * @Template()
      */
     public function avatarAction($username, $size = 'my_thumb')
