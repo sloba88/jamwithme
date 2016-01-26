@@ -14,7 +14,8 @@ var mongoose = require('mongoose'),
     mysql      = require('mysql'),
     promise    = require('promise'),
     readYaml = require('read-yaml'),
-    Autolinker = require( 'autolinker' ),
+    Autolinker = require('autolinker'),
+    striptags = require('striptags'),
     mysqlConnection,
     activeUsers = {};
 
@@ -217,6 +218,9 @@ mysqlConnection.connect(function(err) {
                 if (!data.to) {
                     data.to = '-1';
                 }
+
+                //striptags
+                data.message = striptags(data.message);
 
                 //check for my conversation
                 Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
