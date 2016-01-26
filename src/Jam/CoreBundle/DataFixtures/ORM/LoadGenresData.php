@@ -5,179 +5,59 @@ namespace Jam\CoreBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Jam\CoreBundle\Entity\Genre;
+use Jam\CoreBundle\Entity\GenreCategory;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadGenresData implements FixtureInterface
+class LoadGenresData implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
-        $genres = array(
-            "Acid House"
-            , "Acid Jazz"
-            , "Acid Rock"
-            , "Alternative Country"
-            , "Alternative Metal"
-            , "Alternative Rock"
-            , "Ambient"
-            , "Art Punk"
-            , "Art Rock"
-            , "Avan-Garde"
-            , "Beat Music"
-            , "Black Metal"
-            , "Bluegrass"
-            , "Blues"
-            , "Boogie-Woogie"
-            , "Bossa Nova"
-            , "Britpop"
-            , "Bubblegum Pop"
-            , "Celtic Metal"
-            , "Celtic Punk"
-            , "Children's Music"
-            , "Choir Music"
-            , "Christian Metal"
-            , "Christian Rock"
-            , "Classical Music"
-            , "Comedy music"
-            , "Country"
-            , "Country Pop"
-            , "Country Rock"
-            , "Dance-Pop"
-            , "Death Metal"
-            , "Deathrock"
-            , "Desert Rock"
-            , "Digital Hardcore"
-            , "Disco"
-            , "Doom Metal"
-            , "Drone Metal"
-            , "Drum and Bass"
-            , "Dub"
-            , "Dubstep"
-            , "Electro House"
-            , "Electroacoustic"
-            , "Electronic music"
-            , "Electronic Rock"
-            , "Electropop"
-            , "Emo"
-            , "Eurodance"
-            , "Europop"
-            , "Experimental Rock"
-            , "Folk"
-            , "Folk Metal"
-            , "Folk Punk"
-            , "Folk Rock"
-            , "Free Jazz"
-            , "Funk Metal"
-            , "Funky House"
-            , "Garage"
-            , "Garage Punk"
-            , "Garage Rock"
-            , "Ghotic Metal"
-            , "Glam Metal"
-            , "Glam Rock"
-            , "Goregrind"
-            , "Gospel Music"
-            , "Gothic Rock"
-            , "Grindcore"
-            , "Groove Metal"
-            , "Grunge"
-            , "Hard Rock"
-            , "Hardcore"
-            , "Hardrock punk"
-            , "Heavy Metal"
-            , "Hip Hop"
-            , "House"
-            , "Indie Folk"
-            , "Indie Pop"
-            , "Indie Rock"
-            , "Industrial"
-            , "Industrial Metal"
-            , "Industrial Rock"
-            , "Italo Disco"
-            , "Jazz"
-            , "Jazz Blues"
-            , "Jazz Fusion"
-            , "Jazz-Funk"
-            , "Jazz-Rock"
-            , "Latin Pop"
-            , "Lounge Music"
-            , "Lovers Rock"
-            , "Mariachi"
-            , "Math Rock"
-            , "Mathcore"
-            , "Medieval Metal"
-            , "Melodic Death Metal"
-            , "Metalcore"
-            , "Neofolk"
-            , "New Age Music"
-            , "New Prog"
-            , "New Wave"
-            , "Noice"
-            , "Noise pop"
-            , "Noise Rock"
-            , "Nu metal"
-            , "Pop"
-            , "Pop Punk"
-            , "Pop Rock"
-            , "Post-Metal"
-            , "Post-Punk"
-            , "Post-Rock"
-            , "Power Metal"
-            , "Power Pop"
-            , "Progressive Folk"
-            , "Progressive House"
-            , "Progressive Metal"
-            , "Progressive Rock"
-            , "Progressive Techno"
-            , "Progressive Trance"
-            , "Psychedelic Folk"
-            , "Psychedelic Pop"
-            , "Psychedelic Rock"
-            , "Psychedelic Trance"
-            , "Psychobilly"
-            , "Punk Rock"
-            , "Rap Metal"
-            , "Rap Rock"
-            , "Rave Music"
-            , "Reggae"
-            , "Reggae fusion"
-            , "Rhythm and Blues"
-            , "Rock"
-            , "Rock and Roll"
-            , "Samba"
-            , "Ska"
-            , "Ska Punk"
-            , "Skacore"
-            , "Skate Punk"
-            , "Soft Rock"
-            , "Soul"
-            , "Southern Rock"
-            , "Space Rock"
-            , "Speed Metal"
-            , "Stoner Rock"
-            , "Sunshine Pop"
-            , "Surf Pop "
-            , "Surf Rock"
-            , "Swing"
-            , "Symphonic Metal"
-            , "Synthpop"
-            , "Synthpunk"
-            , "Technical Death Metal"
-            , "Techno"
-            , "Teen Pop"
-            , "Thrash Metal"
-            , "Thrashcore"
-            , "Trance"
-            , "Trip Hop"
-            , "Viking Metal"
-            , "World Music"
-        );
 
-        foreach ($genres as $g) {
-            $genre = new Genre();
-            $genre->setName($g);
-            $manager->persist($genre);
+        $phpExcelObject = $this->container->get('phpexcel')->createPHPExcelObject($this->container->get('kernel')->getRootDir() . '/../data/genres.xlsx');
+
+        //  Get worksheet dimensions
+        $sheet = $phpExcelObject->getSheet(0);
+
+        foreach ($sheet->getColumnIterator() as $column) {
+            //echo 'Row number: ' . $column->getColumnIndex() . "\r\n";
+
+            $genreCategory = new GenreCategory();
+            $k = 0;
+
+            $cellIterator = $column->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(false); // Loop all cells, even if it is not set
+            foreach ($cellIterator as $cell) {
+                if (!is_null($cell) && $cell->getValue() != '') {
+                    //echo 'Cell: ' . $cell->getCoordinate() . ' - ' . $cell->getValue() . "\r\n";
+                    $k++;
+
+                    if ($k==1) {
+                        $genreCategory->setName($cell->getValue());
+                    } else {
+                        $genre = new Genre();
+                        $genre->setName($cell->getValue());
+                        $genre->setCategory($genreCategory);
+                        $manager->persist($genre);
+                    }
+                }
+                if ($genreCategory->getname()) {
+                    $manager->persist($genreCategory);
+                }
+            }
         }
 
         $manager->flush();
