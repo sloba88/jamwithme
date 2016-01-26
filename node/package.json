@@ -14,7 +14,8 @@
     "promise": "",
     "grunt": "~0.4.1",
     "grunt-contrib-jst": "~0.5.0",
-    "read-yaml": ""
+    "read-yaml": "",
+    "autolinker": ""
   },
   "devDependencies": {},
   "scripts": {

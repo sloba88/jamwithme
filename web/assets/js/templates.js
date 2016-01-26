@@ -108,7 +108,7 @@ __e( createdAt.toLocaleDateString() ) +
 ' ' +
 __e( createdAt.toLocaleTimeString() ) +
 '\n    </div>\n    <p class="text">\n        ' +
-__e( rc.message ) +
+((__t = ( rc.message )) == null ? '' : __t) +
 '\n    </p>\n</div>';
 return __p
 };

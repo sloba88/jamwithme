@@ -14,6 +14,7 @@ var mongoose = require('mongoose'),
     mysql      = require('mysql'),
     promise    = require('promise'),
     readYaml = require('read-yaml'),
+    Autolinker = require( 'autolinker' ),
     mysqlConnection,
     activeUsers = {};
 
@@ -43,6 +44,14 @@ function getUsernames(mysqlConnection, ids) {
     });
 }
 
+function tagLinks(message) {
+    return Autolinker.link(message, {
+        truncate: {
+            length: 24, location: 'middle'
+        }
+    });
+}
+
 function saveMessageFrom(socket, data, conversation) {
 
     var message = new Message({
@@ -64,10 +73,11 @@ function saveMessageFrom(socket, data, conversation) {
             username: socket.username
         };
 
-        socket.emit('messageSaved', message);
-
         conversation._lastMessage = message;
         conversation.save();
+
+        message.message = tagLinks(message.message);
+        socket.emit('messageSaved', message);
     });
 }
 
@@ -103,6 +113,7 @@ function saveMessageTo(socket, data, conversation) {
                 username: socket.username
             };
 
+            messageTo.message = tagLinks(messageTo.message);
             socketTo.emit('messageReceived', messageTo);
         }
 
@@ -344,6 +355,7 @@ mysqlConnection.connect(function(err) {
                             var users = [];
                             for( var i=0; i<messages.length; i++) {
                                 users.push(messages[i].from);
+                                messages[i].message = tagLinks(messages[i].message);
                             }
 
                             getUsernames(mysqlConnection, users).then(function(results){
