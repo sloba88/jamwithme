@@ -25,7 +25,8 @@ $(document).ready(function(){
                             type: 'POST',
                             url: baseUrl + '/subscription/notify',
                             success: function(result){
-                                console.log(result)
+                                console.log(result);
+                                fbq('track', 'CompleteRegistration');
                             }
                         });
 
