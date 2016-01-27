@@ -304,5 +304,9 @@ $(function() {
         this.setSelectionRange(start, end);
     });
 
+    $(window).on('hashchange', function() {
+        $('#settings-current-hash').val(window.location.hash);
+    });
+
     setTabsHeight();
 });

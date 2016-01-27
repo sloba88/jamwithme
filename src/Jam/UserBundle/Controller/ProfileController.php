@@ -72,6 +72,7 @@ class ProfileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 
@@ -81,7 +82,7 @@ class ProfileController extends Controller
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $response = new RedirectResponse($this->generateUrl('fos_user_profile_edit'));
+                $response = new RedirectResponse($this->generateUrl('fos_user_profile_edit') . $request->request->get('settings_current_hash'));
             }
 
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
