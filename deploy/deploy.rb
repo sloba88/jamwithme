@@ -60,6 +60,12 @@ namespace :node do
     end
 end
 
+namespace :deploy do
+  task :migrate do
+    invoke 'symfony:console', 'doctrine:migrations:migrate', '--no-interaction'
+  end
+end
+
 after 'deploy:updated',   'redis:clear'
 
 after 'deploy:updated',   'elastica:populate'
