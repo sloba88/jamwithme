@@ -210,7 +210,8 @@ $(function() {
             $('#fos_user_profile_form_genres').select2({
                 placeholder: 'Favourite Genres?',
                 multiple: true,
-                data: data
+                data: data,
+                matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
             });
         });
     }
