@@ -1,19 +1,19 @@
 <?php
 
-namespace Jam\CoreBundle\DataFixtures\ORM;
+namespace Application\Migrations;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Jam\CoreBundle\Entity\Instrument;
 use Jam\CoreBundle\Entity\InstrumentCategory;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadInstrumentsData implements FixtureInterface, ContainerAwareInterface
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+class Version20160128110742 extends AbstractMigration implements ContainerAwareInterface
 {
-    /**
-     * @var ContainerInterface
-     */
     private $container;
 
     public function setContainer(ContainerInterface $container = null)
@@ -22,12 +22,19 @@ class LoadInstrumentsData implements FixtureInterface, ContainerAwareInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @param Schema $schema
      */
-    public function load(ObjectManager $manager)
+    public function up(Schema $schema)
     {
+        $this->addSql("SET FOREIGN_KEY_CHECKS=0;");
+        $this->addSql("TRUNCATE TABLE instruments");
+        $this->addSql("TRUNCATE TABLE instrument_categories");
+    }
 
+    public function postUp(Schema $schema)
+    {
         $phpExcelObject = $this->container->get('phpexcel')->createPHPExcelObject($this->container->get('kernel')->getRootDir() . '/../data/instruments.xlsx');
+        $manager = $this->container->get('doctrine.orm.entity_manager');
 
         //  Get worksheet dimensions
         $sheet = $phpExcelObject->getSheet(0);
@@ -61,5 +68,16 @@ class LoadInstrumentsData implements FixtureInterface, ContainerAwareInterface
         }
 
         $manager->flush();
+
+        $this->addSql("SET FOREIGN_KEY_CHECKS=1;");
+    }
+
+    /**
+     * @param Schema $schema
+     */
+    public function down(Schema $schema)
+    {
+        // this down() migration is auto-generated, please modify it to your needs
+
     }
 }

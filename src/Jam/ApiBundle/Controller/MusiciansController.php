@@ -86,13 +86,15 @@ class MusiciansController extends FOSRestController
             $instrument = $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName();
 
             if ($instrument != ''){
-                $icon = file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg");
+                if (!$icon = @file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg")) {
+                    $icon = '';
+                }
             }else{
                 $icon = '';
             }
 
             if ($m->getIsTeacher() == true) {
-                $teacherIcon = file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/Teacher.svg");
+                $teacherIcon = @file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/Teacher.svg");
             }else{
                 $teacherIcon = '';
             }
