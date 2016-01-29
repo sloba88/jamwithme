@@ -170,6 +170,7 @@ $(function() {
         openedConversation.userId = userId;
 
         scrollToBottom();
+        $('textarea.send-message').focus();
 
         //todo: this can also be better done in backend
         setTimeout(function() {
