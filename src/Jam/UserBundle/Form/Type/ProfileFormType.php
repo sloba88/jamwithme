@@ -76,15 +76,18 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('genres', 'genre_type', array(
-            'required' => false
+            'required' => false,
+            'label' => 'Your Favourite Genres'
         ));
 
         $builder->add('brands', 'brand_type', array(
             'required' => false,
-            'label' => 'Favourite Music Brands?'
+            'label' => 'Your Favourite Music Brands'
         ));
 
-        $builder->add('artists', 'artist_type');
+        $builder->add('artists', 'artist_type', array(
+            'label' => 'Your Favourite Music Artists That Influenced You'
+        ));
 
         $builder->add('location', new LocationType());
 
