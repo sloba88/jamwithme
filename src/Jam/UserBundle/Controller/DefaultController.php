@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -299,6 +300,13 @@ class DefaultController extends Controller
      */
     public function resetEmailAction()
     {
+        //currently forbid changing of emails and enable this only when user doesn't have email set for some reason
+
+        if ($this->getUser()->getEmail() != '') {
+            $redirect = new RedirectResponse($this->generateUrl('home'));
+            return $redirect;
+        }
+
         $user = new User();
         $form = $this->createForm(new EmailType(), $user);
 
@@ -317,8 +325,15 @@ class DefaultController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
 
+                $logger = $this->get('logger');
+                $logger->info('User '.$user->getUsername() . ' changed email to '. $email);
+
+                $this->container->get('session')->getFlashBag()->set('success', 'Email changed successfully. ');
+
                 $redirect = new RedirectResponse($this->generateUrl('home'));
                 return $redirect;
+            } else {
+                $form->addError(new FormError('This email is already taken by another user.'));
             }
         }
 

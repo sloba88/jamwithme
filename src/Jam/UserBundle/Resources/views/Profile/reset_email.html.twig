@@ -1,10 +1,15 @@
-{% extends 'JamUserBundle::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block fos_user_content %}
+{% block body %}
 
-    <div class="col-sm-10 main-content">
+    <div class="col-sm-12 main-content">
         <div class="main-content-inner">
-            {{ form_start(form) }}
+
+            {{ form_start(form, {'attr' : { 'class' : 'form-inline' }}) }}
+
+            {{ form_errors(form) }}
+
+            <label>In order to continue please provide your email: </label>
             <div class="form-group">
                 {{ form_widget(form.email) }}
             </div>
@@ -15,4 +20,4 @@
         </div>
     </div>
 
-{% endblock fos_user_content %}
+{% endblock body %}
