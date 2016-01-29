@@ -1,10 +1,6 @@
 imports:
     - { resource: config.yml }
 
-#framework:
-#    validation:
-#        cache: apc
-
 doctrine:
     orm:
         metadata_cache_driver: redis
@@ -13,6 +9,19 @@ doctrine:
 
 monolog:
     handlers:
+        mail:
+            type:         fingers_crossed
+            action_level: critical
+            handler:      buffered
+        buffered:
+            type:    buffer
+            handler: swift
+        swift:
+            type:       swift_mailer
+            from_email: info@jamifind.com
+            to_email:   stanic.slobodan88@gmail.com
+            subject:    Jamifind: An Error Occurred!
+            level:      debug
         main:
             type:         fingers_crossed
             action_level: error
