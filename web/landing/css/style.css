@@ -45,9 +45,10 @@ body.signup-page {
 	color: #fff;
 }
 .signup-page h1 {
-	font-size: 46px;
-	line-height: 54px;
-	text-shadow: 0 0 1px rgba(255,255,255, 0.5);
+	font-size: 42px;
+	line-height: 50px;
+	text-shadow: 0px 0px 10px #000;
+    padding-top: 10%;
 }
 .signup-page h2 {
 	font-size: 40px;
@@ -55,14 +56,21 @@ body.signup-page {
 }
 
 #multimedia-home h2{
-    text-shadow: 0 0 1px rgba(0,0,0, 0.5);
+    text-shadow: 0 0 3px rgba(0,0,0, 0.5);
+}
+
+.signup-page #multimedia-home h4{
+    text-shadow: 0 0 3px rgba(0,0,0, 0.5);
 }
 
 .signup-page h3 {
 	font-size: 26px;
 }
 .signup-page h4 {
-	font-size: 24px;
+	font-size: 22px;
+    padding-top: 20px;
+    line-height: 28px;
+    text-shadow: 0px 0px 10px #000;
 }
 .signup-page h5 {
 	font-size: 20px;
@@ -112,9 +120,10 @@ body.signup-page {
 	padding: 0 5px;
 	transition: all 0.2s ease;
 }
-.social li a:hover {
+.social li a:hover, .social li a:active {
 	opacity: 1;
 	transition: all 0.2s ease;
+    background: none;
 }
 /*****head ends*****/
 
