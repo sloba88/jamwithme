@@ -123,6 +123,10 @@ doctrine_migrations:
     table_name: migration_versions
     name: Application Migrations
 
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
 liip_imagine:
     resolvers:
        default:

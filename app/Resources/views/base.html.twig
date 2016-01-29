@@ -282,7 +282,9 @@
                             <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
                             <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
-                            <li><a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">Login</a></li>
+                            {% if app.request.attributes.get('_route') is not null %}
+                                <li><a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">Login</a></li>
+                            {% endif %}
                         </ul>
                     </div>
 

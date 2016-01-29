@@ -51,7 +51,8 @@
         "snipe/banbuilder": "dev-master",
         "suncat/mobile-detect-bundle": "^0.10.2",
         "liuggio/excelbundle": "^2.0",
-        "doctrine/doctrine-migrations-bundle": "^1.0"
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+        "jms/security-extra-bundle": "dev-master"
     },
     "require-dev": {
         "behat/behat":                       "3.*",
