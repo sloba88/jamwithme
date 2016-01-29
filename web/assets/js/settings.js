@@ -308,5 +308,20 @@ $(function() {
         $('#settings-current-hash').val(window.location.hash);
     });
 
+    $('#next-1').on('click', function(e){
+        e.preventDefault();
+        $('#location-tab').click();
+    });
+
+    $('#location-tab').on('click', function(){
+        $('#next-1').addClass('hidden');
+        $('#finish-1').removeClass('hidden');
+    });
+
+    $('#musician-info-tab').on('click', function(){
+        $('#next-1').removeClass('hidden');
+        $('#finish-1').addClass('hidden');
+    });
+
     setTabsHeight();
 });

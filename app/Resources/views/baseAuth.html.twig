@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             {% if is_granted("ROLE_USER") %}
-                {% if not app.user.location or app.user.location.isTemporary %}
+                {% if not app.user.location or app.user.location.isTemporary and app.request.attributes.get('_route') != 'fos_user_setup' %}
                     <div class="flash-message col-xs-12 no-location-message">
                         <div class="warning alert-warning">
                             Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.

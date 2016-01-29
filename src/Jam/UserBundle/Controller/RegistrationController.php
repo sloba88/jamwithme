@@ -152,6 +152,6 @@ class RegistrationController extends ContainerAware
 
         $this->container->get('session')->getFlashBag()->set('success', $this->container->get('translator')->trans('message.your.account.is.activated.'));
 
-        return new RedirectResponse($this->container->get('router')->generate('home'));
+        return new RedirectResponse($this->container->get('router')->generate('fos_user_setup'));
     }
 }

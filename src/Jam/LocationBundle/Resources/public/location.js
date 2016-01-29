@@ -1,7 +1,11 @@
+'use strict';
+
+/* global _user */
+/* global L */
 
 var myLocation = [_user.lat, _user.lng],
     map,
-    showMap = false,
+    mapInitialized = false,
     myLocationMarker,
     circle = false;
     L.Icon.Default.imagePath = '/vendor/leaflet-dist/images';
@@ -38,7 +42,6 @@ function drawRadius() {
 
 var markerDragEnd = function(e) {
     var self = e.target;
-    markerIsDragged = true;
     self.update();
 
     $.ajax({
@@ -67,7 +70,7 @@ var markerDragEnd = function(e) {
             displayAddress += data.address.island ? data.address.island + ', ' : '';
             displayAddress += data.address.country ? data.address.country + ', ' : '';
 
-            displayAddress = displayAddress.replace(/,\s*$/, "");
+            displayAddress = displayAddress.replace(/,\s*$/, '');
 
             $('#fos_user_profile_form_location_address').val(displayAddress);
         }
@@ -75,8 +78,8 @@ var markerDragEnd = function(e) {
 };
 
 function initMap(){
-    if (!showMap){
-
+    if (!mapInitialized){
+        console.log('map initialized');
         $('.location_widget').find('.dropdown-menu').css({'display': 'block'});
 
         map = L.map('_location_map');
@@ -99,95 +102,101 @@ function initMap(){
         $('[id^="ad_location_address"]').on('change', function() {
             if (!$(this).val()) {
                 $('[id^="ad_location"]').val('');
-                //gmarker.setVisible(false);
             }
         });
 
-        showMap = true;
+        mapInitialized = true;
     }
 }
 
 $(function() {
 
-    if ($('.location_widget').length > 0 ) {
+    if ($('.location_widget:visible').length > 0) {
         initMap();
         setMyMarker();
-
-        $('body').on('keyup', '#fos_user_profile_form_location_address', function(e){
-            var value = $(this).val();
-            var self = $(this);
-
-            if (value.length > 2){
-                $.ajax({
-                    url: location.protocol + '//nominatim.openstreetmap.org/search?q='+value+'&format=json&polygon=1&addressdetails=1&accept-language=en&countrycodes=fi',
-                    cache: true,
-                    success: function(data){
-                        console.log(data);
-                        $('.location-results').html('').hide();
-                        if (data.length > 1){
-                            $.each(data, function(k, v){
-
-                                var displayAddress = '';
-
-                                displayAddress += v.address.road ? v.address.road + ', ' : '';
-                                displayAddress += v.address.suburb ? v.address.suburb + ', ' : '';
-                                displayAddress += v.address.neighbourhood ? v.address.neighbourhood + ', ' : '';
-                                displayAddress += v.address.city ? v.address.city + ', ' : '';
-                                displayAddress += v.address.town ? v.address.town + ', ' : '';
-                                displayAddress += v.address.village ? v.address.village + ', ' : '';
-                                displayAddress += v.address.island ? v.address.island + ', ' : '';
-                                displayAddress += v.address.country ? v.address.country + ', ' : '';
-
-                                displayAddress = displayAddress.replace(/,\s*$/, "");
-
-                                var element = $('<li />').append($('<a/>', {
-                                    href: '#',
-                                    'data-lat': v.lat,
-                                    'data-lng': v.lon,
-                                    text: displayAddress,
-                                    'data-all': JSON.stringify(v)
-                                }));
-
-                                $('.location-results').append(element).show();
-                            });
-                        }
-                    }
-                });
-            }else {
-                $('.location-results').html('').hide();
-            }
-        });
-
-        $('body').on('click', '.location-results a', function(e){
-            e.preventDefault();
-            myLocationMarker.setLatLng(new L.LatLng(Number($(this).data('lat')), Number($(this).data('lng'))));
-            map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
-            $('.location-results').css({'display': 'none'});
-            $('#fos_user_profile_form_location_address').val($(this).text());
-
-            var data = $(this).data('all');
-
-            $('[id$="_location_locality"]').val(data.address.city);
-            $('[id$="_location_neighborhood"]').val(data.address.suburb);
-            $('[id$="_administrative_area_level_3"]').val(data.address.city);
-            $('[id$="_location_country"]').val(data.address.country);
-            $('[id$="_location_route"]').val(data.address.road);
-            $('[id$="_location_zip"]').val(data.address.postcode);
-            $('[id$="_location_lat"]').val(data.lat);
-            $('[id$="_location_lng"]').val(data.lon);
-            $('[id$="_location_isTemporary"]').val(false);
-
-        });
-
-
-        $('.location_widget').find('*').on('focus', function(e) {
-            $('.location_widget').find('.dropdown-menu').css({'display': 'block'});
-        });
-
-        $('body').bind('click', function(e) {
-            if (!$(e.target).closest('.location_widget').length) {
-                $('.location_widget').find('.dropdown-menu').css({'display': 'none'});
-            }
-        });
     }
+
+    $('#location-tab').on('click', function(){
+        setTimeout(function() {
+            initMap();
+            setMyMarker();
+        }, 400 );
+    });
+
+    $('body').on('keyup', '#fos_user_profile_form_location_address', function(){
+        var value = $(this).val();
+
+        if (value.length > 2){
+            $.ajax({
+                url: location.protocol + '//nominatim.openstreetmap.org/search?q='+value+'&format=json&polygon=1&addressdetails=1&accept-language=en&countrycodes=fi',
+                cache: true,
+                success: function(data){
+                    console.log(data);
+                    $('.location-results').html('').hide();
+                    if (data.length > 1){
+                        $.each(data, function(k, v){
+
+                            var displayAddress = '';
+
+                            displayAddress += v.address.road ? v.address.road + ', ' : '';
+                            displayAddress += v.address.suburb ? v.address.suburb + ', ' : '';
+                            displayAddress += v.address.neighbourhood ? v.address.neighbourhood + ', ' : '';
+                            displayAddress += v.address.city ? v.address.city + ', ' : '';
+                            displayAddress += v.address.town ? v.address.town + ', ' : '';
+                            displayAddress += v.address.village ? v.address.village + ', ' : '';
+                            displayAddress += v.address.island ? v.address.island + ', ' : '';
+                            displayAddress += v.address.country ? v.address.country + ', ' : '';
+
+                            displayAddress = displayAddress.replace(/,\s*$/, '');
+
+                            var element = $('<li />').append($('<a/>', {
+                                href: '#',
+                                'data-lat': v.lat,
+                                'data-lng': v.lon,
+                                text: displayAddress,
+                                'data-all': JSON.stringify(v)
+                            }));
+
+                            $('.location-results').append(element).show();
+                        });
+                    }
+                }
+            });
+        }else {
+            $('.location-results').html('').hide();
+        }
+    });
+
+    $('body').on('click', '.location-results a', function(e){
+        e.preventDefault();
+        myLocationMarker.setLatLng(new L.LatLng(Number($(this).data('lat')), Number($(this).data('lng'))));
+        map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
+        $('.location-results').css({'display': 'none'});
+        $('#fos_user_profile_form_location_address').val($(this).text());
+
+        var data = $(this).data('all');
+
+        $('[id$="_location_locality"]').val(data.address.city);
+        $('[id$="_location_neighborhood"]').val(data.address.suburb);
+        $('[id$="_administrative_area_level_3"]').val(data.address.city);
+        $('[id$="_location_country"]').val(data.address.country);
+        $('[id$="_location_route"]').val(data.address.road);
+        $('[id$="_location_zip"]').val(data.address.postcode);
+        $('[id$="_location_lat"]').val(data.lat);
+        $('[id$="_location_lng"]').val(data.lon);
+        $('[id$="_location_isTemporary"]').val(false);
+
+    });
+
+
+    $('.location_widget').find('*').on('focus', function() {
+        $('.location_widget').find('.dropdown-menu').css({'display': 'block'});
+    });
+
+    $('body').bind('click', function(e) {
+        if (!$(e.target).closest('.location_widget').length) {
+            $('.location_widget').find('.dropdown-menu').css({'display': 'none'});
+        }
+    });
+
 });

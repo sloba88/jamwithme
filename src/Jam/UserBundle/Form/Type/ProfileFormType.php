@@ -80,7 +80,8 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('brands', 'brand_type', array(
-            'required' => false
+            'required' => false,
+            'label' => 'Favourite Music Brands?'
         ));
 
         $builder->add('artists', 'artist_type');
