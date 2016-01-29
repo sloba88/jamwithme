@@ -9166,7 +9166,7 @@ header {
   -webkit-transition: width 0.5s ease;
   transition: width 0.5s ease;
   float: right;
-  width: 122px;
+  width: 162px;
 }
 @media only screen and (max-width: 991px) {
   /* line 112, ../../sass/jamifind/_header.scss */
