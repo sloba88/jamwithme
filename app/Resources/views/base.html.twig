@@ -148,7 +148,7 @@
         }
 
         .signup-page .fixed-alerts-container{
-            width: 320px;
+            max-width: 320px;
             margin: 0 auto;
             opacity: .9;
         }
@@ -259,7 +259,11 @@
                     </button>
                 </div><!--menu button-->
 
-                <div class="col-xs-8 col-md-9">
+                {% if is_granted("ROLE_USER") %}
+                <div class="col-xs-8 col-sm-10 col-md-9">
+                {% else %}
+                <div class="col-xs-8 col-sm-6">
+                {% endif %}
                     <div class="navbar-brand">
                         <a href="{{ path('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Logo"></a>
                         <span class="outer"><span>&nbsp; </span> BETA</span>
@@ -282,18 +286,21 @@
                     </div><!--search-block-container-->
 
                 {% else %}
-                    <div class="collapse navbar-collapse" id="social-header-home">
-                        <ul class="nav navbar-nav social ">
-                            <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
-                            {% if status_code is defined and status_code == '404' %}
-                            {% else %}
-                                <li><a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">Login</a></li>
-                            {% endif %}
-                        </ul>
+                    <div class="col-xs-2 col-sm-push-4 col-md-push-5 col-md-1">
+                        {% if status_code is defined and status_code == '404' %}
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">Login</a>
+                        {% endif %}
                     </div>
-
+                    <div class="col-sm-4 col-sm-pull-2 col-md-pull-1 col-md-5">
+                        <div class="collapse navbar-collapse" id="social-header-home">
+                            <ul class="nav navbar-nav social">
+                                <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 {% endif %}
 
             </div>

@@ -27,10 +27,11 @@ ul {
 }
 /*****reset ends*****/
 /*****global styles begins*****/
-body.signup-page {
+body.signup-page,
+body.login-page {
 	font-family: 'Open Sans', sans-serif;
-    overflow: auto;
-    padding-top: 55px;
+	overflow: auto;
+	padding-top: 55px;
 }
 .signup-page h1, .signup-page h2, .signup-page h3, .signup-page h5, .signup-page h6 {
 	font-family: 'Crete Round', serif;
@@ -48,19 +49,17 @@ body.signup-page {
 	font-size: 42px;
 	line-height: 50px;
 	text-shadow: 0px 0px 10px #000;
-    padding-top: 10%;
+	padding-top: 10%;
 }
 .signup-page h2 {
 	font-size: 40px;
 	line-height: 48px;
 }
 
-#multimedia-home h2{
-    text-shadow: 0 0 3px rgba(0,0,0, 0.5);
-}
-
-.signup-page #multimedia-home h4{
-    text-shadow: 0 0 3px rgba(0,0,0, 0.5);
+#multimedia-home h2,
+#multimedia-home h4 {
+	color: #484848;
+	text-shadow: none;
 }
 
 .signup-page h3 {
@@ -68,9 +67,9 @@ body.signup-page {
 }
 .signup-page h4 {
 	font-size: 22px;
-    padding-top: 20px;
-    line-height: 28px;
-    text-shadow: 0px 0px 10px #000;
+	padding-top: 20px;
+	line-height: 28px;
+	text-shadow: 0px 0px 10px #000;
 }
 .signup-page h5 {
 	font-size: 20px;
@@ -80,16 +79,17 @@ body.signup-page {
 }
 /*****global styles ends*****/
 /*****head begins*****/
-.signup-page header {
+.signup-page header,
+.login-page header {
 	background: #000;
 	height: 55px;
 	position: fixed;
 	top: 0;
 	width: 100%;
-	z-index: 200;
+	z-index: 500;
 }
 .signup-page .container {
-    position: relative;
+	position: relative;
 }
 .signup-page header .container {
 	max-width: 1170px;
@@ -101,8 +101,14 @@ body.signup-page {
 	padding-top: 6px;
 }
 
-.signup-page .navbar-brand{
-    padding-top: 5px;
+.signup-page .navbar-brand,
+.login-page .navbar-brand {
+	float: left;
+	padding-top: 5px;
+}
+
+.navbar-brand {
+	padding-top: 4px;
 }
 
 .social {
@@ -111,7 +117,7 @@ body.signup-page {
 }
 .social	li {
 	display: inline-block;
-	margin: 0 5px 0 25px;
+	margin: 0 0 0 25px;
 }
 .social li a {
 	color: #fff;
@@ -123,7 +129,7 @@ body.signup-page {
 .social li a:hover, .social li a:active {
 	opacity: 1;
 	transition: all 0.2s ease;
-    background: none;
+	background: none;
 }
 /*****head ends*****/
 
@@ -158,80 +164,95 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 }
 
 .formError{
-    color: firebrick;
-    font-size: 16px;
-    margin-top: 5px;
-    background-color: #fff;
-    float: left;
-    padding: 4px;
+	color: firebrick;
+	font-size: 16px;
+	margin-top: 5px;
+	background-color: #fff;
+	float: left;
+	padding: 4px;
 }
 
 .subscribeBox h4{
-    color:  black;
-    background-color: #fff;
-    padding: 6px;
+	color:  black;
+	background-color: #fff;
+	padding: 6px;
 }
 
 /*****page pagination ends*****/
 /*****parallax backgrounds begins*****/
 
 .login-container{
-    margin: 20px auto;
+	margin: 20px auto;
+}
+
+.signup-page .login-container {
+	margin-top: 50px;
 }
 
 .login-header p{
-    font-family: "CooperHewitt Bold";
-    color: #fff;
-    font-size: 26px;
-    font-weight: normal;
-    margin: 0;
-    padding-top: 25px;
-    text-align: center;
-    text-transform: uppercase;
+	font-family: "CooperHewitt Bold";
+	color: #fff;
+	font-size: 26px;
+	font-weight: normal;
+	margin: 0;
+	padding-top: 25px;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 #register-home {
+	background-size: cover !important;
 	min-height: 700px;
 	overflow: hidden;
 }
 #multimedia-home {
 	background: url(../images/media-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
-	min-height: 560px;
-	padding-top: 156px;
+	min-height: 600px;
+	padding-top: 90px;
 }
 #subscribe-home {
 	background: url(../images/subscribe-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
-	min-height: 650px;
+	min-height: 600px;
 	padding-top: 140px;
-    position: relative;
+	position: relative;
 }
 
 .copyright{
-    color: #fff;
-    text-align: center;
-    font-size: 13px;
-    position: absolute;
-    bottom: 10px;
-    left: 38%;
+	bottom: 10px;
+	color: #fff;
+	font-size: 13px;
+	left: 0;
+	margin: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
 }
 
-.social li a.fast-subscribe{
-    font-family: 'Open Sans', 'Arial', sans-serif;
-    font-size: 14px;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 2px solid #fff;
-    padding: 2px 10px;
-    position: relative;
-    top: -2px;
+a.fast-subscribe{
+	color: #fff;
+	border: 2px solid #fff;
+	float: right;
+	font-family: 'Open Sans', 'Arial', sans-serif;
+	font-size: 14px;
+	letter-spacing: 1px;
+	margin-top: 12px;
+	opacity: 0.6;
+	padding: 2px 10px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 0.2s ease;
+}
+
+a.fast-subscribe:hover {
+	opacity: 1;
 }
 
 /*****parallax backgrounds ends*****/
 /*****responsive begins*****/
-@media all and (max-width: 940px) {
+@media all and (max-width: 991px) {
 	.mapContent {
 		padding: 85px 20px 0 20px;
 	}
@@ -310,7 +331,8 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	.mediaText {
 		clear: both;
 		float: none;
-		margin: 0 auto 50px;
+		margin: 0 auto;
+		padding-bottom: 80px;
 		padding-right: 237px;
 	}
 	.mediaText h2 {
@@ -326,14 +348,62 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		right: 5px;
 	}
 }
-@media all and (max-width: 780px) {
-	h1 {
-		font-size: 42px;
-		line-height: 50px;
+@media all and (max-width: 767px) {
+	.container {
+		width: 100%;
 	}
-	h2 {
-		font-size: 34px;
-		line-height: 40px;
+	.signup-page header,
+	.login-page header {
+		height: auto;
+	}
+	.signup-page .navbar-brand,
+	.login-page .navbar-brand {
+		padding-top: 9px;
+	}
+	.navbar-brand .outer {
+		display: block;
+		font-size: 9.5px;
+		left: auto;
+		right: -20px;
+		top: -8px;
+	}
+	.navbar-brand img {
+		max-width: 110px;
+	}
+	.signup-page .navbar-brand,
+	.login-page .navbar-brand {
+		float: none;
+	}
+	.social {
+		float: none;
+		text-align: center;
+	}
+	.social li {
+		margin: 5px 10px;
+	}
+	.navbar-toggle {
+		margin: 8px 0 0;
+		z-index: 100;
+	}
+	a.fast-subscribe {
+		font-size: 12px;
+		margin-top: 15px;
+	}
+	.navbar-collapse {
+		clear: both;
+		margin: 0 -15px;
+	}
+	.signup-page h1 {
+		font-size: 28px;
+		line-height: 34px;
+	}
+	.signup-page h2 {
+		font-size: 24px;
+		line-height: 28px;
+	}
+	.signup-page h4 {
+		font-size: 17px;
+		line-height: 24px;
 	}
 	#profileSection h4 {
 		margin-bottom: 25px; 
@@ -370,11 +440,17 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	.infoBoxBig .tags li {
 		font-size: 14px;
 	}
+
+	#multimedia-home {
+		min-height: 450px;
+	}
+	#subscribe-home {
+		min-height: 450px;
+	}
+
 }
 @media all and (max-width: 580px) {
-	.container {
-		width: 96%;
-	}
+	
 	.mapContent {
 		padding: 85px 0 0;
 	}
@@ -395,23 +471,9 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	header .container {
 		padding: 0 10px;
 	}
-
-	.logo {
-		padding-top: 15px;
-		width: 120px;
-	}
-	.logo img {
-		width: 100%;
-	}
-	.social li {
-		margin-left: 10px;
-	}
-	.social li:first-child {
-		margin-left: 0;
-	}
 	#map {
 		background-size: auto 100%;
-        background-position: center 50px;
+		background-position: center 50px;
 	}
 	.mapInteractive {
 		width: 300px;
@@ -517,6 +579,12 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	.inputField, .submitBtn {
 		margin: 10px auto;
 		float: none;
+	}
+}
+@media all and (max-width: 480px) {
+	.login-header p {
+		font-size: 20px;
+		padding-top: 14px;
 	}
 }
 @media all and (max-width: 400px) {

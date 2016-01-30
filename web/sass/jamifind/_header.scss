@@ -17,6 +17,20 @@ header {
 	}
 }
 
+//style not to affect landing page
+body:not(.signup-page):not(.login-page) {
+
+	.navbar-brand .outer {
+		@include respond-to(tablet) {
+			display: block;
+			font-size: 9.5px;
+			left: auto;
+			right: -20px;
+			top: -8px;
+		}
+	}
+}
+
 .navbar-brand {
 	height: auto;
 	padding: 14px 14px 0px 14px;
@@ -38,13 +52,6 @@ header {
 		left: -4px;
 		position: relative;
 		top: 9px;
-		@include respond-to(tablet) {
-			display: block;
-			font-size: 9.5px;
-			left: auto;
-			right: -20px;
-			top: -8px;
-		}
 
 		span {
 			@include respond-to(tablet) {
