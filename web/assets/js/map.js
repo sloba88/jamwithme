@@ -99,7 +99,7 @@ function placeMarkers(){
 
         var popup = L.popup({
             'minWidth': 200
-        }).setContent(window.JST['musicianMapTemplate'](v));
+        }).setContent(window.JST.musicianMapTemplate(v));
 
         marker.data = v;
         marker.bindPopup(popup);
