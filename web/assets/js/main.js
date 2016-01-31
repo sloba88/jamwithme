@@ -184,8 +184,8 @@ function sidebarHeight() {
             //main content inner block
             $mainContentInner.height(windowHeight - $mainContentInner.offset().top - 0); //30px is for padding top and bottom
             //shouts listing in sidebar
-            var shoutsListSiblHeight = $('.shouts-listing-container').offset().top;
-            $('.shouts-listing.shouts-listing-filter').height($mainContentInner.height() - shoutsListSiblHeight + 26);
+            // var shoutsListSiblHeight = $('.shouts-listing-container').offset().top;
+            $('.shouts-listing.shouts-listing-filter').height($mainContentInner.height() - 209);
         }, 100);
     }
     else if (!$('.hidden-xs').is(':visible')) {

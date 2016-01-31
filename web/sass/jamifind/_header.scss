@@ -95,6 +95,10 @@ body:not(.signup-page):not(.login-page) {
 	&:hover, &:focus, &.is-active {
 		color: #fff;
 	} 
+
+	&:focus {
+		outline: none;
+	}
 }
 
 .search-block-container {
@@ -102,7 +106,7 @@ body:not(.signup-page):not(.login-page) {
 	padding-top: 18px;
 	@include respond-to(tablet) {
 		background: $brand-secondary;
-		bottom: -64px;
+		bottom: -58px;
 		display: none;
 		left: 0;
 		padding: 15px;
