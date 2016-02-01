@@ -80,7 +80,7 @@ function drawRadius(){
     var weight = (m / zoomToMeters[map.getZoom()]) * 2;
 
     circle = L.circle(myLocation, (m) * 1.5 , {
-        color: 'silver',
+        color: '#CCCCCC',
         weight: weight,
         fillOpacity: 0
 
