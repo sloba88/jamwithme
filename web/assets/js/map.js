@@ -14,6 +14,7 @@ var myLocation = [_user.lat, _user.lng],
     map,
     circle = false,
     outterCircle = false,
+    innerCircle = false,
     myLocationMarker,
     markers = new L.FeatureGroup();
 
@@ -72,29 +73,31 @@ function drawRadius(){
     if (circle){
         map.removeLayer(circle);
         map.removeLayer(outterCircle);
+        map.removeLayer(innerCircle);
     }
 
     var m = $('#search_form_distance').val() * 1000;
-
-    //var weight = zoomToMeters[map.getZoom()] / 100;
     var weight = (m / zoomToMeters[map.getZoom()]) * 2;
 
     circle = L.circle(myLocation, (m) * 1.5 , {
         color: 'silver',
-        fillColor: 'lightblue',
-        fillOpacity: 0,
         weight: weight,
-        fillRule: 'nonzero'
+        fillOpacity: 0
+
+    }).addTo(map);
+
+    innerCircle = L.circle(myLocation, (m) , {
+        color: 'white',
+        weight: 5,
+        fillOpacity: 0
 
     }).addTo(map);
 
 
     outterCircle = L.circle(myLocation, (m) * 5 , {
         color: 'silver',
-        fillColor: 'lightblue',
-        fillOpacity: 0,
         weight: weight * 6.05,
-        fillRule: 'nonzero'
+        fillOpacity: 0
 
     }).addTo(map);
 
@@ -104,7 +107,7 @@ function placeMarkers(){
 
     map.removeLayer(markers);
     markers = new L.markerClusterGroup({
-        maxClusterRadius: 30
+        maxClusterRadius: 25
     });
 
     markers.on('animationend', function () {

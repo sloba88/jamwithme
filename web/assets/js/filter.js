@@ -250,6 +250,13 @@ $(function() {
         });
     });
 
+    if(typeof(Storage) !== 'undefined') {
+        // Code for localStorage/sessionStorage.
+        if (localStorage.distance) {
+            $('#search_form_distance').val(localStorage.distance);
+        }
+    }
+
     //activates slider
     $('#filter-by-distance-slider').slider({
         range: 'min',
@@ -265,6 +272,11 @@ $(function() {
             $('.slide-max').text(ui.value + 'km');
             $('#search_form_distance').val(ui.value).trigger('change');
             $('#filter-by-distance-btn span').text(ui.value + 'km around you');
+
+            if(typeof(Storage) !== 'undefined') {
+                // Code for localStorage/sessionStorage.
+                localStorage.setItem('distance', ui.value);
+            }
         }
     });
 
