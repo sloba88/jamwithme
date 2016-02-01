@@ -6,6 +6,7 @@
 var myLocation = [_user.lat, _user.lng],
     map,
     mapInitialized = false,
+    waitAutocomplete,
     myLocationMarker,
     circle = false;
     L.Icon.Default.imagePath = '/vendor/leaflet-dist/images';
@@ -126,42 +127,48 @@ $(function() {
     $('body').on('keyup', '#fos_user_profile_form_location_address', function(){
         var value = $(this).val();
 
+        if (waitAutocomplete) {
+            clearTimeout(waitAutocomplete);
+        }
+
         if (value.length > 2){
-            $.ajax({
-                url: location.protocol + '//nominatim.openstreetmap.org/search?q='+value+'&format=json&polygon=1&addressdetails=1&accept-language=en&countrycodes=fi',
-                cache: true,
-                success: function(data){
-                    console.log(data);
-                    $('.location-results').html('').hide();
-                    if (data.length > 1){
-                        $.each(data, function(k, v){
+            waitAutocomplete = setTimeout(function() {
+                $.ajax({
+                    url: location.protocol + '//nominatim.openstreetmap.org/search?q='+value+'&format=json&addressdetails=1&accept-language=en&namedetails=0&polygon=0&bounded=0&',
+                    cache: true,
+                    success: function(data){
+                        console.log(data);
+                        $('.location-results').html('').hide();
+                        if (data.length > 1){
+                            $.each(data, function(k, v){
 
-                            var displayAddress = '';
+                                var displayAddress = '';
 
-                            displayAddress += v.address.road ? v.address.road + ', ' : '';
-                            displayAddress += v.address.suburb ? v.address.suburb + ', ' : '';
-                            displayAddress += v.address.neighbourhood ? v.address.neighbourhood + ', ' : '';
-                            displayAddress += v.address.city ? v.address.city + ', ' : '';
-                            displayAddress += v.address.town ? v.address.town + ', ' : '';
-                            displayAddress += v.address.village ? v.address.village + ', ' : '';
-                            displayAddress += v.address.island ? v.address.island + ', ' : '';
-                            displayAddress += v.address.country ? v.address.country + ', ' : '';
+                                displayAddress += v.address.road ? v.address.road + ', ' : '';
+                                displayAddress += v.address.suburb ? v.address.suburb + ', ' : '';
+                                displayAddress += v.address.neighbourhood ? v.address.neighbourhood + ', ' : '';
+                                displayAddress += v.address.city ? v.address.city + ', ' : '';
+                                displayAddress += v.address.town ? v.address.town + ', ' : '';
+                                displayAddress += v.address.village ? v.address.village + ', ' : '';
+                                displayAddress += v.address.island ? v.address.island + ', ' : '';
+                                displayAddress += v.address.country ? v.address.country + ', ' : '';
 
-                            displayAddress = displayAddress.replace(/,\s*$/, '');
+                                displayAddress = displayAddress.replace(/,\s*$/, '');
 
-                            var element = $('<li />').append($('<a/>', {
-                                href: '#',
-                                'data-lat': v.lat,
-                                'data-lng': v.lon,
-                                text: displayAddress,
-                                'data-all': JSON.stringify(v)
-                            }));
+                                var element = $('<li />').append($('<a/>', {
+                                    href: '#',
+                                    'data-lat': v.lat,
+                                    'data-lng': v.lon,
+                                    text: displayAddress,
+                                    'data-all': JSON.stringify(v)
+                                }));
 
-                            $('.location-results').append(element).show();
-                        });
+                                $('.location-results').append(element).show();
+                            });
+                        }
                     }
-                }
-            });
+                });
+            }, 500 );
         }else {
             $('.location-results').html('').hide();
         }
