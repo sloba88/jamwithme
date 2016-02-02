@@ -55,7 +55,7 @@ h3 {
 	font-size: 26px;
 }
 h4 {
-	font-size: 24px;
+	font-size: 25px;
 }
 h5 {
 	font-size: 20px;
@@ -76,7 +76,7 @@ header {
 .container {
 	margin: 0 auto;
 	text-align: center;
-	position: relative;
+	position: relative ;
 	width: 860px;
 }
 header .container {
@@ -87,6 +87,7 @@ header .container {
 .logo {
 	float: left;
 	padding-top: 6px;
+    text-align: left;
 }
 .social {
 	float: right;
@@ -107,8 +108,22 @@ header .container {
 	opacity: 1;
 	transition: all 0.2s ease;
 }
+
+.logo .outer {
+    color: #a7a7af;
+    font-size: 9px;
+    left: 97px;
+    position: relative;
+    top: -21px;
+    font-style: italic;
+}
+
+.logo a{
+    display: block;
+}
+
 .mapContent {
-	padding: 105px 20px 0 20px;
+    padding: 90px 35px 0 20px;
 	width: auto;
 }
 .mapContent > h4 {
@@ -151,11 +166,11 @@ header .container {
 	top: 7px;
 }
 .mapInteractive .icon.drumms {
-	right: 46px;
-	top: 100px;
+    right: 46px;
+    top: 120px;
 }
 .mapInteractive .icon.teacher {
-    left: 119px;
+    left: 135px;
     top: 283px;
 }
 .infoBoxSmall {
@@ -416,7 +431,6 @@ header .container {
 }
 .mediaText h2 {
 	color: #000;
-	background: url(../images/media-icon.png) no-repeat 217px bottom;
 }
 .mediaText p {
 	font-size: 22px;
@@ -571,13 +585,30 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 
 /*****parallax backgrounds ends*****/
 /*****responsive begins*****/
+
+@media all and (max-width: 1180px) {
+    .mapContent{
+        padding: 70px 35px 0 20px;
+    }
+
+    h1 {
+        font-size: 41px;
+        line-height: 50px;
+    }
+}
+
 @media all and (max-width: 940px) {
 	.mapContent {
-		padding: 85px 20px 0 20px;
+		padding: 70px 20px 0 20px;
 	}
 	.mapContent > h4 {
 		margin-top: 10px;
 	}
+
+    h4{
+        font-size: 23px;
+    }
+
 	.container {
 		width: 94%;
 	}
@@ -654,10 +685,10 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		clear: both;
 		float: none;
 		margin: 0 auto 50px;
-		padding-right: 237px;
-	}
-	.mediaText h2 {
-		background-size: 10%;
+		/*padding-right: 237px;*/
+        padding-right: 0px;
+        width: 545px;
+        padding-left: 25px;
 	}
 	.mediaImage {
 		float: none;
@@ -682,7 +713,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		margin-bottom: 25px; 
 	}
 	#subscribe .container {
-		width: 500px;
+		width: 510px;
 	}
 	#subscribe h2 {
 		margin: 0 0 45px;
@@ -739,9 +770,14 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 		padding: 0 10px;
 	}
 	.logo {
-		padding-top: 15px;
+		padding-top: 10px;
 		width: 120px;
 	}
+
+    .logo .outer{
+        display: none;
+    }
+
 	.logo img {
 		width: 100%;
 	}
@@ -849,9 +885,18 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
     }
 
 	.mediaText {
-		float: left;
+		float: none;
 		padding: 0;
+        width: 100%;
+        text-align: center;
 	}
+
+    .mediaText h2 img{
+        display: block;
+        margin: 0 auto;
+        padding-top: 10px;
+    }
+
 	.mediaImage {
 		width: 100%;
 	}
@@ -877,7 +922,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	}
 
     .mapContent {
-        padding: 65px 0 0;
+        padding: 60px 0 0;
     }
 
     .infoBoxSmall .profileImage img{

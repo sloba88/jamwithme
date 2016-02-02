@@ -55,6 +55,12 @@
                 /></noscript>
     <!-- End Facebook Pixel Code -->
 
+    <style>
+        #map h1, #map h4{
+            text-shadow: 0 0 4px #000;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -64,6 +70,7 @@
             <a href="" style="text-decoration: none; font-size: 26px; color: #fff;">
                 <img src="{{ asset('landing/images/logo.png')}}" alt="Jamifind logo">
             </a>
+            <span class="outer xs-hidden"><span>&nbsp; </span> Bringing Musicians Together</span>
         </div>
         <ul class="social">
             <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
@@ -74,13 +81,13 @@
     </div>
 </header><!--header ends-->
 
-<section id="map">
+<section id="map" style="background: url({{ asset('landing/images/mapa3.jpg')}}) center center no-repeat">
     <div class="container mapContent">
-        <h1>Find fellow musicians and band members to jam with.</h1>
-        <h4 class="subtitle">Searching for the right bass player for your band? Need a trumpeter for your studio sessions? Meet them on <strong>Jamifind.</strong></h4>
+        <h1>Find fellow musicians or new band members near you</h1>
+        <h4 class="subtitle">Searching for the perfect bass player for your band? Looking for the right guitar teacher? Meet them on <strong>Jamifind.</strong></h4>
 
         <div class="mapInteractive">
-            <div class="icon main">
+            <div class="icon main" style="left: 42.5%; top: 116px;">
                 <img src="{{ asset('landing/images/icon-main.png')}}" alt="Main icon">
             </div>
 
@@ -100,7 +107,7 @@
                         </ul>
                     </div>
                     <div class="compatibility">
-                        <span>46%</span>
+                        <span>76%</span>
                         compatibility
                     </div>
                 </div><!--infoBox ends-->
@@ -114,7 +121,7 @@
                         <img src="{{ asset('landing/images/drummer1.jpg')}}" alt="Aleksi Lehtonen">
                     </div>
                     <div class="profileData">
-                        <h5>Aleksi Lehtonen</h5>
+                        <h5>Alex Smith</h5>
                         <ul class="tags clearfix">
                             <li>Jazz</li>
                             <li>Blues</li>
@@ -129,7 +136,7 @@
                 </div><!--infoBox ends-->
             </div>
 
-            <div class="icon teacher info">
+            <div class="icon teacher info" style="left: 64px; top: 233px;">
                 <img src="{{ asset('landing/images/icon-teacher.png')}}" alt="Teacher icon">
 
                 <div class="infoBox infoBoxSmall teacher">
@@ -147,23 +154,21 @@
             </div>
         </div><!--mapInteractive ends-->
     </div><!--bigContainer ends-->
-    <h4 class="map-text-bottom">Looking for the right guitar teacher in your area? <strong>Jamifind</strong> makes it easy.</h4>
+    <h4 class="map-text-bottom">Are you a music teacher looking for new students? <strong>Jamifind</strong> will help you.</h4>
 </section><!--section map ends-->
 
 <section id="profileSection" data-type="background" data-speed="10">
     <div class="container">
-        <h2 style="margin-bottom:15px">Create a profile and find musicians with shared artistic interests.
-        </h2>
-
+        <h2 style="margin-bottom:15px">Create a profile and find musicians with shared artistic interests</h2>
 
         <div class="infoBox infoBoxBig">
             <div class="profileImage">
-                <img src="{{ asset('landing/images/profile-anton-timonen-big.png')}}" alt="Anton Timonen">
+                <img src="{{ asset('landing/images/profile-anton-timonen-big.png')}}" alt="George Lennon">
             </div>
             <div class="profileData">
-                <h3>Anton Timonen</h3>
+                <h3>Paul Lennon</h3>
                 <div class="dataInner location">
-                    <span>Helsinki,Finland</span>
+                    <span>London, UK</span>
                 </div>
                 <div class="dataInner about">
                     <span>Experienced musician and songwriter looking for people to jam with.</span>
@@ -176,10 +181,10 @@
             </div>
             <div class="compatibility clearfix">
                 <div class="first">
-                    bass guitar (main)
+                    electric guitar (main)
                 </div>
                 <div class="last">
-                    <span>46%</span>
+                    <span>76%</span>
                     compatibility
                 </div>
             </div>
@@ -210,7 +215,7 @@
                     <img src="{{ asset('landing/images/brands-gibson.png')}}" alt="Gibson">
                 </li>
                 <li>
-                    <img src="{{ asset('landing/images/brands-yamaha.png')}}" alt="Yamaha">
+                    <img src="{{ asset('landing/images/brands-orange.jpg')}}" alt="Orange">
                 </li>
             </ul>
         </div><!--brands ends-->
@@ -220,7 +225,7 @@
 <section id="multimedia" data-type="background" data-speed="10">
     <div class="container clearfix">
         <div class="mediaText">
-            <h2>Share your sounds, videos and images with the world and get discovered.</h2>
+            <h2>Share your sounds, videos and images with the world and get discovered. <img src="{{ asset('landing/images/media-icon.png') }}" /> </h2>
             <!--<p>
               And some more text about how awesome this is
             </p>-->
@@ -231,7 +236,7 @@
 
 <section id="subscribe" data-type="background" data-speed="10">
     <div class="container">
-        <h2>Subscribe and join the <strong>Jamifind</strong> community and find you next jam session.</h2>
+        <h2>Join the <strong>Jamifind</strong> community and start your next musical journey. <br />It's free.</h2>
         <div class="subscribeBox clearfix">
             <form action="" method="POST">
                 <input type="email" placeholder="Enter your email" class="inputField" required="required">
