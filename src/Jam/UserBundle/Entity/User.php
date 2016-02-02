@@ -696,7 +696,11 @@ class User extends BaseUser
         if ($this->avatar){
             return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
         }else{
-            return 'assets/images/placeholder-user.jpg';
+            if ($this->getGender() == 2) {
+                return 'assets/images/placeholder-user-girl.jpg';
+            } else {
+                return 'assets/images/placeholder-user.jpg';
+            }
         }
     }
 
