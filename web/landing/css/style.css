@@ -109,6 +109,10 @@ header .container {
 	transition: all 0.2s ease;
 }
 
+.infoBoxSmall .profileImage img{
+    display: block;
+}
+
 .logo .outer {
     color: #a7a7af;
     font-size: 9px;
@@ -169,6 +173,12 @@ header .container {
     right: 46px;
     top: 120px;
 }
+
+.mapInteractive .icon.sax {
+    left: 26px;
+    top: 90px;
+}
+
 .mapInteractive .icon.teacher {
     left: 135px;
     top: 283px;
@@ -182,6 +192,23 @@ header .container {
 	z-index: 20;
     display:none;
 }
+
+.sax .infoBoxSmall {
+    left: -50px;
+}
+
+.sax .infoBoxSmall::after{
+    left: 16%;
+}
+
+.drumms .infoBoxSmall {
+    left: -225px;
+}
+
+.drumms .infoBoxSmall::after{
+    left: 63%;
+}
+
 /*.info:hover .infoBoxSmall {
 	display: inline-block;
 	transition: all 0.2s ease;
@@ -241,7 +268,7 @@ header .container {
 	margin-bottom: 7px;
 }
 .tags li {
-	background: #6fdfff;
+	background: #fabc09;
 	color: #000;
 	float: left;
 }
@@ -263,7 +290,7 @@ header .container {
 	padding-top: 50px;
 }
 .compatibility span {
-	color: #6fdfff;
+	color: #fabc09;
 	display: block;
 }
 .infoBoxSmall .compatibility span {
