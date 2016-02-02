@@ -105,7 +105,6 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir:
     jquery_path:
-    less_filter: none # "less", "lessphp", "sass" or "none"
     fonts_dir:
     auto_configure:
         assetic: false

@@ -1,4 +1,6 @@
 services:
+    fos_user.doctrine_registry:
+        alias: doctrine
 
     shout.counter:
         class: Jam\CoreBundle\Services\ShoutCounter
