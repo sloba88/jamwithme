@@ -211,6 +211,31 @@
             fill: #fff;
         }
 
+        header.is-active .navbar-open{
+            display: none;
+        }
+
+        header .navbar-close{
+            display: none;
+            color: #fff;
+            font-size: 27px;
+            position: relative;
+            left: -16px;
+        }
+
+        header.is-active .navbar-close{
+            display: inline-block;
+        }
+
+        header.is-active .navbar-close span{
+            background: #2b2a3b;
+            padding: 5px;
+        }
+
+        header.is-active .navbar-toggle{
+            padding: 0;
+        }
+
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -277,9 +302,14 @@
                 <div class="col-xs-2 visible-xs">
                     <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#social-header-home" aria-expanded="false" type="button">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <div class="navbar-open">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </div>
+                        <div class="navbar-close">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>
                     </button>
                 </div><!--menu button-->
 
