@@ -28,12 +28,12 @@
       </trans-unit>
       <trans-unit id="a5bff9f6727c009d6fe65baa6081c9727f9bca30" resname="placeholder.filter.by.genres">
         <source>placeholder.filter.by.genres</source>
-        <target state="new">Filter by genres</target>
+        <target state="new">Find by genres</target>
         <jms:reference-file line="36">Form/Type/SearchType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f6a552342f2b963f709217cd9dd4b2d3da1f004d" resname="placeholder.filter.by.instruments">
         <source>placeholder.filter.by.instruments</source>
-        <target state="new">Filter by instruments</target>
+        <target state="new">Find by instruments</target>
         <jms:reference-file line="47">Form/Type/SearchType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="19c5fc98d504932a18c936c5b36086dde43818e5" resname="placeholder.url">
