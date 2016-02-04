@@ -4,6 +4,7 @@
 /* global scrollToBottom */
 /* global addMessage */
 /* global scrollbarPlugin */
+/* global isMobile */
 
 var openedConversation = {};
 
@@ -171,6 +172,12 @@ $(function() {
 
         scrollToBottom();
         $('textarea.send-message').focus();
+        if (isMobile) {
+            $('html, body').animate({
+                scrollTop: $('textarea.send-message').offset().top + 'px'
+            }, 'fast');
+            window.scrollTo(0, 1);
+        }
 
         //todo: this can also be better done in backend
         setTimeout(function() {
