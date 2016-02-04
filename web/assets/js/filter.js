@@ -85,6 +85,12 @@ function filterMusicians(){
             if (result.data.length !== 0) {
                 page ++;
                 loadMoreResults = true;
+
+                if (page === 2) {
+                    //just in case load another page
+                    filterMusicians();
+                }
+
             } else {
                 loadMoreResults = false;
             }
