@@ -16,6 +16,7 @@ class ShoutsController extends Controller
      */
     public function indexAction()
     {
+        return array();
     }
 
     /**
