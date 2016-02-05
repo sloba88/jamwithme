@@ -376,6 +376,8 @@ mysqlConnection.connect(function(err) {
                         });
                     } else {
                         console.log('no conversation found');
+                        //new conversation?
+                        socket.emit('beginConversation', true);
                     }
                 });
             });

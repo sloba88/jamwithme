@@ -11885,7 +11885,7 @@ header {
   right: -340px;
   top: 0;
   width: 325px;
-  z-index: 500;
+  z-index: 9999;
 }
 /* line 124, ../../sass/jamifind/_messages.scss */
 .conversation.is-opened {

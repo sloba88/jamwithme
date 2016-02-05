@@ -12,6 +12,10 @@ socket.on('ourConversation', function(data) {
     console.log(data);
     openedConversation.id = data[0]._conversation;
 
+    if(typeof(Storage) !== 'undefined') {
+        localStorage.setItem('openedConversationId', openedConversation.id);
+    }
+
     $('.conversation-message-box').html('');
     $('.conversation-message-box .conversation-single').show();
     $('.conversation').removeClass('is-opened is-opened-compose').addClass('is-opened');
@@ -25,6 +29,19 @@ socket.on('ourConversation', function(data) {
     }, 300);
 });
 
+socket.on('beginConversation', function(data) {
+
+    if(typeof(Storage) !== 'undefined') {
+        localStorage.removeItem('openedConversationId');
+    }
+
+    if (data === true) {
+        $('.conversation-message-box').html('<div class="alert alert-info" role="alert">No conversation history. Introduce yourself.</div>');
+        $('.conversation-message-box .conversation-single').show();
+        $('.conversation').removeClass('is-opened is-opened-compose').addClass('is-opened');
+    }
+});
+
 socket.on('messageSaved', function(value) {
     $('.conversation-message-box').append(window.JST.messageTemplate(value));
     scrollToBottom();
@@ -33,8 +50,13 @@ socket.on('messageSaved', function(value) {
         socket.emit('getMyConversations', {userID: '_user.id'});
     }
 
-    if (openedConversation.id === '') {
+    if (openedConversation.id === '' || typeof openedConversation.id === 'undefined') {
         openedConversation.id = value._conversation;
+
+        if(typeof(Storage) !== 'undefined') {
+            localStorage.setItem('openedConversationId', openedConversation.id);
+        }
+
         socket.emit('getConversation', {
             conversationId: openedConversation.id
         });
@@ -136,6 +158,64 @@ $(function() {
 
         var userId = $(this).data('user-id');
         var conversationId = $(this).data('id');
+
+        $('.open-conversation.active').removeClass('active');
+        $(this).addClass('active');
+
+        $(this).removeClass('unread');
+
+        if (conversationId) {
+            if (openedConversation.id === conversationId) {
+                //this conversation is already opened
+            } else {
+                $('.conversation-message-box .conversation-single').hide();
+
+                socket.emit('getConversation', {
+                    conversationId: conversationId,
+                    to: userId
+                });
+            }
+        } else {
+            socket.emit('getConversation', {
+                conversationId: conversationId,
+                to: userId
+            });
+        }
+
+        $conversation.removeClass('is-opened-compose');
+        $conversation.addClass('is-opened');
+        $overlay.removeClass('hide');
+
+        openedConversation.id = conversationId;
+        openedConversation.userId = userId;
+
+        scrollToBottom();
+        $('textarea.send-message').focus();
+        if (isMobile) {
+            $('html, body').animate({
+                scrollTop: $('textarea.send-message').offset().top - 50 + 'px'
+            }, 'fast');
+            window.scrollTo(0, 1);
+        }
+
+        //todo: this can also be better done in backend
+        setTimeout(function() {
+            socket.emit('conversationIsRead', {
+                conversationId: conversationId
+            });
+        }, 500 );
+    });
+
+    if (localStorage.openedConversationId || localStorage.openedConversationUserId) {
+        if (!socket.connected) {
+            addMessage('danger', 'There are some problems with messaging application, please try again later');
+            return false;
+        }
+
+        var userId = false;
+        var conversationId = localStorage.openedConversationId;
+
+        //TODO: bellow all the same as previous function -->
         $('.open-conversation.active').removeClass('active');
         $(this).addClass('active');
 
@@ -185,7 +265,7 @@ $(function() {
                 conversationId: conversationId
             });
         }, 500 );
-    });
+    }
 
     $('textarea.send-message').on('focus', function(){
         if (isMobile) {
@@ -225,6 +305,12 @@ $(function() {
         $overlay.addClass('hide');
         openedConversation.id = '';
         openedConversation.userId = '';
+
+        if(typeof(Storage) !== 'undefined') {
+            // Code for localStorage/sessionStorage.
+            localStorage.removeItem('openedConversationId');
+        }
+
         $('.autocomplete').val('');
     });
 
