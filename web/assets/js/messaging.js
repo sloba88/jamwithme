@@ -261,6 +261,8 @@ $(function() {
             if (isMobile) {
                 if ($(window).height() <= 568){
                     $('body').css({ 'overflow': 'hidden' });
+                    $('body .container-fluid').css({ 'overflow-x': 'hidden' });
+                    $('body .container-fluid').css({ 'height': $(window).height() });
                 }
             }
         }
@@ -315,6 +317,8 @@ $(function() {
         if (isMobile) {
             if ($(window).height() <= 568){
                 $('body').css({ 'overflow': 'auto' });
+                $('body .container-fluid').css({ 'overflow-x': 'auto' });
+                $('body .container-fluid').css({ 'height': 'auto' });
             }
         }
 
