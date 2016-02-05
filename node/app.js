@@ -192,7 +192,8 @@ mysqlConnection.connect(function(err) {
                         //get unread messages count
                         getUnreadConversations(socket);
                     }, 1000);
-
+                    console.log(12321312312);
+                    socket.emit('userAuthenticated', true );
                 });
             });
 

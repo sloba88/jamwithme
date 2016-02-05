@@ -197,6 +197,8 @@ $(function() {
             if (isMobile) {
                 if ($(window).height() <= 568){
                     $('body').css({ 'overflow': 'hidden' });
+                    $('body .container-fluid').css({ 'overflow-x': 'hidden' });
+                    $('body .container-fluid').css({ 'height': $(window).height() });
                 }
             }
         }
@@ -209,11 +211,62 @@ $(function() {
         }, 500 );
     });
 
-    if (localStorage.openedConversationId || localStorage.openedConversationUserId) {
-        if (!socket.connected) {
-            addMessage('danger', 'There are some problems with messaging application, please try again later');
-            return false;
+    $('textarea.send-message').on('focus', function(){
+        if (isMobile) {
+            if ($(window).height() <= 568){
+                //$('.conversation.is-opened').css({ 'bottom': '300px' });
+                //$('.conversation-container').css({ 'height': '130px' });
+                //$('body').css({ 'overflow': 'hidden' });
+            }
         }
+    });
+
+    $('textarea.send-message').on('blur', function(){
+        if (isMobile) {
+            if ($(window).height() <= 568){
+                //$('.conversation.is-opened').css({ 'bottom': '0' });
+                //$('.conversation-container').css({ 'height': $(window).height() - 100 });
+                //$('body').css({ 'overflow': 'auto' });
+            }
+        }
+    });
+
+    //compose
+    $compose.on('click', function() {
+        $conversation.addClass('is-opened is-opened-compose');
+        $('.conversation-message-box .conversation-single').hide();
+        $overlay.removeClass('hide');
+        openedConversation.id = '';
+        openedConversation.userId = '';
+    });
+
+    //close
+    $('.conversation-close').on('click', '.close-link', function(e) {
+        e.preventDefault();
+
+        $('.open-conversation.active').removeClass('active');
+        $conversation.removeClass('is-opened');
+        $overlay.addClass('hide');
+        openedConversation.id = '';
+        openedConversation.userId = '';
+
+        if (isMobile) {
+            if ($(window).height() <= 568){
+                $('body').css({ 'overflow': 'auto' });
+                $('body .container-fluid').css({ 'overflow-x': 'auto' });
+                $('body .container-fluid').css({ 'height': 'auto' });
+            }
+        }
+
+        if(typeof(Storage) !== 'undefined') {
+            // Code for localStorage/sessionStorage.
+            localStorage.removeItem('openedConversationId');
+        }
+
+        $('.autocomplete').val('');
+    });
+
+    if (localStorage.openedConversationId || localStorage.openedConversationUserId) {
 
         var userId = false;
         var conversationId = localStorage.openedConversationId;
@@ -274,60 +327,5 @@ $(function() {
             });
         }, 500 );
     }
-
-    $('textarea.send-message').on('focus', function(){
-        if (isMobile) {
-            if ($(window).height() <= 568){
-                //$('.conversation.is-opened').css({ 'bottom': '300px' });
-                //$('.conversation-container').css({ 'height': '130px' });
-                //$('body').css({ 'overflow': 'hidden' });
-            }
-        }
-    });
-
-    $('textarea.send-message').on('blur', function(){
-        if (isMobile) {
-            if ($(window).height() <= 568){
-                //$('.conversation.is-opened').css({ 'bottom': '0' });
-                //$('.conversation-container').css({ 'height': $(window).height() - 100 });
-                //$('body').css({ 'overflow': 'auto' });
-            }
-        }
-    });
-
-    //compose
-    $compose.on('click', function() {
-        $conversation.addClass('is-opened is-opened-compose');
-        $('.conversation-message-box .conversation-single').hide();
-        $overlay.removeClass('hide');
-        openedConversation.id = '';
-        openedConversation.userId = '';
-    });
-
-    //close
-    $('.conversation-close').on('click', '.close-link', function(e) {
-        e.preventDefault();
-
-        $('.open-conversation.active').removeClass('active');
-        $conversation.removeClass('is-opened');
-        $overlay.addClass('hide');
-        openedConversation.id = '';
-        openedConversation.userId = '';
-
-        if (isMobile) {
-            if ($(window).height() <= 568){
-                $('body').css({ 'overflow': 'auto' });
-                $('body .container-fluid').css({ 'overflow-x': 'auto' });
-                $('body .container-fluid').css({ 'height': 'auto' });
-            }
-        }
-
-        if(typeof(Storage) !== 'undefined') {
-            // Code for localStorage/sessionStorage.
-            localStorage.removeItem('openedConversationId');
-        }
-
-        $('.autocomplete').val('');
-    });
 
 });
