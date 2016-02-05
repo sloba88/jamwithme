@@ -193,6 +193,12 @@ $(function() {
         $('textarea.send-message').focus();
         if (isMobile) {
             window.scrollTo(0, 1);
+
+            if (isMobile) {
+                if ($(window).height() <= 568){
+                    $('body').css({ 'overflow': 'hidden' });
+                }
+            }
         }
 
         //todo: this can also be better done in backend
@@ -250,10 +256,13 @@ $(function() {
         scrollToBottom();
         $('textarea.send-message').focus();
         if (isMobile) {
-            $('html, body').animate({
-                scrollTop: $('textarea.send-message').offset().top + 'px'
-            }, 'fast');
             window.scrollTo(0, 1);
+
+            if (isMobile) {
+                if ($(window).height() <= 568){
+                    $('body').css({ 'overflow': 'hidden' });
+                }
+            }
         }
 
         //todo: this can also be better done in backend
@@ -269,7 +278,7 @@ $(function() {
             if ($(window).height() <= 568){
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
-                $('body').css({ 'overflow': 'hidden' });
+                //$('body').css({ 'overflow': 'hidden' });
             }
         }
     });
@@ -279,7 +288,7 @@ $(function() {
             if ($(window).height() <= 568){
                 //$('.conversation.is-opened').css({ 'bottom': '0' });
                 //$('.conversation-container').css({ 'height': $(window).height() - 100 });
-                $('body').css({ 'overflow': 'auto' });
+                //$('body').css({ 'overflow': 'auto' });
             }
         }
     });
@@ -302,6 +311,12 @@ $(function() {
         $overlay.addClass('hide');
         openedConversation.id = '';
         openedConversation.userId = '';
+
+        if (isMobile) {
+            if ($(window).height() <= 568){
+                $('body').css({ 'overflow': 'auto' });
+            }
+        }
 
         if(typeof(Storage) !== 'undefined') {
             // Code for localStorage/sessionStorage.
