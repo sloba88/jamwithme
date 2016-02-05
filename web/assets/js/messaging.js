@@ -192,9 +192,6 @@ $(function() {
         scrollToBottom();
         $('textarea.send-message').focus();
         if (isMobile) {
-            $('html, body').animate({
-                scrollTop: $('textarea.send-message').offset().top - 100 + 'px'
-            }, 'fast');
             window.scrollTo(0, 1);
         }
 
