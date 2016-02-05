@@ -102,10 +102,10 @@
 
                         {{ form_row(form.email) }}
 
-                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default">Change password</a>
+                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default" style="margin-bottom: 15px;">Change password</a>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="min-height: 320px;">
 
                         <div class="form-group">
                             {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
