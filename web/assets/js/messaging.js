@@ -193,7 +193,7 @@ $(function() {
         $('textarea.send-message').focus();
         if (isMobile) {
             $('html, body').animate({
-                scrollTop: $('textarea.send-message').offset().top - 50 + 'px'
+                scrollTop: $('textarea.send-message').offset().top - 100 + 'px'
             }, 'fast');
             window.scrollTo(0, 1);
         }
@@ -270,8 +270,8 @@ $(function() {
     $('textarea.send-message').on('focus', function(){
         if (isMobile) {
             if ($(window).height() <= 568){
-                $('.conversation.is-opened').css({ 'bottom': '300px' });
-                $('.conversation-container').css({ 'height': '130px' });
+                //$('.conversation.is-opened').css({ 'bottom': '300px' });
+                //$('.conversation-container').css({ 'height': '130px' });
                 $('body').css({ 'overflow': 'hidden' });
             }
         }
@@ -280,8 +280,8 @@ $(function() {
     $('textarea.send-message').on('blur', function(){
         if (isMobile) {
             if ($(window).height() <= 568){
-                $('.conversation.is-opened').css({ 'bottom': '0' });
-                $('.conversation-container').css({ 'height': $(window).height() - 100 });
+                //$('.conversation.is-opened').css({ 'bottom': '0' });
+                //$('.conversation-container').css({ 'height': $(window).height() - 100 });
                 $('body').css({ 'overflow': 'auto' });
             }
         }
