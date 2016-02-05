@@ -109,7 +109,7 @@ $(function() {
     }
 
     $('.send-message').on('keyup', function(e) {
-        if (e.which == 13) {
+        if (e.which == 13 && !e.shiftKey) {
             sendMessage($(this));
         }
     });
@@ -185,6 +185,26 @@ $(function() {
                 conversationId: conversationId
             });
         }, 500 );
+    });
+
+    $('textarea.send-message').on('focus', function(){
+        if (isMobile) {
+            if ($(window).height() <= 568){
+                $('.conversation.is-opened').css({ 'bottom': '300px' });
+                $('.conversation-container').css({ 'height': '130px' });
+                $('body').css({ 'overflow': 'hidden' });
+            }
+        }
+    });
+
+    $('textarea.send-message').on('blur', function(){
+        if (isMobile) {
+            if ($(window).height() <= 568){
+                $('.conversation.is-opened').css({ 'bottom': '0' });
+                $('.conversation-container').css({ 'height': $(window).height() - 100 });
+                $('body').css({ 'overflow': 'auto' });
+            }
+        }
     });
 
     //compose

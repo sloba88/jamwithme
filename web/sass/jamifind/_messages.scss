@@ -222,11 +222,19 @@
 
 .conversation-send {
 	bottom: 20px;
-	left: 15px;;
+	left: 15px;
 	position: absolute;
 	right: 15px;
 
-	.btn {
-		margin-top: 10px;
-	}
+  .send-message{
+    @include respond-to(nonHandhelds) {
+      height: 74px;
+    }
+  }
+
+  .btn {
+    @include respond-to(nonHandhelds) {
+      margin-top: 10px;
+    }
+  }
 }
