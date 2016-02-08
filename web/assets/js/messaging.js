@@ -110,6 +110,21 @@ function sendMessage(self) {
     self.val('');
 }
 
+function toggleFullScreen() {
+    var doc = window.document;
+    var docEl = doc.documentElement;
+
+    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+        requestFullScreen.call(docEl);
+    }
+    else {
+        cancelFullScreen.call(doc);
+    }
+}
+
 $(function() {
 
     //only on messages page
@@ -189,19 +204,16 @@ $(function() {
         openedConversation.id = conversationId;
         openedConversation.userId = userId;
 
-        scrollToBottom();
         $('textarea.send-message').focus();
         if (isMobile) {
-            window.scrollTo(0, 1);
-
-            if (isMobile) {
-                if ($(window).height() <= 568){
-                    $('body').css({ 'overflow': 'hidden' });
-                    $('body .container-fluid').css({ 'overflow-x': 'hidden' });
-                    $('body .container-fluid').css({ 'height': $(window).height() });
-                }
+            if ($(window).height() <= 568){
+                $('body').css({ 'overflow': 'hidden' });
+                $('body .container-fluid').css({ 'overflow-x': 'hidden' });
+                $('body .container-fluid').css({ 'height': $(window).height() });
             }
         }
+
+        scrollToBottom();
 
         //todo: this can also be better done in backend
         setTimeout(function() {
@@ -211,9 +223,17 @@ $(function() {
         }, 500 );
     });
 
-    $('textarea.send-message').on('focus', function(){
+    $('body').on('focus', 'textarea.send-message', function(){
         if (isMobile) {
             if ($(window).height() <= 568){
+
+                setTimeout(function() {
+                    scrollToBottom($('body'));
+                }, 500 );
+
+                window.scrollTo(0, 1);
+                toggleFullScreen();
+
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
                 //$('body').css({ 'overflow': 'hidden' });
@@ -241,7 +261,7 @@ $(function() {
     });
 
     //close
-    $('.conversation-close').on('click', '.close-link', function(e) {
+    $('.conversation').on('click', '.close-link', function(e) {
         e.preventDefault();
 
         $('.open-conversation.active').removeClass('active');
@@ -252,9 +272,11 @@ $(function() {
 
         if (isMobile) {
             if ($(window).height() <= 568){
+                window.scrollTo(0, 1);
                 $('body').css({ 'overflow': 'auto' });
                 $('body .container-fluid').css({ 'overflow-x': 'auto' });
                 $('body .container-fluid').css({ 'height': 'auto' });
+                toggleFullScreen();
             }
         }
 
@@ -306,19 +328,16 @@ $(function() {
         openedConversation.id = conversationId;
         openedConversation.userId = userId;
 
-        scrollToBottom();
         $('textarea.send-message').focus();
         if (isMobile) {
-            window.scrollTo(0, 1);
-
-            if (isMobile) {
-                if ($(window).height() <= 568){
-                    $('body').css({ 'overflow': 'hidden' });
-                    $('body .container-fluid').css({ 'overflow-x': 'hidden' });
-                    $('body .container-fluid').css({ 'height': $(window).height() });
-                }
+            if ($(window).height() <= 568){
+                $('body').css({ 'overflow': 'hidden' });
+                $('body .container-fluid').css({ 'overflow-x': 'hidden' });
+                $('body .container-fluid').css({ 'height': $(window).height() });
             }
         }
+
+        scrollToBottom();
 
         //todo: this can also be better done in backend
         setTimeout(function() {

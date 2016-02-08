@@ -21,8 +21,10 @@ function checkTouchDevice() {
     }
 }
 
-function scrollToBottom() {
-    var wtf = $('.conversation-message-box');
+function scrollToBottom(wtf) {
+    if (!wtf) {
+        wtf = $('.conversation-message-box');
+    }
     if (wtf[0]){
         var height = wtf[0].scrollHeight;
         wtf.scrollTop(height);

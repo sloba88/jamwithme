@@ -121,6 +121,10 @@
 	width: 325px;
 	z-index: 9999;
 
+   @include respond-to(handhelds) {
+     padding-top: 0;
+   }
+
 	&.is-opened {
 		right: 0;
 	}
@@ -136,6 +140,13 @@
 			display: none;
 		}
 	}
+
+  .close-link-mobile {
+    color: #fff;
+    position: relative;
+    top: 15px;
+    font-size: 16px;
+  }
 }
 
 .overlay {
