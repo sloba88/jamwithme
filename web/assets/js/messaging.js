@@ -223,7 +223,7 @@ $(function() {
         }, 500 );
     });
 
-    $('textarea.send-message').on('focusin', function(){
+    $('body').on('focusin', 'textarea.send-message', function(){
         if (isMobile) {
             if ($(window).height() <= 568){
                 window.scrollTo(0, 1);
