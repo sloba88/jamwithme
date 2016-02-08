@@ -235,6 +235,8 @@ $(function() {
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
                 //$('body').css({ 'overflow': 'hidden' });
+            } else {
+                $('textarea.send-message').css('border', '2px solid blue');
             }
         }
     });
