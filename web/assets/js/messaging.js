@@ -210,7 +210,6 @@ $(function() {
                 $('body').css({ 'overflow': 'hidden' });
                 $('body .container-fluid').css({ 'overflow-x': 'hidden' });
                 $('body .container-fluid').css({ 'height': $(window).height() });
-                scrollToBottom($('.conversation'));
             }
         }
 
@@ -229,6 +228,9 @@ $(function() {
             if ($(window).height() <= 568){
                 window.scrollTo(0, 1);
                 toggleFullScreen();
+                setTimeout(function() {
+                    scrollToBottom($('body'));
+                }, 500 );
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
                 //$('body').css({ 'overflow': 'hidden' });
@@ -329,7 +331,6 @@ $(function() {
                 $('body').css({ 'overflow': 'hidden' });
                 $('body .container-fluid').css({ 'overflow-x': 'hidden' });
                 $('body .container-fluid').css({ 'height': $(window).height() });
-                scrollToBottom($('.conversation'));
             }
         }
 
