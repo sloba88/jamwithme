@@ -223,7 +223,8 @@ $(function() {
         }, 500 );
     });
 
-    $('body').on('focusin', 'textarea.send-message', function(){
+    $('body').on('focus', 'textarea.send-message', function(){
+        $('textarea.send-message').css('border', '2px solid green');
         if (isMobile) {
             if ($(window).height() <= 568){
                 window.scrollTo(0, 1);
@@ -239,7 +240,6 @@ $(function() {
                 $('textarea.send-message').css('border', '2px solid blue');
             }
         }
-        $('textarea.send-message').css('border', '2px solid green');
     });
 
     $('textarea.send-message').on('blur', function(){
