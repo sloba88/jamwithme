@@ -239,6 +239,7 @@ $(function() {
                 $('textarea.send-message').css('border', '2px solid blue');
             }
         }
+        $('textarea.send-message').css('border', '2px solid green');
     });
 
     $('textarea.send-message').on('blur', function(){
