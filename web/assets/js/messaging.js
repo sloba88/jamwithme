@@ -210,7 +210,6 @@ $(function() {
                 $('body').css({ 'overflow': 'hidden' });
                 $('body .container-fluid').css({ 'overflow-x': 'hidden' });
                 $('body .container-fluid').css({ 'height': $(window).height() });
-                $('textarea.send-message').css('border', '2px solid gold');
             }
         }
 
@@ -224,7 +223,7 @@ $(function() {
         }, 500 );
     });
 
-    $('textarea.send-message').on('focus', function(){
+    $('textarea.send-message').on('focusin', function(){
         if (isMobile) {
             if ($(window).height() <= 568){
                 window.scrollTo(0, 1);
