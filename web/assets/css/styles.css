@@ -11887,21 +11887,34 @@ header {
   width: 325px;
   z-index: 9999;
 }
-/* line 124, ../../sass/jamifind/_messages.scss */
+@media only screen and (max-width: 767px) {
+  /* line 112, ../../sass/jamifind/_messages.scss */
+  .conversation {
+    padding-top: 0;
+  }
+}
+/* line 128, ../../sass/jamifind/_messages.scss */
 .conversation.is-opened {
   right: 0;
 }
-/* line 130, ../../sass/jamifind/_messages.scss */
+/* line 134, ../../sass/jamifind/_messages.scss */
 .conversation.is-opened-compose .conversation-new {
   display: block;
   padding: 20px 0;
 }
-/* line 135, ../../sass/jamifind/_messages.scss */
+/* line 139, ../../sass/jamifind/_messages.scss */
 .conversation.is-opened-compose .conversation-single {
   display: none;
 }
+/* line 144, ../../sass/jamifind/_messages.scss */
+.conversation .close-link-mobile {
+  color: #fff;
+  position: relative;
+  top: 15px;
+  font-size: 16px;
+}
 
-/* line 141, ../../sass/jamifind/_messages.scss */
+/* line 152, ../../sass/jamifind/_messages.scss */
 .overlay {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -11912,17 +11925,17 @@ header {
   z-index: 400;
 }
 
-/* line 151, ../../sass/jamifind/_messages.scss */
+/* line 162, ../../sass/jamifind/_messages.scss */
 .conversation-container {
   overflow: auto;
 }
 
-/* line 155, ../../sass/jamifind/_messages.scss */
+/* line 166, ../../sass/jamifind/_messages.scss */
 .conversation-close {
   border-bottom: 4px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 20px;
 }
-/* line 159, ../../sass/jamifind/_messages.scss */
+/* line 170, ../../sass/jamifind/_messages.scss */
 .conversation-close .close-link {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -11934,7 +11947,7 @@ header {
   font-size: 14px;
   text-transform: uppercase;
 }
-/* line 167, ../../sass/jamifind/_messages.scss */
+/* line 178, ../../sass/jamifind/_messages.scss */
 .conversation-close .close-link i {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -11945,55 +11958,55 @@ header {
   position: relative;
   top: 2px;
 }
-/* line 175, ../../sass/jamifind/_messages.scss */
+/* line 186, ../../sass/jamifind/_messages.scss */
 .conversation-close .close-link:hover, .conversation-close .close-link:active {
   opacity: 0.8;
   text-decoration: none;
 }
-/* line 180, ../../sass/jamifind/_messages.scss */
+/* line 191, ../../sass/jamifind/_messages.scss */
 .conversation-close .close-link:hover i, .conversation-close .close-link:active i {
   color: #fabc09;
 }
 
-/* line 187, ../../sass/jamifind/_messages.scss */
+/* line 198, ../../sass/jamifind/_messages.scss */
 .conversation-new {
   display: none;
 }
 
-/* line 191, ../../sass/jamifind/_messages.scss */
+/* line 202, ../../sass/jamifind/_messages.scss */
 .conversation-single {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
   padding: 20px 0;
 }
-/* line 196, ../../sass/jamifind/_messages.scss */
+/* line 207, ../../sass/jamifind/_messages.scss */
 .conversation-single .message-picture {
   float: left;
   margin-right: 15px;
 }
-/* line 201, ../../sass/jamifind/_messages.scss */
+/* line 212, ../../sass/jamifind/_messages.scss */
 .conversation-single .name,
 .conversation-single .time,
 .conversation-single .text {
   padding-left: 55px;
 }
-/* line 207, ../../sass/jamifind/_messages.scss */
+/* line 218, ../../sass/jamifind/_messages.scss */
 .conversation-single .name {
   font-size: 14px;
   margin: 0 0 2px;
   text-transform: uppercase;
 }
-/* line 213, ../../sass/jamifind/_messages.scss */
+/* line 224, ../../sass/jamifind/_messages.scss */
 .conversation-single .time {
   font-size: 12px;
 }
-/* line 217, ../../sass/jamifind/_messages.scss */
+/* line 228, ../../sass/jamifind/_messages.scss */
 .conversation-single .text {
   line-height: 18px;
   margin: 0;
 }
 
-/* line 223, ../../sass/jamifind/_messages.scss */
+/* line 234, ../../sass/jamifind/_messages.scss */
 .conversation-send {
   bottom: 20px;
   left: 15px;
@@ -12001,13 +12014,13 @@ header {
   right: 15px;
 }
 @media only screen and (min-width: 768px) {
-  /* line 229, ../../sass/jamifind/_messages.scss */
+  /* line 240, ../../sass/jamifind/_messages.scss */
   .conversation-send .send-message {
     height: 74px;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 235, ../../sass/jamifind/_messages.scss */
+  /* line 246, ../../sass/jamifind/_messages.scss */
   .conversation-send .btn {
     margin-top: 10px;
   }

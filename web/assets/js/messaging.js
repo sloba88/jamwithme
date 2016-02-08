@@ -204,19 +204,19 @@ $(function() {
         openedConversation.id = conversationId;
         openedConversation.userId = userId;
 
-        scrollToBottom();
         $('textarea.send-message').focus();
         if (isMobile) {
             window.scrollTo(0, 1);
-
-            if (isMobile) {
-                if ($(window).height() <= 568){
-                    $('body').css({ 'overflow': 'hidden' });
-                    $('body .container-fluid').css({ 'overflow-x': 'hidden' });
-                    $('body .container-fluid').css({ 'height': $(window).height() });
-                }
+            toggleFullScreen();
+            if ($(window).height() <= 568){
+                $('body').css({ 'overflow': 'hidden' });
+                $('body .container-fluid').css({ 'overflow-x': 'hidden' });
+                $('body .container-fluid').css({ 'height': $(window).height() });
+                scrollToBottom($('.conversation'));
             }
         }
+
+        scrollToBottom();
 
         //todo: this can also be better done in backend
         setTimeout(function() {
@@ -256,7 +256,7 @@ $(function() {
     });
 
     //close
-    $('.conversation-close').on('click', '.close-link', function(e) {
+    $('.conversation').on('click', '.close-link', function(e) {
         e.preventDefault();
 
         $('.open-conversation.active').removeClass('active');
@@ -266,9 +266,8 @@ $(function() {
         openedConversation.userId = '';
 
         if (isMobile) {
-            window.scrollTo(0, 1);
-
             if ($(window).height() <= 568){
+                window.scrollTo(0, 1);
                 $('body').css({ 'overflow': 'auto' });
                 $('body .container-fluid').css({ 'overflow-x': 'auto' });
                 $('body .container-fluid').css({ 'height': 'auto' });
@@ -324,19 +323,19 @@ $(function() {
         openedConversation.id = conversationId;
         openedConversation.userId = userId;
 
-        scrollToBottom();
         $('textarea.send-message').focus();
         if (isMobile) {
             window.scrollTo(0, 1);
-
-            if (isMobile) {
-                if ($(window).height() <= 568){
-                    $('body').css({ 'overflow': 'hidden' });
-                    $('body .container-fluid').css({ 'overflow-x': 'hidden' });
-                    $('body .container-fluid').css({ 'height': $(window).height() });
-                }
+            toggleFullScreen();
+            if ($(window).height() <= 568){
+                $('body').css({ 'overflow': 'hidden' });
+                $('body .container-fluid').css({ 'overflow-x': 'hidden' });
+                $('body .container-fluid').css({ 'height': $(window).height() });
+                scrollToBottom($('.conversation'));
             }
         }
+
+        scrollToBottom();
 
         //todo: this can also be better done in backend
         setTimeout(function() {

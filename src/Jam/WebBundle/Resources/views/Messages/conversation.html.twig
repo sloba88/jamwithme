@@ -2,9 +2,12 @@
 
     <div class="conversation">
 
-        <div class="conversation-close clearfix">
-            <a href="#" class="close-link"><i class="glyphicon glyphicon-remove"></i>close conversation</a>
+        <div class="conversation-close clearfix hidden-xs">
+            <a href="#" class="close-link" title="Close conversation"><i class="glyphicon glyphicon-remove"></i>close conversation</a>
         </div>
+
+        <a href="#" class="close-link close-link-mobile pull-right visible-xs-inline-block" title="Close conversation"><i class="glyphicon glyphicon-remove"></i></a>
+
         <!--conversation-close ends-->
 
         <div class="conversation-new">
@@ -16,7 +19,7 @@
 
         <div class="conversation-send">
             <form role="form" class="row">
-                <div class="col-xs-9 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-9 col-md-12 col-lg-12">
                     <textarea class="form-control send-message" rows="1" placeholder="Write message" maxlength="1000"></textarea>
                 </div>
                 <div class="col-xs-3 col-sm-12 col-md-12 col-lg-12">
