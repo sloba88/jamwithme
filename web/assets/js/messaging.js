@@ -230,6 +230,7 @@ $(function() {
                 toggleFullScreen();
                 setTimeout(function() {
                     scrollToBottom($('body'));
+                    $('textarea.send-message').css('border', '2px solid red');
                 }, 500 );
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
