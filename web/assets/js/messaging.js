@@ -227,12 +227,15 @@ $(function() {
         $('textarea.send-message').css('border', '2px solid green');
         if (isMobile) {
             if ($(window).height() <= 568){
-                window.scrollTo(0, 1);
-                toggleFullScreen();
+
                 setTimeout(function() {
                     scrollToBottom($('body'));
                     $('textarea.send-message').css('border', '2px solid red');
                 }, 500 );
+
+                window.scrollTo(0, 1);
+                toggleFullScreen();
+
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
                 //$('body').css({ 'overflow': 'hidden' });
