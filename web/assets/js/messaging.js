@@ -206,8 +206,6 @@ $(function() {
 
         $('textarea.send-message').focus();
         if (isMobile) {
-            window.scrollTo(0, 1);
-            toggleFullScreen();
             if ($(window).height() <= 568){
                 $('body').css({ 'overflow': 'hidden' });
                 $('body .container-fluid').css({ 'overflow-x': 'hidden' });
@@ -229,6 +227,8 @@ $(function() {
     $('textarea.send-message').on('focus', function(){
         if (isMobile) {
             if ($(window).height() <= 568){
+                window.scrollTo(0, 1);
+                toggleFullScreen();
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
                 //$('body').css({ 'overflow': 'hidden' });
@@ -325,8 +325,6 @@ $(function() {
 
         $('textarea.send-message').focus();
         if (isMobile) {
-            window.scrollTo(0, 1);
-            toggleFullScreen();
             if ($(window).height() <= 568){
                 $('body').css({ 'overflow': 'hidden' });
                 $('body .container-fluid').css({ 'overflow-x': 'hidden' });
