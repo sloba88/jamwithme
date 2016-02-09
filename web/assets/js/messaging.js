@@ -5,6 +5,7 @@
 /* global addMessage */
 /* global scrollbarPlugin */
 /* global isMobile */
+/* global screenfull */
 
 var openedConversation = {};
 
@@ -108,21 +109,6 @@ function sendMessage(self) {
     });
 
     self.val('');
-}
-
-function toggleFullScreen() {
-    var doc = window.document;
-    var docEl = doc.documentElement;
-
-    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-        requestFullScreen.call(docEl);
-    }
-    else {
-        cancelFullScreen.call(doc);
-    }
 }
 
 $(function() {
@@ -231,8 +217,9 @@ $(function() {
                     scrollToBottom($('body'));
                 }, 500 );
 
-                window.scrollTo(0, 1);
-                toggleFullScreen();
+                if (screenfull.enabled) {
+                    screenfull.request();
+                }
 
                 //$('.conversation.is-opened').css({ 'bottom': '300px' });
                 //$('.conversation-container').css({ 'height': '130px' });
@@ -272,11 +259,9 @@ $(function() {
 
         if (isMobile) {
             if ($(window).height() <= 568){
-                window.scrollTo(0, 1);
                 $('body').css({ 'overflow': 'auto' });
                 $('body .container-fluid').css({ 'overflow-x': 'auto' });
                 $('body .container-fluid').css({ 'height': 'auto' });
-                toggleFullScreen();
             }
         }
 
@@ -288,7 +273,7 @@ $(function() {
         $('.autocomplete').val('');
     });
 
-    if (localStorage.openedConversationId || localStorage.openedConversationUserId) {
+    if (!isMobile && localStorage.openedConversationId || localStorage.openedConversationUserId) {
 
         var userId = false;
         var conversationId = localStorage.openedConversationId;
