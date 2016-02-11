@@ -42,6 +42,13 @@ class ProfileEditedListener implements EventSubscriberInterface
 
             $this->session->set('_locale', $user->getLocale());
 
+            /* send data to GA */
+            $data = array(
+                'cid'=> $user->getId(),
+                'ec'=> 'profile',
+                'ea'=> 'edited'
+            );
+            $this->tracker->send($data, 'event');
         }
     }
 }
