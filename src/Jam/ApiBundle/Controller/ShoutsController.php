@@ -225,7 +225,7 @@ class ShoutsController extends FOSRestController
 
             /* send data to GA */
             $data = array(
-                'cid'=> $this->getUser()->getId(),
+                'uid'=> $this->getUser()->getId(),
                 'ec'=> 'shout',
                 'ea'=> 'created'
             );

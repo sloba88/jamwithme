@@ -35,7 +35,7 @@ class UserLoginListener
 
         /* send data to GA */
         $data = array(
-            'cid'=> $user->getId(),
+            'uid'=> $user->getId(),
             'ec'=> 'authentication',
             'ea'=> 'login'
         );

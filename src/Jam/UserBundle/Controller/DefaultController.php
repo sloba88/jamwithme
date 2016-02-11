@@ -288,7 +288,7 @@ class DefaultController extends Controller
 
         /* send data to GA */
         $data = array(
-            'cid'=> $user->getId(),
+            'uid'=> $user->getId(),
             'ec'=> 'profile',
             'ea'=> 'avatar set'
         );

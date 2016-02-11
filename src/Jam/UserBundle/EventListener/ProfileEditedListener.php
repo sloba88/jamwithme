@@ -44,7 +44,7 @@ class ProfileEditedListener implements EventSubscriberInterface
 
             /* send data to GA */
             $data = array(
-                'cid'=> $user->getId(),
+                'uid'=> $user->getId(),
                 'ec'=> 'profile',
                 'ea'=> 'edited'
             );
