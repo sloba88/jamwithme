@@ -292,7 +292,7 @@ class DefaultController extends Controller
             'ec'=> 'profile',
             'ea'=> 'avatar set'
         );
-        $this->tracker->send($data, 'event');
+        $this->get('happyr.google.analytics.tracker')->send($data, 'event');
 
         $response = new JsonResponse();
         $response->setData(array(
