@@ -5,7 +5,7 @@
     {% if is_granted("ROLE_USER") %}
         {% include "JamWebBundle:Common:navigation.html.twig" %}
     {% else %}
-        <div class="col-lg-4">
+        <div class="col-lg-4 hidden-sm hidden-xs">
             <div class="login-container">
                 {{ app.session.set('preview', 'true') }}
                 {{ render(controller('FOSUserBundle:Security:login')) }}
