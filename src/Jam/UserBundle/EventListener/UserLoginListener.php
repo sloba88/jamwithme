@@ -39,7 +39,7 @@ class UserLoginListener
             'ec'=> 'authentication',
             'ea'=> 'login'
         );
-        $this->tracker->send($data, 'userLoggedIn');
+        $this->tracker->send($data, 'event');
     }
 
 }
