@@ -270,3 +270,6 @@ mobile_detect:
         mobile: ~
         tablet: ~
     switch_device_view: ~
+
+happyr_google_analytics:
+    tracking_id: UA-55431237-1

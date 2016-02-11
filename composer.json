@@ -52,7 +52,8 @@
         "suncat/mobile-detect-bundle": "^0.10.2",
         "liuggio/excelbundle": "^2.0",
         "doctrine/doctrine-migrations-bundle": "^1.0",
-        "jms/security-extra-bundle": "dev-master"
+        "jms/security-extra-bundle": "dev-master",
+        "happyr/google-analytics-bundle": "^3.2"
     },
     "require-dev": {
         "behat/behat":                       "3.*",
