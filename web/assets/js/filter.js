@@ -52,7 +52,7 @@ function getFilterData() {
         $.each($('input.filter-genres').select2('data'), function(k, v) {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'filter',
+                eventCategory: 'search',
                 eventAction: 'genres',
                 eventLabel: v.text
             });
@@ -66,7 +66,7 @@ function getFilterData() {
         $.each($('input.instruments-genres').select2('data'), function(k, v) {
             ga('send', {
                 hitType: 'event',
-                eventCategory: 'filter',
+                eventCategory: 'search',
                 eventAction: 'instruments',
                 eventLabel: v.text
             });
@@ -272,6 +272,13 @@ $(function() {
         }).done(function( result ) {
             if (result.success === true) {
                 $('.people-listing-grid .subscribe-info-search').html(window.JST.notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'search',
+                    eventAction: 'subscribed',
+                    eventLabel: 'search'
+                });
             }
         });
     });

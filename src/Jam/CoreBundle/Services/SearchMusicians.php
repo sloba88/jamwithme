@@ -79,7 +79,7 @@ class SearchMusicians {
         /* send data to GA */
         $data = array(
             'uid'=> $me->getId(),
-            'ec'=> 'filter',
+            'ec'=> 'search',
             'ea'=> 'distance',
             'el'=> $distance . 'km',
             'ev'=> $distance
