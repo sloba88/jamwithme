@@ -11,6 +11,7 @@ use Elastica\Filter\Terms;
 use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
+use Happyr\Google\AnalyticsBundle\Service\Tracker;
 use Jam\CoreBundle\Entity\Search;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
@@ -28,6 +29,11 @@ class SearchMusicians {
     private $elasticUserFinder;
 
     /**
+     * @var Tracker
+     */
+    private $tracker;
+
+    /**
      * @param TransformedFinder $finder
      */
     public function setElasticUserFinder(TransformedFinder $finder)
@@ -38,6 +44,11 @@ class SearchMusicians {
     public function setTokenStorage(TokenStorage $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
+    }
+
+    public function setTracker(Tracker $tracker)
+    {
+        $this->tracker = $tracker;
     }
 
     /**
@@ -65,6 +76,15 @@ class SearchMusicians {
             $distance = 50;
         }
 
+        /* send data to GA */
+        $data = array(
+            'uid'=> $me->getId(),
+            'ec'=> 'filter',
+            'ea'=> 'distance',
+            'ev'=> $distance
+        );
+        $this->tracker->send($data, 'event');
+
         $elasticaQuery = new MatchAll();
 
         if ($search->getGenres() != ''){
@@ -86,6 +106,14 @@ class SearchMusicians {
             $nested->setFilter($boolFilter);
 
             $elasticaQuery = new Filtered($elasticaQuery, $nested);
+
+            /* send data to GA */
+            $data = array(
+                'uid'=> $me->getId(),
+                'ec'=> 'filter',
+                'ea'=> 'teachers'
+            );
+            $this->tracker->send($data, 'event');
         }
 
         if ($distance && $me->getLat()){

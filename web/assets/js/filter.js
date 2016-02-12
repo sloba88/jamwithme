@@ -13,6 +13,7 @@
 /* global myLocation */
 /* global scrollbarPlugin */
 /* global sidebarHeight */
+/* global ga */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -46,11 +47,29 @@ function getFilterData() {
     if ( $('input.filter-genres').val() !== '' ){
         data += $('.filter-genres').serialize();
         data += '&';
+
+        $.each($('input.filter-genres').select2('data'), function(k, v) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'filter',
+                eventAction: 'genres',
+                eventLabel: v.text
+            });
+        });
     }
 
     if ( $('input.filter-instruments').val() !== '' ){
         data += $('.filter-instruments').serialize();
         data += '&';
+
+        $.each($('input.instruments-genres').select2('data'), function(k, v) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'filter',
+                eventAction: 'instruments',
+                eventLabel: v.text
+            });
+        });
     }
 
     data += 'isTeacher='+$('body.page-teachers').length;
