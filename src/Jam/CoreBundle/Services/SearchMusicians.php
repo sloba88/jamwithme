@@ -81,6 +81,7 @@ class SearchMusicians {
             'uid'=> $me->getId(),
             'ec'=> 'filter',
             'ea'=> 'distance',
+            'el'=> $distance . 'km',
             'ev'=> $distance
         );
         $this->tracker->send($data, 'event');
