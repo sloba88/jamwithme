@@ -34,6 +34,7 @@ twig:
     globals:
         node_server: %node_server%
         soundcloud_app_id: %soundcloud_app_id%
+        ga_id: %ga_id%
 
 # Assetic Configuration
 assetic:
@@ -272,4 +273,4 @@ mobile_detect:
     switch_device_view: ~
 
 happyr_google_analytics:
-    tracking_id: UA-73643838-1
+    tracking_id: "%ga_id%"
