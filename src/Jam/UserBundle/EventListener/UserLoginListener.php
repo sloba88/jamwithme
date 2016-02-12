@@ -2,7 +2,6 @@
 
 namespace Jam\UserBundle\EventListener;
 
-
 use Happyr\Google\AnalyticsBundle\Service\Tracker;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -10,7 +9,6 @@ use Jam\UserBundle\Entity\User;
 
 class UserLoginListener
 {
-
     private $session;
 
     private $tracker;
