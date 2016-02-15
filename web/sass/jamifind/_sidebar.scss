@@ -4,6 +4,10 @@
 	@include respond-to(handhelds) {
 		background: rgba(43,42,59, 1);
 	}
+
+	.page-dashboard .shouts-sidebar & {
+		border-right: $border;
+	}
 }
 
 .sidebar {

@@ -74,7 +74,14 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        {{ form_row(form.username) }}
+                        {{ form_label(form.username) }}
+                        <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-placement="right" data-container="body" data-trigger="hover" data-content="Your username can't be number only, also special characters are forbidden."></span>
+
+                        {{ form_widget(form.username) }}
+
+                        {{ form_errors(form.username) }}
+
+                        <br />
 
                         {{ form_row(form.firstName) }}
 
@@ -95,13 +102,14 @@
 
                         {{ form_row(form.email) }}
 
-                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default">Change password</a>
+                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default" style="margin-bottom: 15px;">Change password</a>
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="min-height: 320px;">
 
                         <div class="form-group">
                             {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                            <span class="glyphicon glyphicon-info-sign info-popover" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="Your location helps us find people around you. You can be specific as you like, we will not show your full address to other people."></span>
                             {{ form_errors(form.location) }}
                             <div>
                                 {{ form_widget(form.location) }}
@@ -171,7 +179,7 @@
                                         {{ form_widget(f.skillLevel) }}
                                     </div>
                                     <div class="col-md-2" style="padding-top:10px">
-                                        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></span></a>&nbsp
+                                        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
                                         <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
                                     </div>
                                 </li>
@@ -193,9 +201,9 @@
                             {{ form_row(form.hourlyRate) }}
                         </div>
 
-                        {{ form_row(form.genres) }}
+                        {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
 
-                        {{ form_row(form.artists) }}
+                        {{ form_row(form.artists, { 'id' : 'fos_user_profile_form_artists' }) }}
 
                         {{ form_row(form.brands) }}
 
@@ -267,38 +275,36 @@
             </div>
 
             <div class="view-tab with-scrollbar" data-tab="videos">
-                <div class="col-md-12">
 
-                    <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
-                        <i class="fa fa-youtube-play"></i>
-                        Add Video
-                    </a>
+                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                    <i class="fa fa-youtube-play"></i>
+                    Add Video
+                </a>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Youtube Videos <span class="badge">({{ form.vars.value.videos|length }} / 12)</span></h3>
-                        </div>
-                        <div class="panel-body">
-
-                            {% if form.vars.value.videos|length == 0 %}
-                                <p class="no-images-yet">No videos yet.</p>
-                            {% endif %}
-
-                            <ul id="musician_videos">
-                                {% for v in form.vars.value.videos %}
-                                    <li data-id="{{ v.id }}" class="ytvideo-holder">
-                                        <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
-                                            <span class="play-icon"></span>
-                                            <img src="" height="140" width="260" />
-                                        </a>
-                                        <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Youtube Videos <span class="badge">({{ form.vars.value.videos|length }} / 12)</span></h3>
                     </div>
+                    <div class="panel-body">
 
+                        {% if form.vars.value.videos|length == 0 %}
+                            <p class="no-images-yet">No videos yet.</p>
+                        {% endif %}
+
+                        <ul id="musician_videos">
+                            {% for v in form.vars.value.videos %}
+                                <li data-id="{{ v.id }}" class="ytvideo-holder">
+                                    <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                        <span class="play-icon"></span>
+                                        <img src="" height="140" width="260" />
+                                    </a>
+                                    <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
+
             </div>
 
             {# NETWORKS #}
@@ -327,6 +333,8 @@
                 </div><!-- login buttons -->
             </div>
         </div>
+
+        <input type="hidden" id="settings-current-hash" name="settings_current_hash" value="">
 
         {{ form_widget(form._token) }}
         <hr />

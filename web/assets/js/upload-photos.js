@@ -197,7 +197,7 @@ $(function () {
             url: url
         }).done(function(data) {
             if (data.status == 'success') {
-                var src = $('.profile-info .user-image').attr('src');
+                var src = Routing.generate('musician_avatar', {'username': _user.username, 'size' : 'my_medium_1'});
                 $('.profile-info .user-image').attr('src', src + '?' +new Date().getTime());
                 addMessage(data.status, data.message);
             }
@@ -215,8 +215,8 @@ $(function () {
 
         var imageCropModal = $('#imageCropModal');
         imageCropModal.find('.modal-body').html(newImage);
-        imageCropModal.find('.modal-dialog').width(newImage.width + 40);
-        imageCropModal.find('.modal-dialog').css('minWidth', 460);
+        // imageCropModal.find('.modal-dialog').width(newImage.width + 40);
+        // imageCropModal.find('.modal-dialog').css('minWidth', 460);
 
         imageCropModal.modal({
             'backdrop': 'static',

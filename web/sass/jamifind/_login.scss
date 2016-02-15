@@ -4,10 +4,6 @@
 	min-height: 600px;
 	overflow: auto;
 
-	&.signup-page {
-		background-image: url(../images/background-signup.jpg);
-	}
-
 	.navbar-toggle {
 		display: none;
 	}
@@ -22,13 +18,6 @@
 	@include respond-to(mediumHandhelds) {
 		margin: 30px 15px;
 		width: auto;
-	}
-
-	.signup-page & {
-		margin-top: 20px;
-		@include respond-to(desktopMd) {
-			margin-bottom: 10px;
-		}
 	}
 }
 

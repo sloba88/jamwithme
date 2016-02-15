@@ -21,10 +21,14 @@ function checkTouchDevice() {
     }
 }
 
-function scrollToBottom() {
-    var wtf = $('.conversation-message-box');
-    var height = wtf[0].scrollHeight;
-    wtf.scrollTop(height);
+function scrollToBottom(wtf) {
+    if (!wtf) {
+        wtf = $('.conversation-message-box');
+    }
+    if (wtf[0]){
+        var height = wtf[0].scrollHeight;
+        wtf.scrollTop(height);
+    }
 }
 
 function profileCompletion() {
@@ -143,23 +147,32 @@ function sidebarHeight() {
         filtersAreaHeight = $mainContentInner.children('.filters-area').height(),
         paddings;
 
+    //if main-content-inner exists and it's not mobile
     if ($mainContentInner.length && $('.hidden-xs').is(':visible')) {
+        // sidebar height
         $sidebarInner.each(function() {
             var offsetTop = $(this).offset().top;
             $(this).height(windowHeight - offsetTop);
         });
 
-        if ($('.page-settings').length) {
+        if ($('.page-settings').length || $('.page-shouts ').length) {
             paddings = 0;
         } else {
             paddings = 30;
         }
 
+        //main content inner block
         $mainContentInner.height(windowHeight - $mainContentInner.offset().top - paddings); //30px is for padding top and bottom
 
-        $('.shouts-listing.shouts-listing-filter').height($sidebarInner.height() - 366);
+        if ($('.shouts-listing.shouts-listing-filter').length) {
+            //shouts listing in sidebar
+            var shoutsListSiblHeight = $('.shouts-listing.shouts-listing-filter').offset().top;
+            $('.shouts-listing.shouts-listing-filter').height($sidebarInner.height() - shoutsListSiblHeight + 70);
+        }
 
-        $('.shouts-listing.shouts-listing-feed').height($('.shouts-listing').closest('.sidebar-inner').height() - 73);
+        if ($('.shouts-listing.shouts-listing-feed').length) {
+            $('.shouts-listing.shouts-listing-feed').height($('.shouts-listing').closest('.sidebar-inner').height() - 73);
+        }
 
         // $viewTabContainer.height($mainContentInner.height() - eventDivHeight - filtersAreaHeight - 39);
         if ($viewTabContainer.length) {
@@ -167,7 +180,17 @@ function sidebarHeight() {
                 $viewTabContainer.height(windowHeight - $viewTabContainer.offset().top);
             }, 100);
         }
-    } else if (!$('.hidden-xs').is(':visible')) {
+    } 
+    else if ($('.page-shouts').length && !$('.hidden-xs').is(':visible')) {
+        setTimeout(function() {
+            //main content inner block
+            $mainContentInner.height(windowHeight - $mainContentInner.offset().top - 0); //30px is for padding top and bottom
+            //shouts listing in sidebar
+            // var shoutsListSiblHeight = $('.shouts-listing-container').offset().top;
+            $('.shouts-listing.shouts-listing-filter').height($mainContentInner.height() - 209);
+        }, 100);
+    }
+    else if (!$('.hidden-xs').is(':visible')) {
         $mainContentInner.height('');
         $('.shouts-listing.shouts-listing-filter').height('');
         $('.shouts-listing.shouts-listing-feed').height('');
@@ -206,7 +229,7 @@ function autocomplete() {
 
         //jquery-ui autocomplete
         $autocompleteInput.autocomplete({
-            delay: 10,
+            delay: 200,
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
@@ -225,7 +248,7 @@ function autocomplete() {
         }).data('uiAutocomplete')._renderItem = function(ul, item) {
             return $('<li />')
                 .data('item.autocomplete', item)
-                .append(window.JST['searchAutocompleteTemplate'](item))
+                .append(window.JST.searchAutocompleteTemplate(item))
                 .appendTo(ul);
         };
 
@@ -255,7 +278,7 @@ function autocompleteMessageUser() {
 
         //jquery-ui autocomplete
         $autocompleteInput.autocomplete({
-            delay: 10,
+            delay: 200,
             minLength: 2,
             source: function(request, response) {
                 $.ajax({
@@ -366,7 +389,7 @@ function getUserShouts() {
     }).done(function( result ) {
         if (result.status == 'success'){
             $.each(result.data, function(k, v){
-                $( '.shouts-listing' ).prepend(window.JST['shoutBoxTemplate'](v));
+                $( '.shouts-listing' ).prepend(window.JST.shoutBoxTemplate(v));
             });
 
             if (result.data.length === 0) {
@@ -582,6 +605,17 @@ $(function() {
             error: function(result) {
                 addMessage(result.status, result.message);
             }
+        });
+    });
+
+    $(document).on('keyup', '#shout_text', function(){
+        var self = $(this);
+        var value = $(this).val();
+
+        value = value.replace(/(?:https?|ftp):\/\/[\n\S]+/g, function(text){
+            //console.log(text);
+            self.val(value.replace(text, ''));
+            addMessage(false, 'Links are not permitted here.');
         });
     });
 

@@ -6,25 +6,6 @@
 
     {# TODO: TEACHER #}
 
-    <style>
-
-        /*.teacher-info .instruments-profile-icons svg {
-            width: 20px;
-            height: 20px;
-            float: left;
-        }*/
-
-        /*.tags-container span{
-            color: #fff;
-            font-family: "Hind Medium";
-        }*/
-
-        /*.page-profile .main-content-inner {
-            padding: 0;
-        }*/
-
-    </style>
-
     <div class="teacher-container grey">
         <div class="row teacher-header">
             <section class="col-sm-5 teacher-info">
@@ -53,8 +34,7 @@
                         {% endif %}
 
                         {% if is_granted("ROLE_USER") and app.user != user %}
-                            {# todo: how to get conversation id here?? #}
-                            <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i>{{ 'button.message'|trans }}</a>
+                            <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i><span>{{ 'button.message'|trans }}</span></a>
                         {% endif %}
 
                         {% if app.user != user %}
@@ -107,13 +87,15 @@
 
                             <div class="col-xs-6">
                                 <ul>
-                                    {% for l in 1..i.skillLevel %}
-                                        <li><span class="active"></span></li>
-                                    {% endfor %}
-                                    {% if 5-i.skillLevel !=0 %}
-                                        {% for l in 1..(5-i.skillLevel) %}
-                                            <li><span></span></li>
+                                    {% if i.skillLevel is not null %}
+                                        {% for l in 1..i.skillLevel %}
+                                            <li><span class="active"></span></li>
                                         {% endfor %}
+                                        {% if 5-i.skillLevel !=0 %}
+                                            {% for l in 1..(5-i.skillLevel) %}
+                                                <li><span></span></li>
+                                            {% endfor %}
+                                        {% endif %}
                                     {% endif %}
                                 </ul>
 

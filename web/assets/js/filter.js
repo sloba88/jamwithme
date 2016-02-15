@@ -12,6 +12,8 @@
 /* global addMessage */
 /* global myLocation */
 /* global scrollbarPlugin */
+/* global sidebarHeight */
+/* global ga */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -22,13 +24,14 @@ var page = 1;
 var shoutsPage = 1;
 
 function renderGridView(data) {
-    if (filterResults.length === 0 && loadMoreResults === false){
-        $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" class="btn btn-primary" id="subscribeToSearch"><i class="fa fa-envelope"></i> Subscribe for this search criteria.</a></p>');
-    }
 
     $.each(data, function (k, v) {
-        $('.people-listing-grid').append(window.JST['musicianBoxTemplate'](v));
+        $('.people-listing-grid').append(window.JST.musicianBoxTemplate(v));
     });
+
+    if (data.length === 0 && loadMoreResults === false && ($('input.filter-genres').val() !== '' || $('input.filter-instruments').val() !== '') ){
+        $('.people-listing-grid').append('<div class="subscribe-info-search"><div class="alert alert-info" role="alert">Didn\'t find what you searched for? We can let you know when people with this profile join. </div><a href="#" class="btn btn-primary" id="subscribeToSearch"><i class="fa fa-envelope"></i> Subscribe for this search criteria</a></div>');
+    }
 
     if ($('.people-listing-grid').width() > 1000){
         $('.musician-box-container').removeClass('col-lg-3').addClass('col-lg-2');
@@ -45,11 +48,29 @@ function getFilterData() {
     if ( $('input.filter-genres').val() !== '' ){
         data += $('.filter-genres').serialize();
         data += '&';
+
+        $.each($('input.filter-genres').select2('data'), function(k, v) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'search',
+                eventAction: 'genres',
+                eventLabel: v.text
+            });
+        });
     }
 
     if ( $('input.filter-instruments').val() !== '' ){
         data += $('.filter-instruments').serialize();
         data += '&';
+
+        $.each($('input.instruments-genres').select2('data'), function(k, v) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'search',
+                eventAction: 'instruments',
+                eventLabel: v.text
+            });
+        });
     }
 
     data += 'isTeacher='+$('body.page-teachers').length;
@@ -58,12 +79,21 @@ function getFilterData() {
         data += '&'+ $('#search_form_distance').serialize();
     }
 
+    if ($('.page-shouts ').length !== 0) {
+        data += '&distance=50';
+        $('.shouts-listing-container h4 a').text('Shouts 50km around you');
+    }
+
     return data;
 }
 
 function filterMusicians(){
     if (page === 1) {
         $('.people-listing-grid').html('').addClass('loading-content');
+    }
+
+    if (_user.temporaryLocation === '1'){
+        return false;
     }
 
     $.ajax({
@@ -75,13 +105,19 @@ function filterMusicians(){
             if (result.data.length !== 0) {
                 page ++;
                 loadMoreResults = true;
+
+                if (page === 2) {
+                    //just in case load another page
+                    filterMusicians();
+                }
+
             } else {
                 loadMoreResults = false;
             }
             renderGridView(result.data);
         }
 
-        if (result.alreadySubscribed == true) {
+        if (result.alreadySubscribed === true && page === 1) {
             $('.people-listing-grid').html('<br /><p>You have already subscribed to this search criteria and will be notified when someone join. </p>');
         }
     });
@@ -123,7 +159,7 @@ function filterShouts() {
                 loadMoreShoutsResults = false;
             }
             $.each(result.data, function(k, v){
-                $( '.shouts-listing' ).append(window.JST['shoutBoxTemplate']( v ) );
+                $( '.shouts-listing' ).append(window.JST.shoutBoxTemplate( v ) );
             });
         }
     });
@@ -138,6 +174,7 @@ $(function() {
                 initializedMap = initMap();
                 setMyFilterMarker();
                 mapFilterMusicians();
+                sidebarHeight();
             }
         }, 500);
     });
@@ -206,14 +243,18 @@ $(function() {
                     });
 
                     addMessage(result.status, result.message);
-
-                    filterMusicians();
-                    filterShouts();
+                    window.location.reload();
+                    //_user.temporaryLocation = '';
+                    //filterMusicians();
+                    //filterShouts();
                 });
             }
         });
     }else {
-        filterMusicians();
+        if ($('.page-shouts ').length === 0) {
+            filterMusicians();
+        }
+
         filterShouts();
     }
 
@@ -229,11 +270,25 @@ $(function() {
         $.ajax({
             url: Routing.generate('subscribe_search_add')
         }).done(function( result ) {
-            if (result.success == true) {
-                $('.people-listing-grid').html(window.JST['notificationTemplate']({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+            if (result.success === true) {
+                $('.people-listing-grid .subscribe-info-search').html(window.JST.notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'search',
+                    eventAction: 'subscribed',
+                    eventLabel: 'search'
+                });
             }
         });
     });
+
+    if(typeof(Storage) !== 'undefined') {
+        // Code for localStorage/sessionStorage.
+        if (localStorage.distance) {
+            $('#search_form_distance').val(localStorage.distance);
+        }
+    }
 
     //activates slider
     $('#filter-by-distance-slider').slider({
@@ -250,6 +305,11 @@ $(function() {
             $('.slide-max').text(ui.value + 'km');
             $('#search_form_distance').val(ui.value).trigger('change');
             $('#filter-by-distance-btn span').text(ui.value + 'km around you');
+
+            if(typeof(Storage) !== 'undefined') {
+                // Code for localStorage/sessionStorage.
+                localStorage.setItem('distance', ui.value);
+            }
         }
     });
 

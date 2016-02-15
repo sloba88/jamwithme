@@ -5,7 +5,10 @@ namespace Jam\ApiBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\UserBundle\Event\FormEvent;
 use Jam\CoreBundle\Entity\Search;
+use FOS\UserBundle\FOSUserEvents;
+use Symfony\Component\Form\Form;
 
 class MusiciansController extends FOSRestController
 {
@@ -83,13 +86,15 @@ class MusiciansController extends FOSRestController
             $instrument = $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName();
 
             if ($instrument != ''){
-                $icon = file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg");
+                if (!$icon = @file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg")) {
+                    $icon = '';
+                }
             }else{
                 $icon = '';
             }
 
             if ($m->getIsTeacher() == true) {
-                $teacherIcon = file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/Teacher.svg");
+                $teacherIcon = @file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/Teacher.svg");
             }else{
                 $teacherIcon = '';
             }
@@ -142,6 +147,10 @@ class MusiciansController extends FOSRestController
         $location = $this->get('jam.location_set')->reverseGeoCode($coords);
         $me->setLocation($location);
         $this->get('fos_user.user_manager')->updateUser($me);
+
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $dispatcher = $this->get('event_dispatcher');
+        $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS);
 
         $view = $this->view(array(
             'status'    => 'success',

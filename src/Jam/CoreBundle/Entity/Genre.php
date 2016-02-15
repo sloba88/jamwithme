@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Instrument
+ * Genre
  *
  * @ORM\Table(name="genres")
  * @ORM\Entity
@@ -30,6 +30,12 @@ class Genre
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="GenreCategory", inversedBy="genres", cascade={"persist"})
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     **/
+    private $category;
+
+    /**
      * Get id
      *
      * @return integer
@@ -43,7 +49,7 @@ class Genre
      * Set name
      *
      * @param string $name
-     * @return Instrument
+     * @return Genre
      */
     public function setName($name)
     {
@@ -60,5 +66,29 @@ class Genre
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Jam\CoreBundle\Entity\GenreCategory $category
+     *
+     * @return Genre
+     */
+    public function setCategory(\Jam\CoreBundle\Entity\GenreCategory $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Jam\CoreBundle\Entity\GenreCategory
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

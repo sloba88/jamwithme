@@ -117,6 +117,7 @@ class SearchSubscriberCron {
                         }
                     }
                     if (count($users) > 0) {
+
                         if ($this->sendEmail($users, $search)) {
                             $search->setUsers(array_merge($this->formUserIdArray($users), $search->getUsers()));
                             $this->entityManager->persist($search);
@@ -162,7 +163,8 @@ class SearchSubscriberCron {
     private function sendEmail(array $searchResults, Search $search)
     {
         $emailBody = $this->twig->render('JamWebBundle:Email:userSearchSubscription.html.twig', array(
-            'users' => $searchResults
+            'users' => $searchResults,
+            'subscriptionId' => $search->getId()
         ));
 
         $message = \Swift_Message::newInstance()

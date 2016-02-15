@@ -13,16 +13,25 @@ var mongoose = require('mongoose'),
     PHPUnserialize = require('php-unserialize'),
     mysql      = require('mysql'),
     promise    = require('promise'),
-    //todo : parametrize this
-    mysqlConnection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : 'root',
-        database : 'jamifind'
-    }),
+    readYaml = require('read-yaml'),
+    Autolinker = require('autolinker'),
+    striptags = require('striptags'),
+    mysqlConnection,
     activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
+redisClient.select(1);
+
+var mysqlConfig = readYaml.sync('../app/config/parameters.yml');
+
+/*jshint camelcase: false */
+mysqlConnection = mysql.createConnection({
+    host     : mysqlConfig.parameters.database_host,
+    user     : mysqlConfig.parameters.database_user,
+    password : mysqlConfig.parameters.database_password,
+    database : mysqlConfig.parameters.database_name
+});
+/*jshint camelcase: true */
 
 function getUsernames(mysqlConnection, ids) {
     return new promise(function (fulfill, reject){
@@ -33,6 +42,14 @@ function getUsernames(mysqlConnection, ids) {
             }
             fulfill(rows);
         });
+    });
+}
+
+function tagLinks(message) {
+    return Autolinker.link(message, {
+        truncate: {
+            length: 24, location: 'middle'
+        }
     });
 }
 
@@ -57,10 +74,11 @@ function saveMessageFrom(socket, data, conversation) {
             username: socket.username
         };
 
-        socket.emit('messageSaved', message);
-
         conversation._lastMessage = message;
         conversation.save();
+
+        message.message = tagLinks(message.message);
+        socket.emit('messageSaved', message);
     });
 }
 
@@ -96,6 +114,7 @@ function saveMessageTo(socket, data, conversation) {
                 username: socket.username
             };
 
+            messageTo.message = tagLinks(messageTo.message);
             socketTo.emit('messageReceived', messageTo);
         }
 
@@ -138,7 +157,7 @@ function getUnreadConversations(socket) {
     });
 }
 
-mongoose.connect('mongodb://localhost:27017/jamwithme');
+mongoose.connect('mongodb://localhost:27017/jamifind');
 
 mysqlConnection.connect(function(err) {
     if (err) {
@@ -173,7 +192,8 @@ mysqlConnection.connect(function(err) {
                         //get unread messages count
                         getUnreadConversations(socket);
                     }, 1000);
-
+                    console.log(12321312312);
+                    socket.emit('userAuthenticated', true );
                 });
             });
 
@@ -188,21 +208,31 @@ mysqlConnection.connect(function(err) {
              */
             socket.on('newMessage', function (data) {
 
-                if (data.conversationId === '') {
-                    data.conversationId = -1;
-                } else {
-                    data.conversationId = new mongoose.Types.ObjectId(data.conversationId);
+                if (data.conversationId === '' && (typeof data.to == 'undefined' || data.to === '')) {
+                    return false;
                 }
 
+                if (data.conversationId === '') {
+                    data.conversationId = null;
+                }
+
+                if (!data.to) {
+                    data.to = '-1';
+                }
+
+                //striptags
+                data.message = striptags(data.message);
+
                 //check for my conversation
-                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  data.conversationId }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
+                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [socket.userID, data.to ]} } ] }, function(err, conversation1) {
                     if (err) {
                         console.log(err);
                     }
+
                     if (!conversation1) {
                         conversation1 = new Conversation({
                             owner: socket.userID,
-                            participants: [data.to, socket.userID],
+                            participants: [parseInt(data.to), parseInt(socket.userID)],
                             isRead: true
                         });
 
@@ -225,7 +255,7 @@ mysqlConnection.connect(function(err) {
                         if (!conversation2) {
                             conversation2 = new Conversation({
                                 owner: data.to,
-                                participants: [data.to, socket.userID],
+                                participants: [parseInt(data.to), parseInt(socket.userID)],
                                 mirroredConversations: [conversation1._id]
                             });
 
@@ -286,8 +316,6 @@ mysqlConnection.connect(function(err) {
 
                         getUsernames(mysqlConnection, users).then(function(results){
 
-                            console.log(results);
-
                             for( var z=0; z<conversations.length; z++) {
 
                                 for( var t=0; t<results.length; t++) {
@@ -311,40 +339,53 @@ mysqlConnection.connect(function(err) {
 
             socket.on('getConversation', function (data) {
                 if (data.conversationId === '') {
-                    data.conversationId = -1;
-                } else {
-                    data.conversationId =  new mongoose.Types.ObjectId(data.conversationId);
+                    data.conversationId = null;
                 }
 
-                Message.find({ 'owner': socket.userID, $or: [{ '_conversation' :  data.conversationId }, { '_conversation.participants' :  { $all: [data.to, socket.userID ]} } ] }).lean().exec(function (err, messages) {
+                if (!data.to) {
+                    data.to = '-1';
+                }
+
+                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [data.to, socket.userID ]} } ] }).exec(function (err, conversation) {
                     if (err) {
                         return console.error(err);
                     }
 
-                    var users = [];
-                    for( var i=0; i<messages.length; i++) {
-                        users.push(messages[i].from);
-                    }
-
-                    getUsernames(mysqlConnection, users).then(function(results){
-                        for( var z=0; z<messages.length; z++) {
-                            for( var b=0; b< results.length; b++) {
-                                if (results[b].id == messages[z].from) {
-                                    messages[z].fromData = results[b];
-                                }
+                    if (conversation) {
+                        Message.find({ 'owner': socket.userID, '_conversation' :  conversation._id }).lean().exec(function (err, messages) {
+                            if (err) {
+                                return console.error(err);
                             }
-                        }
 
-                        socket.emit('ourConversation', messages);
-                    });
+                            var users = [];
+                            for( var i=0; i<messages.length; i++) {
+                                users.push(messages[i].from);
+                                messages[i].message = tagLinks(messages[i].message);
+                            }
+
+                            getUsernames(mysqlConnection, users).then(function(results){
+                                for( var z=0; z<messages.length; z++) {
+                                    for( var b=0; b< results.length; b++) {
+                                        if (results[b].id == messages[z].from) {
+                                            messages[z].fromData = results[b];
+                                        }
+                                    }
+                                }
+
+                                socket.emit('ourConversation', messages);
+                            });
+                        });
+                    } else {
+                        console.log('no conversation found');
+                        //new conversation?
+                        socket.emit('beginConversation', true);
+                    }
                 });
             });
 
             socket.on('conversationIsRead', function (data) {
 
-                data.conversationId = new mongoose.Types.ObjectId(data.conversationId);
-
-                Conversation.update({ 'owner' : socket.userID, '_id': data.conversationId, isRead: false }, {
+                Conversation.update({ 'owner' : socket.userID, '_id': new mongoose.Types.ObjectId(data.conversationId), isRead: false }, {
                     isRead: true
                 }, function(err, numberAffected) {
                     //handle it

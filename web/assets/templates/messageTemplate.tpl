@@ -9,6 +9,6 @@
         <%- createdAt.toLocaleDateString() %> <%- createdAt.toLocaleTimeString() %>
     </div>
     <p class="text">
-        <%- rc.message %>
+        <%= rc.message %>
     </p>
 </div>

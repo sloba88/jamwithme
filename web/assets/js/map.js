@@ -8,13 +8,28 @@
 var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
         html: '<img src="'+_user.avatar+'" />',
-        iconSize: [40, 40],
+        iconSize: [50, 50],
         className: 'mapIcon'
     }),
     map,
     circle = false,
+    outterCircle = false,
+    innerCircle = false,
     myLocationMarker,
     markers = new L.FeatureGroup();
+
+//http://wiki.openstreetmap.org/wiki/Zoom_levels
+var zoomToMeters = {
+    16 : 2.387,
+    15 : 4.773,
+    14 : 9.547,
+    13 : 19.093,
+    12 : 38.187,
+    11 : 76.373,
+    10 : 152.746,
+    9  : 305.492,
+    8  : 610.984
+};
 
 function setMyFilterMarker() {
     myLocationMarker = L.marker(myLocation, {
@@ -41,6 +56,7 @@ function initMap(){
 
     map.on('zoomend', function(){
         resizeIcons();
+        drawRadius();
     });
 
     console.log('map initialized');
@@ -48,7 +64,7 @@ function initMap(){
 }
 
 function resizeIcons(){
-    var iconSize = map.getZoom() * 2;
+    var iconSize = map.getZoom() * 2.5;
     $('.mapIcon >').css({'width': iconSize, 'height': iconSize});
 }
 
@@ -56,20 +72,42 @@ function drawRadius(){
 
     if (circle){
         map.removeLayer(circle);
+        map.removeLayer(outterCircle);
+        map.removeLayer(innerCircle);
     }
 
-    circle = L.circle(myLocation, $('#search_form_distance').val() * 1000, {
-        color: 'silver',
-        fillColor: 'lightblue',
-        fillOpacity: 0.3
+    var m = $('#search_form_distance').val() * 1000;
+    var weight = (m / zoomToMeters[map.getZoom()]) * 2;
+
+    circle = L.circle(myLocation, (m) * 1.5 , {
+        color: '#CCCCCC',
+        weight: weight,
+        fillOpacity: 0
+
     }).addTo(map);
+
+    innerCircle = L.circle(myLocation, (m) , {
+        color: 'white',
+        weight: 5,
+        fillOpacity: 0
+
+    }).addTo(map);
+
+
+    outterCircle = L.circle(myLocation, (m) * 5 , {
+        color: 'silver',
+        weight: weight * 6.05,
+        fillOpacity: 0
+
+    }).addTo(map);
+
 }
 
 function placeMarkers(){
 
     map.removeLayer(markers);
     markers = new L.markerClusterGroup({
-        maxClusterRadius: 30
+        maxClusterRadius: 25
     });
 
     markers.on('animationend', function () {
@@ -91,15 +129,15 @@ function placeMarkers(){
 
         var i = L.divIcon({
             html: iconSource,
-            iconSize:     [40, 40],
-            className: 'mapIcon'
+            iconSize:     [50, 50],
+            className: 'mapIcon map-icon-' + v.instrument
         });
 
         var marker = L.marker([v.lat, v.lng], {icon: i});
 
         var popup = L.popup({
             'minWidth': 200
-        }).setContent(window.JST['musicianMapTemplate'](v));
+        }).setContent(window.JST.musicianMapTemplate(v));
 
         marker.data = v;
         marker.bindPopup(popup);

@@ -34,6 +34,7 @@ twig:
     globals:
         node_server: %node_server%
         soundcloud_app_id: %soundcloud_app_id%
+        ga_id: %ga_id%
 
 # Assetic Configuration
 assetic:
@@ -73,15 +74,19 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-    delivery_address: %delivery_email%
+    #delivery_address: stanic.slobodan88@gmail.com
 
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
+    service:
+        mailer: fos_user.mailer.twig_swift
     user_class: Jam\UserBundle\Entity\User
     registration:
             form:
                 type: jam_user_registration
+            #confirmation:
+            #    enabled: true
     profile:
             form:
                 type: jam_user_profile
@@ -112,6 +117,16 @@ braincrafted_bootstrap:
         variables_file: ~
         bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
         bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
 
 liip_imagine:
     resolvers:
@@ -169,7 +184,7 @@ snc_redis:
         session:
             type: predis
             alias: session
-            dsn: redis://%redis_server%
+            dsn: redis://%redis_server%/1
     doctrine:
         metadata_cache:
             client: cache
@@ -257,3 +272,6 @@ mobile_detect:
         mobile: ~
         tablet: ~
     switch_device_view: ~
+
+happyr_google_analytics:
+    tracking_id: "%ga_id%"

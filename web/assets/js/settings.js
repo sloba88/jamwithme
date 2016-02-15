@@ -1,29 +1,74 @@
 'use strict';
 
-/* global _ */
 /* global Routing */
 /* global parseYTVideoImages */
 /* global addMessage */
 /* global scrollbarPlugin */
 
-function initInstrumentSelection() {
-    $.ajax({
-        url: Routing.generate('api_instruments')
-    }).done(function(data) {
-        $('.instrument-select').select2({
-            placeholder: 'What do you play?',
-            data: data
-        });
+var allInstruments = false;
+var allSkills = false;
+
+function setSelect2() {
+
+    $('input.instrument-select').each(function(){
+        var self = $(this);
+        if (self.val()){
+            var selected = $.grep(allInstruments, function(e){ return e.id == self.val(); });
+            selected[0].disabled = true;
+        }
     });
 
-    $.ajax({
-        url: Routing.generate('api_instruments_skills')
-    }).done(function(data) {
-        $('.skill-select').select2({
-            placeholder: 'How good are you?',
-            data: data
+    $('.instrument-select').select2({
+        placeholder: 'What do you play?',
+        data: allInstruments
+    }).on('change', function(t) {
+        var selected = $.grep(allInstruments, function(e){ return e.id == t.val; });
+        selected[0].disabled = true;
+
+        if (t.removed) {
+            var removed = $.grep(allInstruments, function (e) {
+                return e.id == t.removed.id;
+            });
+            removed[0].disabled = false;
+        }
+
+        $('.instrument-select').select2({
+            placeholder: 'What do you play?',
+            data: allInstruments
         });
     });
+}
+
+function initInstrumentSelection() {
+
+    if (allInstruments) {
+        setSelect2();
+    } else {
+        $.ajax({
+            url: Routing.generate('api_instruments')
+        }).done(function(data) {
+            allInstruments = data;
+            setSelect2();
+        });
+    }
+
+    if (allSkills) {
+        $('.skill-select').select2({
+            placeholder: 'How good are you?',
+            data: allSkills
+        });
+    } else {
+        $.ajax({
+            url: Routing.generate('api_instruments_skills')
+        }).done(function(data) {
+            allSkills = data;
+
+            $('.skill-select').select2({
+                placeholder: 'How good are you?',
+                data: allSkills
+            });
+        });
+    }
 }
 
 function renameCollectionNames($selection) {
@@ -51,7 +96,7 @@ $(function() {
     if ($musiciansInstruments.length > 0){
         if ($musiciansInstruments.find('.row').length === 0){
             //there are no instruments in settings, add some
-            $musiciansInstruments.append(window.JST['instrumentBoxTemplate']({'num': 0}));
+            $musiciansInstruments.append(window.JST.instrumentBoxTemplate({'num': 0}));
         }
 
         initInstrumentSelection();
@@ -60,7 +105,7 @@ $(function() {
     $('#add_another_instrument').on('click', function(e) {
         e.preventDefault();
         var length = $musiciansInstruments.find('.row').length;
-        $musiciansInstruments.append(window.JST['instrumentBoxTemplate']({'num': length}));
+        $musiciansInstruments.append(window.JST.instrumentBoxTemplate({'num': length}));
 
         initInstrumentSelection();
         scrollbarPlugin();
@@ -91,7 +136,7 @@ $(function() {
             if (data.status == 'success') {
                 self.closest('li').remove();
 
-                $('#musician_videos').append(window.JST['videoBoxTemplate']({'id' : data.id, 'url': data.url }));
+                $('#musician_videos').append(window.JST.videoBoxTemplate({'id' : data.id, 'url': data.url }));
                 parseYTVideoImages();
                 addMessage(data.status, data.message);
                 scrollbarPlugin();
@@ -165,7 +210,8 @@ $(function() {
             $('#fos_user_profile_form_genres').select2({
                 placeholder: 'Favourite Genres?',
                 multiple: true,
-                data: data
+                data: data,
+                matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
             });
         });
     }
@@ -225,7 +271,7 @@ $(function() {
         $('#add_another_video').on('click', function(e) {
             e.preventDefault();
             if ($('.add-video-box').length === 0) {
-                $('#musician_videos').prepend(window.JST['videoAddBoxTemplate']());
+                $('#musician_videos').prepend(window.JST.videoAddBoxTemplate());
             }
         });
     }
@@ -236,6 +282,45 @@ $(function() {
         } else {
             $('.teacherSpecific').fadeOut();
         }
+    });
+
+    $('#fos_user_profile_form_firstName, #fos_user_profile_form_lastName').on('keyup', function(){
+        var start = this.selectionStart,
+            end = this.selectionEnd,
+            str = $(this).val();
+        str = str.replace(/ +(?= )/g,'').replace(/[0-9]/g, '');
+        $(this).val(str);
+
+        this.setSelectionRange(start, end);
+    });
+
+    $('#fos_user_profile_form_username').on('keyup', function(){
+        var start = this.selectionStart,
+            end = this.selectionEnd,
+            str = $(this).val();
+        str = str.replace(/[^A-Za-z0-9 ]/g, '');
+        $(this).val(str);
+
+        this.setSelectionRange(start, end);
+    });
+
+    $(window).on('hashchange', function() {
+        $('#settings-current-hash').val(window.location.hash);
+    });
+
+    $('#next-1').on('click', function(e){
+        e.preventDefault();
+        $('#location-tab').click();
+    });
+
+    $('#location-tab').on('click', function(){
+        $('#next-1').addClass('hidden');
+        $('#finish-1').removeClass('hidden');
+    });
+
+    $('#musician-info-tab').on('click', function(){
+        $('#next-1').removeClass('hidden');
+        $('#finish-1').addClass('hidden');
     });
 
     setTabsHeight();

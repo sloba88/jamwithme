@@ -15,11 +15,18 @@ class ProfileFormType extends BaseType
 
         // add your custom field
         $builder->add('firstName', 'text', array(
-            'required' => false
+            'required' => false,
+            'trim' => true,
+            'attr' => array(
+                'maxlength' => 30
+            )
         ));
 
         $builder->add('lastName', 'text', array(
-            'required' => false
+            'required' => false,
+            'attr' => array(
+                'maxlength' => 30
+            )
         ));
 
         $builder->add('email', 'email', array(
@@ -27,7 +34,10 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('username', null, array(
-            'label' => 'label.username'
+            'label' => 'label.username',
+            'attr' => array(
+                'maxlength' => 30
+            )
         ));
 
         $builder->add('aboutMe', 'textarea', array(
@@ -66,14 +76,18 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('genres', 'genre_type', array(
-            'required' => false
+            'required' => false,
+            'label' => 'Your Favourite Genres'
         ));
 
         $builder->add('brands', 'brand_type', array(
-            'required' => false
+            'required' => false,
+            'label' => 'Your Favourite Music Brands'
         ));
 
-        $builder->add('artists', 'artist_type');
+        $builder->add('artists', 'artist_type', array(
+            'label' => 'Your Favourite Music Artists That Influenced You'
+        ));
 
         $builder->add('location', new LocationType());
 
@@ -126,7 +140,7 @@ class ProfileFormType extends BaseType
             ),
             'label' => 'Language',
             'required' => false,
-            'empty_data' => null
+            'data' => 'en'
         ));
 
     }

@@ -1,30 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+    <title>Jamifind - find musicians and band members</title>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{% block title %}Jamifind | find musicians near you{% endblock %}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="description" content="Find musicians and band members. Looking for the right guitar teacher? Meet them on Jamifind">
+
+    <!--mobile-->
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--mobile ends-->
+
+    <link rel="shortcut icon" href="{{ asset('landing/images/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('landing/images/favicon.ico')}}" type="image/x-icon">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 
     {% block stylesheets %}
-        {% stylesheets
-        'vendor/font-awesome/css/font-awesome.css'
-        'vendor/select2/select2.css'
-        'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
-        'vendor/jquery-ui/themes/base/jquery-ui.css'
-        'vendor/leaflet-dist/leaflet.css'
-        'vendor/leaflet.markercluster/dist/MarkerCluster.css'
-        'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
-        filter='cssrewrite' filter='?uglifycss'
-        %}
-        <link rel="stylesheet" href="{{ asset_url }}">
-        {% endstylesheets %}
+        {% if is_granted('ROLE_USER') %}
+            {% stylesheets
+            'vendor/font-awesome/css/font-awesome.css'
+            'vendor/select2/select2.css'
+            'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
+            'vendor/jquery-ui/themes/base/jquery-ui.css'
+            'vendor/leaflet-dist/leaflet.css'
+            'vendor/leaflet.markercluster/dist/MarkerCluster.css'
+            'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
+            filter='cssrewrite' filter='?uglifycss'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}">
+            {% endstylesheets %}
+
+        {% else %}
+
+            {% stylesheets
+            'vendor/font-awesome/css/font-awesome.css'
+            'vendor/select2/select2.css'
+            'landing/css/ddscrollspydemo.css'
+            filter='cssrewrite' filter='?uglifycss'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}">
+            {% endstylesheets %}
+
+        {% endif %}
+
     {% endblock %}
 
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
-    {% block bottomstylesheets %}{% endblock %}
+    {% if not is_granted('ROLE_USER') %}
+        <link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
+    {% endif %}
 
     <style>
         {# TODO: move this to css files#}
@@ -87,6 +113,135 @@
             margin-top: 5px;
         }
 
+        .conversation-single a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .conversation-single .text a {
+            color: #428bca;
+        }
+
+        .conversation-single .text a:hover{
+            text-decoration: underline;
+        }
+
+        .conversation-single .time{
+            color: #878595;
+        }
+
+        .open-conversation.active, .open-conversation:active {
+            background: #fabc09;
+        }
+
+        .message-info a {
+            text-decoration: none;
+        }
+
+        .shouts-listing-container h4 a{
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .no-auth .main-content-inner{
+            background: none;
+        }
+
+        .signup-page .fixed-alerts-container{
+            max-width: 320px;
+            margin: 0 auto;
+            opacity: .9;
+        }
+
+        .sidebar-feedback{
+            color: #eaeaea;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .sidebar-feedback p{
+            margin-bottom: 5px;
+        }
+
+        .sidebar-feedback li {
+            display: inline-block;
+            font-size: 16px;
+            padding: 0 4px;
+        }
+
+        .sidebar-feedback li a {
+            color: gray;
+            -moz-transition: background 0.3s ease, opacity 0.3s ease;
+            -o-transition: background 0.3s ease, opacity 0.3s ease;
+            -webkit-transition: background 0.3s ease, opacity 0.3s ease;
+            transition: background 0.3s ease, opacity 0.3s ease;
+        }
+
+        .sidebar-feedback li a:hover {
+            color: #fabc09;
+        }
+
+        form.has-global-errors .help-block {
+            color: firebrick;
+        }
+
+        #map .mapIcon.map-icon-Strings svg{
+            background-color: #874E99;
+        }
+
+        #map .mapIcon.map-icon-Percussions svg{
+            background-color: #d03111;
+        }
+
+        #map .mapIcon.map-icon-Keys svg{
+            background-color: #000066;
+        }
+
+        #map .mapIcon.map-icon-Vocals svg{
+            background-color: #CC9900;
+        }
+
+        #map .mapIcon.map-icon-Wind svg{
+            background-color: #FFCC00;
+        }
+
+        #map .mapIcon path{
+            fill: #fff;
+        }
+
+        header.is-active .navbar-open{
+            display: none;
+        }
+
+        header .navbar-close{
+            display: none;
+            color: #fff;
+            font-size: 27px;
+            position: relative;
+            left: -16px;
+        }
+
+        header.is-active .navbar-close{
+            display: inline-block;
+        }
+
+        header.is-active .navbar-close span{
+            background: #2b2a3b;
+            padding: 5px;
+        }
+
+        header.is-active .navbar-toggle{
+            padding: 0;
+        }
+
+        .subscribe-info-search {
+            clear: both;
+            position: relative;
+            top: 15px;
+        }
+
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -96,14 +251,20 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="{{ node_server }}/socket.io/socket.io.js"></script>
+    {% include "::googleAnalytics.html.twig" %}
 
-    <script>
-        var baseURL = '{{ app.request.getBaseURL() }}';
-        var _user = {};
-        {% if is_granted("ROLE_USER") %}
-            var _username = '{{ app.user.username }}';
+    <meta property="og:title" content="Jamifind" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://jamifind.com" />
+    <meta property="og:image" content="http://jamifind.com/landing/images/media-image.jpg" />
+
+    {% if is_granted("ROLE_USER") %}
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="{{ node_server }}/socket.io/socket.io.js"></script>
+
+        <script>
+            var baseURL = '{{ app.request.getBaseURL() }}';
+            var _user = {};
             _user.username = '{{ app.user.username }}';
             _user.id = '{{ app.user.id }}';
             _user.lat = '{{ app.user.location.lat|default('') }}';
@@ -115,144 +276,169 @@
                 'reconnection' : false
             });
 
-            {% if app.user %}
-                socket.on('registerConnectedUser', function () {
-                    socket.emit('registerUserData', { 'sessionId': '{{ app.session.id }}' });
-                });
-            {% endif %}
-
-        {% endif %}
-    </script>
+            socket.on('registerConnectedUser', function () {
+                socket.emit('registerUserData', { 'sessionId': '{{ app.session.id }}' });
+            });
+        </script>
+    {% endif %}
 
 </head>
-<body class="{% block bodyclasses %}{% endblock %}" style="{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}">
+<body class="{% block bodyclasses %}{% endblock %}" style="
+{% block bodystyle %}
+    {% if is_granted("ROLE_USER") %}
+        background-image: url({{ asset('assets/images/background-dashboard.jpg') }})
+    {% endif %}
+{% endblock %}">
 
-<header>
-    <div class="container-fluid">
+    <header>
 
-        <div class="row">
-
-            <div class="col-xs-2 visible-xs visible-sm">
-                <button class="navbar-toggle" type="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div><!--menu button-->
-
-            <div class="col-xs-8 col-md-9">
-                <div class="navbar-brand">
-                    <a href="{{ path('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Logo"></a>
-                    <span class="outer"><span>BETA</span> <!--Bringing Musicians Together--></span>
-                </div>
-            </div>
-
-            {% if is_granted("ROLE_USER") %}
-
+        <div class="container-fluid">
+            <div class="row">
                 <div class="col-xs-2 visible-xs visible-sm">
-                    <button class="btn search-toggle" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                </div><!--search-toggle-->
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#social-header-home" aria-expanded="false" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <div class="navbar-open">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </div>
+                        <div class="navbar-close">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>
+                    </button>
+                </div><!--menu button-->
 
-                <div class="col-md-3 search-block-container">
-                    <div class="input-group search-block">
-                        <input type="text" id="autocomplete" class="form-control" placeholder="SEARCH" autocomplete="off" />
-                        <span class="hidden-xs hidden-sm input-group-btn">
-                            <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                        </span>
-                    </div><!-- /input-group -->
-                </div><!--search-block-container-->
-
-            {% endif %}
-        </div>
-
-    </div>
-</header><!--header ends-->
-
-<div class="container-fluid">
-    <div class="row">
-        {% if is_granted("ROLE_USER") %}
-            {% if not app.user.location or app.user.location.isTemporary %}
-                <div class="flash-message col-xs-12 no-location-message">
-                    <div class="warning alert-warning">
-                        Please <a href="{{ path('fos_user_profile_edit') }}">set your location</a> in order to be able to search people around you.
+                {% if is_granted("ROLE_USER") %}
+                <div class="col-xs-8 col-sm-8 col-md-9">
+                {% else %}
+                <div class="col-xs-8 col-sm-6">
+                {% endif %}
+                    <div class="navbar-brand">
+                        <a href="{{ path('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Logo"></a>
+                        <span class="outer"><span>&nbsp; </span> BETA</span>
                     </div>
                 </div>
-            {% endif %}
-        {% endif %}
 
-        <div class="fixed-alerts-container col-xs-12"></div>
+                {% if is_granted("ROLE_USER") %}
 
-        {% block body %}{% endblock %}
+                    <div class="col-xs-2 visible-xs visible-sm">
+                        <button class="btn search-toggle" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                    </div><!--search-toggle-->
 
-    </div>
-</div>
+                    <div class="col-md-3 search-block-container">
+                        <div class="input-group search-block">
+                            <input type="text" id="autocomplete" class="form-control" placeholder="SEARCH USERS" autocomplete="off" />
+                            <span class="hidden-xs hidden-sm input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!--search-block-container-->
 
-<div class="conversation">
+                {% else %}
+                    <div class="col-xs-2 col-sm-push-4 col-md-push-5 col-md-1">
+                        {% if status_code is defined and status_code == '404' %}
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">Login</a>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-4 col-sm-pull-2 col-md-pull-1 col-md-5">
+                        <div class="collapse navbar-collapse" id="social-header-home">
+                            <ul class="nav navbar-nav social">
+                                <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
 
-    <div class="conversation-close clearfix">
-        <a href="#" class="close-link"><i class="glyphicon glyphicon-remove"></i>close conversation</a>
-    </div>
-    <!--conversation-close ends-->
+            </div>
+        </div>
+    </header><!--header ends-->
 
-    <div class="conversation-new">
-        <input type="text" class="form-control autocomplete" placeholder="+ Type a name">
-    </div>
+    {% block body %}{% endblock %}
 
-    <div class="conversation-container conversation-message-box"></div>
-    <!--conversation-container ends-->
+    {% include "JamWebBundle:Messages:conversation.html.twig" %}
 
-    <div class="conversation-send">
-        <form role="form">
-            <textarea class="form-control send-message" rows="3" placeholder="Write message" maxlength="1000"></textarea>
-            <button type="submit" class="btn btn-primary send-message-btn"><i class="fa fa-paper-plane"></i> Send</button>
-        </form>
-    </div>
-    <!--conversation-send ends-->
+    {% block javascripts %}
 
-</div><!--conversation ends-->
+        {% javascripts
+        'vendor/jquery/jquery.js'
+        'vendor/select2/select2.js'
+        'vendor/bootstrap/dist/js/bootstrap.js'
+        'vendor/bootstrap3-typeahead/bootstrap3-typeahead.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.core.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.widget.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.mouse.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.position.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.autocomplete.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.sortable.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.draggable.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.slider.min.js'
+        'vendor/jquery-ui/ui/minified/jquery.ui.menu.min.js'
+        'vendor/underscore/underscore.js'
+        'vendor/isotope/dist/isotope.pkgd.js'
+        'vendor/imagesloaded/imagesloaded.js'
+        'vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js'
+        '@JamWebBundle/Resources/public/js/helpers.js'
+        'assets/js/templates.js'
+        'assets/js/screenfull.js'
+        filter='?uglifyjs2'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
 
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 
-{% block javascripts %}
+        <script src="http://connect.soundcloud.com/sdk.js"></script>
+        <script src="https://w.soundcloud.com/player/api.js"></script>
 
-    {% javascripts
-    'vendor/jquery/jquery.js'
-    'vendor/select2/select2.js'
-    'vendor/bootstrap/dist/js/bootstrap.js'
-    'vendor/bootstrap3-typeahead/bootstrap3-typeahead.js'
-    'vendor/jquery-ui/ui/jquery-ui.js'
-    'vendor/underscore/underscore.js'
-    'vendor/isotope/dist/isotope.pkgd.js'
-    'vendor/imagesloaded/imagesloaded.js'
-    'vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js'
-    '@JamWebBundle/Resources/public/js/helpers.js'
-    filter='?uglifyjs2'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
-
-    <script src="http://connect.soundcloud.com/sdk.js"></script>
-    <script src="https://w.soundcloud.com/player/api.js"></script>
+    {% endblock %}
 
     {% for fm in app.session.flashbag.get('success') %}
-    <script> $(function () { addMessage('success', '{{ fm }}'); });</script>
+        <script> $(function () { addMessage('success', '{{ fm }}'); });</script>
     {% endfor %}
 
     {% for fm in app.session.flashbag.get('info') %}
-    <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
+        <script> $(function () { addMessage('info', '{{ fm }}', false); });</script>
     {% endfor %}
 
-{% endblock %}
+    {% block bottomstylesheets %}{% endblock %}
 
+    {% block bottom_javascripts %}{% endblock %}
 
-{% block bottom_javascripts %}{% endblock %}
+    {% if is_granted("ROLE_USER") %}
 
-<script src="{{ asset('assets/js/templates.js') }}"></script>
-<script src="{{ asset('assets/js/main.js') }}"></script>
-<script src="{{ asset('assets/js/messaging.js') }}"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('assets/js/messaging.js') }}"></script>
+
+    {% endif %}
+
+    <!-- Quantcast Tag -->
+    <script type="text/javascript">
+        var _qevents = _qevents || [];
+
+        (function() {
+            var elem = document.createElement('script');
+            elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+            elem.async = true;
+            elem.type = "text/javascript";
+            var scpt = document.getElementsByTagName('script')[0];
+            scpt.parentNode.insertBefore(elem, scpt);
+        })();
+
+        _qevents.push({
+            qacct:"p-q5FW1h69Qv8Dh"
+        });
+    </script>
+
+    <noscript>
+        <div style="display:none;">
+            <img src="//pixel.quantserve.com/pixel/p-q5FW1h69Qv8Dh.gif" border="0" height="1" width="1" alt="Quantcast"/>
+        </div>
+    </noscript>
+    <!-- End Quantcast tag -->
 
 </body>
 </html>

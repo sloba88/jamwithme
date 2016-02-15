@@ -16,5 +16,8 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
+        if ($this->getUser() == null) {
+            return $this->forward('JamUserBundle:Registration:register');
+        }
     }
 }

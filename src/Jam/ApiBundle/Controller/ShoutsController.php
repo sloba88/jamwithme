@@ -30,6 +30,12 @@ class ShoutsController extends FOSRestController
         $perPage = 10;
         $page = $request->query->get('page') == '' ? 1 : intval($request->query->get('page'));
 
+        if ($request->query->get('distance') > 50) {
+            $distance = 50;
+        } else {
+            $distance = $request->query->get('distance');
+        }
+
         $finder = $this->container->get('fos_elastica.finder.searches.shout');
         $elasticaQuery = new MatchAll();
 
@@ -55,7 +61,7 @@ class ShoutsController extends FOSRestController
             $locationFilter = new \Elastica\Filter\GeoDistance(
                 'pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                (intval($request->query->get('distance')) ? intval($request->query->get('distance')) : '20') . 'km'
+                (intval($distance) ? intval($distance) : '20') . 'km'
             );
             $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
         }
@@ -109,9 +115,19 @@ class ShoutsController extends FOSRestController
                 $image = '/images/placeholder-user.jpg';
             }
 
+            $location = '';
+
+            if ($m->getLocation()->getAdministrativeAreaLevel3()) {
+                if ($m->getLocation()->getNeighborhood()) {
+                    $location = $m->getLocation()->getNeighborhood() . ', ' . $m->getLocation()->getAdministrativeAreaLevel3();
+                } else {
+                    $location = $m->getLocation()->getAdministrativeAreaLevel3();
+                }
+            }
+
             $data_array = array(
                 'text' => $s->getText(),
-                'createdAt' => $s->getCreatedAt()->format('Y-m-d H:i'),
+                'createdAt' => $s->getCreatedAtAgo(),
                 'id' => $s->getId(),
                 'musician' => array(
                     'username' => $m->getUsername(),
@@ -121,7 +137,7 @@ class ShoutsController extends FOSRestController
                     'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                     'me' => $me == $m->getUsername() ? true : false,
                     'genres' => $m->getGenresNamesArray(),
-                    'location' => $m->getLocation()->getAdministrativeAreaLevel3(),
+                    'location' => $location,
                 )
             );
 
@@ -191,7 +207,12 @@ class ShoutsController extends FOSRestController
         $form->handleRequest($request);
         $responseData = array();
 
-        if ($form->isValid()) {
+        $shout->setText($this->cleaner($shout->getText()));
+
+        $validator = $this->get('validator');
+        $errors = $validator->validate($shout);
+
+        if (count($errors) == 0) {
             $em = $this->getDoctrine()->getManager();
 
             if (!$this->getUser()){
@@ -201,6 +222,14 @@ class ShoutsController extends FOSRestController
 
             $em->persist($shout);
             $em->flush();
+
+            /* send data to GA */
+            $data = array(
+                'uid'=> $this->getUser()->getId(),
+                'ec'=> 'shout',
+                'ea'=> 'created'
+            );
+            $this->get('happyr.google.analytics.tracker')->send($data, 'event');
 
             return $this->formatResponse(array($shout), 'You have shouted successfully!');
 
@@ -213,6 +242,21 @@ class ShoutsController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    private function cleaner($url) {
+
+        $U = explode(' ',$url);
+
+        $W =array();
+        foreach ($U as $k => $u) {
+            if (stristr($u,'http') || (count(explode('.',$u)) > 1)) {
+                unset($U[$k]);
+                return $this->cleaner( implode(' ',$U));
+            }
+        }
+        return implode(' ',$U);
+    }
+
 
     /**
      * @Get("/shout/can", name="can_shout")

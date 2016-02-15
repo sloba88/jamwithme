@@ -242,6 +242,7 @@
 	right: 0;
 	top: 0;
 	z-index: 1000;
+    opacity: 0.95;
 }
 
 //autocomplete
@@ -250,19 +251,27 @@
 }
 
 //modal
+.modal-dialog {
+	max-width: 832px !important;
+	width: 100% !important;
+	@include respond-to(handhelds) {
+		max-width: 100% !important;
+	}
+}
+
+.modal-header .close {
+	font-size: 30px;
+	line-height: 30px;
+	padding: 0 5px;
+}
+
 .modal-footer {
 	margin: 0;
 	padding: 15px 0;
 
-	> .first {
-		text-align: left;
-	}
-
-	.btn-primary {
-		width: 200px;
-
-		i {
-			top: 0;
+	> div:not(.last) {
+		@include respond-to(handhelds) {
+			margin-bottom: 10px;
 		}
 	}
 }
@@ -376,14 +385,14 @@
 	}
 
 	.tags {
-		@extend %tags;
+		// @extend %tags;
 		margin-left: 65px;
 	}
 
 	.compatibility-box {
 		float: right;
-    margin-right: 8px;
-    margin-top: 7px;
+		margin-right: 8px;
+		margin-top: 7px;
 	}
 
 	a.leaflet-popup-close-button {
@@ -391,4 +400,9 @@
 		padding: 4px;
 		width: 22px;
 	}
+}
+
+//jcrop
+.jcrop-holder {
+	margin: 0 auto;
 }

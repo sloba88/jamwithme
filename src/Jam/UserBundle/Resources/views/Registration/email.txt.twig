@@ -1,12 +1,15 @@
-{% trans_default_domain 'FOSUserBundle' %}
-{% block subject %}
-{% autoescape false %}
-{{ 'registration.email.subject'|transchoice(user.username)|desc('Welcome %user.username%') }}
-{% endautoescape %}
+{% extends 'JamWebBundle:Email:emailLayout.html.twig' %}
+
+{% block subject %}You are one step away from registering at Jamifind{% endblock %}
+
+{% block email_body %}
+
+    {% trans_default_domain 'FOSUserBundle' %}
+
+    {{ 'registration.email.message'|trans({'%username%' : user.username })|desc('Hello %user.username%! \n\n To finish activating your account - please visit ') }}
+
+    <a href="{{ confirmationUrl }}">{{ confirmationUrl }}</a>
+
+    <p>Regards, <br />the Jamifind team.</p>
+
 {% endblock %}
-{% block body_text %}
-{% autoescape false %}
-{{ 'registration.email.message'|transchoice(user.username, confirmationUrl)|desc('Hello %user.username%! \n\n To finish activating your account - please visit %confirmationUrl%') }}
-{% endautoescape %}
-{% endblock %}
-{% block body_html %}{% endblock %}

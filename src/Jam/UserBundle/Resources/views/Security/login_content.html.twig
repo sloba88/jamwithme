@@ -1,6 +1,6 @@
 
 <div class="login-header">
-    <h1>Login to jamifind</h1>
+    <p>Login to jamifind</p>
 </div>
 
 <div class="login-body">
@@ -17,7 +17,7 @@
         </div>
 
         {% if error %}
-            <div>{{ error|trans }}</div>
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         <button type="submit" class="btn btn-primary btn-submit" name="_submit" id="_submit">Login</button>
@@ -28,8 +28,8 @@
     </div>
 
     <div class="login-buttons">
-        <a href="{{ path('jam_facebook_login') }}" class="btn btn-primary facebook"><i class="fa fa-facebook-square"></i>login with facebook</a>
-        <a href="{{ path('connect_soundcloud') }}" class="btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>login with soundcloud</a>
+        <a href="{{ path('jam_facebook_login') }}" class="disabled btn btn-primary facebook"><i class="fa fa-facebook-square"></i>login with facebook</a>
+        <a href="{{ path('connect_soundcloud') }}" class="disabled btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>login with soundcloud</a>
     </div>
 </div><!--login-body ends-->
 

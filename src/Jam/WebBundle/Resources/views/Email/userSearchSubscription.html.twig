@@ -1,24 +1,69 @@
-<!DOCTYPE HTML>
-{# todo create some email master templates #}
-<html>
+{% extends 'JamWebBundle:Email:emailLayout.html.twig' %}
 
-    <head>
+{% block email_body %}
 
-    </head>
+            <h3 style="font-family: Verdana, Geneva, sans-serif; font-size: 20px">{{ 'email.users.you.might.be.interested.in'|trans }}:</h3>
 
-    <body>
-        <p>{{ 'email.users.you.might.be.interested.in'|trans }}:</p>
+            <ul style="list-style-type: none; padding: 0px;">
+            {% for user in users %}
+                <li style="display: block;
+                width: 100%;
+                height: 150px;
 
-        {% for user in users %}
-            <p>
-                <a href="{{ url('musician_profile', {'username': user.username}) }}">{{ user.fullName }}</a>
-            </p>
-        {% endfor %}
+                {% if (loop.index > 1) %}
+                    border-top: 1px solid silver;
+                {% endif %}
 
-        <p>
-            You received this email because you subscribed to this search on Jamifind.
-            If you want you can <a href="">unsubscribe</a>.
+                ">
+
+                    <a href="{{ url('musician_profile', {'username': user.username}) }}">
+                        <div style="float: left; padding: 10px;">
+                            <img src="{{ user.avatar | imagine_filter('my_medium_1') }}" />
+                        </div>
+                        <div style="float: left">
+
+                            <h4 style="
+                            font-size: 18px;
+                            color: #000;
+                            margin: 10px 0;
+                                ">{{ user.username }}</h4>
+
+                            <h5 style="
+                            font-size: 14px;
+                            color: #000;
+                            margin: 5px 0; font-weight: normal;
+                                ">{{ user.fullName }}</h5>
+
+                            {% if user.location.getAdministrativeAreaLevel3 %}
+                                <div style="color: #9998a7; font-size: 13px;">
+                                    <i class="fa fa-map-marker"></i> {% if user.location.neighborhood %}{{ user.location.neighborhood }},{% endif %} {{ user.location.getAdministrativeAreaLevel3 }}
+                                </div>
+                            {% endif %}
+
+                            <ul style="list-style-type: none; padding: 0; margin-top: 10px; ">
+                                {% for g in user.genres %}
+                                    <li style="font-size: 13px; color: #000; float: left; background: #fabc09; margin: 0 2px 4px 0; padding: 2px 7px 1px">{{ g.genre.name }}</li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+{% endblock %}
+
+{% block email_footer %}
+    <div style="
+                width: 800px;
+                margin: 0 auto;
+                padding: 5px 20px;
+                background-color: #fff;
+                border-top:1px solid black;
+            ">
+        <p style="font-size: 13px; text-align: center">
+            You received this email because you subscribed to this search on <a href="{{ path('home') }}">Jamifind</a>.
+            If you want you can <a href="{{ path('subscribe_search_remove', { 'id': subscriptionId } ) }}">unsubscribe</a>.
         </p>
-
-    </body>
-</html>
+    </div>
+{% endblock %}

@@ -23,15 +23,19 @@ __p += '" data-id="' +
 __e( rc._id ) +
 '" data-user="' +
 __e( rc.fromData.username ) +
-'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <img class="message-picture" src="' +
+'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <a href="' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.fromData.username ) +
+'">\n            <img class="message-picture" src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( rc.fromData.username ) +
 '/avatar" alt="' +
 __e( rc._lastMessage.from ) +
-'">\n\n        <h3 class="name">' +
+'">\n            <h3 class="name">' +
 __e( rc.fromData.username ) +
-'</h3>\n\n        <div class="time">' +
+'</h3>\n        </a>\n\n        <div class="time">' +
 __e( rc._lastMessage.createdAt.toLocaleDateString() ) +
 ' ' +
 __e( rc._lastMessage.createdAt.toLocaleTimeString() ) +
@@ -43,7 +47,7 @@ return __p
 
 this["JST"]["imageCropModalTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
-__p += '<div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\n    <div class="modal-dialog">\n        <div class="modal-content">\n            <div class="modal-header">\n                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>\n                <h4 class="modal-title" id="myModalLabel">Crop and upload photo</h4>\n            </div>\n            <div class="modal-body"></div>\n            <div class="modal-footer">\n                <div class="col-sm-4 first">\n                    <button type="button" class="btn btn-primary btn-save-changes" data-dismiss="modal">\n                        <i class="fa fa-check"></i>\n                        Save and upload\n                    </button>\n                </div>\n                <div class="col-sm-4">\n                    <button type="button" class="btn btn-default cancel-crop" data-dismiss="modal">\n                        <i class="fa fa-times"></i>\n                        Cancel\n                    </button>\n                </div>\n                <div class="col-sm-4 last">\n                    <button type="button" class="btn btn-danger btn-remove-crop-photo">\n                        <i class="fa fa-times"></i>\n                        Remove\n                    </button>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
+__p += '<div class="modal fade" id="imageCropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">\n    <div class="modal-dialog">\n        <div class="modal-content">\n            <div class="modal-header">\n                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>\n                <h4 class="modal-title" id="myModalLabel">Crop and upload photo</h4>\n            </div>\n            <div class="modal-body"></div>\n            <div class="modal-footer">\n                <div class="col-sm-4 first">\n                    <button type="button" class="btn btn-primary btn-save-changes" data-dismiss="modal">\n                        <i class="fa fa-check"></i>\n                        Save and upload\n                    </button>\n                </div>\n                <div class="col-sm-4">\n                    <button type="button" class="btn btn-default cancel-crop" data-dismiss="modal">\n                        <i class="fa fa-times"></i>\n                        Cancel\n                    </button>\n                </div>\n                <div class="col-sm-4 last">\n                    <button type="button" class="btn btn-danger btn-remove-crop-photo">\n                        <i class="fa fa-trash-o"></i>\n                        Remove\n                    </button>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>';
 return __p
 };
 
@@ -104,7 +108,7 @@ __e( createdAt.toLocaleDateString() ) +
 ' ' +
 __e( createdAt.toLocaleTimeString() ) +
 '\n    </div>\n    <p class="text">\n        ' +
-__e( rc.message ) +
+((__t = ( rc.message )) == null ? '' : __t) +
 '\n    </p>\n</div>';
 return __p
 };
@@ -116,13 +120,25 @@ __p += '<div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container">\n    <a 
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( rc.username ) +
-'" class="people-grid" alt="' +
+'" class="people-grid ';
+ if (rc.teacher){ ;
+__p += 'teacher';
+ } ;
+__p += '" alt="' +
 __e( rc.username ) +
 '">\n        <img src="' +
 __e( rc.avatar ) +
 '" alt="' +
 __e( rc.username ) +
-'" class="img-responsive" onerror="imgError(this, \'medium_thumb\');">\n        <div class="people-info">\n            <h3 class="name">' +
+'" class="img-responsive" onerror="imgError(this, \'medium_thumb\');">\n        <div class="people-info">\n            <h3 class="name" title="' +
+__e( rc.username ) +
+'" ';
+ if (rc.username.length > 21) { ;
+__p += ' style="font-size:11px" ';
+ } if (rc.username.length > 16) { ;
+__p += ' style="font-size:13px" ';
+ } ;
+__p += '>' +
 __e( rc.username ) +
 '</h3>\n                    <span class="instrument" title="' +
 __e( rc.instrument ) +

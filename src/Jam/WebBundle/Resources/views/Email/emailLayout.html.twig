@@ -1,0 +1,48 @@
+{% block body_html %}
+    {% autoescape false %}
+    <!DOCTYPE HTML>
+    <html>
+        <head>
+        </head>
+
+        <body style="background-color: #3B385E; font-family: Helvetica Neue, Arial, sans-serif;">
+
+            <div style="
+                width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            ">
+                <div>
+                    <a href="{{ app.request.getSchemeAndHttpHost() ~ path('home') }}">
+                        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('assets/images/logo.png') }}" />
+                    </a>
+                </div>
+            </div>
+
+            <div style="background-color: #fff;
+                width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            ">
+
+                {% block email_body %}{% endblock %}
+
+                <div style="height: 5px; clear: both"></div>
+
+            </div>
+
+            {% block email_footer %}{% endblock %}
+
+                <div style="
+                width: 800px;
+                margin: 0 auto 20px auto;
+                padding: 20px;
+                color: silver;
+                font-size: 12px;
+            ">&reg; {{ "now"|date("Y") }} Jamifind</div>
+
+
+        </body>
+    </html>
+    {% endautoescape %}
+{% endblock %}
