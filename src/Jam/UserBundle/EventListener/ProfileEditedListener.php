@@ -22,6 +22,7 @@ class ProfileEditedListener implements EventSubscriberInterface
     {
         $this->userManager = $userManager;
         $this->session = $session;
+        $this->tracker = $tracker;
     }
 
     public static function getSubscribedEvents()
