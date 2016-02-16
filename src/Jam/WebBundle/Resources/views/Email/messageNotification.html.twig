@@ -1,10 +1,10 @@
 {% extends 'JamWebBundle:Email:emailLayout.html.twig' %}
 
 {% block email_body %}
-        <h2>{{ 'email.you.have.recieved.a.message'|trans }}</h2>
+    <h2>{{ 'email.you.have.recieved.a.message'|trans }}</h2>
 
-        <p style="font-style: italic">"{{ text }}"</p>
+    <p style="font-style: italic">"{{ text }}"</p>
 
-        <p>{{ 'email.sent.on'|trans }}: {{ time|date('d.m.Y H:i') }}</p>
-        <a href="{{ url('inbox') }}">{{ 'email.see.all.messages'|trans }}</a>
+    <p>{{ 'email.sent.on'|trans }}: {{ time|date('d.m.Y H:i') }}</p>
+    <a href="{{ url('inbox') }}">{{ 'email.see.all.messages'|trans }}</a>
 {% endblock %}

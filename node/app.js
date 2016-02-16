@@ -83,7 +83,7 @@ function saveMessageFrom(socket, data, conversation) {
     });
 }
 
-function saveMessageTo(socket, data, conversation) {
+function saveMessageTo(socket, data, conversation, notify) {
     //TODO: message should be created for each participant
 
     var to;
@@ -118,9 +118,11 @@ function saveMessageTo(socket, data, conversation) {
             messageTo.message = tagLinks(messageTo.message);
             socketTo.emit('messageReceived', messageTo);
         } else {
-            //send email about the message
-            var mess = tagLinks(messageTo.message).substring(0, 60) + ' ...';
-            notifyUserByEmail(to, mess, messageTo.createdAt.getTime());
+            if (notify) {
+                //send email about the message
+                var mess = tagLinks(messageTo.message).substring(0, 60) + ' ...';
+                notifyUserByEmail(to, mess, messageTo.createdAt.getTime());
+            }
         }
 
         conversation._lastMessage = messageTo;
@@ -168,8 +170,8 @@ function notifyUserByEmail(userId, message, time) {
         'http://localhost:80/api/send-message-email',
         { form : {
             'userId': userId,
-            'messageType': 'messageNotification',
-            'messageText': message,
+            'type': 'messageNotification',
+            'text': message,
             'time': time
         }},
         function (error, response, body) {
@@ -291,7 +293,7 @@ mysqlConnection.connect(function(err) {
                                     return console.error(err);
                                 }
 
-                                saveMessageTo(socket, data, conversation2);
+                                saveMessageTo(socket, data, conversation2, true);
 
                                 //save reference back to conversation 1
                                 conversation1.mirroredConversations.push(conversation2._id);
@@ -302,16 +304,21 @@ mysqlConnection.connect(function(err) {
                                 });
                             });
                         } else {
+                            var notify = false;
+                            if (conversation2.isRead) {
+                                conversation2.isRead = false;
 
-                            conversation2.isRead = false;
+                                conversation2.save(function (err) {
+                                    if (err) {
+                                        return console.error(err);
+                                    }
+                                });
+                            } else {
+                                //notify guy
+                                notify = true;
+                            }
 
-                            conversation2.save(function (err) {
-                                if (err) {
-                                    return console.error(err);
-                                }
-                            });
-
-                            saveMessageTo(socket, data, conversation2);
+                            saveMessageTo(socket, data, conversation2, notify);
                         }
                     });
                 });
