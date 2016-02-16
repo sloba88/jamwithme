@@ -106,7 +106,6 @@ braincrafted_bootstrap:
     output_dir:
     assets_dir:
     jquery_path:
-    less_filter: none # "less", "lessphp", "sass" or "none"
     fonts_dir:
     auto_configure:
         assetic: false
@@ -234,6 +233,7 @@ fos_rest:
         default_format: json
     exception:
         enabled: true
+    param_fetcher_listener: true
 
 hwi_oauth:
     #this is my custom user provider, created from FOSUBUserProvider - will manage the

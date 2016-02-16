@@ -17,6 +17,7 @@ var mongoose = require('mongoose'),
     Autolinker = require('autolinker'),
     striptags = require('striptags'),
     mysqlConnection,
+    request = require('request'),
     activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
@@ -116,6 +117,10 @@ function saveMessageTo(socket, data, conversation) {
 
             messageTo.message = tagLinks(messageTo.message);
             socketTo.emit('messageReceived', messageTo);
+        } else {
+            //send email about the message
+            var mess = tagLinks(messageTo).substring(0, 60) + ' ...';
+            notifyUserByEmail(to, mess, messageTo.createdAt.getTime());
         }
 
         conversation._lastMessage = messageTo;
@@ -157,6 +162,28 @@ function getUnreadConversations(socket) {
     });
 }
 
+function notifyUserByEmail(userId, message, time) {
+
+    request.post(
+        'http://33.33.33.100/app_dev.php/api/send-message-email',
+        { form : {
+            'userId': userId,
+            'messageType': 'messageNotification',
+            'messageText': message,
+            'time': time
+        }},
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                return true;
+            } else {
+                console.log(error);
+                console.log(response.statusCode);
+                return false;
+            }
+        }
+    );
+}
+
 mongoose.connect('mongodb://localhost:27017/jamifind');
 
 mysqlConnection.connect(function(err) {
@@ -192,7 +219,6 @@ mysqlConnection.connect(function(err) {
                         //get unread messages count
                         getUnreadConversations(socket);
                     }, 1000);
-                    console.log(12321312312);
                     socket.emit('userAuthenticated', true );
                 });
             });
