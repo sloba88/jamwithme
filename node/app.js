@@ -119,7 +119,7 @@ function saveMessageTo(socket, data, conversation) {
             socketTo.emit('messageReceived', messageTo);
         } else {
             //send email about the message
-            var mess = tagLinks(messageTo).substring(0, 60) + ' ...';
+            var mess = tagLinks(messageTo.message).substring(0, 60) + ' ...';
             notifyUserByEmail(to, mess, messageTo.createdAt.getTime());
         }
 
@@ -165,7 +165,7 @@ function getUnreadConversations(socket) {
 function notifyUserByEmail(userId, message, time) {
 
     request.post(
-        'http://33.33.33.100/app_dev.php/api/send-message-email',
+        'http://localhost:80/api/send-message-email',
         { form : {
             'userId': userId,
             'messageType': 'messageNotification',
@@ -174,6 +174,7 @@ function notifyUserByEmail(userId, message, time) {
         }},
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
+                console.log('success email sent');
                 return true;
             } else {
                 console.log(error);
