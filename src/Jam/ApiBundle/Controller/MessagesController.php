@@ -36,9 +36,9 @@ class MessagesController extends FOSRestController
                 'time' => (new \DateTime())->setTimestamp($paramFetcher->get('time')),
                 'text' => $paramFetcher->get('messageText')
             ));
-            
+
             $message = \Swift_Message::newInstance()
-                ->setSubject('User suggestions')
+                ->setSubject("You just got new message on Jamifind")
                 ->setFrom('noreply@jamifind.com')
                 ->setTo($user->getEmail())
                 ->setBody($messageBody, 'text/html');
