@@ -13,12 +13,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 class MessagesController extends FOSRestController
 {
     /**
-     * When triggered sends an email as a notification to user; Params are fetched via GET params
-     * http://33.33.33.100/app_dev.php/send-message-email/?messageType=yo&time=1421020800&userId=86 <---- example url
-     *
-     * userId (integer)
-     * messageType (string)
-     * time (timestamp)
+     * When triggered sends an email as a notification to user; Params are fetched via POST params
      *
      * @Post("/send-message-email", name="sendMessageEmail")
      * @RequestParam(name="userId", requirements="\d+", description="user id to send the message to", strict=true, nullable=false)
@@ -85,7 +80,7 @@ class MessagesController extends FOSRestController
         $em->persist($emailNotification);
         $em->flush();
 
-        $messageBody = $this->render('JamWebBundle:Email:'. $paramFetcher->get('type') .'.html.twig', array(
+        $messageBody = $this->renderView('JamWebBundle:Email:'. $paramFetcher->get('type') .'.html.twig', array(
             'time' => (new \DateTime())->setTimestamp($paramFetcher->get('time')),
             'text' => $paramFetcher->get('text')
         ));
