@@ -23,14 +23,14 @@ var mongoose = require('mongoose'),
 //io.set('origins', '*178.62.189.52:*');
 redisClient.select(1);
 
-var mysqlConfig = readYaml.sync('../app/config/parameters.yml');
+var symfonyParameters = readYaml.sync('../app/config/parameters.yml');
 
 /*jshint camelcase: false */
 mysqlConnection = mysql.createConnection({
-    host     : mysqlConfig.parameters.database_host,
-    user     : mysqlConfig.parameters.database_user,
-    password : mysqlConfig.parameters.database_password,
-    database : mysqlConfig.parameters.database_name
+    host     : symfonyParameters.parameters.database_host,
+    user     : symfonyParameters.parameters.database_user,
+    password : symfonyParameters.parameters.database_password,
+    database : symfonyParameters.parameters.database_name
 });
 /*jshint camelcase: true */
 
@@ -167,7 +167,7 @@ function getUnreadConversations(socket) {
 function notifyUserByEmail(userId, message, time) {
 
     request.post(
-        'http://localhost:80/api/send-message-email',
+        symfonyParameters.parameters.router.request_context.scheme + ':// ' + symfonyParameters.parameters.router.request_context.host+'/api/send-message-email',
         { form : {
             'userId': userId,
             'type': 'messageNotification',
