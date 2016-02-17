@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-02-17T13:57:20Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-02-17T14:34:28Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -25,7 +25,7 @@
         <source>Location</source>
         <target state="new">Location</target>
         <jms:reference-file line="110">views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="134">views/Profile/setup.html.twig</jms:reference-file>
+        <jms:reference-file line="105">views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b408136ea5c79dd2b2bd07d3d17ea72e6202fe33" resname="Your Favourite Genres">
         <source>Your Favourite Genres</source>
@@ -61,7 +61,7 @@
         <source>button.save</source>
         <target state="new">button.save</target>
         <jms:reference-file line="56">views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="343">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="314">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="17faad85a87a3e84000ba3dbeb09d219118d36e4" resname="exception.file.not.sent">
         <source>exception.file.not.sent</source>
@@ -121,41 +121,62 @@
         <target state="new">This means you are not currently available and you will be positioned lower in search results</target>
         <jms:reference-file line="134">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="e11c16aba8efd7c6504fc9c0eb3c2101ed5107e8" resname="label.about">
+        <source>label.about</source>
+        <target state="new">label.about</target>
+        <jms:reference-file line="159">views/Profile/show.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="492b76e8f42f1e440a8b09e25dc22b1d69ebe7d7" resname="label.add.instrument">
         <source>label.add.instrument</source>
         <target state="new">Add another instrument / Skill</target>
-        <jms:reference-file line="189">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="30">views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c9afcfcd7e736a908026c9ce1ca67d1294f30aae" resname="label.add.photos">
         <source>label.add.photos</source>
         <target state="new">label.add.photos</target>
-        <jms:reference-file line="228">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="199">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3ceed3b0527c8a71d0d48cdbb6a075e51fdf1a05" resname="label.add.video">
         <source>label.add.video</source>
         <target state="new">label.add.video</target>
-        <jms:reference-file line="281">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="252">views/Profile/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="11b95888e562d05337df1c527884760405bb9366" resname="label.available">
+        <source>label.available</source>
+        <target state="new">label.available</target>
+        <jms:reference-file line="32">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4aa0fc260fc5883b6d1e2d4fa4095b9a1fae6a24" resname="label.change.password">
         <source>label.change.password</source>
         <target state="new">label.change.password</target>
         <jms:reference-file line="104">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="503a6f181802ea8c9d241a9a28face75fb91ce55" resname="label.compatibility">
+        <source>label.compatibility</source>
+        <target state="new">label.compatibility</target>
+        <jms:reference-file line="47">views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="172">views/Profile/show.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="e082550d5626d885343de4ceb789e7397364fb2e" resname="label.connect.facebook">
         <source>label.connect.facebook</source>
         <target state="new">label.connect.facebook</target>
-        <jms:reference-file line="320">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="291">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="43bfc0405bdcb294f275e8c385bd8d9fa5c835a7" resname="label.connect.soundcloud">
         <source>label.connect.soundcloud</source>
         <target state="new">label.connect.soundcloud</target>
-        <jms:reference-file line="330">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="301">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0f063fe407802af682792db012b3b69ff33b77ef" resname="label.connected">
         <source>label.connected</source>
         <target state="new">label.connected</target>
-        <jms:reference-file line="317">views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="327">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="288">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="298">views/Profile/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5aa16fab2c4f7fd960be030d2f30962a7784ad3a" resname="label.education">
+        <source>label.education</source>
+        <target state="new">label.education</target>
+        <jms:reference-file line="188">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fc8413fdfd53e23e0f6ad278406aa827b4548642" resname="label.email">
         <source>label.email</source>
@@ -171,7 +192,7 @@
       <trans-unit id="d7e9871a9d321f4a194c509950746a360f6f8db9" resname="label.how.good.are.you">
         <source>label.how.good.are.you</source>
         <target state="new">label.how.good.are.you</target>
-        <jms:reference-file line="165">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="6">views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cb0377345e0b84aa4479a40689c3d8a2fa3fa68a" resname="label.i.am.available">
         <source>label.i.am.available</source>
@@ -203,7 +224,7 @@
       <trans-unit id="859e6d441fff850329b6805f4a6c21700ccedaa9" resname="label.location.info">
         <source>label.location.info</source>
         <target state="new">Your location helps us find people around you. You can be specific as you like, we will not show your full address to other people.</target>
-        <jms:reference-file line="126">views/Profile/setup.html.twig</jms:reference-file>
+        <jms:reference-file line="97">views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2f8d0f4697c011829ef8e01cf9284b98f119d8e8" resname="label.make.this.primary">
         <source>label.make.this.primary</source>
@@ -229,12 +250,19 @@
       <trans-unit id="f4d50ee2d1372fa7ac1480c43f43fc4de3803886" resname="label.no.images">
         <source>label.no.images</source>
         <target state="new">label.no.images</target>
-        <jms:reference-file line="254">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="225">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="198">views/Profile/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="75589666400c1dd80f3b78625aa5e8c7147fb748" resname="label.no.sounds">
+        <source>label.no.sounds</source>
+        <target state="new">label.no.sounds</target>
+        <jms:reference-file line="232">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6bdce0a700dfdd0c29b1dc38fefe39a65ec4193a" resname="label.no.videos">
         <source>label.no.videos</source>
         <target state="new">label.no.videos</target>
-        <jms:reference-file line="291">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="262">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="214">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
         <source>label.password</source>
@@ -250,17 +278,18 @@
         <source>label.photos</source>
         <target state="new">label.photos</target>
         <jms:reference-file line="63">views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="249">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="220">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="160">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd28a0018a8739560ed890683c65b18906c7df0e" resname="label.remove">
         <source>label.remove</source>
         <target state="new">label.remove</target>
-        <jms:reference-file line="301">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="272">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cd80b54bc6bef9aec7232caefd621b4b42dc0d48" resname="label.remove.photo">
         <source>label.remove.photo</source>
         <target state="new">label.remove.photo</target>
-        <jms:reference-file line="264">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="235">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="02424dc8f20c80b7a6e14c68f1a6e82d19e163a7" resname="label.repeat.password">
         <source>label.repeat.password</source>
@@ -275,7 +304,17 @@
       <trans-unit id="8788c0ef76fda341a55e9e406055d74357d1400e" resname="label.set.profile.photo">
         <source>label.set.profile.photo</source>
         <target state="new">label.set.profile.photo</target>
-        <jms:reference-file line="263">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="234">views/Profile/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="bd54804fbe9d9e803b0a5f312b53040e0b024b80" resname="label.setup.your.profile">
+        <source>label.setup.your.profile</source>
+        <target state="new">label.setup.your.profile</target>
+        <jms:reference-file line="50">views/Profile/setup.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4cd08fde3006777d4c023f2f69fba29a0af24a22" resname="label.sounds">
+        <source>label.sounds</source>
+        <target state="new">label.sounds</target>
+        <jms:reference-file line="162">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="be40ff74163e44cd5a6b6df4aaa63b7305f7d29c" resname="label.teach.music">
         <source>label.teach.music</source>
@@ -286,7 +325,7 @@
       <trans-unit id="208e071127d52400f1ebc2d014d3366b4e61452a" resname="label.upload.all">
         <source>label.upload.all</source>
         <target state="new">label.upload.all</target>
-        <jms:reference-file line="236">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="207">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="05353914133c4c4be543a454c6da7e36249a974a" resname="label.username">
         <source>label.username</source>
@@ -298,12 +337,13 @@
         <source>label.videos</source>
         <target state="new">label.videos</target>
         <jms:reference-file line="64">views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="286">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="257">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="161">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="694ac498b6ca671b6e897a906e5b9f719d0c6864" resname="label.what.do.you.play">
         <source>label.what.do.you.play</source>
         <target state="new">label.what.do.you.play</target>
-        <jms:reference-file line="162">views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="3">views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9f5b34b9504cd5007e322b514f3f7f672df43c2e" resname="message.an.error.occurred.while.creating.your.directory.at">
         <source>message.an.error.occurred.while.creating.your.directory.at</source>
@@ -340,16 +380,6 @@
         <target state="new">email</target>
         <jms:reference-file line="20">Form/Type/EmailType.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="7e89d7b663f5d30bc59a4e90144ba6201b710e09" resname="text.about">
-        <source>text.about</source>
-        <target state="new">about</target>
-        <jms:reference-file line="159">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="eca2677497d3dcc0270a946b3a34cecdfe30d32b" resname="text.compatibility">
-        <source>text.compatibility</source>
-        <target state="new">compatibility</target>
-        <jms:reference-file line="172">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="2e20968a744643c99e8897315b9f9b4942787d63" resname="text.favourite.brands">
         <source>text.favourite.brands</source>
         <target state="new">favourite brands</target>
@@ -380,16 +410,6 @@
         <target state="new">no instruments yet</target>
         <jms:reference-file line="79">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="8043317f413def204b3cf26a42a87479ce505751" resname="text.no.photos.yet">
-        <source>text.no.photos.yet</source>
-        <target state="new">no photos yet</target>
-        <jms:reference-file line="198">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="70c59d342651494cc356a1ccc1f43a60ffdab6f2" resname="text.no.videos.yet">
-        <source>text.no.videos.yet</source>
-        <target state="new">No videos yet.</target>
-        <jms:reference-file line="214">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="c30c7e4fb4f2610e518069cd3866462bba38e1d6" resname="text.none">
         <source>text.none</source>
         <target state="new">none</target>
@@ -406,30 +426,15 @@
         <target state="new">overview</target>
         <jms:reference-file line="184">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="73fed8ae430db28975086890a117073a45358c0d" resname="text.photos">
-        <source>text.photos</source>
-        <target state="new">photos</target>
-        <jms:reference-file line="160">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
         <source>text.shouts.feed</source>
         <target state="new">shouts feed</target>
         <jms:reference-file line="246">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="cc1608d5be0cdb333e8ebc975d569abb6c958742" resname="text.sounds">
-        <source>text.sounds</source>
-        <target state="new">sounds</target>
-        <jms:reference-file line="162">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="2fec9859a69131cb02cf1c5c002bc73f504720c3" resname="text.teacher">
         <source>text.teacher</source>
         <target state="new">teacher</target>
         <jms:reference-file line="62">views/Profile/show.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="8f4c120ffe167d6a85ebf54807c44183ff9c26c1" resname="text.videos">
-        <source>text.videos</source>
-        <target state="new">videos</target>
-        <jms:reference-file line="161">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6b7cc5ab625a26401b804c3f5f47c5269f714841" resname="user.age">
         <source>%user.age% years old</source>
