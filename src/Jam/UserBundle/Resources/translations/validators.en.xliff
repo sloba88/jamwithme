@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-01-12T11:28:10Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-02-17T13:47:34Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="f00b10aee719ed874516d910befe5ad5a0b9513f" resname="Only letters and numbers are allowed here.">
+        <source>Only letters and numbers are allowed here.</source>
+        <target state="new">Only letters and numbers are allowed here.</target>
+      </trans-unit>
       <trans-unit id="7d93afec3e9508f6c8161e5e3d3b874946a2deb7" resname="The name is too long.">
         <source>The name is too long.</source>
         <target state="new">The name is too long.</target>
@@ -13,6 +17,14 @@
       <trans-unit id="641978ebc3cae2f1f07838ff1aa9f4dd6f540ed2" resname="The name is too short.">
         <source>The name is too short.</source>
         <target state="new">The name is too short.</target>
+      </trans-unit>
+      <trans-unit id="8b5a8f306be0b1f13f630a7e965ea11404e3fd14" resname="The numbers are not allowed here">
+        <source>The numbers are not allowed here</source>
+        <target state="new">The numbers are not allowed here</target>
+      </trans-unit>
+      <trans-unit id="12d75039ee53c0936131dab6e525e4f302823aec" resname="Username can't be number only">
+        <source>Username can't be number only</source>
+        <target state="new">Username can't be number only</target>
       </trans-unit>
       <trans-unit id="f48ccf84018671218aac090abf90770212497b70" resname="fos_user.email.already_used">
         <source>fos_user.email.already_used</source>
