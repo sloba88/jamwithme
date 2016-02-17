@@ -167,7 +167,7 @@ function getUnreadConversations(socket) {
 function notifyUserByEmail(userId, message, time) {
 
     request.post(
-        symfonyParameters.parameters.router.request_context.scheme + ':// ' + symfonyParameters.parameters.router.request_context.host+'/api/send-message-email',
+        symfonyParameters.parameters['router.request_context.scheme'] + '://' + symfonyParameters.parameters['router.request_context.host']+'/api/send-message-email',
         { form : {
             'userId': userId,
             'type': 'messageNotification',
