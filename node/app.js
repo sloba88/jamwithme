@@ -121,7 +121,7 @@ function saveMessageTo(socket, data, conversation, notify) {
             if (notify) {
                 //send email about the message
                 var mess = tagLinks(messageTo.message).substring(0, 60) + ' ...';
-                notifyUserByEmail(to, mess, messageTo.createdAt.getTime());
+                notifyUserByEmail(to, mess, messageTo.createdAt.getTime(), messageTo.from);
             }
         }
 
@@ -164,15 +164,16 @@ function getUnreadConversations(socket) {
     });
 }
 
-function notifyUserByEmail(userId, message, time) {
+function notifyUserByEmail(to, message, time, from) {
 
     request.post(
         symfonyParameters.parameters['router.request_context.scheme'] + '://' + symfonyParameters.parameters['router.request_context.host']+'/api/send-message-email',
         { form : {
-            'userId': userId,
+            'to': to,
             'type': 'messageNotification',
             'text': message,
-            'time': time
+            'time': time,
+            'from': from
         }},
         function (error, response, body) {
             if (!error && response.statusCode == 200) {

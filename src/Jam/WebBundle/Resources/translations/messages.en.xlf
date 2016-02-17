@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-10-20T22:59:04Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-02-17T12:52:48Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="ead925b97147d5ea08bd220f3d979af2fcbf259c" resname="email.see.all.messages">
+        <source>email.see.all.messages</source>
+        <target state="new">See all messages</target>
+        <jms:reference-file line="14">views/Email/messageNotification.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="db231884a579c6f9a861caf1f6b7c3602659a897" resname="email.users.you.might.be.interested.in">
+        <source>email.users.you.might.be.interested.in</source>
+        <target state="new">email.users.you.might.be.interested.in</target>
+        <jms:reference-file line="5">views/Email/userSearchSubscription.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="fccf2c4974624e0e217e03e27ca4634c14e6f3a1" resname="email.you.have.recieved.a.message">
+        <source>email.you.have.recieved.a.message</source>
+        <target state="new">You have received a message</target>
+        <jms:reference-file line="4">views/Email/messageNotification.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="e360c037aa80f7f0bff41074a8aee2492ff7cf77" resname="exception.image.not.found">
         <source>exception.image.not.found</source>
-        <target state="new">Image not found</target>
+        <target>Image not found</target>
         <jms:reference-file line="276">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fda539f31ffa1350a042cfe6ffc71fe8b55ed380" resname="exception.the.jam.does.not.exist">
         <source>exception.the.jam.does.not.exist</source>
-        <target state="new">The jam does not exist</target>
+        <target>The jam does not exist</target>
         <jms:reference-file line="84">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="119">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="134">WebBundle/Controller/JamController.php</jms:reference-file>
@@ -23,20 +38,18 @@
       </trans-unit>
       <trans-unit id="0196370bc028f41633ce819f09a64b96908a7d02" resname="exception.this.user.does.not.exist">
         <source>exception.this.user.does.not.exist</source>
-        <target state="new">This user does not exist</target>
+        <target>This user does not exist</target>
         <jms:reference-file line="49">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="37f26949ccedac3eccb254e8377ebeaf2a257ea0" resname="exception.you.are.not.this.jam.member.">
         <source>exception.you.are.not.this.jam.member.</source>
-        <target state="new">You are not this jam member</target>
+        <target>You are not this jam member</target>
         <jms:reference-file line="220">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="268">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="282726c208fb740e6b048a45abebc2027ac874a7" resname="exception.you.shall.not.pass">
         <source>exception.you.shall.not.pass</source>
-        <target state="new">You shall not pass</target>
-        <jms:reference-file line="47">WebBundle/Controller/HomeController.php</jms:reference-file>
-        <jms:reference-file line="94">WebBundle/Controller/HomeController.php</jms:reference-file>
+        <target>You shall not pass</target>
         <jms:reference-file line="156">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="193">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="216">WebBundle/Controller/JamController.php</jms:reference-file>
@@ -44,252 +57,191 @@
       </trans-unit>
       <trans-unit id="353b1e55b487c4db59523f9952591cfde2bee200" resname="excpetion.you.are.already.in.the.jam">
         <source>excpetion.you.are.already.in.the.jam</source>
-        <target state="new">You are already in the jam</target>
+        <target>You are already in the jam</target>
         <jms:reference-file line="139">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="180">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
-      <trans-unit id="e31699a7c55cf654b81d6a703e525006c8de56c4" resname="label.say.something.cool">
-        <source>label.say.something.cool</source>
-        <target state="new">Say something cool</target>
-        <jms:reference-file line="32">WebBundle/Controller/HomeController.php</jms:reference-file>
-        <jms:reference-file line="81">WebBundle/Controller/HomeController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="fcfdf4eda2744470fd343837f4dad4347b7a9ed1" resname="label.send">
-        <source>label.send</source>
-        <target state="new">Send</target>
-        <jms:reference-file line="37">WebBundle/Controller/HomeController.php</jms:reference-file>
-      </trans-unit>
       <trans-unit id="e2c30c70311bf45b4f768e3e1543a99b3baf588f" resname="message.jam.created.successfully">
         <source>message.jam.created.successfully</source>
-        <target state="new">Jam created successfully</target>
+        <target>Jam created successfully</target>
         <jms:reference-file line="62">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d111bb179ed56d7c47bd925d07f0baed426e00c" resname="message.jam.request.accepted.successfully">
         <source>message.jam.request.accepted.successfully</source>
-        <target state="new">Jam request accepted successfully</target>
+        <target>Jam request accepted successfully</target>
         <jms:reference-file line="190">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="2f92d5235b9868358dc34bb43f70e3544152959c" resname="message.jam.request.sent.successfully">
         <source>message.jam.request.sent.successfully</source>
-        <target state="new">Jam request sent successfully</target>
+        <target>Jam request sent successfully</target>
         <jms:reference-file line="153">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9882cef6db906276e658a7e4a78c47d9f1207f49" resname="message.jam.updated.successfully">
         <source>message.jam.updated.successfully</source>
-        <target state="new">Jam updated successfully</target>
+        <target>Jam updated successfully</target>
         <jms:reference-file line="101">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="90fbb135ce9f3622c32d0165813d5b5d726a9839" resname="message.request.already.sent">
         <source>message.request.already.sent</source>
-        <target state="new">Request already sent</target>
+        <target>Request already sent</target>
         <jms:reference-file line="143">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7f000908c24b00f66f0a116b42dd3d54e6f6abc0" resname="message.you.have.already.subscribed">
         <source>message.you.have.already.subscribed</source>
-        <target state="new">You have already subscribed</target>
-        <jms:reference-file line="32">WebBundle/Controller/SubscriptionController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="295235e3fa23c040bd2de92a817cef69e4a54cfc" resname="message.you.have.shouted.successfully.">
-        <source>message.you.have.shouted.successfully.</source>
-        <target state="new">You have shouted successfully.</target>
-        <jms:reference-file line="54">WebBundle/Controller/HomeController.php</jms:reference-file>
-        <jms:reference-file line="101">WebBundle/Controller/HomeController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="18342d1b3da732537b73fc2e7f7da69f5304e17a" resname="professional">
-        <source>professional</source>
-        <target state="new">professional</target>
-        <jms:reference-file line="56">WebBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <target>You have already subscribed</target>
+        <jms:reference-file line="33">WebBundle/Controller/SubscriptionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e71166ff3ee189ba8eb6f0b32cb76114a7257cda" resname="text.2.kilometers">
         <source>text.2.kilometers</source>
-        <target state="new">2 kilometers</target>
-        <jms:reference-file line="21">views/Search/filter.html.twig</jms:reference-file>
+        <target>2 kilometers</target>
+        <jms:reference-file line="34">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8cd7703de165fb96efdcb03118c8a32603d9edfb" resname="text.accept">
         <source>text.accept</source>
-        <target state="new">accept</target>
+        <target>accept</target>
         <jms:reference-file line="54">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="60fa1e443e74ffd46498b6152aa242fe227c07a4" resname="text.add.another.member">
         <source>text.add.another.member</source>
-        <target state="new">Add another member</target>
+        <target>Add another member</target>
         <jms:reference-file line="33">views/Jam/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e0f64bea21015d977c18187adc58f27ce37dd546" resname="text.compose.new.message">
         <source>text.compose.new.message</source>
-        <target state="new">compose new message</target>
+        <target>compose new message</target>
         <jms:reference-file line="8">views/Messages/messages.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="65f68bc061c68e59ba9a5bc1efc4b7e2d7801ba7" resname="text.deny">
         <source>text.deny</source>
-        <target state="new">deny</target>
+        <target>deny</target>
         <jms:reference-file line="54">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="91cbc46a1514a37f1e5b59affbf0ac628b94383b" resname="text.description">
         <source>text.description</source>
-        <target state="new">description</target>
+        <target>description</target>
         <jms:reference-file line="9">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d57287cc51c32900785af6f85d7810d4e7cfb5b0" resname="text.edit">
         <source>text.edit</source>
-        <target state="new">edit</target>
+        <target>edit</target>
         <jms:reference-file line="69">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d744fbb4745b74b6b7f3950b8b4f6688dd67c4b1" resname="text.edit.profile">
         <source>text.edit.profile</source>
-        <target state="new">Edit profile</target>
-        <jms:reference-file line="11">Resources/views/navigation.html.twig</jms:reference-file>
+        <target>Edit profile</target>
+        <jms:reference-file line="11">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2a0c2400a03ef126d64467970fc6c33515aaa26" resname="text.fill.out.your.profile">
         <source>text.fill.out.your.profile</source>
-        <target state="new">fill out your profile</target>
-        <jms:reference-file line="56">views/Home/index.html.twig</jms:reference-file>
-        <jms:reference-file line="30">views/Home/teachers.html.twig</jms:reference-file>
+        <target>fill out your profile</target>
+        <jms:reference-file line="11">views/Common/completion.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7bd742f37dc0bb0c05e5a8b20159b71d5374e7f7" resname="text.filter.by.distance">
         <source>text.filter.by.distance</source>
-        <target state="new">filter by distance</target>
-        <jms:reference-file line="14">views/Search/filter.html.twig</jms:reference-file>
+        <target>filter by distance</target>
+        <jms:reference-file line="27">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3cfaa3918f2d91f26905fe7417eefb96e53c15b1" resname="text.find.music.teachers.nearby">
         <source>text.find.music.teachers.nearby</source>
-        <target state="new">find music teachers nearby</target>
-        <jms:reference-file line="11">views/Home/teachers.html.twig</jms:reference-file>
+        <target>find music teachers nearby</target>
+        <jms:reference-file line="4">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="40ff1dd02d4ecf6311a87a1ef1c7255b2ad7c14b" resname="text.genres">
         <source>text.genres</source>
-        <target state="new">genres</target>
+        <target>genres</target>
         <jms:reference-file line="29">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3ad66780fc07852422141e9c5d2973e1f6942d48" resname="text.grid">
         <source>text.grid</source>
-        <target state="new">grid</target>
-        <jms:reference-file line="30">views/Search/filter.html.twig</jms:reference-file>
+        <target>grid</target>
+        <jms:reference-file line="43">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5a54bb46b79c04921593788349d91c41e9dd8e79" resname="text.jam.name">
         <source>Jam name: %jam.name%</source>
-        <target state="new">Jam name: %jam.name%</target>
+        <target>Jam name: %jam.name%</target>
         <jms:reference-file line="5">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="74e1b87e0fa295afc1df22ad274c161cee874ad1" resname="text.jam.requests">
         <source>text.jam.requests</source>
-        <target state="new">jam requests</target>
+        <target>jam requests</target>
         <jms:reference-file line="51">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1d0c5434e46dec405c1550744a3dd7c154f7e0a7" resname="text.join.request">
         <source>text.join.request</source>
-        <target state="new">join request</target>
+        <target>join request</target>
         <jms:reference-file line="43">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
-        <target state="new">logout</target>
-        <jms:reference-file line="26">Resources/views/navigation.html.twig</jms:reference-file>
+        <target>logout</target>
+        <jms:reference-file line="36">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0bf01c17fb6b42805e77957dd0f00097d64e9a79" resname="text.map">
         <source>text.map</source>
-        <target state="new">map</target>
-        <jms:reference-file line="31">views/Search/filter.html.twig</jms:reference-file>
+        <target>map</target>
+        <jms:reference-file line="44">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9b5ff09daf5019b4d8ec5343377e64da8df59f91" resname="text.members">
         <source>text.members</source>
-        <target state="new">members</target>
+        <target>members</target>
         <jms:reference-file line="13">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="15d3eb05e679ae62f394d20c3aac1bcf971e4e74" resname="text.messages">
         <source>text.messages</source>
-        <target state="new">messages</target>
+        <target>messages</target>
+        <jms:reference-file line="20">views/Common/navigation.html.twig</jms:reference-file>
         <jms:reference-file line="7">views/Messages/messages.html.twig</jms:reference-file>
-        <jms:reference-file line="19">Resources/views/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
         <source>text.musicians</source>
-        <target state="new">musicians</target>
-        <jms:reference-file line="16">Resources/views/navigation.html.twig</jms:reference-file>
+        <target>musicians</target>
+        <jms:reference-file line="16">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="32e48c9a4bf0dee8e85d65947e37645eaa869407" resname="text.profile">
         <source>text.profile</source>
-        <target state="new">profile</target>
-        <jms:reference-file line="18">Resources/views/navigation.html.twig</jms:reference-file>
+        <target>profile</target>
+        <jms:reference-file line="19">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a626306e0b670a0333b14a0fa0180057b65a860" resname="text.profile.completion">
         <source>text.profile.completion</source>
-        <target state="new">profile completion</target>
-        <jms:reference-file line="55">views/Home/index.html.twig</jms:reference-file>
-        <jms:reference-file line="29">views/Home/teachers.html.twig</jms:reference-file>
+        <target>profile completion</target>
+        <jms:reference-file line="10">views/Common/completion.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="75ce5f1b65b5f530a5a490dbec3cd15e39bb7d9a" resname="text.request.sent">
         <source>text.request.sent</source>
-        <target state="new">request sent</target>
+        <target>request sent</target>
         <jms:reference-file line="41">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fb6941fbd7c233f8d51c3c69b7e0ee3c67a75ab4" resname="text.set.distance">
         <source>text.set.distance</source>
-        <target state="new">set distance</target>
-        <jms:reference-file line="18">views/Search/filter.html.twig</jms:reference-file>
+        <target>set distance</target>
+        <jms:reference-file line="31">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9532cb76a483e419f51638af02671369c7b614eb" resname="text.settings">
         <source>text.settings</source>
-        <target state="new">settings</target>
-        <jms:reference-file line="20">Resources/views/navigation.html.twig</jms:reference-file>
+        <target>settings</target>
+        <jms:reference-file line="21">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="625c2310e20ed85364204bcb8a6f47c0b6e0f188" resname="text.shout.again.in">
         <source>text.shout.again.in</source>
-        <target state="new">shout again in</target>
-        <jms:reference-file line="65">views/Home/index.html.twig</jms:reference-file>
-        <jms:reference-file line="39">views/Home/teachers.html.twig</jms:reference-file>
+        <target>shout again in</target>
+        <jms:reference-file line="4">views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="efccca249aa3aaeec168517baaff356f397e3878" resname="text.shouts">
         <source>text.shouts</source>
-        <target state="new">shouts</target>
-        <jms:reference-file line="77">views/Home/index.html.twig</jms:reference-file>
-        <jms:reference-file line="51">views/Home/teachers.html.twig</jms:reference-file>
+        <target>shouts</target>
+        <jms:reference-file line="18">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="14">views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
         <source>text.shouts.feed</source>
-        <target state="new">shouts feed</target>
-        <jms:reference-file line="63">views/Home/index.html.twig</jms:reference-file>
-        <jms:reference-file line="37">views/Home/teachers.html.twig</jms:reference-file>
+        <target>shouts feed</target>
+        <jms:reference-file line="2">views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1de14c07b898ddef52dc5bd4f9b61044d4fa763a" resname="text.teachers">
         <source>text.teachers</source>
-        <target state="new">teachers</target>
-        <jms:reference-file line="17">Resources/views/navigation.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="bdf470399f4be48f84337895d15a158de7525672" resname="text.upcoming.event">
-        <source>text.upcoming.event</source>
-        <target state="new">upcoming event</target>
-        <jms:reference-file line="17">views/Home/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="716a046efc3a4b17a8f5494f0965c9d1f7a837af" resname="text.view.all">
-        <source>text.view.all</source>
-        <target state="new">view all</target>
-        <jms:reference-file line="18">views/Home/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="ae94ed2bc41d7ef8f108bbd98a8f6384c1354328" resname="text.view.details">
-        <source>text.view.details</source>
-        <target state="new">view details</target>
-        <jms:reference-file line="24">views/Home/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="35d7093fd6e8a27a096daf95d03f4521857c445b" resname="value.advanced">
-        <source>value.advanced</source>
-        <target state="new">advanced</target>
-        <jms:reference-file line="48">WebBundle/Controller/InstrumentsController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="0822862cbb4137e9b700a72f70c06fb0df615b82" resname="value.average">
-        <source>value.average</source>
-        <target state="new">average</target>
-        <jms:reference-file line="44">WebBundle/Controller/InstrumentsController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="6a9224e672d112a827f2ff0a97126e1e192da6e5" resname="value.beginner">
-        <source>value.beginner</source>
-        <target state="new">beginner</target>
-        <jms:reference-file line="40">WebBundle/Controller/InstrumentsController.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="cc3690e6ed871d14d4a626d7efb60fd7c80d63b9" resname="value.semi-professional">
-        <source>value.semi-professional</source>
-        <target state="new">semi-professional</target>
-        <jms:reference-file line="52">WebBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <target>teachers</target>
+        <jms:reference-file line="17">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

@@ -26,9 +26,17 @@ class EmailNotification
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $reciever;
+
+    /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="from_id", referencedColumnName="id", nullable=true)
+     */
+    private $sender;
 
     /**
      * @var string
@@ -126,5 +134,29 @@ class EmailNotification
     public function getReciever()
     {
         return $this->reciever;
+    }
+
+    /**
+     * Set sender
+     *
+     * @param \Jam\UserBundle\Entity\User $sender
+     *
+     * @return EmailNotification
+     */
+    public function setSender(\Jam\UserBundle\Entity\User $sender = null)
+    {
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    /**
+     * Get sender
+     *
+     * @return \Jam\UserBundle\Entity\User
+     */
+    public function getSender()
+    {
+        return $this->sender;
     }
 }
