@@ -157,36 +157,7 @@
 
                         <br />
 
-                        <div class="row">
-                            <div class="col-md-5">
-                                {{ 'label.what.do.you.play'|trans }}
-                            </div>
-                            <div class="col-md-5">
-                                {{ 'label.how.good.are.you'|trans }}
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                        <ul id="musician_instruments">
-
-                            {% for f in form.instruments %}
-                                <li class="row">
-                                    <div class="col-md-5">
-                                        {{ form_widget(f.instrument) }}
-                                    </div>
-                                    <div class="col-md-5">
-                                        {{ form_widget(f.skillLevel) }}
-                                    </div>
-                                    <div class="col-md-2" style="padding-top:10px">
-                                        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
-                                        <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
-                                    </div>
-                                </li>
-                            {% endfor %}
-
-                        </ul>
-                        <br />
-                        <a href="#" class="btn btn-primary" id="add_another_instrument"><i class="glyphicon glyphicon-plus-sign"></i> {{ 'label.add.instrument'|trans }}</a>
+                        {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
 
                     </div>
 

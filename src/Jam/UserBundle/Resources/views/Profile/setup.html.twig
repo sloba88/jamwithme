@@ -3,7 +3,6 @@
 {% block bodyclasses %}page-settings{% endblock %}
 
 {% block fos_user_content %}
-    {% trans_default_domain 'FOSUserBundle' %}
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
     <style>
@@ -48,63 +47,34 @@
 
     </style>
 
-    <h1 style="color: #18152b; font-size: 23px; margin: 0 0 10px; padding-top: 20px; text-transform: uppercase;">Setup your profile</h1>
+    <h1 style="color: #18152b; font-size: 23px; margin: 0 0 10px; padding-top: 20px; text-transform: uppercase;">{{ 'label.setup.your.profile'|trans }}</h1>
 
     <form action="{{ path('fos_user_setup') }}" method="POST" class="fos_user_profile_edit">
 
         {{ form_errors(form) }}
 
         <div class="col-md-2 tabs-save">
-            <button class="btn btn-primary btn-save" id="next-1"><i class="fa fa-angle-double-right"></i> Next</button>
-            <button class="btn btn-primary btn-save hidden" id="finish-1"><i class="fa fa-check"></i> Finish</button>
+            <button class="btn btn-primary btn-save" id="next-1"><i class="fa fa-angle-double-right"></i> {{ 'button.next'|trans }}</button>
+            <button class="btn btn-primary btn-save hidden" id="finish-1"><i class="fa fa-check"></i> {{ 'button.finish'|trans }}</button>
         </div>
 
         <ul class="tabs-activate profile-tabs" id="myTab">
-            <li><a href="#" data-tab="musician-info" id="musician-info-tab" class="is-active">Musician Info</a></li>
-            <li><a href="#" data-tab="location-info" id="location-tab" >Location</a></li>
+            <li><a href="#" data-tab="musician-info" id="musician-info-tab" class="is-active">{{ 'label.musician.info'|trans }}</a></li>
+            <li><a href="#" data-tab="location-info" id="location-tab">{{ 'label.location'|trans }}</a></li>
         </ul>
 
         <div class="view-tab-container clearfix">
 
             <div class="view-tab with-scrollbar is-active" data-tab="musician-info">
 
-                <div class="alert alert-info" role="alert">Tell us something about yourself so we can find the best matches for you.</div>
+                <div class="alert alert-info" role="alert">{{ 'label.musician.info.info'|trans }}</div>
 
                 <br />
 
                 <div class="row">
                     <div class="col-md-6">
 
-                        <div class="row">
-                            <div class="col-md-5">
-                                What instruments do you play?
-                            </div>
-                            <div class="col-md-5">
-                                How good are you?
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                        <ul id="musician_instruments">
-
-                            {% for f in form.instruments %}
-                                <li class="row">
-                                    <div class="col-md-5">
-                                        {{ form_widget(f.instrument, { 'id' : 'fos_user_registration'}) }}
-                                    </div>
-                                    <div class="col-md-5">
-                                        {{ form_widget(f.skillLevel) }}
-                                    </div>
-                                    <div class="col-md-2" style="padding-top:10px">
-                                        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
-                                        <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
-                                    </div>
-                                </li>
-                            {% endfor %}
-
-                        </ul>
-                        <br />
-                        <a href="#" class="btn btn-primary" id="add_another_instrument"><i class="glyphicon glyphicon-plus-sign"></i> Add another instrument / Skill</a>
+                        {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
 
                     </div>
 
@@ -124,7 +94,7 @@
             {# LOCATION #}
             <div class="view-tab with-scrollbar" data-tab="location-info" style="min-height: 320px;">
 
-                <div class="alert alert-info" role="alert">Your location helps us find people around you. You can be specific as you like, we will not show your full address to other people.</div>
+                <div class="alert alert-info" role="alert">{{ 'label.location.info'|trans }}</div>
 
                 <br />
 

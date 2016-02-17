@@ -13,7 +13,7 @@
     </route>
 
     <route id="fos_user_setup" path="/setup" methods="GET POST">
-        <default key="_controller">JamUserBundle:Profile:setupMusician</default>
+        <default key="_controller">JamUserBundle:Profile:setupProfile</default>
     </route>
 
 </routes>

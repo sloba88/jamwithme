@@ -51,7 +51,11 @@ class InstrumentsController extends FOSRestController
             ),
             array(
                 'id' => 5,
-                'text' => $translator->trans('professional')
+                'text' => $translator->trans('value.professional')
+            ),
+            array(
+                'id' => 10,
+                'text' => $translator->trans('value.teacher')
             )
         );
 
