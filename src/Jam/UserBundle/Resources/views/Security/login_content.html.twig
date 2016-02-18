@@ -1,6 +1,6 @@
 
 <div class="login-header">
-    <p>Login to jamifind</p>
+    <p>{{ 'label.login.to.jamifind'|trans }}</p>
 </div>
 
 <div class="login-body">
@@ -20,7 +20,7 @@
             <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <button type="submit" class="btn btn-primary btn-submit" name="_submit" id="_submit">Login</button>
+        <button type="submit" class="btn btn-primary btn-submit" name="_submit" id="_submit">{{ 'button.login'|trans }}</button>
     </form>
 
     <div class="separator">
@@ -28,17 +28,17 @@
     </div>
 
     <div class="login-buttons">
-        <a href="{{ path('jam_facebook_login') }}" class="disabled btn btn-primary facebook"><i class="fa fa-facebook-square"></i>login with facebook</a>
-        <a href="{{ path('connect_soundcloud') }}" class="disabled btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>login with soundcloud</a>
+        <a href="{{ path('jam_facebook_login') }}" class="disabled btn btn-primary facebook"><i class="fa fa-facebook-square"></i>{{ 'button.login.with.facebook'|trans }}</a>
+        <a href="{{ path('connect_soundcloud') }}" class="disabled btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>{{ 'button.login.with.soundcloud'|trans }}</a>
     </div>
-</div><!--login-body ends-->
-
-<div class="login-footer">
-    Don’t have an account?
-    <a href="{{ path('fos_user_registration_register') }}" class="link">sign up</a>
 </div>
 
 <div class="login-footer">
-    <a href="{{ path('fos_user_resetting_request') }}" class="link">Forgot your password?</a>
+    {{ 'label.dont.have.account'|trans }}
+    <a href="{{ path('fos_user_registration_register') }}" class="link">{{ 'button.sign.up'|trans }}</a>
+</div>
+
+<div class="login-footer">
+    <a href="{{ path('fos_user_resetting_request') }}" class="link">{{ 'label.forgot.your.password'|trans }}</a>
 </div>
 

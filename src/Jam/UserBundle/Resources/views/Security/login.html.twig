@@ -2,14 +2,12 @@
 
 {% block bodyclasses %}login-page{% endblock %}
 
-{% trans_default_domain 'FOSUserBundle' %}
-
 {% block fos_user_content %}
 
     <div class="container-fluid">
         <div class="login-container">
             {% include 'JamUserBundle:Security:login_content.html.twig' %}
-        </div><!--login-container ends-->
+        </div>
     </div>
 
 {% endblock fos_user_content %}

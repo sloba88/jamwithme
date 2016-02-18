@@ -1,6 +1,4 @@
-{% trans_default_domain 'FOSUserBundle' %}
-
-<p>Did you forgot your password? Don't worry, we will send you instructions on how to make a new one.</p>
+<p>{{ 'label.did.you.forgot.password'|trans }}</p>
 
 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request form-inline">
     <div>
