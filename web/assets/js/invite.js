@@ -18,7 +18,7 @@ function fetch(token) {
         url: 'https://www.google.com/m8/feeds/contacts/default/full?access_token=' + token.access_token + '&alt=json',
         dataType: 'jsonp',
         success:function(data) {
-            $('.people-listing-grid').html('');
+            $('.people-listing-grid').removeClass('loading-content').html('');
             $.each(data.feed.entry, function(k, v){
                 $('.people-listing-grid').append(window.JST.inviteGmailTemplate(v));
             });
