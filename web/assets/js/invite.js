@@ -22,6 +22,8 @@ function fetch(token) {
             $.each(data.feed.entry, function(k, v){
                 $('.people-listing-grid').append(window.JST.inviteGmailTemplate(v));
             });
+
+            scrollbarPlugin();
         }
     });
 }
