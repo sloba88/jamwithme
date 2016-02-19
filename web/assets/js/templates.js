@@ -103,7 +103,7 @@ __p += '>' +
 __e( rc.title.$t ) +
 '</h3>\n            <p>\n                ' +
 __e( rc.gd$email[0].address ) +
-'\n            </p>\n\n            <p>\n                <input type="checkbox" id="email_' +
+'\n            </p>\n            <p>\n                <input type="checkbox" id="email_' +
 __e( rc.gd$email[0].address ) +
 '" name="invite_email" value="' +
 __e( rc.gd$email[0].address ) +

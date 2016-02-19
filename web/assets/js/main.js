@@ -665,9 +665,9 @@ $(function() {
 
     $(document).on('click', '.invite-friend-box', function(e) {
         e.preventDefault();
-        $(this).addClass('hovered');
-        $(this).find('a').css('border', '2px solid #fabc09');
-        $(this).find('checkbox').prop('checked', true);
+        $(this).addClass('hovered').addClass('checked');
+        $(this).find('span.people-grid').css('border', '2px solid #fabc09');
+        $(this).find(':checkbox').prop('checked', true);
     });
 
     //scrollbar plugin
