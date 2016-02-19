@@ -1,11 +1,11 @@
 'use strict';
 
 /* global baseURL */
-/* global _ */
 /* global Routing */
 /* global checkCanShout */
 /* global addMessage */
 /* global openedConversation */
+/* global gapi */
 
 var isMobile = false; //initiate as false
 // device detection
@@ -399,17 +399,6 @@ function getUserShouts() {
     });
 }
 
-function auth() {
-    var config = {
-        'client_id': '429745829616-l08gihug3r9o9fvj76oh0jdts3sq4g6j.apps.googleusercontent.com',
-        'scope': 'https://www.google.com/m8/feeds'
-    };
-    gapi.auth.authorize(config, function() {
-        fetch(gapi.auth.getToken());
-
-    });
-}
-
 function fetch(token) {
     $.ajax({
         url: 'https://www.google.com/m8/feeds/contacts/default/full?access_token=' + token.access_token + '&alt=json',
@@ -420,6 +409,17 @@ function fetch(token) {
                 $('.people-listing-grid').append(window.JST.inviteGmailTemplate(v));
             });
         }
+    });
+}
+
+function auth() {
+    var config = {
+        'client_id': '429745829616-l08gihug3r9o9fvj76oh0jdts3sq4g6j.apps.googleusercontent.com',
+        'scope': 'https://www.google.com/m8/feeds'
+    };
+    gapi.auth.authorize(config, function() {
+        fetch(gapi.auth.getToken());
+
     });
 }
 
@@ -658,16 +658,37 @@ $(function() {
         });
     });
 
-    $('.sidebar-nav').on('click', '.invite-friends', function(e){
-        e.preventDefault();
+    if ($('.invite-friends-page').length > 0) {
         auth();
-    });
+    }
 
     $(document).on('click', '.invite-friend-box', function(e) {
         e.preventDefault();
-        $(this).addClass('hovered').addClass('checked');
-        $(this).find('span.people-grid').css('border', '2px solid #fabc09');
-        $(this).find(':checkbox').prop('checked', true);
+
+        if ($(this).hasClass('checked')) {
+            $(this).removeClass('hovered').removeClass('checked');
+            $(this).find('span.people-grid').css('border', '2px solid #414141');
+            $(this).find(':checkbox').prop('checked', false);
+        } else {
+            $(this).addClass('hovered').addClass('checked');
+            $(this).find('span.people-grid').css('border', '2px solid #fabc09');
+            $(this).find(':checkbox').prop('checked', true);
+        }
+    });
+
+    $('#send-invites').on('click', function(e) {
+        e.preventDefault();
+        var emails = $('#send-invites-form').serialize();
+        $.ajax({
+            url: Routing.generate('send_invite_emails'),
+            type: 'POST',
+            data: emails,
+            success: function(result) {
+                if (result.status === 'success') {
+                    addMessage(result.status, result.message);
+                }
+            }
+        });
     });
 
     //scrollbar plugin

@@ -5,10 +5,8 @@
             <p>
                 <%- rc.gd$email[0].address %>
             </p>
-            <p>
-                <input type="checkbox" id="email_<%- rc.gd$email[0].address %>" name="invite_email" value="<%- rc.gd$email[0].address %>" />
-                <label class="control-label" for="email_<%- rc.gd$email[0].address %>"><span>&nbsp;</span></label>
-            </p>
+            <input type="checkbox" id="email_<%- rc.gd$email[0].address %>" name="email[]" value="<%- rc.gd$email[0].address %>" />
+            <label class="control-label" for="email_<%- rc.gd$email[0].address %>"><span>&nbsp;</span></label>
         </div>
     </span>
 </div>

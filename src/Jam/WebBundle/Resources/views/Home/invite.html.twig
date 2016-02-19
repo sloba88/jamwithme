@@ -1,0 +1,31 @@
+{% extends 'JamWebBundle::layout.html.twig' %}
+
+{% block bodyclasses %}page-dashboard invite-friends-page{% endblock %}
+
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
+
+{% block main_content %}
+
+    <div class="filters-area">
+        <div class="filters-heading clearfix">
+            <h1 class="filters-title">Invite your contacts to Jamifind</h1>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" id="send-invites"><i class="fa fa-envelope-o"></i> {{ 'button.invite'|trans }}</button>
+
+    <form id="send-invites-form">
+        <div class="view-tab-container with-scrollbar">
+            <div class="view-tab people-listing-grid row is-active loading-content" data-tab="grid"></div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block right_sidebar_content %}
+
+    {% include "JamWebBundle:Common:completion.html.twig" %}
+
+    {{ render(controller('JamWebBundle:Shouts:shouts' )) }}
+
+{% endblock %}

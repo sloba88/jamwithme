@@ -76,7 +76,7 @@ class MessagesController extends FOSRestController
         if ($paramFetcher->get('from')) {
             $fromUser = $this->getDoctrine()->getRepository('JamUserBundle:User')->find($paramFetcher->get('from'));
         }else {
-            $fromUser = null;
+            $fromUser = false;
         }
 
         $emailNotification = new EmailNotification();
@@ -92,9 +92,6 @@ class MessagesController extends FOSRestController
             'text' => $paramFetcher->get('text'),
             'from' => $fromUser
         ));
-
-        echo $messageBody;
-        exit;
 
         $message = \Swift_Message::newInstance()
             ->setSubject("You just got new message on Jamifind")

@@ -20,4 +20,12 @@ class HomeController extends Controller
             return $this->forward('JamUserBundle:Registration:register');
         }
     }
+
+    /**
+     * @Route("/invite", name="invite", options={"expose"=true})
+     * @Template()
+     */
+    public function inviteAction(Request $request)
+    {
+    }
 }
