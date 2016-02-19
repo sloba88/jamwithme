@@ -415,7 +415,10 @@ function fetch(token) {
         url: 'https://www.google.com/m8/feeds/contacts/default/full?access_token=' + token.access_token + '&alt=json',
         dataType: 'jsonp',
         success:function(data) {
-            console.log(JSON.stringify(data));
+            $('.people-listing-grid').html('');
+            $.each(data.feed.entry, function(k, v){
+                $('.people-listing-grid').append(window.JST.inviteGmailTemplate(v));
+            });
         }
     });
 }
@@ -617,7 +620,7 @@ $(function() {
                 addMessage(result.status, result.message);
                 if (result.status === 'success'){
                     $.each(result.data, function(k, v){
-                        $( '.shouts-listing' ).prepend(window.JST['shoutBoxTemplate'](v));
+                        $( '.shouts-listing' ).prepend(window.JST.shoutBoxTemplate(v));
                     });
                     checkCanShout();
                     $('#shout_text').val('');
@@ -658,6 +661,13 @@ $(function() {
     $('.sidebar-nav').on('click', '.invite-friends', function(e){
         e.preventDefault();
         auth();
+    });
+
+    $(document).on('click', '.invite-friend-box', function(e) {
+        e.preventDefault();
+        $(this).addClass('hovered');
+        $(this).find('a').css('border', '2px solid #fabc09');
+        $(this).find('checkbox').prop('checked', true);
     });
 
     //scrollbar plugin

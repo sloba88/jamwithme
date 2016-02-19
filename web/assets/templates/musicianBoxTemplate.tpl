@@ -18,5 +18,5 @@
                 </li>
             </ul>
         </div>
-    </a><!--people-grid ends-->
+    </a>
 </div>

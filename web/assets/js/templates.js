@@ -88,6 +88,31 @@ __e( rc.num ) +
 return __p
 };
 
+this["JST"]["inviteGmailTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+__p += '<div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container invite-friend-box">\n    <span class="people-grid">\n        <div class="people-info">\n            <h3 class="name" title="' +
+__e( rc.username ) +
+'" ';
+ if (rc.title.$t.length > 21) { ;
+__p += ' style="font-size:11px" ';
+ } if (rc.title.$t.length > 16) { ;
+__p += ' style="font-size:13px" ';
+ } ;
+__p += '>' +
+__e( rc.title.$t ) +
+'</h3>\n        </div>\n        <p>\n            ' +
+__e( rc.gd$email[0].address ) +
+'\n        </p>\n\n        <p>\n            <input type="checkbox" id="email_' +
+__e( rc.gd$email[0].address ) +
+'" name="invite_email" value="' +
+__e( rc.gd$email[0].address ) +
+'" />\n            <label for="email_' +
+__e( rc.gd$email[0].address ) +
+'"><span>&nbsp;</span></label>\n        </p>\n    </span>\n</div>';
+return __p
+};
+
 this["JST"]["messageTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
@@ -160,7 +185,7 @@ __p += '\n                ';
  }); ;
 __p += '\n            </ul>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span>' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +
-'%</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a><!--people-grid ends-->\n</div>';
+'%</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a>\n</div>';
 return __p
 };
 
