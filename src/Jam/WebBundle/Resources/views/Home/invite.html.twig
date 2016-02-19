@@ -29,3 +29,10 @@
     {{ render(controller('JamWebBundle:Shouts:shouts' )) }}
 
 {% endblock %}
+
+{% block bottom_javascripts %}
+
+    <script src="{{ asset('assets/js/invite.js') }}"></script>
+    <script src="https://apis.google.com/js/client.js?onload=gapiLoad"></script>
+
+{% endblock %}
