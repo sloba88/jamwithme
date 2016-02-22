@@ -111,7 +111,7 @@ __e( rc.title.$t ) +
 __e( rc.gd$email[0].address ) +
 '\n                </p>\n                <input type="checkbox" id="email_' +
 __e( rc.gd$email[0].address ) +
-'" name="email[]" value="' +
+'" name="emails[]" value="' +
 __e( rc.gd$email[0].address ) +
 '" />\n                <label class="control-label" for="email_' +
 __e( rc.gd$email[0].address ) +
