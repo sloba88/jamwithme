@@ -224,6 +224,12 @@ class User extends BaseUser
     protected $updatedAt;
 
     /**
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="invited_by", referencedColumnName="id", nullable=true)
+     */
+    private $invitedBy;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -1073,5 +1079,29 @@ class User extends BaseUser
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set invitedBy
+     *
+     * @param \Jam\UserBundle\Entity\User $invitedBy
+     *
+     * @return User
+     */
+    public function setInvitedBy(\Jam\UserBundle\Entity\User $invitedBy = null)
+    {
+        $this->invitedBy = $invitedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get invitedBy
+     *
+     * @return \Jam\UserBundle\Entity\User
+     */
+    public function getInvitedBy()
+    {
+        return $this->invitedBy;
     }
 }
