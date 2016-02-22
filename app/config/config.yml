@@ -267,11 +267,5 @@ hwi_oauth:
             user_response_class: Jam\UserBundle\Security\Core\User\Response\SoundcloudResponse
     # here you will add one (or more) configurations for resource owners
 
-mobile_detect:
-    redirect:
-        mobile: ~
-        tablet: ~
-    switch_device_view: ~
-
 happyr_google_analytics:
     tracking_id: "%ga_id%"

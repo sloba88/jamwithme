@@ -34,7 +34,6 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Jam\ApiBundle\JamApiBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new JMS\AopBundle\JMSAopBundle(),
@@ -59,7 +58,7 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
-        if (in_array($this->environment, array('dev', 'test'))) {
+        if (@$_SERVER['REMOTE_ADDR'] == '33.33.33.1') {
             return '/dev/shm/appname/cache/' .  $this->environment;
         }
 
@@ -68,7 +67,7 @@ class AppKernel extends Kernel
 
     public function getLogDir()
     {
-        if (in_array($this->environment, array('dev', 'test'))) {
+        if (@$_SERVER['REMOTE_ADDR'] == '33.33.33.1') {
             return '/dev/shm/appname/logs';
         }
 
