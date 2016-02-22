@@ -79,7 +79,7 @@ class RegistrationController extends ContainerAware
                 if ($inviteCode) {
                     //find invitation
                     $em = $this->container->get('doctrine')->getEntityManager();
-                    $invitation = $em->getRepository('JamUserBundle:Invitation')->findOneBy(array('code' => $inviteCode));
+                    $invitation = $em->getRepository('JamUserBundle:Invitation')->findOneBy(array('code' => $inviteCode, 'accepted' => false));
 
                     if ($invitation) {
                         $user->setInvitedBy($invitation->getCreator());

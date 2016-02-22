@@ -224,7 +224,7 @@ class User extends BaseUser
     protected $updatedAt;
 
     /**
-     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="invited_by", referencedColumnName="id", nullable=true)
      */
     private $invitedBy;
