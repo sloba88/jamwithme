@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-02-22T15:05:56Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-02-22T15:20:42Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="1204dbb8502af4a9a93220492b8d21516d0a584b" resname="button.invite">
-        <source>button.invite</source>
-        <target>invite</target>
+      <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
+        <source>button.invite.selected</source>
+        <target state="new">invite selected</target>
         <jms:reference-file line="17">views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="427681cdcf211c177224b8aa9dd1591f43ff7b85" resname="button.select.all">
@@ -88,7 +88,7 @@
       </trans-unit>
       <trans-unit id="a2367becbea2cb7b398f569f4ff471aa873d55f6" resname="label.invite.contacts">
         <source>label.invite.contacts</source>
-        <target state="new">Invite your contacts to Jamifind</target>
+        <target>Invite your contacts to Jamifind</target>
         <jms:reference-file line="11">views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2c30c70311bf45b4f768e3e1543a99b3baf588f" resname="message.jam.created.successfully">
