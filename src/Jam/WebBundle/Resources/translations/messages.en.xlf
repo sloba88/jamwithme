@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-02-22T15:20:42Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-02-22T15:47:59Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -8,7 +8,7 @@
     <body>
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
-        <target state="new">invite selected</target>
+        <target>invite selected</target>
         <jms:reference-file line="17">views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="427681cdcf211c177224b8aa9dd1591f43ff7b85" resname="button.select.all">
@@ -211,6 +211,11 @@
         <target>join request</target>
         <jms:reference-file line="43">views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="ca26f82023af37cb589b161c9c621cb4cae6224e" resname="text.like.our.page">
+        <source>text.like.our.page</source>
+        <target state="new">like our page</target>
+        <jms:reference-file line="50">views/Home/invite.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
         <target>logout</target>
@@ -261,6 +266,11 @@
         <source>text.settings</source>
         <target>settings</target>
         <jms:reference-file line="21">views/Common/navigation.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f5e42cab4f107c0d123d9542560aebacd8233c7f" resname="text.share.us.on.facebook">
+        <source>text.share.us.on.facebook</source>
+        <target state="new">spread the word on facebook</target>
+        <jms:reference-file line="43">views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="625c2310e20ed85364204bcb8a6f47c0b6e0f188" resname="text.shout.again.in">
         <source>text.shout.again.in</source>
