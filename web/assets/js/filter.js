@@ -14,6 +14,7 @@
 /* global scrollbarPlugin */
 /* global sidebarHeight */
 /* global ga */
+/* global SVGInjector */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -40,6 +41,12 @@ function renderGridView(data) {
     $('.people-listing-grid').removeClass('loading-content');
 
     scrollbarPlugin();
+
+    // Elements to inject
+    var mySVGsToInject = document.querySelectorAll('img.inject-me');
+
+    // Do the injection
+    SVGInjector(mySVGsToInject);
 }
 
 function getFilterData() {
