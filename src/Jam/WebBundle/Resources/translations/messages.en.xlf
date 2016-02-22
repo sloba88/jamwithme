@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-02-17T12:52:48Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-02-22T15:05:56Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="1204dbb8502af4a9a93220492b8d21516d0a584b" resname="button.invite">
+        <source>button.invite</source>
+        <target>invite</target>
+        <jms:reference-file line="17">views/Home/invite.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="427681cdcf211c177224b8aa9dd1591f43ff7b85" resname="button.select.all">
+        <source>button.select.all</source>
+        <target>select all</target>
+        <jms:reference-file line="20">views/Home/invite.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6d2951fc2f2bef90fce999a1d0604198a5e2977e" resname="email.accept.invitation">
+        <source>email.accept.invitation</source>
+        <target>Accept invitation</target>
+        <jms:reference-file line="15">views/Email/invitation.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eab0ce4518fb01dcd7532e1a48d515de8d15526e" resname="email.invitation.text">
+        <source>email.invitation.text</source>
+        <target>Hello, you have been invited to join Jamifind!</target>
+        <jms:reference-file line="13">views/Email/invitation.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="ead925b97147d5ea08bd220f3d979af2fcbf259c" resname="email.see.all.messages">
         <source>email.see.all.messages</source>
-        <target state="new">See all messages</target>
+        <target>See all messages</target>
         <jms:reference-file line="14">views/Email/messageNotification.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="db231884a579c6f9a861caf1f6b7c3602659a897" resname="email.users.you.might.be.interested.in">
         <source>email.users.you.might.be.interested.in</source>
-        <target state="new">email.users.you.might.be.interested.in</target>
+        <target>email.users.you.might.be.interested.in</target>
         <jms:reference-file line="5">views/Email/userSearchSubscription.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="918afa5c6cdf8b9375ba036691f27829d7209fee" resname="email.you.have.been.invited">
+        <source>email.you.have.been.invited</source>
+        <target>email.you.have.been.invited</target>
+        <jms:reference-file line="4">views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fccf2c4974624e0e217e03e27ca4634c14e6f3a1" resname="email.you.have.recieved.a.message">
         <source>email.you.have.recieved.a.message</source>
-        <target state="new">You have received a message</target>
+        <target>You have received a message</target>
         <jms:reference-file line="4">views/Email/messageNotification.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e360c037aa80f7f0bff41074a8aee2492ff7cf77" resname="exception.image.not.found">
@@ -61,6 +86,11 @@
         <jms:reference-file line="139">WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="180">WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
+      <trans-unit id="a2367becbea2cb7b398f569f4ff471aa873d55f6" resname="label.invite.contacts">
+        <source>label.invite.contacts</source>
+        <target state="new">Invite your contacts to Jamifind</target>
+        <jms:reference-file line="11">views/Home/invite.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="e2c30c70311bf45b4f768e3e1543a99b3baf588f" resname="message.jam.created.successfully">
         <source>message.jam.created.successfully</source>
         <target>Jam created successfully</target>
@@ -91,10 +121,15 @@
         <target>You have already subscribed</target>
         <jms:reference-file line="33">WebBundle/Controller/SubscriptionController.php</jms:reference-file>
       </trans-unit>
+      <trans-unit id="8c32d1e2e0999e1d2c2ce9c66dcd46a0cea15eef" resname="placeholder.find.by.name.or.email">
+        <source>placeholder.find.by.name.or.email</source>
+        <target>Find by name or email</target>
+        <jms:reference-file line="24">views/Home/invite.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="e71166ff3ee189ba8eb6f0b32cb76114a7257cda" resname="text.2.kilometers">
         <source>text.2.kilometers</source>
         <target>2 kilometers</target>
-        <jms:reference-file line="34">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="33">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8cd7703de165fb96efdcb03118c8a32603d9edfb" resname="text.accept">
         <source>text.accept</source>
@@ -139,7 +174,7 @@
       <trans-unit id="7bd742f37dc0bb0c05e5a8b20159b71d5374e7f7" resname="text.filter.by.distance">
         <source>text.filter.by.distance</source>
         <target>filter by distance</target>
-        <jms:reference-file line="27">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="26">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3cfaa3918f2d91f26905fe7417eefb96e53c15b1" resname="text.find.music.teachers.nearby">
         <source>text.find.music.teachers.nearby</source>
@@ -154,7 +189,12 @@
       <trans-unit id="3ad66780fc07852422141e9c5d2973e1f6942d48" resname="text.grid">
         <source>text.grid</source>
         <target>grid</target>
-        <jms:reference-file line="43">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="42">views/Search/filter.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3af5f7487804ee9829569e17dc58395010b49ca4" resname="text.invite.friends">
+        <source>text.invite.friends</source>
+        <target>Invite Friends</target>
+        <jms:reference-file line="22">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5a54bb46b79c04921593788349d91c41e9dd8e79" resname="text.jam.name">
         <source>Jam name: %jam.name%</source>
@@ -174,12 +214,12 @@
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
         <target>logout</target>
-        <jms:reference-file line="36">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="37">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0bf01c17fb6b42805e77957dd0f00097d64e9a79" resname="text.map">
         <source>text.map</source>
         <target>map</target>
-        <jms:reference-file line="44">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="43">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9b5ff09daf5019b4d8ec5343377e64da8df59f91" resname="text.members">
         <source>text.members</source>
@@ -215,7 +255,7 @@
       <trans-unit id="fb6941fbd7c233f8d51c3c69b7e0ee3c67a75ab4" resname="text.set.distance">
         <source>text.set.distance</source>
         <target>set distance</target>
-        <jms:reference-file line="31">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="30">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9532cb76a483e419f51638af02671369c7b614eb" resname="text.settings">
         <source>text.settings</source>

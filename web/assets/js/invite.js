@@ -37,6 +37,8 @@ function fetch(token) {
                 $('.people-listing-grid').append(window.JST.inviteGmailTemplate(v));
             });
 
+            $('.invite-commands').removeClass('hidden');
+
             scrollbarPlugin();
         }
     });
