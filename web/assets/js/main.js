@@ -662,6 +662,25 @@ $(function() {
         });
     });
 
+    $('#select-all-invites').on('click', function(e) {
+        e.preventDefault();
+        $('.invite-friend-box :checkbox').prop('checked', true);
+    });
+
+    $('#find-gmail-contact').on('keyup', function(e) {
+        e.preventDefault();
+        var value = $(this).val().toLowerCase();
+
+        if (value === '') {
+            $('.invite-friend-box').show();
+        } else {
+            $('.invite-friend-box').hide();
+            $('.invite-friend-box[data-email^="'+value+'"]').show();
+            $('.invite-friend-box[data-name^="'+value+'"]').show();
+        }
+
+    });
+
     //scrollbar plugin
     scrollbarPlugin();
 });

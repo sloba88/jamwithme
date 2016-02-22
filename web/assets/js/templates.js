@@ -91,7 +91,13 @@ return __p
 this["JST"]["inviteGmailTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
-__p += '<div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container invite-friend-box">\n    <span class="people-grid">\n        <div class="people-info">\n            <h3 class="name" title="' +
+
+ if (rc.gd$email) { ;
+__p += '\n    <div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container invite-friend-box" data-email="' +
+__e( rc.gd$email[0].address.toLowerCase() ) +
+'" data-name="' +
+__e( rc.title.$t.toLowerCase() ) +
+'">\n        <span class="people-grid">\n            <div class="people-info">\n                <h3 class="name" title="' +
 __e( rc.username ) +
 '" ';
  if (rc.title.$t.length > 21) { ;
@@ -101,15 +107,17 @@ __p += ' style="font-size:13px" ';
  } ;
 __p += '>' +
 __e( rc.title.$t ) +
-'</h3>\n            <p>\n                ' +
+'</h3>\n                <p>\n                    ' +
 __e( rc.gd$email[0].address ) +
-'\n            </p>\n            <input type="checkbox" id="email_' +
+'\n                </p>\n                <input type="checkbox" id="email_' +
 __e( rc.gd$email[0].address ) +
 '" name="email[]" value="' +
 __e( rc.gd$email[0].address ) +
-'" />\n            <label class="control-label" for="email_' +
+'" />\n                <label class="control-label" for="email_' +
 __e( rc.gd$email[0].address ) +
-'"><span>&nbsp;</span></label>\n        </div>\n    </span>\n</div>';
+'"><span>&nbsp;</span></label>\n            </div>\n        </span>\n    </div>\n';
+ } ;
+
 return __p
 };
 
