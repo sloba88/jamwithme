@@ -103,13 +103,13 @@ __p += '>' +
 __e( rc.title.$t ) +
 '</h3>\n            <p>\n                ' +
 __e( rc.gd$email[0].address ) +
-'\n            </p>\n            <p>\n                <input type="checkbox" id="email_' +
+'\n            </p>\n            <input type="checkbox" id="email_' +
 __e( rc.gd$email[0].address ) +
-'" name="invite_email" value="' +
+'" name="email[]" value="' +
 __e( rc.gd$email[0].address ) +
-'" />\n                <label class="control-label" for="email_' +
+'" />\n            <label class="control-label" for="email_' +
 __e( rc.gd$email[0].address ) +
-'"><span>&nbsp;</span></label>\n            </p>\n        </div>\n    </span>\n</div>';
+'"><span>&nbsp;</span></label>\n        </div>\n    </span>\n</div>';
 return __p
 };
 
@@ -165,11 +165,15 @@ __p += ' style="font-size:13px" ';
  } ;
 __p += '>' +
 __e( rc.username ) +
-'</h3>\n                    <span class="instrument" title="' +
+'</h3>\n                ';
+ if (rc.instrument) { ;
+__p += '\n                <span class="instrument" title="' +
 __e( rc.instrument ) +
-'">\n                        ' +
-((__t = ( rc.icon )) == null ? '' : __t) +
-'\n                    </span>\n            <ul class="tags" >\n                ';
+'">\n                    <img class="inject-me" src="/assets/images/icons-svg/' +
+__e( rc.instrument ) +
+'.svg">\n                </span>\n                ';
+ } ;
+__p += '\n            <ul class="tags" >\n                ';
  _.each( rc.genres, function(v, k){ ;
 __p += '\n                ';
  if (k < 3){ ;

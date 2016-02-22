@@ -3,9 +3,11 @@
         <img src="<%- rc.avatar %>" alt="<%- rc.username %>" class="img-responsive" onerror="imgError(this, 'medium_thumb');">
         <div class="people-info">
             <h3 class="name" title="<%- rc.username %>" <% if (rc.username.length > 21) { %> style="font-size:11px" <% } if (rc.username.length > 16) { %> style="font-size:13px" <% } %>><%- rc.username %></h3>
-                    <span class="instrument" title="<%- rc.instrument %>">
-                        <%= rc.icon %>
-                    </span>
+                <% if (rc.instrument) { %>
+                <span class="instrument" title="<%- rc.instrument %>">
+                    <img class="inject-me" src="/assets/images/icons-svg/<%- rc.instrument %>.svg">
+                </span>
+                <% } %>
             <ul class="tags" >
                 <% _.each( rc.genres, function(v, k){ %>
                 <% if (k < 3){ %><li <% if (rc.genres.length > 3){ %>style="font-size:10px"<% } %>><%- v %></li><% } %>
