@@ -42,11 +42,8 @@ function renderGridView(data) {
 
     scrollbarPlugin();
 
-    // Elements to inject
-    var mySVGsToInject = document.querySelectorAll('img.inject-me');
-
-    // Do the injection
-    SVGInjector(mySVGsToInject);
+    //replace all svg
+    SVGInjector(document.querySelectorAll('img.inject-me'));
 }
 
 function getFilterData() {

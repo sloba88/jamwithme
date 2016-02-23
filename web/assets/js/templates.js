@@ -255,9 +255,9 @@ __p += '\n                ';
  }); ;
 __p += '\n            </ul>\n                <span class="instrument" title="' +
 __e( rc.instrument ) +
-'">\n                    ' +
-((__t = ( rc.icon )) == null ? '' : __t) +
-'\n                    ' +
+'">\n                    <img src="/assets/images/icons-svg/' +
+__e( rc.instrument ) +
+'.svg" class="inject-me" />\n                    ' +
 ((__t = ( rc.teacherIcon )) == null ? '' : __t) +
 '\n                </span>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span>' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +

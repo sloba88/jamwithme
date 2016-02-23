@@ -1,9 +1,9 @@
 'use strict';
 
-/* global _ */
 /* global _user */
 /* global L */
 /* global filterResults */
+/* global SVGInjector */
 
 var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
@@ -103,7 +103,7 @@ function drawRadius(){
 
 }
 
-function placeMarkers(){
+function placeMarkers() {
 
     map.removeLayer(markers);
     markers = new L.markerClusterGroup({
@@ -121,10 +121,15 @@ function placeMarkers(){
     $.each(filterResults, function(k, v){
 
         var iconSource;
-        if (v.icon === '') {
+        if (v.instrument === '' || v.instrument === 'Other Skills') {
             iconSource = '<div class="no-icon"></div>';
         } else {
-            iconSource = v.icon;
+            var fragment = document.createDocumentFragment();
+            var img = document.createElement('img');
+            img.src = '/assets/images/icons-svg/'+v.instrument+'.svg';
+            fragment.appendChild(img);
+            SVGInjector(fragment.childNodes);
+            iconSource = fragment.childNodes[0].outerHTML;
         }
 
         var i = L.divIcon({
