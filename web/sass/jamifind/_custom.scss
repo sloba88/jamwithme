@@ -294,9 +294,12 @@
 
 #map .no-icon, #_location_map .no-icon{
 	background-image: url('../images/logo-icon.png');
+	background-color: #fff;
 	background-position: center center;
-	background-size: 80%;
+	background-size: 70%;
 	background-repeat: no-repeat;
+	border-radius: 25px;
+	border: 1px solid silver;
 	width: 100%;
 	height: 100%;
 }
