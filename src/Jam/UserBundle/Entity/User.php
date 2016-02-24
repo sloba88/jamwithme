@@ -40,7 +40,7 @@ class User extends BaseUser
         // your own logic
         $this->images = new ArrayCollection();
         $this->genres = new ArrayCollection();
-        $this->brands = new ArrayCollection();
+        $this->gear = new ArrayCollection();
     }
 
     /**
@@ -149,9 +149,9 @@ class User extends BaseUser
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianBrand", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGear", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
-    private $brands;
+    private $gear;
 
     /**
      * @ORM\Column(type="smallint", length=1, nullable=true)
@@ -780,7 +780,7 @@ class User extends BaseUser
     {
         $percentage = 20;
 
-        if ($this->brands->count() > 0){
+        if ($this->gear->count() > 0){
             $percentage += 10;
         }
 
@@ -901,42 +901,42 @@ class User extends BaseUser
     }
 
     /**
-     * Add brand
+     * Add gear
      *
-     * @param \Jam\CoreBundle\Entity\MusicianBrand $brand
+     * @param \Jam\CoreBundle\Entity\MusicianGear $gear
      *
      * @return User
      */
-    public function addBrand(\Jam\CoreBundle\Entity\MusicianBrand $brand)
+    public function addGear(\Jam\CoreBundle\Entity\MusicianGear $gear)
     {
-        $this->brands[] = $brand;
+        $this->gear[] = $gear;
 
         return $this;
     }
 
     /**
-     * Remove brand
+     * Remove gear
      *
-     * @param \Jam\CoreBundle\Entity\MusicianBrand $brand
+     * @param \Jam\CoreBundle\Entity\MusicianGear $gear
      */
-    public function removeBrand(\Jam\CoreBundle\Entity\MusicianBrand $brand)
+    public function removeGear(\Jam\CoreBundle\Entity\MusicianGear $gear)
     {
-        $this->brands->removeElement($brand);
+        $this->gear->removeElement($gear);
     }
 
     /**
-     * Get brands
+     * Get gear
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getBrands()
+    public function getGear()
     {
-        return $this->brands;
+        return $this->gear;
     }
 
-    public function setBrands(ArrayCollection $brands){
+    public function setGear(ArrayCollection $gear){
 
-        $this->brands = $brands;
+        $this->gear = $gear;
 
         return $this;
     }

@@ -8,10 +8,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Instrument
  *
- * @ORM\Table(name="musicians_brands")
+ * @ORM\Table(name="musicians_gear")
  * @ORM\Entity(repositoryClass="Gedmo\Sortable\Entity\Repository\SortableRepository")
  */
-class MusicianBrand
+class MusicianGear
 {
     /**
      * @var integer
@@ -26,18 +26,17 @@ class MusicianBrand
      * @var User $musician
      *
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="brands")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="gear")
      * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)
      */
     private $musician;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Brand")
-     * @ORM\JoinColumn(name="brand_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(name="name", type="string", length=100)
      */
-    private $brand;
+    private $name;
 
     /**
      * @Gedmo\SortablePosition
@@ -61,7 +60,7 @@ class MusicianBrand
      *
      * @param integer $position
      *
-     * @return MusicianBrand
+     * @return MusicianGear
      */
     public function setPosition($position)
     {
@@ -85,7 +84,7 @@ class MusicianBrand
      *
      * @param \Jam\UserBundle\Entity\User $musician
      *
-     * @return MusicianBrand
+     * @return MusicianGear
      */
     public function setMusician(\Jam\UserBundle\Entity\User $musician = null)
     {
@@ -105,26 +104,26 @@ class MusicianBrand
     }
 
     /**
-     * Set brand
+     * Set name
      *
-     * @param \Jam\CoreBundle\Entity\Brand $brand
+     * @param string $name
      *
-     * @return MusicianBrand
+     * @return MusicianGear
      */
-    public function setBrand(\Jam\CoreBundle\Entity\Brand $brand = null)
+    public function setName($name)
     {
-        $this->brand = $brand;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get brand
+     * Get name
      *
-     * @return \Jam\CoreBundle\Entity\Brand
+     * @return string
      */
-    public function getBrand()
+    public function getName()
     {
-        return $this->brand;
+        return $this->name;
     }
 }

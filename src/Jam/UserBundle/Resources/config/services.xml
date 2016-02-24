@@ -32,7 +32,7 @@
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
-        <service id="jam_user.brand.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\BrandTransform">
+        <service id="jam_user.gear.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\GearTransform">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
@@ -45,9 +45,9 @@
             <tag name="form.type" alias="artist_type" />
         </service>
 
-        <service id="brand.form.type" class="Jam\CoreBundle\Form\Type\BrandType">
-            <argument type="service" id="jam_user.brand.form.data_transformer"/>
-            <tag name="form.type" alias="brand_type" />
+        <service id="gear.form.type" class="Jam\CoreBundle\Form\Type\GearType">
+            <argument type="service" id="jam_user.gear.form.data_transformer"/>
+            <tag name="form.type" alias="gear_type" />
         </service>
 
         <service id="genre.form.type" class="Jam\CoreBundle\Form\Type\GenreType">

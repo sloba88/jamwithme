@@ -54,12 +54,15 @@ class InstrumentsController extends FOSRestController
             array(
                 'id' => 5,
                 'text' => $translator->trans('value.professional')
-            ),
-            array(
-                'id' => 10,
-                'text' => $translator->trans('value.teacher')
             )
         );
+
+        if ($this->getUser()->getIsTeacher()) {
+            array_push($res, array(
+                'id' => 10,
+                'text' => $translator->trans('value.teacher')
+            ));
+        }
 
         $view = $this->view($res, 200);
 

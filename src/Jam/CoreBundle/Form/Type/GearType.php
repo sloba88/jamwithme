@@ -2,29 +2,29 @@
 
 namespace Jam\CoreBundle\Form\Type;
 
-use Jam\CoreBundle\Form\DataTransformer\BrandTransform;
+use Jam\CoreBundle\Form\DataTransformer\GearTransform;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class BrandType extends AbstractType
+class GearType extends AbstractType
 {
-    protected $brandTransformer;
+    protected $gearTransform;
 
-    public function __construct(BrandTransform $brandTransformer)
+    public function __construct(GearTransform $gearTransform)
     {
-        $this->brandTransformer = $brandTransformer;
+        $this->gearTransform = $gearTransform;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer($this->brandTransformer);
+        $builder->addModelTransformer($this->gearTransform);
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'class' => 'Jam\CoreBundle\Entity\MusicianBrand',
+            'class' => 'Jam\CoreBundle\Entity\MusicianGear',
             'required' => false,
         ));
     }
@@ -36,6 +36,6 @@ class BrandType extends AbstractType
 
     public function getName()
     {
-        return 'brand_type';
+        return 'gear_type';
     }
 }

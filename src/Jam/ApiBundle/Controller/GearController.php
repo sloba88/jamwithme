@@ -5,12 +5,12 @@ namespace Jam\ApiBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 
-class BrandsController extends FOSRestController
+class GearController extends FOSRestController
 {
     /**
-     * @Get("/brands", name="api_brands")
+     * @Get("/gear", name="api_gear")
      */
-    public function getBrandsAction()
+    public function getGearAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 
@@ -18,8 +18,9 @@ class BrandsController extends FOSRestController
 
         $query = $this->getDoctrine()->getManager()
             ->createQuery(
-                "SELECT b.id, b.name FROM JamCoreBundle:Brand b
-                WHERE b.name LIKE :q "
+                "SELECT b.id, b.name FROM JamCoreBundle:MusicianGear b
+                WHERE b.name LIKE :q
+                GROUP BY b.name"
             )->setParameter('q', '%'.$q.'%');
 
         $data = $query->getResult();
