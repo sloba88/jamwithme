@@ -24,7 +24,6 @@ parameters:
     node_bin_path: /usr/local/bin
     node_modules_path: /usr/lib
     ga_id: UA-73643838-1
-    host_ip: ~
     router.request_context.host: dev.jamifind.com
     router.request_context.scheme: http
     router.request_context.base_url: /
