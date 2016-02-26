@@ -13,6 +13,8 @@
 /* global myLocation */
 /* global scrollbarPlugin */
 /* global sidebarHeight */
+/* global ga */
+/* global SVGInjector */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -23,13 +25,14 @@ var page = 1;
 var shoutsPage = 1;
 
 function renderGridView(data) {
-    if (filterResults.length === 0 && loadMoreResults === false){
-        $('.people-listing-grid').html('<br /><p>Didn\'t find what you searched for? We can let you know when people with this profile join. <br /><a href="#" class="btn btn-primary" id="subscribeToSearch"><i class="fa fa-envelope"></i> Subscribe for this search criteria.</a></p>');
-    }
 
     $.each(data, function (k, v) {
         $('.people-listing-grid').append(window.JST.musicianBoxTemplate(v));
     });
+
+    if (data.length === 0 && loadMoreResults === false && ($('input.filter-genres').val() !== '' || $('input.filter-instruments').val() !== '') ){
+        $('.people-listing-grid').append('<div class="subscribe-info-search"><div class="alert alert-info" role="alert">Didn\'t find what you searched for? We can let you know when people with this profile join. </div><a href="#" class="btn btn-primary" id="subscribeToSearch"><i class="fa fa-envelope"></i> Subscribe for this search criteria</a></div>');
+    }
 
     if ($('.people-listing-grid').width() > 1000){
         $('.musician-box-container').removeClass('col-lg-3').addClass('col-lg-2');
@@ -38,6 +41,9 @@ function renderGridView(data) {
     $('.people-listing-grid').removeClass('loading-content');
 
     scrollbarPlugin();
+
+    //replace all svg
+    SVGInjector(document.querySelectorAll('img.inject-me'));
 }
 
 function getFilterData() {
@@ -46,11 +52,29 @@ function getFilterData() {
     if ( $('input.filter-genres').val() !== '' ){
         data += $('.filter-genres').serialize();
         data += '&';
+
+        $.each($('input.filter-genres').select2('data'), function(k, v) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'search',
+                eventAction: 'genres',
+                eventLabel: v.text
+            });
+        });
     }
 
     if ( $('input.filter-instruments').val() !== '' ){
         data += $('.filter-instruments').serialize();
         data += '&';
+
+        $.each($('input.instruments-genres').select2('data'), function(k, v) {
+            ga('send', {
+                hitType: 'event',
+                eventCategory: 'search',
+                eventAction: 'instruments',
+                eventLabel: v.text
+            });
+        });
     }
 
     data += 'isTeacher='+$('body.page-teachers').length;
@@ -251,7 +275,14 @@ $(function() {
             url: Routing.generate('subscribe_search_add')
         }).done(function( result ) {
             if (result.success === true) {
-                $('.people-listing-grid').html(window.JST.notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+                $('.people-listing-grid .subscribe-info-search').html(window.JST.notificationTemplate({ type : 'success', message : 'Subscription to this search made successfully.', temp : 'temp' }));
+
+                ga('send', {
+                    hitType: 'event',
+                    eventCategory: 'search',
+                    eventAction: 'subscribed',
+                    eventLabel: 'search'
+                });
             }
         });
     });

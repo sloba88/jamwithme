@@ -1,0 +1,16 @@
+{% extends 'JamWebBundle:Email:emailLayout.html.twig' %}
+
+{% block email_body %}
+    <h2>{{ 'email.you.have.been.invited'|trans }}</h2>
+
+    <div>
+        <img style="float: left; padding-right: 10px;" src="{{ url('musician_avatar', { 'username': from.username, 'size': 'my_thumb' }) }}" />
+        <h6>{{ from.username }}</h6>
+    </div>
+
+    <br />
+
+    <p>{{ 'email.invitation.text'|trans }}</p>
+
+    <a href="{{ url('home') }}?c={{ invitation.code }}">{{ 'email.accept.invitation'|trans }}</a>
+{% endblock %}

@@ -88,6 +88,39 @@ __e( rc.num ) +
 return __p
 };
 
+this["JST"]["inviteGmailTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+
+ if (rc.gd$email) { ;
+__p += '\n    <div class="col-xs-6 col-sm-4 col-lg-3 musician-box-container invite-friend-box" data-email="' +
+__e( rc.gd$email[0].address.toLowerCase() ) +
+'" data-name="' +
+__e( rc.title.$t.toLowerCase() ) +
+'">\n        <span class="people-grid">\n            <div class="people-info">\n                <h3 class="name" title="' +
+__e( rc.username ) +
+'" ';
+ if (rc.title.$t.length > 21) { ;
+__p += ' style="font-size:11px" ';
+ } if (rc.title.$t.length > 16) { ;
+__p += ' style="font-size:13px" ';
+ } ;
+__p += '>' +
+__e( rc.title.$t ) +
+'</h3>\n                <p>\n                    ' +
+__e( rc.gd$email[0].address ) +
+'\n                </p>\n                <input type="checkbox" id="email_' +
+__e( rc.gd$email[0].address ) +
+'" name="emails[]" value="' +
+__e( rc.gd$email[0].address ) +
+'" />\n                <label class="control-label" for="email_' +
+__e( rc.gd$email[0].address ) +
+'"><span>&nbsp;</span></label>\n            </div>\n        </span>\n    </div>\n';
+ } ;
+
+return __p
+};
+
 this["JST"]["messageTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
@@ -140,11 +173,15 @@ __p += ' style="font-size:13px" ';
  } ;
 __p += '>' +
 __e( rc.username ) +
-'</h3>\n                    <span class="instrument" title="' +
+'</h3>\n                ';
+ if (rc.instrument) { ;
+__p += '\n                <span class="instrument" title="' +
 __e( rc.instrument ) +
-'">\n                        ' +
-((__t = ( rc.icon )) == null ? '' : __t) +
-'\n                    </span>\n            <ul class="tags" >\n                ';
+'">\n                    <img class="inject-me" src="/assets/images/icons-svg/' +
+__e( rc.instrument ) +
+'.svg">\n                </span>\n                ';
+ } ;
+__p += '\n            <ul class="tags" >\n                ';
  _.each( rc.genres, function(v, k){ ;
 __p += '\n                ';
  if (k < 3){ ;
@@ -160,7 +197,7 @@ __p += '\n                ';
  }); ;
 __p += '\n            </ul>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span>' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +
-'%</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a><!--people-grid ends-->\n</div>';
+'%</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a>\n</div>';
 return __p
 };
 
@@ -218,9 +255,13 @@ __p += '\n                ';
  }); ;
 __p += '\n            </ul>\n                <span class="instrument" title="' +
 __e( rc.instrument ) +
-'">\n                    ' +
-((__t = ( rc.icon )) == null ? '' : __t) +
-'\n                    ' +
+'">\n                    ';
+ if (rc.instrument) {  ;
+__p += '\n                        <img src="/assets/images/icons-svg/' +
+__e( rc.instrument ) +
+'.svg" class="inject-me" />\n                    ';
+ } ;
+__p += '\n                    ' +
 ((__t = ( rc.teacherIcon )) == null ? '' : __t) +
 '\n                </span>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span>' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +

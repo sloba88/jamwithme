@@ -286,6 +286,14 @@ class DefaultController extends Controller
         $em->persist($user);
         $em->flush();
 
+        /* send data to GA */
+        $data = array(
+            'uid'=> $user->getId(),
+            'ec'=> 'profile',
+            'ea'=> 'avatar set'
+        );
+        $this->get('happyr.google.analytics.tracker')->send($data, 'event');
+
         $response = new JsonResponse();
         $response->setData(array(
             'status' => 'success',

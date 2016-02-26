@@ -180,8 +180,11 @@ class Shout
 
         } else {
             // show minutes
-            return round($minutes) . " min ago";
+            if (round($minutes) == 0) {
+                return "just now";
+            } else {
+                return round($minutes) . " min ago";
+            }
         }
-
     }
 }

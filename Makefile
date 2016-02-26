@@ -13,6 +13,9 @@ SCHEMA          = $(CONSOLE) doctrine:schema:update --force
 
 default: help
 
+cc:
+	rm -rf /dev/shm/appname/cache/*
+
 help:
 	@echo "dev         - Install for dev"
 	@echo "prod        - Install for production"

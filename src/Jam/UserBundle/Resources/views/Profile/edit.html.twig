@@ -3,7 +3,6 @@
 {% block bodyclasses %}page-settings{% endblock %}
 
 {% block fos_user_content %}
-    {% trans_default_domain 'FOSUserBundle' %}
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
     <style>
@@ -54,16 +53,16 @@
 
 
         <div class="col-md-2 tabs-save">
-            <button class="btn btn-primary btn-save" alt="save-1" id="save-1">{{ 'button.save'|trans }}</button>
+            <button class="btn btn-primary btn-save" id="save-1">{{ 'button.save'|trans }}</button>
             <i class="fa fa-check"></i>
         </div>
 
         <ul class="tabs-activate profile-tabs" id="myTab">
-            <li><a href="#" data-tab="personal-info" class="is-active">Personal Info</a></li>
-            <li><a href="#" data-tab="musician-info">Musician Info</a></li>
-            <li><a href="#" data-tab="photos">Photos</a></li>
-            <li><a href="#" data-tab="videos">Videos</a></li>
-            <li><a href="#" data-tab="networks">Networks</a></li>
+            <li><a href="#" data-tab="personal-info" class="is-active">{{ 'label.personal.info'|trans }}</a></li>
+            <li><a href="#" data-tab="musician-info">{{ 'label.musician.info'|trans }}</a></li>
+            <li><a href="#" data-tab="photos">{{ 'label.photos'|trans }}</a></li>
+            <li><a href="#" data-tab="videos">{{ 'label.videos'|trans }}</a></li>
+            <li><a href="#" data-tab="networks">{{ 'label.networks'|trans }}</a></li>
         </ul>
 
         <div class="view-tab-container clearfix">
@@ -102,14 +101,14 @@
 
                         {{ form_row(form.email) }}
 
-                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default" style="margin-bottom: 15px;">Change password</a>
+                        <a href="{{ path('fos_user_change_password') }}" class="btn btn-default" style="margin-bottom: 15px;">{{ 'label.change.password'|trans }}</a>
 
                     </div>
                     <div class="col-md-6" style="min-height: 320px;">
 
                         <div class="form-group">
                             {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
-                            <span class="glyphicon glyphicon-info-sign info-popover" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="Your location helps us find people around you. You can be specific as you like, we will not show your full address to other people."></span>
+                            <span class="glyphicon glyphicon-info-sign info-popover" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.location'|trans }}"></span>
                             {{ form_errors(form.location) }}
                             <div>
                                 {{ form_widget(form.location) }}
@@ -126,30 +125,30 @@
                 <div class="row">
                     <div class="col-md-6">
 
-                        <h4>I want to:</h4>
+                        <h4>{{ 'label.i.want.to'|trans }}:</h4>
 
                         <ul class="checkboxes-list">
                             <li>
                                 {{ form_widget(form.isVisitor) }}
                                 {{ form_label(form.isVisitor) }}
-                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="This means you are not currently available and you will be positioned lower in search results"></span>
+                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.visitor'|trans }}"></span>
                             </li>
                             <li>
                                 {{ form_widget(form.isJammer) }}
                                 {{ form_label(form.isJammer) }}
-                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="This means you are available and you will be positioned better in searches results."></span>
+                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.jammer'|trans }}"></span>
                             </li>
                             <li class="last">
                                 {{ form_widget(form.isTeacher) }}
                                 {{ form_label(form.isTeacher) }}
-                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be presented as a music teacher."></span>
+                                <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.teacher'|trans }}"></span>
                             </li>
                         </ul>
 
                         <div class="row">
                             <div class="col-md-12">
 
-                                <h4>I am available:</h4>
+                                <h4>{{ 'label.i.am.available'|trans }}:</h4>
 
                                 {{ form_widget(form.commitment, { 'attr': {'placeholder' : 'How much can you commit? '} }) }}
 
@@ -158,36 +157,7 @@
 
                         <br />
 
-                        <div class="row">
-                            <div class="col-md-5">
-                                What do you play?
-                            </div>
-                            <div class="col-md-5">
-                                How good are you?
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                        <ul id="musician_instruments">
-
-                            {% for f in form.instruments %}
-                                <li class="row">
-                                    <div class="col-md-5">
-                                        {{ form_widget(f.instrument) }}
-                                    </div>
-                                    <div class="col-md-5">
-                                        {{ form_widget(f.skillLevel) }}
-                                    </div>
-                                    <div class="col-md-2" style="padding-top:10px">
-                                        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
-                                        <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
-                                    </div>
-                                </li>
-                            {% endfor %}
-
-                        </ul>
-                        <br />
-                        <a href="#" class="btn btn-primary" id="add_another_instrument"><i class="glyphicon glyphicon-plus-sign"></i> Add another instrument / Skill</a>
+                        {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
 
                     </div>
 
@@ -205,7 +175,7 @@
 
                         {{ form_row(form.artists, { 'id' : 'fos_user_profile_form_artists' }) }}
 
-                        {{ form_row(form.brands) }}
+                        {{ form_row(form.gear) }}
 
                         <div class="clearfix"></div>
 
@@ -226,7 +196,7 @@
                             <div class="col-md-6">
                             <span class="btn btn-primary fileinput-button">
                                 <i class="glyphicon glyphicon-plus"></i>
-                                <span>Add photos...</span>
+                                <span>{{ 'label.add.photos'|trans }}...</span>
                                 <input type="file" name="file" id="upload_images" accept="image/*" multiple >
                             </span>
                             </div>
@@ -234,7 +204,7 @@
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary start-upload" style="display: none">
                                     <i class="glyphicon glyphicon-upload"></i>
-                                    <span>Upload all</span>
+                                    <span>{{ 'label.upload.all'|trans }}</span>
                                 </button>
                             </div>
                         </div>
@@ -247,12 +217,12 @@
 
                         <div class="panel panel-default panel-photos-header">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Photos <span class="badge"><span>({{ form.vars.value.images|length }}</span> / 20)</span></h3>
+                                <h3 class="panel-title">{{ 'label.photos'|trans }} <span class="badge"><span>({{ form.vars.value.images|length }}</span> / 20)</span></h3>
                             </div>
                         </div>
 
                         {% if form.vars.value.images|length == 0 %}
-                            <p class="no-images-yet">No images yet.</p>
+                            <p class="no-images-yet">{{ 'label.no.images'|trans }}</p>
                         {% endif %}
 
                         <div id="user_images" class="profile-media-wall">
@@ -261,8 +231,8 @@
                                 <div class="image-holder profile-media-wall-item image-type-{{ i.type }}" data-image-id="{{ i.id }}">
                                     <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
                                     <div class="profile-media-image-commands">
-                                        <a href="#" class="set-profile-photo" data-id="{{ i.id }}" title="Set as profile photo"><span class="glyphicon glyphicon-user"></span>{% if i.type not in [1, 4] %} Set as profile photo{% endif %}</a>
-                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="Remove photo"><i class="fa fa-times"></i></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
+                                        <a href="#" class="set-profile-photo" data-id="{{ i.id }}" title="{{ 'label.set.profile.photo'|trans }}"><span class="glyphicon glyphicon-user"></span>{% if i.type not in [1, 4] %} Set as profile photo{% endif %}</a>
+                                        <a href="#" class="remove-image-ajax action-confirm" data-id="{{ i.id }}" title="{{ 'label.remove.photo'|trans }}"><i class="fa fa-times"></i></span>{% if i.type not in [1, 4] %} Remove{% endif %}</a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -271,24 +241,25 @@
                     </div>
 
                 </div>
-
             </div>
+
+            {# VIDEOS #}
 
             <div class="view-tab with-scrollbar" data-tab="videos">
 
                 <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
                     <i class="fa fa-youtube-play"></i>
-                    Add Video
+                    {{ 'label.add.video'|trans }}
                 </a>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Youtube Videos <span class="badge">({{ form.vars.value.videos|length }} / 12)</span></h3>
+                        <h3 class="panel-title">{{ 'label.videos'|trans }} <span class="badge">({{ form.vars.value.videos|length }} / 12)</span></h3>
                     </div>
                     <div class="panel-body">
 
                         {% if form.vars.value.videos|length == 0 %}
-                            <p class="no-images-yet">No videos yet.</p>
+                            <p class="no-images-yet">{{ 'label.no.videos'|trans }}</p>
                         {% endif %}
 
                         <ul id="musician_videos">
@@ -298,7 +269,7 @@
                                         <span class="play-icon"></span>
                                         <img src="" height="140" width="260" />
                                     </a>
-                                    <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>
+                                    <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> {{ 'label.remove'|trans }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -314,20 +285,20 @@
                 <div class="login-buttons col-sm-6 col-md-5 col-lg-4">
                     <h4>Facebook</h4>
                     {% if app.user.facebookId %}
-                        <a href="#">Connected</a>
+                        <a href="#">{{ 'label.connected'|trans }}</a>
                     {% else %}
                         <a class="btn btn-primary facebook" href="{{ path('jam_facebook_login') }}">
-                            <i class="fa fa-facebook-square"></i>connect with facebook</a>
+                            <i class="fa fa-facebook-square"></i>{{ 'label.connect.facebook'|trans }}</a>
                     {% endif %}
 
                     <br />
 
                     <h4>Soundcloud</h4>
                     {% if app.user.soundcloudId %}
-                        <a href="#">Connected</a>
+                        <a href="#">{{ 'label.connected'|trans }}</a>
                     {% else %}
                         <a class="btn btn-primary soundcloud" href="{{ path('connect_soundcloud') }}">
-                            <i class="fa fa-soundcloud"></i>connect with soundcloud</a>
+                            <i class="fa fa-soundcloud"></i>{{ 'label.connect.soundcloud'|trans }}</a>
                     {% endif %}
 
                 </div><!-- login buttons -->

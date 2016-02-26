@@ -38,6 +38,14 @@ class RegistrationController extends ContainerAware
             return new RedirectResponse('/');
         }
 
+        $newInviteCode = $this->container->get('request_stack')->getMasterRequest()->query->get('c');
+        $inviteCode = $this->container->get('request_stack')->getMasterRequest()->getSession()->get('inviteCode');
+
+        if (!$inviteCode && $newInviteCode) {
+            //user came through invite link, save it to session, he can't alter it later
+            $this->container->get('request_stack')->getMasterRequest()->getSession()->set('inviteCode', $newInviteCode);
+        }
+
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('fos_user.registration.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -64,6 +72,22 @@ class RegistrationController extends ContainerAware
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+
+                //check for invite code
+                $inviteCode = $this->container->get('request_stack')->getMasterRequest()->getSession()->get('inviteCode');
+
+                if ($inviteCode) {
+                    //find invitation
+                    $em = $this->container->get('doctrine')->getEntityManager();
+                    $invitation = $em->getRepository('JamUserBundle:Invitation')->findOneBy(array('code' => $inviteCode, 'accepted' => false));
+
+                    if ($invitation) {
+                        $user->setInvitedBy($invitation->getCreator());
+                        $invitation->setAccepted(true);
+                        $em->persist($invitation);
+                        $em->flush();
+                    }
+                }
 
                 $userManager->updateUser($user);
 

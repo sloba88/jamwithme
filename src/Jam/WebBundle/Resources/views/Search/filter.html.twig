@@ -4,7 +4,6 @@
     {% set filterTitle = 'text.find.music.teachers.nearby'|trans %}
 {% endif %}
 
-
 <div class="filters-area">
     <div class="filters-heading clearfix">
         <h1 class="filters-title">{{ filterTitle }}</h1>
@@ -36,25 +35,22 @@
                     </div>
                 </div>
             </div>
-        </div><!--filters-by ends-->
+        </div>
 
         <div class="tabs-activate filters-preview">
             <ul class="clearfix">
                 <li><a href="#" data-tab="grid" id="grid-view" class="tab-grid is-active">{{ 'text.grid'|trans }}</a></li>
                 <li><a href="#" data-tab="map" id="map-view" class="tab-map">{{ 'text.map'|trans }}</a></li>
             </ul>
-        </div><!--filters-preview ends-->
+        </div>
     </form>
 
-</div><!--filters-area ends-->
+</div>
 
 <div class="view-tab-container with-scrollbar">
-    <div class="view-tab people-listing-grid row is-active loading-content" data-tab="grid"></div><!--people-listing-grid ends-->
+    <div class="view-tab people-listing-grid row is-active loading-content" data-tab="grid"></div>
 
     <div class="view-tab map" data-tab="map">
-
         <div id="map"></div>
-
-    </div><!--map ends-->
-
-</div><!--view-tab-container ends-->
+    </div>
+</div>

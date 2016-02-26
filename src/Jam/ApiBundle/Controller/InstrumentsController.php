@@ -5,11 +5,13 @@ namespace Jam\ApiBundle\Controller;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class InstrumentsController extends FOSRestController
 {
     /**
      * @Get("/instruments", name="api_instruments")
+     * @Cache(public=true, maxage="1500", smaxage="1500")
      */
     public function getAction(Request $request)
     {
@@ -51,9 +53,16 @@ class InstrumentsController extends FOSRestController
             ),
             array(
                 'id' => 5,
-                'text' => $translator->trans('professional')
+                'text' => $translator->trans('value.professional')
             )
         );
+
+        if ($this->getUser()->getIsTeacher()) {
+            array_push($res, array(
+                'id' => 10,
+                'text' => $translator->trans('value.teacher')
+            ));
+        }
 
         $view = $this->view($res, 200);
 

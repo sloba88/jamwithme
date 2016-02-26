@@ -1,7 +1,6 @@
 'use strict';
 
 /* global baseURL */
-/* global _ */
 /* global Routing */
 /* global checkCanShout */
 /* global addMessage */
@@ -596,7 +595,7 @@ $(function() {
                 addMessage(result.status, result.message);
                 if (result.status === 'success'){
                     $.each(result.data, function(k, v){
-                        $( '.shouts-listing' ).prepend(window.JST['shoutBoxTemplate'](v));
+                        $( '.shouts-listing' ).prepend(window.JST.shoutBoxTemplate(v));
                     });
                     checkCanShout();
                     $('#shout_text').val('');
@@ -632,6 +631,54 @@ $(function() {
                 }
             }
         });
+    });
+
+    $(document).on('click', '.invite-friend-box', function(e) {
+        e.preventDefault();
+
+        if ($(this).hasClass('checked')) {
+            $(this).removeClass('hovered').removeClass('checked');
+            $(this).find('span.people-grid').css('border', '2px solid #414141');
+            $(this).find(':checkbox').prop('checked', false);
+        } else {
+            $(this).addClass('hovered').addClass('checked');
+            $(this).find('span.people-grid').css('border', '2px solid #fabc09');
+            $(this).find(':checkbox').prop('checked', true);
+        }
+    });
+
+    $('#send-invites').on('click', function(e) {
+        e.preventDefault();
+        var emails = $('#send-invites-form').serialize();
+        $.ajax({
+            url: Routing.generate('send_invite_emails'),
+            type: 'POST',
+            data: emails,
+            success: function(result) {
+                if (result.status === 'success') {
+                    addMessage(result.status, result.message);
+                }
+            }
+        });
+    });
+
+    $('#select-all-invites').on('click', function(e) {
+        e.preventDefault();
+        $('.invite-friend-box :checkbox').prop('checked', true);
+    });
+
+    $('#find-gmail-contact').on('keyup', function(e) {
+        e.preventDefault();
+        var value = $(this).val().toLowerCase();
+
+        if (value === '') {
+            $('.invite-friend-box').show();
+        } else {
+            $('.invite-friend-box').hide();
+            $('.invite-friend-box[data-email^="'+value+'"]').show();
+            $('.invite-friend-box[data-name^="'+value+'"]').show();
+        }
+
     });
 
     //scrollbar plugin

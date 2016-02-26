@@ -9,7 +9,9 @@
                 <% }); %>
             </ul>
                 <span class="instrument" title="<%- rc.instrument %>">
-                    <%= rc.icon %>
+                    <% if (rc.instrument) {  %>
+                        <img src="/assets/images/icons-svg/<%- rc.instrument %>.svg" class="inject-me" />
+                    <% } %>
                     <%= rc.teacherIcon %>
                 </span>
             <ul class="compatibility-box">

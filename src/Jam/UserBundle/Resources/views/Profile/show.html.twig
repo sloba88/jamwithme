@@ -4,7 +4,7 @@
 
 {% block fos_user_content %}
 
-    {# TODO: TEACHER #}
+    {# TODO: TEACHER SPECIFIC FIXES #}
 
     <div class="teacher-container grey">
         <div class="row teacher-header">
@@ -29,7 +29,7 @@
 
                         {% if user.isJammer %}
                             <div class="availability">
-                                <img src="{{ asset('assets/images/available.png') }}" alt="Available">Available
+                                <img src="{{ asset('assets/images/available.png') }}" alt="Available">{{ 'label.available'|trans }}
                             </div>
                         {% endif %}
 
@@ -44,7 +44,7 @@
                                 </li>
                                 <li class="compatibility">
                                     <span></span>
-                                    compatibility
+                                    {{ 'label.compatibility'|trans }}
                                 </li>
                             </ul>
                         {% endif %}
@@ -82,12 +82,16 @@
                         {% for i in user.instruments %}
                             <div class="col-xs-6">
                                 <a href="{{ path('musicians', {'instruments' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
-                                {% if loop.first %}<span class="main">{{ 'text.main'|trans }}</span>{% endif %}
+                                {% if i.skillLevel is not null and i.skillLevel == 10 %}
+                                    <span class="main">teaching</span>
+                                {% else %}
+                                    {% if loop.first %}<span class="main">{{ 'text.main'|trans }}</span>{% endif %}
+                                {% endif %}
                             </div>
 
                             <div class="col-xs-6">
                                 <ul>
-                                    {% if i.skillLevel is not null %}
+                                    {% if i.skillLevel is not null and i.skillLevel != 10 %}
                                         {% for l in 1..i.skillLevel %}
                                             <li><span class="active"></span></li>
                                         {% endfor %}
@@ -109,7 +113,7 @@
             <section class="col-sm-4 teacher-favorites dark">
                 <div class="teacher-favorites-inner">
 
-                    <!-- genres -->
+                    {# genres #}
                     {% if user.genres|length == 0 %}
                         <div class="tags-container"><span>{{ 'text.no.genres.yet'|trans }}</span></div>
                     {% else %}
@@ -125,7 +129,7 @@
                         </div>
                     {% endif %}
 
-                    <!-- influencers -->
+                    {# influencers #}
                     <div class="favorite-group first">
                         <span>{{ 'text.influencers'|trans }}:</span>
                         {% if user.artists|length == 0 %}{{ 'text.none'|trans }}{% endif %}
@@ -136,13 +140,13 @@
                         </div>
                     </div>
 
-                    <!-- brands -->
+                    {# gear #}
                     <div class="favorite-group">
-                        <span>{{ 'text.favourite.brands'|trans }}:</span>
-                        {% if user.brands|length == 0 %}None.{% endif %}
+                        <span>{{ 'text.gear'|trans }}:</span>
+                        {% if user.gear|length == 0 %}None.{% endif %}
                         <div class="favorite-group-inner with-scrollbar">
-                            {% for b in user.brands %}
-                                {{ b.brand.name }}{% if not loop.last %}, {% endif %}
+                            {% for b in user.gear %}
+                                {{ b.name }}{% if not loop.last %}, {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -156,10 +160,10 @@
                 <section class="col-sm-8 main-content">
 
                     <ul class="tabs-activate profile-tabs">
-                        <li><a href="#" data-tab="about" class="is-active">{{ 'text.about'|trans }}</a></li>
-                        <li><a href="#" data-tab="photos" class="my-photos">{{ 'text.photos'|trans }}</a></li>
-                        <li><a href="#" data-tab="videos" class="my-videos">{{ 'text.videos'|trans }}</a></li>
-                        <li><a href="#" data-tab="sounds" class="my-sounds">{{ 'text.sounds'|trans }}</a></li>
+                        <li><a href="#" data-tab="about" class="is-active">{{ 'label.about'|trans }}</a></li>
+                        <li><a href="#" data-tab="photos" class="my-photos">{{ 'label.photos'|trans }}</a></li>
+                        <li><a href="#" data-tab="videos" class="my-videos">{{ 'label.videos'|trans }}</a></li>
+                        <li><a href="#" data-tab="sounds" class="my-sounds">{{ 'label.sounds'|trans }}</a></li>
                         <li class="last hidden-xs">
                             {% if app.user != user %}
                                 <ul class="compatibility-box">
@@ -169,7 +173,7 @@
                                     <li class="compatibility">
                                         &nbsp;
                                         <span></span>
-                                        {{ 'text.compatibility'|trans }}
+                                        {{ 'label.compatibility'|trans }}
                                     </li>
                                 </ul>
                             {% endif %}
@@ -185,7 +189,7 @@
                                 <p>{{ user.aboutMe|default('text.nothing.yet.here'|trans) }}</p>
 
                                 {% if user.isTeacher %}
-                                    <h6>Education</h6>
+                                    <h6>{{ 'label.education'|trans }}</h6>
                                     <p>{{ user.education|default('text.nothing.yet.here'|trans) }}</p>
                                 {% endif %}
                             </div>
@@ -195,7 +199,7 @@
                                 <div class="profile-media-wall">
 
                                     {% if user.images|length == 0 %}
-                                        <p>{{ 'text.no.photos.yet'|trans }}</p>
+                                        <p>{{ 'label.no.images'|trans }}</p>
                                     {% endif %}
 
                                     {% for i in user.images %}
@@ -211,7 +215,7 @@
                             <div class="view-tab my-videos" data-tab="videos">
 
                                 {% if user.videos|length == 0 %}
-                                    <p>{{ 'text.no.videos.yet'|trans }}</p>
+                                    <p>{{ 'label.no.videos'|trans }}</p>
                                 {% endif %}
 
                                 <ul>
@@ -229,7 +233,7 @@
 
                             <div class="view-tab my-sounds" data-tab="sounds">
                                 {% if (user.getSoundcloudId == "") %}
-                                    <p>No sounds yet.</p>
+                                    <p>{{ 'label.no.sounds'|trans }}</p>
                                 {% endif %}
                             </div>
 

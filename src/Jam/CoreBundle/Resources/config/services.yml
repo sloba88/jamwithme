@@ -14,6 +14,7 @@ services:
         calls:
             - [setElasticUserFinder, ["@fos_elastica.finder.searches.compatibility"]]
             - [setTokenStorage, ["@security.token_storage"]]
+            - [setTracker, ["@happyr.google.analytics.tracker"]]
 
     search.subscriber.cron:
         class: Jam\CoreBundle\Services\SearchSubscriberCron

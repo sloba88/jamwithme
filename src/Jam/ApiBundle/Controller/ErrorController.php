@@ -10,7 +10,7 @@ class ErrorController extends FOSRestController
     /**
      * @Post("/js-error-report", name="api_js_error_report")
      */
-    public function getBrandsAction()
+    public function logErrorAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 

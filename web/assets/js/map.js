@@ -1,9 +1,9 @@
 'use strict';
 
-/* global _ */
 /* global _user */
 /* global L */
 /* global filterResults */
+/* global SVGInjector */
 
 var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
@@ -59,6 +59,10 @@ function initMap(){
         drawRadius();
     });
 
+    map.on('popupopen', function(){
+        SVGInjector(document.querySelectorAll('img.inject-me'));
+    });
+
     console.log('map initialized');
     return true;
 }
@@ -103,7 +107,7 @@ function drawRadius(){
 
 }
 
-function placeMarkers(){
+function placeMarkers() {
 
     map.removeLayer(markers);
     markers = new L.markerClusterGroup({
@@ -118,19 +122,28 @@ function placeMarkers(){
         resizeIcons();
     });
 
-    $.each(filterResults, function(k, v){
-
+    $.each(filterResults, function(k, v) {
         var iconSource;
-        if (v.icon === '') {
+        if (v.instrument === '' || v.instrument === 'Other Skills') {
             iconSource = '<div class="no-icon"></div>';
+            createIcon(iconSource, v);
         } else {
-            iconSource = v.icon;
+            var fragment = document.createDocumentFragment();
+            var img = new Image();
+            img.src = '/assets/images/icons-svg/' + v.instrument + '.svg';
+            fragment.appendChild(img);
+            SVGInjector(fragment.childNodes, {}, function(){
+                iconSource = fragment.childNodes[0].outerHTML;
+                createIcon(iconSource, v);
+            });
         }
+    });
 
+    function createIcon(iconSource, v) {
         var i = L.divIcon({
-            html: iconSource,
             iconSize:     [50, 50],
-            className: 'mapIcon map-icon-' + v.instrument
+            className: 'mapIcon map-icon-' + v.instrument,
+            html: iconSource
         });
 
         var marker = L.marker([v.lat, v.lng], {icon: i});
@@ -143,10 +156,12 @@ function placeMarkers(){
         marker.bindPopup(popup);
 
         markers.addLayer(marker);
-    });
+    }
 
     map.addLayer(markers);
     resizeIcons();
+
+    SVGInjector(document.querySelectorAll('img.inject-me'));
 }
 
 var delay = (function(){

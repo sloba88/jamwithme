@@ -1,0 +1,63 @@
+{% extends 'JamWebBundle::layout.html.twig' %}
+
+{% block bodyclasses %}page-dashboard invite-friends-page{% endblock %}
+
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
+
+{% block main_content %}
+
+    <div class="filters-area">
+        <div class="filters-heading clearfix">
+            <h1 class="filters-title">{{ 'label.invite.contacts'|trans }}</h1>
+        </div>
+    </div>
+
+    <div class="row invite-commands hidden" style="margin-bottom: 20px;">
+        <div class="col-md-3 pull-left">
+            <button class="btn btn-primary" id="send-invites"><i class="fa fa-envelope-o"></i> {{ 'button.invite.selected'|trans }}</button>
+        </div>
+        <div class="col-md-3 pull-right">
+            <button class="btn btn-default" id="select-all-invites">{{ 'button.select.all'|trans }}</button>
+        </div>
+
+        <div class="col-md-12">
+            <input type="text" id="find-gmail-contact" class="form-control" placeholder="{{ 'placeholder.find.by.name.or.email'|trans }}" />
+        </div>
+    </div>
+
+    <div class="view-tab-container with-scrollbar">
+        <form id="send-invites-form">
+             <div class="view-tab people-listing-grid row is-active loading-content"></div>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block right_sidebar_content %}
+
+    <div id="fb-root"></div>
+
+    <div class="share-sidebar">
+        <h3>{{ 'text.share.us.on.facebook'|trans }}</h3>
+        <div class="fb-share-button"
+             data-href="http://jamifind.com"
+             data-layout="button_count">
+        </div>
+        <br /><br /><br />
+
+        <h3>{{ 'text.like.our.page'|trans }}</h3>
+
+        <div class="fb-page" data-href="https://www.facebook.com/jamifind/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jamifind/"><a href="https://www.facebook.com/jamifind/">Jamifind</a></blockquote></div></div>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block bottom_javascripts %}
+
+    <script src="{{ asset('assets/js/invite.js') }}"></script>
+    <script src="https://apis.google.com/js/client.js?onload=gapiLoad"></script>
+
+{% endblock %}

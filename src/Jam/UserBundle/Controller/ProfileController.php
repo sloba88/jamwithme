@@ -99,7 +99,7 @@ class ProfileController extends Controller
     /**
      * Edit the user
      */
-    public function setupMusicianAction(Request $request)
+    public function setupProfileAction(Request $request)
     {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
@@ -142,7 +142,7 @@ class ProfileController extends Controller
             return $response;
         }
 
-        return $this->render('FOSUserBundle:Profile:editMusicianInfo.html.twig', array(
+        return $this->render('FOSUserBundle:Profile:setup.html.twig', array(
             'form' => $form->createView()
         ));
     }

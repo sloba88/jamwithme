@@ -1,0 +1,15 @@
+{% extends 'JamWebBundle:Email:emailLayout.html.twig' %}
+
+{% block email_body %}
+    <h2>{{ 'email.you.have.recieved.a.message'|trans }}</h2>
+
+    <div>
+        <img style="float: left; padding-right: 10px;" src="{{ url('musician_avatar', { 'username': from.username, 'size': 'my_thumb' }) }}" />
+        <h6>{{ from.username }}</h6>
+        <p style="font-size: 12px;">{{ time|date('d.m.Y H:i') }}</p>
+    </div>
+
+    <p style="font-style: italic;">"{{ text }}"</p>
+
+    <a href="{{ url('inbox') }}">{{ 'email.see.all.messages'|trans }}</a>
+{% endblock %}

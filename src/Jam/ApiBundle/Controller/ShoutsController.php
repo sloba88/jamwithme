@@ -223,6 +223,14 @@ class ShoutsController extends FOSRestController
             $em->persist($shout);
             $em->flush();
 
+            /* send data to GA */
+            $data = array(
+                'uid'=> $this->getUser()->getId(),
+                'ec'=> 'shout',
+                'ea'=> 'created'
+            );
+            $this->get('happyr.google.analytics.tracker')->send($data, 'event');
+
             return $this->formatResponse(array($shout), 'You have shouted successfully!');
 
         } else {

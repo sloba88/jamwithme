@@ -17,19 +17,20 @@ var mongoose = require('mongoose'),
     Autolinker = require('autolinker'),
     striptags = require('striptags'),
     mysqlConnection,
+    request = require('request'),
     activeUsers = {};
 
 //io.set('origins', '*178.62.189.52:*');
 redisClient.select(1);
 
-var mysqlConfig = readYaml.sync('../app/config/parameters.yml');
+var symfonyParameters = readYaml.sync('../app/config/parameters.yml');
 
 /*jshint camelcase: false */
 mysqlConnection = mysql.createConnection({
-    host     : mysqlConfig.parameters.database_host,
-    user     : mysqlConfig.parameters.database_user,
-    password : mysqlConfig.parameters.database_password,
-    database : mysqlConfig.parameters.database_name
+    host     : symfonyParameters.parameters.database_host,
+    user     : symfonyParameters.parameters.database_user,
+    password : symfonyParameters.parameters.database_password,
+    database : symfonyParameters.parameters.database_name
 });
 /*jshint camelcase: true */
 
@@ -82,7 +83,7 @@ function saveMessageFrom(socket, data, conversation) {
     });
 }
 
-function saveMessageTo(socket, data, conversation) {
+function saveMessageTo(socket, data, conversation, notify) {
     //TODO: message should be created for each participant
 
     var to;
@@ -116,6 +117,12 @@ function saveMessageTo(socket, data, conversation) {
 
             messageTo.message = tagLinks(messageTo.message);
             socketTo.emit('messageReceived', messageTo);
+        } else {
+            if (notify) {
+                //send email about the message
+                var mess = tagLinks(messageTo.message).substring(0, 60) + ' ...';
+                notifyUserByEmail(to, mess, messageTo.createdAt.getTime(), messageTo.from);
+            }
         }
 
         conversation._lastMessage = messageTo;
@@ -157,6 +164,30 @@ function getUnreadConversations(socket) {
     });
 }
 
+function notifyUserByEmail(to, message, time, from) {
+
+    request.post(
+        symfonyParameters.parameters['router.request_context.scheme'] + '://' + symfonyParameters.parameters['router.request_context.host']+'/api/send-message-email',
+        { form : {
+            'to': to,
+            'type': 'messageNotification',
+            'text': message,
+            'time': time,
+            'from': from
+        }},
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log('success email sent');
+                return true;
+            } else {
+                console.log(error);
+                console.log(response.statusCode);
+                return false;
+            }
+        }
+    );
+}
+
 mongoose.connect('mongodb://localhost:27017/jamifind');
 
 mysqlConnection.connect(function(err) {
@@ -192,7 +223,6 @@ mysqlConnection.connect(function(err) {
                         //get unread messages count
                         getUnreadConversations(socket);
                     }, 1000);
-                    console.log(12321312312);
                     socket.emit('userAuthenticated', true );
                 });
             });
@@ -264,7 +294,7 @@ mysqlConnection.connect(function(err) {
                                     return console.error(err);
                                 }
 
-                                saveMessageTo(socket, data, conversation2);
+                                saveMessageTo(socket, data, conversation2, true);
 
                                 //save reference back to conversation 1
                                 conversation1.mirroredConversations.push(conversation2._id);
@@ -275,16 +305,21 @@ mysqlConnection.connect(function(err) {
                                 });
                             });
                         } else {
+                            var notify = false;
+                            if (conversation2.isRead) {
+                                conversation2.isRead = false;
 
-                            conversation2.isRead = false;
+                                conversation2.save(function (err) {
+                                    if (err) {
+                                        return console.error(err);
+                                    }
+                                });
+                            } else {
+                                //notify guy
+                                notify = true;
+                            }
 
-                            conversation2.save(function (err) {
-                                if (err) {
-                                    return console.error(err);
-                                }
-                            });
-
-                            saveMessageTo(socket, data, conversation2);
+                            saveMessageTo(socket, data, conversation2, notify);
                         }
                     });
                 });

@@ -16,7 +16,8 @@
     "grunt-contrib-jst": "~0.5.0",
     "read-yaml": "",
     "autolinker": "",
-    "striptags": ""
+    "striptags": "",
+    "request": ""
   },
   "devDependencies": {},
   "scripts": {

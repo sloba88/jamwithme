@@ -158,23 +158,21 @@ $(function() {
         });
     });
 
-    $('#fos_user_profile_form_brands').select2({
-        placeholder: 'Favourite Brands?',
+    $('#fos_user_profile_form_gear').select2({
+        placeholder: 'Enter model',
         minimumInputLength: 2,
         multiple: true,
         quietMillis: 250,
-        initSelection: function(element, callback) {
+        initSelection : function (element, callback) {
             var data = [];
-            $(element.val().split(',')).each(function() {
-                data.push({
-                    id: this,
-                    text: this
-                });
+            $(element.val().split(',')).each(function () {
+                data.push({id: this, text: this});
             });
             callback(data);
         },
+        createSearchChoice: function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
         ajax: {
-            url: Routing.generate('api_brands'),
+            url: Routing.generate('api_gear'),
             data: function (term) {
                 return {
                     q: term // search term
@@ -196,10 +194,10 @@ $(function() {
         }
     });
 
-    $('#fos_user_profile_form_brands').select2('container').find('ul.select2-choices').sortable({
+    $('#fos_user_profile_form_gear').select2('container').find('ul.select2-choices').sortable({
         containment: 'parent',
-        start: function() { $('#fos_user_profile_form_brands').select2('onSortStart'); },
-        update: function() { $('#fos_user_profile_form_brands').select2('onSortEnd'); }
+        start: function() { $('#fos_user_profile_form_gear').select2('onSortStart'); },
+        update: function() { $('#fos_user_profile_form_gear').select2('onSortEnd'); }
     });
 
     if ($('#fos_user_profile_form_genres').length > 0){

@@ -85,21 +85,6 @@ class MusiciansController extends FOSRestController
 
             $instrument = $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName();
 
-            if ($instrument != ''){
-                if (!$icon = @file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/" . $instrument . ".svg")) {
-                    $icon = '';
-                }
-            }else{
-                $icon = '';
-            }
-
-            if ($m->getIsTeacher() == true) {
-                $teacherIcon = @file_get_contents ($this->get('kernel')->getRootDir() . "/../web/assets/images/icons-svg/Teacher.svg");
-            }else{
-                $teacherIcon = '';
-            }
-
-
             $avatar = $cacheManager->getBrowserPath($m->getAvatar(), 'medium_thumb');
 
             $data_array = array(
@@ -110,9 +95,7 @@ class MusiciansController extends FOSRestController
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
                 'instrument' => $instrument,
-                'icon' => $icon,
                 'location' => $location,
-                'teacherIcon' => $teacherIcon,
                 'compatibility' => $value,
                 'avatar' => $avatar
             );

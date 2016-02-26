@@ -34,6 +34,7 @@ twig:
     globals:
         node_server: %node_server%
         soundcloud_app_id: %soundcloud_app_id%
+        ga_id: %ga_id%
 
 # Assetic Configuration
 assetic:
@@ -232,6 +233,7 @@ fos_rest:
         default_format: json
     exception:
         enabled: true
+    param_fetcher_listener: true
 
 hwi_oauth:
     #this is my custom user provider, created from FOSUBUserProvider - will manage the
@@ -265,8 +267,5 @@ hwi_oauth:
             user_response_class: Jam\UserBundle\Security\Core\User\Response\SoundcloudResponse
     # here you will add one (or more) configurations for resource owners
 
-mobile_detect:
-    redirect:
-        mobile: ~
-        tablet: ~
-    switch_device_view: ~
+happyr_google_analytics:
+    tracking_id: "%ga_id%"

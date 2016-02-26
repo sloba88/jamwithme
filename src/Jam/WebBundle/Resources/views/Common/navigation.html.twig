@@ -18,7 +18,8 @@
                     <li class="shouts hidden-lg hidden-md hidden-sm {% if app.request.attributes.get('_route') == 'shouts' %}active{% endif %}"><a href="{{ path('shouts') }}">{{ 'text.shouts'|trans }}</a></li>
                     <li class="profile {% if app.request.attributes.get('_route') == 'fos_user_profile_show' or ( app.request.attributes.get('_route') == 'musician_profile' and app.user.id == user.id ) %}active{% endif %}"><a href="{{ path('musician_profile', {'username': app.user.username}) }}">{{ 'text.profile'|trans }}</a></li>
                     <li class="messages {% if app.request.attributes.get('_route') == 'inbox' %}active{% endif %}"><a href="{{ path('inbox') }}" class="inbox"><span class="badge"></span>{{ 'text.messages'|trans }}</a></li>
-                    <li class="settings last {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}"><a href="{{ path('fos_user_profile_edit') }}">{{ 'text.settings'|trans }}</a></li>
+                    <li class="settings {% if app.request.attributes.get('_route') == 'fos_user_profile_edit' %}active{% endif %}"><a href="{{ path('fos_user_profile_edit') }}">{{ 'text.settings'|trans }}</a></li>
+                    <li class="invite-friends last {% if app.request.attributes.get('_route') == 'invite' %}active{% endif %}"><a href="{{ path('invite') }}"><i class="fa fa-users"></i> {{ 'text.invite.friends'|trans }}</a></li>
                 </ul>
             </div><!--sidebar-nav ends-->
 

@@ -34,12 +34,12 @@ class AppKernel extends Kernel
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Jam\ApiBundle\JamApiBundle(),
             new FOS\RestBundle\FOSRestBundle(),
-            new SunCat\MobileDetectBundle\MobileDetectBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new Happyr\Google\AnalyticsBundle\HappyrGoogleAnalyticsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -54,5 +54,23 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+    }
+
+    public function getCacheDir()
+    {
+        if (@$_SERVER['REMOTE_ADDR'] == '33.33.33.1') {
+            return '/dev/shm/appname/cache/' .  $this->environment;
+        }
+
+        return parent::getCacheDir();
+    }
+
+    public function getLogDir()
+    {
+        if (@$_SERVER['REMOTE_ADDR'] == '33.33.33.1') {
+            return '/dev/shm/appname/logs';
+        }
+
+        return parent::getLogDir();
     }
 }

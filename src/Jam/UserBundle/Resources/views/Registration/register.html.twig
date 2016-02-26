@@ -3,7 +3,6 @@
 {% block bodyclasses %}signup-page{% endblock %}
 
 {% block fos_user_content %}
-    {% trans_default_domain 'FOSUserBundle' %}
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
     <section id="register-home" style="background: #8FA1C9 url({{ asset('assets/images/background-dashboard.jpg') }}) center top no-repeat">
@@ -12,8 +11,8 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <h1>Jamifind is a free platform for all musicians to find new collaboration partners.</h1>
-                    <h4 class="subtitle">Whether you're looking for new members to your band, a lyricist for your compositions, the right recording engineer for your studio sessions, the perfect guitar teacher for your kids or just someone to have a pint with who also likes David Bowie and Radiohead, we're here to help.</h4>
+                    <h1>{{ 'text.register.title'|trans }}</h1>
+                    <h4 class="subtitle">{{ 'text.register.desc'|trans }}</h4>
                 </div>
                 <div class="col-md-6">
 
@@ -39,7 +38,7 @@
                                 {{ form_errors(form.email) }}
 
                                 {% if ((form.email.vars.errors[0] is defined) and (form.email.vars.errors[0].messageTemplate == 'fos_user.email.already_used')) %}
-                                    <a href='{{ path('fos_user_resetting_request') }}?email={{ form.vars.value.email }}'>Did you forgot your password?</a>
+                                    <a href='{{ path('fos_user_resetting_request') }}?email={{ form.vars.value.email }}'>{{ 'label.forgot.your.password'|trans }}</a>
                                     <br /><br />
                                 {% endif %}
 
@@ -54,26 +53,25 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="select-label">{{ 'text.i.want.to'|trans }}:</label>
+                                    <label class="select-label">{{ 'label.i.want.to'|trans }}:</label>
 
                                     <ul class="checkboxes-list">
                                         <li>
                                             {{ form_widget(form.isVisitor) }}
                                             {{ form_label(form.isVisitor) }}
-                                            <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be able to browse website but you will not appear in searches."></span>
+                                            <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.visitor'|trans }}"></span>
                                         </li>
                                         <li>
                                             {{ form_widget(form.isJammer) }}
                                             {{ form_label(form.isJammer) }}
-                                            <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be able to browse website and people will be able to find you."></span>
+                                            <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.jammer'|trans }}"></span>
                                         </li>
                                         <li>
                                             {{ form_widget(form.isTeacher) }}
                                             {{ form_label(form.isTeacher) }}
-                                            <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="You will be presented as a music teacher."></span>
+                                            <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.teacher'|trans }}"></span>
                                         </li>
                                     </ul>
-
                                 </div>
 
                                 {{ form_widget(form._token) }}
@@ -84,12 +82,11 @@
                                 <div class="separator">
                                     <img src="{{ asset('assets/images/separator-image.png') }}" alt="Hand">
                                 </div>
-
                             </form>
 
                             <div class="login-buttons">
-                                <a href="{{ path('jam_facebook_login') }}" class="disabled btn btn-primary facebook"><i class="fa fa-facebook-square"></i>{{ 'button.sign.up.with.facebook'|trans }}</a>
-                                <a href="{{ path('jam_soundcloud_login') }}" class="disabled btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>{{ 'button.sign.up.with.soundcloud'|trans }}</a>
+                                <a href="{{ path('jam_facebook_login') }}" class="disabled btn btn-primary facebook"><i class="fa fa-facebook-square"></i>{{ 'button.login.with.facebook'|trans }}</a>
+                                <a href="{{ path('jam_soundcloud_login') }}" class="disabled btn btn-primary soundcloud"><i class="fa fa-soundcloud"></i>{{ 'button.login.with.soundcloud'|trans }}</a>
                             </div>
 
                         </div>
@@ -98,37 +95,27 @@
                             {{ 'text.already.have.an.account'|trans }}
                             <a href="{{ path('fos_user_security_login') }}" class="link">{{ 'button.login'|trans }}</a>
                         </div>
-
-                    </div><!--login-container ends-->
-
+                    </div>
                 </div>
-
             </div>
-
-        </div><!--bigContainer ends-->
-    </section><!--section map ends-->
+        </div>
+    </section>
 
     <section id="multimedia-home" data-type="background" data-speed="10">
         <div class="container clearfix">
             <div class="mediaText">
-                <h2>Find all the right music related contacts near you.</h2>
-
-                <h4>
-                    Build your musicians CV today. Share your sounds, video and images with the world and get discovered. With Jamifind you'll find the right people for your musical pursuits and before you know it you will be making new music and new friends.
-                </h4>
-                <!--<p>
-                  And some more text about how awesome this is
-                </p>-->
+                <h2>{{ 'text.register.find'|trans }}</h2>
+                <h4>{{ 'text.register.cv'|trans }}</h4>
             </div>
         </div>
-    </section><!--multimedia ends-->
+    </section>
 
     <section id="subscribe-home" data-type="background" data-speed="10">
         <div class="container">
-            <h2>Join the Jamifind community and start your next musical journey today.</h2>
+            <h2>{{ 'text.register.join.community'|trans }}</h2>
         </div>
         <p class="copyright">Jamifind © {{ "now"|date("Y") }} all rights reserved.</p>
-    </section><!--subscribe ends-->
+    </section>
 
     <section class="pageHelpers">
         <ul id="horizontalmenu" class="underlinemenu">

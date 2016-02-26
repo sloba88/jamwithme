@@ -80,9 +80,9 @@ class ProfileFormType extends BaseType
             'label' => 'Your Favourite Genres'
         ));
 
-        $builder->add('brands', 'brand_type', array(
+        $builder->add('gear', 'gear_type', array(
             'required' => false,
-            'label' => 'Your Favourite Music Brands'
+            'label' => 'What gear do you own?'
         ));
 
         $builder->add('artists', 'artist_type', array(
