@@ -8245,7 +8245,7 @@ button.close {
 }
 /* line 27, ../../sass/jamifind/sprite/_icons.scss */
 .icons-sprite, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:focus, input[type="checkbox"] + label span, input[type="radio"] + label span, input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label span, .sidebar .sidebar-list .dashboard, .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active, .sidebar .sidebar-list .shouts, .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active, .sidebar .sidebar-list .profile, .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active, .sidebar .sidebar-list .events, .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active, .sidebar .sidebar-list .messages, .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active, .sidebar .sidebar-list .settings, .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active, .sidebar .sidebar-list .logout, .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active, .shouts-feed h3, .filters-preview .tab-grid, .filters-preview .tab-grid.is-active, .filters-preview .tab-map, .filters-preview .tab-map.is-active {
-  background: url('../images/icons-s172c8a1a97.png') no-repeat;
+  background: url('../images/icons-s0565b07e45.png') no-repeat;
 }
 
 @font-face {
@@ -8763,58 +8763,46 @@ ul {
 }
 
 /* line 329, ../../sass/jamifind/_custom.scss */
-.sidebar-nav .teachers svg {
-  width: 23px;
-  float: left;
-  fill: gray;
-}
-
-/* line 335, ../../sass/jamifind/_custom.scss */
-.sidebar-nav .teachers:hover svg, .sidebar-nav .teachers.active svg {
-  fill: #fabc09;
-}
-
-/* line 339, ../../sass/jamifind/_custom.scss */
 .select2-container-multi .select2-choices .select2-search-field input {
   background: #fff !important;
 }
 
-/* line 343, ../../sass/jamifind/_custom.scss */
+/* line 333, ../../sass/jamifind/_custom.scss */
 .select2-container.form-control .select2-choice, .select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn {
   background: #fff;
 }
 
-/* line 347, ../../sass/jamifind/_custom.scss */
+/* line 337, ../../sass/jamifind/_custom.scss */
 .select2-choice.select2-default span.select2-chosen {
   color: #999;
 }
 
-/* line 354, ../../sass/jamifind/_custom.scss */
+/* line 344, ../../sass/jamifind/_custom.scss */
 .leaflet-container .leaflet-popup-content-wrapper {
   border-radius: 5px;
 }
-/* line 358, ../../sass/jamifind/_custom.scss */
+/* line 348, ../../sass/jamifind/_custom.scss */
 .leaflet-container .leaflet-popup-content {
   margin: 5px;
 }
-/* line 362, ../../sass/jamifind/_custom.scss */
+/* line 352, ../../sass/jamifind/_custom.scss */
 .leaflet-container .musician-map-box-container > a {
   color: #18152b;
 }
-/* line 366, ../../sass/jamifind/_custom.scss */
+/* line 356, ../../sass/jamifind/_custom.scss */
 .leaflet-container .musician-map-box-container > a:hover {
   text-decoration: none;
 }
-/* line 372, ../../sass/jamifind/_custom.scss */
+/* line 362, ../../sass/jamifind/_custom.scss */
 .leaflet-container .img-responsive {
   float: left;
   margin: 0 15px 10px 0;
 }
-/* line 377, ../../sass/jamifind/_custom.scss */
+/* line 367, ../../sass/jamifind/_custom.scss */
 .leaflet-container .name {
   margin: 0 20px 10px 0;
 }
-/* line 381, ../../sass/jamifind/_custom.scss */
+/* line 371, ../../sass/jamifind/_custom.scss */
 .leaflet-container .instrument {
   clear: left;
   float: left;
@@ -8823,24 +8811,24 @@ ul {
   text-align: center;
   width: 30px;
 }
-/* line 390, ../../sass/jamifind/_custom.scss */
+/* line 380, ../../sass/jamifind/_custom.scss */
 .leaflet-container .tags {
   margin-left: 65px;
 }
-/* line 395, ../../sass/jamifind/_custom.scss */
+/* line 385, ../../sass/jamifind/_custom.scss */
 .leaflet-container .compatibility-box {
   float: right;
   margin-right: 8px;
   margin-top: 7px;
 }
-/* line 401, ../../sass/jamifind/_custom.scss */
+/* line 391, ../../sass/jamifind/_custom.scss */
 .leaflet-container a.leaflet-popup-close-button {
   height: 22px;
   padding: 4px;
   width: 22px;
 }
 
-/* line 409, ../../sass/jamifind/_custom.scss */
+/* line 399, ../../sass/jamifind/_custom.scss */
 .jcrop-holder {
   margin: 0 auto;
 }
@@ -9029,7 +9017,7 @@ input[type="checkbox"] + label span {
 
 /* line 23, ../../sass/jamifind/_forms.scss */
 input[type="radio"] + label span {
-  background-position: 0 -1022px;
+  background-position: 0 -1120px;
   top: 1px;
 }
 
@@ -9041,7 +9029,7 @@ input[type="checkbox"]:checked + label span {
 
 /* line 33, ../../sass/jamifind/_forms.scss */
 input[type="radio"]:checked + label span {
-  background-position: 0 -978px;
+  background-position: 0 -1076px;
 }
 
 /* line 1, ../../sass/jamifind/_header.scss */
@@ -9507,27 +9495,39 @@ header {
 .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active {
   background-position: 0 -173px;
 }
-/* line 164, ../../sass/jamifind/_sidebar.scss */
+/* line 168, ../../sass/jamifind/_sidebar.scss */
+.sidebar .sidebar-list .teachers:hover svg, .sidebar .sidebar-list .teachers.active svg {
+  fill: #fabc09;
+}
+/* line 173, ../../sass/jamifind/_sidebar.scss */
+.sidebar .sidebar-list .teachers svg {
+  fill: gray;
+  float: left;
+  left: -3px;
+  position: relative;
+  width: 23px;
+}
+/* line 182, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .shouts {
   background-position: 0 -357px;
 }
-/* line 167, ../../sass/jamifind/_sidebar.scss */
+/* line 185, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active {
-  background-position: 0 -357px;
+  background-position: 0 -455px;
 }
-/* line 172, ../../sass/jamifind/_sidebar.scss */
+/* line 190, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .profile {
-  background-position: 0 -840px;
+  background-position: 0 -938px;
 }
 /* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .profile:active, .sidebar .sidebar-list .profile.icon-profile-active {
-  background-position: 0 -794px;
+  background-position: 0 -892px;
 }
-/* line 175, ../../sass/jamifind/_sidebar.scss */
+/* line 193, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active {
-  background-position: 0 -794px;
+  background-position: 0 -892px;
 }
-/* line 180, ../../sass/jamifind/_sidebar.scss */
+/* line 198, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .events {
   background-position: 0 -311px;
 }
@@ -9535,62 +9535,62 @@ header {
 .sidebar .sidebar-list .events:active, .sidebar .sidebar-list .events.icon-events-active {
   background-position: 0 -265px;
 }
-/* line 183, ../../sass/jamifind/_sidebar.scss */
+/* line 201, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active {
   background-position: 0 -265px;
 }
-/* line 188, ../../sass/jamifind/_sidebar.scss */
+/* line 206, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages {
-  background-position: 0 -749px;
+  background-position: 0 -847px;
 }
 /* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .messages:active, .sidebar .sidebar-list .messages.icon-messages-active {
-  background-position: 0 -707px;
+  background-position: 0 -805px;
 }
-/* line 191, ../../sass/jamifind/_sidebar.scss */
+/* line 209, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active {
-  background-position: 0 -707px;
+  background-position: 0 -805px;
 }
-/* line 194, ../../sass/jamifind/_sidebar.scss */
+/* line 212, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages:hover .badge, .sidebar .sidebar-list .messages.active .badge {
   background: #fabc09;
 }
-/* line 200, ../../sass/jamifind/_sidebar.scss */
+/* line 218, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings {
-  background-position: 0 -932px;
+  background-position: 0 -1030px;
 }
 /* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .settings:active, .sidebar .sidebar-list .settings.icon-settings-active {
-  background-position: 0 -886px;
+  background-position: 0 -984px;
 }
-/* line 203, ../../sass/jamifind/_sidebar.scss */
+/* line 221, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active {
-  background-position: 0 -886px;
+  background-position: 0 -984px;
 }
-/* line 212, ../../sass/jamifind/_sidebar.scss */
+/* line 230, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends:hover i, .sidebar .sidebar-list .invite-friends.active i {
   color: #fabc09;
 }
-/* line 217, ../../sass/jamifind/_sidebar.scss */
+/* line 235, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends a {
   padding-left: 0;
 }
-/* line 221, ../../sass/jamifind/_sidebar.scss */
+/* line 239, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends i {
   padding-right: 12px;
   color: #666;
 }
-/* line 227, ../../sass/jamifind/_sidebar.scss */
+/* line 245, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout {
-  background-position: 0 -552px;
+  background-position: 0 -650px;
 }
 /* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .logout:active, .sidebar .sidebar-list .logout.icon-logout-active {
-  background-position: 0 -508px;
+  background-position: 0 -606px;
 }
-/* line 230, ../../sass/jamifind/_sidebar.scss */
+/* line 248, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active {
-  background-position: 0 -508px;
+  background-position: 0 -606px;
 }
 
 /* line 1, ../../sass/jamifind/_shouts.scss */
@@ -9700,7 +9700,7 @@ header {
 }
 /* line 105, ../../sass/jamifind/_shouts.scss */
 .shouts-feed h3 {
-  background-position: 7px -357px;
+  background-position: 7px -455px;
   color: #fff;
   font-size: 16px;
   padding: 2px 0 2px 30px;
@@ -10268,28 +10268,28 @@ header {
 }
 /* line 341, ../../sass/jamifind/_main.scss */
 .filters-preview .tab-grid {
-  background-position: 0 -454px;
+  background-position: 0 -552px;
 }
 /* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-grid:active, .filters-preview .tab-grid.icon-grid-active {
-  background-position: 0 -402px;
+  background-position: 0 -500px;
 }
 /* line 344, ../../sass/jamifind/_main.scss */
 .filters-preview .tab-grid.is-active {
-  background-position: 0 -402px;
+  background-position: 0 -500px;
 }
 /* line 349, ../../sass/jamifind/_main.scss */
 .filters-preview .tab-map {
-  background-position: 0 -653px;
+  background-position: 0 -751px;
   padding-left: 37px;
 }
 /* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-map:active, .filters-preview .tab-map.icon-map-active {
-  background-position: 0 -597px;
+  background-position: 0 -695px;
 }
 /* line 353, ../../sass/jamifind/_main.scss */
 .filters-preview .tab-map.is-active {
-  background-position: 0 -597px;
+  background-position: 0 -695px;
 }
 
 /* line 359, ../../sass/jamifind/_main.scss */

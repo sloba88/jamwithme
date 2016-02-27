@@ -161,8 +161,26 @@
 			}
 		}
 
+		.teachers {
+
+			&:hover, &.active {
+
+				svg {
+					fill: $brand-secondary;
+				}
+			}
+
+			svg {
+				fill: gray;
+				float: left;
+				left: -3px;
+				position: relative;
+				width: 23px;
+			}
+		}
+
 		.shouts {
-			@include icons-sprite(icon-flash);
+			@include icons-sprite(icon-flash-dark);
 
 			&:hover, &.active {
 				@include icons-sprite(icon-flash);
