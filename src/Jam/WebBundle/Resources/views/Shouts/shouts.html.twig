@@ -1,7 +1,7 @@
 <div class="shouts-feed" id="shoutsFeed">
     <h3>{{ 'text.shouts.feed'|trans }}</h3>
     <div class="shouts-countdown-container hidden">
-        <p style="color: #FFFFFF">{{ 'text.shout.again.in'|trans }}: <span id="shoutCountdown" style="color: #FFFFFF"></span></p>
+        <p>{{ 'text.shout.again.in'|trans }}: <span id="shoutCountdown"></span></p>
     </div>
     <form role="form" action="{{ path('home') }}" method="POST" id="shoutForm" class="hidden">
         {{ form_widget(form.text, {'attr': {'class': 'form-control', 'placeholder': 'Write something', 'rows': '3', 'maxlength': 200}}) }}

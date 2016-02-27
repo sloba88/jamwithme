@@ -215,7 +215,7 @@
 	.filters-title {
 		color: $color-primary;
 		font-size: 23px;
-		margin: 0 0 10px;
+		margin: 15px 0 10px;
 		text-transform: uppercase;
 		@include respond-to(handhelds) {
 			font-size: 20px;
@@ -375,7 +375,8 @@
 
 //people listing
 .people-listing-grid {
-	margin: -0.8px;
+	// margin: -0.8px;
+	margin: 0;
 	padding-bottom: 30px;
 
 	> div[class*="col-lg-"] {
@@ -624,7 +625,7 @@
 
 	.main-content {
 		background: #fff;
-		padding: 5px 15px;
+		padding: 5px 15px 0;
 	}
 
 	.teacher-header {

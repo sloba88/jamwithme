@@ -103,7 +103,7 @@
 			border-right: 5px solid transparent;
 			list-style: none;
 			margin-bottom: 25px;
-			padding-right: 15px;
+			padding-right: 10px;
 
 			a {
 				color: #fff;
@@ -161,6 +161,14 @@
 			}
 		}
 
+		.shouts {
+			@include icons-sprite(icon-flash);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-flash);
+			}
+		}
+
 		.profile {
 			@include icons-sprite(icon-profile);
 
@@ -191,9 +199,28 @@
 
 		.settings {
 			@include icons-sprite(icon-settings);
-
+			
 			&:hover, &.active {
 				@include icons-sprite(icon-settings-active);
+			}
+		}
+
+		.invite-friends {
+
+			&:hover, &.active {
+				
+				i {
+					color: $brand-secondary;
+				}
+			}
+
+			a {
+				padding-left: 0;
+			}
+
+			i {
+				padding-right: 12px;
+				color: #666;
 			}
 		}
 

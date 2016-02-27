@@ -96,6 +96,12 @@
   // border-right: $border;
   padding: 18px 10px;
 
+  .shouts-countdown-container {
+    color: #fff;
+    padding: 45px 0 0 30px;
+    text-transform: uppercase;
+  }
+
   h3 {
     @include icons-sprite(icon-flash, $offset-x: 7px);
     color: #fff;
@@ -214,11 +220,26 @@
   }
 }
 
+.page-dashboard {
+
+  .shouts-feed {
+    @include respond-to(nonHandhelds) {
+      min-height: 203px;
+    }
+  }
+}
+
 //page shouts
 .page-shouts {
+  @include respond-to(handhelds) {
+    background: $brand-primary !important;
+  }
 
   .main-content {
     @include respond-to(handhelds) {
+      padding: 0;
+    }
+    @include respond-to(tablet) {
       padding: 0;
     }
   }
@@ -228,17 +249,18 @@
       background: rgba(43,42,59, 0.95);
       border-left: $border;   
       border-right: $border;   
-      padding-right: 10px !important;
+      padding-right: 10px;
     }
     @include respond-to(handhelds) {
       background: rgba(43,42,59, 1);
-      padding-right: 0px !important;
+      // padding-right: 0px !important;
     }
   }
 
   .shouts-feed {
     @include respond-to(nonHandhelds) {
       float: left;
+      min-height: 183px;
       width: 50%;
     }
 

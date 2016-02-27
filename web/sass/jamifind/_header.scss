@@ -123,7 +123,7 @@ body:not(.signup-page):not(.login-page) {
 	.search-block {
 		@include transition(width 0.5s ease);
 		float: right;
-		width: 162px;
+		width: 170px;
 		@include respond-to(tablet) {
 			float: none;
 			width: 100%;
@@ -173,10 +173,10 @@ body:not(.signup-page):not(.login-page) {
 	color: #fff;
 	font-size: 15px;
 	text-transform: uppercase;
-	@include respond-to(tablet) {
-		background: #fff;
-		border: 1px solid $color-primary;
-	}
+	// @include respond-to(tablet) {
+	// 	background: #fff;
+	// 	border: 1px solid $color-primary;
+	// }
 }
 
 .ui-autocomplete {
