@@ -526,11 +526,6 @@ class User extends BaseUser
         return $genres;
     }
 
-    public function getPlaceholderImage()
-    {
-        return '/images/placeholder-user.jpg';
-    }
-
     /**
      * Set facebook_id
      *
@@ -703,9 +698,9 @@ class User extends BaseUser
             return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
         }else{
             if ($this->getGender() == 2) {
-                return 'assets/images/placeholder-user-girl.jpg';
+                return 'assets/images/placeholder-user-girl.png';
             } else {
-                return 'assets/images/placeholder-user.jpg';
+                return 'assets/images/placeholder-user.png';
             }
         }
     }

@@ -72,7 +72,7 @@ class DefaultController extends Controller
     public function defaultAvatarAction($size = 'my_thumb')
     {
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
-        return $this->redirect($cacheManager->getBrowserPath('assets/images/placeholder-user.jpg', $size));
+        return $this->redirect($cacheManager->getBrowserPath('assets/images/placeholder-user.png', $size));
     }
 
     /**

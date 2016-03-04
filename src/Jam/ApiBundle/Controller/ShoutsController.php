@@ -109,12 +109,6 @@ class ShoutsController extends FOSRestController
             /** @var $s \Jam\CoreBundle\Entity\Shout */
             $m = $s->getCreator();
 
-            if ($m->getImages()->first()){
-                $image = $m->getImages()->first()->getWebPath();
-            } else{
-                $image = '/images/placeholder-user.jpg';
-            }
-
             $location = '';
 
             if ($m->getLocation()->getAdministrativeAreaLevel3()) {
@@ -133,7 +127,7 @@ class ShoutsController extends FOSRestController
                     'username' => $m->getUsername(),
                     'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
                     'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
-                    'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($image, 'my_thumb'),
+                    'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($m->getAvatar(), 'my_thumb'),
                     'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                     'me' => $me == $m->getUsername() ? true : false,
                     'genres' => $m->getGenresNamesArray(),

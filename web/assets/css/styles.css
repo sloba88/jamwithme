@@ -8250,28 +8250,28 @@ button.close {
 
 @font-face {
   font-family: "Hind Medium";
-  src: url('../fonts/hind/hind-medium-webfont.eot?1436120668');
-  src: url('../fonts/hind/hind-medium-webfont.eot?&1436120668#iefix') format('embedded-opentype'), url('../fonts/hind/hind-medium-webfont.woff?1436120668') format('woff'), url('../fonts/hind/hind-medium-webfont.ttf?1436120668') format('truetype'), url('../fonts/hind/hind-medium-webfont.svg?1436120668') format('svg');
+  src: url('../fonts/hind/hind-medium-webfont.eot?1454513201');
+  src: url('../fonts/hind/hind-medium-webfont.eot?&1454513201#iefix') format('embedded-opentype'), url('../fonts/hind/hind-medium-webfont.woff?1454513201') format('woff'), url('../fonts/hind/hind-medium-webfont.ttf?1454513201') format('truetype'), url('../fonts/hind/hind-medium-webfont.svg?1454513201') format('svg');
 }
 @font-face {
   font-family: "Hind Semibold";
-  src: url('../fonts/hind/hind-semibold-webfont.eot?1436120668');
-  src: url('../fonts/hind/hind-semibold-webfont.eot?&1436120668#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1436120668') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1436120668') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1436120668') format('svg');
+  src: url('../fonts/hind/hind-semibold-webfont.eot?1454513201');
+  src: url('../fonts/hind/hind-semibold-webfont.eot?&1454513201#iefix') format('embedded-opentype'), url('../fonts/hind/hind-semibold-webfont.woff?1454513201') format('woff'), url('../fonts/hind/hind-semibold-webfont.ttf?1454513201') format('truetype'), url('../fonts/hind/hind-semibold-webfont.svg?1454513201') format('svg');
 }
 @font-face {
   font-family: "Hind Bold";
-  src: url('../fonts/hind/hind-bold-webfont.eot?1436120668');
-  src: url('../fonts/hind/hind-bold-webfont.eot?&1436120668#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1436120668') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1436120668') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1436120668') format('svg');
+  src: url('../fonts/hind/hind-bold-webfont.eot?1454513201');
+  src: url('../fonts/hind/hind-bold-webfont.eot?&1454513201#iefix') format('embedded-opentype'), url('../fonts/hind/hind-bold-webfont.woff?1454513201') format('woff'), url('../fonts/hind/hind-bold-webfont.ttf?1454513201') format('truetype'), url('../fonts/hind/hind-bold-webfont.svg?1454513201') format('svg');
 }
 @font-face {
   font-family: "CooperHewitt Bold";
-  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1436120668');
-  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1436120668#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1436120668') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1436120668') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1436120668') format('svg');
+  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?1454513201');
+  src: url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.eot?&1454513201#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.woff?1454513201') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.ttf?1454513201') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-bold-webfont.svg?1454513201') format('svg');
 }
 @font-face {
   font-family: "CooperHewitt Book";
-  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?1436120668');
-  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?&1436120668#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.woff?1436120668') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.ttf?1436120668') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.svg?1436120668') format('svg');
+  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?1454513201');
+  src: url('../fonts/cooper-hewit/cooperhewitt-book-webfont.eot?&1454513201#iefix') format('embedded-opentype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.woff?1454513201') format('woff'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.ttf?1454513201') format('truetype'), url('../fonts/cooper-hewit/cooperhewitt-book-webfont.svg?1454513201') format('svg');
 }
 /* line 43, ../../sass/jamifind/_mixins.scss */
 .location_widget .form-group:before, .location_widget .form-group:after {
@@ -8503,7 +8503,7 @@ ul {
   top: 9px;
   width: 11px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close.icon-close-hover {
   background-position: 0 -91px;
 }
@@ -9395,48 +9395,49 @@ header {
 .sidebar .profile-info .user-image {
   margin-left: 10%;
   width: 76px;
+  background-color: #fff;
 }
-/* line 72, ../../sass/jamifind/_sidebar.scss */
+/* line 73, ../../sass/jamifind/_sidebar.scss */
 .sidebar .profile-info .user-name {
   color: #fff;
   margin: 25px 0 10px;
   overflow: hidden;
   text-align: left;
 }
-/* line 80, ../../sass/jamifind/_sidebar.scss */
+/* line 81, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-nav,
 .sidebar .sidebar-logout {
   padding: 25px 0 15px 15px;
 }
-/* line 85, ../../sass/jamifind/_sidebar.scss */
+/* line 86, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-logout {
   bottom: 0;
   position: absolute;
 }
 @media only screen and (max-width: 767px) {
-  /* line 85, ../../sass/jamifind/_sidebar.scss */
+  /* line 86, ../../sass/jamifind/_sidebar.scss */
   .sidebar .sidebar-logout {
     margin-bottom: 0;
     padding-bottom: 0;
     position: relative;
   }
 }
-/* line 95, ../../sass/jamifind/_sidebar.scss */
+/* line 96, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-nav {
   border-bottom: 1px solid #41404f;
 }
-/* line 99, ../../sass/jamifind/_sidebar.scss */
+/* line 100, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list {
   padding: 0;
 }
-/* line 102, ../../sass/jamifind/_sidebar.scss */
+/* line 103, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li {
   border-right: 5px solid transparent;
   list-style: none;
   margin-bottom: 25px;
   padding-right: 10px;
 }
-/* line 108, ../../sass/jamifind/_sidebar.scss */
+/* line 109, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li a {
   color: #fff;
   display: block;
@@ -9445,11 +9446,11 @@ header {
   position: relative;
   text-transform: uppercase;
 }
-/* line 116, ../../sass/jamifind/_sidebar.scss */
+/* line 117, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li a:focus {
   text-decoration: none;
 }
-/* line 120, ../../sass/jamifind/_sidebar.scss */
+/* line 121, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li a .badge {
   background: #fff;
   border-radius: 0;
@@ -9462,7 +9463,7 @@ header {
   position: absolute;
   top: -5px;
 }
-/* line 136, ../../sass/jamifind/_sidebar.scss */
+/* line 137, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li:hover a {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -9471,35 +9472,35 @@ header {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 143, ../../sass/jamifind/_sidebar.scss */
+/* line 144, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li.active {
   border-right: 5px solid #fabc09;
 }
-/* line 146, ../../sass/jamifind/_sidebar.scss */
+/* line 147, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li.active a {
   color: #fabc09;
 }
-/* line 151, ../../sass/jamifind/_sidebar.scss */
+/* line 152, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li.last {
   margin-bottom: 0;
 }
-/* line 156, ../../sass/jamifind/_sidebar.scss */
+/* line 157, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .dashboard {
   background-position: 0 -219px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .dashboard:active, .sidebar .sidebar-list .dashboard.icon-dashboard-active {
   background-position: 0 -173px;
 }
-/* line 159, ../../sass/jamifind/_sidebar.scss */
+/* line 160, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active {
   background-position: 0 -173px;
 }
-/* line 168, ../../sass/jamifind/_sidebar.scss */
+/* line 169, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .teachers:hover svg, .sidebar .sidebar-list .teachers.active svg {
   fill: #fabc09;
 }
-/* line 173, ../../sass/jamifind/_sidebar.scss */
+/* line 174, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .teachers svg {
   fill: gray;
   float: left;
@@ -9507,88 +9508,88 @@ header {
   position: relative;
   width: 23px;
 }
-/* line 182, ../../sass/jamifind/_sidebar.scss */
+/* line 183, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .shouts {
   background-position: 0 -357px;
 }
-/* line 185, ../../sass/jamifind/_sidebar.scss */
+/* line 186, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active {
   background-position: 0 -455px;
 }
-/* line 190, ../../sass/jamifind/_sidebar.scss */
+/* line 191, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .profile {
   background-position: 0 -938px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .profile:active, .sidebar .sidebar-list .profile.icon-profile-active {
   background-position: 0 -892px;
 }
-/* line 193, ../../sass/jamifind/_sidebar.scss */
+/* line 194, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active {
   background-position: 0 -892px;
 }
-/* line 198, ../../sass/jamifind/_sidebar.scss */
+/* line 199, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .events {
   background-position: 0 -311px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .events:active, .sidebar .sidebar-list .events.icon-events-active {
   background-position: 0 -265px;
 }
-/* line 201, ../../sass/jamifind/_sidebar.scss */
+/* line 202, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active {
   background-position: 0 -265px;
 }
-/* line 206, ../../sass/jamifind/_sidebar.scss */
+/* line 207, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages {
   background-position: 0 -847px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .messages:active, .sidebar .sidebar-list .messages.icon-messages-active {
   background-position: 0 -805px;
 }
-/* line 209, ../../sass/jamifind/_sidebar.scss */
+/* line 210, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active {
   background-position: 0 -805px;
 }
-/* line 212, ../../sass/jamifind/_sidebar.scss */
+/* line 213, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages:hover .badge, .sidebar .sidebar-list .messages.active .badge {
   background: #fabc09;
 }
-/* line 218, ../../sass/jamifind/_sidebar.scss */
+/* line 219, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings {
   background-position: 0 -1030px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .settings:active, .sidebar .sidebar-list .settings.icon-settings-active {
   background-position: 0 -984px;
 }
-/* line 221, ../../sass/jamifind/_sidebar.scss */
+/* line 222, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active {
   background-position: 0 -984px;
 }
-/* line 230, ../../sass/jamifind/_sidebar.scss */
+/* line 231, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends:hover i, .sidebar .sidebar-list .invite-friends.active i {
   color: #fabc09;
 }
-/* line 235, ../../sass/jamifind/_sidebar.scss */
+/* line 236, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends a {
   padding-left: 0;
 }
-/* line 239, ../../sass/jamifind/_sidebar.scss */
+/* line 240, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends i {
   padding-right: 12px;
   color: #666;
 }
-/* line 245, ../../sass/jamifind/_sidebar.scss */
+/* line 246, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout {
   background-position: 0 -650px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .logout:active, .sidebar .sidebar-list .logout.icon-logout-active {
   background-position: 0 -606px;
 }
-/* line 248, ../../sass/jamifind/_sidebar.scss */
+/* line 249, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active {
   background-position: 0 -606px;
 }
@@ -10270,7 +10271,7 @@ header {
 .filters-preview .tab-grid {
   background-position: 0 -552px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-grid:active, .filters-preview .tab-grid.icon-grid-active {
   background-position: 0 -500px;
 }
@@ -10283,7 +10284,7 @@ header {
   background-position: 0 -751px;
   padding-left: 37px;
 }
-/* line 59, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .filters-preview .tab-map:active, .filters-preview .tab-map.icon-map-active {
   background-position: 0 -695px;
 }
