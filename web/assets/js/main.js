@@ -750,7 +750,7 @@ $(function() {
 
             var $sidebarInner = $('.sidebar-inner');
 
-            if (isMobile == false) {
+            if (isMobile === false) {
 
                 $sidebarInner.each(function(){
                     var $this = $(this);

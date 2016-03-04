@@ -12,7 +12,6 @@
 /* global addMessage */
 /* global myLocation */
 /* global scrollbarPlugin */
-/* global sidebarHeight */
 /* global ga */
 /* global SVGInjector */
 
@@ -178,7 +177,6 @@ $(function() {
                 initializedMap = initMap();
                 setMyFilterMarker();
                 mapFilterMusicians();
-                sidebarHeight();
             }
         }, 500);
     });
