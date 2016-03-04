@@ -61,3 +61,13 @@ sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX /dev/shm/appname/cache /
 ```
 sudo setfacl -dR -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX /dev/shm/appname/cache /dev/shm/appname/logs
 ```
+
+Setup deployment
+
+```
+bundle install
+```
+
+```
+sudo gem install capistrano-symfony
+```
