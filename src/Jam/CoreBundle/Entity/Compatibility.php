@@ -209,4 +209,13 @@ class Compatibility
 
         $this->value = intval($matchesIndex);
     }
+
+    public function isEnabled()
+    {
+        if (!$this->getMusician()->isEnabled() || !$this->getMusician2()->isEnabled()) {
+            return false;
+        }
+
+        return true;
+    }
 }
