@@ -115,30 +115,6 @@ class Instrument
     }
 
     /**
-     * Set parent
-     *
-     * @param \Jam\CoreBundle\Entity\Instrument $parent
-     *
-     * @return Instrument
-     */
-    public function setParent(\Jam\CoreBundle\Entity\Instrument $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return \Jam\CoreBundle\Entity\Instrument
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
      * Set category
      *
      * @param \Jam\CoreBundle\Entity\InstrumentCategory $category
