@@ -89,6 +89,22 @@ $(document).ready(function(){
 
     $('#acceptTerms').on('click', function() {
         $('#fos_user_registration_form_acceptedTerms').prop('checked', true).attr('checked', true);
+        $('.fos_user_registration_form_acceptedTerms_label span').popover('hide');
+    });
+
+    $('.fos_user_registration_form_acceptedTerms_label span').popover({
+        'trigger': 'manual',
+        'content': 'You must accept terms and conditions in order to continue.'
+    });
+
+    $('#fos_user_registration_form_acceptedTerms').on('click', function() {
+        $('.fos_user_registration_form_acceptedTerms_label span').popover('hide');
+    });
+
+    $('.fos_user_registration_register :submit').on('click', function() {
+        if ($('#fos_user_registration_form_acceptedTerms').prop('checked') === false) {
+            $('.fos_user_registration_form_acceptedTerms_label span').popover('show');
+        }
     });
 
 }); // document ready

@@ -424,7 +424,7 @@
       </trans-unit>
       <trans-unit id="05353914133c4c4be543a454c6da7e36249a974a" resname="label.username">
         <source>label.username</source>
-        <target state="new">Username</target>
+        <target state="new">username</target>
         <jms:reference-file line="39">Form/Type/ProfileFormType.php</jms:reference-file>
         <jms:reference-file line="24">Form/Type/RegistrationFormType.php</jms:reference-file>
       </trans-unit>
