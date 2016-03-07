@@ -169,6 +169,12 @@ class User extends BaseUser
      * @ORM\Column(type="boolean", length=1, nullable=false)
      *
      */
+    private $acceptedTerms = false;
+
+    /**
+     * @ORM\Column(type="boolean", length=1, nullable=false)
+     *
+     */
     private $isTeacher = false;
 
     /**
@@ -1102,5 +1108,29 @@ class User extends BaseUser
     public function getInvitedBy()
     {
         return $this->invitedBy;
+    }
+
+    /**
+     * Set acceptedTerms
+     *
+     * @param boolean $acceptedTerms
+     *
+     * @return User
+     */
+    public function setAcceptedTerms($acceptedTerms)
+    {
+        $this->acceptedTerms = $acceptedTerms;
+
+        return $this;
+    }
+
+    /**
+     * Get acceptedTerms
+     *
+     * @return boolean
+     */
+    public function getAcceptedTerms()
+    {
+        return $this->acceptedTerms;
     }
 }

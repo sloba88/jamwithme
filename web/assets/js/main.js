@@ -688,20 +688,13 @@ $(function() {
         }
 
     });
-
     //scrollbar plugin
     scrollbarPlugin();
 });
 
 
-
-
-
-
-
 //plugin for dinamic hover, written by Vladislav Stanic
 (function($) {
-
     $.heightsPlugin = function(element, options) {
         var settings = {};
         element.data('vladislav', this);
@@ -711,9 +704,7 @@ $(function() {
 
         var obj = this;
 
-
         this.init = function(element, options) {
-
             settings = $.extend({}, $.heightsPlugin.defaultOptions, options);
 
             this.setup();
@@ -737,17 +728,12 @@ $(function() {
             });
         };
 
-
         this.setup = function() {
-
             windowHeight = $(window).height();
             isMobile = $(window).width() < 768;
-            
-        }
-
+        };
 
         this.sidebarHeight = function() {
-
             var $sidebarInner = $('.sidebar-inner');
 
             if (isMobile === false) {
@@ -762,14 +748,12 @@ $(function() {
                 $sidebarInner.height('');
             }
 
-        }
-
+        };
 
         this.mainHeight = function() {
-
             var $mainContentInner = $('.main-content-inner');
 
-            if (isMobile == false) {
+            if (isMobile === false) {
 
                 $mainContentInner.each(function(){
                     var $this = $(this);
@@ -779,15 +763,12 @@ $(function() {
             } else {
                 $mainContentInner.height('');
             }
-
-        }
-
+        };
 
         this.tabHeight = function() {
-
             var $viewTabContainer = $('.main-content-inner').children('.view-tab-container');
 
-            if (isMobile == false) {
+            if (isMobile === false) {
 
                 $viewTabContainer.each(function(){
                     var $this = $(this);
@@ -797,15 +778,12 @@ $(function() {
             } else {
                 $viewTabContainer.height('');
             }
-
-        }
-
+        };
 
         this.shoutsHeight = function() {
-
             var $shoutsListing = $('.shouts-listing');
 
-            if (isMobile == false || $('.page-shouts').length) {
+            if (isMobile === false || $('.page-shouts').length) {
 
                 $shoutsListing.each(function(){
                     var $this = $(this);
@@ -815,23 +793,18 @@ $(function() {
             } else {
                 $shoutsListing.height('');
             }
-
-        }
-
+        };
 
         this.conversationHeight = function() {
-
             var $conversation = $('.conversation'),
                 $conversationContainer = $conversation.find('.conversation-container'),
                 coneversationSendHeight = $('.conversation-send').outerHeight(),
                 containerOffsetTop = $conversationContainer.offset().top;
 
             $conversationContainer.height($conversation.outerHeight() - containerOffsetTop - coneversationSendHeight - 30);
-        }
-
+        };
 
         this.composeOnClick = function() {
-
             $('.btn-compose').on('click', function() {
                 setTimeout(function(){
 
@@ -839,22 +812,17 @@ $(function() {
 
                 }, 100);
             });
-        }
-
+        };
 
         this.filtersOnChange = function() {
 
             //select plugin on dashboard updates height of main container on change
             $('#instruments, #genres').on('change', obj.tabHeight);
-        }
-
-
+        };
 
         this.init(element, options);
 
     }; // heightsPlugin
-
-
 
     // create object
     $.fn.heightsPlugin = function(options) {
@@ -863,18 +831,13 @@ $(function() {
         });
     };
 
-
     // default options
     $.heightsPlugin.defaultOptions = {
-
         // idCarrier: '#selected-nid'
-
-    }
+    };
 
     $(document).ready(function() {
-
         $(this).heightsPlugin();
-
     });
 
 })(jQuery);

@@ -51,6 +51,11 @@ class RegistrationFormType extends BaseType
             'required' => false,
             'label' => 'label.teach.music'
         ));
+
+        $builder->add('acceptedTerms', 'checkbox', array(
+            'required' => true,
+            'label' => 'label.terms.checkbox'
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

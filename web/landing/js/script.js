@@ -86,6 +86,11 @@ $(document).ready(function(){
         $('#fos_user_registration_form_email').val(getParameterByName('email'));
         $('#fos_user_resetting_request_username').val(getParameterByName('email'));
     }
+
+    $('#acceptTerms').on('click', function() {
+        $('#fos_user_registration_form_acceptedTerms').prop('checked', true).attr('checked', true);
+    });
+
 }); // document ready
 
 

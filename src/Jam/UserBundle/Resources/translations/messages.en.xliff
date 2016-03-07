@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-03-04T15:35:27Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-03-07T10:29:12Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -45,19 +45,19 @@
       <trans-unit id="abcfee3dcaccf158d515be3c8e3157c1776196ab" resname="button.login">
         <source>button.login</source>
         <target state="new">login</target>
-        <jms:reference-file line="96">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="99">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="23">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b842d4c673a94b11a5cba5b435159834d703e024" resname="button.login.with.facebook">
         <source>button.login.with.facebook</source>
         <target state="new">login with facebook</target>
-        <jms:reference-file line="88">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="92">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="31">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0f03e8b1bade562c0ae846ca0ac35e06d672a924" resname="button.login.with.soundcloud">
         <source>button.login.with.soundcloud</source>
         <target state="new">login with soundcloud</target>
-        <jms:reference-file line="89">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="93">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="32">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4ecd9c38578a9a814133c133266c1d667c932598" resname="button.message">
@@ -84,7 +84,7 @@
       <trans-unit id="18083eb93db5b5f75c36c38ff07a0b1b151cb206" resname="button.sign.up">
         <source>button.sign.up</source>
         <target state="new">sign up</target>
-        <jms:reference-file line="80">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="84">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="38">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="17faad85a87a3e84000ba3dbeb09d219118d36e4" resname="exception.file.not.sent">
@@ -147,6 +147,11 @@
         <target state="new">This means you are not currently available and you will be positioned lower in the search results</target>
         <jms:reference-file line="134">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="62">views/Registration/register.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="22f5a1381e3cfc549c1f49be9707d4714729fda2" resname="label.I.accept">
+        <source>label.I.accept</source>
+        <target state="new">I have read and I accept </target>
+        <jms:reference-file line="78">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e11c16aba8efd7c6504fc9c0eb3c2101ed5107e8" resname="label.about">
         <source>label.about</source>
@@ -407,6 +412,11 @@
         <jms:reference-file line="72">Form/Type/ProfileFormType.php</jms:reference-file>
         <jms:reference-file line="52">Form/Type/RegistrationFormType.php</jms:reference-file>
       </trans-unit>
+      <trans-unit id="f2a7bc073bf6d6974f8fb85aea3e6fc4d7dd5924" resname="label.terms.checkbox">
+        <source>label.terms.checkbox</source>
+        <target state="new">label.terms.checkbox</target>
+        <jms:reference-file line="57">Form/Type/RegistrationFormType.php</jms:reference-file>
+      </trans-unit>
       <trans-unit id="208e071127d52400f1ebc2d014d3366b4e61452a" resname="label.upload.all">
         <source>label.upload.all</source>
         <target state="new">upload all</target>
@@ -478,7 +488,7 @@
       <trans-unit id="ea081c43c04590700107f38612ab44a6d01fbbe1" resname="text.already.have.an.account">
         <source>text.already.have.an.account</source>
         <target state="new">Already have an account?</target>
-        <jms:reference-file line="95">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="98">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b955e740a3b2e2b5c576049581c1a51cb481dc90" resname="text.gear">
         <source>text.gear</source>
@@ -529,7 +539,7 @@
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
         <target state="new">Build your musicians CV today. Share your sounds, video and images with the world and get discovered. With Jamifind you'll find the right people for your musical pursuits and before you know it you will be making new music and new friends.</target>
-        <jms:reference-file line="108">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="111">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
@@ -539,12 +549,12 @@
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
         <source>text.register.find</source>
         <target state="new">Find all the right music related contacts near you.</target>
-        <jms:reference-file line="107">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="110">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
         <target state="new">Join the Jamifind community and start your next musical journey today.</target>
-        <jms:reference-file line="115">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="118">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>
