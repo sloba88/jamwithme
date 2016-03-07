@@ -3,15 +3,15 @@
     <div class="conversation">
 
         <div class="conversation-close clearfix hidden-xs">
-            <a href="#" class="close-link" title="Close conversation"><i class="glyphicon glyphicon-remove"></i>close conversation</a>
+            <a href="#" class="close-link" title="{{ 'label.close.conversation'|trans }}"><i class="glyphicon glyphicon-remove"></i>{{ 'label.close.conversation'|trans }}</a>
         </div>
 
-        <a href="#" class="close-link close-link-mobile pull-right visible-xs-inline-block" title="Close conversation"><i class="glyphicon glyphicon-remove"></i></a>
+        <a href="#" class="close-link close-link-mobile pull-right visible-xs-inline-block" title="{{ 'label.close.conversation'|trans }}"><i class="glyphicon glyphicon-remove"></i></a>
 
         <!--conversation-close ends-->
 
         <div class="conversation-new">
-            <input type="text" class="form-control autocomplete" placeholder="+ Type a name">
+            <input type="text" class="form-control autocomplete" placeholder="+ {{ 'label.type.a.name'|trans }}">
         </div>
 
         <div class="conversation-container conversation-message-box"></div>
@@ -20,10 +20,10 @@
         <div class="conversation-send">
             <form role="form" class="row">
                 <div class="col-xs-10 col-sm-12">
-                    <textarea class="form-control send-message" rows="1" placeholder="Write message" maxlength="1000"></textarea>
+                    <textarea class="form-control send-message" rows="1" placeholder="{{ 'label.write.message'|trans }}" maxlength="1000"></textarea>
                 </div>
                 <div class="col-xs-2 col-sm-12 btn-holder">
-                    <button type="submit" class="btn btn-primary send-message-btn"><i class="fa fa-paper-plane"></i><span class="hidden-xs"> Send</span></button>
+                    <button type="submit" class="btn btn-primary send-message-btn"><i class="fa fa-paper-plane"></i><span class="hidden-xs"> {{ 'button.send'|trans }}</span></button>
                 </div>
             </form>
         </div>

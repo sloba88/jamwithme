@@ -19,14 +19,16 @@ class ProfileFormType extends BaseType
             'trim' => true,
             'attr' => array(
                 'maxlength' => 30
-            )
+            ),
+            'label' => 'label.first.name'
         ));
 
         $builder->add('lastName', 'text', array(
             'required' => false,
             'attr' => array(
                 'maxlength' => 30
-            )
+            ),
+            'label' => 'label.last.name'
         ));
 
         $builder->add('email', 'email', array(
@@ -41,11 +43,13 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('aboutMe', 'textarea', array(
-            'required' => false
+            'required' => false,
+            'label' => 'label.about.me'
         ));
 
         $builder->add('education', 'textarea', array(
-            'required' => false
+            'required' => false,
+            'label' => 'label.education'
         ));
 
         $builder->add('hourlyRate', 'text', array(
@@ -82,7 +86,7 @@ class ProfileFormType extends BaseType
 
         $builder->add('gear', 'gear_type', array(
             'required' => false,
-            'label' => 'What gear do you own?'
+            'label' => 'label.what.gear.do.you.own'
         ));
 
         $builder->add('artists', 'artist_type', array(
@@ -99,7 +103,8 @@ class ProfileFormType extends BaseType
         ),
             'expanded' => true,
             'empty_data'  => 0,
-            'required' => false
+            'required' => false,
+            'label' => 'label.gender'
         ));
 
         $builder->add('commitment', 'choice', array(
@@ -118,7 +123,8 @@ class ProfileFormType extends BaseType
             'empty_value' => array('year' => 'value.year', 'month' => 'value.month', 'day' => 'value.day'),
             'widget' => 'choice',
             'years' => range(date('Y')-8, 1920),
-            'required' => false
+            'required' => false,
+            'label' => 'label.birth.date'
         ));
 
         $builder->add('images', 'collection', array(
@@ -139,8 +145,7 @@ class ProfileFormType extends BaseType
                 'fi' => 'Finnish',
             ),
             'label' => 'Language',
-            'required' => false,
-            'data' => 'en'
+            'required' => false
         ));
 
     }

@@ -1027,6 +1027,10 @@ class User extends BaseUser
      */
     public function getLocale()
     {
+        if (!$this->locale) {
+            return 'en';
+        }
+
         return $this->locale;
     }
 
