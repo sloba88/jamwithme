@@ -5,6 +5,7 @@ namespace Jam\LocationBundle\EventListener;
 use FOS\UserBundle\Doctrine\UserManager;
 use Jam\LocationBundle\Entity\Location;
 use Jam\UserBundle\Entity\User;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class LocationSetListener {
@@ -19,26 +20,41 @@ class LocationSetListener {
         $this->userManager = $userManager;
     }
 
-    public function onKernelRequest()
+    public function onKernelRequest(GetResponseEvent $event)
     {
+        $request = $event->getRequest();
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+
         if (is_object($this->tokenStorage->getToken())) {
             $user = $this->tokenStorage->getToken()->getUser();
 
             if($user instanceof User) {
 
                 if ($user->getLocation() == null) {
-                    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-                        $ip = $_SERVER['HTTP_CLIENT_IP'];
-                    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-                        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-                    } else {
-                        $ip = $_SERVER['REMOTE_ADDR'];
-                    }
-
                     $location = $this->geoCheckIP($ip);
                     $location->setIsTemporary(true);
                     $user->setLocation($location);
                     $this->userManager->updateUser($user);
+                }
+            } else {
+                //not authenticated
+                //get country to set up language
+                if (!$request->query->get('lang')) {
+                    $location = $this->geoCheckIP($ip);
+                    if ($location->getCountry() == 'Finland') {
+                        $request->getSession()->set('_locale', 'fi');
+                        $request->setLocale($request->getSession()->get('_locale', 'fi'));
+                    } else {
+                        $request->getSession()->set('_locale', 'en');
+                        $request->setLocale($request->getSession()->get('_locale', 'en'));
+                    }
                 }
             }
         }
