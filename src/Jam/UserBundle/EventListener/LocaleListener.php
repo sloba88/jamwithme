@@ -2,20 +2,22 @@
 
 namespace Jam\UserBundle\EventListener;
 
-
-
+use Jam\UserBundle\Entity\User;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class LocaleListener implements EventSubscriberInterface
 {
+    private $tokenStorage;
 
     private $defaultLocale;
 
-    public function __construct($defaultLocale = 'en')
+    public function __construct($defaultLocale = 'en', TokenStorage $tokenStorage)
     {
         $this->defaultLocale = $defaultLocale;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function onKernelRequest(GetResponseEvent $event)
@@ -25,19 +27,12 @@ class LocaleListener implements EventSubscriberInterface
             return;
         }
 
+        // try to see if the locale has been set as a _locale routing parameter
         if ($locale = $request->attributes->get('_locale')) {
             $request->getSession()->set('_locale', $locale);
         } else {
             // if no explicit locale has been set on this request, use one from the session
-            if ($request->query->get('lang') == 'en') {
-                $request->getSession()->set('_locale', 'en');
-                $request->setLocale($request->getSession()->get('_locale', $request->query->get('lang')));
-            } else if ($request->query->get('lang') == 'fi') {
-                $request->getSession()->set('_locale', 'fi');
-                $request->setLocale($request->getSession()->get('_locale', $request->query->get('lang')));
-            } else {
-                $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
-            }
+            $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
         }
     }
 

@@ -132,6 +132,7 @@
 
         <service id="jam.locale_listener" class="Jam\UserBundle\EventListener\LocaleListener">
             <argument>%kernel.default_locale%</argument>
+            <argument type="service" id="security.token_storage" />
             <tag name="kernel.event_subscriber" />
         </service>
         
