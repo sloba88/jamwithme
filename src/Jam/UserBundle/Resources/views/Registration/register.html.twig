@@ -128,7 +128,6 @@
         </ul>
     </section>
 
-
     <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -137,24 +136,7 @@
                     <h5 class="modal-title" id="myModalLabel">Jamifind Terms and Conditions</h5>
                 </div>
                 <div class="modal-body" style="max-height: 500px; overflow-y: scroll">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae viverra lacus. Sed nisi enim, elementum id lorem at, porttitor fringilla elit. Maecenas ex enim, ornare in aliquam non, molestie et magna. Pellentesque vitae nisi orci. Vivamus tempus sapien lorem, vestibulum euismod tortor venenatis consequat. Donec eget turpis tellus. Curabitur sed mi ut massa dapibus pretium sed nec urna. Morbi maximus diam id ex aliquam, at venenatis justo sodales. Ut rutrum elit eu vehicula tincidunt. Donec neque lorem, suscipit quis luctus a, imperdiet eu libero. Vivamus vulputate gravida mauris. Phasellus sed diam a felis sodales interdum imperdiet non turpis.
-
-                    </p><p>Quisque lobortis convallis ante. Mauris vitae elit in lectus egestas pharetra. Proin mollis leo nec erat elementum efficitur. Nam ac mauris at augue lobortis rutrum sed sit amet leo. Praesent euismod lacus sit amet nulla laoreet, a condimentum dui sagittis. Sed vel commodo nisl, eu rutrum mauris. Praesent sit amet nibh ornare, auctor est in, dictum libero.
-
-                    </p><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut aliquet nulla eu volutpat sodales. Duis vitae odio nisl. Vivamus eleifend consequat velit et efficitur. Vestibulum viverra mi lectus, eget maximus justo placerat sit amet. Aenean tempor mauris a porttitor convallis. Integer molestie turpis non nunc pellentesque, ut sollicitudin urna porta. Donec nec ipsum non purus scelerisque luctus non ac purus. Sed porttitor velit eu elit faucibus faucibus. Mauris sed leo et sapien tincidunt blandit.
-
-                    </p><p>Duis vel ex ut ligula imperdiet mollis ut et nisl. Proin eget nulla eget odio tincidunt efficitur at et erat. Nulla rhoncus sapien nunc, id congue enim faucibus in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam purus elit, accumsan at posuere a, luctus eu elit. Vivamus tellus augue, bibendum suscipit pharetra a, aliquam et massa. Vivamus venenatis orci ut est aliquam, id luctus neque tincidunt.
-                    </p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae viverra lacus. Sed nisi enim, elementum id lorem at, porttitor fringilla elit. Maecenas ex enim, ornare in aliquam non, molestie et magna. Pellentesque vitae nisi orci. Vivamus tempus sapien lorem, vestibulum euismod tortor venenatis consequat. Donec eget turpis tellus. Curabitur sed mi ut massa dapibus pretium sed nec urna. Morbi maximus diam id ex aliquam, at venenatis justo sodales. Ut rutrum elit eu vehicula tincidunt. Donec neque lorem, suscipit quis luctus a, imperdiet eu libero. Vivamus vulputate gravida mauris. Phasellus sed diam a felis sodales interdum imperdiet non turpis.
-
-                    </p><p>Quisque lobortis convallis ante. Mauris vitae elit in lectus egestas pharetra. Proin mollis leo nec erat elementum efficitur. Nam ac mauris at augue lobortis rutrum sed sit amet leo. Praesent euismod lacus sit amet nulla laoreet, a condimentum dui sagittis. Sed vel commodo nisl, eu rutrum mauris. Praesent sit amet nibh ornare, auctor est in, dictum libero.
-
-                    </p><p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut aliquet nulla eu volutpat sodales. Duis vitae odio nisl. Vivamus eleifend consequat velit et efficitur. Vestibulum viverra mi lectus, eget maximus justo placerat sit amet. Aenean tempor mauris a porttitor convallis. Integer molestie turpis non nunc pellentesque, ut sollicitudin urna porta. Donec nec ipsum non purus scelerisque luctus non ac purus. Sed porttitor velit eu elit faucibus faucibus. Mauris sed leo et sapien tincidunt blandit.
-
-                    </p><p>Duis vel ex ut ligula imperdiet mollis ut et nisl. Proin eget nulla eget odio tincidunt efficitur at et erat. Nulla rhoncus sapien nunc, id congue enim faucibus in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam purus elit, accumsan at posuere a, luctus eu elit. Vivamus tellus augue, bibendum suscipit pharetra a, aliquam et massa. Vivamus venenatis orci ut est aliquam, id luctus neque tincidunt.
-                    </p>
-
+                    {{ source('JamUserBundle::terms_' ~ app.request.session.get('_locale') ~ '.html.twig') }}
                 </div>
                 <div class="modal-footer">
                     <div class="col-md-4">

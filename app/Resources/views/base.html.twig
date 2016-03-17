@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.session.get('_locale') | default('en') }}">
 <head>
     <title>Jamifind - find musicians and band members</title>
     <meta charset="UTF-8">
@@ -282,6 +282,10 @@
 
         .fos_user_registration_form_acceptedTerms_label .popover-content{
             color: firebrick;
+        }
+
+        .login-header p:lang(fi) {
+            font-size: 23px;
         }
 
     </style>
