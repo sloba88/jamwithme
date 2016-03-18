@@ -81,7 +81,7 @@
 
                         {% for i in user.instruments %}
                             <div class="col-xs-6">
-                                <a href="{{ path('musicians', {'instruments' : i.instrument.id }) }}">{{ i.instrument.name }}</a><br>
+                                <a href="{{ path('musicians', {'instruments' : i.instrument.id }) }}">{{ i.instrument.getName }}</a><br>
                                 {% if i.skillLevel is not null and i.skillLevel == 10 %}
                                     <span class="main">teaching</span>
                                 {% else %}

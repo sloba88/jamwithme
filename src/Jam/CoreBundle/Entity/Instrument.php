@@ -2,13 +2,16 @@
 
 namespace Jam\CoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Instrument
  *
  * @ORM\Table(name="instruments")
  * @ORM\Entity
+ * @Gedmo\TranslationEntity(class="InstrumentTranslation")
  */
 class Instrument
 {
@@ -25,6 +28,7 @@ class Instrument
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
+     * @Gedmo\Translatable
      */
     private $name;
 
@@ -40,6 +44,21 @@ class Instrument
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      **/
     private $category;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="InstrumentTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $translations;
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+        $this->musicians = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -72,13 +91,6 @@ class Instrument
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->musicians = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -136,5 +148,18 @@ class Instrument
     public function getCategory()
     {
         return $this->category;
+    }
+
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    public function addTranslation(InstrumentTranslation $t)
+    {
+        if (!$this->translations->contains($t)) {
+            $this->translations[] = $t;
+            $t->setObject($this);
+        }
     }
 }

@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Jam\CoreBundle\Entity\Instrument;
 use Jam\CoreBundle\Entity\InstrumentCategory;
+use Jam\CoreBundle\Entity\InstrumentTranslation;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -33,24 +34,35 @@ class LoadInstrumentsData implements FixtureInterface, ContainerAwareInterface
         $sheet = $phpExcelObject->getSheet(0);
 
         foreach ($sheet->getColumnIterator() as $column) {
-            //echo 'Row number: ' . $column->getColumnIndex() . "\r\n";
-
             $instrumentCategory = new InstrumentCategory();
             $k = 0;
+            $language = 'en';
 
             $cellIterator = $column->getCellIterator();
             $cellIterator->setIterateOnlyExistingCells(false); // Loop all cells, even if it is not set
             foreach ($cellIterator as $cell) {
                 if (!is_null($cell) && $cell->getValue() != '') {
-                    //echo 'Cell: ' . $cell->getCoordinate() . ' - ' . $cell->getValue() . "\r\n";
                     $k++;
 
+                    if ($language != 'en') {
+                        continue;
+                    }
+
                     if ($k==1) {
+                        //its language
+                        $language = $cell->getValue();
+                    } else if ($k==2) {
+                        //its category
                         $instrumentCategory->setName($cell->getValue());
                     } else {
                         $instrument = new Instrument();
                         $instrument->setName($cell->getValue());
                         $instrument->setCategory($instrumentCategory);
+
+                        $cIndex = $column->getColumnIndex();
+                        $fi = $sheet->getCell(++$cIndex . $k);
+                        $instrument->addTranslation(new InstrumentTranslation('fi', 'name', $fi->getValue()));
+
                         $manager->persist($instrument);
                     }
                 }

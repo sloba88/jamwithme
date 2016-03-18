@@ -21,6 +21,15 @@ class InstrumentsController extends FOSRestController
                 "SELECT i.id, i.name AS text FROM JamCoreBundle:Instrument i"
             );
 
+        $query->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $request->getLocale() // take locale from session or request etc.
+        );
+
         $data = $query->getResult();
         $view = $this->view($data, 200);
 
