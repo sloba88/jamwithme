@@ -5,7 +5,7 @@
 {% block fos_user_content %}
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
-    <section id="register-home" style="background: #8FA1C9 url({{ asset('assets/images/background-dashboard.jpg') }}) center top no-repeat">
+    <section id="register-home" style="background: #8FA1C9 url({{ asset('assets/images/background-dashboard-1.jpg') }}) center top no-repeat">
         <div class="container">
 
             <div class="row">
@@ -104,6 +104,103 @@
         </div>
     </section>
 
+    <section id="map-home" style="background: url({{ asset('assets/images/mapa3.jpg')}}) center center no-repeat">
+        <div class="container mapContent">
+            <h2>Find fellow musicians or new band members near you</h2>
+            <h4 class="subtitle">Searching for the perfect bass player for your band? Looking for the right guitar teacher? Meet them on <strong>Jamifind.</strong></h4>
+
+            <div class="mapInteractive">
+                <div class="icon main" style="left: 42.5%; top: 116px;">
+                    <img src="{{ asset('assets/images/icon-main.png') }}" alt="Main icon">
+                </div>
+
+                <div class="icon guitar info">
+                    <img src="{{ asset('assets/images/icon-guitar.png') }}" alt="Guitar icon">
+
+                    <div class="infoBox infoBoxSmall" style="display: none;">
+                        <div class="profileImage">
+                            <img src="{{ asset('assets/images/profile-abraham-jones.png') }}" alt="Abraham Jones">
+                        </div>
+                        <div class="profileData">
+                            <h5>Anton Timonen</h5>
+                            <ul class="tags clearfix">
+                                <li>Indie Rock</li>
+                                <li>Alternative Rock</li>
+                                <li>Punk</li>
+                            </ul>
+                        </div>
+                        <div class="compatibility">
+                            <span>76%</span>
+                            compatibility
+                        </div>
+                    </div><!--infoBox ends-->
+                </div>
+
+                <div class="icon drumms info">
+                    <img src="{{ asset('assets/images/icon-drumms.png') }}" alt="Drumms icon">
+
+                    <div class="infoBox infoBoxSmall" style="display: none;">
+                        <div class="profileImage"><img src="{{ asset('assets/images/drummer1.jpg') }}" alt="Alex Smith"></div>
+                        <div class="profileData">
+                            <h5>Alex Smith</h5>
+                            <ul class="tags clearfix">
+                                <li>Jazz</li>
+                                <li>Blues</li>
+                                <li>Funk</li>
+                                <li>Fusion</li>
+                            </ul>
+                        </div>
+                        <div class="compatibility">
+                            <span>86%</span>
+                            compatibility
+                        </div>
+                    </div><!--infoBox ends-->
+                </div>
+
+                <div class="icon sax info">
+                    <img src="{{ asset('assets/images/icon-sax.png') }}" alt="Sax icon">
+
+                    <div class="infoBox infoBoxSmall" style="display: block;">
+                        <div class="profileImage">
+                            <img src="{{ asset('assets/images/sax.jpg') }}" alt="John Andrews">
+                        </div>
+                        <div class="profileData">
+                            <h5>John Andrews</h5>
+                            <ul class="tags clearfix">
+                                <li>Jazz</li>
+                                <li>Blues</li>
+                                <li>Soul</li>
+                                <li>Classical</li>
+                            </ul>
+                        </div>
+                        <div class="compatibility">
+                            <span>68%</span>
+                            compatibility
+                        </div>
+                    </div><!--infoBox ends-->
+                </div>
+
+                <div class="icon teacher info" style="left: 64px; top: 233px;">
+                    <img src="{{ asset('assets/images/icon-teacher.png') }}" alt="Teacher icon">
+
+                    <div class="infoBox infoBoxSmall teacher" style="display: none;">
+                        <div class="profileImage">
+                            <img src="{{ asset('assets/images/profile-jane-mcadams.png') }}" alt="Jane McAdams">
+                        </div>
+                        <div class="profileData">
+                            <h5>Jane McAdams</h5>
+                            <div class="lessons">
+                                piano lessons
+                            </div>
+                        </div>
+                    </div><!--infoBox ends-->
+
+                </div>
+            </div><!--mapInteractive ends-->
+        </div><!--bigContainer ends-->
+        <h4 class="map-text-bottom">Are you a music teacher looking for new students? <strong>Jamifind</strong> will help you.</h4>
+    </section>
+
     <section id="multimedia-home" data-type="background" data-speed="10">
         <div class="container clearfix">
             <div class="mediaText">
@@ -123,6 +220,7 @@
     <section class="pageHelpers">
         <ul id="horizontalmenu" class="underlinemenu">
             <li><a href="#register-home" title="Register"></a></li>
+            <li><a href="#map-home" title="Map"></a></li>
             <li><a href="#multimedia-home" title="Multimedia"></a></li>
             <li><a href="#subscribe-home" title="Subscribe"></a></li>
         </ul>
