@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-03-07T10:29:21Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
+  <file date="2016-03-04T15:35:37Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -45,19 +45,19 @@
       <trans-unit id="abcfee3dcaccf158d515be3c8e3157c1776196ab" resname="button.login">
         <source>button.login</source>
         <target state="new">Sisään</target>
-        <jms:reference-file line="99">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="96">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="23">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b842d4c673a94b11a5cba5b435159834d703e024" resname="button.login.with.facebook">
         <source>button.login.with.facebook</source>
         <target state="new">Kirjaudu Facebook-tunnuksilla</target>
-        <jms:reference-file line="92">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="88">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="31">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0f03e8b1bade562c0ae846ca0ac35e06d672a924" resname="button.login.with.soundcloud">
         <source>button.login.with.soundcloud</source>
         <target state="new">Kirjaudu SoundCloud-tunnuksilla</target>
-        <jms:reference-file line="93">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="89">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="32">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4ecd9c38578a9a814133c133266c1d667c932598" resname="button.message">
@@ -84,7 +84,7 @@
       <trans-unit id="18083eb93db5b5f75c36c38ff07a0b1b151cb206" resname="button.sign.up">
         <source>button.sign.up</source>
         <target state="new">Rekisteröidy</target>
-        <jms:reference-file line="84">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="80">views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="38">views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="17faad85a87a3e84000ba3dbeb09d219118d36e4" resname="exception.file.not.sent">
@@ -148,24 +148,19 @@
         <jms:reference-file line="134">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="62">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="22f5a1381e3cfc549c1f49be9707d4714729fda2" resname="label.I.accept">
-        <source>label.I.accept</source>
-        <target state="new">label.I.accept</target>
-        <jms:reference-file line="78">views/Registration/register.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="e11c16aba8efd7c6504fc9c0eb3c2101ed5107e8" resname="label.about">
         <source>label.about</source>
-        <target state="new">Minusta</target>
+        <target state="new">Minusta / Etsin</target>
         <jms:reference-file line="163">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f1669620c8a5c9b11de0150a98c5fe707bb705e" resname="label.about.me">
         <source>label.about.me</source>
-        <target state="new">label.about.me</target>
+        <target state="new">Minusta / Etsin</target>
         <jms:reference-file line="47">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="492b76e8f42f1e440a8b09e25dc22b1d69ebe7d7" resname="label.add.instrument">
         <source>label.add.instrument</source>
-        <target state="new">Lisää instrumentti / taito</target>
+        <target state="new">Lisää instrumentti / Taito</target>
         <jms:reference-file line="30">views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c9afcfcd7e736a908026c9ce1ca67d1294f30aae" resname="label.add.photos">
@@ -185,7 +180,7 @@
       </trans-unit>
       <trans-unit id="dea3ca21225b4d5b3aa7647e47edb408286d0a1a" resname="label.birth.date">
         <source>label.birth.date</source>
-        <target state="new">label.birth.date</target>
+        <target state="new">Syntymäaika</target>
         <jms:reference-file line="127">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4aa0fc260fc5883b6d1e2d4fa4095b9a1fae6a24" resname="label.change.password">
@@ -244,7 +239,7 @@
       </trans-unit>
       <trans-unit id="69b969f15a47534ba20bd3449be1868578e62ec5" resname="label.first.name">
         <source>label.first.name</source>
-        <target state="new">label.first.name</target>
+        <target state="new">Etunimi</target>
         <jms:reference-file line="23">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b8db3affa3f2551aaa37adb5ab00819870e3fc66" resname="label.forgot.your.password">
@@ -255,7 +250,7 @@
       </trans-unit>
       <trans-unit id="5fd79280d513007c983e5c17078933eed37a0c39" resname="label.gender">
         <source>label.gender</source>
-        <target state="new">label.gender</target>
+        <target state="new">Sukupuoli</target>
         <jms:reference-file line="107">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="75c245aee7b5b7520bbffd469891cbae51ea2199" resname="label.hourly.rate.&amp;.euro">
@@ -287,7 +282,7 @@
       </trans-unit>
       <trans-unit id="a5e2feb18f76a79eec37da32ae84a08594af242f" resname="label.last.name">
         <source>label.last.name</source>
-        <target state="new">label.last.name</target>
+        <target state="new">Sukunimmi</target>
         <jms:reference-file line="31">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="791c3f485e574255328e2de0d2f6650e86b764fd" resname="label.learn.an.instrument">
@@ -340,7 +335,7 @@
       </trans-unit>
       <trans-unit id="75589666400c1dd80f3b78625aa5e8c7147fb748" resname="label.no.sounds">
         <source>label.no.sounds</source>
-        <target state="new">Ei vielä Soundeja</target>
+        <target state="new">Ei vielä soundeja</target>
         <jms:reference-file line="236">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6bdce0a700dfdd0c29b1dc38fefe39a65ec4193a" resname="label.no.videos">
@@ -373,7 +368,7 @@
       </trans-unit>
       <trans-unit id="cd80b54bc6bef9aec7232caefd621b4b42dc0d48" resname="label.remove.photo">
         <source>label.remove.photo</source>
-        <target state="new">poista kuva</target>
+        <target state="new">Poista kuva</target>
         <jms:reference-file line="235">views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="02424dc8f20c80b7a6e14c68f1a6e82d19e163a7" resname="label.repeat.password">
@@ -408,14 +403,9 @@
       </trans-unit>
       <trans-unit id="be40ff74163e44cd5a6b6df4aaa63b7305f7d29c" resname="label.teach.music">
         <source>label.teach.music</source>
-        <target state="new">opettaa musiikkia</target>
+        <target state="new">Opettaa musiikkia</target>
         <jms:reference-file line="72">Form/Type/ProfileFormType.php</jms:reference-file>
         <jms:reference-file line="52">Form/Type/RegistrationFormType.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="f2a7bc073bf6d6974f8fb85aea3e6fc4d7dd5924" resname="label.terms.checkbox">
-        <source>label.terms.checkbox</source>
-        <target state="new">label.terms.checkbox</target>
-        <jms:reference-file line="57">Form/Type/RegistrationFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="208e071127d52400f1ebc2d014d3366b4e61452a" resname="label.upload.all">
         <source>label.upload.all</source>
@@ -442,7 +432,7 @@
       </trans-unit>
       <trans-unit id="4c77e2b91f79da007f77718b688fd55885507cc6" resname="label.what.gear.do.you.own">
         <source>label.what.gear.do.you.own</source>
-        <target state="new">label.what.gear.do.you.own</target>
+        <target state="new">Mitä laitteita käytät?</target>
         <jms:reference-file line="89">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9f5b34b9504cd5007e322b514f3f7f672df43c2e" resname="message.an.error.occurred.while.creating.your.directory.at">
@@ -488,11 +478,11 @@
       <trans-unit id="ea081c43c04590700107f38612ab44a6d01fbbe1" resname="text.already.have.an.account">
         <source>text.already.have.an.account</source>
         <target state="new">On jo tili?</target>
-        <jms:reference-file line="98">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="95">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b955e740a3b2e2b5c576049581c1a51cb481dc90" resname="text.gear">
         <source>text.gear</source>
-        <target state="new">text.gear</target>
+        <target state="new">Laitteisto</target>
         <jms:reference-file line="145">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
@@ -522,7 +512,7 @@
       </trans-unit>
       <trans-unit id="c30c7e4fb4f2610e518069cd3866462bba38e1d6" resname="text.none">
         <source>text.none</source>
-        <target state="new">text.none</target>
+        <target state="new">none</target>
         <jms:reference-file line="135">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c7c856ea746bb625aecea2d1eaf59ac74bc12160" resname="text.nothing.yet.here">
@@ -539,7 +529,7 @@
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
         <target state="new">Luo muusikon CV:si tänään. Jaa ääntä, videoita, kuvia ja tule huomatuksi. Jamifindin avulla löydät juuri sinulle sopivimmat musakontaktit ja ennen kuin huomaatkaan olet luomassa uusia musaprojekteja ja löytämässä uusia ystäviä.  </target>
-        <jms:reference-file line="111">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="108">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
@@ -549,12 +539,12 @@
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
         <source>text.register.find</source>
         <target state="new">Löydä oikeat musakontaktit läheltäsi!</target>
-        <jms:reference-file line="110">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="107">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
         <target state="new">Liity Jamifindiin tänään ja aloita seuraava musaseikkailusi!</target>
-        <jms:reference-file line="118">views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="115">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>

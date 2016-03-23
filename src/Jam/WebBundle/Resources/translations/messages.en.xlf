@@ -94,7 +94,7 @@
       </trans-unit>
       <trans-unit id="7f0873aab9a63cab15bbf214413b1b4eee7efa28" resname="find.compatible.musicians">
         <source>find.compatible.musicians</source>
-        <target>find.compatible.musicians</target>
+        <target>find compatible musicians</target>
         <jms:reference-file line="1">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="069807227fdad28048b2f72f37eb337e14f95412" resname="label.close.conversation">

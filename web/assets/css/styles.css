@@ -10325,14 +10325,14 @@ header {
 .people-grid {
   border: 2px solid #414141;
   display: block;
-  margin: 2px 0;
+  margin: 2px 2px;
   overflow: hidden;
   position: relative;
 }
 @media only screen and (min-width: 1200px) {
   /* line 396, ../../sass/jamifind/_main.scss */
   .people-grid {
-    min-height: 117px;
+    min-height: 114px;
   }
 }
 /* line 406, ../../sass/jamifind/_main.scss */
@@ -10500,14 +10500,14 @@ header {
 
 /* line 560, ../../sass/jamifind/_main.scss */
 .compatibility-box .compatibility {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: bold;
   margin: 2px 0 0;
   text-transform: uppercase;
 }
 /* line 567, ../../sass/jamifind/_main.scss */
 .compatibility-box .compatibility span {
-  font-size: 14px;
+  font-size: 13px;
 }
 @media only screen and (max-width: 767px) {
   /* line 567, ../../sass/jamifind/_main.scss */
