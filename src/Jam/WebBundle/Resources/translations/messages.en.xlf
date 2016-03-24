@@ -291,7 +291,7 @@
       </trans-unit>
       <trans-unit id="9532cb76a483e419f51638af02671369c7b614eb" resname="text.settings">
         <source>text.settings</source>
-        <target>settings</target>
+        <target>my settings</target>
         <jms:reference-file line="21">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f5e42cab4f107c0d123d9542560aebacd8233c7f" resname="text.share.us.on.facebook">
