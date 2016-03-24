@@ -127,7 +127,7 @@
       </trans-unit>
       <trans-unit id="59051deb88c42aaede4a6dba778c55ba2d448cdb" resname="info.settings.jammer">
         <source>info.settings.jammer</source>
-        <target state="new">Olet käytettävissä ja näyt hakutuloksissa</target>
+        <target state="new">Valitse tämä jos etsit soittoseuraa, jäseniä bändiisi tai muita musakontakteja esim. sanoittajaa, sovittajaa...</target>
         <jms:reference-file line="139">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="67">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
@@ -138,13 +138,13 @@
       </trans-unit>
       <trans-unit id="ccb928e816027c757c20ca148bd59efa0108594f" resname="info.settings.teacher">
         <source>info.settings.teacher</source>
-        <target state="new">Näyt palvelussa muille opettajana</target>
+        <target state="new">Näyt palvelussa myös soitonopettajana</target>
         <jms:reference-file line="144">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="72">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="917a3b43474bac8f330257b7eab585b7e0bb1ea7" resname="info.settings.visitor">
         <source>info.settings.visitor</source>
-        <target state="new">Valitse tämä jos et ole käytettävissä, etkä halua näkyä hakutuloksissa</target>
+        <target state="new">Valitse tämä jos haluat etsiä vain soitonopetusta</target>
         <jms:reference-file line="134">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="62">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
@@ -298,7 +298,7 @@
       </trans-unit>
       <trans-unit id="859e6d441fff850329b6805f4a6c21700ccedaa9" resname="label.location.info">
         <source>label.location.info</source>
-        <target state="new">Sijainti helpottaa meitä löytämään käyttäjiä läheltäsi. Voit laittaa tarkankin osioitteen, sillä emme koskaan näytä tarkkaa osoitettasi kenellekkään</target>
+        <target state="new">Sijaintisi helpottaa meitä löytämään käyttäjiä läheltäsi. Voit laittaa tarkankin osioitteen, sillä emme koskaan näytä tarkkaa osoitettasi kenellekkään. Voit myös vaihtaa sijaintiasi milloin tahansa esim. ollessasi reissussa.</target>
         <jms:reference-file line="97">views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2fcb238b9d11782a404433a756c8c10e3c95a2f6" resname="label.login.to.jamifind">
@@ -442,12 +442,12 @@
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
-        <target state="new">Avatar vaihdettu onnistuneesti.</target>
+        <target state="new">Avatar vaihdettu onnistuneesti</target>
         <jms:reference-file line="300">UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae26a7b2b4b91e62745ad264586ea433a76b3e7" resname="message.image.removed.successfully">
         <source>message.image.removed.successfully</source>
-        <target state="new">Kuva poistettu onnistuneesti.</target>
+        <target state="new">Kuva poistettu onnistuneesti</target>
         <jms:reference-file line="191">UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4a7218ae13a4aadf6290c8e4b6ca5201468dcdcb" resname="message.video.added.successfully">
@@ -457,12 +457,12 @@
       </trans-unit>
       <trans-unit id="b1a17b1dbeeba43f3287cd2cef4e967918ed10e8" resname="message.video.removed.successfully">
         <source>message.video.removed.successfully</source>
-        <target state="new">Video poistettu onnistuneesti.</target>
+        <target state="new">Video poistettu onnistuneesti</target>
         <jms:reference-file line="63">UserBundle/Controller/VideoController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4b1ec948ee3ca76e40a8c4a30048f0ab3ab94728" resname="message.your.account.is.activated.">
         <source>message.your.account.is.activated.</source>
-        <target state="new">Tilisi on aktivoitu.</target>
+        <target state="new">Tilisi on aktivoitu</target>
         <jms:reference-file line="177">UserBundle/Controller/RegistrationController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a48049e16c5ec4d87665a13afc16594b5856c89a" resname="placeholder.email">
@@ -472,7 +472,7 @@
       </trans-unit>
       <trans-unit id="c3474ad1b73a0d0db019eec986ee675e8afaf640" resname="resetting.request.invalid_username">
         <source>resetting.request.invalid_username</source>
-        <target state="new">resetting.request.invalid_username</target>
+        <target state="new">Väärä käyttäjätunnus</target>
         <jms:reference-file line="6">views/Resetting/request_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ea081c43c04590700107f38612ab44a6d01fbbe1" resname="text.already.have.an.account">

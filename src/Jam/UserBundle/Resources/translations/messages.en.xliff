@@ -39,7 +39,7 @@
       </trans-unit>
       <trans-unit id="3768ebd9deb0f606d18cfa1d01584ddbd27df024" resname="button.finish">
         <source>button.finish</source>
-        <target state="new">button.finish</target>
+        <target state="new">finish</target>
         <jms:reference-file line="58">views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="abcfee3dcaccf158d515be3c8e3157c1776196ab" resname="button.login">
@@ -67,7 +67,7 @@
       </trans-unit>
       <trans-unit id="4e49febd2de7216895ad397d1a1f05d8cf3ba6cc" resname="button.next">
         <source>button.next</source>
-        <target state="new">button.next</target>
+        <target state="new">next</target>
         <jms:reference-file line="57">views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="012ac2f5da9b4eebd08e16c2b0f695ce8b9582f4" resname="button.request.submit">
@@ -127,7 +127,7 @@
       </trans-unit>
       <trans-unit id="59051deb88c42aaede4a6dba778c55ba2d448cdb" resname="info.settings.jammer">
         <source>info.settings.jammer</source>
-        <target state="new">This means you're available and you'll be better positioned in search results.</target>
+        <target state="new">Choose this if you want to find people to jam with, new band members or other music related talent or skills e.g. music producer, audio engineer...</target>
         <jms:reference-file line="139">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="67">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
@@ -138,13 +138,13 @@
       </trans-unit>
       <trans-unit id="ccb928e816027c757c20ca148bd59efa0108594f" resname="info.settings.teacher">
         <source>info.settings.teacher</source>
-        <target state="new">You will be presented as a music teacher.</target>
+        <target state="new">You will be presented also as a music teacher.</target>
         <jms:reference-file line="144">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="72">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="917a3b43474bac8f330257b7eab585b7e0bb1ea7" resname="info.settings.visitor">
         <source>info.settings.visitor</source>
-        <target state="new">This means you are not currently available and you will be positioned lower in the search results</target>
+        <target state="new">Choose this if you're only looking for a music teacher.</target>
         <jms:reference-file line="134">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="62">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
