@@ -46,17 +46,8 @@ class LocationSetListener {
             } else {
                 //not authenticated
                 //get country to set up language
-                if ($request->query->get('lang')) {
-                    if ($request->query->get('lang') == 'en') {
-                        $request->getSession()->set('_locale', 'en');
-                        $request->setLocale($request->getSession()->get('_locale', $request->query->get('lang')));
-                    } else if ($request->query->get('lang') == 'fi') {
-                        $request->getSession()->set('_locale', 'fi');
-                        $request->setLocale($request->getSession()->get('_locale', $request->query->get('lang')));
-                    } else {
-                        $request->setLocale($request->getSession()->get('_locale', $this->defaultLocale));
-                    }
-                } else {
+
+                if ($event->getRequestType() == 1 && !$request->query->get('lang')) {
                     $location = $this->geoCheckIP($ip);
                     if ($location->getCountry() == 'Finland') {
                         $request->getSession()->set('_locale', 'fi');

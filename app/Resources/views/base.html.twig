@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.session.get('_locale') | default('en') }}">
+<html lang="{{ app.request.locale | default('en') }}">
 <head>
     <title>Jamifind - find musicians and band members</title>
     <meta charset="UTF-8">

@@ -8,7 +8,7 @@
     <body>
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
-        <target state="new">label.search.users</target>
+        <target state="new">Etsi käyttäjiä</target>
         <jms:reference-file line="368">Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
     </body>

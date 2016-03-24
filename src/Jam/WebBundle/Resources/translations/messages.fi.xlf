@@ -44,7 +44,7 @@
       </trans-unit>
       <trans-unit id="918afa5c6cdf8b9375ba036691f27829d7209fee" resname="email.you.have.been.invited">
         <source>email.you.have.been.invited</source>
-        <target>sinut on kutsuttu</target>
+        <target>Sinut on kutsuttu</target>
         <jms:reference-file line="4">views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fccf2c4974624e0e217e03e27ca4634c14e6f3a1" resname="email.you.have.recieved.a.message">
@@ -94,7 +94,7 @@
       </trans-unit>
       <trans-unit id="7f0873aab9a63cab15bbf214413b1b4eee7efa28" resname="find.compatible.musicians">
         <source>find.compatible.musicians</source>
-        <target>find.compatible.musicians</target>
+        <target>Etsi sinulle sopivia käyttäjiä</target>
         <jms:reference-file line="1">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="069807227fdad28048b2f72f37eb337e14f95412" resname="label.close.conversation">
