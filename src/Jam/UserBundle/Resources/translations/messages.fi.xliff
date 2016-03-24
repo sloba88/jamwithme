@@ -138,7 +138,7 @@
       </trans-unit>
       <trans-unit id="ccb928e816027c757c20ca148bd59efa0108594f" resname="info.settings.teacher">
         <source>info.settings.teacher</source>
-        <target state="new">Näyt palvelussa myös soitonopettajana</target>
+        <target state="new">Valitse tämä jos haluat näkyä palvelussa myös/vain soitonopettajana</target>
         <jms:reference-file line="144">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="72">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>

@@ -127,7 +127,7 @@
       </trans-unit>
       <trans-unit id="59051deb88c42aaede4a6dba778c55ba2d448cdb" resname="info.settings.jammer">
         <source>info.settings.jammer</source>
-        <target state="new">Choose this if you want to find people to jam with, new band members or other music related talent or skills e.g. music producer, audio engineer...</target>
+        <target state="new">Choose this if you want to be found or you want to find people to jam with, new band members or other music related talent or skills e.g. music producer, audio engineer...</target>
         <jms:reference-file line="139">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="67">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
@@ -144,7 +144,7 @@
       </trans-unit>
       <trans-unit id="917a3b43474bac8f330257b7eab585b7e0bb1ea7" resname="info.settings.visitor">
         <source>info.settings.visitor</source>
-        <target state="new">Choose this if you're only looking for a music teacher.</target>
+        <target state="new">Choose this if you're looking for a music teacher or just browsing around.</target>
         <jms:reference-file line="134">views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="62">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
