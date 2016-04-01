@@ -285,23 +285,30 @@
 	clear: both;
 }
 
-#map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img{
-	background-color: #fff;
-	padding: 2px;
+#map .mapIcon {
 	border-radius: 20px;
-	opacity: .9;
+	opacity: 0.9;
+	background-color: #fff;
+	text-align: center;
+	border: 2px solid #fff;
+	overflow: hidden;
+}
+
+#map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img{
+	padding: 5px;
+	position: relative;
+	left: -2px;
 }
 
 #map .no-icon, #_location_map .no-icon{
 	background-image: url('../images/logo-icon.png');
-	background-color: #fff;
 	background-position: center center;
 	background-size: 70%;
 	background-repeat: no-repeat;
-	border-radius: 25px;
-	border: 1px solid silver;
 	width: 100%;
 	height: 100%;
+	position: relative;
+	left: -2px;
 }
 
 #map .musician-map-box-container svg{

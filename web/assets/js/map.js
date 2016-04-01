@@ -69,7 +69,7 @@ function initMap(){
 
 function resizeIcons(){
     var iconSize = map.getZoom() * 2.5;
-    $('.mapIcon >').css({'width': iconSize, 'height': iconSize});
+    $('.mapIcon >, .mapIcon').css({'width': iconSize, 'height': iconSize});
 }
 
 function drawRadius(){
