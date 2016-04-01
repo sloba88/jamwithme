@@ -13,32 +13,32 @@
       </trans-unit>
       <trans-unit id="35d7093fd6e8a27a096daf95d03f4521857c445b" resname="value.advanced">
         <source>value.advanced</source>
-        <target state="new">value.advanced</target>
+        <target state="new">advanced</target>
         <jms:reference-file line="48">ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0822862cbb4137e9b700a72f70c06fb0df615b82" resname="value.average">
         <source>value.average</source>
-        <target state="new">value.average</target>
+        <target state="new">average</target>
         <jms:reference-file line="44">ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6a9224e672d112a827f2ff0a97126e1e192da6e5" resname="value.beginner">
         <source>value.beginner</source>
-        <target state="new">value.beginner</target>
+        <target state="new">beginner</target>
         <jms:reference-file line="40">ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="1b4467c106cc858f5f6ea2125e65a4234ab56cdf" resname="value.professional">
         <source>value.professional</source>
-        <target state="new">value.professional</target>
+        <target state="new">professional</target>
         <jms:reference-file line="56">ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="cc3690e6ed871d14d4a626d7efb60fd7c80d63b9" resname="value.semi-professional">
         <source>value.semi-professional</source>
-        <target state="new">value.semi-professional</target>
+        <target state="new">semi-professional</target>
         <jms:reference-file line="52">ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d3127788fa6bfd72a5305ca9c0f2d10d263dc023" resname="value.teacher">
         <source>value.teacher</source>
-        <target state="new">value.teacher</target>
+        <target state="new">teacher</target>
         <jms:reference-file line="63">ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
     </body>

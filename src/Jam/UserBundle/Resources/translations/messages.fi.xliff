@@ -287,7 +287,7 @@
       </trans-unit>
       <trans-unit id="a5e2feb18f76a79eec37da32ae84a08594af242f" resname="label.last.name">
         <source>label.last.name</source>
-        <target state="new">Sukunimmi</target>
+        <target state="new">Sukunimi</target>
         <jms:reference-file line="31">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="791c3f485e574255328e2de0d2f6650e86b764fd" resname="label.learn.an.instrument">

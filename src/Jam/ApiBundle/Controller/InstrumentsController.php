@@ -11,7 +11,6 @@ class InstrumentsController extends FOSRestController
 {
     /**
      * @Get("/instruments", name="api_instruments")
-     * @Cache(public=true, maxage="1500", smaxage="1500")
      */
     public function getAction(Request $request)
     {
