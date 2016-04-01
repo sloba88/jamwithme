@@ -52,6 +52,11 @@ redis-cli flushall
 sudo npm install -g grunt-cli
 ```
 
+Change templates and parse them
+```
+cd node ; grunt jst; cd ..
+```
+
 ```
 HTTPDUSER=`ps axo user,comm | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`
 ```

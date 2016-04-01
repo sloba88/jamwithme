@@ -9,7 +9,7 @@ var myLocation = [_user.lat, _user.lng],
     myIcon = L.divIcon({
         html: '<img src="'+_user.avatar+'" />',
         iconSize: [50, 50],
-        className: 'mapIcon'
+        className: 'mapIcon myIconAvatar'
     }),
     map,
     circle = false,

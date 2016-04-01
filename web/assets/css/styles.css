@@ -8730,6 +8730,11 @@ ul {
 }
 
 /* line 303, ../../sass/jamifind/_custom.scss */
+#map .mapIcon.myIconAvatar img {
+  padding: 0;
+}
+
+/* line 307, ../../sass/jamifind/_custom.scss */
 #map .no-icon, #_location_map .no-icon {
   background-image: url("../images/logo-icon.png");
   background-position: center center;
@@ -8741,23 +8746,23 @@ ul {
   left: -2px;
 }
 
-/* line 314, ../../sass/jamifind/_custom.scss */
+/* line 318, ../../sass/jamifind/_custom.scss */
 #map .musician-map-box-container svg {
   max-height: 30px;
   max-width: 30px;
 }
 
-/* line 319, ../../sass/jamifind/_custom.scss */
+/* line 323, ../../sass/jamifind/_custom.scss */
 .ui-autocomplete {
   z-index: 9999 !important;
 }
 
-/* line 323, ../../sass/jamifind/_custom.scss */
+/* line 327, ../../sass/jamifind/_custom.scss */
 .profile-media-wall-item {
   margin-bottom: 4px;
 }
 
-/* line 325, ../../sass/jamifind/_custom.scss */
+/* line 329, ../../sass/jamifind/_custom.scss */
 .loading-content {
   background-image: url("../images/loader.gif");
   background-repeat: no-repeat;
@@ -8765,52 +8770,52 @@ ul {
   opacity: 0.4;
 }
 
-/* line 332, ../../sass/jamifind/_custom.scss */
+/* line 336, ../../sass/jamifind/_custom.scss */
 .people-listing-grid {
   min-height: 350px;
 }
 
-/* line 336, ../../sass/jamifind/_custom.scss */
+/* line 340, ../../sass/jamifind/_custom.scss */
 .select2-container-multi .select2-choices .select2-search-field input {
   background: #fff !important;
 }
 
-/* line 340, ../../sass/jamifind/_custom.scss */
+/* line 344, ../../sass/jamifind/_custom.scss */
 .select2-container.form-control .select2-choice, .select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn {
   background: #fff;
 }
 
-/* line 344, ../../sass/jamifind/_custom.scss */
+/* line 348, ../../sass/jamifind/_custom.scss */
 .select2-choice.select2-default span.select2-chosen {
   color: #999;
 }
 
-/* line 351, ../../sass/jamifind/_custom.scss */
+/* line 355, ../../sass/jamifind/_custom.scss */
 .leaflet-container .leaflet-popup-content-wrapper {
   border-radius: 5px;
 }
-/* line 355, ../../sass/jamifind/_custom.scss */
+/* line 359, ../../sass/jamifind/_custom.scss */
 .leaflet-container .leaflet-popup-content {
   margin: 5px;
 }
-/* line 359, ../../sass/jamifind/_custom.scss */
+/* line 363, ../../sass/jamifind/_custom.scss */
 .leaflet-container .musician-map-box-container > a {
   color: #18152b;
 }
-/* line 363, ../../sass/jamifind/_custom.scss */
+/* line 367, ../../sass/jamifind/_custom.scss */
 .leaflet-container .musician-map-box-container > a:hover {
   text-decoration: none;
 }
-/* line 369, ../../sass/jamifind/_custom.scss */
+/* line 373, ../../sass/jamifind/_custom.scss */
 .leaflet-container .img-responsive {
   float: left;
   margin: 0 15px 10px 0;
 }
-/* line 374, ../../sass/jamifind/_custom.scss */
+/* line 378, ../../sass/jamifind/_custom.scss */
 .leaflet-container .name {
   margin: 0 20px 10px 0;
 }
-/* line 378, ../../sass/jamifind/_custom.scss */
+/* line 382, ../../sass/jamifind/_custom.scss */
 .leaflet-container .instrument {
   clear: left;
   float: left;
@@ -8819,24 +8824,24 @@ ul {
   text-align: center;
   width: 30px;
 }
-/* line 387, ../../sass/jamifind/_custom.scss */
+/* line 391, ../../sass/jamifind/_custom.scss */
 .leaflet-container .tags {
   margin-left: 65px;
 }
-/* line 392, ../../sass/jamifind/_custom.scss */
+/* line 396, ../../sass/jamifind/_custom.scss */
 .leaflet-container .compatibility-box {
   float: right;
   margin-right: 8px;
   margin-top: 7px;
 }
-/* line 398, ../../sass/jamifind/_custom.scss */
+/* line 402, ../../sass/jamifind/_custom.scss */
 .leaflet-container a.leaflet-popup-close-button {
   height: 22px;
   padding: 4px;
   width: 22px;
 }
 
-/* line 406, ../../sass/jamifind/_custom.scss */
+/* line 410, ../../sass/jamifind/_custom.scss */
 .jcrop-holder {
   margin: 0 auto;
 }

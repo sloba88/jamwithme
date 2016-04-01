@@ -300,6 +300,10 @@
 	left: -2px;
 }
 
+#map .mapIcon.myIconAvatar img {
+	padding: 0;
+}
+
 #map .no-icon, #_location_map .no-icon{
 	background-image: url('../images/logo-icon.png');
 	background-position: center center;

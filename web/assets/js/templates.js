@@ -80,11 +80,11 @@ return __p
 
 this["JST"]["instrumentBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
-__p += '<div class="row">\n    <div class="col-md-5">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
+__p += '<div class="row">\n    <div class="col-md-5 col-xs-12">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
 __e( rc.num ) +
-'][instrument]" class="instrument-select form-control" />\n    </div>\n    <div class="col-md-5">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
+'][instrument]" class="instrument-select form-control" />\n    </div>\n    <div class="col-md-5 col-xs-8">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
 __e( rc.num ) +
-'][skillLevel]" class="skill-select form-control" />\n    </div>\n    <div class="col-md-2" style="padding-top:10px">\n        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n        <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>\n    </div>\n</div>';
+'][skillLevel]" class="skill-select form-control" />\n    </div>\n    <div class="col-md-2 col-xs-4" style="padding-top:10px">\n        <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n        <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>\n    </div>\n</div>';
 return __p
 };
 
