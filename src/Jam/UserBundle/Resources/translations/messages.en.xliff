@@ -497,7 +497,7 @@
       </trans-unit>
       <trans-unit id="b955e740a3b2e2b5c576049581c1a51cb481dc90" resname="text.gear">
         <source>text.gear</source>
-        <target state="new">text.gear</target>
+        <target state="new">gear</target>
         <jms:reference-file line="145">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
