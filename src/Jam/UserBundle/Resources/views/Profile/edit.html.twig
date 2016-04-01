@@ -168,7 +168,13 @@
                         <div class="teacherSpecific {% if not app.user.isTeacher %}hide{% endif %}" >
                             {{ form_row(form.education) }}
 
-                            {{ form_row(form.hourlyRate) }}
+                            <div class="form-group">
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">&euro;</span>
+                                    {{ form_widget(form.hourlyRate) }}
+                                </div>
+                            </div>
                         </div>
 
                         {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}

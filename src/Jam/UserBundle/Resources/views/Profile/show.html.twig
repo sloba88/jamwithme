@@ -61,11 +61,6 @@
                             <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook" class="icon-teacher">
                             {{ 'text.teacher'|trans }}
                         </li>
-                        {% if user.hourlyRate %}
-                            <li class="rate">
-                                - {{ 'text.hourly.rate'|trans }}:<span>&euro;{{ user.hourlyRate }}</span>
-                            </li>
-                        {% endif %}
                     </ul>
                 {% endif %}
             </section>
@@ -185,12 +180,19 @@
                         <div class="view-tab-container teacher-text-container with-scrollbar">
 
                             <div class="view-tab about is-active" data-tab="about">
+
                                 {% if user.isTeacher %}<h6>{{ 'text.overview'|trans }}</h6>{% endif %}
                                 <p>{{ user.aboutMe|default('text.nothing.yet.here'|trans) }}</p>
 
                                 {% if user.isTeacher %}
                                     <h6>{{ 'label.education'|trans }}</h6>
                                     <p>{{ user.education|default('text.nothing.yet.here'|trans) }}</p>
+
+                                    {% if user.hourlyRate %}
+                                        <h6>{{ 'text.hourly.rate'|trans }}</h6>
+                                        <p>&euro;{{ user.hourlyRate }}</span></p>
+                                    {% endif %}
+
                                 {% endif %}
                             </div>
 
