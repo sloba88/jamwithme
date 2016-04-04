@@ -306,6 +306,8 @@ $(function() {
         $('#settings-current-hash').val(window.location.hash);
     });
 
+    $('#settings-current-hash').val(window.location.hash);
+
     $('#next-1').on('click', function(e){
         e.preventDefault();
         $('#location-tab').click();
