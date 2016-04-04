@@ -790,7 +790,7 @@ class User extends BaseUser
         }
 
         if ($this->genres->count() > 0){
-            $percentage += 20;
+            $percentage += 10;
         }
 
         if ($this->artists->count() > 0){
@@ -798,6 +798,10 @@ class User extends BaseUser
         }
 
         if ($this->aboutMe != ''){
+            $percentage += 10;
+        }
+
+        if ($this->gender){
             $percentage += 10;
         }
 

@@ -44,6 +44,12 @@
             text-decoration: none;
         }
 
+        #fos_user_profile_form_birthDate .form-control {
+            padding-right: 10px;
+            width: 120px;
+            display: inline-block;
+        }
+
     </style>
 
     <form action="{{ path('fos_user_profile_edit') }}" method="POST" class="fos_user_profile_edit">
@@ -85,13 +91,11 @@
 
                         {{ form_row(form.lastName) }}
 
-                        {{ form_row(form.locale) }}
-
                         <div class="row personal-bio">
-                            <div class="col-xs-5 col-sm-7">
+                            <div class="col-xs-5 col-sm-4 col-md-3">
                                 {{ form_row(form.gender) }}
                             </div>
-                            <div class="col-xs-7 col-sm-5">
+                            <div class="col-xs-7 col-sm-8 col-md-9">
                                 {{ form_row(form.birthDate) }}
                             </div>
                         </div>
@@ -99,6 +103,8 @@
                         <div class="clearfix"></div>
 
                         {{ form_row(form.email) }}
+
+                        {{ form_row(form.locale) }}
 
                         <a href="{{ path('fos_user_change_password') }}" class="btn btn-default" style="margin-bottom: 15px;">{{ 'label.change.password'|trans }}</a>
 

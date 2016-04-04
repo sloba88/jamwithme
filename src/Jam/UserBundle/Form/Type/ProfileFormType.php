@@ -124,7 +124,10 @@ class ProfileFormType extends BaseType
             'widget' => 'choice',
             'years' => range(date('Y')-8, 1920),
             'required' => false,
-            'label' => 'label.birth.date'
+            'label' => 'label.birth.date',
+            'attr' => array(
+                'class' => 'col-md-3'
+            )
         ));
 
         $builder->add('images', 'collection', array(

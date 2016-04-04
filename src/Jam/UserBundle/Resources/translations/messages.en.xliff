@@ -18,7 +18,7 @@
       </trans-unit>
       <trans-unit id="89b86ab0e66f527166d98df92ddbcf5416ed58f6" resname="Language">
         <source>Language</source>
-        <target state="new">Language</target>
+        <target state="new">Application language</target>
         <jms:reference-file line="147">Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d219c68101f532de10add2cf42fb9dbeca73d3be" resname="Location">
