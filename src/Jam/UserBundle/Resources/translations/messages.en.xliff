@@ -457,7 +457,7 @@
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
-        <target state="new">avatar changed successfully.</target>
+        <target state="new">profile photo changed successfully.</target>
         <jms:reference-file line="300">UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae26a7b2b4b91e62745ad264586ea433a76b3e7" resname="message.image.removed.successfully">

@@ -27,7 +27,6 @@
         }
 
         .page-settings .add-another-video {
-            width: 200px;
             margin-bottom: 6px;
         }
 
@@ -197,15 +196,15 @@
 
                         <div class="row">
 
-                            <div class="col-md-6">
-                            <span class="btn btn-primary fileinput-button">
-                                <i class="glyphicon glyphicon-plus"></i>
-                                <span>{{ 'label.add.photos'|trans }}...</span>
-                                <input type="file" name="file" id="upload_images" accept="image/*" multiple >
-                            </span>
+                            <div class="col-md-4 col-xs-12">
+                                <span class="btn btn-primary fileinput-button">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span>{{ 'label.add.photos'|trans }}...</span>
+                                    <input type="file" name="file" id="upload_images" accept="image/*" multiple >
+                                </span>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4 col-xs-12">
                                 <button type="submit" class="btn btn-primary start-upload" style="display: none">
                                     <i class="glyphicon glyphicon-upload"></i>
                                     <span>{{ 'label.upload.all'|trans }}</span>
@@ -251,10 +250,14 @@
 
             <div class="view-tab with-scrollbar" data-tab="videos">
 
-                <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
-                    <i class="fa fa-youtube-play"></i>
-                    {{ 'label.add.video'|trans }}
-                </a>
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <a href="#" id="add_another_video" class="btn btn-primary add-another-video">
+                            <i class="fa fa-youtube-play"></i>
+                            {{ 'label.add.video'|trans }}
+                        </a>
+                    </div>
+                </div>
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
