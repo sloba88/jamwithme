@@ -79,7 +79,7 @@
                     <div class="col-md-6">
 
                         {{ form_label(form.username) }}
-                        <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-placement="right" data-container="body" data-trigger="hover" data-content="Your username can't be number only, also special characters are forbidden."></span>
+                        <span class="glyphicon glyphicon-info-sign info-popover" data-toggle="popover" data-placement="right" data-container="body" data-trigger="hover" data-content="{{ 'info.settings.username'|trans }}"></span>
 
                         {{ form_widget(form.username) }}
 
