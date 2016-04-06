@@ -424,9 +424,10 @@ mysqlConnection.connect(function(err) {
                     isRead: true
                 }, function(err, numberAffected) {
                     //handle it
-                    console.log(numberAffected);
-                    socket.unreadMessages -= numberAffected.n;
-                    socket.emit('myUnreadMessagesCount', socket.unreadMessages);
+                    if (socket.unreadMessages) {
+                        socket.unreadMessages -= numberAffected.n;
+                        socket.emit('myUnreadMessagesCount', socket.unreadMessages);
+                    }
                 });
             });
 

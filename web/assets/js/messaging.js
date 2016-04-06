@@ -83,7 +83,7 @@ socket.on('messageReceived', function(data) {
 });
 
 socket.on('myUnreadMessagesCount', function(data) {
-    if (data !== 0) {
+    if (data !== 0 && data !== 'NULL') {
         $('.inbox .badge').text(data);
     } else {
         $('.inbox .badge').text('');
@@ -278,22 +278,20 @@ $(function() {
         var userId = false;
         var conversationId = localStorage.openedConversationId;
 
-        //TODO: bellow all the same as previous function -->
-        $('.open-conversation.active').removeClass('active');
-        $(this).addClass('active');
-
-        $(this).removeClass('unread');
-
         if (conversationId) {
             if (openedConversation.id === conversationId) {
                 //this conversation is already opened
             } else {
                 $('.conversation-message-box .conversation-single').hide();
 
-                socket.emit('getConversation', {
-                    conversationId: conversationId,
-                    to: userId
-                });
+                if (typeof socket.emit != 'undefined'){
+                    setTimeout(function () {
+                        socket.emit('getConversation', {
+                            conversationId: conversationId,
+                            to: userId
+                        });
+                    }, 500);
+                }
             }
         } else {
             if ($conversation.hasClass('is-opened')) {
@@ -305,10 +303,6 @@ $(function() {
                 });
             }
         }
-
-        $conversation.removeClass('is-opened-compose');
-        $conversation.addClass('is-opened');
-        $overlay.removeClass('hide');
 
         openedConversation.id = conversationId;
         openedConversation.userId = userId;
