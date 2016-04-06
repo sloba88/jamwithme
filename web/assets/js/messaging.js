@@ -248,7 +248,7 @@ $(function() {
     //compose
     $compose.on('click', function() {
         $conversation.addClass('is-opened is-opened-compose');
-        $('.conversation-message-box .conversation-single').hide();
+        $('.conversation-message-box').html('');
         $overlay.removeClass('hide');
         openedConversation.id = '';
         openedConversation.userId = '';
