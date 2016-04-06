@@ -537,7 +537,7 @@
       </trans-unit>
       <trans-unit id="c7c856ea746bb625aecea2d1eaf59ac74bc12160" resname="text.nothing.yet.here">
         <source>text.nothing.yet.here</source>
-        <target state="new">tabula rasa</target>
+        <target state="new">No content yet</target>
         <jms:reference-file line="185">views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="189">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
@@ -573,7 +573,7 @@
       </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
         <source>text.shouts.feed</source>
-        <target state="new">shouts feed</target>
+        <target state="new">Shoutbox</target>
         <jms:reference-file line="252">views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cbe5975526ce5dcbcecc4e8c9dc65969248c8a20" resname="text.sign.up.to.jamifind">
