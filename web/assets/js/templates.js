@@ -337,7 +337,7 @@ __e( mu.location ) +
 __p += '\n        <div class="time">\n            <span>' +
 __e( rc.createdAt ) +
 ' </span>\n        </div>\n        <p>' +
-__e( rc.text ) +
+((__t = ( rc.text )) == null ? '' : __t) +
 '</p>\n    </div>\n</article>';
 return __p
 };

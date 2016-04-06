@@ -54,7 +54,7 @@ sudo npm install -g grunt-cli
 
 Change templates and parse them
 ```
-cd node ; grunt jst; cd ..
+cd node ; grunt jst; cd ..; php app/console assetic:dump
 ```
 
 ```

@@ -615,6 +615,7 @@ $(function() {
         });
     });
 
+    /*
     $(document).on('keyup', '#shout_text', function(){
         var self = $(this);
         var value = $(this).val();
@@ -625,6 +626,7 @@ $(function() {
             addMessage(false, 'Links are not permitted here.');
         });
     });
+    */
 
     $(document).on('click', '.remove-shout', function(e){
         var element = $(e.currentTarget);

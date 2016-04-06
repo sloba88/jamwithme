@@ -12,6 +12,6 @@
         <div class="time">
             <span><%- rc.createdAt %> </span>
         </div>
-        <p><%- rc.text %></p>
+        <p><%= rc.text %></p>
     </div>
 </article>
