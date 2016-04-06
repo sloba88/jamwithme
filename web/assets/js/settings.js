@@ -292,14 +292,9 @@ $(function() {
         this.setSelectionRange(start, end);
     });
 
-    $('#fos_user_profile_form_username').on('keyup', function(){
-        var start = this.selectionStart,
-            end = this.selectionEnd,
-            str = $(this).val();
-        str = str.replace(/[^A-Za-z0-9 ]/g, '');
-        $(this).val(str);
-
-        this.setSelectionRange(start, end);
+    $('#fos_user_profile_form_username').alphanum({
+        allowSpace: false,
+        allowNewline: false
     });
 
     $(window).on('hashchange', function() {
