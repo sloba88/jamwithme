@@ -8,6 +8,22 @@ __p += '<div class="modal fade" id="actionConfirmModal" tabindex="-1" role="dial
 return __p
 };
 
+this["JST"]["avatarUsernameTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape;
+__p += '<a href="' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.username ) +
+'">\n    <img class="message-picture" src="' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.username ) +
+'/avatar" alt="Pic">\n    <p class="name">' +
+__e( rc.username ) +
+'</p>\n</a>';
+return __p
+};
+
 this["JST"]["conversationTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
@@ -23,19 +39,15 @@ __p += '" data-id="' +
 __e( rc._id ) +
 '" data-user="' +
 __e( rc.fromData.username ) +
-'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <a href="' +
-((__t = ( baseURL )) == null ? '' : __t) +
-'/m/' +
-__e( rc.fromData.username ) +
-'">\n            <img class="message-picture" src="' +
+'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <img class="message-picture" src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( rc.fromData.username ) +
 '/avatar" alt="' +
 __e( rc._lastMessage.from ) +
-'">\n            <h3 class="name">' +
+'">\n        <h3 class="name">' +
 __e( rc.fromData.username ) +
-'</h3>\n        </a>\n\n        <div class="time">' +
+'</h3>\n\n        <div class="time">' +
 __e( rc._lastMessage.createdAt.toLocaleDateString() ) +
 ' ' +
 __e( rc._lastMessage.createdAt.toLocaleTimeString() ) +

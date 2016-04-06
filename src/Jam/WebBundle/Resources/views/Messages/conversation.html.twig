@@ -8,14 +8,13 @@
 
         <a href="#" class="close-link close-link-mobile pull-right visible-xs-inline-block" title="{{ 'label.close.conversation'|trans }}"><i class="glyphicon glyphicon-remove"></i></a>
 
-        <!--conversation-close ends-->
-
         <div class="conversation-new">
             <input type="text" class="form-control autocomplete" placeholder="+ {{ 'label.type.a.name'|trans }}">
         </div>
 
+        <div class="conversation-participants-container"></div>
+
         <div class="conversation-container conversation-message-box"></div>
-        <!--conversation-container ends-->
 
         <div class="conversation-send">
             <form role="form" class="row">
@@ -27,8 +26,7 @@
                 </div>
             </form>
         </div>
-        <!--conversation-send ends-->
 
-    </div><!--conversation ends-->
+    </div>
 
 {% endif %}

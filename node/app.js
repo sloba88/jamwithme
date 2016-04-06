@@ -381,35 +381,51 @@ mysqlConnection.connect(function(err) {
                     data.to = '-1';
                 }
 
-                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [data.to, socket.userID ]} } ] }).exec(function (err, conversation) {
+                Conversation.findOne({ 'owner': socket.userID, $or: [{ '_id' :  new mongoose.Types.ObjectId(data.conversationId) }, { 'participants' :  { $all: [data.to, socket.userID ]} } ] }).lean().exec(function (err, conversation) {
                     if (err) {
                         return console.error(err);
                     }
 
                     if (conversation) {
-                        Message.find({ 'owner': socket.userID, '_conversation' :  conversation._id }).lean().exec(function (err, messages) {
-                            if (err) {
-                                return console.error(err);
-                            }
 
-                            var users = [];
-                            for( var i=0; i<messages.length; i++) {
-                                users.push(messages[i].from);
-                                messages[i].message = tagLinks(messages[i].message);
-                            }
+                        var myIndex = conversation.participants.indexOf(socket.userID);
+                        if (myIndex > -1) {
+                            conversation.participants.splice(myIndex, 1);
+                        }
 
-                            getUsernames(mysqlConnection, users).then(function(results){
-                                for( var z=0; z<messages.length; z++) {
-                                    for( var b=0; b< results.length; b++) {
-                                        if (results[b].id == messages[z].from) {
-                                            messages[z].fromData = results[b];
-                                        }
-                                    }
+                        getUsernames(mysqlConnection, conversation.participants).then(function(results){
+                            //add usernames to participants from mysql table
+                            conversation.participants = results;
+
+                            Message.find({ 'owner': socket.userID, '_conversation' :  conversation._id }).lean().exec(function (err, messages) {
+                                if (err) {
+                                    return console.error(err);
                                 }
 
-                                socket.emit('ourConversation', messages);
+                                var users = [];
+                                for( var i=0; i<messages.length; i++) {
+                                    users.push(messages[i].from);
+                                    messages[i].message = tagLinks(messages[i].message);
+                                }
+
+                                getUsernames(mysqlConnection, users).then(function(results){
+                                    for( var z=0; z<messages.length; z++) {
+                                        for( var b=0; b< results.length; b++) {
+                                            if (results[b].id == messages[z].from) {
+                                                messages[z].fromData = results[b];
+                                            }
+                                        }
+                                    }
+
+                                    socket.emit('ourConversation', {
+                                        'messages': messages,
+                                        'conversation': conversation
+                                    });
+                                });
                             });
                         });
+
+
                     } else {
                         console.log('no conversation found');
                         //new conversation?

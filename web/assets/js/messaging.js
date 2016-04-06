@@ -11,22 +11,29 @@ var openedConversation = {};
 
 socket.on('ourConversation', function(data) {
     console.log(data);
-    openedConversation.id = data[0]._conversation;
+    openedConversation.id = data.conversation._id;
 
     if(typeof(Storage) !== 'undefined') {
         localStorage.setItem('openedConversationId', openedConversation.id);
     }
 
     $('.conversation-message-box').html('');
+    $('.conversation-participants-container').html('');
     $('.conversation-message-box .conversation-single').show();
     $('.conversation').removeClass('is-opened is-opened-compose').addClass('is-opened');
 
-    $.each(data, function(index, value) {
+    $.each(data.messages, function(index, value) {
         $('.conversation-message-box').append(window.JST.messageTemplate(value));
     });
+
+    $.each(data.conversation.participants, function(index, value) {
+        $('.conversation-participants-container').append(window.JST.avatarUsernameTemplate(value));
+    });
+
     setTimeout(function() {
         scrollToBottom();
         scrollbarPlugin();
+        $(window).trigger('resize');
     }, 300);
 });
 
