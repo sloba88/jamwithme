@@ -144,6 +144,14 @@ class DefaultController extends Controller
         $userImage = $this->resizeImage($userImage, $request->request->all());
         $em->flush();
 
+        /* send data to GA */
+        $data = array(
+            'uid'=> $user->getId(),
+            'ec'=> 'photo',
+            'ea'=> 'added'
+        );
+        $this->get('happyr.google.analytics.tracker')->send($data, 'event');
+
         $response->setData(array(
             'files' => array(
                 'thumbnailUrl' => $this->get('liip_imagine.cache.manager')->getBrowserPath($userImage->getWebPath(), 'my_medium_'.$userImage->getType()),
@@ -174,16 +182,25 @@ class DefaultController extends Controller
 
         $userImage = $this->getDoctrine()
             ->getRepository('JamUserBundle:UserImage')
-            ->find($id);
+            ->findOneBy(array(
+                'user' => $this->getUser(),
+                'id' => $id
+            ));
 
         if (!$userImage) throw $this->createNotFoundException($this->get('translator')->trans('exception.there.is.no.image.with.that.id'));
 
-        $userImage->setUser(null);
-
         $em = $this->getDoctrine()->getManager();
-        $em->persist($userImage);
+        $em->remove($userImage);
         $em->persist($user);
         $em->flush();
+
+        /* send data to GA */
+        $data = array(
+            'uid'=> $user->getId(),
+            'ec'=> 'photo',
+            'ea'=> 'removed'
+        );
+        $this->get('happyr.google.analytics.tracker')->send($data, 'event');
 
         $response = new JsonResponse();
         $response->setData(array(
