@@ -18,14 +18,6 @@ class ImageType extends AbstractType
                 'accept' => "image/*"
             )
         ));
-
-        $builder->add('is_default', 'radio', array(
-            'required' => false,
-            'label' => 'label.make.this.primary',
-            'attr'  => array(
-                'class' => 'make-primary-image'
-            )
-        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

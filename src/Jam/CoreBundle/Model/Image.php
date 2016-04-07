@@ -4,10 +4,14 @@ namespace Jam\CoreBundle\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use SplFileInfo;
 use DateTime;
 
+/*
+ * @ORM\HasLifecycleCallbacks
+ */
 class Image implements ImageInterface
 {
     /**
@@ -28,7 +32,7 @@ class Image implements ImageInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="path", type="text")
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
     protected $path;
 
@@ -48,10 +52,7 @@ class Image implements ImageInterface
      */
     protected $updatedAt;
 
-    public function __construct()
-    {
-        $this->createdAt = new DateTime();
-    }
+    private $temp;
 
     /**
      * Get id
@@ -71,11 +72,6 @@ class Image implements ImageInterface
     public function getFile()
     {
         return $this->file;
-    }
-
-    public function setFile(SplFileInfo $file)
-    {
-        $this->file = $file;
     }
 
     public function hasPath()
@@ -113,74 +109,128 @@ class Image implements ImageInterface
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image path
+        if (is_file($this->getAbsolutePath())) {
+            // store the old name to delete after the update
+            $this->temp = $this->getAbsolutePath();
+            //$this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
+    }
+
     public function getAbsolutePath()
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->path;
+            : $this->getUploadRootDir().'/'.$this->id.'.'.$this->path;
     }
 
     public function getWebPath()
     {
-        if ( !$this->isExternalImage()){
-            return null === $this->path
-                ? null
-                : $this->getUploadDir().'/'.$this->path;
-        }else{
-            return null === $this->path
-                ? null
-                : $this->path;
-        }
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->getFilename();
     }
 
-    public function isExternalImage()
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
     {
-        if ( file_exists($this->getAbsolutePath())){
-            return false;
-        }else{
-            return true;
+        if (null !== $this->getFile()) {
+            $this->path = $this->getFile()->guessExtension();
         }
     }
 
     protected function getUploadRootDir()
     {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        $uploadDir = new \SplFileInfo(__DIR__.'/../../../../web/'.$this->getUploadDir());
+        if (!$uploadDir->isDir()){
+            //if there is no dir create one
+            mkdir($uploadDir, 0755, true);
+        }
+
+        if ($uploadDir->isWritable()) {
+            return $uploadDir->getRealPath();
+        } else {
+            throw new \Exception('Upload directory not found');
+        }
     }
 
-    protected function getUploadDir()
+    /**
+     * @ORM\PreRemove()
+     */
+    public function storeFilenameForRemove()
     {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads';
+        $this->temp = $this->getAbsolutePath();
     }
 
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
     public function upload()
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
-            $this->path = '';
             return;
         }
 
-        if (method_exists($this->getFile(), 'getClientOriginalName')){
-            $new_file_name = time().'_'.$this->getFile()->getClientOriginalName();
-        }else{
-            $new_file_name = time().'_.jpg';
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->temp);
+            // clear the temp image path
+            $this->temp = null;
         }
 
-        // move takes the target directory and then the
-        // target filename to move to
+        // you must throw an exception here if the file cannot be moved
+        // so that the entity is not persisted to the database
+        // which the UploadedFile move() method does
         $this->getFile()->move(
             $this->getUploadRootDir(),
-            $new_file_name
+            $this->id.'.'.$this->getFile()->guessExtension()
         );
 
-        // set the path property to the filename where you've saved the file
-        $this->path = $new_file_name;
+        $this->setFile(null);
+    }
 
-        // clean up the file property as you won't need it anymore
-        $this->file = null;
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if (isset($this->temp)) {
+            unlink($this->temp);
+        }
+    }
+
+    public function fileExists()
+    {
+        if (file_exists($this->getAbsolutePath())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function __toString()
+    {
+        return ($this->path === null) ? '' : $this->path;
+    }
+
+    public function getFilename()
+    {
+        return $this->id.'.'.$this->path;
     }
 }

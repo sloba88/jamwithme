@@ -10,6 +10,7 @@ use Jam\CoreBundle\Model\Image as BaseImage;
  *
  * @ORM\Table(name="user_images")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
  */
 class UserImage extends BaseImage
 {
@@ -21,41 +22,11 @@ class UserImage extends BaseImage
     private $user;
 
     /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_default", type="boolean")
-     */
-    private $isDefault = false;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
     private $type;
-
-    /**
-     * Set isDefault
-     *
-     * @param boolean $isDefault
-     * @return Ad
-     */
-    public function setIsDefault($isDefault)
-    {
-        $this->isDefault = $isDefault;
-
-        return $this;
-    }
-
-    /**
-     * Get isDefault
-     *
-     * @return boolean
-     */
-    public function getIsDefault()
-    {
-        return $this->isDefault;
-    }
 
     /**
      * Set user
@@ -101,5 +72,12 @@ class UserImage extends BaseImage
     public function getType()
     {
         return $this->type;
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/images/'.$this->user->getId();
     }
 }

@@ -121,7 +121,7 @@ class User extends BaseUser
     /**
      * @var collection
      *
-     * @ORM\OneToMany(targetEntity="Jam\UserBundle\Entity\UserImage", mappedBy="user", cascade={"all"} )
+     * @ORM\OneToMany(targetEntity="Jam\UserBundle\Entity\UserImage", mappedBy="user")
      */
     private $images;
 
@@ -701,7 +701,7 @@ class User extends BaseUser
     public function getAvatar()
     {
         if ($this->avatar){
-            return 'uploads/avatars/'.$this->getId().'/'.$this->avatar;
+            return 'uploads/avatars/'.$this->avatar;
         }else{
             if ($this->getGender() == 2) {
                 return 'assets/images/placeholder-user-girl.png';

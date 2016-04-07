@@ -135,19 +135,19 @@ class DefaultController extends Controller
 
         $userImage = new UserImage();
         $userImage->setFile($file);
-        $user->addImage($userImage);
-
-        $this->resizeImage($userImage, $request->request->all());
+        $userImage->setUser($this->getUser());
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
+        $em->persist($userImage);
+        $em->flush();
+
+        $userImage = $this->resizeImage($userImage, $request->request->all());
         $em->flush();
 
         $response->setData(array(
             'files' => array(
                 'thumbnailUrl' => $this->get('liip_imagine.cache.manager')->getBrowserPath($userImage->getWebPath(), 'my_medium_'.$userImage->getType()),
                 'url' => '/' . $userImage->getWebPath(),
-                'name' => $userImage->getPath(),
                 'type' => $file->getClientMimeType(),
                 'size' => $file->getClientSize(),
                 'setAvatarUrl' => $this->generateUrl('set_avatar', array('id' => $userImage->getId())),
@@ -243,7 +243,7 @@ class DefaultController extends Controller
 
         $image->save($userImage->getAbsolutePath());
 
-        return $image;
+        return $userImage;
     }
 
     /**
@@ -258,29 +258,20 @@ class DefaultController extends Controller
             throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
         }
 
-        $allImages = $user->getImages();
+        $image = $this->getDoctrine()
+            ->getRepository('JamUserBundle:UserImage')
+            ->findOneBy(array(
+                'user' => $this->getUser(),
+                'id' => $id
+            ));
 
-        foreach($allImages as $image){
-            if ($image->getId() == $id){
-                $user->setAvatar($image->getPath());
-                //from $image->getAbsolutePath();
-                //to
+        if ($image) {
+            $user->setAvatar($image->getFilename());
 
-                $fs = new Filesystem();
-                if (!$fs->exists('uploads/avatars/'.$user->getId())){
-
-                    try {
-                        $fs->mkdir('uploads/avatars/'.$user->getId());
-                    } catch (IOException $e) {
-                        $this->get('translator')->trans('message.an.error.occurred.while.creating.your.directory.at').$e->getPath();
-                    }
-                }
-
-                $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$user->getId().'/'.$image->getPath());
-            }
+            $fs = new Filesystem();
+            $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$image->getFilename());
         }
 
-        //move file also to different folder
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);

@@ -11,15 +11,14 @@
 
 namespace Jam\CoreBundle\Model;
 
-use SplFileInfo;
-use DateTime;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface ImageInterface extends TimestampableInterface
 {
     public function getId();
     public function hasFile();
     public function getFile();
-    public function setFile(SplFileInfo $file);
+    public function setFile(UploadedFile $file);
     public function getPath();
     public function setPath($path);
 }
