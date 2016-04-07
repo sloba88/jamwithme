@@ -170,6 +170,13 @@ function filterShouts() {
 
 $(function() {
 
+    if(typeof(Storage) !== 'undefined') {
+        // Code for localStorage/sessionStorage.
+        if (localStorage.distance) {
+            $('#search_form_distance').val(localStorage.distance);
+        }
+    }
+
     $('#map-view').on('click', function(){
         delay(function(){
             if (initializedMap === false ){
@@ -284,13 +291,6 @@ $(function() {
             }
         });
     });
-
-    if(typeof(Storage) !== 'undefined') {
-        // Code for localStorage/sessionStorage.
-        if (localStorage.distance) {
-            $('#search_form_distance').val(localStorage.distance);
-        }
-    }
 
     //activates slider
     $('#filter-by-distance-slider').slider({
