@@ -464,6 +464,8 @@
         '@JamWebBundle/Resources/public/js/helpers.js'
         'assets/js/templates.js'
         'assets/js/screenfull.js'
+        'assets/js/main.js'
+        'assets/js/messaging.js'
         filter='?uglifyjs2'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -488,13 +490,6 @@
     {% block bottomstylesheets %}{% endblock %}
 
     {% block bottom_javascripts %}{% endblock %}
-
-    {% if is_granted("ROLE_USER") %}
-
-        <script src="{{ asset('assets/js/main.js') }}"></script>
-        <script src="{{ asset('assets/js/messaging.js') }}"></script>
-
-    {% endif %}
 
     <!-- Quantcast Tag -->
     <script type="text/javascript">
