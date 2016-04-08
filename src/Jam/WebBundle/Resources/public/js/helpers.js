@@ -45,6 +45,10 @@ window.onerror = function(message, url, lineNumber) {
 };
 
 function addMessage(type, message, temp) {
+    if ($('.fixed-alerts-container .alert').length > 4) {
+        return false;
+    }
+
     if (typeof temp == 'undefined') {
         temp = 'temp';
     } else {
@@ -55,13 +59,15 @@ function addMessage(type, message, temp) {
         type = 'danger';
     }
 
-    $('.fixed-alerts-container').append(window.JST.notificationTemplate({
+    var notification = $('<div/>').html(window.JST.notificationTemplate({
         type: type,
         message: message,
         temp: temp
-    }));
+    })).contents();
+
+    $('.fixed-alerts-container').prepend(notification);
     setTimeout(function() {
-        $('.fixed-alerts-container').children('.temp:last').alert('close');
+        notification.alert('close');
     }, 4000);
 
     return true;

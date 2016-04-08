@@ -615,18 +615,15 @@ $(function() {
         });
     });
 
-    /*
+
     $(document).on('keyup', '#shout_text', function(){
-        var self = $(this);
         var value = $(this).val();
 
-        value = value.replace(/(?:https?|ftp):\/\/[\n\S]+/g, function(text){
-            //console.log(text);
-            self.val(value.replace(text, ''));
-            addMessage(false, 'Links are not permitted here.');
-        });
+        if (value.length === 250) {
+            addMessage('info', 'Maximum length of shout reached.');
+        }
     });
-    */
+
 
     $(document).on('click', '.remove-shout', function(e){
         var element = $(e.currentTarget);

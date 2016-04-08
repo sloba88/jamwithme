@@ -162,7 +162,7 @@ class Shout
         $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 
         if(preg_match($reg_exUrl, $this->text, $url)) {
-            return preg_replace($reg_exUrl, "<a href=" .$url[0] .">" .$url[0] ."</a> ", $this->text);
+            return preg_replace($reg_exUrl, "<a href=" .$url[0] ." target='blank'>" .$url[0] ."</a> ", $this->text);
         } else {
             return $this->text;
         }
