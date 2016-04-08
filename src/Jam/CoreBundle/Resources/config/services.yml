@@ -13,6 +13,8 @@ services:
         class: Jam\CoreBundle\Services\SearchMusicians
         calls:
             - [setElasticUserFinder, ["@fos_elastica.finder.searches.compatibility"]]
+            - [setGenreFinder, ["@fos_elastica.finder.searches.genres"]]
+            - [setInstrumentFinder, ["@fos_elastica.finder.searches.instruments"]]
             - [setTokenStorage, ["@security.token_storage"]]
             - [setTracker, ["@happyr.google.analytics.tracker"]]
 

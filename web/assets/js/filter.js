@@ -22,6 +22,7 @@ var loadMoreResults = true;
 var loadMoreShoutsResults = true;
 var page = 1;
 var shoutsPage = 1;
+var filterRunning = false;
 
 function renderGridView(data) {
 
@@ -29,7 +30,7 @@ function renderGridView(data) {
         $('.people-listing-grid').append(window.JST.musicianBoxTemplate(v));
     });
 
-    if (data.length === 0 && loadMoreResults === false && ($('input.filter-genres').val() !== '' || $('input.filter-instruments').val() !== '') ){
+    if (loadMoreResults === false && ($('input.filter-genres').val() !== '' || $('input.filter-instruments').val() !== '') ){
         $('.people-listing-grid').append('<div class="subscribe-info-search"><div class="alert alert-info" role="alert">Didn\'t find what you searched for? We can let you know when people with this profile join. </div><a href="#" class="btn btn-primary" id="subscribeToSearch"><i class="fa fa-envelope"></i> Subscribe for this search criteria</a></div>');
     }
 
@@ -95,23 +96,34 @@ function filterMusicians(){
         $('.people-listing-grid').html('').addClass('loading-content');
     }
 
+    if (filterRunning) {
+        return false;
+    }
+
     if (_user.temporaryLocation === '1'){
         return false;
     }
 
-    $.ajax({
+    filterRunning = $.ajax({
         url: Routing.generate('musicians_find'),
         data: getFilterData() + '&page='+page
     }).done(function( result ) {
+        filterRunning = false;
         if (result.status == 'success') {
             filterResults = filterResults.concat(result.data);
             if (result.data.length !== 0) {
-                page ++;
-                loadMoreResults = true;
 
-                if (page === 2) {
-                    //just in case load another page
-                    filterMusicians();
+                if (result.finalResults === false) {
+                    //load another page if the results are
+                    page ++;
+                    loadMoreResults = true;
+
+                    if (page == 2) {
+                        //load second page just in case
+                        filterMusicians();
+                    }
+                }else {
+                    loadMoreResults = false;
                 }
 
             } else {
@@ -217,7 +229,8 @@ $(function() {
     }).done(function( result ) {
         $('.filter-genres').select2({
             data: result,
-            multiple: true
+            multiple: true,
+            matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
         });
     });
 
@@ -227,7 +240,8 @@ $(function() {
     }).done(function( result ) {
         $('.filter-instruments').select2({
             data: result,
-            multiple: true
+            multiple: true,
+            matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
         });
     });
 

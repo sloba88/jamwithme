@@ -4,6 +4,7 @@ namespace Jam\CoreBundle\Services;
 
 use Elastica\Filter\Bool;
 use Elastica\Filter\BoolNot;
+use Elastica\Filter\BoolOr;
 use Elastica\Filter\Ids;
 use Elastica\Filter\Nested;
 use Elastica\Filter\Term;
@@ -29,6 +30,16 @@ class SearchMusicians {
     private $elasticUserFinder;
 
     /**
+     * @var TransformedFinder
+     */
+    private $genreFinder;
+
+    /**
+     * @var TransformedFinder
+     */
+    private $instrumentFinder;
+
+    /**
      * @var Tracker
      */
     private $tracker;
@@ -39,6 +50,22 @@ class SearchMusicians {
     public function setElasticUserFinder(TransformedFinder $finder)
     {
         $this->elasticUserFinder = $finder;
+    }
+
+    /**
+     * @param TransformedFinder $finder
+     */
+    public function setGenreFinder(TransformedFinder $finder)
+    {
+        $this->genreFinder = $finder;
+    }
+
+    /**
+     * @param TransformedFinder $finder
+     */
+    public function setInstrumentFinder(TransformedFinder $finder)
+    {
+        $this->instrumentFinder = $finder;
     }
 
     public function setTokenStorage(TokenStorage $tokenStorage)
@@ -89,11 +116,34 @@ class SearchMusicians {
         $elasticaQuery = new MatchAll();
 
         if ($search->getGenres() != ''){
-            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.genres.genre.id', explode(",", $search->getGenres())), $elasticaQuery);
+
+            $genres = $this->genreFinder->find(str_replace("genres", "id", $search->getGenres()));
+            $boolFilter = new BoolOr();
+
+            foreach($genres AS $d) {
+                if ($d->getCategory()->getName() == $d->getName()) {
+                    //if its also the name of category check category
+                    $boolFilter->addFilter(new Terms('musician2.genres.genre.category.id', array($d->getCategory()->getId())));
+                }
+            }
+
+            $boolFilter->addFilter(new Terms('musician2.genres.genre.id', explode(",", $search->getGenres())));
+            $elasticaQuery = $this->addToNestedFilter($boolFilter, $elasticaQuery);
         }
 
         if ($search->getInstruments() != ''){
-            $elasticaQuery = $this->addToNestedFilter(new Terms('musician2.instruments.instrument.id', explode(",", $search->getInstruments())), $elasticaQuery);
+            $instruments = $this->instrumentFinder->find(str_replace("instruments", "id", $search->getInstruments()));
+            $boolFilter = new BoolOr();
+
+            foreach($instruments AS $d) {
+                if ($d->getCategory()->getName() == $d->getName() || ($d->getCategory()->getName() == 'Strings' && $d->getName() == 'Guitar')) {
+                    //if its also the name of category check category
+                    $boolFilter->addFilter(new Terms('musician2.instruments.instrument.category.id', array($d->getCategory()->getId())));
+                }
+            }
+
+            $boolFilter->addFilter(new Terms('musician2.instruments.instrument.id', explode(",", $search->getInstruments())));
+            $elasticaQuery = $this->addToNestedFilter($boolFilter, $elasticaQuery);
         }
 
         if ($search->getIsTeacher()){

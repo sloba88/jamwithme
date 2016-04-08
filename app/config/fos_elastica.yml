@@ -56,10 +56,12 @@ fos_elastica:
                                     type: "object"
                                     properties:
                                         genre.id: ~
+                                        genre.category.id: ~
                                 instruments:
                                     type: "object"
                                     properties:
                                         instrument.id:
+                                        instrument.category.id: ~
                                 isTeacher:
                                     type: "boolean"
                                 isJammer:
@@ -84,6 +86,30 @@ fos_elastica:
                     persistence:
                         driver: orm
                         model: Jam\CoreBundle\Entity\Shout
+                        provider: ~
+                        listener: ~
+                        finder: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+                genres:
+                    mappings:
+                        id: ~
+                        category.id: ~
+                    persistence:
+                        driver: orm
+                        model: Jam\CoreBundle\Entity\Genre
+                        provider: ~
+                        listener: ~
+                        finder: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
+                instruments:
+                    mappings:
+                        id: ~
+                        category.id: ~
+                    persistence:
+                        driver: orm
+                        model: Jam\CoreBundle\Entity\Instrument
                         provider: ~
                         listener: ~
                         finder: ~

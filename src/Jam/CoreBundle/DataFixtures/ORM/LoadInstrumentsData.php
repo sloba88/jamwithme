@@ -53,10 +53,10 @@ class LoadInstrumentsData implements FixtureInterface, ContainerAwareInterface
                         $language = $cell->getValue();
                     } else if ($k==2) {
                         //its category
-                        $instrumentCategory->setName($cell->getValue());
+                        $instrumentCategory->setName(trim($cell->getValue()));
                     } else {
                         $instrument = new Instrument();
-                        $instrument->setName($cell->getValue());
+                        $instrument->setName(trim($cell->getValue()));
                         $instrument->setCategory($instrumentCategory);
 
                         $cIndex = $column->getColumnIndex();

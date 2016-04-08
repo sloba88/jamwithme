@@ -46,11 +46,11 @@ class LoadGenresData implements FixtureInterface, ContainerAwareInterface
                     $k++;
 
                     if ($k==1) {
-                        $genreCategory->setName($cell->getValue());
+                        $genreCategory->setName(trim($cell->getValue()));
                     }
 
                     $genre = new Genre();
-                    $genre->setName($cell->getValue());
+                    $genre->setName(trim($cell->getValue()));
                     $genre->setCategory($genreCategory);
                     $manager->persist($genre);
 
