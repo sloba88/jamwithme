@@ -9335,13 +9335,25 @@ header {
 .page-dashboard .shouts-sidebar .sidebar-inner {
   border-right: 1px solid #41404f;
 }
+/* line 12, ../../sass/jamifind/_sidebar.scss */
+.sidebar-inner .application-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 10px;
+  color: gray;
+  font-size: 10px;
+  width: 100%;
+  text-align: center;
+}
 
-/* line 13, ../../sass/jamifind/_sidebar.scss */
+/* line 25, ../../sass/jamifind/_sidebar.scss */
 .sidebar {
   padding-right: 0;
 }
 @media only screen and (max-width: 991px) {
-  /* line 13, ../../sass/jamifind/_sidebar.scss */
+  /* line 25, ../../sass/jamifind/_sidebar.scss */
   .sidebar {
     -moz-transition: left 0.1s linear;
     -o-transition: left 0.1s linear;
@@ -9357,7 +9369,7 @@ header {
     width: 160px;
     z-index: 200;
   }
-  /* line 30, ../../sass/jamifind/_sidebar.scss */
+  /* line 42, ../../sass/jamifind/_sidebar.scss */
   .sidebar:after {
     -moz-transition: left 0.1s linear;
     -o-transition: left 0.1s linear;
@@ -9371,86 +9383,86 @@ header {
     top: 70px;
     z-index: -1;
   }
-  /* line 41, ../../sass/jamifind/_sidebar.scss */
+  /* line 53, ../../sass/jamifind/_sidebar.scss */
   .sidebar.is-active {
     left: -1px;
   }
-  /* line 44, ../../sass/jamifind/_sidebar.scss */
+  /* line 56, ../../sass/jamifind/_sidebar.scss */
   .sidebar.is-active:after {
     position: fixed;
     left: 159px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 51, ../../sass/jamifind/_sidebar.scss */
+  /* line 63, ../../sass/jamifind/_sidebar.scss */
   .sidebar .sidebar-inner {
     background: none;
   }
 }
-/* line 57, ../../sass/jamifind/_sidebar.scss */
+/* line 69, ../../sass/jamifind/_sidebar.scss */
 .sidebar .profile-info {
   border-bottom: 1px solid #41404f;
   padding: 15px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 57, ../../sass/jamifind/_sidebar.scss */
+  /* line 69, ../../sass/jamifind/_sidebar.scss */
   .sidebar .profile-info {
     padding: 15px 5px;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 57, ../../sass/jamifind/_sidebar.scss */
+  /* line 69, ../../sass/jamifind/_sidebar.scss */
   .sidebar .profile-info {
     padding: 15px;
   }
 }
-/* line 67, ../../sass/jamifind/_sidebar.scss */
+/* line 79, ../../sass/jamifind/_sidebar.scss */
 .sidebar .profile-info .user-image {
   margin-left: 10%;
   width: 76px;
   background-color: #fff;
 }
-/* line 73, ../../sass/jamifind/_sidebar.scss */
+/* line 85, ../../sass/jamifind/_sidebar.scss */
 .sidebar .profile-info .user-name {
   color: #fff;
   margin: 25px 0 10px;
   overflow: hidden;
   text-align: left;
 }
-/* line 81, ../../sass/jamifind/_sidebar.scss */
+/* line 93, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-nav,
 .sidebar .sidebar-logout {
   padding: 25px 0 15px 15px;
 }
-/* line 86, ../../sass/jamifind/_sidebar.scss */
+/* line 98, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-logout {
   bottom: 0;
   position: absolute;
 }
 @media only screen and (max-width: 767px) {
-  /* line 86, ../../sass/jamifind/_sidebar.scss */
+  /* line 98, ../../sass/jamifind/_sidebar.scss */
   .sidebar .sidebar-logout {
     margin-bottom: 0;
     padding-bottom: 0;
     position: relative;
   }
 }
-/* line 96, ../../sass/jamifind/_sidebar.scss */
+/* line 108, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-nav {
   border-bottom: 1px solid #41404f;
 }
-/* line 100, ../../sass/jamifind/_sidebar.scss */
+/* line 112, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list {
   padding: 0;
 }
-/* line 103, ../../sass/jamifind/_sidebar.scss */
+/* line 115, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li {
   border-right: 5px solid transparent;
   list-style: none;
   margin-bottom: 25px;
   padding-right: 10px;
 }
-/* line 109, ../../sass/jamifind/_sidebar.scss */
+/* line 121, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li a {
   color: #fff;
   display: block;
@@ -9459,11 +9471,11 @@ header {
   position: relative;
   text-transform: uppercase;
 }
-/* line 117, ../../sass/jamifind/_sidebar.scss */
+/* line 129, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li a:focus {
   text-decoration: none;
 }
-/* line 121, ../../sass/jamifind/_sidebar.scss */
+/* line 133, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li a .badge {
   background: #fff;
   border-radius: 0;
@@ -9476,7 +9488,7 @@ header {
   position: absolute;
   top: -5px;
 }
-/* line 137, ../../sass/jamifind/_sidebar.scss */
+/* line 149, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li:hover a {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -9485,19 +9497,19 @@ header {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 144, ../../sass/jamifind/_sidebar.scss */
+/* line 156, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li.active {
   border-right: 5px solid #fabc09;
 }
-/* line 147, ../../sass/jamifind/_sidebar.scss */
+/* line 159, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li.active a {
   color: #fabc09;
 }
-/* line 152, ../../sass/jamifind/_sidebar.scss */
+/* line 164, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list li.last {
   margin-bottom: 0;
 }
-/* line 157, ../../sass/jamifind/_sidebar.scss */
+/* line 169, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .dashboard {
   background-position: 0 -219px;
 }
@@ -9505,15 +9517,15 @@ header {
 .sidebar .sidebar-list .dashboard:active, .sidebar .sidebar-list .dashboard.icon-dashboard-active {
   background-position: 0 -173px;
 }
-/* line 160, ../../sass/jamifind/_sidebar.scss */
+/* line 172, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active {
   background-position: 0 -173px;
 }
-/* line 169, ../../sass/jamifind/_sidebar.scss */
+/* line 181, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .teachers:hover svg, .sidebar .sidebar-list .teachers.active svg {
   fill: #fabc09;
 }
-/* line 174, ../../sass/jamifind/_sidebar.scss */
+/* line 186, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .teachers svg {
   fill: gray;
   float: left;
@@ -9521,15 +9533,15 @@ header {
   position: relative;
   width: 23px;
 }
-/* line 183, ../../sass/jamifind/_sidebar.scss */
+/* line 195, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .shouts {
   background-position: 0 -357px;
 }
-/* line 186, ../../sass/jamifind/_sidebar.scss */
+/* line 198, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active {
   background-position: 0 -455px;
 }
-/* line 191, ../../sass/jamifind/_sidebar.scss */
+/* line 203, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .profile {
   background-position: 0 -938px;
 }
@@ -9537,11 +9549,11 @@ header {
 .sidebar .sidebar-list .profile:active, .sidebar .sidebar-list .profile.icon-profile-active {
   background-position: 0 -892px;
 }
-/* line 194, ../../sass/jamifind/_sidebar.scss */
+/* line 206, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active {
   background-position: 0 -892px;
 }
-/* line 199, ../../sass/jamifind/_sidebar.scss */
+/* line 211, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .events {
   background-position: 0 -311px;
 }
@@ -9549,11 +9561,11 @@ header {
 .sidebar .sidebar-list .events:active, .sidebar .sidebar-list .events.icon-events-active {
   background-position: 0 -265px;
 }
-/* line 202, ../../sass/jamifind/_sidebar.scss */
+/* line 214, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active {
   background-position: 0 -265px;
 }
-/* line 207, ../../sass/jamifind/_sidebar.scss */
+/* line 219, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages {
   background-position: 0 -847px;
 }
@@ -9561,15 +9573,15 @@ header {
 .sidebar .sidebar-list .messages:active, .sidebar .sidebar-list .messages.icon-messages-active {
   background-position: 0 -805px;
 }
-/* line 210, ../../sass/jamifind/_sidebar.scss */
+/* line 222, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active {
   background-position: 0 -805px;
 }
-/* line 213, ../../sass/jamifind/_sidebar.scss */
+/* line 225, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .messages:hover .badge, .sidebar .sidebar-list .messages.active .badge {
   background: #fabc09;
 }
-/* line 219, ../../sass/jamifind/_sidebar.scss */
+/* line 231, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings {
   background-position: 0 -1030px;
 }
@@ -9577,24 +9589,24 @@ header {
 .sidebar .sidebar-list .settings:active, .sidebar .sidebar-list .settings.icon-settings-active {
   background-position: 0 -984px;
 }
-/* line 222, ../../sass/jamifind/_sidebar.scss */
+/* line 234, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active {
   background-position: 0 -984px;
 }
-/* line 231, ../../sass/jamifind/_sidebar.scss */
+/* line 243, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends:hover i, .sidebar .sidebar-list .invite-friends.active i {
   color: #fabc09;
 }
-/* line 236, ../../sass/jamifind/_sidebar.scss */
+/* line 248, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends a {
   padding-left: 0;
 }
-/* line 240, ../../sass/jamifind/_sidebar.scss */
+/* line 252, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends i {
   padding-right: 12px;
   color: #666;
 }
-/* line 246, ../../sass/jamifind/_sidebar.scss */
+/* line 258, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout {
   background-position: 0 -650px;
 }
@@ -9602,7 +9614,7 @@ header {
 .sidebar .sidebar-list .logout:active, .sidebar .sidebar-list .logout.icon-logout-active {
   background-position: 0 -606px;
 }
-/* line 249, ../../sass/jamifind/_sidebar.scss */
+/* line 261, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active {
   background-position: 0 -606px;
 }
