@@ -35,6 +35,7 @@ function timer() {
     document.getElementById('shoutCountdown').innerHTML = hours + ':' + minutes + ':' + seconds;
     $('.shouts-countdown-container').removeClass('hidden');
     $('#shoutForm').addClass('hidden');
+    $('#shoutsFeed h3').addClass('hidden');
 
     return _count;
 }
@@ -52,6 +53,7 @@ function checkCanShout(){
                 } else {
                     clearInterval(_counter);
                     $('#shoutForm').removeClass('hidden');
+                    $('#shoutsFeed h3').removeClass('hidden');
                     $('.shouts-countdown-container').addClass('hidden');
                 }
             }

@@ -9721,7 +9721,7 @@ header {
 /* line 99, ../../sass/jamifind/_shouts.scss */
 .shouts-feed .shouts-countdown-container {
   color: #fff;
-  padding: 45px 0 0 30px;
+  padding: 15px 0 0 30px;
   text-transform: uppercase;
 }
 /* line 105, ../../sass/jamifind/_shouts.scss */
@@ -9847,13 +9847,6 @@ header {
 /* line 218, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container p:last-child {
   margin-bottom: 5px;
-}
-
-@media only screen and (min-width: 768px) {
-  /* line 226, ../../sass/jamifind/_shouts.scss */
-  .page-dashboard .shouts-feed {
-    min-height: 203px;
-  }
 }
 
 @media only screen and (max-width: 767px) {

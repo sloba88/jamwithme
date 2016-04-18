@@ -98,7 +98,7 @@
 
   .shouts-countdown-container {
     color: #fff;
-    padding: 45px 0 0 30px;
+    padding: 15px 0 0 30px;
     text-transform: uppercase;
   }
 
@@ -225,7 +225,7 @@
 
   .shouts-feed {
     @include respond-to(nonHandhelds) {
-      min-height: 203px;
+      //min-height: 203px;
     }
   }
 }
