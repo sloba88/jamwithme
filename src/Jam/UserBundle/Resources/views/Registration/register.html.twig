@@ -5,7 +5,7 @@
 {% block fos_user_content %}
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
-    <section id="register-home" style="background: #8FA1C9 url({{ asset('assets/images/background-dashboard-1.jpg') }}) center top no-repeat">
+    <section id="register-home" data-type="background" data-speed="10">
         <div class="container">
 
             <div class="row">
@@ -104,7 +104,7 @@
         </div>
     </section>
 
-    <section id="map-home" style="background: url({{ asset('assets/images/mapa3.jpg')}}) center center no-repeat">
+    <section id="map-home">
         <div class="container mapContent">
             <h2>Find fellow musicians or new band members near you</h2>
             <h4 class="subtitle">Searching for the perfect bass player for your band? Looking for the right guitar teacher? Meet them on <strong>Jamifind.</strong></h4>

@@ -134,12 +134,6 @@ body.login-page {
 /*****head ends*****/
 
 /**** map ****/
-#map-home {
-	background: #8FA1C9 url(../images/map2.jpg) center -56px no-repeat;
-	min-height: 700px;
-	overflow: hidden;
-	position: relative;
-}
 
 #map-home .container {
 	margin: 0 auto;
@@ -406,10 +400,19 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 }
 
 #register-home {
+	background: url(../../assets/images/background-dashboard-1.jpg) 50% 0 repeat fixed;
 	background-size: cover !important;
 	min-height: 700px;
 	overflow: hidden;
 }
+
+#map-home {
+	background: #8FA1C9 url(../../assets/images/mapa3.jpg) 50% 0 no-repeat;
+	min-height: 700px;
+	overflow: hidden;
+	position: relative;
+}
+
 #multimedia-home {
 	background: url(../images/media-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
