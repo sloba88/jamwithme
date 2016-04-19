@@ -322,6 +322,34 @@
             font-family: "CooperHewitt Bold";
         }
 
+        .nav-language #langaugeMenuHome{
+            font-size: 12px;
+            background: none;
+            color: #a7a7af;
+        }
+
+        .nav-language ul.dropdown-menu {
+            background-color: #000;
+            padding: 0;
+            min-width: auto;
+        }
+
+        .nav-language ul.dropdown-menu li{
+            margin: 0;
+            display: block;
+            padding: 2px 10px;
+        }
+
+        .nav-language ul.dropdown-menu li a {
+            font-size: 14px;
+            color: #a7a7af;
+        }
+
+        .nav-language .dropdown-menu > .active > a, .nav-language .dropdown-menu > .active > a:hover, .nav-language .dropdown-menu > .active > a:focus {
+            background: none;
+            color: #fff;
+        }
+
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -427,6 +455,18 @@
                                 <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
+                                <li class="nav-language">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="langaugeMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            {{ app.session.get('_locale') }}
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="langaugeMenuHome">
+                                            <li {% if app.session.get('_locale') == 'en' %} class="active" {% endif %}><a href="{{ path('home') }}?lang=en">English</a></li>
+                                            <li {% if app.session.get('_locale') == 'fi' %} class="active" {% endif %}><a href="{{ path('home') }}?lang=fi">Finnish</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
