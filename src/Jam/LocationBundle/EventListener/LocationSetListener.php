@@ -47,7 +47,7 @@ class LocationSetListener {
                 //not authenticated
                 //get country to set up language
 
-                if ($event->getRequestType() == 1 && !$request->query->get('lang')) {
+                if ($event->getRequestType() == 1 && !$request->query->get('lang') && !$request->getSession()->get('geolocationGuessTried')) {
                     $location = $this->geoCheckIP($ip);
                     if ($location->getCountry() == 'Finland') {
                         $request->getSession()->set('_locale', 'fi');
@@ -56,6 +56,8 @@ class LocationSetListener {
                         $request->getSession()->set('_locale', 'en');
                         $request->setLocale($request->getSession()->get('_locale', 'en'));
                     }
+
+                    $request->getSession()->set('geolocationGuessTried', true);
                 }
             }
         }

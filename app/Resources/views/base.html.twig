@@ -288,6 +288,11 @@
             font-size: 23px;
         }
 
+        .login-page-user .main-content {
+            background-color: #fff;
+            padding: 10px 0;
+        }
+
         .page-settings .btn-save + i:lang(fi) {
             right: 86px;
         }
@@ -320,6 +325,11 @@
             margin: 10px 0 0 0;
             font-size: 14px;
             font-family: "CooperHewitt Bold";
+        }
+
+        .nav-language {
+            position: relative;
+            top: -4px;
         }
 
         .nav-language #langaugeMenuHome{
@@ -462,8 +472,8 @@
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="langaugeMenuHome">
-                                            <li {% if app.session.get('_locale') == 'en' %} class="active" {% endif %}><a href="{{ path('home') }}?lang=en">English</a></li>
-                                            <li {% if app.session.get('_locale') == 'fi' %} class="active" {% endif %}><a href="{{ path('home') }}?lang=fi">Finnish</a></li>
+                                            <li {% if app.session.get('_locale') == 'en' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route')|default('home'), app.request.attributes.get('_route_params')|default([])|merge({'lang': 'en'})) }}">English</a></li>
+                                            <li {% if app.session.get('_locale') == 'fi' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route')|default('home'), app.request.attributes.get('_route_params')|default([])|merge({'lang': 'fi'})) }}">Finnish</a></li>
                                         </ul>
                                     </div>
                                 </li>

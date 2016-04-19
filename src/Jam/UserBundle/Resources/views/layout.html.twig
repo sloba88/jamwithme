@@ -4,7 +4,7 @@
 
 {% set bodyclass = "" %}
 {% if not is_granted("ROLE_USER") %}
-    {% set bodyclass = "login-page-user" %}
+    {% set bodyclass = "login-page-user login-page" %}
 {% endif %}
 
 {% block bodyclasses %}{{ bodyclass }}{% endblock %}
