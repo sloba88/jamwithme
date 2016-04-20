@@ -316,9 +316,9 @@ class DefaultController extends Controller
      */
     public function resetEmailAction()
     {
-        //currently forbid changing of emails and enable this only when user doesn't have email set for some reason
+        //currently forbid changing of emails and enable this only when user doesn't have valid email set for some reason
 
-        if ($this->getUser()->getEmail() != '') {
+        if (filter_var($this->getUser()->getEmail(), FILTER_VALIDATE_EMAIL)) {
             $redirect = new RedirectResponse($this->generateUrl('home'));
             return $redirect;
         }
