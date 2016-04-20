@@ -210,27 +210,16 @@ class SoundcloudConnector {
         if ($avatarUrl !== '' && $avatarUrl !== null) {
 
             //TODO: this is duplicate
-            $test = '/tmp/tmp.jpeg';
+            $test = '/tmp/'.$user->getId().'.jpeg';
 
             $picture = file_get_contents($avatarUrl);
             file_put_contents($test, $picture);
 
             $fs = new Filesystem();
-            if (!$fs->exists('uploads/avatars/'.$user->getId())){
-
-                try {
-                    $fs->mkdir('uploads/avatars/'.$user->getId());
-                } catch (IOException $e) {
-                    echo "An error occurred while creating your directory at ".$e->getPath();
-                }
-            }
-
-            $fs->copy($test, 'uploads/avatars/'.$user->getId().'/'.$user->getId().'.jpeg');
+            $fs->copy($test, 'uploads/avatars/'.$user->getId().'.jpeg');
 
             $user->setAvatar($user->getId().'.jpeg');
-
         }
-
     }
 
 }
