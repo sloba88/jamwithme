@@ -29,7 +29,12 @@ class RegistrationFormType extends BaseType
             'invalid_message' => 'fos_user.password.mismatch',
             'first_options' => array(
                 'attr' => array(
-                    'placeholder' => 'label.password'
+                    'placeholder' => 'label.password',
+                    'pattern' => ".{8,}",
+                    'title' => 'Minimum 8 letters please',
+                    'data-toggle' => 'tooltip',
+                    'data-placement' => 'top',
+                    'data-trigger' => 'focus'
                 )
             ),
             'second_options' => array(
