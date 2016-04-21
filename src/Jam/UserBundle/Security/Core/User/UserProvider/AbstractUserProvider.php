@@ -22,29 +22,21 @@ abstract class AbstractUserProvider {
      * @param string $pictureUrl
      * @return UserInterface
      */
-    protected function setUserPicture(UserInterface $user, $pictureUrl)
+    protected function setUserPicture(UserInterface $user, $avatarUrl)
     {
-        if ($pictureUrl !== '' && $pictureUrl !== null ) {
 
-            $test = '/tmp/tmp.jpeg';
+        if ($avatarUrl !== '' && $avatarUrl !== null) {
 
-            $picture = file_get_contents($pictureUrl);
+            //TODO: this is duplicate
+            $test = '/tmp/'.$user->getId().'.jpeg';
+
+            $picture = file_get_contents($avatarUrl);
             file_put_contents($test, $picture);
 
             $fs = new Filesystem();
-            if (!$fs->exists('uploads/avatars/'.$user->getId())){
-
-                try {
-                    $fs->mkdir('uploads/avatars/'.$user->getId());
-                } catch (IOException $e) {
-                    echo "An error occurred while creating your directory at ".$e->getPath();
-                }
-            }
-
-            $fs->copy($test, 'uploads/avatars/'.$user->getId().'/'.$user->getId().'.jpeg');
+            $fs->copy($test, 'uploads/avatars/'.$user->getId().'.jpeg');
 
             $user->setAvatar($user->getId().'.jpeg');
-
         }
 
         return $user;
