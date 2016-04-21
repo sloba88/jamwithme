@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Elastica;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Jam\CoreBundle\Entity\Compatibility;
+use Jam\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Elastica\Filter\BoolNot;
 use Elastica\Query\Filtered;
@@ -59,6 +60,10 @@ class CompatibilityCalculator {
         $me = $this->tokenStorage->getToken()->getUser();
         $finder = $this->elasticaUsersFinder;
         $elasticaQuery = new MatchAll();
+
+        if (!$me instanceof User) {
+            return false;
+        }
 
         //get everyone in 50km radius
         if ($me->getLat()){
