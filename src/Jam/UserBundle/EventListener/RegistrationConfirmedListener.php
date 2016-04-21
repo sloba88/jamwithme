@@ -2,8 +2,8 @@
 
 namespace Jam\UserBundle\EventListener;
 
+use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Happyr\Google\AnalyticsBundle\Service\Tracker;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -32,7 +32,7 @@ class RegistrationConfirmedListener implements EventSubscriberInterface
         $this->mailer = $mailer;
     }
 
-    public function onRegistrationConfirmed(GetResponseUserEvent $event)
+    public function onRegistrationConfirmed(FilterUserResponseEvent $event)
     {
         /**
          * @var User
