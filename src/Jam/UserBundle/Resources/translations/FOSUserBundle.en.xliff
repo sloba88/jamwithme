@@ -42,7 +42,7 @@
       </trans-unit>
       <trans-unit id="5d2f7d85139f1298e0ff991af04994b6a1b805b4" resname="text.check_email">
         <source>text.check_email</source>
-        <target state="new">We have sent you an email with confirmation link, please click on that link in order to confirm your registration.</target>
+        <target state="new">We have sent you an email with confirmation link, please click on that link in order to confirm your registration. Make sure to also check spam folder.</target>
         <jms:reference-file line="6">views/Registration/checkEmail.html.twig</jms:reference-file>
       </trans-unit>
     </body>
