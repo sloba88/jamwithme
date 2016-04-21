@@ -13,6 +13,8 @@ class RegistrationConfirmedListener implements EventSubscriberInterface
 {
     private $tracker;
 
+    private $mailer;
+
     /**
      * {@inheritDoc}
      */
@@ -24,9 +26,10 @@ class RegistrationConfirmedListener implements EventSubscriberInterface
         );
     }
 
-    public function __construct(Tracker $tracker)
+    public function __construct(Tracker $tracker, \Swift_Mailer $mailer)
     {
         $this->tracker = $tracker;
+        $this->mailer = $mailer;
     }
 
     public function onRegistrationConfirmed(GetResponseUserEvent $event)
@@ -35,6 +38,16 @@ class RegistrationConfirmedListener implements EventSubscriberInterface
          * @var User
          */
         $user = $event->getUser();
+
+        // send email notification
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('New user joined Jamifind!')
+            ->setFrom('noreply@jamifind.com')
+            ->setTo('info@jamifind.com')
+            ->setBody('New user joined: '.$user->getEmail());
+
+        $this->mailer->send($message);
 
         /* send data to GA */
         $data = array(
