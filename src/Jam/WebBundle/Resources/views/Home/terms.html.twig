@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
+
+{% block body %}
+
+    <section class="col-sm-8 col-md-10 main-content">
+        <div class="main-content-inner">
+
+            <br />
+
+            <h1>Terms & Conditions</h1>
+
+            <div class="with-scrollbar" style="height: 500px; overflow: scroll">
+                {{ source('JamUserBundle::terms_' ~ app.request.session.get('_locale') ~ '.html.twig') }}
+            </div>
+
+            {% if is_granted("ROLE_USER") %}
+                <br />
+                <div class="col-md-4">
+                    <a href="{{ path('accept-terms') }}" class="btn btn-primary"><i class="fa fa-thumbs-o-up"></i> Accept</a>
+                </div>
+
+                <div class="col-md-4 pull-right">
+                    <a href="{{ path('fos_user_security_logout') }}" type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Deny</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

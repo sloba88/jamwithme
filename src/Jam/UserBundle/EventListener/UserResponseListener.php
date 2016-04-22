@@ -32,8 +32,6 @@ class UserResponseListener {
                 if (!filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
                     // email is not valid redirect to email reset page
 
-                    //echo $user->getEmail(). ' is not valid, you must enter valid email';exit;
-
                     $context = $this->router->getContext();
                     $routePath = $context->getPathInfo();
                     $routeInfo = $this->router->match($routePath);
@@ -44,10 +42,23 @@ class UserResponseListener {
                         $event->setResponse($response);
                     }
                 }
+
+                if ($user->getAcceptedTerms() == 0) {
+                    $route = 'terms';
+
+                    if (in_array($event->getRequest()->get('_route'), [$route, 'accept-terms'])) {
+                        return;
+                    }
+
+                    //if user didn't accept terms and conditions redirect him to terms page
+                    $response = new RedirectResponse($this->router->generate($route));
+                    $event->setResponse($response);
+                }
+
             }
         }
 
-        //return $response;
+        return $response;
     }
 
 }

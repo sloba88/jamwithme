@@ -439,18 +439,22 @@
 
                 {% if is_granted("ROLE_USER") %}
 
-                    <div class="col-xs-2 visible-xs visible-sm">
-                        <button class="btn search-toggle" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                    </div><!--search-toggle-->
+                    {% if app.user.acceptedTerms %}
 
-                    <div class="col-md-3 search-block-container">
-                        <div class="input-group search-block">
-                            <input type="text" id="autocomplete" class="form-control" placeholder="{{ 'label.search.users'|trans }}" autocomplete="off" />
-                            <span class="hidden-xs hidden-sm input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                            </span>
-                        </div><!-- /input-group -->
-                    </div><!--search-block-container-->
+                        <div class="col-xs-2 visible-xs visible-sm">
+                            <button class="btn search-toggle" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+
+                        <div class="col-md-3 search-block-container">
+                            <div class="input-group search-block">
+                                <input type="text" id="autocomplete" class="form-control" placeholder="{{ 'label.search.users'|trans }}" autocomplete="off" />
+                                <span class="hidden-xs hidden-sm input-group-btn">
+                                    <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+
+                    {% endif %}
 
                 {% else %}
                     <div class="col-xs-2 col-sm-push-4 col-md-push-5 col-md-1">

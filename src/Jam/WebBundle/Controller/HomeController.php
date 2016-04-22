@@ -28,4 +28,12 @@ class HomeController extends Controller
     public function inviteAction(Request $request)
     {
     }
+
+    /**
+     * @Route("/terms", name="terms", options={"expose"=true})
+     * @Template()
+     */
+    public function termsAction(Request $request)
+    {
+    }
 }
