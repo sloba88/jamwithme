@@ -23,7 +23,7 @@
       </trans-unit>
       <trans-unit id="e31699a7c55cf654b81d6a703e525006c8de56c4" resname="label.say.something.cool">
         <source>label.say.something.cool</source>
-        <target state="new">label.say.something.cool</target>
+        <target state="new">say something cool</target>
         <jms:reference-file line="16">Form/Type/ShoutType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a5bff9f6727c009d6fe65baa6081c9727f9bca30" resname="placeholder.filter.by.genres">

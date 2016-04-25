@@ -38,7 +38,7 @@
       </trans-unit>
       <trans-unit id="19c5fc98d504932a18c936c5b36086dde43818e5" resname="placeholder.url">
         <source>placeholder.url</source>
-        <target state="new">placeholder.url</target>
+        <target state="new">url</target>
         <jms:reference-file line="25">Form/Type/VideoType.php</jms:reference-file>
       </trans-unit>
     </body>
