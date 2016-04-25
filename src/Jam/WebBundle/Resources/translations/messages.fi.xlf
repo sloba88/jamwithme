@@ -245,7 +245,7 @@
       </trans-unit>
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
-        <target>Ulostaudu</target>
+        <target>Kirjaudu ulos</target>
         <jms:reference-file line="37">views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0bf01c17fb6b42805e77957dd0f00097d64e9a79" resname="text.map">
@@ -306,13 +306,13 @@
       </trans-unit>
       <trans-unit id="efccca249aa3aaeec168517baaff356f397e3878" resname="text.shouts">
         <source>text.shouts</source>
-        <target>Huutelut</target>
+        <target>Shouts</target>
         <jms:reference-file line="18">views/Common/navigation.html.twig</jms:reference-file>
         <jms:reference-file line="14">views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
         <source>text.shouts.feed</source>
-        <target>Huutelusyöte</target>
+        <target>Shoutbox</target>
         <jms:reference-file line="2">views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1de14c07b898ddef52dc5bd4f9b61044d4fa763a" resname="text.teachers">
