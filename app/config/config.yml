@@ -275,7 +275,7 @@ happyr_google_analytics:
     tracking_id: "%ga_id%"
 
 sixdays_opcache:
-    host_ip:    127.0.0.1:80
+    host_ip:    %router.request_context.host%
     host_name:  %router.request_context.host%
     web_dir:    %kernel.root_dir%/../web
     protocol:   %router.request_context.scheme%
