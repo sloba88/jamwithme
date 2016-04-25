@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-03-07T09:00:24Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-04-25T10:44:57Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -9,7 +9,17 @@
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
         <target state="new">search users</target>
-        <jms:reference-file line="368">Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="450">Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="767163315825668c13c0c8a21256765361d5ac49" resname="text.meta.description">
+        <source>text.meta.description</source>
+        <target state="new">Find musicians and band members. Looking for the right guitar teacher? Meet them on Jamifind</target>
+        <jms:reference-file line="7">Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ce15567ae7d412c970cca0fe2c56e29239e09693" resname="text.title">
+        <source>text.title</source>
+        <target state="new">Jamifind - find musicians and band members</target>
+        <jms:reference-file line="4">Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>
