@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="8b5a8f306be0b1f13f630a7e965ea11404e3fd14" resname="The numbers are not allowed here">
         <source>The numbers are not allowed here</source>
-        <target state="new">The numbers are not allowed here</target>
+        <target state="new">Numbers are not allowed here</target>
       </trans-unit>
       <trans-unit id="12d75039ee53c0936131dab6e525e4f302823aec" resname="Username can't be number only">
         <source>Username can't be number only</source>
