@@ -35,6 +35,5 @@ class HomeController extends Controller
      */
     public function termsAction(Request $request)
     {
-        return array();
     }
 }
