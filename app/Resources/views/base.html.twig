@@ -365,7 +365,6 @@
 
     {% if is_granted("ROLE_USER") %}
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-        <script src="{{ node_server }}/socket.io/socket.io.js"></script>
 
         <script>
             var baseURL = '{{ app.request.getBaseURL() }}';
