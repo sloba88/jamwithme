@@ -13,12 +13,12 @@
       </trans-unit>
       <trans-unit id="767163315825668c13c0c8a21256765361d5ac49" resname="text.meta.description">
         <source>text.meta.description</source>
-        <target state="new">text.meta.description</target>
+        <target state="new">Haetko bändijäseniä tai soittoseuraa? Etsitkö sopivaa kitaraopettajaa? Tapaa heidät Jamifindissa.</target>
         <jms:reference-file line="7">Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ce15567ae7d412c970cca0fe2c56e29239e09693" resname="text.title">
         <source>text.title</source>
-        <target state="new">text.title</target>
+        <target state="new">Jamifind - maksuton palvelu soittoseuranhakuun</target>
         <jms:reference-file line="4">Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
     </body>

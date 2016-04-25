@@ -8,59 +8,59 @@
     <body>
       <trans-unit id="f00b10aee719ed874516d910befe5ad5a0b9513f" resname="Only letters and numbers are allowed here.">
         <source>Only letters and numbers are allowed here.</source>
-        <target state="new">Only letters and numbers are allowed here.</target>
+        <target state="new">Vain kirjaimet ja numerot ovat sallittuja.</target>
       </trans-unit>
       <trans-unit id="7d93afec3e9508f6c8161e5e3d3b874946a2deb7" resname="The name is too long.">
         <source>The name is too long.</source>
-        <target state="new">The name is too long.</target>
+        <target state="new">Nimi on liian pitkä.</target>
       </trans-unit>
       <trans-unit id="641978ebc3cae2f1f07838ff1aa9f4dd6f540ed2" resname="The name is too short.">
         <source>The name is too short.</source>
-        <target state="new">The name is too short.</target>
+        <target state="new">Nimi on liian lyhyt.</target>
       </trans-unit>
       <trans-unit id="8b5a8f306be0b1f13f630a7e965ea11404e3fd14" resname="The numbers are not allowed here">
         <source>The numbers are not allowed here</source>
-        <target state="new">The numbers are not allowed here</target>
+        <target state="new">Numerot eivät ole sallittuja</target>
       </trans-unit>
       <trans-unit id="12d75039ee53c0936131dab6e525e4f302823aec" resname="Username can't be number only">
         <source>Username can't be number only</source>
-        <target state="new">Username can't be number only</target>
+        <target state="new">Käyttäjätunnus ei voi olla pelkkä numero</target>
       </trans-unit>
       <trans-unit id="f48ccf84018671218aac090abf90770212497b70" resname="fos_user.email.already_used">
         <source>fos_user.email.already_used</source>
-        <target state="new">fos_user.email.already_used</target>
+        <target state="new">sähköpostiosoite on jo käytössä</target>
       </trans-unit>
       <trans-unit id="d0e28536be754aebc7ef73cdc6cf0d729311ce1d" resname="fos_user.email.blank">
         <source>fos_user.email.blank</source>
-        <target state="new">fos_user.email.blank</target>
+        <target state="new">sähköpostiosoite puuttuu</target>
       </trans-unit>
       <trans-unit id="17a097b4a496b3378a290ea4f8a05bc2a7879142" resname="fos_user.email.invalid">
         <source>fos_user.email.invalid</source>
-        <target state="new">fos_user.email.invalid</target>
+        <target state="new">väärä sähköpostiosoite</target>
       </trans-unit>
       <trans-unit id="9760d0f9c28fee7f91e5cad9e282921b13cd2f0b" resname="fos_user.email.long">
         <source>fos_user.email.long</source>
-        <target state="new">fos_user.email.long</target>
+        <target state="new">sähköpostiosoite liian pitkä</target>
       </trans-unit>
       <trans-unit id="1a1b926521b2b3010b91de1787f9265b3d6a97ae" resname="fos_user.email.short">
         <source>fos_user.email.short</source>
-        <target state="new">fos_user.email.short</target>
+        <target state="new">sähköpostiosoite liian lyhyt</target>
       </trans-unit>
       <trans-unit id="1df43a6e24af03c39d20b2f1f5cbefdef7b30416" resname="fos_user.password.blank">
         <source>fos_user.password.blank</source>
-        <target state="new">fos_user.password.blank</target>
+        <target state="new">salasana puuttuu</target>
       </trans-unit>
       <trans-unit id="4b3130df261ac66147653997d2d83952a330faac" resname="fos_user.password.short">
         <source>fos_user.password.short</source>
-        <target state="new">fos_user.password.short</target>
+        <target state="new">salasana liian lyhyt</target>
       </trans-unit>
       <trans-unit id="77c8ec07f205976bbed1a3ce90fdc458891bb81d" resname="fos_user.username.already_used">
         <source>fos_user.username.already_used</source>
-        <target state="new">fos_user.username.already_used</target>
+        <target state="new">käyttäjätunnus on jo käytössä</target>
       </trans-unit>
       <trans-unit id="312a20b0239a4236f4b08e4e0ed35153a03667d0" resname="fos_user.username.blank">
         <source>fos_user.username.blank</source>
-        <target state="new">fos_user.username.blank</target>
+        <target state="new">käyttäjätunnus puuttuu</target>
       </trans-unit>
       <trans-unit id="56ef686ed0b86d02dd4077e0796a4f1e61377552" resname="fos_user.username.long">
         <source>fos_user.username.long</source>
@@ -68,7 +68,7 @@
       </trans-unit>
       <trans-unit id="920e8d37f8a7c923ece7d123d55668ac522d612d" resname="fos_user.username.short">
         <source>fos_user.username.short</source>
-        <target state="new">fos_user.username.short</target>
+        <target state="new">käyttäjätunnus liian lyhyt</target>
       </trans-unit>
     </body>
   </file>
