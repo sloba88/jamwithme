@@ -28,7 +28,7 @@ class LoadInstrumentsData implements FixtureInterface, ContainerAwareInterface
     public function load(ObjectManager $manager)
     {
 
-        $phpExcelObject = $this->container->get('phpexcel')->createPHPExcelObject($this->container->get('kernel')->getRootDir() . '/../data/instruments.xlsx');
+        $phpExcelObject = $this->container->get('phpexcel')->createPHPExcelObject($this->container->get('kernel')->getRootDir() . '/../data/instruments.xls');
 
         //  Get worksheet dimensions
         $sheet = $phpExcelObject->getSheet(0);
