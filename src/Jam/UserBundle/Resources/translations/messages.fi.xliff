@@ -568,7 +568,7 @@
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>
-        <target state="new">Jamifind on maksuton palvelu kaikentasoisille musiikinharrastijille kontaktoitua paremmin.</target>
+        <target state="new">Jamifind auttaa kaikentasoisia musiikinharrastajia löytämään uusia kontakteja maksutta.</target>
         <jms:reference-file line="14">views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
