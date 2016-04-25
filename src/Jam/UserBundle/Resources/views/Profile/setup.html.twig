@@ -67,25 +67,27 @@
 
             <div class="view-tab with-scrollbar is-active" data-tab="musician-info">
 
-                <div class="alert alert-info" role="alert">{{ 'label.musician.info.info'|trans }}</div>
+                <div>
+                    <div class="alert alert-info" role="alert">{{ 'label.musician.info.info'|trans }}</div>
 
-                <br />
+                    <br />
 
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
 
-                        {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
+                            {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
 
-                    </div>
+                        </div>
 
-                    <div class="col-md-6">
+                        <div class="col-md-6">
 
-                        {{ form_row(form.genres) }}
+                            {{ form_row(form.genres) }}
 
-                        {{ form_row(form.artists) }}
+                            {{ form_row(form.artists) }}
 
-                        <div class="clearfix"></div>
+                            <div class="clearfix"></div>
 
+                        </div>
                     </div>
                 </div>
 

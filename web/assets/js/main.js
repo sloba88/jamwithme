@@ -340,7 +340,7 @@ function menu() {
 function scrollbarPlugin() {
     var $withScrollbar = $('.with-scrollbar');
 
-    $withScrollbar.each(function() {
+    $('.with-scrollbar').each(function() {
         var $this = $(this),
             thisHeight = $(this).height(),
             thisChildrenHeight = $this.children().height();
