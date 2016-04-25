@@ -57,6 +57,13 @@ namespace :deploy do
   end
 end
 
+namespace :symfony do
+  desc "Clear opcache cache"
+  task :clear_opcache do
+     invoke 'symfony:console', 'opcache:clear', '--no-interaction'
+  end
+end
+
 #after 'deploy:updated',   'deploy:migrate'
 
 after 'deploy:updated',   'redis:clear'
@@ -64,3 +71,6 @@ after 'deploy:updated',   'redis:clear'
 after 'deploy:updated',   'elastica:populate'
 
 after 'deploy:updated',   'node:restart'
+
+#opcache
+after 'deploy', 'symfony:clear_opcache'
