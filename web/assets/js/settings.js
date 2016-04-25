@@ -20,7 +20,8 @@ function setSelect2() {
 
     $('.instrument-select').select2({
         placeholder: 'What do you play?',
-        data: allInstruments
+        data: allInstruments,
+        matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
     }).on('change', function(t) {
         var selected = $.grep(allInstruments, function(e){ return e.id == t.val; });
         selected[0].disabled = true;
@@ -34,7 +35,8 @@ function setSelect2() {
 
         $('.instrument-select').select2({
             placeholder: 'What do you play?',
-            data: allInstruments
+            data: allInstruments,
+            matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
         });
     });
 }
