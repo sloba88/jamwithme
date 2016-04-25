@@ -261,7 +261,7 @@ class LoadUserData extends AbstractFixture implements FixtureInterface, Containe
         $user->setEnabled(true);
 
         $guitar = new MusicianInstrument();
-        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Vocals')));
+        $guitar->setInstrument($manager->getRepository('JamCoreBundle:Instrument')->findOneBy(array('name' => 'Vocals (Singing)')));
         $guitar->setMusician($user);
         $guitar->setSkillLevel(2);
         $user->addInstrument($guitar);
