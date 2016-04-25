@@ -12,7 +12,7 @@ class HomeController extends Controller
     /**
      * @Route("/", name="home", options={"expose"=true})
      * @Route("/teachers", name="teachers", options={"expose"=true})
-     * @Template()
+     * @Template
      */
     public function indexAction(Request $request)
     {
@@ -31,9 +31,10 @@ class HomeController extends Controller
 
     /**
      * @Route("/terms", name="terms", options={"expose"=true})
-     * @Template()
+     * @Template
      */
     public function termsAction(Request $request)
     {
+        return array();
     }
 }

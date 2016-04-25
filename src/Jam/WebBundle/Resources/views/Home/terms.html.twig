@@ -12,7 +12,7 @@
             <h1>Terms & Conditions</h1>
 
             <div class="with-scrollbar" style="height: 500px; overflow: scroll">
-                {{ source('JamUserBundle::terms_' ~ app.request.session.get('_locale') ~ '.html.twig') }}
+                {{ source('JamUserBundle::terms_en.html.twig') }}
             </div>
 
             {% if is_granted("ROLE_USER") %}
