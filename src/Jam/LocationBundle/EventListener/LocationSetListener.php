@@ -5,6 +5,8 @@ namespace Jam\LocationBundle\EventListener;
 use FOS\UserBundle\Doctrine\UserManager;
 use Jam\LocationBundle\Entity\Location;
 use Jam\UserBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
@@ -23,6 +25,7 @@ class LocationSetListener {
     public function onKernelRequest(GetResponseEvent $event)
     {
         $request = $event->getRequest();
+        $response = new Response();
 
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -47,7 +50,7 @@ class LocationSetListener {
                 //not authenticated
                 //get country to set up language
 
-                if ($event->getRequestType() == 1 && !$request->query->get('lang') && !$request->getSession()->get('geolocationGuessTried')) {
+                if ($event->getRequestType() == 1 && !$request->query->get('lang') && !$request->cookies->get('language')) {
                     $location = $this->geoCheckIP($ip);
                     if ($location->getCountry() == 'Finland') {
                         $request->getSession()->set('_locale', 'fi');
@@ -57,12 +60,12 @@ class LocationSetListener {
                         $request->setLocale($request->getSession()->get('_locale', 'en'));
                     }
 
-                    $request->getSession()->set('geolocationGuessTried', true);
+                    $response->headers->setCookie(new Cookie('language', $request->getLocale()));
                 }
             }
         }
 
-        //return $response;
+        return $response;
     }
 
     public function geoCheckIP($ip)
