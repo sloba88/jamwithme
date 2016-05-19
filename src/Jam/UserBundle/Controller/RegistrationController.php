@@ -102,8 +102,8 @@ class RegistrationController extends ContainerAware
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('New user joined Jamifind!')
-                    ->setFrom('noreply@jamifind.com')
-                    ->setTo('stanic.slobodan88@gmail.com')
+                    ->setFrom('info@jamifind.com')
+                    ->setTo('info@jamifind.com')
                     ->setBody('New user joined: '.$user->getEmail());
 
                 $this->container->get('mailer')->send($message);
