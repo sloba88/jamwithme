@@ -101,12 +101,21 @@ class RegistrationController extends ContainerAware
                 // send email notification
 
                 $message = \Swift_Message::newInstance()
-                    ->setSubject('New user joined Jamifind!')
-                    ->setFrom('info@jamifind.com')
-                    ->setTo('info@jamifind.com')
-                    ->setBody('New user joined: '.$user->getEmail());
+                    ->setSubject('New unconfirmed user joined Jamifind!')
+                    ->setFrom('noreply@jamifind.com')
+                    ->setTo(array('info@jamifind.com', 'stanic.slobodan88@gmail.com'))
+                    ->setBody('New unconfirmed user joined: '.$user->getEmail());
 
                 $this->container->get('mailer')->send($message);
+
+                //send ga data
+                /* send data to GA */
+                $data = array(
+                    'uid'=> $user->getId(),
+                    'ec'=> 'authentication',
+                    'ea'=> 'unconfirmed registered'
+                );
+                $this->container->get('happyr.google.analytics.tracker')->send($data, 'event');
 
                 return $response;
             }
