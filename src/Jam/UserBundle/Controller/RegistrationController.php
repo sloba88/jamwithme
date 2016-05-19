@@ -106,7 +106,7 @@ class RegistrationController extends ContainerAware
                     ->setTo('info@jamifind.com')
                     ->setBody('New user joined: '.$user->getEmail());
 
-                $this->get('mailer')->send($message);
+                $this->container->get('mailer')->send($message);
 
                 return $response;
             }
