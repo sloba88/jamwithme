@@ -38,21 +38,21 @@ __p += ' first';
 __p += '" data-id="' +
 __e( rc._id ) +
 '" data-user="' +
-__e( rc.fromData.username ) +
+__e( utf8.decode(rc.fromData.username) ) +
 '">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <img class="message-picture" src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
-__e( rc.fromData.username ) +
+__e( rc.fromData.id ) +
 '/avatar" alt="' +
 __e( rc._lastMessage.from ) +
 '">\n        <h3 class="name">' +
-__e( rc.fromData.username ) +
+__e( utf8.decode(rc.fromData.username) ) +
 '</h3>\n\n        <div class="time">' +
 __e( rc._lastMessage.createdAt.toLocaleDateString() ) +
 ' ' +
 __e( rc._lastMessage.createdAt.toLocaleTimeString() ) +
 '</div>\n    </div>\n    <div class="col-xs-8 col-sm-9 message-content">\n        <p>' +
-__e( rc._lastMessage.message ) +
+__e( utf8.decode(rc._lastMessage.message) ) +
 '</p>\n        <i class="fa fa-angle-right"></i>\n    </div>\n</div><!--message-one ends-->';
 return __p
 };
@@ -141,19 +141,19 @@ function print() { __p += __j.call(arguments, '') }
 __p += '\n<div class="conversation-single">\n    <a href="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
-__e( rc.fromData.username ) +
+__e( utf8.decode(rc.fromData.username) ) +
 '">\n        <img class="message-picture" src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
-__e( rc.fromData.username ) +
+__e( rc.fromData.id ) +
 '/avatar" alt="Pic">\n        <h4 class="name">' +
-__e( rc.fromData.username ) +
+__e( utf8.decode(rc.fromData.username) ) +
 '</h4>\n    </a>\n\n    <div class="time">\n        ' +
 __e( createdAt.toLocaleDateString() ) +
 ' ' +
 __e( createdAt.toLocaleTimeString() ) +
 '\n    </div>\n    <p class="text">\n        ' +
-((__t = ( rc.message )) == null ? '' : __t) +
+((__t = ( utf8.decode(rc.message) )) == null ? '' : __t) +
 '\n    </p>\n</div>';
 return __p
 };

@@ -364,7 +364,8 @@
     <meta property="og:image" content="http://jamifind.com/landing/images/media-image.jpg" />
 
     {% if is_granted("ROLE_USER") %}
-        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/utf8/2.1.1/utf8.min.js"></script>
 
         <script>
             var baseURL = '{{ app.request.getBaseURL() }}';
