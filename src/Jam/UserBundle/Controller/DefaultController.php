@@ -59,10 +59,13 @@ class DefaultController extends Controller
 
         //make logic to check if it is external image here!
         //store to Mongo or Redis maybe to fetch it faster?
-
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
 
-        return $this->redirect($cacheManager->getBrowserPath($user->getAvatar(), $size));
+        if ($user) {
+            return $this->redirect($cacheManager->getBrowserPath($user->getAvatar(), $size));
+        } else {
+            return $this->redirect($cacheManager->getBrowserPath('assets/images/placeholder-user.png', $size));
+        }
     }
 
     /**
@@ -288,6 +291,7 @@ class DefaultController extends Controller
             $fs = new Filesystem();
             $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$image->getFilename());
         }
+
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
