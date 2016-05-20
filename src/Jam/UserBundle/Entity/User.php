@@ -41,6 +41,7 @@ class User extends BaseUser
         $this->images = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->gear = new ArrayCollection();
+        $this->artists = new ArrayCollection();
     }
 
     /**
