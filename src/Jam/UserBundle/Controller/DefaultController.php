@@ -286,7 +286,7 @@ class DefaultController extends Controller
             $user->setAvatar($user->getId().'.'.$image->getPath());
 
             $fs = new Filesystem();
-            $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$user->getId().'.'.$image->getPath());
+            $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$user->getId().'.'.$image->getPath(), true);
         }
 
         $em = $this->getDoctrine()->getManager();
