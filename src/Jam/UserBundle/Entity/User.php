@@ -73,8 +73,8 @@ class User extends BaseUser
      *     groups={"Profile"}
      * )
      * @Assert\Regex(
-     *     pattern     = "/^[a-z ]+$/i",
-     *     htmlPattern = "^[a-zA-Z ]+$",
+     *     pattern     = "/^[a-z \pL]+$/iu",
+     *     htmlPattern = "^[a-zA-Z \pL]+$",
      *     message="The numbers are not allowed here"
      * )
      */
@@ -91,8 +91,8 @@ class User extends BaseUser
      *     groups={"Profile"}
      * )
      * @Assert\Regex(
-     *     pattern     = "/^[a-z ]+$/i",
-     *     htmlPattern = "^[a-zA-Z ]+$",
+     *     pattern     = "/^[a-z \pL]+$/iu",
+     *     htmlPattern = "^[a-zA-Z \pL]+$",
      *     message="The numbers are not allowed here"
      * )
      */
