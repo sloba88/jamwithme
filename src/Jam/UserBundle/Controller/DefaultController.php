@@ -283,7 +283,7 @@ class DefaultController extends Controller
             ));
 
         if ($image) {
-            $user->setAvatar($image->getFilename());
+            $user->setAvatar($user->getId().'.'.$image->getPath());
 
             $fs = new Filesystem();
             $fs->copy($image->getAbsolutePath(), 'uploads/avatars/'.$user->getId().'.'.$image->getPath());
