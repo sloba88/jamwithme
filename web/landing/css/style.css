@@ -52,6 +52,11 @@ body.login-page {
 	padding-top: 12%;
 	margin-bottom: 20px;
 }
+
+.signup-page h1:lang(it) {
+	font-size: 40px;
+}
+
 .signup-page h2 {
 	font-size: 40px;
 	line-height: 48px;
