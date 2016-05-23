@@ -99,6 +99,7 @@ class RegistrationController extends ContainerAware
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
                 // send email notification
+                //TODO: put this in event
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('New unconfirmed user joined Jamifind!')
