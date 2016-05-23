@@ -34,9 +34,9 @@ abstract class AbstractUserProvider {
             file_put_contents($test, $picture);
 
             $fs = new Filesystem();
-            $fs->copy($test, 'uploads/avatars/'.$user->getId().'.jpeg');
+            $fs->copy($test, 'uploads/avatars/fb-'.$user->getId().'.jpeg');
 
-            $user->setAvatar($user->getId().'.jpeg');
+            $user->setAvatar('fb-'.$user->getId().'.jpeg');
         }
 
         return $user;

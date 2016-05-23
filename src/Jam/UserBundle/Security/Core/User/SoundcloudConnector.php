@@ -216,9 +216,9 @@ class SoundcloudConnector {
             file_put_contents($test, $picture);
 
             $fs = new Filesystem();
-            $fs->copy($test, 'uploads/avatars/'.$user->getId().'.jpeg');
+            $fs->copy($test, 'uploads/avatars/sc-'.$user->getId().'.jpeg');
 
-            $user->setAvatar($user->getId().'.jpeg');
+            $user->setAvatar('sc-'.$user->getId().'.jpeg');
         }
     }
 
