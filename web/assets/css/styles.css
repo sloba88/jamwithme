@@ -9367,7 +9367,7 @@ header {
     position: fixed;
     top: 0px;
     width: 160px;
-    z-index: 200;
+    z-index: 2000;
   }
   /* line 42, ../../sass/jamifind/_sidebar.scss */
   .sidebar:after {
