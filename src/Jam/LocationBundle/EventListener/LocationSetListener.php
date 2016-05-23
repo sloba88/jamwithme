@@ -52,9 +52,12 @@ class LocationSetListener {
 
                 if ($event->getRequestType() == 1 && !$request->query->get('lang') && !$request->cookies->get('language')) {
                     $location = $this->geoCheckIP($ip);
-                    if ($location->getCountry() == 'Finland') {
-                        $request->getSession()->set('_locale', 'fi');
-                        $request->setLocale($request->getSession()->get('_locale', 'fi'));
+
+                    if ($location) {
+                        if ($location->getCountry() == 'Finland') {
+                            $request->getSession()->set('_locale', 'fi');
+                            $request->setLocale($request->getSession()->get('_locale', 'fi'));
+                        }
                     } else {
                         $request->getSession()->set('_locale', 'en');
                         $request->setLocale($request->getSession()->get('_locale', 'en'));
