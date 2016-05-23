@@ -11,7 +11,7 @@
             <section class="col-sm-5 teacher-info">
                 <div class="teacher-info-inner">
                     <div class="profile-picture-box">
-                        <img src="{{ path('musician_avatar', { 'username': user.username, 'size' : 'my_medium_1' }) }}" alt="{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}" class="profile-picture">
+                        <img src="{{ path('musician_avatar', { 'username': user.id, 'size' : 'my_medium_1' }) }}" alt="{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}" class="profile-picture">
                     </div>
 
                     <div class="info">
