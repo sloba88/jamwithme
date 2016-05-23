@@ -5,12 +5,12 @@
 
     <div>
         <img style="float: left; padding-right: 10px;" src="{{ url('musician_avatar', { 'username': from.username, 'size': 'my_thumb' }) }}" />
-        <h6>{{ from.username }}</h6>
+        <h6 style="font-size:14px">{{ from.username }}</h6>
     </div>
 
     <br />
 
     <p>{{ 'email.invitation.text'|trans }}</p>
 
-    <a href="{{ url('home') }}?c={{ invitation.code }}">{{ 'email.accept.invitation'|trans }}</a>
+    <a href="{{ url('home') }}?c={{ invitation.code }}" style="text-decoration: none; background-color: #FBBC09; color: #fff; padding: 5px 10px; font-size: 14px;">{{ 'email.accept.invitation'|trans }}</a>
 {% endblock %}
