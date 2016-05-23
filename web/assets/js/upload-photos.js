@@ -69,6 +69,7 @@ $(function () {
         previewMinWidth: 75,
         previewMinHeight: 75,
         disableExifThumbnail: true,
+        imageOrientation: true,
         imageCrop: false,
         previewCrop: false
     }).on('fileuploadadd', function (e, data) {
