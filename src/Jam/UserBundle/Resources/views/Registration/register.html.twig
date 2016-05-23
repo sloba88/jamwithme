@@ -81,6 +81,8 @@
                                 <label class="control-label required fos_user_registration_form_acceptedTerms_label" for="fos_user_registration_form_acceptedTerms">{{ 'label.I.accept'|trans }}
                                     <a href="#" data-toggle="modal" data-target="#termsModal" style="text-decoration: underline">{{ 'label.terms.and.condtions'|trans }}</a></label>
 
+                                {{ form_widget(form.locale, { 'value' : app.request.locale | default('en')}) }}
+
                                 {{ form_widget(form._token) }}
                                 {{ form_errors(form) }}
 

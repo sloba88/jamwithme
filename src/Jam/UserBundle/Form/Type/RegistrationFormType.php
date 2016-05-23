@@ -61,6 +61,10 @@ class RegistrationFormType extends BaseType
             'required' => true,
             'label' => 'label.terms.checkbox'
         ));
+
+        $builder->add('locale', 'hidden', array(
+            'required' => false
+        ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
