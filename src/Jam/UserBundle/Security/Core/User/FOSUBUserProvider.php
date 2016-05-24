@@ -115,8 +115,9 @@ class FOSUBUserProvider extends BaseClass
             $user->$setterToken($response->getAccessToken());
 
             /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-            $request = $this->requestStack->getCurrentRequest();
-            $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, new Response()));
+            //TODO: solve this
+            //$request = $this->requestStack->getCurrentRequest();
+            //$this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, new Response()));
 
         }
 
