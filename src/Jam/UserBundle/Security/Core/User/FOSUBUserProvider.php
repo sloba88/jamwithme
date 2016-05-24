@@ -103,16 +103,7 @@ class FOSUBUserProvider extends BaseClass
 
             $user->setPlainPassword($username);
             $user->setEnabled(true);
-
-
-
-
         }
-        //just for testing
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $request = $this->requestStack->getCurrentRequest();
-        $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, new Response()));
-
 
         $userProvider = UserProviderFactory::create($service);
         $userProvider->getResourceOwnerData($user, $firstTimeLogin, $response);
@@ -122,6 +113,11 @@ class FOSUBUserProvider extends BaseClass
         if($firstTimeLogin === false){
             $user = parent::loadUserByOAuthUserResponse($response);
             $user->$setterToken($response->getAccessToken());
+
+            /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+            $request = $this->requestStack->getCurrentRequest();
+            $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, new Response()));
+
         }
 
         return $user;
