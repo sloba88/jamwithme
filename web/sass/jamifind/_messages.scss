@@ -84,7 +84,11 @@
 		line-height: 20px;
 		margin: 0 5px;
 		padding-left: 50px;
-		text-transform: uppercase
+		text-transform: uppercase;
+
+		@include respond-to(handhelds) {
+			margin-top: 5px;
+		}
 	}
 
 	.time {

@@ -39,7 +39,7 @@ __p += '" data-id="' +
 __e( rc._id ) +
 '" data-user="' +
 __e( utf8.decode(rc.fromData.username) ) +
-'">\n    <div class="col-xs-4 col-sm-3 message-info">\n        <img class="message-picture" src="' +
+'">\n    <div class="col-xs-12 col-sm-3 message-info">\n        <img class="message-picture" src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( rc.fromData.id ) +
@@ -51,9 +51,9 @@ __e( utf8.decode(rc.fromData.username) ) +
 __e( rc._lastMessage.createdAt.toLocaleDateString() ) +
 ' ' +
 __e( rc._lastMessage.createdAt.toLocaleTimeString() ) +
-'</div>\n    </div>\n    <div class="col-xs-8 col-sm-9 message-content">\n        <p>' +
+'</div>\n    </div>\n    <div class="col-xs-12 col-sm-9 message-content">\n        <p>' +
 __e( utf8.decode(rc._lastMessage.message) ) +
-'</p>\n        <i class="fa fa-angle-right"></i>\n    </div>\n</div><!--message-one ends-->';
+'</p>\n        <i class="fa fa-angle-right"></i>\n    </div>\n</div>';
 return __p
 };
 
