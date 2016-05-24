@@ -84,6 +84,8 @@
                 <argument key="google">google_id</argument>
                 <argument key="soundcloud">soundcloud_id</argument>
             </argument>
+            <argument type="service" id="event_dispatcher"></argument>
+            <argument type="service" id="request_stack"></argument>
         </service>
 
         <service id="soundcloud_connector" class="Jam\UserBundle\Security\Core\User\SoundcloudConnector">

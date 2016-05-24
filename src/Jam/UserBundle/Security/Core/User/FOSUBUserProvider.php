@@ -1,6 +1,9 @@
 <?php
 namespace Jam\UserBundle\Security\Core\User;
 
+use FOS\UserBundle\Event\FilterUserResponseEvent;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Model\UserManagerInterface;
 use HWI\Bundle\OAuthBundle\OAuth\ResourceOwner\FacebookResourceOwner;
 use HWI\Bundle\OAuthBundle\OAuth\Response\UserResponseInterface;
 use HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider as BaseClass;
@@ -8,10 +11,39 @@ use Jam\UserBundle\Entity\UserImage;
 use Jam\UserBundle\Security\Core\User\UserProvider\FacebookUserProvider;
 use Jam\UserBundle\Security\Core\User\UserProvider\SoundcloudUserProvider;
 use Jam\UserBundle\Security\Core\User\UserProvider\UserProviderFactory;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class FOSUBUserProvider extends BaseClass
 {
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
+    /**
+     * Constructor.
+     *
+     * @param UserManagerInterface $userManager FOSUB user provider.
+     * @param array $properties Property mapping.
+     * @param EventDispatcherInterface $eventDispatcher
+     */
+    public function __construct(UserManagerInterface $userManager, array $properties, EventDispatcherInterface $eventDispatcher, RequestStack $requestStack)
+    {
+        $this->userManager     = $userManager;
+        $this->properties      = array_merge($this->properties, $properties);
+        $this->accessor    = PropertyAccess::createPropertyAccessor();
+        $this->eventDispatcher = $eventDispatcher;
+        $this->requestStack = $requestStack;
+    }
 
     /**
      * {@inheritDoc}
@@ -71,7 +103,16 @@ class FOSUBUserProvider extends BaseClass
 
             $user->setPlainPassword($username);
             $user->setEnabled(true);
+
+
+
+
         }
+        //just for testing
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $request = $this->requestStack->getCurrentRequest();
+        $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED, new FilterUserResponseEvent($user, $request, new Response()));
+
 
         $userProvider = UserProviderFactory::create($service);
         $userProvider->getResourceOwnerData($user, $firstTimeLogin, $response);
