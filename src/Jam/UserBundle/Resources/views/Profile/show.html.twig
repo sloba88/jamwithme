@@ -37,16 +37,18 @@
                             <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ user.id }}" data-user="{{ user.username }}"><i class="glyphicon glyphicon-envelope"></i><span>{{ 'button.message'|trans }}</span></a>
                         {% endif %}
 
-                        {% if app.user != user %}
-                            <ul class="compatibility-box visible-xs">
-                                <li>
-                                    <img src="{{ asset('assets/images/icon-compatibility.png') }}" alt="Compatibility">
-                                </li>
-                                <li class="compatibility">
-                                    <span></span>
-                                    {{ 'label.compatibility'|trans }}
-                                </li>
-                            </ul>
+                        {% if is_granted("ROLE_USER") %}
+                            {% if app.user != user %}
+                                <ul class="compatibility-box visible-xs">
+                                    <li>
+                                        <img src="{{ asset('assets/images/icon-compatibility.png') }}" alt="Compatibility">
+                                    </li>
+                                    <li class="compatibility">
+                                        <span></span>
+                                        {{ 'label.compatibility'|trans }}
+                                    </li>
+                                </ul>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

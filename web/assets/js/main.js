@@ -524,6 +524,12 @@ $(function() {
         if (['media', 'photos'].indexOf(tab != -1 )){
             $('.profile-media-wall').isotope('layout');
         }
+
+        if (isMobile) {
+            $('html, body').animate({
+                scrollTop: $('.view-tab-container').offset().top
+            }, 500);
+        }
     });
 
     $('.price-type').click(function() {
