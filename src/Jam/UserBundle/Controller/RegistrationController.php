@@ -103,6 +103,7 @@ class RegistrationController extends ContainerAware
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject('New unconfirmed user joined Jamifind!')
+                    ->setSender('Jamifind - Analytics')
                     ->setFrom('noreply@jamifind.com')
                     ->setTo(array('info@jamifind.com', 'stanic.slobodan88@gmail.com'))
                     ->setBody('New unconfirmed user joined: '.$user->getEmail());
