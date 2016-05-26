@@ -35,7 +35,6 @@ class InviteController extends FOSRestController
                 $message = \Swift_Message::newInstance()
                     ->setSubject("You have been invited to join Jamifind")
                     ->setFrom('noreply@jamifind.com')
-                    ->setSender('Jamifind - bringing musicians together')
                     ->setTo($email)
                     ->setBody($messageBody, 'text/html');
 

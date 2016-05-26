@@ -43,7 +43,6 @@ class RegistrationConfirmedListener implements EventSubscriberInterface
 
         $message = \Swift_Message::newInstance()
             ->setSubject('New user joined Jamifind!')
-            ->setSender('Jamifind - Analytics')
             ->setFrom('noreply@jamifind.com')
             ->setTo(array('info@jamifind.com', 'stanic.slobodan88@gmail.com'))
             ->setBody('New user joined: '.$user->getEmail());
