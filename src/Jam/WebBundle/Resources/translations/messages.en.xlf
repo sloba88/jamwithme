@@ -29,8 +29,7 @@
       </trans-unit>
       <trans-unit id="eab0ce4518fb01dcd7532e1a48d515de8d15526e" resname="email.invitation.text">
         <source>email.invitation.text</source>
-        <target>Hello there, it seems that one of your contacts has invited you to join Jamifind, free platform for all musicians to find new collaboration partners.
-        Build your musicians CV today. Share your sounds, video and images with the world and get discovered. With Jamifind you'll find the right people for your musical pursuits and before you know it you will be making new music and new friends.</target>
+        <target>Jamifind is a free platform for all musicians to find new collaboration partners. Join the revolution!</target>
         <jms:reference-file line="13">views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ead925b97147d5ea08bd220f3d979af2fcbf259c" resname="email.see.all.messages">
@@ -45,7 +44,7 @@
       </trans-unit>
       <trans-unit id="918afa5c6cdf8b9375ba036691f27829d7209fee" resname="email.you.have.been.invited">
         <source>email.you.have.been.invited</source>
-        <target>You have been invited to join Jamifind</target>
+        <target>You have been invited to join Jamifind by:</target>
         <jms:reference-file line="4">views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fccf2c4974624e0e217e03e27ca4634c14e6f3a1" resname="email.you.have.recieved.a.message">
