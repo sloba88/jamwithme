@@ -17,12 +17,11 @@
         <jms:reference-file line="9">views/Registration/confirmed.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6362bc7b7a8f72b782ffd590744ab069327bbe4a" resname="registration.email.message">
-        <source>Hello %user.username%! 
+        <source>Hello %user.username%!
 
  To finish activating your account - please visit %confirmationUrl%</source>
-        <target state="new">Tervehdys %username%!
-
- Klikkaa seuraavaa linkkiä aktivoidaksesi käyttäjätilisi: </target>
+        <target state="new">
+        Tervehdys %username%! On ilo saada sinut mukaan Jamifindiin,  toivottavasti viihdyt kanssamme. Päästäksesi vauhtiin, klikkaa seuraavaa linkkiä aktivoidaksesi tilisi </target>
         <jms:reference-file line="9">views/Registration/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="70c8836a0e3b8dadb494b8de56ebed18939359b5" resname="resetting.email.message">

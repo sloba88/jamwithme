@@ -20,9 +20,7 @@
         <source>Hello %user.username%! 
 
  To finish activating your account - please visit %confirmationUrl%</source>
-        <target state="new">Hello %username%!
-
- To finish activating your account - please visit following link: </target>
+        <target state="new">Hello %username%! We are glad to have you with us at Jamifind. We hope that you will enjoy your stay and find what you're looking for. To get going, please click the following link to activate your account: </target>
         <jms:reference-file line="9">views/Registration/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="70c8836a0e3b8dadb494b8de56ebed18939359b5" resname="resetting.email.message">
