@@ -133,7 +133,7 @@ function saveMessageTo(socket, data, conversation, notify) {
 function authenticateUser(sessionId) {
     return new promise(function (fulfill, reject) {
 
-        redisClient.get('session:'+sessionId, function (err, user) {
+        redisClient.get('session'+sessionId, function (err, user) {
             if (err) {
                 console.log('error authenticating');
                 reject(err);
