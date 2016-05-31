@@ -3,8 +3,8 @@ default:
         default:
             contexts:
                 - Jam\WebBundle\Tests\FeatureContext:
-                    testUsername: 'test'
-                    testPassword: 'test'
+                    testUsername: 'test2'
+                    testPassword: 'testtest'
     extensions:
         Behat\MinkExtension:
             base_url: "http://33.33.33.100/app_test.php"

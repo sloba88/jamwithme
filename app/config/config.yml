@@ -89,7 +89,7 @@ fos_user:
             form:
                 type: jam_user_registration
             confirmation:
-                enabled: true
+                enabled: %confirm_account_email%
     profile:
             form:
                 type: jam_user_profile
