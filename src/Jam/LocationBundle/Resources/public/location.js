@@ -139,7 +139,7 @@ $(function() {
                     success: function(data){
                         console.log(data);
                         $('.location-results').html('').hide();
-                        if (data.length > 1){
+                        if (data.length > 0){
                             $.each(data, function(k, v){
 
                                 var displayAddress = '';
