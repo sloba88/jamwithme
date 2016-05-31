@@ -102,7 +102,7 @@ class ProfileFormType extends BaseType
             '2' => 'value.female',
         ),
             'expanded' => true,
-            'empty_data'  => 0,
+            'empty_data'  => '',
             'required' => false,
             'label' => 'label.gender'
         ));
