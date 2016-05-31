@@ -316,7 +316,7 @@
       </trans-unit>
       <trans-unit id="859e6d441fff850329b6805f4a6c21700ccedaa9" resname="label.location.info">
         <source>label.location.info</source>
-        <target state="new">Your location helps us find people around you. You can be as specific as you like, we'll never show your full address to anybody, ever!.</target>
+        <target state="new">Your location helps us find people around you. You can be as specific as you like, we'll never show your full address to anybody, ever!</target>
         <jms:reference-file line="99">views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2fcb238b9d11782a404433a756c8c10e3c95a2f6" resname="label.login.to.jamifind">
