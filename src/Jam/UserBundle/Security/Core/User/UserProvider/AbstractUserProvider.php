@@ -25,10 +25,10 @@ abstract class AbstractUserProvider {
     protected function setUserPicture(UserInterface $user, $avatarUrl)
     {
 
-        if ($avatarUrl !== '' && $avatarUrl !== null) {
+        if ($avatarUrl !== '' && $avatarUrl !== null && $user->getId() !== null) {
 
             //TODO: this is duplicate
-            $test = '/tmp/'.$user->getId().'.jpeg';
+            $test = '/tmp/fb-'.$user->getId().'.jpeg';
 
             $picture = file_get_contents($avatarUrl);
             file_put_contents($test, $picture);
