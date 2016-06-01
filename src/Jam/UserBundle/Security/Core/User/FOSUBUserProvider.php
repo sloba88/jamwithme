@@ -79,8 +79,8 @@ class FOSUBUserProvider extends BaseClass
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        $username = $response->getUsername();
-        $user = $this->userManager->findUserBy(array($this->getProperty($response) => $username));
+        $email = $response->getEmail();
+        $user = $this->userManager->findUserByEmail($email);
 
         $service = $response->getResourceOwner()->getName();
 
@@ -91,6 +91,7 @@ class FOSUBUserProvider extends BaseClass
 
         if ($firstTimeLogin){
 
+            $username = $response->getUsername();
             $setterId = $setter.'Id';
 
             // create new user here
@@ -102,8 +103,9 @@ class FOSUBUserProvider extends BaseClass
             $user->$setterToken($response->getAccessToken());
 
             $user->setPlainPassword($username);
-            $user->setEnabled(true);
         }
+
+        $user->setEnabled(true);
 
         $userProvider = UserProviderFactory::create($service);
         $userProvider->getResourceOwnerData($user, $firstTimeLogin, $response);
