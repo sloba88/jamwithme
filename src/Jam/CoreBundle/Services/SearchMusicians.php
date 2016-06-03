@@ -200,8 +200,7 @@ class SearchMusicians {
         $query->setFrom(($page - 1) * $perPage);
 
         //sort by compatibility here
-        //$query->addSort(array('musician2.isJammer' => array('order' => 'desc'), 'value' => array('order' => 'desc')));
-        $query->addSort(array('musician2.created_at' => array('order' => 'desc')));
+        $query->addSort(array('musician2.isJammer' => array('order' => 'desc'), 'value' => array('order' => 'desc')));
 
         $musicians = $this->elasticUserFinder->find($query);
 
