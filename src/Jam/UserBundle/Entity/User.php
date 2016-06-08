@@ -45,7 +45,7 @@ class User extends BaseUser
     }
 
     /**
-     * @var ArrayCollection
+     * @var collection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGenre", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
@@ -148,7 +148,7 @@ class User extends BaseUser
     private $instruments;
 
     /**
-     * @var ArrayCollection
+     * @var collection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGear", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
