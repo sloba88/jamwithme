@@ -40,11 +40,16 @@ class MusicianInstrument
     private $instrument;
 
     /**
-     * @ORM\Column(type="smallint", length=1, nullable=true)
+     * @ORM\Column(type="smallint", length=2, nullable=true)
      *
      */
     private $skillLevel;
 
+    /**
+     * @ORM\Column(type="boolean", length=1, nullable=false, name="would_learn")
+     *
+     */
+    private $wouldLearn = false;
 
     /**
      * Get id
@@ -123,5 +128,29 @@ class MusicianInstrument
     public function getSkillLevel()
     {
         return $this->skillLevel;
+    }
+
+    /**
+     * Set wouldLearn
+     *
+     * @param integer $wouldLearn
+     *
+     * @return MusicianInstrument
+     */
+    public function setWouldLearn($wouldLearn)
+    {
+        $this->wouldLearn = $wouldLearn;
+
+        return $this;
+    }
+
+    /**
+     * Get wouldLearn
+     *
+     * @return integer
+     */
+    public function getWouldLearn()
+    {
+        return $this->wouldLearn;
     }
 }

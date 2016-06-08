@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-04-25T15:18:04Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-08T15:05:23Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -9,39 +9,39 @@
       <trans-unit id="a5eba05921c11add89e9b68570149da22499c604" resname="change_password.submit">
         <source>change_password.submit</source>
         <target state="new">Submit change password</target>
-        <jms:reference-file line="8">views/ChangePassword/changePassword_content.html.twig</jms:reference-file>
+        <jms:reference-file line="8">/vagrant/www/src/Jam/UserBundle/Resources/views/ChangePassword/changePassword_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a0a8fbc70fe82997f8a2ff89090f523ee63f72a" resname="registration.confirmed">
         <source>Congrats %user.username%, your acount is now activated</source>
         <target state="new">Congrats %username%, your account is now activated!</target>
-        <jms:reference-file line="9">views/Registration/confirmed.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/UserBundle/Resources/views/Registration/confirmed.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6362bc7b7a8f72b782ffd590744ab069327bbe4a" resname="registration.email.message">
         <source>Hello %user.username%! 
 
  To finish activating your account - please visit %confirmationUrl%</source>
         <target state="new">Hello %username%! We are glad to have you with us at Jamifind. We hope that you will enjoy your stay and find what you're looking for. To get going, please click the following link to activate your account: </target>
-        <jms:reference-file line="9">views/Registration/email.txt.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/UserBundle/Resources/views/Registration/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="70c8836a0e3b8dadb494b8de56ebed18939359b5" resname="resetting.email.message">
         <source>resetting.email.message</source>
         <target state="new">resetting.email.message</target>
-        <jms:reference-file line="9">views/Resetting/email.txt.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/UserBundle/Resources/views/Resetting/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="126cf13058808d8948cc673c7933c6c1ce27841d" resname="resetting.email.subject">
         <source>resetting.email.subject</source>
         <target state="new">resetting.email.subject</target>
-        <jms:reference-file line="5">views/Resetting/email.txt.twig</jms:reference-file>
+        <jms:reference-file line="5">/vagrant/www/src/Jam/UserBundle/Resources/views/Resetting/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">
         <source>text.back</source>
         <target state="new">back</target>
-        <jms:reference-file line="12">views/Registration/confirmed.html.twig</jms:reference-file>
+        <jms:reference-file line="12">/vagrant/www/src/Jam/UserBundle/Resources/views/Registration/confirmed.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5d2f7d85139f1298e0ff991af04994b6a1b805b4" resname="text.check_email">
         <source>text.check_email</source>
         <target state="new">We have sent you an email with confirmation link, please click on that link in order to confirm your registration. Make sure to also check spam folder.</target>
-        <jms:reference-file line="6">views/Registration/checkEmail.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/vagrant/www/src/Jam/UserBundle/Resources/views/Registration/checkEmail.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

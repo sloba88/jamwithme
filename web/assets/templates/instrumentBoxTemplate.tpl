@@ -1,11 +1,16 @@
 <div class="row">
-    <div class="col-md-5 col-xs-12">
+    <div class="col-md-5 col-sm-6 col-xs-10">
         <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][instrument]" class="instrument-select form-control" />
     </div>
-    <div class="col-md-5 col-xs-8">
+    <div class="col-md-4 col-sm-4 col-xs-10">
         <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][skillLevel]" class="skill-select form-control" />
     </div>
-    <div class="col-md-2 col-xs-4" style="padding-top:10px">
+
+    <div class="col-md-2 col-sm-4 col-xs-10 learn-options" style="text-align: center; padding-top: 13px">
+        <input type="checkbox" id="fos_user_profile_form_instruments_<%- rc.num %>_wouldLearn" name="fos_user_profile_form[instruments][<%- rc.num %>][wouldLearn]" class="would-learn" value="1"><label class="control-label" for="fos_user_profile_form_instruments_<%- rc.num %>_wouldLearn"><span></span></label>
+    </div>
+
+    <div class="col-md-1 col-sm-2 col-xs-2" style="padding: 10px 0 0 0">
         <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
         <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
     </div>

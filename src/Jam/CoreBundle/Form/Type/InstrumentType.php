@@ -40,6 +40,12 @@ class InstrumentType extends AbstractType
             )
         ));
 
+        $builder->add('wouldLearn', 'checkbox', array(
+            'attr' => array(
+                'class'=> 'would-learn'
+            )
+        ));
+
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $musicianInstrument = $event->getData();
 

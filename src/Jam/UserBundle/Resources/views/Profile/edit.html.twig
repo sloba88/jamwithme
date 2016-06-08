@@ -128,11 +128,11 @@
             <div class="view-tab with-scrollbar" data-tab="musician-info">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
 
                         <h4>{{ 'label.i.want.to'|trans }}:</h4>
 
-                        <ul class="checkboxes-list">
+                        <ul class="checkboxes-list user-type">
                             <li>
                                 {{ form_widget(form.isVisitor) }}
                                 {{ form_label(form.isVisitor) }}
@@ -150,6 +150,38 @@
                             </li>
                         </ul>
 
+                        {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
+
+                    </div>
+
+                    <div class="col-md-5">
+
+                        {{ form_row(form.aboutMe, { 'attr': {'rows' : '3'} }) }}
+
+                        <div class="teacherSpecific {% if not app.user.isTeacher %}hide{% endif %}">
+
+                            <div class="row">
+                                <div class="col-md-9">
+                                    {{ form_row(form.education, { 'attr': {'rows' : '1'} }) }}
+
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form_label(form.hourlyRate) }}
+                                    <div class="input-group">
+                                        <span class="input-group-addon">&euro;</span>
+                                        {{ form_widget(form.hourlyRate) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
+
+                        {{ form_row(form.artists, { 'id' : 'fos_user_profile_form_artists' }) }}
+
+                        {{ form_row(form.gear) }}
+
                         <div class="row">
                             <div class="col-md-12">
                                 <h4>{{ 'label.i.am.available'|trans }}:</h4>
@@ -159,32 +191,6 @@
                         </div>
 
                         <br />
-
-                        {% include "JamUserBundle:Profile:chooseInstruments.html.twig" %}
-
-                    </div>
-
-                    <div class="col-md-6">
-
-                        {{ form_row(form.aboutMe, { 'attr': {'rows' : '4'} }) }}
-
-                        <div class="teacherSpecific {% if not app.user.isTeacher %}hide{% endif %}" >
-                            {{ form_row(form.education) }}
-
-                            <div class="form-group">
-
-                                <div class="input-group">
-                                    <span class="input-group-addon">&euro;</span>
-                                    {{ form_widget(form.hourlyRate) }}
-                                </div>
-                            </div>
-                        </div>
-
-                        {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
-
-                        {{ form_row(form.artists, { 'id' : 'fos_user_profile_form_artists' }) }}
-
-                        {{ form_row(form.gear) }}
 
                         <div class="clearfix"></div>
 

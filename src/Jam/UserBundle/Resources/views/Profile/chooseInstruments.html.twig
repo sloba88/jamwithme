@@ -1,24 +1,39 @@
 <div class="row">
-    <div class="col-md-5">
-        {{ 'label.what.do.you.play'|trans }}
+    <div class="col-md-5 col-sm-6 col-xs-12 what-do-you-label" style="font-size: 13px;">
+
+        {{ 'label.what.do.you'|trans }}
+        <span class="what-label-option fos_user_profile_form_isVisitor {% if not app.user.isVisitor %}hidden{% endif %}">{{ 'label.what.learn'|trans }}</span>
+        <span class="what-label-option fos_user_profile_form_isJammer {% if not app.user.isJammer %}hidden{% endif %}">{% if app.user.isVisitor %} <span class="separator">/</span> {% endif %}{{ 'label.what.jam'|trans }}</span>
+        <span class="what-label-option fos_user_profile_form_isTeacher {% if not app.user.isTeacher %}hidden{% endif %}">{% if app.user.isVisitor or app.user.isJammer %} <span class="separator">/</span> {% endif %}{{ 'label.what.teach'|trans }}</span>
+
+        <span class="what-do-you-play-default {% if not app.user.isVisitor and not app.user.isJammer and not app.user.isTeacher %}{% else %}hidden{% endif %}">{{ 'label.what.jam'|trans }}</span>
+        ?
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4 col-sm-4 col-xs-8">
         {{ 'label.how.good.are.you'|trans }}
     </div>
     <div class="col-md-2"></div>
+    <div class="col-md-3 learn-options hidden" style="font-size: 13px">
+        Want to learn
+    </div>
 </div>
 
 <ul id="musician_instruments">
 
     {% for f in form.instruments %}
         <li class="row">
-            <div class="col-md-5 col-xs-12">
+            <div class="col-md-5 col-sm-6 col-xs-10">
                 {{ form_widget(f.instrument) }}
             </div>
-            <div class="col-md-5 col-xs-8">
+            <div class="col-md-4 col-sm-4 col-xs-10">
                 {{ form_widget(f.skillLevel) }}
             </div>
-            <div class="col-md-2 col-xs-4" style="padding-top:10px">
+
+            <div class="col-md-2 col-sm-4 col-xs-10 learn-options hidden" style="text-align: center; padding-top: 13px">
+                {{ form_widget(f.wouldLearn) }}<label class="control-label" for="{{ f.wouldLearn.vars.id }}"></label>
+            </div>
+
+            <div class="col-md-1 col-sm-2 col-xs-2" style="padding: 10px 0 0 0">
                 <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
                 <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
             </div>
@@ -26,5 +41,6 @@
     {% endfor %}
 
 </ul>
+
 <br />
 <a href="#" class="btn btn-primary" id="add_another_instrument"><i class="glyphicon glyphicon-plus-sign"></i> {{ 'label.add.instrument'|trans }}</a>

@@ -90,6 +90,17 @@ function setTabsHeight() {
     return true;
 }
 
+function showLearnOptions() {
+    if ($('#fos_user_profile_form_isVisitor').prop('checked')) {
+        $('.learn-options').removeClass('hidden');
+    } else {
+        $('.learn-options').addClass('hidden');
+        $('.learn-options input:checked').each(function() {
+            $(this).prop('checked', false);
+        });
+    }
+}
+
 $(function() {
 
     var $musiciansInstruments = $('#musician_instruments');
@@ -110,6 +121,7 @@ $(function() {
         $musiciansInstruments.append(window.JST.instrumentBoxTemplate({'num': length}));
 
         initInstrumentSelection();
+        showLearnOptions();
         scrollbarPlugin();
     });
 
@@ -319,6 +331,34 @@ $(function() {
         $('#next-1').removeClass('hidden');
         $('#finish-1').addClass('hidden');
     });
+
+    $('.user-type input').on('change', function() {
+        var id = $(this).attr('id');
+
+        if ($(this).prop('checked')) {
+            $('span.'+id).removeClass('hidden');
+        } else {
+            $('span.'+id).addClass('hidden');
+        }
+
+        $('.what-do-you-label .separator').remove();
+
+        $('.what-do-you-label span.what-label-option:visible').each(function(k) {
+            if (k > 0) {
+                $(this).prepend('<span class="separator">/ </span>');
+            }
+        });
+
+        if ($('.user-type input:checked').length === 0) {
+            $('.what-do-you-play-default').removeClass('hidden');
+        } else {
+            $('.what-do-you-play-default').addClass('hidden');
+        }
+
+        showLearnOptions();
+    });
+
+    showLearnOptions();
 
     setTabsHeight();
 });
