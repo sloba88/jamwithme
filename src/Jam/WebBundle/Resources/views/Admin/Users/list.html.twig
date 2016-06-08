@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% stylesheets
+    'vendor/bootstrap/dist/css/bootstrap.min.css'
+    filter='cssrewrite' filter='?uglifycss'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+
+</head>
+<body>
+
+    <div class="col-md-12">
+
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="{{ path('admin_users_list') }}">All users list</a></li>
+            <li role="presentation"><a href="{{ path('admin_users_map') }}">Map view</a></li>
+        </ul>
+
+        <h1></h1>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+                <th>Last Login</th>
+                <th>Activated account</th>
+            </tr>
+            </thead>
+
+            {% for m in musicians %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="{{ path('musician_profile', {'username': m.username}) }}" target="_blank">{{ m.username }}</a></td>
+                    <td>{{ m.firstName }}</td>
+                    <td>{{ m.lastName }}</td>
+                    <td>{{ m.email }}</td>
+                    <td>{{ m.createdAt | date ('Y-m-d h:i') }}</td>
+                    <td>{{ m.lastLogin | date ('Y-m-d h:i') }}</td>
+                    <td>{% if m.enabled %} yes {% else %} no {% endif %}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+
+</body>
+</html>

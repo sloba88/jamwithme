@@ -3,6 +3,7 @@
 <head>
 
     {% stylesheets
+    'vendor/bootstrap/dist/css/bootstrap.min.css'
     'vendor/leaflet-dist/leaflet.css'
     'vendor/leaflet.markercluster/dist/MarkerCluster.css'
     'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -14,9 +15,15 @@
 </head>
 <body>
 
-    <h1>Map goes here</h1>
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="{{ path('admin_users_list') }}">All users list</a></li>
+        <li role="presentation" class="active"><a href="{{ path('admin_users_map') }}">Map view</a></li>
+    </ul>
 
-    <div id="map"></div>
+    <div id="map" style="width: 100%; height: 800px"></div>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 
     {% javascripts
     'vendor/jquery/jquery.js'
@@ -28,12 +35,15 @@
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
-    <script>
-        $.ajax({
-            url: Routing.generate('admin_musicians_find')
-        }).done(function( result ) {
+    <script type="text/javascript">
+        var baseURL = '{{ app.request.getBaseURL() }}';
 
-            map = L.map('map');
+        $(function() {
+
+            var map,
+            markers = new L.FeatureGroup();
+            map = L.map('map').setView([51.505, -0.09], 3);
+            L.Icon.Default.imagePath = baseURL + '/../vendor/leaflet-dist/images';
 
             L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
                 attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
@@ -44,19 +54,27 @@
                 base: 'base'
             }).addTo(map);
 
-            console.log('map initialized');
+            $.ajax({
+                url: Routing.generate('admin_musicians_find')
+            }).done(function( result ) {
+                console.log('map initialized');
+                markers = new L.markerClusterGroup({
+                    maxClusterRadius: 25
+                });
 
-            markers = new L.markerClusterGroup({
-                maxClusterRadius: 25
+                $.each(result.data, function(k, v) {
+                    var marker = L.marker([v.lat, v.lng]);
+                    markers.addLayer(marker);
+
+                    var popup = L.popup({
+                        'minWidth': 200
+                    }).setContent('<a href="'+ v.url +'" target="_blank"><img src="'+baseURL+'/m/'+ v.username +'/avatar" /> '+ v.username +'</a>');
+
+                    marker.bindPopup(popup);
+                });
+
+                map.addLayer(markers);
             });
-
-            $.each(filterResults, function(k, v) {
-                var marker = L.marker([v.lat, v.lng], {icon: i});
-                markers.addLayer(marker);
-            });
-
-            map.addLayer(markers);
-
         });
     </script>
 

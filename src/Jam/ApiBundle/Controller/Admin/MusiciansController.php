@@ -13,11 +13,10 @@ use Symfony\Component\Form\Form;
 class MusiciansController extends FOSRestController
 {
     /**
-     * @Get("/musicians/find2", name="admin_musicians_find")
+     * @Get("/musicians/map", name="admin_musicians_find")
      */
     public function findAction()
     {
-
         $musicians = $this->getDoctrine()
                 ->getRepository('JamUserBundle:User')
                 ->findAll();
@@ -26,14 +25,16 @@ class MusiciansController extends FOSRestController
 
         foreach($musicians AS $m){
 
-            $data_array = array(
-                'username' => $m->getUsername(),
-                'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
-                'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
-                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
-            );
+            if ($m->getLocation() && $m->getLocation()->getLat() != '') {
+                $data_array = array(
+                    'username' => $m->getUsername(),
+                    'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
+                    'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
+                    'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
+                );
 
-            array_push($musicians_data, $data_array);
+                array_push($musicians_data, $data_array);
+            }
         }
 
         $view = $this->view(array(

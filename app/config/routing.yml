@@ -11,10 +11,23 @@ jam_user:
     type:     annotation
     prefix:   /
 
+jam_admin:
+    resource: "@JamWebBundle/Controller/Admin/"
+    type:     annotation
+    prefix:   /admin
+
 jam_web:
     resource: "@JamWebBundle/Controller/"
     type:     annotation
     prefix:   /
+
+jam_admin_api:
+    resource: "@JamApiBundle/Controller/Admin/"
+    type:     annotation
+    defaults: { _format: json }
+    prefix:   /admin/api
+    options:
+        expose: true
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -52,16 +65,16 @@ hwi_oauth_redirect:
     prefix:   /connect
 
 facebook_login:
-    pattern: /login/check-facebook
+    path: /login/check-facebook
 
 jam_facebook_login:
-    pattern: /connect/facebook
+    path: /connect/facebook
 
 jam_soundcloud_login:
-    pattern: /connect/soundcloud
+    path: /connect/soundcloud
 
 soundcloud_login:
-    pattern: /login/check-soundcloud
+    path: /login/check-soundcloud
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
