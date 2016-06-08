@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% stylesheets
+    'vendor/leaflet-dist/leaflet.css'
+    'vendor/leaflet.markercluster/dist/MarkerCluster.css'
+    'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
+    filter='cssrewrite' filter='?uglifycss'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+
+</head>
+<body>
+
+    <h1>Map goes here</h1>
+
+    <div id="map"></div>
+
+    {% javascripts
+    'vendor/jquery/jquery.js'
+    'vendor/leaflet-dist/leaflet.js'
+    'vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js'
+    filter='?uglifyjs2'
+    %}
+
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script>
+        $.ajax({
+            url: Routing.generate('admin_musicians_find')
+        }).done(function( result ) {
+
+            map = L.map('map');
+
+            L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+                attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+                subdomains: '1234',
+                mapID: 'newest',
+                app_id: 'll2Cde8wIa5h5YgDoW9x',
+                app_code: '1LBq52rA1_q-8pj6_67OMg',
+                base: 'base'
+            }).addTo(map);
+
+            console.log('map initialized');
+
+            markers = new L.markerClusterGroup({
+                maxClusterRadius: 25
+            });
+
+            $.each(filterResults, function(k, v) {
+                var marker = L.marker([v.lat, v.lng], {icon: i});
+                markers.addLayer(marker);
+            });
+
+            map.addLayer(markers);
+
+        });
+    </script>
+
+</body>
+</html>
