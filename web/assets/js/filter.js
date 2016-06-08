@@ -196,6 +196,8 @@ $(function() {
                 initializedMap = initMap();
                 setMyFilterMarker();
                 mapFilterMusicians();
+            } else {
+                $('.view-tab-container').scrollTop(0);
             }
         }, 500);
     });
