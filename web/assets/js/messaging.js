@@ -57,7 +57,7 @@ if (typeof socket != 'undefined'){
             scrollToBottom();
             scrollbarPlugin();
             $(window).trigger('resize');
-        }, 300);
+        }, 600);
     });
 
     socket.on('beginConversation', function(data) {
@@ -339,6 +339,13 @@ if (typeof socket != 'undefined'){
                 });
             }, 500 );
         }
+
+        setTimeout(function() {
+            scrollToBottom();
+            scrollbarPlugin();
+            $(window).trigger('resize');
+        }, 600);
+
     });
 }
 
