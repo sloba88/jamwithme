@@ -75,7 +75,7 @@ function initInstrumentSelection() {
 
 function renameCollectionNames($selection) {
     $selection.each(function(k){
-        $(this).find('input[type=hidden]').each(function(){
+        $(this).find('input[type=hidden], input[type=checkbox]').each(function(){
             var name = $(this).attr('name');
             name = name.replace(/(\d+)/g, k);
             $(this).attr('name', name);
@@ -125,12 +125,14 @@ $(function() {
         scrollbarPlugin();
     });
 
+    /*
     $musiciansInstruments.sortable({
         handle: '.handle',
         update: function() {
             renameCollectionNames($musiciansInstruments.find('.row'));
         }
     });
+    */
 
     $musiciansInstruments.on('click', '.remove-instrument', function(e){
         e.preventDefault();

@@ -46,30 +46,28 @@ class InstrumentType extends AbstractType
             )
         ));
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-            $musicianInstrument = $event->getData();
+        $builder->add('musician', 'hidden');
 
-            if ($musicianInstrument['skillLevel'] && $musicianInstrument['instrument'] == '' ){
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            /** @var MusicianInstrument $musicianInstrument */
+            $musicianInstrument = $event->getData();
+            $user = $this->securityContext->getToken()->getUser();
+
+            if ($musicianInstrument->getInstrument() != null) {
+                $musicianInstrument->setMusician($user);
+
+                $event->setData($musicianInstrument);
+            }else {
                 $event->setData(null);
             }
         });
-
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-            $user = $this->securityContext->getToken()->getUser();
-            $musicianInstrument = $event->getForm()->getData();
-
-            if ($musicianInstrument != null){
-                $musicianInstrument->setMusician($user);
-            }
-        });
-
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Jam\CoreBundle\Entity\MusicianInstrument',
-            'required' => false,
+            'required' => false
         ));
     }
 

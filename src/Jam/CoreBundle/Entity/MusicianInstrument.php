@@ -25,7 +25,6 @@ class MusicianInstrument
     /**
      * @var User $musician
      *
-     * @Gedmo\Blameable(on="create")
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="instruments")
      * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)
      */
@@ -49,7 +48,7 @@ class MusicianInstrument
      * @ORM\Column(type="boolean", length=1, nullable=false, name="would_learn")
      *
      */
-    private $wouldLearn = false;
+    private $wouldLearn;
 
     /**
      * Get id

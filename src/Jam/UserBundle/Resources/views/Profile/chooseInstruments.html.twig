@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-5 col-sm-6 col-xs-12 what-do-you-label" style="font-size: 13px;">
+    <div class="col-md-5 col-sm-4 col-xs-12 what-do-you-label" style="font-size: 13px;">
 
         {{ 'label.what.do.you'|trans }}
         <span class="what-label-option fos_user_profile_form_isVisitor {% if not app.user.isVisitor %}hidden{% endif %}">{{ 'label.what.learn'|trans }}</span>
@@ -9,33 +9,43 @@
         <span class="what-do-you-play-default {% if not app.user.isVisitor and not app.user.isJammer and not app.user.isTeacher %}{% else %}hidden{% endif %}">{{ 'label.what.jam'|trans }}</span>
         ?
     </div>
-    <div class="col-md-4 col-sm-4 col-xs-8">
+    <div class="col-md-4 col-sm-4 hidden-xs">
         {{ 'label.how.good.are.you'|trans }}
     </div>
-    <div class="col-md-2"></div>
-    <div class="col-md-3 learn-options hidden" style="font-size: 13px">
-        Want to learn
+    <div class="col-md-3 col-sm-2 col-xs-3 learn-options hidden hidden-xs" style="font-size: 13px">
+        {{ 'label.want.to.learn'|trans }}
     </div>
+    <div class="col-md-1 col-sm-2 col-xs-2"></div>
 </div>
 
 <ul id="musician_instruments">
 
     {% for f in form.instruments %}
         <li class="row">
-            <div class="col-md-5 col-sm-6 col-xs-10">
+            <div class="col-md-5 col-sm-4 col-xs-8">
                 {{ form_widget(f.instrument) }}
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-10">
+
+            <div class="col-xs-6 visible-xs">
+                {{ 'label.how.good.are.you'|trans }}
+            </div>
+
+            <div class="col-xs-4 learn-options hidden visible-xs" style="font-size: 13px">
+                {{ 'label.want.to.learn'|trans }}
+            </div>
+
+            <div class="clearfix visible-xs" style="margin:0"></div>
+
+            <div class="col-md-4 col-sm-4 col-xs-6">
                 {{ form_widget(f.skillLevel) }}
             </div>
 
-            <div class="col-md-2 col-sm-4 col-xs-10 learn-options hidden" style="text-align: center; padding-top: 13px">
+            <div class="col-md-2 col-sm-2 col-xs-3 learn-options hidden" style="text-align: center; padding-top: 13px">
                 {{ form_widget(f.wouldLearn) }}<label class="control-label" for="{{ f.wouldLearn.vars.id }}"></label>
             </div>
 
-            <div class="col-md-1 col-sm-2 col-xs-2" style="padding: 10px 0 0 0">
+            <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">
                 <a href="" class="remove-instrument text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
-                <a class="handle" title="re-order"><i class="fa fa-bars"></i></a>
             </div>
         </li>
     {% endfor %}

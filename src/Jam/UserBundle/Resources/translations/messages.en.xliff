@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-06-08T15:05:23Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-09T10:36:14Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -176,7 +176,7 @@
       <trans-unit id="492b76e8f42f1e440a8b09e25dc22b1d69ebe7d7" resname="label.add.instrument">
         <source>label.add.instrument</source>
         <target state="new">Add another instrument / skill</target>
-        <jms:reference-file line="51">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="46">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c9afcfcd7e736a908026c9ce1ca67d1294f30aae" resname="label.add.photos">
         <source>label.add.photos</source>
@@ -279,7 +279,7 @@
       <trans-unit id="d7e9871a9d321f4a194c509950746a360f6f8db9" resname="label.how.good.are.you">
         <source>label.how.good.are.you</source>
         <target state="new">Skill level</target>
-        <jms:reference-file line="26">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="13">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cb0377345e0b84aa4479a40689c3d8a2fa3fa68a" resname="label.i.am.available">
         <source>label.i.am.available</source>
@@ -448,10 +448,15 @@
         <jms:reference-file line="278">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="162">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="6dc3ac3e6d6feec53a2cb25b1d50c51928b1c862" resname="label.want.to.learn">
+        <source>label.want.to.learn</source>
+        <target state="new">Want to learn</target>
+        <jms:reference-file line="17">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="08d2a1d53a2221bf64c3950365911752bc6b4f14" resname="label.what.do.you">
         <source>label.what.do.you</source>
         <target state="new">What do you</target>
-        <jms:reference-file line="15">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4c77e2b91f79da007f77718b688fd55885507cc6" resname="label.what.gear.do.you.own">
         <source>label.what.gear.do.you.own</source>
@@ -461,17 +466,18 @@
       <trans-unit id="52e3d92bacf2462abd63efd07e9cc5a49e7ec4f1" resname="label.what.jam">
         <source>label.what.jam</source>
         <target state="new">play</target>
-        <jms:reference-file line="19">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d5a697353f9b014748a51d662b95c42aa6764685" resname="label.what.learn">
         <source>label.what.learn</source>
         <target state="new">want to learn</target>
-        <jms:reference-file line="18">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a1ed085b2c559487a55cf823efd856a51176acbb" resname="label.what.teach">
         <source>label.what.teach</source>
         <target state="new">teach</target>
-        <jms:reference-file line="20">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
+        <jms:reference-file line="7">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/chooseInstruments.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
