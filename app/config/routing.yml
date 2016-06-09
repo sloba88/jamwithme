@@ -11,11 +11,6 @@ jam_user:
     type:     annotation
     prefix:   /
 
-jam_admin:
-    resource: "@JamWebBundle/Controller/Admin/"
-    type:     annotation
-    prefix:   /admin
-
 jam_web:
     resource: "@JamWebBundle/Controller/"
     type:     annotation
@@ -78,3 +73,8 @@ soundcloud_login:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+jam_admin:
+    resource: "@JamWebBundle/Controller/Admin/"
+    type:     annotation
+    prefix:   /admin
