@@ -68,7 +68,7 @@ after 'deploy:updated',   'deploy:migrate'
 
 after 'deploy:updated',   'redis:clear'
 
-after 'deploy:updated',   'elastica:populate'
+#after 'deploy:updated',   'elastica:populate'
 
 after 'deploy:updated',   'node:restart'
 
