@@ -153,9 +153,9 @@
         <target>find by name or email</target>
         <jms:reference-file line="24">views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="e71166ff3ee189ba8eb6f0b32cb76114a7257cda" resname="text.2.kilometers">
-        <source>text.2.kilometers</source>
-        <target>2 kilometers</target>
+      <trans-unit id="e71166ff3ee189ba8eb6f0b32cb76114a7257cda" resname="text.5.kilometers">
+        <source>text.5.kilometers</source>
+        <target>5 kilometers</target>
         <jms:reference-file line="33">views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8cd7703de165fb96efdcb03118c8a32603d9edfb" resname="text.accept">

@@ -312,9 +312,9 @@ $(function() {
     $('#filter-by-distance-slider').slider({
         range: 'min',
         value: $('#search_form_distance').val(),
-        min: 2,
-        max: 50,
-        step: 2,
+        min: 5,
+        max: 100,
+        step: 5,
         create: function() {
             var selection = $('#filter-by-distance-slider').slider('value');
             $('.slide-max').text(selection + 'km');

@@ -99,8 +99,8 @@ class SearchMusicians {
 
         $distance = intval($search->getDistance());
 
-        if ($distance > 50) {
-            $distance = 50;
+        if ($distance > 100) {
+            $distance = 100;
         }
 
         /* send data to GA */
@@ -171,7 +171,7 @@ class SearchMusicians {
             $locationFilter = new \Elastica\Filter\GeoDistance(
                 'musician2.pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                ($distance ? $distance : '50') . 'km'
+                ($distance ? $distance : '100') . 'km'
             );
 
             $nested = new Nested();

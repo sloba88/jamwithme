@@ -51,7 +51,7 @@ function initMap(){
         app_code: '1LBq52rA1_q-8pj6_67OMg',
         base: 'base',
         maxZoom: 15,
-        minZoom: 9
+        minZoom: 8
     }).addTo(map);
 
     map.on('zoomend', function(){
