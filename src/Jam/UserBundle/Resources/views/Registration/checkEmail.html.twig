@@ -4,4 +4,9 @@
 
 {% block fos_user_content %}
     <p>{{ 'text.check_email'|trans({'%email%': user.email}) }}</p>
+    <script>
+        if (typeof fbq !='undefined') {
+            fbq('track', 'CompleteRegistration');
+        }
+    </script>
 {% endblock fos_user_content %}
