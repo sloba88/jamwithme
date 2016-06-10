@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-5 col-sm-4 col-xs-12 what-do-you-label" style="font-size: 13px;">
+    <div class="col-md-5 col-sm-4 col-xs-12 what-do-you-label instrument-select-form" style="font-size: 13px;">
 
         {{ 'label.what.do.you'|trans }}
         <span class="what-label-option fos_user_profile_form_isVisitor {% if not app.user.isVisitor %}hidden{% endif %}">{{ 'label.what.learn'|trans }}</span>
@@ -9,7 +9,7 @@
         <span class="what-do-you-play-default {% if not app.user.isVisitor and not app.user.isJammer and not app.user.isTeacher %}{% else %}hidden{% endif %}">{{ 'label.what.jam'|trans }}</span>
         ?
     </div>
-    <div class="col-md-4 col-sm-4 hidden-xs">
+    <div class="col-md-4 col-sm-4 hidden-xs skill-level-select-form">
         {{ 'label.how.good.are.you'|trans }}
     </div>
     <div class="col-md-3 col-sm-2 col-xs-3 learn-options hidden hidden-xs" style="font-size: 13px">
@@ -22,7 +22,7 @@
 
     {% for f in form.instruments %}
         <li class="row">
-            <div class="col-md-5 col-sm-4 col-xs-8">
+            <div class="col-md-5 col-sm-4 col-xs-8 instrument-select-form">
                 {{ form_widget(f.instrument) }}
             </div>
 
@@ -36,7 +36,7 @@
 
             <div class="clearfix visible-xs" style="margin:0"></div>
 
-            <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="col-md-4 col-sm-4 col-xs-6 skill-level-select-form">
                 {{ form_widget(f.skillLevel) }}
             </div>
 

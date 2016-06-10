@@ -4,6 +4,7 @@
 /* global parseYTVideoImages */
 /* global addMessage */
 /* global scrollbarPlugin */
+/* global _user */
 
 var allInstruments = false;
 var allSkills = false;
@@ -91,13 +92,22 @@ function setTabsHeight() {
 }
 
 function showLearnOptions() {
-    if ($('#fos_user_profile_form_isVisitor').prop('checked')) {
+    //if the form element is changed or the form element doesnt exist as on setup page
+    if ($('#fos_user_profile_form_isVisitor').prop('checked') || ($('#fos_user_profile_form_isVisitor').length === 0 && _user.isVisitor)) {
         $('.learn-options').removeClass('hidden');
     } else {
         $('.learn-options').addClass('hidden');
         $('.learn-options input:checked').each(function() {
             $(this).prop('checked', false);
         });
+    }
+
+    if ($('.learn-options').hasClass('hidden')) {
+        $('.skill-level-select-form').removeClass('col-md-4 col-sm-4').addClass('col-md-5 col-sm-5');
+        $('.instrument-select-form').removeClass('col-md-5 col-sm-5').addClass('col-md-6 col-sm-6');
+    } else {
+        $('.skill-level-select-form').removeClass('col-md-5 col-sm-5').addClass('col-md-4 col-sm-4');
+        $('.instrument-select-form').removeClass('col-md-6 col-sm-6').addClass('col-md-5 col-sm-5');
     }
 }
 
@@ -291,10 +301,10 @@ $(function() {
     }
 
     $('body').on('change', '#fos_user_profile_form_isTeacher', function(){
-        if ($(this).is(':checked')){
-            $('.teacherSpecific').fadeIn();
+        if ($(this).prop('checked')){
+            $('.teacherSpecific').removeClass('hidden');
         } else {
-            $('.teacherSpecific').fadeOut();
+            $('.teacherSpecific').addClass('hidden');
         }
     });
 

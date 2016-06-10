@@ -1,8 +1,9 @@
 <div class="row">
-    <div class="col-md-5 col-sm-4 col-xs-8">
+    <div class="col-md-5 col-sm-4 col-xs-8 instrument-select-form">
         <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][instrument]" class="instrument-select form-control" />
     </div>
-    <div class="col-md-4 col-sm-4 col-xs-6">
+
+    <div class="col-md-4 col-sm-4 col-xs-6 skill-level-select-form">
         <input type="hidden" name="fos_user_profile_form[instruments][<%- rc.num %>][skillLevel]" class="skill-select form-control" />
     </div>
 

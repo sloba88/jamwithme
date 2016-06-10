@@ -379,6 +379,7 @@
             _user.lat = '{{ app.user.location.lat|default('') }}';
             _user.lng = '{{ app.user.location.lng|default('') }}';
             _user.temporaryLocation = '{{ app.user.location.isTemporary|default('') }}';
+            _user.isVisitor = '{{ app.user.isVisitor }}';
             _user.avatar = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
 
             var socket = new io.connect('{{ node_server }}', {
