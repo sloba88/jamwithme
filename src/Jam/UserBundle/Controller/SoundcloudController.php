@@ -34,6 +34,11 @@ class SoundcloudController extends Controller {
         $securityContext = $this->container->get('security.context');
         $em = $this->getDoctrine()->getManager();
 
+        if ($currentRequest->get('error')!='') {
+            $this->get('session')->getFlashBag()->set('info', $currentRequest->get('error_description'));
+            return new RedirectResponse($this->generateUrl('home'));
+        }
+
         $tokenData = $soundcloudService->getSoundcloudToken($currentRequest->get('code'));
         $soundcloudUserData = $soundcloudService->getSoundcloudUser($tokenData->access_token);
 

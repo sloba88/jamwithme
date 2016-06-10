@@ -10,6 +10,7 @@ use Jam\UserBundle\Entity\UserImage;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class SoundcloudConnector {
 
@@ -107,7 +108,7 @@ class SoundcloudConnector {
             $tokenData = json_decode($tokenResponse->getBody(true));
 
         } catch(\Exception $exception) {
-            throw new $exception;
+            //throw new $exception;
         }
 
         return $tokenData;
