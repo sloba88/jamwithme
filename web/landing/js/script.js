@@ -1,5 +1,7 @@
 'use strict';
 
+/* global Routing */
+
 function getParameterByName(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
@@ -118,6 +120,14 @@ $(document).ready(function(){
 
     $('body').on('mouseleave', '.icon.info',function(e){
         $('.infoBoxSmall').hide();
+    });
+
+    $('#termsModal').on('show.bs.modal', function() {
+        $.get(
+            Routing.generate('terms_raw'),
+            function(data){
+                $('#termsModal .modal-body').html(data);
+            });
     });
 
 }); // document ready

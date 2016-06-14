@@ -36,4 +36,12 @@ class HomeController extends Controller
     public function termsAction(Request $request)
     {
     }
+
+    /**
+     * @Route("/terms-raw", name="terms_raw", options={"expose"=true})
+     * @Template
+     */
+    public function termsRawAction(Request $request)
+    {
+    }
 }

@@ -13,7 +13,7 @@
 
             <div class="with-scrollbar" style="height: 500px;">
                 <div>
-                    {{ source('JamUserBundle::terms_en.html.twig') }}
+                    {% include 'JamWebBundle:Home:termsRaw.html.twig' %}
                 </div>
             </div>
 
