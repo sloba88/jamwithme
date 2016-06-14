@@ -48,7 +48,7 @@ class MusicianInstrument
      * @ORM\Column(type="boolean", length=1, nullable=false, name="would_learn")
      *
      */
-    private $wouldLearn;
+    private $wouldLearn = false;
 
     /**
      * Get id
