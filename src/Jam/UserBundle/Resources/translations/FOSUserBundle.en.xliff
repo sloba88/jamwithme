@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-06-16T14:26:52Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-16T17:19:46Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -23,14 +23,19 @@
         <target state="new">Hello %username%! We are glad to have you with us at Jamifind. We hope that you will enjoy your stay and find what you're looking for. To get going, please click the following link to activate your account: </target>
         <jms:reference-file line="9">/vagrant/www/src/Jam/UserBundle/Resources/views/Registration/email.txt.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="40c1a483571045e24d606bf00361cfd4d021ba05" resname="resetting.check_email">
+        <source>resetting.check_email</source>
+        <target state="new">An email has been sent to %email%. It contains a link you must click to reset your password.</target>
+        <jms:reference-file line="7">/vagrant/www/src/Jam/UserBundle/Resources/views/Resetting/checkEmail.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="70c8836a0e3b8dadb494b8de56ebed18939359b5" resname="resetting.email.message">
         <source>resetting.email.message</source>
-        <target state="new">resetting.email.message</target>
+        <target state="new">Hello, did you ask us to send you a link to reset your password? You got it. Just click the following link to reset. If you didn't request a new password link, feel free to ignore this email. </target>
         <jms:reference-file line="9">/vagrant/www/src/Jam/UserBundle/Resources/views/Resetting/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="126cf13058808d8948cc673c7933c6c1ce27841d" resname="resetting.email.subject">
         <source>resetting.email.subject</source>
-        <target state="new">resetting.email.subject</target>
+        <target state="new">Jamifind password reset</target>
         <jms:reference-file line="5">/vagrant/www/src/Jam/UserBundle/Resources/views/Resetting/email.txt.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">

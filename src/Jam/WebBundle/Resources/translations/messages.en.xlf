@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-06-16T15:36:42Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-16T16:31:09Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -214,6 +214,11 @@
         <target>Add another member</target>
         <jms:reference-file line="33">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/edit.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">
+        <source>text.back</source>
+        <target state="new">Back</target>
+        <jms:reference-file line="12">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="e0f64bea21015d977c18187adc58f27ce37dd546" resname="text.compose.new.message">
         <source>text.compose.new.message</source>
         <target>compose new message</target>
@@ -322,8 +327,8 @@
       </trans-unit>
       <trans-unit id="5ae049d1bbd992f9554b6f65eb322a322798c94a" resname="text.send.us.a.message">
         <source>text.send.us.a.message</source>
-        <target state="new">Send us a message</target>
-        <jms:reference-file line="15">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
+        <target>Send us a message</target>
+        <jms:reference-file line="17">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fb6941fbd7c233f8d51c3c69b7e0ee3c67a75ab4" resname="text.set.distance">
         <source>text.set.distance</source>
@@ -358,8 +363,8 @@
       </trans-unit>
       <trans-unit id="cbe5975526ce5dcbcecc4e8c9dc65969248c8a20" resname="text.sign.up.to.jamifind">
         <source>text.sign.up.to.jamifind</source>
-        <target state="new">text.sign.up.to.jamifind</target>
-        <jms:reference-file line="13">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
+        <target>text.sign.up.to.jamifind</target>
+        <jms:reference-file line="15">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1de14c07b898ddef52dc5bd4f9b61044d4fa763a" resname="text.teachers">
         <source>text.teachers</source>

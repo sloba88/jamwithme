@@ -9,6 +9,8 @@
 
         {{ 'text.about.us.page'|trans|raw }}
 
+        <a href="{{ path('home') }}">&laquo; {{ 'text.back'|trans }}</a>
+
         <div class="col-md-4 center-block" style="float: none; margin-top: 20px;">
             <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">{{ 'text.sign.up.to.jamifind'|trans }}</a>
             <br /><br />
