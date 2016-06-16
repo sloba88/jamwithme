@@ -51,6 +51,7 @@ security:
         - { path: ^/login$, access: "!isAuthenticated()" }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/terms, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/about, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, access: "!isAuthenticated()" }
         - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/soundcloud/, role: IS_AUTHENTICATED_ANONYMOUSLY }

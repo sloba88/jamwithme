@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-03-04T17:14:10Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-16T15:36:42Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -9,316 +9,362 @@
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
         <target>invite selected</target>
-        <jms:reference-file line="17">views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="427681cdcf211c177224b8aa9dd1591f43ff7b85" resname="button.select.all">
         <source>button.select.all</source>
         <target>select all</target>
-        <jms:reference-file line="20">views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="20">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eb9e2376af2e391ea0e1e9e484f9a7704272bff6" resname="button.send">
         <source>button.send</source>
         <target>send</target>
-        <jms:reference-file line="26">views/Messages/conversation.html.twig</jms:reference-file>
-        <jms:reference-file line="8">views/Shouts/shouts.html.twig</jms:reference-file>
+        <jms:reference-file line="25">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/conversation.html.twig</jms:reference-file>
+        <jms:reference-file line="8">/vagrant/www/src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d2951fc2f2bef90fce999a1d0604198a5e2977e" resname="email.accept.invitation">
         <source>email.accept.invitation</source>
         <target>Accept invitation</target>
-        <jms:reference-file line="15">views/Email/invitation.html.twig</jms:reference-file>
+        <jms:reference-file line="15">/vagrant/www/src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eab0ce4518fb01dcd7532e1a48d515de8d15526e" resname="email.invitation.text">
         <source>email.invitation.text</source>
         <target>Jamifind is a free platform for all musicians to find new collaboration partners. Join the revolution!</target>
-        <jms:reference-file line="13">views/Email/invitation.html.twig</jms:reference-file>
+        <jms:reference-file line="13">/vagrant/www/src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ead925b97147d5ea08bd220f3d979af2fcbf259c" resname="email.see.all.messages">
         <source>email.see.all.messages</source>
         <target>See all messages</target>
-        <jms:reference-file line="14">views/Email/messageNotification.html.twig</jms:reference-file>
+        <jms:reference-file line="14">/vagrant/www/src/Jam/WebBundle/Resources/views/Email/messageNotification.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="db231884a579c6f9a861caf1f6b7c3602659a897" resname="email.users.you.might.be.interested.in">
         <source>email.users.you.might.be.interested.in</source>
         <target>email.users.you.might.be.interested.in</target>
-        <jms:reference-file line="5">views/Email/userSearchSubscription.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/vagrant/www/src/Jam/WebBundle/Resources/views/Email/userSearchSubscription.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="918afa5c6cdf8b9375ba036691f27829d7209fee" resname="email.you.have.been.invited">
         <source>email.you.have.been.invited</source>
         <target>You have been invited to join Jamifind by:</target>
-        <jms:reference-file line="4">views/Email/invitation.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/vagrant/www/src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fccf2c4974624e0e217e03e27ca4634c14e6f3a1" resname="email.you.have.recieved.a.message">
         <source>email.you.have.recieved.a.message</source>
         <target>You've received a new message</target>
-        <jms:reference-file line="4">views/Email/messageNotification.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/vagrant/www/src/Jam/WebBundle/Resources/views/Email/messageNotification.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e360c037aa80f7f0bff41074a8aee2492ff7cf77" resname="exception.image.not.found">
         <source>exception.image.not.found</source>
         <target>Image not found</target>
-        <jms:reference-file line="276">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="276">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="fda539f31ffa1350a042cfe6ffc71fe8b55ed380" resname="exception.the.jam.does.not.exist">
         <source>exception.the.jam.does.not.exist</source>
         <target>The jam does not exist</target>
-        <jms:reference-file line="84">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="119">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="134">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="176">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="211">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="265">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="84">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="119">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="134">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="176">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="211">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="265">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0196370bc028f41633ce819f09a64b96908a7d02" resname="exception.this.user.does.not.exist">
         <source>exception.this.user.does.not.exist</source>
         <target>This user does not exist</target>
-        <jms:reference-file line="49">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="49">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="37f26949ccedac3eccb254e8377ebeaf2a257ea0" resname="exception.you.are.not.this.jam.member.">
         <source>exception.you.are.not.this.jam.member.</source>
         <target>You are not this jam member</target>
-        <jms:reference-file line="220">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="268">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="220">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="268">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="282726c208fb740e6b048a45abebc2027ac874a7" resname="exception.you.shall.not.pass">
         <source>exception.you.shall.not.pass</source>
         <target>You shall not pass!</target>
-        <jms:reference-file line="156">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="193">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="216">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="258">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="156">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="193">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="216">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="258">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="353b1e55b487c4db59523f9952591cfde2bee200" resname="excpetion.you.are.already.in.the.jam">
         <source>excpetion.you.are.already.in.the.jam</source>
         <target>You are already in the jam</target>
-        <jms:reference-file line="139">WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="180">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="139">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="180">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7f0873aab9a63cab15bbf214413b1b4eee7efa28" resname="find.compatible.musicians">
         <source>find.compatible.musicians</source>
         <target>find compatible musicians</target>
-        <jms:reference-file line="1">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="1">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="069807227fdad28048b2f72f37eb337e14f95412" resname="label.close.conversation">
         <source>label.close.conversation</source>
         <target>close conversation</target>
-        <jms:reference-file line="6">views/Messages/conversation.html.twig</jms:reference-file>
-        <jms:reference-file line="9">views/Messages/conversation.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/conversation.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/conversation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a2367becbea2cb7b398f569f4ff471aa873d55f6" resname="label.invite.contacts">
         <source>label.invite.contacts</source>
         <target>invite contacts</target>
-        <jms:reference-file line="11">views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="11">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1b93861896d098de3b537a61a1a5df52cc874b8a" resname="label.type.a.name">
         <source>label.type.a.name</source>
         <target>Type a name</target>
-        <jms:reference-file line="14">views/Messages/conversation.html.twig</jms:reference-file>
+        <jms:reference-file line="12">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/conversation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="edb14861ee7936ad4fece4e370df43eea07311e3" resname="label.write.message">
         <source>label.write.message</source>
         <target>Write message</target>
-        <jms:reference-file line="23">views/Messages/conversation.html.twig</jms:reference-file>
+        <jms:reference-file line="22">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/conversation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2c30c70311bf45b4f768e3e1543a99b3baf588f" resname="message.jam.created.successfully">
         <source>message.jam.created.successfully</source>
         <target>Jam created successfully</target>
-        <jms:reference-file line="62">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="62">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d111bb179ed56d7c47bd925d07f0baed426e00c" resname="message.jam.request.accepted.successfully">
         <source>message.jam.request.accepted.successfully</source>
         <target>Jam request accepted successfully</target>
-        <jms:reference-file line="190">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="190">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="2f92d5235b9868358dc34bb43f70e3544152959c" resname="message.jam.request.sent.successfully">
         <source>message.jam.request.sent.successfully</source>
         <target>Jam request sent successfully</target>
-        <jms:reference-file line="153">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="153">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9882cef6db906276e658a7e4a78c47d9f1207f49" resname="message.jam.updated.successfully">
         <source>message.jam.updated.successfully</source>
         <target>Jam updated successfully</target>
-        <jms:reference-file line="101">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="101">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="90fbb135ce9f3622c32d0165813d5b5d726a9839" resname="message.request.already.sent">
         <source>message.request.already.sent</source>
         <target>Request already sent</target>
-        <jms:reference-file line="143">WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="143">/vagrant/www/src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7f000908c24b00f66f0a116b42dd3d54e6f6abc0" resname="message.you.have.already.subscribed">
         <source>message.you.have.already.subscribed</source>
         <target>You have already subscribed</target>
-        <jms:reference-file line="33">WebBundle/Controller/SubscriptionController.php</jms:reference-file>
+        <jms:reference-file line="33">/vagrant/www/src/Jam/WebBundle/Controller/SubscriptionController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="8c32d1e2e0999e1d2c2ce9c66dcd46a0cea15eef" resname="placeholder.find.by.name.or.email">
         <source>placeholder.find.by.name.or.email</source>
         <target>find by name or email</target>
-        <jms:reference-file line="24">views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="24">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="e71166ff3ee189ba8eb6f0b32cb76114a7257cda" resname="text.5.kilometers">
+      <trans-unit id="14362b865cfa14897827d1c8c2501e1ef98c5687" resname="text.5.kilometers">
         <source>text.5.kilometers</source>
         <target>5 kilometers</target>
-        <jms:reference-file line="33">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="33">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9c2dd80217d300d4dd3221533382e2887497b80c" resname="text.about.us.page">
+        <source>text.about.us.page</source>
+        <target><![CDATA[
+        
+        <h1>About us</h1>
+
+                <p>Jamifind is an innovative platform for all level musicians, made by musicians. We want you to find the best possible collaboration partners for your music projects. Whether you're looking for a new member(s) to your band, random jamming company, the perfect music teacher, a producer that shares the same artistic view as you, a cellist to your studio sessions or any other music industry players like a lyricist or a composer, Jamifind will help you find them!</p>
+
+                <p>Our mission is to support and contribute to music culture by helping musicians and other music industry players connect with each other more easily and efficiently. We cherish self-fulfillment and encourage people to create music projects for everyone to enjoy.</p>
+
+                <h2>Best place to find band members</h2>
+
+                <p>The spark that ignited the creation of Jamifind came from the realization that people are still using bulletin boards, old school web-forums or Facebook groups to find a missing bass player for their band or promote their music lessons business. These ads usually give little or no information on the person who is advertising: their background, music interests, skill level, education or the like. These are the problems we wanted to solve with Jamifind. And currently, there is no better place to find musicians that suit your needs.</p>
+
+                <h2>Looking for a music teacher?</h2>
+
+                <p>You always wanted to learn how to play the piano but were always too busy to make the effort to find a piano teacher that really works for you? Where would you start looking anyway? Not only is it time-consuming to go through all the possible music lesson providers out there, googling will only give you teachers that have their own websites. They are usually fully-booked professionals and often too expensive.</p>
+
+                <p>Or maybe you are looking for beginner guitar lessons for your children? In that case, you probably want to be even more careful when selecting the person giving the music lessons, and choosing the guy from the bulletin board in a nearby shop might not be the most responsible thing to do.</p>
+
+                <br />
+
+                <h4>Jamifind's first version features are:</h4>
+
+                <ul style="list-style-type: disc; padding: 10px 30px 20px;">
+                    <li>Create your free musician's profile that works as your musicians resume</li>
+                    <li>Add the instruments you play, other music-related skills and your level of competence</li>
+                    <li>Add music via SoundCloud, video via YouTube and photos to your profile</li>
+                    <li>Find other musicians or music teachers based on your search criteria (e.g. instrument and genre) and set the search distance</li>
+                    <li>Browse suggested profiles using a grid or map view</li>
+                    <li>Send and receive personal messages</li>
+                    <li>Compatibility: Jamifind finds the best possible matches for you, using your favorite bands and other information you choose to fill into your profile. The more information you share on your profile, the better it works.</li>
+                    <li>A shoutbox where you can share links to your projects like upcoming live events or music videos, have a chat with other users about today's hot topics etc.</li>
+                    <li>Soon we will also be adding the first batch of music stores and live music bars / clubs on our map</li>
+                    <li>Please invite your friends to join Jamifind too :)</li>
+                </ul>
+
+                <p>We will be adding new features as we develop the service further and we will keep you updated about them.</p>
+
+                <p>We are working hard to make sure this site does all it can to help you find the talent you need for your musical pursuits. For us, it's all about bringing musicians together!</p>
+
+                <p>If you have any suggestions for updates or improvements to the site, please let us know. We value your input and look forward to it.</p>
+            
+        ]]></target>
+        <jms:reference-file line="10">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8cd7703de165fb96efdcb03118c8a32603d9edfb" resname="text.accept">
         <source>text.accept</source>
         <target>accept</target>
-        <jms:reference-file line="54">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="54">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="60fa1e443e74ffd46498b6152aa242fe227c07a4" resname="text.add.another.member">
         <source>text.add.another.member</source>
         <target>Add another member</target>
-        <jms:reference-file line="33">views/Jam/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="33">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e0f64bea21015d977c18187adc58f27ce37dd546" resname="text.compose.new.message">
         <source>text.compose.new.message</source>
         <target>compose new message</target>
-        <jms:reference-file line="10">views/Messages/messages.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/messages.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="65f68bc061c68e59ba9a5bc1efc4b7e2d7801ba7" resname="text.deny">
         <source>text.deny</source>
         <target>deny</target>
-        <jms:reference-file line="54">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="54">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="91cbc46a1514a37f1e5b59affbf0ac628b94383b" resname="text.description">
         <source>text.description</source>
         <target>description</target>
-        <jms:reference-file line="9">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d57287cc51c32900785af6f85d7810d4e7cfb5b0" resname="text.edit">
         <source>text.edit</source>
         <target>edit</target>
-        <jms:reference-file line="69">views/Jam/view.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="d744fbb4745b74b6b7f3950b8b4f6688dd67c4b1" resname="text.edit.profile">
-        <source>text.edit.profile</source>
-        <target>Edit profile</target>
-        <jms:reference-file line="11">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="69">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2a0c2400a03ef126d64467970fc6c33515aaa26" resname="text.fill.out.your.profile">
         <source>text.fill.out.your.profile</source>
         <target>fill out your profile</target>
-        <jms:reference-file line="11">views/Common/completion.html.twig</jms:reference-file>
+        <jms:reference-file line="11">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/completion.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7bd742f37dc0bb0c05e5a8b20159b71d5374e7f7" resname="text.filter.by.distance">
         <source>text.filter.by.distance</source>
         <target>filter by distance</target>
-        <jms:reference-file line="26">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="26">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3cfaa3918f2d91f26905fe7417eefb96e53c15b1" resname="text.find.music.teachers.nearby">
         <source>text.find.music.teachers.nearby</source>
         <target>find music teachers nearby</target>
-        <jms:reference-file line="4">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="40ff1dd02d4ecf6311a87a1ef1c7255b2ad7c14b" resname="text.genres">
         <source>text.genres</source>
         <target>genres</target>
-        <jms:reference-file line="29">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="29">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3ad66780fc07852422141e9c5d2973e1f6942d48" resname="text.grid">
         <source>text.grid</source>
         <target>grid</target>
-        <jms:reference-file line="42">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="42">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3af5f7487804ee9829569e17dc58395010b49ca4" resname="text.invite.friends">
         <source>text.invite.friends</source>
         <target>invite friends</target>
-        <jms:reference-file line="22">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="20">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5a54bb46b79c04921593788349d91c41e9dd8e79" resname="text.jam.name">
         <source>Jam name: %jam.name%</source>
         <target>Jam name: %jam.name%</target>
-        <jms:reference-file line="5">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="74e1b87e0fa295afc1df22ad274c161cee874ad1" resname="text.jam.requests">
         <source>text.jam.requests</source>
         <target>jam requests</target>
-        <jms:reference-file line="51">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="51">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1d0c5434e46dec405c1550744a3dd7c154f7e0a7" resname="text.join.request">
         <source>text.join.request</source>
         <target>join request</target>
-        <jms:reference-file line="43">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="43">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ca26f82023af37cb589b161c9c621cb4cae6224e" resname="text.like.our.page">
         <source>text.like.our.page</source>
         <target>like our page</target>
-        <jms:reference-file line="48">views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="48">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
         <target>logout</target>
-        <jms:reference-file line="37">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="35">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0bf01c17fb6b42805e77957dd0f00097d64e9a79" resname="text.map">
         <source>text.map</source>
         <target>map</target>
-        <jms:reference-file line="43">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="43">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9b5ff09daf5019b4d8ec5343377e64da8df59f91" resname="text.members">
         <source>text.members</source>
         <target>members</target>
-        <jms:reference-file line="13">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="13">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="15d3eb05e679ae62f394d20c3aac1bcf971e4e74" resname="text.messages">
         <source>text.messages</source>
         <target>messages</target>
-        <jms:reference-file line="20">views/Common/navigation.html.twig</jms:reference-file>
-        <jms:reference-file line="9">views/Messages/messages.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/messages.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
         <source>text.musicians</source>
         <target>musicians</target>
-        <jms:reference-file line="16">views/Common/navigation.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="32e48c9a4bf0dee8e85d65947e37645eaa869407" resname="text.profile">
-        <source>text.profile</source>
-        <target>profile</target>
-        <jms:reference-file line="19">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="15">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a626306e0b670a0333b14a0fa0180057b65a860" resname="text.profile.completion">
         <source>text.profile.completion</source>
         <target>profile completion</target>
-        <jms:reference-file line="10">views/Common/completion.html.twig</jms:reference-file>
+        <jms:reference-file line="10">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/completion.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="75ce5f1b65b5f530a5a490dbec3cd15e39bb7d9a" resname="text.request.sent">
         <source>text.request.sent</source>
         <target>request sent</target>
-        <jms:reference-file line="41">views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="41">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5ae049d1bbd992f9554b6f65eb322a322798c94a" resname="text.send.us.a.message">
+        <source>text.send.us.a.message</source>
+        <target state="new">Send us a message</target>
+        <jms:reference-file line="15">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fb6941fbd7c233f8d51c3c69b7e0ee3c67a75ab4" resname="text.set.distance">
         <source>text.set.distance</source>
         <target>set distance</target>
-        <jms:reference-file line="30">views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="30">/vagrant/www/src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9532cb76a483e419f51638af02671369c7b614eb" resname="text.settings">
         <source>text.settings</source>
         <target>settings</target>
-        <jms:reference-file line="21">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="19">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f5e42cab4f107c0d123d9542560aebacd8233c7f" resname="text.share.us.on.facebook">
         <source>text.share.us.on.facebook</source>
         <target>Spread the word on Facebook</target>
-        <jms:reference-file line="41">views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="41">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="625c2310e20ed85364204bcb8a6f47c0b6e0f188" resname="text.shout.again.in">
         <source>text.shout.again.in</source>
         <target>shout again in</target>
-        <jms:reference-file line="4">views/Shouts/shouts.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/vagrant/www/src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="efccca249aa3aaeec168517baaff356f397e3878" resname="text.shouts">
         <source>text.shouts</source>
         <target>shouts</target>
-        <jms:reference-file line="18">views/Common/navigation.html.twig</jms:reference-file>
-        <jms:reference-file line="14">views/Shouts/shouts.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="14">/vagrant/www/src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
         <source>text.shouts.feed</source>
         <target>shouts feed</target>
-        <jms:reference-file line="2">views/Shouts/shouts.html.twig</jms:reference-file>
+        <jms:reference-file line="2">/vagrant/www/src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cbe5975526ce5dcbcecc4e8c9dc65969248c8a20" resname="text.sign.up.to.jamifind">
+        <source>text.sign.up.to.jamifind</source>
+        <target state="new">text.sign.up.to.jamifind</target>
+        <jms:reference-file line="13">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1de14c07b898ddef52dc5bd4f9b61044d4fa763a" resname="text.teachers">
         <source>text.teachers</source>
         <target>teachers</target>
-        <jms:reference-file line="17">views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="16">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

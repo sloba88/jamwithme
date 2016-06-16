@@ -261,11 +261,10 @@ $(function() {
             callback(data);
         },
         ajax: {
-            url: 'http://developer.echonest.com/api/v4/artist/suggest',
-            dataType: 'jsonp',
+            url: 'https://api.spotify.com/v1/search',
             results: function(data) {
                 return {
-                    results: $.map(data.response.artists, function(item) {
+                    results: $.map(data.artists.items, function(item) {
                         return {
                             text: item.name,
                             value: item.name,
@@ -277,9 +276,9 @@ $(function() {
             data: function(term) {
                 return {
                     results: 12,
-                    api_key: 'AVZ7NYSNWRRUQVWXS',
-                    format: 'jsonp',
-                    name: term
+                    api_key: '821adc24f1684cf89b7ef538d8808b8a',
+                    q: term,
+                    type: 'artist'
                 };
             }
         }

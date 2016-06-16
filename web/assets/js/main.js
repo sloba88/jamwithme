@@ -369,6 +369,19 @@ $(function() {
         });
     }
 
+    $('.perfect-scrollbar').each(function() {
+
+        var thisHeight = $(this).height(),
+            thisChildrenHeight = $this.children().height();
+
+        if (thisHeight < thisChildrenHeight) {
+            $(this).perfectScrollbar({
+                suppressScrollX: true
+            });
+        }
+
+    });
+
     //scrollbar on settings page - photos
     $('.page-profile .profile-media-wall').perfectScrollbar({
         suppressScrollX: true
@@ -708,12 +721,15 @@ $(function() {
         };
 
         this.conversationHeight = function() {
-            var $conversation = $('.conversation'),
-                $conversationContainer = $conversation.find('.conversation-container'),
-                coneversationSendHeight = $('.conversation-send').outerHeight(),
-                containerOffsetTop = $conversationContainer.offset().top;
+            var $conversation = $('.conversation');
 
-            $conversationContainer.height($conversation.outerHeight() - containerOffsetTop - coneversationSendHeight - 30);
+            if ($conversation.length > 0) {
+                var $conversationContainer = $conversation.find('.conversation-container'),
+                    coneversationSendHeight = $('.conversation-send').outerHeight(),
+                    containerOffsetTop = $conversationContainer.offset().top;
+
+                $conversationContainer.height($conversation.outerHeight() - containerOffsetTop - coneversationSendHeight - 30);
+            }
         };
 
         this.composeOnClick = function() {

@@ -1,6 +1,6 @@
 header {
 	background: #000;
-	height: 70px;
+	height: 55px;
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -17,23 +17,9 @@ header {
 	}
 }
 
-//style not to affect landing page
-body:not(.signup-page):not(.login-page) {
-
-	.navbar-brand .outer {
-		@include respond-to(tablet) {
-			display: block;
-			font-size: 9.5px;
-			left: auto;
-			right: -20px;
-			top: -8px;
-		}
-	}
-}
-
 .navbar-brand {
 	height: auto;
-	padding: 14px 14px 0px 14px;
+	padding: 7px 14px 0 14px;
 	@include respond-to(tablet) {
 		float: none;
 		text-align: center;
@@ -103,7 +89,7 @@ body:not(.signup-page):not(.login-page) {
 
 .search-block-container {
 	padding-left: 0;
-	padding-top: 18px;
+	padding-top: 10px;
 	@include respond-to(tablet) {
 		background: $brand-secondary;
 		bottom: -58px;

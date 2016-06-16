@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-login.jpg') }}); overflow: visible;{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    <section class="col-sm-12 col-xs-12 col-md-10 col-md-offset-1" style="background-color: #fff;">
+
+        {{ 'text.about.us.page'|trans|raw }}
+
+        <div class="col-md-4 center-block" style="float: none; margin-top: 20px;">
+            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-primary">{{ 'text.sign.up.to.jamifind'|trans }}</a>
+            <br /><br />
+            <a href="mailto:info@jamifind.com" class="btn btn-primary">{{ 'text.send.us.a.message'|trans }}</a>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+    </section>
+    </div>
+
+{% endblock %}

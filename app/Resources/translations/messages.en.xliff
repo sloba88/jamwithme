@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-04-25T10:44:57Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-16T13:27:47Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="61fb451d69ef51d5c44f32eab0694c26e61ae34a" resname="button.home.login">
+        <source>button.home.login</source>
+        <target state="new">Login</target>
+        <jms:reference-file line="456">./app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="506">./app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
-        <target state="new">search users</target>
-        <jms:reference-file line="450">Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">SEARCH USERS</target>
+        <jms:reference-file line="470">./app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="456968ba9af6660e2b2696190e830c0f876c57e2" resname="link.home.about">
+        <source>link.home.about</source>
+        <target state="new">About us</target>
+        <jms:reference-file line="483">./app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="767163315825668c13c0c8a21256765361d5ac49" resname="text.meta.description">
         <source>text.meta.description</source>
-        <target state="new">Find musicians and band members. Looking for the right guitar teacher? Meet them on Jamifind</target>
-        <jms:reference-file line="7">Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Find musicians and band members nearby. Create your musician profile and get connected. Looking for the guitar or piano teacher?</target>
+        <jms:reference-file line="7">./app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ce15567ae7d412c970cca0fe2c56e29239e09693" resname="text.title">
         <source>text.title</source>
-        <target state="new">Jamifind - find musicians and band members</target>
-        <jms:reference-file line="4">Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Jamifind - bringing musicians together</target>
+        <jms:reference-file line="4">./app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>
