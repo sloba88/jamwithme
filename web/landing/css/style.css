@@ -100,11 +100,16 @@ body.login-page {
 	padding: 0 5px;
 	transition: all 0.2s ease;
 }
-.social li a:hover, .social li a:active {
+.social li a:hover, .social li a:active, .social li a:focus {
 	opacity: 1;
 	transition: all 0.2s ease;
 	background: none;
 }
+
+.social li.active a {
+	opacity: 1;
+}
+
 /*****head ends*****/
 
 /**** map ****/

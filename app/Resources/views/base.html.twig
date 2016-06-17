@@ -480,7 +480,7 @@
                     <div class="col-sm-5 col-md-5 col-md-5">
                         <div class="collapse navbar-collapse" id="social-header-home">
                             <ul class="nav navbar-nav social">
-                                <li><a href="{{ path('about') }}" class="about-us-home-link">{{ 'link.home.about'|trans }}</a></li>
+                                <li {% if app.request.attributes.get('_route') == 'about' %} class="active"{% endif %}"><a href="{{ path('about') }}" class="about-us-home-link">{{ 'link.home.about'|trans }}</a></li>
                                 <li><a href="https://www.facebook.com/jamifind"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="https://twitter.com/Jamifind"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="mailto:info@jamifind.com"><i class="fa fa-envelope"></i></a></li>
