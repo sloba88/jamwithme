@@ -629,7 +629,7 @@
       </trans-unit>
       <trans-unit id="6b7cc5ab625a26401b804c3f5f47c5269f714841" resname="user.age">
         <source>%user.age% years old</source>
-        <target state="new">Ikä</target>
+        <target state="new">Ikä %user.age%</target>
         <jms:reference-file line="28">/vagrant/www/src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8daf2dfd1b8bdbad584847be53794dd3f6f17f5f" resname="value.1-2.hours/week">
