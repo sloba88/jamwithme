@@ -163,19 +163,19 @@
         <target><![CDATA[
             <h1>Meistä</h1>
 
-                    <p>Jamifind on muusikoiden luoma innovatiivinen alusta kaikentasoisille musiikinharrastajille ja alan ammattilaisille. Palvelustamme löydät parhaat ja sopivimmat tekijät erilaisiin musiikkiprojekteihisi. Etsitpä sitten bändiä itsellesi tai jäseniä bändiin, satuunaista jammailuseura, täydellistä soitonopettajaa, tuottajaa joka jakaa taiteelliset näkemyksesi, sellistiä studiosessioon tai muita musa-alan tekijöitä kuten sanoittajaa tai säveltäjää, Jamifind tuo heidät luoksesi. </p>
+                    <p>Jamifind on muusikoiden luoma innovatiivinen alusta kaikentasoisille musiikinharrastajille ja alan ammattilaisille. Palvelustamme löydät toiveittesi mukaiset, sopivimmat tekijät erilaisiin musiikkiprojekteihisi. Etsitpä sitten bändiä itsellesi tai jäseniä bändiin, satuunaista jammailuseura, täydellistä soitonopettajaa, tuottajaa joka jakaa taiteelliset näkemyksesi, sellistiä studiosessioon tai muita musa-alan tekijöitä kuten sanoittajaa tai säveltäjää, Jamifind tuo heidät luoksesi.</p>
 
                     <p>Jamifindissa missiomme on elävöittää musiikkikulttuuria helpottamalla ja tehostamalla musiikinharrastajien ja ammattilaisten kontaktoitumista. Vaalimme itsensä toteuttamista ja kannustamme ihmisiä luomaan musiikkiprojekteja kaikkien nautittavaksi.</p>
 
                     <h2>Paras paikka löytää bändikavereita</h2>
 
-                    <p>Kipinä Jamifindin perustamiseen syntyi havahumisesta siihen, että  ihmiset edelleen käyttävät kauppojen ilmoitustauluja, vanhentuneita keskustelufoorumeita tai Facebook-ryhmiä etsiäkseen bändiinsä basistia tai tarjotakseen soittotunteja. Nämä mainokset tai ilmoitukset eivät yleensä anna juurikaan informaatiota ilmoittajista, heidän taustoistaan, musiikillisista mieltymyksistään, taitotasostaan tai koulutuksestaan. Nämä ovat niitä puutteita, jotka halusimme raktaista. Jamifind on paras palvelu tarpeitasi vastaavan muusikon löytämiseen.</p>
+                    <p>Kipinä Jamifindin perustamiseen syntyi havahtumisesta siihen, että ihmiset edelleen käyttävät kauppojen ilmoitustauluja, vanhentuneita keskustelufoorumeita tai Facebook-ryhmiä etsiäkseen bändiinsä basistia tai tarjotakseen soittotunteja. Nämä mainokset tai ilmoitukset eivät yleensä anna juurikaan informaatiota ilmoittajista, heidän taustoistaan, musiikillisista mieltymyksistään, taitotasostaan tai koulutuksestaan. Halusimme luoda nykyaikaisen palvelun, josta jokainen löytää helposti ja tehokkaasti omiin musiikkiin liittyviin projekteihinsa oikeat tekijät.</p>
 
                     <h2>Etsitkö soitonopetusta?</h2>
 
-                    <p>Oletko aina halunnut oppia soittamaan pianoa, mutta juuri sinulle sopivan opettajan löytäminen on tuntunut työläältä? Mistä edes aloittaisi etsinnän? Paitsi että on todella aikaavievää käydä läpi kaikki hakutulosten listaamat musiikinopetuksen tarjoajat, googlettamalla usein löytyvät vain ne musiikinopettajat, joilla on omat kotisivut. He ovat tavallisesti ylibuukattuja ammattilaisia, usein myös liian kalliita ja saattavat olla maantieteellisesti väärässä paikassa.</p>
+                    <p>Oletko aina halunnut oppia soittamaan pianoa, mutta juuri sinulle sopivan opettajan löytäminen on tuntunut työläältä? Mistä edes aloittaisi etsinnän? On todella aikaavievää käydä läpi kaikki hakutulosten listaamat musiikinopetuksen tarjoajat, ja lisäksi  googlettamalla usein löytyvät vain ne musiikinopettajat, joilla on omat kotisivut. He ovat usein ylibuukattuja ja saattavat sijaita sinun kannaltasi maantieteellisesti väärässä paikassa.</p>
 
-                    <p>Tai ehkä olet etsimässä kitaratunteja lapsillesi? Siinä tapauksessa on vieläkin tärkeämpää valita tarkkaan opetuksen tarjoaja. Lähikaupan ilmoitustaululta bongattu soitonopettaja ei silloin välttämättä ole vastuullisin valinta.</p>
+                    <p>Tai ehkä olet etsimässä kitaratunteja lapsillesi? Silloin on varmasti vielä tärkeämpää kyetä valitsemaan tarkkaan opetuksen tarjoaja. Lähikaupan ilmoitustaululta bongattu soitonopettajan ilmoitus ei silloin välttämättä kerro tarpeeksi.</p>
 
                     <br />
 
@@ -214,7 +214,7 @@
       </trans-unit>
       <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">
         <source>text.back</source>
-        <target state="new">Edellinen</target>
+        <target state="new">Takaisin</target>
         <jms:reference-file line="12">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e0f64bea21015d977c18187adc58f27ce37dd546" resname="text.compose.new.message">
