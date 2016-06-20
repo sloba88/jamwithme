@@ -136,12 +136,12 @@ class SearchMusicians {
             $boolFilter = new BoolOr();
 
             foreach($instruments AS $d) {
-                if ($d->getCategory()->getName() == $d->getName() || ($d->getCategory()->getName() == 'Strings' && $d->getName() == 'Guitar')) {
+                if ($d->getCategory()->getName() == $d->getName() || ($d->getCategory()->getId() == 1 && $d->getId() == 37)) {
                     //if its also the name of category check category
                     $boolFilter->addFilter(new Terms('musician2.instruments.instrument.category.id', array($d->getCategory()->getId())));
                 }
 
-                if ($d->getName() == 'Bass') {
+                if ($d->getId() == 263) {
                     //if its also the name of category check category
                     $boolFilter->addFilter(new Terms('musician2.instruments.instrument.id', array(26)));
                 }
