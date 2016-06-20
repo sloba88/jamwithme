@@ -140,6 +140,11 @@ class SearchMusicians {
                     //if its also the name of category check category
                     $boolFilter->addFilter(new Terms('musician2.instruments.instrument.category.id', array($d->getCategory()->getId())));
                 }
+
+                if ($d->getName() == 'Bass') {
+                    //if its also the name of category check category
+                    $boolFilter->addFilter(new Terms('musician2.instruments.instrument.id', array(26)));
+                }
             }
 
             $boolFilter->addFilter(new Terms('musician2.instruments.instrument.id', explode(",", $search->getInstruments())));
