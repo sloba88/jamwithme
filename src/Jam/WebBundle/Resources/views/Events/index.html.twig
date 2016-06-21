@@ -1,0 +1,34 @@
+{% extends 'JamWebBundle::layout.html.twig' %}
+
+{% block bodyclasses %}page-dashboard {% if app.request.attributes.get('_route') == 'teachers' %}page-teachers{% endif %}{% endblock %}
+
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
+
+{% block main_content %}
+
+    <iframe src="https://messis.fi/embed/?scope=1-months&listonly=true&category=14,52,53,37,35,36,68,38,39&range=50000&center=60.16,24.94" width="100%" height="550px"></iframe>
+
+{% endblock %}
+
+{% block right_sidebar_content %}
+
+    {% include "JamWebBundle:Common:completion.html.twig" %}
+
+    {{ render(controller('JamWebBundle:Shouts:shouts' )) }}
+
+{% endblock %}
+
+{% block bottom_javascripts %}
+
+    {% javascripts
+    'vendor/leaflet-dist/leaflet.js'
+    'vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js'
+    'assets/js/filter.js'
+    'assets/js/map.js'
+    '@JamWebBundle/Resources/public/js/shout.js'
+    filter='?uglifyjs2'
+    %}
+
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
