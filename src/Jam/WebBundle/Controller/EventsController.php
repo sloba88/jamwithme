@@ -13,7 +13,7 @@ class EventsController extends Controller
      * @Route("/events", name="events", options={"expose"=true})
      * @Template()
      */
-    public function eventsAction(Request $request)
+    public function indexAction(Request $request)
     {
     }
 }
