@@ -50,7 +50,7 @@ header {
 .navbar-toggle {
 	border-radius: 0;
 	float: none;
-	margin: 20px 0 0;
+	margin: 10px 0 0;
 	@include respond-to(tablet) {
 		display: block;
 	}
@@ -75,7 +75,7 @@ header {
 	color: $brand-secondary;
 	float: right;
 	font-size: 18px;
-	margin: 22px 0 0;
+	margin: 12px 0 0;
 	padding: 5px;
 
 	&:hover, &:focus, &.is-active {
@@ -92,7 +92,7 @@ header {
 	padding-top: 10px;
 	@include respond-to(tablet) {
 		background: $brand-secondary;
-		bottom: -58px;
+		bottom: -68px;
 		display: none;
 		left: 0;
 		padding: 15px;

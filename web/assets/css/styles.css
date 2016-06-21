@@ -9111,7 +9111,7 @@ header {
 .navbar-toggle {
   border-radius: 0;
   float: none;
-  margin: 20px 0 0;
+  margin: 10px 0 0;
 }
 @media only screen and (max-width: 991px) {
   /* line 50, ../../sass/jamifind/_header.scss */
@@ -9137,7 +9137,7 @@ header {
   color: #fabc09;
   float: right;
   font-size: 18px;
-  margin: 22px 0 0;
+  margin: 12px 0 0;
   padding: 5px;
 }
 /* line 81, ../../sass/jamifind/_header.scss */
@@ -9158,7 +9158,7 @@ header {
   /* line 90, ../../sass/jamifind/_header.scss */
   .search-block-container {
     background: #fabc09;
-    bottom: -58px;
+    bottom: -68px;
     display: none;
     left: 0;
     padding: 15px;
