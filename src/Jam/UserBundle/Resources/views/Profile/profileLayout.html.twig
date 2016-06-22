@@ -35,6 +35,8 @@
 
     <script type="text/javascript">
 
+        var mySoundsLoaded = false;
+
         $(function() {
 
             {% if user is defined and userTracks is defined %}
@@ -43,7 +45,11 @@
                 client_id: '{{ soundcloud_app_id }}'
             });
 
-            $('a.my-sounds').click(function(e){
+            $('body').on('click', 'a.my-sounds', function(e){
+
+                if (mySoundsLoaded == true) {
+                    return false;
+                }
 
                 var $this = $(e.currentTarget);
                 var userSoundcloudId = '{{ user.getSoundcloudId }}';
@@ -51,29 +57,43 @@
                 if(userSoundcloudId !== ''){
 
                     var tracks = {{ userTracks|raw }};
+                    console.log(tracks);
 
                     if(tracks.length > 0){
 
-                        $('div[data-tab="'+$this.attr('data-tab')+'"]').html('');
+                        $('div[data-tab="'+$this.attr('data-tab')+'"] > div').html('');
 
                         for(var i = 0; i < tracks.length; i++){
                             var track = tracks[i];
+                            console.log(track);
 
-                            var iframe = $('<iframe />', {
-                                id: 'iframe'+track.id,
-                                width: '100%',
-                                height: '166',
-                                scrolling: 'no',
-                                frameborder: 'no',
-                                src: 'https://w.soundcloud.com/player/?url='+track.uri
-                            });
+                            if (i == 0) {
+                                var iframe = $('<iframe />', {
+                                    id: 'iframe'+track.id,
+                                    width: '100%',
+                                    height: '166',
+                                    scrolling: 'no',
+                                    frameborder: 'no',
+                                    src: 'https://w.soundcloud.com/player/?url='+track.uri
+                                });
+                                $('div[data-tab="'+$this.attr('data-tab')+'"] div').html(iframe);
+                                SC.Widget(iframe[0]);
+                            }
 
-                            $('div[data-tab="'+$this.attr('data-tab')+'"]').append(iframe);
-                            SC.Widget(iframe[0]);
+                            var trackLink = $('<li><a href="#" class="soundcloud-track-play" data-index="'+i+'" ><i class="fa fa-play-circle" aria-hidden="true"></i> '+track.title+'</a></li>');
+
+                            $('div[data-tab="'+$this.attr('data-tab')+'"] ul').append(trackLink);
                         }
+
+                        mySoundsLoaded = true;
                     }
                 }
             });
+
+            if (window.location.hash == '#sounds') {
+                $('a.my-sounds').trigger('click');
+            }
+
             {% endif %}
 
             {% if user is defined %}
@@ -90,6 +110,17 @@
                 getUserShouts();
 
             {% endif %}
+
+            $('body').on('click', '.my-sounds .soundcloud-track-play', function(e) {
+                e.preventDefault();
+                var index = $(this).data('index');
+                var tracks = {{ userTracks|raw }};
+
+                SC.Widget($('.my-sounds iframe')[0]).load(tracks[index].uri, {
+                    'autoplay' : true
+                });
+
+            });
 
             $().fancybox();
         });

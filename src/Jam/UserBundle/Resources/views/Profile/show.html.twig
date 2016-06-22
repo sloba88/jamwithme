@@ -241,9 +241,12 @@
                             </div>
                             <!--videos ends-->
 
-                            <div class="view-tab my-sounds" data-tab="sounds">
+                            <div class="view-tab my-sounds with-scrollbar" data-tab="sounds">
                                 {% if (user.getSoundcloudId == "") %}
                                     <p>{{ 'label.no.sounds'|trans }}</p>
+                                {% else %}
+                                    <div></div>
+                                    <ul></ul>
                                 {% endif %}
                             </div>
 
