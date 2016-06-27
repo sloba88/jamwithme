@@ -455,13 +455,6 @@
                     </div>
                 </div>
 
-                <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
-                    {% if status_code is defined and status_code == '404' %}
-                    {% else %}
-                        <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
-                    {% endif %}
-                </div>
-
                 {% if is_granted("ROLE_USER") %}
 
                     {% if app.user.acceptedTerms %}
@@ -482,6 +475,14 @@
                     {% endif %}
 
                 {% else %}
+
+                    <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
+                        {% if status_code is defined and status_code == '404' %}
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
+                        {% endif %}
+                    </div>
+
                     <div class="col-sm-5 col-md-5 col-md-5">
                         <div class="collapse navbar-collapse" id="social-header-home">
                             <ul class="nav navbar-nav social">
