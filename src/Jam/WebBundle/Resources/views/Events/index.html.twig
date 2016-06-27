@@ -12,23 +12,36 @@
 
 {% block right_sidebar_content %}
 
-    {% include "JamWebBundle:Common:completion.html.twig" %}
+    <div id="fb-root"></div>
 
-    {{ render(controller('JamWebBundle:Shouts:shouts' )) }}
+    <div class="share-sidebar">
+        <h3>{{ 'text.share.us.on.facebook'|trans }}</h3>
+        <div class="fb-share-button"
+             data-href="http://jamifind.com"
+             data-layout="button_count">
+        </div>
+        <br /><br /><br />
+
+        <h3>{{ 'text.like.our.page'|trans }}</h3>
+
+        <div class="fb-page" data-href="https://www.facebook.com/jamifind/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/jamifind/"><a href="https://www.facebook.com/jamifind/">Jamifind</a></blockquote></div></div>
+
+    </div>
 
 {% endblock %}
 
 {% block bottom_javascripts %}
 
-    {% javascripts
-    'vendor/leaflet-dist/leaflet.js'
-    'vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js'
-    'assets/js/filter.js'
-    'assets/js/map.js'
-    '@JamWebBundle/Resources/public/js/shout.js'
-    filter='?uglifyjs2'
-    %}
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s); js.id = id;
+            js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=579439738844251';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 {% endblock %}
