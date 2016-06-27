@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-    <iframe src="https://messis.fi/embed/?scope=1-months&listonly=true&category=14,52,53,37,35,36,68,38,39&range=50000&center=60.16,24.94" width="100%" height="550px"></iframe>
+    <iframe id="events-iframe" src="https://messis.fi/embed/?scope=2-months&listonly=true&category=14,52,53,37,35,36,68,38,39&range=100000&center={{ app.user.location.lat }},{{ app.user.location.lng }}&textcolor=000000&bgcolor=ffffff" width="100%" height="550px"></iframe>
 
 {% endblock %}
 

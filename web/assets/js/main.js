@@ -615,6 +615,10 @@ $(function() {
     });
     //scrollbar plugin
     scrollbarPlugin();
+
+    if ($('#events-iframe').length > 0 ){
+        $('#events-iframe').height($(window).height() - 100);
+    }
 });
 
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-06-16T16:31:09Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-06-27T12:36:54Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -216,7 +216,7 @@
       </trans-unit>
       <trans-unit id="39f0b0f4a42d316ef8df64a051e2e56a0020a65b" resname="text.back">
         <source>text.back</source>
-        <target state="new">Back</target>
+        <target>Back</target>
         <jms:reference-file line="12">/vagrant/www/src/Jam/WebBundle/Resources/views/Home/about.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e0f64bea21015d977c18187adc58f27ce37dd546" resname="text.compose.new.message">
@@ -259,6 +259,11 @@
         <target>genres</target>
         <jms:reference-file line="29">/vagrant/www/src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="a52673e2e68867c12776d242198475b46c99e0e5" resname="text.gigs">
+        <source>text.gigs</source>
+        <target state="new">Gigs</target>
+        <jms:reference-file line="18">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="3ad66780fc07852422141e9c5d2973e1f6942d48" resname="text.grid">
         <source>text.grid</source>
         <target>grid</target>
@@ -267,7 +272,7 @@
       <trans-unit id="3af5f7487804ee9829569e17dc58395010b49ca4" resname="text.invite.friends">
         <source>text.invite.friends</source>
         <target>invite friends</target>
-        <jms:reference-file line="20">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="23">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5a54bb46b79c04921593788349d91c41e9dd8e79" resname="text.jam.name">
         <source>Jam name: %jam.name%</source>
@@ -292,7 +297,7 @@
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
         <target>logout</target>
-        <jms:reference-file line="35">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="38">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0bf01c17fb6b42805e77957dd0f00097d64e9a79" resname="text.map">
         <source>text.map</source>
@@ -307,7 +312,7 @@
       <trans-unit id="15d3eb05e679ae62f394d20c3aac1bcf971e4e74" resname="text.messages">
         <source>text.messages</source>
         <target>messages</target>
-        <jms:reference-file line="18">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="21">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
         <jms:reference-file line="9">/vagrant/www/src/Jam/WebBundle/Resources/views/Messages/messages.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
@@ -338,7 +343,7 @@
       <trans-unit id="9532cb76a483e419f51638af02671369c7b614eb" resname="text.settings">
         <source>text.settings</source>
         <target>settings</target>
-        <jms:reference-file line="19">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="22">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f5e42cab4f107c0d123d9542560aebacd8233c7f" resname="text.share.us.on.facebook">
         <source>text.share.us.on.facebook</source>
@@ -353,7 +358,7 @@
       <trans-unit id="efccca249aa3aaeec168517baaff356f397e3878" resname="text.shouts">
         <source>text.shouts</source>
         <target>shouts</target>
-        <jms:reference-file line="17">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
+        <jms:reference-file line="20">/vagrant/www/src/Jam/WebBundle/Resources/views/Common/navigation.html.twig</jms:reference-file>
         <jms:reference-file line="14">/vagrant/www/src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
