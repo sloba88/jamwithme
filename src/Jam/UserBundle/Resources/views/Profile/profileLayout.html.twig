@@ -94,6 +94,17 @@
                 $('a.my-sounds').trigger('click');
             }
 
+            $('body').on('click', '.my-sounds .soundcloud-track-play', function(e) {
+                e.preventDefault();
+                var index = $(this).data('index');
+                var tracks = {{ userTracks|raw }};
+
+                SC.Widget($('.my-sounds iframe')[0]).load(tracks[index].uri, {
+                    'autoplay' : true
+                });
+
+            });
+
             {% endif %}
 
             {% if user is defined %}
@@ -110,17 +121,6 @@
                 getUserShouts();
 
             {% endif %}
-
-            $('body').on('click', '.my-sounds .soundcloud-track-play', function(e) {
-                e.preventDefault();
-                var index = $(this).data('index');
-                var tracks = {{ userTracks|raw }};
-
-                SC.Widget($('.my-sounds iframe')[0]).load(tracks[index].uri, {
-                    'autoplay' : true
-                });
-
-            });
 
             $().fancybox();
         });
