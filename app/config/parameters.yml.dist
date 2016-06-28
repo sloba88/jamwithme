@@ -18,13 +18,13 @@ parameters:
     facebook_app_secret: cc714025fc8de9146f26690484a02f8a
     soundcloud_app_id: 77d5f5cdb23c2b5204afd8598a491ec5
     soundcloud_app_secret: 3b11d260d5a54e207e24d726f88941ec
-    node_server: 'http://33.33.33.100:3000'
+    node_server: 'https://jamifind.com:3000'
     redis_server: 127.0.0.1:6379
     soundcloud_api_url: https://api.soundcloud.com/
     node_bin_path: /usr/local/bin
     node_modules_path: /usr/lib
     ga_id: UA-73643838-1
-    router.request_context.host: dev.jamifind.com
-    router.request_context.scheme: http
+    router.request_context.host: jamifind.com
+    router.request_context.scheme: https
     router.request_context.base_url: /
     confirm_account_email: true
