@@ -17,7 +17,9 @@
     "read-yaml": "",
     "autolinker": "",
     "striptags": "",
-    "request": ""
+    "request": "",
+    "https": "",
+    "fs": ""
   },
   "devDependencies": {},
   "scripts": {

@@ -1,5 +1,15 @@
 'use strict';
 
+var readYaml = require('read-yaml');
+var fs = require('fs');
+var symfonyParameters = readYaml.sync('../app/config/parameters.yml');
+
+var ssl = {
+    key: fs.readFileSync('/etc/letsencrypt/live/jamifind.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/jamifind.com/fullchain.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/jamifind.com/chain.pem')
+};
+
 var mongoose = require('mongoose'),
     express = require('express'),
     redis = require('redis'),
@@ -8,12 +18,12 @@ var mongoose = require('mongoose'),
     Message = collections.Message,
     Conversation = collections.Conversation,
     app = express(),
-    server = app.listen(3000),
+    https = require('https'),
+    server = https.createServer(ssl, app).listen(3000),
     io = require('socket.io').listen(server),
     PHPUnserialize = require('php-unserialize'),
     mysql      = require('mysql'),
     promise    = require('promise'),
-    readYaml = require('read-yaml'),
     Autolinker = require('autolinker'),
     striptags = require('striptags'),
     mysqlConnection,
@@ -23,7 +33,6 @@ var mongoose = require('mongoose'),
 //io.set('origins', '*178.62.189.52:*');
 redisClient.select(1);
 
-var symfonyParameters = readYaml.sync('../app/config/parameters.yml');
 
 /*jshint camelcase: false */
 mysqlConnection = mysql.createConnection({
