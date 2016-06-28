@@ -73,4 +73,4 @@ after 'deploy:updated',   'redis:clear'
 after 'deploy:updated',   'node:restart'
 
 #opcache
-after 'deploy', 'symfony:clear_opcache'
+#after 'deploy', 'symfony:clear_opcache'
