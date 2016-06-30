@@ -11,22 +11,26 @@
 
             <h1>Terms & Conditions</h1>
 
-            <div class="with-scrollbar" style="height: 500px;">
+            <div class="with-scrollbar full-height-page-container" style="height: 500px;">
                 <div>
                     {% include 'JamWebBundle:Home:termsRaw.html.twig' %}
+
+                    {% if is_granted("ROLE_USER") %}
+                        <div class="clearfix">
+                            <br />
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <a href="{{ path('accept-terms') }}" class="btn btn-primary"><i class="fa fa-thumbs-o-up"></i> Accept</a>
+                            </div>
+
+                            <div class="col-md-4 pull-right col-sm-6 col-xs-6">
+                                <a href="{{ path('fos_user_security_logout') }}" type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Deny</a>
+                            </div>
+                            <br /><br />
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
-
-            {% if is_granted("ROLE_USER") %}
-                <br />
-                <div class="col-md-4">
-                    <a href="{{ path('accept-terms') }}" class="btn btn-primary"><i class="fa fa-thumbs-o-up"></i> Accept</a>
-                </div>
-
-                <div class="col-md-4 pull-right">
-                    <a href="{{ path('fos_user_security_logout') }}" type="button" class="btn btn-default"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Deny</a>
-                </div>
-            {% endif %}
         </div>
     </section>
 
