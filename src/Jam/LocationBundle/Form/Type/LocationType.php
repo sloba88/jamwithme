@@ -20,7 +20,7 @@ class LocationType extends AbstractType
                                 'required' => false,
                                 'label' => false,
                                 'attr' => array(
-                                                'class' => 'form-control',
+                                                'class' => 'location-input',
                                                 'autocomplete' => 'off',
                                                 'data-lat' => 0,
                                                 'data-lng' => 0,

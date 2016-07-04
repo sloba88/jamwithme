@@ -24,7 +24,7 @@ class GenreType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'class' => 'Jam\CoreBundle\Entity\MusicianGenre',
+            'class' => 'Jam\CoreBundle\Entity\Genre',
             'required' => false,
         ));
     }

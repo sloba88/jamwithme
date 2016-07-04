@@ -5,6 +5,7 @@ namespace Jam\WebBundle\Controller;
 use Jam\CoreBundle\Entity\Jam;
 use Jam\CoreBundle\Entity\JamImage;
 use Jam\CoreBundle\Entity\JamMember;
+use Jam\CoreBundle\Entity\JamMusician;
 use Jam\CoreBundle\Form\Type\JamType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -36,24 +37,15 @@ class JamController extends Controller
     {
         $jam = new Jam();
 
-        $form = $this->createForm(new JamType(), $jam);
+        $form = $this->createForm(JamType::class, $jam);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 
-            if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-                $creator = $this->container->get('security.context')->getToken()->getUser();
-                $jam->setCreator($creator);
-            } else {
-                throw $this->createNotFoundException($this->get('translator')->trans('exception.this.user.does.not.exist'));
-            }
-
-            $jamMember = new JamMember();
+            $jamMember = new JamMusician();
             $jamMember->setJam($jam);
-            $jamMember->setMember($creator);
-
-            $jam->addJamMember($jamMember);
+            $jamMember->setMusician($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);

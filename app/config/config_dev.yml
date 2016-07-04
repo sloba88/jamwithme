@@ -33,7 +33,7 @@ monolog:
         #    level:  info
 
 snc_redis:
-    doctrine: ~
+    doctrine: []
 
 #swiftmailer:
 #    delivery_address: me@example.com

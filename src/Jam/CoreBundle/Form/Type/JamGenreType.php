@@ -2,31 +2,32 @@
 
 namespace Jam\CoreBundle\Form\Type;
 
-use Jam\CoreBundle\Form\DataTransformer\ArtistTransform;
+use Jam\CoreBundle\Form\DataTransformer\JamGenreTransform;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\ORM\EntityRepository;
 
-class ArtistType extends AbstractType
+class JamGenreType extends AbstractType
 {
-    protected $artistTransformer;
+    protected $genreTransformer;
 
-    public function __construct(ArtistTransform $artistTransformer)
+    public function __construct(JamGenreTransform $genreTransformer)
     {
-        $this->artistTransformer = $artistTransformer;
+        $this->genreTransformer = $genreTransformer;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addViewTransformer($this->artistTransformer, true);
+        $builder->addModelTransformer($this->genreTransformer);
+
+        $this->genreTransformer->setMydata($builder->getData());
+
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'class' => 'Jam\CoreBundle\Entity\Artist',
-            'required' => false,
+            'class' => 'Jam\CoreBundle\Entity\JamGenre'
         ));
     }
 
@@ -37,6 +38,6 @@ class ArtistType extends AbstractType
 
     public function getName()
     {
-        return 'artist_type';
+        return 'jam_genre_type';
     }
 }

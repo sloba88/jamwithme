@@ -1,13 +1,26 @@
-{% extends '::base.html.twig' %}
+{% extends 'JamWebBundle::layoutNoSidebar.html.twig' %}
 
-{% block body %}
+{% block main_content %}
 
-    <ul>
-        {% for j in jams %}
-            <li>
-                <a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }} ({% for g in j.genres %}{{ g.name }}{% if not loop.last %}, {% endif %}{% endfor %})</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="col-md-12">
+        <div class="col-md-9">
+            <h1>Jams</h1>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3">Start new jam</a>
+        </div>
+
+        <div class="col-md-12">
+            <ul>
+                {% for j in jams %}
+                    <li>
+                        <a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }} ({% for g in j.genres %}{{ g.genre.name }}{% if not loop.last %}, {% endif %}{% endfor %})</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
 
 {% endblock %}

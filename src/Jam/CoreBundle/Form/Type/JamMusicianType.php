@@ -6,30 +6,30 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class JamMemberType extends AbstractType
+class JamMusicianType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('member', 'entity', array(
+            ->add('musician', 'entity', array(
                 'class' => 'JamUserBundle:User',
                 'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('u');
                     },
                 'property' => "username"
             ))
-            ->add('role');
+            ->add('instrument');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Jam\CoreBundle\Entity\JamMember',
+            'data_class' => 'Jam\CoreBundle\Entity\JamMusician',
         ));
     }
 
     public function getName()
     {
-        return 'band_member';
+        return 'jam_musician';
     }
 }

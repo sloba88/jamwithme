@@ -87,9 +87,17 @@ class Location
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_temporary", type="boolean")
+     * @ORM\Column(name="is_temporary", type="boolean", options={"default" = 0})
      */
-    protected $isTemporary = false;
+    private $isTemporary = 0;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->isTemporary = 0;
+    }
 
     
     public function setAddress($address)

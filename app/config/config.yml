@@ -187,17 +187,6 @@ snc_redis:
             type: predis
             alias: session
             dsn: redis://%redis_server%/1
-    doctrine:
-        metadata_cache:
-            client: cache
-            entity_manager: default          # the name of your entity_manager connection
-            document_manager: default        # the name of your document_manager connection
-        result_cache:
-            client: cache
-            entity_manager: [default, read]  # you may specify multiple entity_managers
-        query_cache:
-            client: cache
-            entity_manager: default
     session:
         client: session
 
@@ -279,3 +268,13 @@ sixdays_opcache:
     host_name:  %router.request_context.host%
     web_dir:    %kernel.root_dir%/../web
     protocol:   %router.request_context.scheme%
+
+parameters:
+    jam_types:
+        1: Band
+        2: Jam session
+        3: Temporary replacement
+    jam_statuses:
+        1: Just an idea
+        2: Idea with some material ready (music, lyrics)
+        3: Established band (had gigs before)

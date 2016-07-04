@@ -73,7 +73,7 @@ var markerDragEnd = function(e) {
 
             displayAddress = displayAddress.replace(/,\s*$/, '');
 
-            $('#fos_user_profile_form_location_address').val(displayAddress);
+            $('.location_widget .location-input').val(displayAddress);
         }
     });
 };
@@ -124,7 +124,7 @@ $(function() {
         }, 400 );
     });
 
-    $('body').on('keyup', '#fos_user_profile_form_location_address', function(){
+    $('body').on('keyup', '.location_widget .location-input', function(){
         var value = $(this).val();
 
         if (waitAutocomplete) {
@@ -179,7 +179,7 @@ $(function() {
         myLocationMarker.setLatLng(new L.LatLng(Number($(this).data('lat')), Number($(this).data('lng'))));
         map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
         $('.location-results').css({'display': 'none'});
-        $('#fos_user_profile_form_location_address').val($(this).text());
+        $('.location_widget .location-input').val($(this).text());
 
         var data = $(this).data('all');
 
