@@ -94,7 +94,7 @@ this["JST"]["instrumentBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
 __p += '<div class="row">\n    <div class="col-md-5 col-sm-4 col-xs-8 instrument-select-form">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
 __e( rc.num ) +
-'][instrument]" class="instrument-select form-control" />\n    </div>\n    \n    <div class="col-md-4 col-sm-4 col-xs-6 skill-level-select-form">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
+'][instrument]" class="instrument-select form-control" />\n    </div>\n\n    <div class="col-md-4 col-sm-4 col-xs-6 skill-level-select-form">\n        <input type="hidden" name="fos_user_profile_form[instruments][' +
 __e( rc.num ) +
 '][skillLevel]" class="skill-select form-control" />\n    </div>\n\n    <div class="col-md-2 col-sm-2 col-xs-3 learn-options hidden" style="text-align: center; padding-top: 13px">\n        <input type="checkbox" id="fos_user_profile_form_instruments_' +
 __e( rc.num ) +
@@ -136,6 +136,20 @@ __e( rc.gd$email[0].address ) +
 '"><span>&nbsp;</span></label>\n            </div>\n        </span>\n    </div>\n';
  } ;
 
+return __p
+};
+
+this["JST"]["jamMusicianBoxTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape;
+__p += '<li class="row">\n\n    <div class="col-md-5">\n        <select id="jam_members_' +
+__e( rc.num ) +
+'_musician" name="jam[members][' +
+__e( rc.num ) +
+'][musician]" required="required" class="form-control"></select>\n    </div>\n\n    <div class="col-md-5">\n        <select id="jam_members_' +
+__e( rc.num ) +
+'_instrument" name="jam[members][' +
+__e( rc.num ) +
+'][instrument]" required="required" class="form-control member-instrument"></select>\n    </div>\n\n    <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">\n        <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n    </div>\n</li>';
 return __p
 };
 

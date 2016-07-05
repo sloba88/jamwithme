@@ -16,6 +16,9 @@ default: help
 cc:
 	rm -rf /dev/shm/appname/cache/*
 
+dump:
+	$(ASSETIC_DEV)
+
 help:
 	@echo "dev         - Install for dev"
 	@echo "prod        - Install for production"

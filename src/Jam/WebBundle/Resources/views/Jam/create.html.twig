@@ -42,7 +42,8 @@
     <div class="col-md-6">
         {{ form_row(form.description) }}
 
-        <ul id="jam_musician_instruments" data-prototype="{{ form_widget(form.members.vars.prototype)|e }}">
+        <label>Current members</label>
+        <ul id="jam_musician_instruments">
 
             {% for f in form.members %}
                 <li class="row">
@@ -57,7 +58,8 @@
                 </li>
             {% endfor %}
         </ul>
-
+        <br /><br />
+        <a href="" class="btn btn-primary" id="add_jam_member">Add member</a>
     </div>
 
 
@@ -95,98 +97,5 @@
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
-    <script type="text/javascript">
-
-        var mySoundsLoaded = false;
-
-        $(function() {
-
-            {% if user is defined and userTracks is defined %}
-            {# TODO: separate JS and twig variables, make this more like function #}
-            SC.initialize({
-                client_id: '{{ soundcloud_app_id }}'
-            });
-
-            $('body').on('click', 'a.my-sounds', function(e){
-
-                if (mySoundsLoaded == true) {
-                    return false;
-                }
-
-                var $this = $(e.currentTarget);
-                var userSoundcloudId = '{{ user.getSoundcloudId }}';
-
-                if(userSoundcloudId !== ''){
-
-                    var tracks = {{ userTracks|raw }};
-                    console.log(tracks);
-
-                    if(tracks.length > 0){
-
-                        $('div[data-tab="'+$this.attr('data-tab')+'"] > div').html('');
-
-                        for(var i = 0; i < tracks.length; i++){
-                            var track = tracks[i];
-                            console.log(track);
-
-                            if (i == 0) {
-                                var iframe = $('<iframe />', {
-                                    id: 'iframe'+track.id,
-                                    width: '100%',
-                                    height: '166',
-                                    scrolling: 'no',
-                                    frameborder: 'no',
-                                    src: 'https://w.soundcloud.com/player/?url='+track.uri
-                                });
-                                $('div[data-tab="'+$this.attr('data-tab')+'"] div').html(iframe);
-                                SC.Widget(iframe[0]);
-                            }
-
-                            var trackLink = $('<li><a href="#" class="soundcloud-track-play" data-index="'+i+'" ><i class="fa fa-play-circle" aria-hidden="true"></i> '+track.title+'</a></li>');
-
-                            $('div[data-tab="'+$this.attr('data-tab')+'"] ul').append(trackLink);
-                        }
-
-                        mySoundsLoaded = true;
-                    }
-                }
-            });
-
-            if (window.location.hash == '#sounds') {
-                $('a.my-sounds').trigger('click');
-            }
-
-            $('body').on('click', '.my-sounds .soundcloud-track-play', function(e) {
-                e.preventDefault();
-                var index = $(this).data('index');
-                var tracks = {{ userTracks|raw }};
-
-                SC.Widget($('.my-sounds iframe')[0]).load(tracks[index].uri, {
-                    'autoplay' : true
-                });
-
-            });
-
-            {% endif %}
-
-            {% if user is defined %}
-
-            if ($('.compatibility').length > 0){
-                $.ajax({
-                    url: Routing.generate('api_compatibility', { id: '{{ user.getId }}' }),
-                    success: function(data) {
-                        $('.compatibility span').text(data + '%');
-                    }
-                });
-            }
-
-            getUserShouts();
-
-            {% endif %}
-
-            $().fancybox();
-        });
-    </script>
 
 {% endblock %}

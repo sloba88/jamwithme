@@ -39,20 +39,15 @@ $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
     }
 
     if ($('#jam_instruments').length > 0){
-        $.ajax({
-            url: Routing.generate('api_instruments')
-        }).done(function(data) {
-            $('#jam_instruments').select2({
-                placeholder: 'What are you looking for?',
-                multiple: true,
-                data: data,
-                templateResult: formatResultData,
-                matcher: oldMatcher(matchStart)
-            }).on('select2:select', function (e) {
-                $(this).prepend('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
-            }).on('select2:unselect', function (e) {
-                e.params.data.element.remove();
-            });
+        $('#jam_instruments').select2({
+            placeholder: 'What are you looking for?',
+            multiple: true,
+            templateResult: formatResultData,
+            matcher: oldMatcher(matchStart)
+        }).on('select2:select', function (e) {
+            $(this).prepend('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
+        }).on('select2:unselect', function (e) {
+            e.params.data.element.remove();
         });
     }
 
@@ -189,6 +184,26 @@ $(function() {
         $(this).closest('.row').remove();
         scrollbarPlugin();
         renameCollectionNames($musiciansInstruments.find('.row'));
+    });
+
+    $('#add_jam_member').on('click', function(e) {
+
+        var $jamMusicians = $('#jam_musician_instruments');
+
+        e.preventDefault();
+        var length = $jamMusicians.find('.row').length;
+        $jamMusicians.append(window.JST.jamMusicianBoxTemplate({'num': length}));
+
+        $.ajax({
+            url: Routing.generate('api_instruments')
+        }).done(function(data) {
+            $('.member-instrument').select2({
+                placeholder: 'What does he/she play?',
+                data: data
+            });
+        });
+
+        scrollbarPlugin();
     });
 
     $musiciansVideos.on('click', '.save-video', function(){
