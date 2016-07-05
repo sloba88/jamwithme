@@ -4,6 +4,7 @@ namespace Jam\CoreBundle\Form\DataTransformer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Jam\CoreBundle\Entity\JamGenre;
 use Jam\CoreBundle\Entity\JamInstrument;
+use Jam\CoreBundle\Entity\JamMusicianInstrument;
 use Jam\CoreBundle\Entity\MusicianGenre;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -29,13 +30,12 @@ class JamInstrumentTransform implements DataTransformerInterface
     public function transform($instruments)
     {
         if (null === $instruments) {
-            return "";
+            return array();
         }
 
-        $genre = '';
+        $genre = array();
         foreach ($instruments AS $k => $a){
-            if($k!=0) $genre .= ',';
-            $genre .= $a->getInstrument()->getId();
+            $genre[] = $a->getInstrument()->getId();
 
         }
 
@@ -51,21 +51,15 @@ class JamInstrumentTransform implements DataTransformerInterface
      */
     public function reverseTransform($ids)
     {
-        if (is_array($ids)){
-            return implode(",", $ids);
-        }
-
-        $genresCollection = new ArrayCollection();
+        $musicianInstrumentCollection = array();
 
         if (!$ids || $ids == '') {
-            return $genresCollection;
+            return $musicianInstrumentCollection;
         }
 
-        $genres = explode(",", $ids);
+        foreach($ids AS $k=>$id){
 
-        foreach($genres AS $k=>$id){
-
-            $jamInstrument = new JamInstrument();
+            $jamInstrument = new JamMusicianInstrument();
 
             $instrument = $this->entityManager
                 ->getRepository('JamCoreBundle:Instrument')
@@ -79,15 +73,15 @@ class JamInstrumentTransform implements DataTransformerInterface
             }
 
             $jamInstrument->setInstrument($instrument);
-            $musicianGenre->setPosition($k);
-            $musicianGenre->setJam($this->jam);
+            $jamInstrument->setMusician(null);
+            $jamInstrument->setJam($this->jam);
 
-            $this->entityManager->persist($musicianGenre);
+            $this->entityManager->persist($jamInstrument);
 
-            $genresCollection->add($musicianGenre);
+            $musicianInstrumentCollection[] = $jamInstrument;
         }
 
-        return $genresCollection;
+        return $ids;
     }
 
     public function setMydata($data)

@@ -11,16 +11,38 @@
             <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3">Start new jam</a>
         </div>
 
-        <div class="col-md-12">
-            <ul>
+        <div class="clearfix"></div>
+        <div class="with-scrollbar" style="height: 500px">
+            <div class="clearfix">
                 {% for j in jams %}
-                    <li>
-                        <a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }} ({% for g in j.genres %}{{ g.genre.name }}{% if not loop.last %}, {% endif %}{% endfor %})</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+                    <div class="col-md-12">
+                        <h3><a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }}</a></h3>
+                        {% if j.location %}
+                            {% if j.location.getAdministrativeAreaLevel3 %}
+                                <div class="location">
+                                    <i class="fa fa-map-marker"></i> {% if j.location.neighborhood %}{{ j.location.neighborhood }},{% endif %} {{ j.location.getAdministrativeAreaLevel3 }}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                        <ul class="tags">
+                            {% for g in j.genres %}
+                                <li><a href="{{ path('musicians', {'genres' : g.id }) }}">{{ g.name }}</a></li>
+                            {% endfor %}
+                        </ul>
 
+                        <label>Looking for:</label>
+                        <ul class="tags">
+                            {% for m in j.members %}
+                                {% if m.musician is null %}
+                                    <li>{{ m.instrument.name }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        <hr />
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

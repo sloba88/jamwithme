@@ -33,8 +33,6 @@
 
         {{ form_row(form.instruments) }}
 
-        {{ form_row(form.musicians) }}
-
         {{ form_widget(form._token) }}
 
         {{ form_row(form.save) }}
@@ -43,6 +41,23 @@
 
     <div class="col-md-6">
         {{ form_row(form.description) }}
+
+        <ul id="jam_musician_instruments" data-prototype="{{ form_widget(form.members.vars.prototype)|e }}">
+
+            {% for f in form.members %}
+                <li class="row">
+
+                    <div class="col-md-5">
+                        {{ form_widget(f.musician) }}
+                    </div>
+
+                    <div class="col-md-5">
+                        {{ form_widget(f.instrument) }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
     </div>
 
 

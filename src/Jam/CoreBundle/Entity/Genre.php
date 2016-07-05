@@ -36,6 +36,13 @@ class Genre
     private $category;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Jam", mappedBy="genres" )
+     */
+    private $jams;
+
+    /**
      * Get id
      *
      * @return integer
@@ -90,5 +97,46 @@ class Genre
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->jams = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add jam
+     *
+     * @param \Jam\CoreBundle\Entity\Jam $jam
+     *
+     * @return Genre
+     */
+    public function addJam(\Jam\CoreBundle\Entity\Jam $jam)
+    {
+        $this->jams[] = $jam;
+
+        return $this;
+    }
+
+    /**
+     * Remove jam
+     *
+     * @param \Jam\CoreBundle\Entity\Jam $jam
+     */
+    public function removeJam(\Jam\CoreBundle\Entity\Jam $jam)
+    {
+        $this->jams->removeElement($jam);
+    }
+
+    /**
+     * Get jams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJams()
+    {
+        return $this->jams;
     }
 }

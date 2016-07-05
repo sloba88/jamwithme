@@ -3,7 +3,9 @@ namespace Jam\CoreBundle\Form\Type;
 
 use Doctrine\ORM\EntityRepository;
 use Jam\LocationBundle\Form\Type\LocationType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -44,30 +46,40 @@ class JamType extends AbstractType
 
             ->add('location', new LocationType());
 
-        $builder->add('genres', 'jam_genre_type', array(
+        $builder->add('genres', EntityType::class, array(
             'required' => false,
             'label' => 'Genres',
-            'empty_value' => false,
-            'data' => $jam
+            'multiple' => true,
+            'expanded' => false,
+            'class' => 'Jam\CoreBundle\Entity\Genre',
+            'choice_label' => 'name'
         ));
 
         $builder->add('instruments', 'jam_instrument_type', array(
-            'label' => 'What are you missing?',
             'required' => true,
-            'data' => $jam
+            'mapped' => false,
+            'label' => 'Looking for',
+            'multiple' => true,
+            'expanded' => false,
+            'allow_extra_fields' => true,
+            'jam' => $jam,
+            'property' => 'name'
+        ));
+
+        $builder->add('members', CollectionType::class, array(
+            'type' => 'jam_musician_instrument_type',
+            'required' => true,
+            'label' => 'Looking for',
+            'allow_add' => true,
+            'allow_delete' => true,
         ));
 
         $builder->add('artists', 'artist_type', array(
             'label' => 'Sounds like',
             'empty_value' => false
-        ));
+        ))
 
-        $builder->add('musicians', 'collection', array(
-                'type' => new JamMusicianType(),
-                'allow_add' => true,
-                'allow_delete' => true
-            ))
-            ->add('save', 'submit');
+       ->add('save', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

@@ -49,7 +49,7 @@ $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
                 templateResult: formatResultData,
                 matcher: oldMatcher(matchStart)
             }).on('select2:select', function (e) {
-                $(this).append('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
+                $(this).prepend('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
             }).on('select2:unselect', function (e) {
                 e.params.data.element.remove();
             });

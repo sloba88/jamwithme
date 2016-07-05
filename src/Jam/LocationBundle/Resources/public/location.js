@@ -81,7 +81,9 @@ var markerDragEnd = function(e) {
 function initMap(){
     if (!mapInitialized){
         console.log('map initialized');
-        $('.location_widget').find('.dropdown-menu').css({'display': 'block'});
+        if ($('body.page-settings').length > 0) {
+            $('.location_widget').find('.dropdown-menu').css({'display': 'block'});
+        }
 
         map = L.map('_location_map');
 

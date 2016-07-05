@@ -4,14 +4,15 @@ namespace Jam\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Jam\UserBundle\Entity\User;
 
 /**
- * JamInstrument
+ * JamMusicianInstrument
  *
- * @ORM\Table(name="jams_instruments")
+ * @ORM\Table(name="jams_musicians_instruments")
  * @ORM\Entity
  */
-class JamInstrument
+class JamMusicianInstrument
 {
     /**
      * @var integer
@@ -23,12 +24,20 @@ class JamInstrument
     private $id;
 
     /**
-     * @var User $musician
+     * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Jam", inversedBy="instruments")
+     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Jam", inversedBy="members")
      * @ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)
      */
     private $jam;
+
+    /**
+     * @var User $musician
+     *
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=true)
+     */
+    private $musician;
 
     /**
      * @var integer
@@ -37,7 +46,6 @@ class JamInstrument
      * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=false)
      */
     private $instrument;
-
 
     /**
      * Get id
@@ -54,7 +62,7 @@ class JamInstrument
      *
      * @param \Jam\CoreBundle\Entity\Jam $jam
      *
-     * @return JamInstrument
+     * @return JamMusicianInstrument
      */
     public function setJam(\Jam\CoreBundle\Entity\Jam $jam)
     {
@@ -74,11 +82,35 @@ class JamInstrument
     }
 
     /**
+     * Set musician
+     *
+     * @param \Jam\UserBundle\Entity\User $musician
+     *
+     * @return JamMusicianInstrument
+     */
+    public function setMusician(\Jam\UserBundle\Entity\User $musician = null)
+    {
+        $this->musician = $musician;
+
+        return $this;
+    }
+
+    /**
+     * Get musician
+     *
+     * @return \Jam\UserBundle\Entity\User
+     */
+    public function getMusician()
+    {
+        return $this->musician;
+    }
+
+    /**
      * Set instrument
      *
      * @param \Jam\CoreBundle\Entity\Instrument $instrument
      *
-     * @return JamInstrument
+     * @return JamMusicianInstrument
      */
     public function setInstrument(\Jam\CoreBundle\Entity\Instrument $instrument)
     {

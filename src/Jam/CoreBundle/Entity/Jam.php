@@ -57,9 +57,14 @@ class Jam
     private $status;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamGenre", mappedBy="jam", cascade={"all"}, orphanRemoval=true )
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="jams", cascade={"persist"})
+     * @ORM\JoinTable(
+     *      name="jams_genres",
+     *      joinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)}
+     * )
      */
     private $genres;
 
@@ -76,18 +81,11 @@ class Jam
     protected $artists;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamInstrument", mappedBy="jam", cascade={"all"}, orphanRemoval=true )
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMusicianInstrument", mappedBy="jam", cascade={"all"}, orphanRemoval=true )
      */
-    private $instruments;
-
-    /**
-     * @var collection
-     *
-     * @ORM\ManyToMany(targetEntity="Jam\UserBundle\Entity\User", mappedBy="artists" )
-     */
-    private $musicians;
+    private $members;
 
     /**
      * @var \DateTime
@@ -129,9 +127,9 @@ class Jam
     {
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->artists = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->instruments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->musicians = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->members = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -165,6 +163,30 @@ class Jam
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Jam
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -290,11 +312,11 @@ class Jam
     /**
      * Add genre
      *
-     * @param \Jam\CoreBundle\Entity\JamGenre $genre
+     * @param \Jam\CoreBundle\Entity\Genre $genre
      *
      * @return Jam
      */
-    public function addGenre(\Jam\CoreBundle\Entity\JamGenre $genre)
+    public function addGenre(\Jam\CoreBundle\Entity\Genre $genre)
     {
         $this->genres[] = $genre;
 
@@ -304,9 +326,9 @@ class Jam
     /**
      * Remove genre
      *
-     * @param \Jam\CoreBundle\Entity\JamGenre $genre
+     * @param \Jam\CoreBundle\Entity\Genre $genre
      */
-    public function removeGenre(\Jam\CoreBundle\Entity\JamGenre $genre)
+    public function removeGenre(\Jam\CoreBundle\Entity\Genre $genre)
     {
         $this->genres->removeElement($genre);
     }
@@ -356,71 +378,37 @@ class Jam
     }
 
     /**
-     * Add instrument
+     * Add member
      *
-     * @param \Jam\CoreBundle\Entity\JamInstrument $instrument
+     * @param \Jam\CoreBundle\Entity\JamMusicianInstrument $member
      *
      * @return Jam
      */
-    public function addInstrument(\Jam\CoreBundle\Entity\JamInstrument $instrument)
+    public function addMember(\Jam\CoreBundle\Entity\JamMusicianInstrument $member)
     {
-        $this->instruments[] = $instrument;
+        $this->members[] = $member;
 
         return $this;
     }
 
     /**
-     * Remove instrument
+     * Remove member
      *
-     * @param \Jam\CoreBundle\Entity\JamInstrument $instrument
+     * @param \Jam\CoreBundle\Entity\JamMusicianInstrument $member
      */
-    public function removeInstrument(\Jam\CoreBundle\Entity\JamInstrument $instrument)
+    public function removeMember(\Jam\CoreBundle\Entity\JamMusicianInstrument $member)
     {
-        $this->instruments->removeElement($instrument);
+        $this->members->removeElement($member);
     }
 
     /**
-     * Get instruments
+     * Get members
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getInstruments()
+    public function getMembers()
     {
-        return $this->instruments;
-    }
-
-    /**
-     * Add musician
-     *
-     * @param \Jam\UserBundle\Entity\User $musician
-     *
-     * @return Jam
-     */
-    public function addMusician(\Jam\UserBundle\Entity\User $musician)
-    {
-        $this->musicians[] = $musician;
-
-        return $this;
-    }
-
-    /**
-     * Remove musician
-     *
-     * @param \Jam\UserBundle\Entity\User $musician
-     */
-    public function removeMusician(\Jam\UserBundle\Entity\User $musician)
-    {
-        $this->musicians->removeElement($musician);
-    }
-
-    /**
-     * Get musicians
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMusicians()
-    {
-        return $this->musicians;
+        return $this->members;
     }
 
     /**
@@ -469,29 +457,5 @@ class Jam
     public function getLocation()
     {
         return $this->location;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Jam
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

@@ -18,7 +18,17 @@
 
             <ul>
                 {% for j in jam.genres %}
-                    <li>{{ j.genre.name }}</li>
+                    <li>{{ j.name }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>{{ 'text.looking.for.instruments'|trans }}:</h3>
+
+            <ul>
+                {% for j in jam.members %}
+                    {% if j.musician is null %}
+                        <li>{{ j.instrument.name }}</li>
+                    {% endif %}
                 {% endfor %}
             </ul>
 

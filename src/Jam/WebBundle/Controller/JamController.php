@@ -3,9 +3,7 @@
 namespace Jam\WebBundle\Controller;
 
 use Jam\CoreBundle\Entity\Jam;
-use Jam\CoreBundle\Entity\JamImage;
-use Jam\CoreBundle\Entity\JamMember;
-use Jam\CoreBundle\Entity\JamMusician;
+use Jam\CoreBundle\Entity\JamMusicianInstrument;
 use Jam\CoreBundle\Form\Type\JamType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +22,7 @@ class JamController extends Controller
     {
         $jams = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findAll();
+            ->findBy(array(), array('id' => 'DESC'));
 
         return array('jams' => $jams);
     }
@@ -37,15 +35,17 @@ class JamController extends Controller
     {
         $jam = new Jam();
 
+        $jamMember = new JamMusicianInstrument();
+        $jamMember->setJam($jam);
+        $jamMember->setMusician($this->getUser());
+
+        $jam->addMember($jamMember);
+
         $form = $this->createForm(JamType::class, $jam);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $jamMember = new JamMusician();
-            $jamMember->setJam($jam);
-            $jamMember->setMusician($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);
@@ -53,7 +53,7 @@ class JamController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.created.successfully'));
 
-            return $this->redirect($this->generateUrl('home'));
+            return $this->redirect($this->generateUrl('jams'));
         }
 
         return array('form' => $form->createView());
