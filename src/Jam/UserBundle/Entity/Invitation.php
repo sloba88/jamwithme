@@ -25,6 +25,12 @@ class Invitation
     /** @ORM\Column(type="string", length=256) */
     protected $email;
 
+    /** @ORM\Column(type="string", length=100, nullable=true) */
+    protected $firstName;
+
+    /** @ORM\Column(type="string", length=100, nullable=true) */
+    protected $lastName;
+
     /**
      * When sending invitation be sure to set this value to `true`
      *
@@ -205,5 +211,53 @@ class Invitation
     public function getAccepted()
     {
         return $this->accepted;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return Invitation
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return Invitation
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 }

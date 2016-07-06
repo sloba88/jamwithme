@@ -209,7 +209,6 @@ $(function() {
             placeholder: memberUserPlaceholder,
             minimumInputLength: 2,
             multiple: false,
-            tags: true,
             createSearchChoice: function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
             ajax: {
                 delay: 300,

@@ -48,6 +48,14 @@ class JamMusicianInstrument
     private $instrument;
 
     /**
+     * @var User $musician
+     *
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\Invitation")
+     * @ORM\JoinColumn(name="invitation_id", referencedColumnName="id", nullable=true)
+     */
+    private $invitee;
+
+    /**
      * Get id
      *
      * @return integer
@@ -127,5 +135,29 @@ class JamMusicianInstrument
     public function getInstrument()
     {
         return $this->instrument;
+    }
+
+    /**
+     * Set invitee
+     *
+     * @param \Jam\UserBundle\Entity\Invitation $invitee
+     *
+     * @return JamMusicianInstrument
+     */
+    public function setInvitee(\Jam\UserBundle\Entity\Invitation $invitee = null)
+    {
+        $this->invitee = $invitee;
+
+        return $this;
+    }
+
+    /**
+     * Get invitee
+     *
+     * @return \Jam\UserBundle\Entity\Invitation
+     */
+    public function getInvitee()
+    {
+        return $this->invitee;
     }
 }

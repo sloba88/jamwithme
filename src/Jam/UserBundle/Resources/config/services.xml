@@ -42,6 +42,10 @@
             <argument>%jam_types%</argument>
         </service>
 
+        <service id="invitation.form.type" class="Jam\CoreBundle\Form\Type\InvitationType">
+            <tag name="form.type" />
+        </service>
+
         <service id="jam_user.genre.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\GenreTransform">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>

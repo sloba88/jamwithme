@@ -47,8 +47,6 @@
 
         <label>Current members</label>
 
-        <div class="alert alert-info" role="alert">If the user is not on Jamifind just type his email address and he will be invited.</div>
-
         <ul id="jam_musician_instruments">
 
             {% for f in form.members %}
@@ -69,7 +67,39 @@
             {% endfor %}
         </ul>
         <br /><br />
-        <a href="" class="btn btn-primary" id="add_jam_member">Add member</a>
+        <div class="form-group">
+            <a href="" class="btn btn-primary" id="add_jam_member">Add member</a>
+        </div>
+
+        <div class="alert alert-info" role="alert">If you can't find the user in the database you can add him quickly.</div>
+
+        <div class="form-group">
+            <a href="" class="btn btn-primary" id="invite_jam_member">Create new member</a>
+        </div>
+    </div>
+
+    </form>
+
+
+    <!-- Invite Modal -->
+    <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Invite member</h4>
+                </div>
+                <div class="modal-body clearfix"></div>
+                <div class="modal-footer clearfix">
+                    <div class="col-md-4 pull-left">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="col-md-4 pull-right">
+                        <button id="sendInvitationModal" type="button" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

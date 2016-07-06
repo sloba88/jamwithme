@@ -55,4 +55,52 @@ class InviteController extends FOSRestController
             return $response;
         }
     }
+
+    /**
+     * Send one email from form
+     * @Post("/send-invite-email", name="send_invite_email")
+     * @RequestParam(name="email", description="user email to send the invitations to", nullable=false)
+     * @RequestParam(name="firstName", description="user first name", nullable=true)
+     * @RequestParam(name="lastName", description="user last name", nullable=true)
+     */
+    public function sendInviteEmailAction(ParamFetcher $paramFetcher)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $response = new JsonResponse();
+
+        if ($this->getUser() instanceof UserInterface) {
+
+            $email = $paramFetcher->get('email');
+
+            $invitation = new Invitation();
+            $invitation->setEmail($email);
+            $invitation->setFirstName($paramFetcher->get('firstName'));
+            $invitation->setLastName($paramFetcher->get('lastName'));
+
+            $messageBody = $this->renderView('JamWebBundle:Email:invitation.html.twig', array(
+                'from' => $this->getUser(),
+                'invitation' => $invitation
+            ));
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject("You have been invited to join Jamifind")
+                ->setFrom('noreply@jamifind.com')
+                ->setTo($email)
+                ->setBody($messageBody, 'text/html');
+
+            if ($this->get('mailer')->send($message)) {
+                $invitation->setSent(true);
+            }
+
+            $em->persist($invitation);
+            $em->flush();
+
+            $response->setData(array(
+                'status' => 'success',
+                'message' => 'Invitations sent successfully.',
+            ));
+
+            return $response;
+        }
+    }
 }
