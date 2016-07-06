@@ -16,12 +16,18 @@ class JamMusicianInstrumentType extends AbstractType
     {
         $builder->add('musician', EntityType::class, array(
             'class' => 'Jam\UserBundle\Entity\User',
-            'choice_label' => 'username'
-        ));
+            'choice_label' => 'username',
+            'attr' => array(
+                'data-placeholder' => 'Find user by name or email'
+            )
+        ))
 
-        $builder->add('instrument', EntityType::class, array(
+        ->add('instrument', EntityType::class, array(
             'class' => 'Jam\CoreBundle\Entity\Instrument',
-            'choice_label' => 'name'
+            'choice_label' => 'name',
+            'attr' => array(
+                'data-placeholder' => 'What is he/she playing?'
+            )
         ));
     }
 
@@ -30,6 +36,7 @@ class JamMusicianInstrumentType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Jam\CoreBundle\Entity\JamMusicianInstrument',
             'class' => 'Jam\CoreBundle\Entity\JamMusicianInstrument',
+            'jam' => null
         ));
     }
 
@@ -38,6 +45,7 @@ class JamMusicianInstrumentType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Jam\CoreBundle\Entity\JamMusicianInstrument',
             'class' => 'Jam\CoreBundle\Entity\JamMusicianInstrument',
+            'jam' => null
         ));
     }
 

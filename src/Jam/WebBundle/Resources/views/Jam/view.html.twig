@@ -32,10 +32,26 @@
                 {% endfor %}
             </ul>
 
+            <h3>{{ 'text.sounds.like'|trans }}:</h3>
+
+            <ul>
+                {% for j in jam.artists %}
+                    <li>{{ j.name }}</li>
+                {% endfor %}
+            </ul>
+
         </div>
 
         <div class="col-md-6">
+            <h3>Current members</h3>
 
+            <ul>
+                {% for j in jam.members %}
+                    {% if j.musician is not  null %}
+                        <li><a href="{{ path('musician_profile', { 'username': j.musician.username }) }}">{{ j.musician.fullName }}</a> - <span>{{ j.instrument.name }}</span></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
 
     </div>

@@ -59,11 +59,11 @@ class Jam
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="jams", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="jams", cascade={"all"})
      * @ORM\JoinTable(
      *      name="jams_genres",
      *      joinColumns={@ORM\JoinColumn(name="genre_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")}
      * )
      */
     private $genres;
@@ -74,8 +74,8 @@ class Jam
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="jams", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="jams_artists",
-     *      joinColumns={@ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)}
+     *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false)}
      * )
      */
     protected $artists;
@@ -107,8 +107,8 @@ class Jam
      * @var integer
      *
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", cascade={"remove"})
+     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $creator;
 

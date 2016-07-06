@@ -19,7 +19,7 @@ class ArtistTransform implements DataTransformerInterface
     /**
      * Transforms an object (group) to a string (number).
      *
-     * @param  Group|null $group
+     * @param  String|null $group
      * @return string
      */
     public function transform($artist)
@@ -41,20 +41,15 @@ class ArtistTransform implements DataTransformerInterface
     /**
      * Transforms a string (number) to an object (group).
      *
-     * @param  string $number
-     * @return Group|null
+     * @param  array $artists
+     * @return ArrayCollection
      * @throws TransformationFailedException if object (group) is not found.
      */
-    public function reverseTransform($name)
+    public function reverseTransform($artists)
     {
         $artistsCollection = new ArrayCollection();
 
-        if (!$name) {
-            return $artistsCollection;
-        }
-
-        $names = explode(",", $name);
-        foreach($names AS $name){
+        foreach($artists AS $name){
 
             $artist = $this->entityManager
                 ->getRepository('JamCoreBundle:Artist')
@@ -66,13 +61,6 @@ class ArtistTransform implements DataTransformerInterface
             }
 
             $artistsCollection->add($artist);
-        }
-
-        if (null === $artist) {
-            throw new TransformationFailedException(sprintf(
-                'Artist with ID "%s" does not exist!',
-                $name
-            ));
         }
 
         return $artistsCollection;

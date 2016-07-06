@@ -203,6 +203,38 @@ $(function() {
             });
         });
 
+        var memberUserPlaceholder = $('#jam_members_0_musician').data('placeholder');
+
+        $('.member-user').select2({
+            placeholder: memberUserPlaceholder,
+            minimumInputLength: 2,
+            multiple: false,
+            tags: true,
+            createSearchChoice: function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
+            ajax: {
+                delay: 300,
+                url: Routing.generate('users_find'),
+                data: function (params) {
+                    return {
+                        q: params.term
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.username,
+                                value: item.username,
+                                id: item.id
+                            };
+                        })
+                    };
+
+                },
+                cache: true
+            }
+        });
+
         scrollbarPlugin();
     });
 
@@ -251,7 +283,7 @@ $(function() {
                 url: Routing.generate('api_gear'),
                 data: function (term) {
                     return {
-                        q: term // search term
+                        q: term.term // search term
                     };
                 },
                 results: function(data) {
@@ -293,6 +325,14 @@ $(function() {
             multiple: true,
             ajax: {
                 url: 'https://api.spotify.com/v1/search',
+                data: function(term) {
+                    return {
+                        results: 12,
+                        api_key: '821adc24f1684cf89b7ef538d8808b8a',
+                        q: term.term,
+                        type: 'artist'
+                    };
+                },
                 processResults: function(data) {
                     return {
                         results: $.map(data.artists.items, function(item) {
@@ -302,14 +342,6 @@ $(function() {
                                 id: item.name
                             };
                         })
-                    };
-                },
-                data: function(term) {
-                    return {
-                        results: 12,
-                        api_key: '821adc24f1684cf89b7ef538d8808b8a',
-                        q: term.term,
-                        type: 'artist'
                     };
                 }
             }

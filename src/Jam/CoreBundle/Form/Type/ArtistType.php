@@ -4,9 +4,10 @@ namespace Jam\CoreBundle\Form\Type;
 
 use Jam\CoreBundle\Form\DataTransformer\ArtistTransform;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Doctrine\ORM\EntityRepository;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class ArtistType extends AbstractType
 {
@@ -19,20 +20,20 @@ class ArtistType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addViewTransformer($this->artistTransformer, true);
+        $builder->addModelTransformer($this->artistTransformer, true);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'class' => 'Jam\CoreBundle\Entity\Artist',
-            'required' => false,
+            'required' => false
         ));
     }
 
     public function getParent()
     {
-        return 'choice';
+        return TextType::class;
     }
 
     public function getName()

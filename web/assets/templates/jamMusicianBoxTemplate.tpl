@@ -1,7 +1,7 @@
 <li class="row">
 
-    <div class="col-md-5">
-        <select id="jam_members_<%- rc.num %>_musician" name="jam[members][<%- rc.num %>][musician]" required="required" class="form-control"></select>
+    <div class="col-md-6">
+        <select id="jam_members_<%- rc.num %>_musician" name="jam[members][<%- rc.num %>][musician]" required="required" class="form-control member-user"></select>
     </div>
 
     <div class="col-md-5">

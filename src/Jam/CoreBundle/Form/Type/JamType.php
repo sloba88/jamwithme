@@ -71,12 +71,15 @@ class JamType extends AbstractType
             'required' => true,
             'label' => 'Looking for',
             'allow_add' => true,
+            'by_reference' => false,
             'allow_delete' => true,
+            'options' => array(
+                'jam' => $jam
+            )
         ));
 
         $builder->add('artists', 'artist_type', array(
-            'label' => 'Sounds like',
-            'empty_value' => false
+            'label' => 'Sounds like'
         ))
 
        ->add('save', 'submit');

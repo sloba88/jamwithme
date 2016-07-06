@@ -141,11 +141,11 @@ return __p
 
 this["JST"]["jamMusicianBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
-__p += '<li class="row">\n\n    <div class="col-md-5">\n        <select id="jam_members_' +
+__p += '<li class="row">\n\n    <div class="col-md-6">\n        <select id="jam_members_' +
 __e( rc.num ) +
 '_musician" name="jam[members][' +
 __e( rc.num ) +
-'][musician]" required="required" class="form-control"></select>\n    </div>\n\n    <div class="col-md-5">\n        <select id="jam_members_' +
+'][musician]" required="required" class="form-control member-user"></select>\n    </div>\n\n    <div class="col-md-5">\n        <select id="jam_members_' +
 __e( rc.num ) +
 '_instrument" name="jam[members][' +
 __e( rc.num ) +

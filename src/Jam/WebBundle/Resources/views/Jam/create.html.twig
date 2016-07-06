@@ -29,7 +29,10 @@
 
         {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
 
-        {{ form_row(form.artists, { 'id' : 'fos_user_profile_form_artists' }) }}
+        <div class="form-group">
+            {{ form_label(form.artists) }}
+            <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
+        </div>
 
         {{ form_row(form.instruments) }}
 
@@ -43,13 +46,20 @@
         {{ form_row(form.description) }}
 
         <label>Current members</label>
+
+        <div class="alert alert-info" role="alert">If the user is not on Jamifind just type his email address and he will be invited.</div>
+
         <ul id="jam_musician_instruments">
 
             {% for f in form.members %}
                 <li class="row">
 
-                    <div class="col-md-5">
-                        {{ form_widget(f.musician) }}
+                    <div class="col-md-6">
+                        {% if f.musician.vars.value == app.user.id %}
+                            {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
+                        {% else %}
+                            {{ form_widget(f.musician) }}
+                        {% endif %}
                     </div>
 
                     <div class="col-md-5">
