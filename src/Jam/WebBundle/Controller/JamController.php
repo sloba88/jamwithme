@@ -5,6 +5,7 @@ namespace Jam\WebBundle\Controller;
 use Jam\CoreBundle\Entity\Jam;
 use Jam\CoreBundle\Entity\JamMusicianInstrument;
 use Jam\CoreBundle\Form\Type\JamType;
+use Jam\LocationBundle\Entity\Location;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -35,12 +36,20 @@ class JamController extends Controller
     {
         $jam = new Jam();
 
-
         $jamMember = new JamMusicianInstrument();
         $jamMember->setJam($jam);
         $jamMember->setMusician($this->getUser());
-
         $jam->addMember($jamMember);
+
+        //pre-set user location
+        $userLocation = $this->getUser()->getLocation();
+        if ($userLocation) {
+            $location = new Location();
+            $location->setCountry($userLocation->getCountry());
+            $location->setAdministrativeAreaLevel3($userLocation->getAdministrativeAreaLevel3());
+            $location->setAddress($userLocation->getAdministrativeAreaLevel3() . ', ' . $userLocation->getCountry());
+            $jam->setLocation($location);
+        }
 
         $form = $this->createForm(JamType::class, $jam);
 

@@ -30,7 +30,6 @@ $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
             url: Routing.generate('api_genres')
         }).done(function(data) {
             $('#fos_user_profile_form_genres').select2({
-                placeholder: 'Favourite Genres?',
                 multiple: true,
                 data: data,
                 matcher: oldMatcher(matchStart)
@@ -40,7 +39,6 @@ $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
 
     if ($('#jam_instruments').length > 0){
         $('#jam_instruments').select2({
-            placeholder: 'What are you looking for?',
             multiple: true,
             templateResult: formatResultData,
             matcher: oldMatcher(matchStart)
@@ -62,7 +60,6 @@ $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
         });
 
         $('.instrument-select').select2({
-            placeholder: 'What do you play?',
             data: allInstruments,
             matcher: oldMatcher(matchStart)
         }).on('change', function(t) {
@@ -77,7 +74,6 @@ $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
             }
 
             $('.instrument-select').select2({
-                placeholder: 'What do you play?',
                 data: allInstruments,
                 matcher: oldMatcher(matchStart)
             });
@@ -101,7 +97,6 @@ function initInstrumentSelection() {
 
     if (allSkills) {
         $('.skill-select').select2({
-            placeholder: 'How good are you?',
             data: allSkills
         });
     } else {
@@ -111,7 +106,6 @@ function initInstrumentSelection() {
             allSkills = data;
 
             $('.skill-select').select2({
-                placeholder: 'How good are you?',
                 data: allSkills
             });
         });
@@ -198,7 +192,6 @@ $(function() {
             url: Routing.generate('api_instruments')
         }).done(function(data) {
             $('.member-instrument').select2({
-                placeholder: 'What does he/she play?',
                 data: data
             });
         });
@@ -242,36 +235,16 @@ $(function() {
         e.preventDefault();
         var $jamMusicians = $('#jam_musician_instruments');
 
-        $jamMusicians.find('row').last().find('.add-invitee').removeClass('hidden');
-        /*
-        $.get(Routing.generate('invitation_create'), function(data){
-            $('#inviteModal .modal-body').html(data);
-            $('#inviteModal').modal('show');
-        });
+        var length = $jamMusicians.find('.row').length;
+        $jamMusicians.append(window.JST.jamMusicianInviteBoxTemplate({'num': length}));
 
-        $('body').on('click', '#sendInvitationModal', function() {
-            //var invitationData = $('#invitationForm').serialize();
-
-            $jamMusicians.find('row').last().find('.add-invitee').removeClass('hidden');
-
-
-
-            $.ajax({
-                url: Routing.generate('send_invite_email'),
-                type: 'POST',
-                data: invitationData,
-                success: function(result) {
-                    if (result.status === 'success') {
-                        addMessage(result.status, result.message);
-                        $('#inviteModal .modal-body').html('');
-                        $('#inviteModal').modal('hide');
-                    }
-                }
+        $.ajax({
+            url: Routing.generate('api_instruments')
+        }).done(function(data) {
+            $('.member-instrument').select2({
+                data: data
             });
-
-
         });
-         */
     });
 
     $musiciansVideos.on('click', '.save-video', function(){
@@ -310,7 +283,6 @@ $(function() {
     if ($('#fos_user_profile_form_gear').length > 0) {
 
         $('#fos_user_profile_form_gear').select2({
-            placeholder: 'Enter model',
             minimumInputLength: 2,
             multiple: true,
             quietMillis: 250,
@@ -356,7 +328,6 @@ $(function() {
     if ($('#fos_user_profile_form_artists').length > 0 ) {
 
         $('#fos_user_profile_form_artists').select2({
-            placeholder: 'Favourite Artists?',
             minimumInputLength: 2,
             multiple: true,
             ajax: {

@@ -2,112 +2,99 @@
 
 {% block main_content %}
 
+    <style>
+        #jam_musician_instruments li.row{
+            margin-bottom: 10px;
+        }
+    </style>
+
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
     {{ form_start(form) }}
 
-    <div class="col-md-12">
-        <h2>Create a new Jam</h2>
-    </div>
+        <div class="col-md-12">
+            <h2>Create a new Jam</h2>
+        </div>
 
-    <div class="col-md-6">
+        <div class="col-md-6">
 
-        {{ form_row(form.name) }}
+            {{ form_row(form.name) }}
 
-        {{ form_row(form.type) }}
+            {{ form_row(form.type) }}
 
-        {{ form_row(form.status) }}
+            {{ form_row(form.status) }}
 
-        <div class="form-group">
-            {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
-            <span class="glyphicon glyphicon-info-sign info-popover" data-placement="bottom" data-toggle="popover" data-trigger="hover" data-content="{{ 'info.settings.location'|trans }}"></span>
-            {{ form_errors(form.location) }}
-            <div>
-                {{ form_widget(form.location) }}
+            <div class="form-group">
+                {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                {{ form_errors(form.location) }}
+                <div>
+                    {{ form_widget(form.location) }}
+                </div>
             </div>
+
+            {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
+
+            <div class="form-group">
+                {{ form_label(form.artists) }}
+                <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
+            </div>
+
+            {{ form_row(form.instruments) }}
+
+            {{ form_widget(form._token) }}
+
+
+            <div class="form-group">
+                <button type="submit" id="jam_save" name="jam[save]" class="btn btn-primary"><i class="fa fa-check"></i> {{ 'button.save'|trans }}</button>
+            </div>
+
         </div>
 
-        {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
+        <div class="col-md-6">
+            {{ form_row(form.description) }}
 
-        <div class="form-group">
-            {{ form_label(form.artists) }}
-            <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
+            <label>Current members</label>
+
+            <ul id="jam_musician_instruments">
+
+                {% for f in form.members %}
+                    <li class="row">
+
+                        <div class="col-md-6">
+                            {% if f.musician.vars.value == app.user.id %}
+                                {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
+                            {% else %}
+                                {{ form_widget(f.musician) }}
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-6 add-invitee hidden">
+                            {{ form_widget(f.invitee) }}
+                        </div>
+
+                        <div class="col-md-5">
+                            {{ form_widget(f.instrument) }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <br />
+
+            <div class="form-group">
+                <div class="col-md-6">
+                    <a href="" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
+                </div>
+                <div class="col-md-6">
+                    <a href="" class="btn btn-primary" id="invite_jam_member" style="width: 220px"><i class="fa fa-users" aria-hidden="true"></i> Invite new member</a>
+                </div>
+            </div>
+
+            <br /><br />
+
+            <div class="alert alert-info" role="alert">If you can't find the user in the database you can add him quickly.</div>
         </div>
-
-        {{ form_row(form.instruments) }}
-
-        {{ form_widget(form._token) }}
-
-        {{ form_row(form.save) }}
-
-    </div>
-
-    <div class="col-md-6">
-        {{ form_row(form.description) }}
-
-        <label>Current members</label>
-
-        <ul id="jam_musician_instruments">
-
-            {% for f in form.members %}
-                <li class="row">
-
-                    <div class="col-md-6">
-                        {% if f.musician.vars.value == app.user.id %}
-                            {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
-                        {% else %}
-                            {{ form_widget(f.musician) }}
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-6 add-invitee hidden">
-                        {{ form_widget(f.invitee) }}
-                    </div>
-
-                    <div class="col-md-5">
-                        {{ form_widget(f.instrument) }}
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-
-
-        <a href="" class="btn btn-primary" id="invite_jam_member" style="width: 220px">Invite new member</a>
-
-        <br /><br />
-
-        <div class="form-group">
-            <a href="" class="btn btn-primary" id="add_jam_member">Add member</a>
-        </div>
-
-        <div class="alert alert-info" role="alert">If you can't find the user in the database you can add him quickly.</div>
-
-    </div>
-
     </form>
-
-
-    <!-- Invite Modal -->
-    <div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Invite member</h4>
-                </div>
-                <div class="modal-body clearfix"></div>
-                <div class="modal-footer clearfix">
-                    <div class="col-md-4 pull-left">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                    <div class="col-md-4 pull-right">
-                        <button id="sendInvitationModal" type="button" class="btn btn-primary">Send</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 {% endblock main_content %}
 

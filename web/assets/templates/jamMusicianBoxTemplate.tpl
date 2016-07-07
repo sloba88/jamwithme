@@ -12,5 +12,4 @@
         <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
     </div>
 
-    /* ADD TEMPLATE FOR INVITEES HERE OR BETTER USE TO SEPARATE TEMPLATES FOR ADD MEMBER AND INVITE MEMBER */
 </li>

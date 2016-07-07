@@ -114,18 +114,6 @@ function initMap(){
 
 $(function() {
 
-    if ($('.location_widget:visible').length > 0) {
-        initMap();
-        setMyMarker();
-    }
-
-    $('#location-tab').on('click', function(){
-        setTimeout(function() {
-            initMap();
-            setMyMarker();
-        }, 400 );
-    });
-
     $('body').on('keyup', '.location_widget .location-input', function(){
         var value = $(this).val();
 
@@ -197,9 +185,10 @@ $(function() {
 
     });
 
-
-    $('.location_widget').find('*').on('focus', function() {
+    $('.location_widget').on('click', '.input-group-btn', function() {
         $('.location_widget').find('.dropdown-menu').css({'display': 'block'});
+        initMap();
+        setMyMarker();
     });
 
     $('body').bind('click', function(e) {

@@ -2,46 +2,101 @@
 
 {% block main_content %}
 
-    <div class="col-md-12">
-        <div class="col-md-9">
-            <h1>Jams</h1>
-        </div>
+    <style>
+        ul.members-list li.member {
+            float: left;
+            margin: 8px;
+            text-align: center;
+            width: 90px;
+        }
 
-        <div class="col-md-3">
-            <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3">Start new jam</a>
-        </div>
+        ul.members-list li img{
+            display: block;
+            margin:0 auto;
+            padding-bottom: 8px;
+        }
 
-        <div class="clearfix"></div>
-        <div class="with-scrollbar" style="height: 500px">
-            <div class="clearfix">
-                {% for j in jams %}
-                    <div class="col-md-12">
-                        <h3><a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }}</a></h3>
-                        {% if j.location %}
-                            {% if j.location.getAdministrativeAreaLevel3 %}
-                                <div class="location">
-                                    <i class="fa fa-map-marker"></i> {% if j.location.neighborhood %}{{ j.location.neighborhood }},{% endif %} {{ j.location.getAdministrativeAreaLevel3 }}
-                                </div>
-                            {% endif %}
+        ul.members-list li span.tag {
+            display: block;
+        }
+
+        ul.members-list li.invited-member {
+            opacity: .8;
+        }
+
+    </style>
+
+    <div class="col-md-9">
+        <h1>Jams</h1>
+    </div>
+
+    <div class="col-md-3">
+        <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3">Start new jam</a>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="with-scrollbar" style="height: 600px">
+        <div class="clearfix">
+            {% for j in jams %}
+                <div class="col-md-4">
+                    <h3><a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }}</a></h3>
+
+                    <span class="pull-right">{{ j.createdAt | date('Y-m-d') }}</span>
+
+                    {% if j.location %}
+                        {% if j.location.getAdministrativeAreaLevel3 %}
+                            <div class="location">
+                                <i class="fa fa-map-marker"></i> {% if j.location.neighborhood %}{{ j.location.neighborhood }},{% endif %} {{ j.location.getAdministrativeAreaLevel3 }}
+                            </div>
                         {% endif %}
-                        <ul class="tags">
-                            {% for g in j.genres %}
-                                <li><a href="{{ path('musicians', {'genres' : g.id }) }}">{{ g.name }}</a></li>
-                            {% endfor %}
-                        </ul>
+                    {% endif %}
+                    <ul class="tags">
+                        {% for g in j.genres %}
+                            <li><a href="{{ path('musicians', {'genres' : g.id }) }}">{{ g.name }}</a></li>
+                        {% endfor %}
+                    </ul>
 
-                        <label>Looking for:</label>
-                        <ul class="tags">
-                            {% for m in j.members %}
-                                {% if m.musician is null %}
-                                    <li>{{ m.instrument.name }}</li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-                        <hr />
-                    </div>
-                {% endfor %}
-            </div>
+                    <label>Looking for:</label>
+                    <ul class="tags">
+                        {% for m in j.members %}
+                            {% if m.musician is null %}
+                                <li>{{ m.instrument.name }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-md-8" style="border-left: 1px solid #eeeeee;">
+                    <ul class="members-list">
+                        {% for m in j.members %}
+                            {% if m.musician is not null %}
+                                <li class="member">
+                                    <ul class="tags">
+                                        <li>{{ m.instrument.name }}</li>
+                                    </ul>
+                                    <a href="{{ path('musician_profile', { 'username': m.musician.username }) }}">
+                                        <img src="{{ m.musician.avatar | imagine_filter('my_thumb') }}" />
+                                        {{ m.musician.fullName }}</a>
+                                </li>
+                            {% endif %}
+                            {% if m.invitee is not null %}
+                                <li class="member invited-member">
+                                    <ul class="tags">
+                                        <li>{{ m.instrument.name }}</li>
+                                    </ul>
+                                    <a href="#">
+                                        <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_thumb') }}" />
+                                        {{ m.invitee.firstName }} {{ m.invitee.lastName }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <hr />
+            {% endfor %}
         </div>
     </div>
 

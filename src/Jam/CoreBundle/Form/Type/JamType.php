@@ -44,7 +44,9 @@ class JamType extends AbstractType
                 'attr' => array('placeholder' => 'In which phase is the project?')
             ))
 
-            ->add('location', new LocationType());
+            ->add('location', LocationType::class, array(
+                'data' => $jam->getLocation()
+            ));
 
         $builder->add('genres', EntityType::class, array(
             'required' => false,

@@ -16,7 +16,7 @@
 
             <h3>{{ 'text.genres'|trans }}:</h3>
 
-            <ul>
+            <ul class="tags">
                 {% for j in jam.genres %}
                     <li>{{ j.name }}</li>
                 {% endfor %}
@@ -24,10 +24,10 @@
 
             <h3>{{ 'text.looking.for.instruments'|trans }}:</h3>
 
-            <ul>
-                {% for j in jam.members %}
-                    {% if j.musician is null %}
-                        <li>{{ j.instrument.name }}</li>
+            <ul class="tags">
+                {% for m in jam.members %}
+                    {% if m.musician is null %}
+                        <li>{{ m.instrument.name }}</li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -47,8 +47,11 @@
 
             <ul>
                 {% for j in jam.members %}
-                    {% if j.musician is not  null %}
+                    {% if j.musician is not null %}
                         <li><a href="{{ path('musician_profile', { 'username': j.musician.username }) }}">{{ j.musician.fullName }}</a> - <span>{{ j.instrument.name }}</span></li>
+                    {% endif %}
+                    {% if j.invitee is not null %}
+                        <li>{{ j.invitee.firstName }} {{ j.invitee.lastName }} - <span>{{ j.instrument.name }}</span></li>
                     {% endif %}
                 {% endfor %}
             </ul>
