@@ -41,7 +41,7 @@ class JamType extends AbstractType
             ))
             ->add('type', 'choice', array(
                 'choices' => $this->jamTypeChoices,
-                'attr' => array('placeholder' => 'In which phase are you in?')
+                'attr' => array('placeholder' => 'In which phase is the project?')
             ))
 
             ->add('location', new LocationType());

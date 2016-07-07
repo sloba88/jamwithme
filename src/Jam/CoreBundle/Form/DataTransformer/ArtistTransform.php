@@ -49,6 +49,10 @@ class ArtistTransform implements DataTransformerInterface
     {
         $artistsCollection = new ArrayCollection();
 
+        if (null === $artists) {
+            return $artistsCollection;
+        }
+
         foreach($artists AS $name){
 
             $artist = $this->entityManager

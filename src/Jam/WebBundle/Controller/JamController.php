@@ -35,6 +35,7 @@ class JamController extends Controller
     {
         $jam = new Jam();
 
+
         $jamMember = new JamMusicianInstrument();
         $jamMember->setJam($jam);
         $jamMember->setMusician($this->getUser());

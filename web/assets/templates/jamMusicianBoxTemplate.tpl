@@ -11,4 +11,6 @@
     <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">
         <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
     </div>
+
+    /* ADD TEMPLATE FOR INVITEES HERE OR BETTER USE TO SEPARATE TEMPLATES FOR ADD MEMBER AND INVITE MEMBER */
 </li>

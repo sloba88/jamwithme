@@ -50,7 +50,7 @@ class JamMusicianInstrument
     /**
      * @var User $musician
      *
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\Invitation")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\Invitation", cascade={"persist"})
      * @ORM\JoinColumn(name="invitation_id", referencedColumnName="id", nullable=true)
      */
     private $invitee;

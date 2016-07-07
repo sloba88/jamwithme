@@ -17,6 +17,7 @@ class JamMusicianInstrumentType extends AbstractType
         $builder->add('musician', EntityType::class, array(
             'class' => 'Jam\UserBundle\Entity\User',
             'choice_label' => 'username',
+            'required' => false,
             'attr' => array(
                 'data-placeholder' => 'Find user by name or email'
             )
@@ -28,6 +29,10 @@ class JamMusicianInstrumentType extends AbstractType
             'attr' => array(
                 'data-placeholder' => 'What is he/she playing?'
             )
+        ))
+
+        ->add('invitee', InvitationType::class, array(
+            'required' => false
         ));
     }
 

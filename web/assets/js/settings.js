@@ -209,6 +209,7 @@ $(function() {
             placeholder: memberUserPlaceholder,
             minimumInputLength: 2,
             multiple: false,
+            allowClear: true,
             createSearchChoice: function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
             ajax: {
                 delay: 300,
@@ -235,6 +236,42 @@ $(function() {
         });
 
         scrollbarPlugin();
+    });
+
+    $('#invite_jam_member').on('click', function(e) {
+        e.preventDefault();
+        var $jamMusicians = $('#jam_musician_instruments');
+
+        $jamMusicians.find('row').last().find('.add-invitee').removeClass('hidden');
+        /*
+        $.get(Routing.generate('invitation_create'), function(data){
+            $('#inviteModal .modal-body').html(data);
+            $('#inviteModal').modal('show');
+        });
+
+        $('body').on('click', '#sendInvitationModal', function() {
+            //var invitationData = $('#invitationForm').serialize();
+
+            $jamMusicians.find('row').last().find('.add-invitee').removeClass('hidden');
+
+
+
+            $.ajax({
+                url: Routing.generate('send_invite_email'),
+                type: 'POST',
+                data: invitationData,
+                success: function(result) {
+                    if (result.status === 'success') {
+                        addMessage(result.status, result.message);
+                        $('#inviteModal .modal-body').html('');
+                        $('#inviteModal').modal('hide');
+                    }
+                }
+            });
+
+
+        });
+         */
     });
 
     $musiciansVideos.on('click', '.save-video', function(){

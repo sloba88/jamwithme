@@ -72,6 +72,8 @@ class InviteController extends FOSRestController
 
             $email = $paramFetcher->get('email');
 
+            /* TODO: send invite after the jam is created and elaborate why are you invited (because you play together with the guy) */
+
             $invitation = new Invitation();
             $invitation->setEmail($email);
             $invitation->setFirstName($paramFetcher->get('firstName'));

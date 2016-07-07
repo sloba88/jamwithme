@@ -60,22 +60,28 @@
                         {% endif %}
                     </div>
 
+                    <div class="col-md-6 add-invitee hidden">
+                        {{ form_widget(f.invitee) }}
+                    </div>
+
                     <div class="col-md-5">
                         {{ form_widget(f.instrument) }}
                     </div>
                 </li>
             {% endfor %}
         </ul>
+
+
+        <a href="" class="btn btn-primary" id="invite_jam_member" style="width: 220px">Invite new member</a>
+
         <br /><br />
+
         <div class="form-group">
             <a href="" class="btn btn-primary" id="add_jam_member">Add member</a>
         </div>
 
         <div class="alert alert-info" role="alert">If you can't find the user in the database you can add him quickly.</div>
 
-        <div class="form-group">
-            <a href="" class="btn btn-primary" id="invite_jam_member">Create new member</a>
-        </div>
     </div>
 
     </form>

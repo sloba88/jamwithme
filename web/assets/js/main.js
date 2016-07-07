@@ -783,29 +783,4 @@ $(function() {
         $(this).heightsPlugin();
     });
 
-    $('#invite_jam_member').on('click', function(e) {
-        e.preventDefault();
-        $.get(Routing.generate('invitation_create'), function(data){
-            $('#inviteModal .modal-body').html(data);
-            $('#inviteModal').modal('show');
-        });
-
-        $('body').on('click', '#sendInvitationModal', function() {
-            var invitationData = $('#invitationForm').serialize();
-            $.ajax({
-                url: Routing.generate('send_invite_email'),
-                type: 'POST',
-                data: invitationData,
-                success: function(result) {
-                    if (result.status === 'success') {
-                        addMessage(result.status, result.message);
-                        $('#inviteModal .modal-body').html('');
-                        $('#inviteModal').modal('hide');
-                    }
-                }
-            });
-
-        });
-    });
-
 })(jQuery);
