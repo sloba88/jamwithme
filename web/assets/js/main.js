@@ -615,12 +615,12 @@ $(function() {
     });
 
     if ($('.full-height-page-container').length > 0) {
-        $('.full-height-page-container').height($(window).height() - 140);
+        $('.full-height-page-container').height($(window).height() - 160);
     }
 
     $(window).resize(function() {
         if ($('.full-height-page-container').length > 0) {
-            $('.full-height-page-container').height($(window).height() - 140);
+            $('.full-height-page-container').height($(window).height() - 160);
         }
     });
 

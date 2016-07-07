@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg'); }}); overflow:scroll;{% endblock %}
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
 
 {% block body %}
 
@@ -11,8 +11,7 @@
 
             <h1>Terms & Conditions</h1>
 
-            <div class="with-scrollbar">
-                <div class="full-height-page-container">
+            <div class="clearfix" style="overflow: scroll; height: 600px;">
                     {% include 'JamWebBundle:Home:termsRaw.html.twig' %}
 
                     {% if is_granted("ROLE_USER") %}
@@ -29,7 +28,6 @@
                         </div>
                     {% endif %}
 
-                </div>
             </div>
         </div>
     </section>
