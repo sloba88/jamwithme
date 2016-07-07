@@ -11,8 +11,8 @@
 
             <h1>Terms & Conditions</h1>
 
-            <div class="with-scrollbar full-height-page-container" style="height: 500px;">
-                <div>
+            <div class="with-scrollbar">
+                <div class="full-height-page-container">
                     {% include 'JamWebBundle:Home:termsRaw.html.twig' %}
 
                     {% if is_granted("ROLE_USER") %}
