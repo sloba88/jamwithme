@@ -7,11 +7,9 @@
     <section class="col-sm-8 col-md-10 main-content">
         <div class="main-content-inner">
 
-            <br />
+            <h2 style="margin:0; padding: 15px 0;">Terms & Conditions</h2>
 
-            <h1>Terms & Conditions</h1>
-
-            <div class="clearfix" style="overflow: scroll; height: 600px;">
+            <div class="clearfix" style="overflow-y: scroll; height: 600px;">
                     {% include 'JamWebBundle:Home:termsRaw.html.twig' %}
 
                     {% if is_granted("ROLE_USER") %}
