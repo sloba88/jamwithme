@@ -35,9 +35,10 @@ header {
 	.outer {
 		color: #a7a7af;
 		font-size: 12px;
-		left: -4px;
 		position: relative;
-		top: 9px;
+		top: -10px;
+		display: block;
+		text-align: right;
 
 		span {
 			@include respond-to(tablet) {
