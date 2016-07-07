@@ -1,15 +1,15 @@
 {% extends '::base.html.twig' %}
 
-{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}){% endblock %}
+{% block bodystyle %}background-image: url({{ asset('assets/images/background-dashboard.jpg') }}); overflow: auto;{% endblock %}
 
 {% block body %}
 
-    <section class="col-sm-8 col-md-10 main-content">
-        <div class="main-content-inner">
+    <section class="col-xs-12 col-sm-12 col-md-12 main-content">
+        <div style="background-color: #fff; padding: 20px;">
 
-            <h2 style="margin:0; padding: 15px 0;">Terms & Conditions</h2>
+            <h2 style="font-size: 26px; margin-top: 0;">Terms & Conditions</h2>
 
-            <div class="clearfix" style="overflow-y: scroll; height: 600px;">
+            <div class="clearfix" style="font-size: 13px;">
                     {% include 'JamWebBundle:Home:termsRaw.html.twig' %}
 
                     {% if is_granted("ROLE_USER") %}

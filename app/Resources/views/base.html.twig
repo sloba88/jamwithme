@@ -430,19 +430,24 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-2 visible-xs">
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#social-header-home" aria-expanded="false" type="button">
-                        <span class="sr-only">Toggle navigation</span>
-                        <div class="navbar-open">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </div>
-                        <div class="navbar-close">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </div>
-                    </button>
-                </div><!--menu button-->
+
+                {% if is_granted("ROLE_USER") %}
+                    {% if app.user.acceptedTerms %}
+                        <div class="col-xs-2 visible-xs">
+                            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#social-header-home" aria-expanded="false" type="button">
+                                <span class="sr-only">Toggle navigation</span>
+                                <div class="navbar-open">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </div>
+                                <div class="navbar-close">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </div>
+                            </button>
+                        </div><!--menu button-->
+                    {% endif %}
+                {% endif %}
 
                 {% if is_granted("ROLE_USER") %}
                 <div class="col-xs-8 col-sm-8 col-md-9">
