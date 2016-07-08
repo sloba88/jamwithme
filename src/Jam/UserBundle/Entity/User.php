@@ -45,14 +45,21 @@ class User extends BaseUser
     }
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGenre", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
     private $genres;
 
     /**
-     * @var collection
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamMusicianInstrument", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
+     */
+    private $jams;
+
+    /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="musicians", cascade={"persist"})
      * @ORM\JoinTable(
@@ -1144,5 +1151,39 @@ class User extends BaseUser
     public function getAcceptedTerms()
     {
         return $this->acceptedTerms;
+    }
+
+    /**
+     * Add jam
+     *
+     * @param \Jam\CoreBundle\Entity\JamMusicianInstrument $jam
+     *
+     * @return User
+     */
+    public function addJam(\Jam\CoreBundle\Entity\JamMusicianInstrument $jam)
+    {
+        $this->jams[] = $jam;
+
+        return $this;
+    }
+
+    /**
+     * Remove jam
+     *
+     * @param \Jam\CoreBundle\Entity\JamMusicianInstrument $jam
+     */
+    public function removeJam(\Jam\CoreBundle\Entity\JamMusicianInstrument $jam)
+    {
+        $this->jams->removeElement($jam);
+    }
+
+    /**
+     * Get jams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJams()
+    {
+        return $this->jams;
     }
 }

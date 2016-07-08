@@ -34,7 +34,7 @@ class JamMusicianInstrument
     /**
      * @var User $musician
      *
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", inversedBy="jams")
      * @ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=true)
      */
     private $musician;

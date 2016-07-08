@@ -165,6 +165,7 @@
                         <li><a href="#" data-tab="photos" class="my-photos">{{ 'label.photos'|trans }}</a></li>
                         <li><a href="#" data-tab="videos" class="my-videos">{{ 'label.videos'|trans }}</a></li>
                         <li><a href="#" data-tab="sounds" class="my-sounds">{{ 'label.sounds'|trans }}</a></li>
+                        <li><a href="#" data-tab="jams" class="my-jams">{{ 'label.jams'|trans }}</a></li>
                         <li class="last hidden-xs">
                             {% if app.user != user %}
                                 <ul class="compatibility-box">
@@ -248,6 +249,18 @@
                                     <div></div>
                                     <ul></ul>
                                 {% endif %}
+                            </div>
+
+                            <div class="view-tab my-jams with-scrollbar" data-tab="jams">
+                                {% if user.jams|length == 0 %}
+                                    <p>{{ 'label.no.jams'|trans }}</p>
+                                {% endif %}
+
+                                <ul>
+                                    {% for j in user.jams %}
+                                        <li><a href="{{ path('view_jam', {'slug': j.jam.slug }) }}">{{ j.jam.name }} - {{ j.instrument.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
 
                         </div>

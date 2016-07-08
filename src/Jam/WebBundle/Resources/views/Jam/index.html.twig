@@ -2,16 +2,17 @@
 
 {% block main_content %}
 
-    <div class="col-md-9">
-        <h1>Jams</h1>
+    <div class="row messages-header">
+        <div class="col-xs-12">
+            <h1 class="title">Jams</h1>
+
+            <div class="col-md-3 pull-right">
+                <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3">Start new jam</a>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-3">
-        <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3">Start new jam</a>
-    </div>
-
-    <div class="clearfix"></div>
-    <div class="with-scrollbar" style="height: 600px">
+    <div class="row with-scrollbar" style="height: 600px">
         <div class="clearfix">
             {% for j in jams %}
                 <div class="col-md-4">
@@ -26,13 +27,14 @@
                             </div>
                         {% endif %}
                     {% endif %}
+
                     <ul class="tags">
                         {% for g in j.genres %}
                             <li><a href="{{ path('musicians', {'genres' : g.id }) }}">{{ g.name }}</a></li>
                         {% endfor %}
                     </ul>
 
-                    <label>Looking for:</label>
+                    <label>Looking for someone who play:</label>
                     <ul class="tags">
                         {% for m in j.members %}
                             {% if m.musician is null %}
