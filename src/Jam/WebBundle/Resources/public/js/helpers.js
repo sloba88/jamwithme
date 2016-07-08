@@ -2,6 +2,8 @@
 
 /* global Routing */
 
+var oldMatcher;
+
 function showError(error) {
     switch(error.code)
     {
@@ -78,6 +80,10 @@ function matchStart(term, text) {
 }
 
 $.fn.select2.defaults.set('containerCssClass', 'form-control');
+
+$.fn.select2.amd.require(['select2/compat/matcher'], function (_oldMatcher) {
+    oldMatcher = _oldMatcher;
+});
 
 $(function() {
     $(document).on('click', '.action-confirm', function(e){
