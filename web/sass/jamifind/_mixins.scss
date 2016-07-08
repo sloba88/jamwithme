@@ -61,7 +61,7 @@
 	line-height: 38px;
 
 	> div,
-	.select2-arrow {
+	.select2-selection__arrow {
 		background: $brand-primary;
 		border: none;
 		border-radius: 0;
@@ -79,6 +79,8 @@
 			color: $brand-secondary;
 			border-width: 6px!important;
 			margin: 0;
+			left: 36%;
+			top: 43%;
 		}
 	}
 }

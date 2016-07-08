@@ -73,6 +73,12 @@ function addMessage(type, message, temp) {
     return true;
 }
 
+function matchStart(term, text) {
+    return text.toUpperCase().indexOf(term.toUpperCase())===0;
+}
+
+$.fn.select2.defaults.set('containerCssClass', 'form-control');
+
 $(function() {
     $(document).on('click', '.action-confirm', function(e){
         e.stopImmediatePropagation();

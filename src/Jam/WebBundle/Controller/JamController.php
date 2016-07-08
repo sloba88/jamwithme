@@ -70,9 +70,11 @@ class JamController extends Controller
                     $video->setJam($jam);
                 }
             }
-            
+
             $em->persist($jam);
             $em->flush();
+
+            //send invites to members here!
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.created.successfully'));
 

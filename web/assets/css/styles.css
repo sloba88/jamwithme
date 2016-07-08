@@ -4409,12 +4409,10 @@ tbody.collapse.in {
 
 /* line 7, ../../sass/bootstrap/_dropdowns.scss */
 .caret,
-.select2-container.form-control .select2-choice > div b,
-.select2-container.form-control .select2-choices > div b,
+.select2-container .form-control > div b,
 .filter-by-distance #filter-by-distance-btn > div b,
-.select2-container.form-control .select2-choice .select2-arrow b,
-.select2-container.form-control .select2-choices .select2-arrow b,
-.filter-by-distance #filter-by-distance-btn .select2-arrow b {
+.select2-container .form-control .select2-selection__arrow b,
+.filter-by-distance #filter-by-distance-btn .select2-selection__arrow b {
   display: inline-block;
   width: 0;
   height: 0;
@@ -4557,41 +4555,30 @@ tbody.collapse.in {
 
 /* line 186, ../../sass/bootstrap/_dropdowns.scss */
 .dropup .caret,
-.dropup .select2-container.form-control .select2-choice > div b,
-.select2-container.form-control .select2-choice > div .dropup b,
-.dropup .select2-container.form-control .select2-choices > div b,
-.select2-container.form-control .select2-choices > div .dropup b,
+.dropup .select2-container .form-control > div b,
+.select2-container .form-control > div .dropup b,
 .dropup .filter-by-distance #filter-by-distance-btn > div b,
 .filter-by-distance #filter-by-distance-btn > div .dropup b,
-.dropup .select2-container.form-control .select2-choice .select2-arrow b,
-.select2-container.form-control .select2-choice .select2-arrow .dropup b,
-.dropup .select2-container.form-control .select2-choices .select2-arrow b,
-.select2-container.form-control .select2-choices .select2-arrow .dropup b,
-.dropup .filter-by-distance #filter-by-distance-btn .select2-arrow b,
-.filter-by-distance #filter-by-distance-btn .select2-arrow .dropup b,
+.dropup .select2-container .form-control .select2-selection__arrow b,
+.select2-container .form-control .select2-selection__arrow .dropup b,
+.dropup .filter-by-distance #filter-by-distance-btn .select2-selection__arrow b,
+.filter-by-distance #filter-by-distance-btn .select2-selection__arrow .dropup b,
 .navbar-fixed-bottom .dropdown .caret,
-.navbar-fixed-bottom .dropdown .select2-container.form-control .select2-choice > div b,
-.select2-container.form-control .select2-choice > div .navbar-fixed-bottom .dropdown b,
-.navbar-fixed-bottom .dropdown .select2-container.form-control .select2-choices > div b,
-.select2-container.form-control .select2-choices > div .navbar-fixed-bottom .dropdown b,
+.navbar-fixed-bottom .dropdown .select2-container .form-control > div b,
+.select2-container .form-control > div .navbar-fixed-bottom .dropdown b,
 .navbar-fixed-bottom .dropdown .filter-by-distance #filter-by-distance-btn > div b,
 .filter-by-distance #filter-by-distance-btn > div .navbar-fixed-bottom .dropdown b,
-.navbar-fixed-bottom .dropdown .select2-container.form-control .select2-choice .select2-arrow b,
-.select2-container.form-control .select2-choice .select2-arrow .navbar-fixed-bottom .dropdown b,
-.navbar-fixed-bottom .dropdown .select2-container.form-control .select2-choices .select2-arrow b,
-.select2-container.form-control .select2-choices .select2-arrow .navbar-fixed-bottom .dropdown b,
-.navbar-fixed-bottom .dropdown .filter-by-distance #filter-by-distance-btn .select2-arrow b,
-.filter-by-distance #filter-by-distance-btn .select2-arrow .navbar-fixed-bottom .dropdown b,
-.select2-container.form-control.select2-dropdown-open .select2-arrow .caret,
+.navbar-fixed-bottom .dropdown .select2-container .form-control .select2-selection__arrow b,
+.select2-container .form-control .select2-selection__arrow .navbar-fixed-bottom .dropdown b,
+.navbar-fixed-bottom .dropdown .filter-by-distance #filter-by-distance-btn .select2-selection__arrow b,
+.filter-by-distance #filter-by-distance-btn .select2-selection__arrow .navbar-fixed-bottom .dropdown b,
+.select2-container .form-control.select2-dropdown-open .select2-selection__arrow .caret,
 .filter-by-distance.open #filter-by-distance-btn > div .caret,
-.select2-container.form-control.select2-dropdown-open .select2-arrow .select2-choice > div b,
-.select2-container.form-control.select2-dropdown-open .select2-arrow .select2-choices > div b,
-.select2-container.form-control.select2-dropdown-open .select2-arrow .filter-by-distance #filter-by-distance-btn > div b,
+.select2-container .form-control.select2-dropdown-open .select2-selection__arrow .filter-by-distance #filter-by-distance-btn > div b,
 .filter-by-distance.open #filter-by-distance-btn > div b,
-.select2-container.form-control.select2-dropdown-open .select2-choice .select2-arrow b,
-.select2-container.form-control.select2-dropdown-open .select2-choices .select2-arrow b,
-.select2-container.form-control.select2-dropdown-open .filter-by-distance #filter-by-distance-btn .select2-arrow b,
-.filter-by-distance #filter-by-distance-btn .select2-container.form-control.select2-dropdown-open .select2-arrow b {
+.select2-container .form-control.select2-dropdown-open .select2-selection__arrow b,
+.select2-container .form-control.select2-dropdown-open .filter-by-distance #filter-by-distance-btn .select2-selection__arrow b,
+.filter-by-distance #filter-by-distance-btn .select2-container .form-control.select2-dropdown-open .select2-selection__arrow b {
   border-top: 0;
   border-bottom: 4px solid;
   content: "";
@@ -4599,7 +4586,7 @@ tbody.collapse.in {
 /* line 193, ../../sass/bootstrap/_dropdowns.scss */
 .dropup .dropdown-menu,
 .navbar-fixed-bottom .dropdown .dropdown-menu,
-.select2-container.form-control.select2-dropdown-open .select2-arrow .dropdown-menu,
+.select2-container .form-control.select2-dropdown-open .select2-selection__arrow .dropdown-menu,
 .filter-by-distance.open #filter-by-distance-btn > div .dropdown-menu {
   top: auto;
   bottom: 100%;
@@ -8244,7 +8231,7 @@ button.close {
   }
 }
 /* line 27, ../../sass/jamifind/sprite/_icons.scss */
-.icons-sprite, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:focus, input[type="checkbox"] + label span, input[type="radio"] + label span, input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label span, .sidebar .sidebar-list .dashboard, .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active, .sidebar .sidebar-list .shouts, .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active, .sidebar .sidebar-list .profile, .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active, .sidebar .sidebar-list .events, .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active, .sidebar .sidebar-list .messages, .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active, .sidebar .sidebar-list .settings, .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active, .sidebar .sidebar-list .logout, .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active, .shouts-feed h3, .filters-preview .tab-grid, .filters-preview .tab-grid.is-active, .filters-preview .tab-map, .filters-preview .tab-map.is-active {
+.icons-sprite, input[type="checkbox"] + label span, input[type="radio"] + label span, input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label span, .sidebar .sidebar-list .dashboard, .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active, .sidebar .sidebar-list .shouts, .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active, .sidebar .sidebar-list .profile, .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active, .sidebar .sidebar-list .events, .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active, .sidebar .sidebar-list .messages, .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active, .sidebar .sidebar-list .settings, .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active, .sidebar .sidebar-list .logout, .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active, .shouts-feed h3, .filters-preview .tab-grid, .filters-preview .tab-grid.is-active, .filters-preview .tab-map, .filters-preview .tab-map.is-active {
   background: url('../images/icons-s0565b07e45.png') no-repeat;
 }
 
@@ -8284,8 +8271,7 @@ button.close {
 }
 
 /* line 53, ../../sass/jamifind/_mixins.scss */
-.select2-container.form-control .select2-choice,
-.select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn {
+.select2-container .form-control, .filter-by-distance #filter-by-distance-btn {
   background: #eee;
   border: 1px solid #2b2a3b;
   border-radius: 2px;
@@ -8296,11 +8282,9 @@ button.close {
   line-height: 38px;
 }
 /* line 63, ../../sass/jamifind/_mixins.scss */
-.select2-container.form-control .select2-choice > div,
-.select2-container.form-control .select2-choices > div, .filter-by-distance #filter-by-distance-btn > div,
-.select2-container.form-control .select2-choice .select2-arrow,
-.select2-container.form-control .select2-choices .select2-arrow,
-.filter-by-distance #filter-by-distance-btn .select2-arrow {
+.select2-container .form-control > div, .filter-by-distance #filter-by-distance-btn > div,
+.select2-container .form-control .select2-selection__arrow,
+.filter-by-distance #filter-by-distance-btn .select2-selection__arrow {
   background: #2b2a3b;
   border: none;
   border-radius: 0;
@@ -8313,31 +8297,31 @@ button.close {
   width: 38px;
 }
 /* line 76, ../../sass/jamifind/_mixins.scss */
-.select2-container.form-control .select2-choice > div b,
-.select2-container.form-control .select2-choices > div b, .filter-by-distance #filter-by-distance-btn > div b,
-.select2-container.form-control .select2-choice .select2-arrow b,
-.select2-container.form-control .select2-choices .select2-arrow b,
-.filter-by-distance #filter-by-distance-btn .select2-arrow b {
+.select2-container .form-control > div b, .filter-by-distance #filter-by-distance-btn > div b,
+.select2-container .form-control .select2-selection__arrow b,
+.filter-by-distance #filter-by-distance-btn .select2-selection__arrow b {
   background: none;
   color: #fabc09;
   border-width: 6px !important;
   margin: 0;
+  left: 36%;
+  top: 43%;
 }
 
-/* line 108, ../../sass/jamifind/_mixins.scss */
+/* line 110, ../../sass/jamifind/_mixins.scss */
 .search-block-container .search-block:hover, .search-block-container .search-block.is-opened {
   width: 100%;
 }
-/* line 111, ../../sass/jamifind/_mixins.scss */
+/* line 113, ../../sass/jamifind/_mixins.scss */
 .search-block-container .search-block:hover .btn, .search-block-container .search-block.is-opened .btn {
   background: #363636;
 }
-/* line 115, ../../sass/jamifind/_mixins.scss */
+/* line 117, ../../sass/jamifind/_mixins.scss */
 .search-block-container .search-block:hover .ui-autocomplete-input, .search-block-container .search-block.is-opened .ui-autocomplete-input {
   background: #363636;
 }
 @media only screen and (max-width: 991px) {
-  /* line 115, ../../sass/jamifind/_mixins.scss */
+  /* line 117, ../../sass/jamifind/_mixins.scss */
   .search-block-container .search-block:hover .ui-autocomplete-input, .search-block-container .search-block.is-opened .ui-autocomplete-input {
     background: #fff;
     border: 1px solid #2b2a3b;
@@ -8440,96 +8424,88 @@ ul {
 }
 
 /* line 2, ../../sass/jamifind/_custom.scss */
-.select2-container.form-control {
-  border: none;
-  box-shadow: none;
-  height: auto;
+.select2-container {
+  width: 100% !important;
+}
+/* line 5, ../../sass/jamifind/_custom.scss */
+.select2-container .form-control {
+  background: #fff;
   padding: 0;
 }
-/* line 13, ../../sass/jamifind/_custom.scss */
-.select2-container.form-control .select2-choice {
+/* line 10, ../../sass/jamifind/_custom.scss */
+.select2-container .form-control .select2-choice {
   overflow: visible;
 }
-/* line 17, ../../sass/jamifind/_custom.scss */
-.select2-container.form-control .select2-chosen {
+/* line 14, ../../sass/jamifind/_custom.scss */
+.select2-container .form-control .select2-chosen {
   color: #000;
   font-size: 15px;
 }
-/* line 22, ../../sass/jamifind/_custom.scss */
-.select2-container.form-control .select2-search-field {
+/* line 19, ../../sass/jamifind/_custom.scss */
+.select2-container .form-control .select2-search--inline .select2-search__field {
   line-height: 24px;
+  margin-top: 5px;
 }
-/* line 29, ../../sass/jamifind/_custom.scss */
-.select2-container.form-control.select2-dropdown-open .select2-choice {
+/* line 27, ../../sass/jamifind/_custom.scss */
+.select2-container .form-control.select2-dropdown-open .select2-choice {
   border: 1px solid #aaa;
 }
 
-/* line 40, ../../sass/jamifind/_custom.scss */
+/* line 39, ../../sass/jamifind/_custom.scss */
 .select2-drop {
   background: #eee;
   border: 1px solid #aaa;
   border-top: none;
   margin-top: 0px;
 }
-/* line 46, ../../sass/jamifind/_custom.scss */
+/* line 45, ../../sass/jamifind/_custom.scss */
 .select2-drop .select2-search {
   margin-top: 5px;
 }
-/* line 49, ../../sass/jamifind/_custom.scss */
+/* line 48, ../../sass/jamifind/_custom.scss */
 .select2-drop .select2-search input {
   padding-top: 2px;
 }
-/* line 54, ../../sass/jamifind/_custom.scss */
+/* line 53, ../../sass/jamifind/_custom.scss */
 .select2-drop .select2-highlighted {
   background: #fabc09;
   color: #000;
 }
 
-/* line 64, ../../sass/jamifind/_custom.scss */
-.select2-container-multi .select2-choices .select2-search-choice {
+/* line 61, ../../sass/jamifind/_custom.scss */
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
   background: #3b385e;
   border: none;
   border-radius: 0;
   box-shadow: none;
   color: #fff;
-  padding: 9px 22px 8px 5px;
+  padding: 6px 10px 5px 5px;
+  line-height: 15px;
 }
-/* line 72, ../../sass/jamifind/_custom.scss */
-.select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close {
-  background-position: 0 -132px;
+/* line 70, ../../sass/jamifind/_custom.scss */
+.select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
+  color: #fff;
   left: auto;
   height: 11px;
   right: 5px;
   top: 9px;
   width: 11px;
 }
-/* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
-.select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close.icon-close-hover {
-  background-position: 0 -91px;
-}
-/* line 80, ../../sass/jamifind/_custom.scss */
-.select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover, .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:focus {
-  background-position: 0 -91px;
+/* line 78, ../../sass/jamifind/_custom.scss */
+.select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove:focus {
+  color: #fabc09;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 2dppx) {
-  /* line 89, ../../sass/jamifind/_custom.scss */
-  .select2-search-choice-close {
-    background-image: url(../images/icons/icon-close.png) !important;
-    background-repeat: no-repeat !important;
-    background-position: 0 0 !important;
-    background-size: 11px 11px !important;
-  }
-  /* line 95, ../../sass/jamifind/_custom.scss */
-  .select2-search-choice-close:hover {
-    background-image: url(../images/icons/icon-close-hover.png) !important;
-  }
+/* line 85, ../../sass/jamifind/_custom.scss */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  margin-top: 5px;
 }
-/* line 104, ../../sass/jamifind/_custom.scss */
+
+/* line 92, ../../sass/jamifind/_custom.scss */
 .tooltip.in {
   opacity: 1;
 }
-/* line 108, ../../sass/jamifind/_custom.scss */
+/* line 96, ../../sass/jamifind/_custom.scss */
 .tooltip .tooltip-inner {
   background: #fff;
   border: 2px solid #2b2a3b;
@@ -8543,19 +8519,19 @@ ul {
   white-space: nowrap;
 }
 
-/* line 123, ../../sass/jamifind/_custom.scss */
+/* line 111, ../../sass/jamifind/_custom.scss */
 .ui-slider {
   background: #dddddd;
   border: none;
   border-radius: 0;
   height: 12px;
 }
-/* line 129, ../../sass/jamifind/_custom.scss */
+/* line 117, ../../sass/jamifind/_custom.scss */
 .ui-slider .ui-slider-range {
   background: #4a4874;
   border-radius: 0;
 }
-/* line 134, ../../sass/jamifind/_custom.scss */
+/* line 122, ../../sass/jamifind/_custom.scss */
 .ui-slider .ui-slider-handle {
   background: #2b2a3b;
   border: none;
@@ -8566,40 +8542,40 @@ ul {
   width: 20px;
 }
 
-/* line 148, ../../sass/jamifind/_custom.scss */
+/* line 136, ../../sass/jamifind/_custom.scss */
 .tabs-activate .is-active {
   color: #000;
   cursor: default;
 }
-/* line 152, ../../sass/jamifind/_custom.scss */
+/* line 140, ../../sass/jamifind/_custom.scss */
 .tabs-activate .is-active:hover {
   color: #fabc09;
 }
-/* line 155, ../../sass/jamifind/_custom.scss */
+/* line 143, ../../sass/jamifind/_custom.scss */
 .tabs-activate .is-active:hover i {
   color: #fabc09;
 }
-/* line 160, ../../sass/jamifind/_custom.scss */
+/* line 148, ../../sass/jamifind/_custom.scss */
 .tabs-activate .is-active i {
   color: #fabc09;
 }
 
-/* line 166, ../../sass/jamifind/_custom.scss */
+/* line 154, ../../sass/jamifind/_custom.scss */
 .view-tab {
   display: none;
 }
-/* line 169, ../../sass/jamifind/_custom.scss */
+/* line 157, ../../sass/jamifind/_custom.scss */
 .view-tab.is-active {
   display: block;
 }
 
-/* line 175, ../../sass/jamifind/_custom.scss */
+/* line 163, ../../sass/jamifind/_custom.scss */
 .with-scrollbar {
   position: relative;
   overflow: hidden;
 }
 
-/* line 186, ../../sass/jamifind/_custom.scss */
+/* line 174, ../../sass/jamifind/_custom.scss */
 .shouts-listing-filter > .ps-scrollbar-y-rail > .ps-scrollbar-y,
 .shouts-listing-filter > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y,
 .shouts-listing-filter:hover > .ps-scrollbar-y-rail > .ps-scrollbar-y,
@@ -8607,7 +8583,7 @@ ul {
   background-color: #fff;
 }
 
-/* line 200, ../../sass/jamifind/_custom.scss */
+/* line 188, ../../sass/jamifind/_custom.scss */
 .view-tab-container > .ps-scrollbar-y-rail > .ps-scrollbar-y,
 .view-tab-container > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y,
 .view-tab-container:hover > .ps-scrollbar-y-rail > .ps-scrollbar-y,
@@ -8620,13 +8596,13 @@ ul {
 }
 
 @media only screen and (max-width: 991px) {
-  /* line 207, ../../sass/jamifind/_custom.scss */
+  /* line 195, ../../sass/jamifind/_custom.scss */
   .flash-message {
     padding: 0;
   }
 }
 
-/* line 213, ../../sass/jamifind/_custom.scss */
+/* line 201, ../../sass/jamifind/_custom.scss */
 .alert-warning {
   background: rgba(250, 188, 9, 0.95);
   border: 1px solid #41404f;
@@ -8634,17 +8610,17 @@ ul {
   padding: 10px 20px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 213, ../../sass/jamifind/_custom.scss */
+  /* line 201, ../../sass/jamifind/_custom.scss */
   .alert-warning {
     padding: 10px 15px;
   }
 }
-/* line 222, ../../sass/jamifind/_custom.scss */
+/* line 210, ../../sass/jamifind/_custom.scss */
 .alert-warning a {
   color: #fff;
 }
 
-/* line 227, ../../sass/jamifind/_custom.scss */
+/* line 215, ../../sass/jamifind/_custom.scss */
 .alert {
   border: 1px solid #41404f;
   border-radius: 0;
@@ -8652,12 +8628,12 @@ ul {
   margin: 0;
   padding: 10px 20px;
 }
-/* line 234, ../../sass/jamifind/_custom.scss */
+/* line 222, ../../sass/jamifind/_custom.scss */
 .alert.alert-success {
   background-color: rgba(153, 203, 135, 0.95);
 }
 
-/* line 239, ../../sass/jamifind/_custom.scss */
+/* line 227, ../../sass/jamifind/_custom.scss */
 .fixed-alerts-container {
   left: 0;
   position: absolute;
@@ -8667,43 +8643,43 @@ ul {
   opacity: 0.95;
 }
 
-/* line 249, ../../sass/jamifind/_custom.scss */
+/* line 237, ../../sass/jamifind/_custom.scss */
 .ui-helper-hidden-accessible {
   display: none;
 }
 
-/* line 254, ../../sass/jamifind/_custom.scss */
+/* line 242, ../../sass/jamifind/_custom.scss */
 .modal-dialog {
   max-width: 832px !important;
   width: 100% !important;
 }
 @media only screen and (max-width: 767px) {
-  /* line 254, ../../sass/jamifind/_custom.scss */
+  /* line 242, ../../sass/jamifind/_custom.scss */
   .modal-dialog {
     max-width: 100% !important;
   }
 }
 
-/* line 262, ../../sass/jamifind/_custom.scss */
+/* line 250, ../../sass/jamifind/_custom.scss */
 .modal-header .close {
   font-size: 30px;
   line-height: 30px;
   padding: 0 5px;
 }
 
-/* line 268, ../../sass/jamifind/_custom.scss */
+/* line 256, ../../sass/jamifind/_custom.scss */
 .modal-footer {
   margin: 0;
   padding: 15px 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 272, ../../sass/jamifind/_custom.scss */
+  /* line 260, ../../sass/jamifind/_custom.scss */
   .modal-footer > div:not(.last) {
     margin-bottom: 10px;
   }
 }
 
-/* line 280, ../../sass/jamifind/_custom.scss */
+/* line 268, ../../sass/jamifind/_custom.scss */
 #map {
   height: 400px;
   margin: 0px;
@@ -8712,7 +8688,7 @@ ul {
   clear: both;
 }
 
-/* line 288, ../../sass/jamifind/_custom.scss */
+/* line 276, ../../sass/jamifind/_custom.scss */
 #map .mapIcon {
   border-radius: 20px;
   opacity: 0.9;
@@ -8722,19 +8698,19 @@ ul {
   overflow: hidden;
 }
 
-/* line 297, ../../sass/jamifind/_custom.scss */
+/* line 285, ../../sass/jamifind/_custom.scss */
 #map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img {
   padding: 5px;
   position: relative;
   left: -2px;
 }
 
-/* line 303, ../../sass/jamifind/_custom.scss */
+/* line 291, ../../sass/jamifind/_custom.scss */
 #map .mapIcon.myIconAvatar img {
   padding: 0;
 }
 
-/* line 307, ../../sass/jamifind/_custom.scss */
+/* line 295, ../../sass/jamifind/_custom.scss */
 #map .no-icon, #_location_map .no-icon {
   background-image: url("../images/logo-icon.png");
   background-position: center center;
@@ -8746,23 +8722,23 @@ ul {
   left: -2px;
 }
 
-/* line 318, ../../sass/jamifind/_custom.scss */
+/* line 306, ../../sass/jamifind/_custom.scss */
 #map .musician-map-box-container svg {
   max-height: 30px;
   max-width: 30px;
 }
 
-/* line 323, ../../sass/jamifind/_custom.scss */
+/* line 311, ../../sass/jamifind/_custom.scss */
 .ui-autocomplete {
   z-index: 9999 !important;
 }
 
-/* line 327, ../../sass/jamifind/_custom.scss */
+/* line 315, ../../sass/jamifind/_custom.scss */
 .profile-media-wall-item {
   margin-bottom: 4px;
 }
 
-/* line 329, ../../sass/jamifind/_custom.scss */
+/* line 317, ../../sass/jamifind/_custom.scss */
 .loading-content {
   background-image: url("../images/loader.gif");
   background-repeat: no-repeat;
@@ -8770,52 +8746,52 @@ ul {
   opacity: 0.4;
 }
 
-/* line 336, ../../sass/jamifind/_custom.scss */
+/* line 324, ../../sass/jamifind/_custom.scss */
 .people-listing-grid {
   min-height: 350px;
 }
 
-/* line 340, ../../sass/jamifind/_custom.scss */
+/* line 328, ../../sass/jamifind/_custom.scss */
 .select2-container-multi .select2-choices .select2-search-field input {
   background: #fff !important;
 }
 
-/* line 344, ../../sass/jamifind/_custom.scss */
+/* line 332, ../../sass/jamifind/_custom.scss */
 .select2-container.form-control .select2-choice, .select2-container.form-control .select2-choices, .filter-by-distance #filter-by-distance-btn {
   background: #fff;
 }
 
-/* line 348, ../../sass/jamifind/_custom.scss */
+/* line 336, ../../sass/jamifind/_custom.scss */
 .select2-choice.select2-default span.select2-chosen {
   color: #999;
 }
 
-/* line 355, ../../sass/jamifind/_custom.scss */
+/* line 343, ../../sass/jamifind/_custom.scss */
 .leaflet-container .leaflet-popup-content-wrapper {
   border-radius: 5px;
 }
-/* line 359, ../../sass/jamifind/_custom.scss */
+/* line 347, ../../sass/jamifind/_custom.scss */
 .leaflet-container .leaflet-popup-content {
   margin: 5px;
 }
-/* line 363, ../../sass/jamifind/_custom.scss */
+/* line 351, ../../sass/jamifind/_custom.scss */
 .leaflet-container .musician-map-box-container > a {
   color: #18152b;
 }
-/* line 367, ../../sass/jamifind/_custom.scss */
+/* line 355, ../../sass/jamifind/_custom.scss */
 .leaflet-container .musician-map-box-container > a:hover {
   text-decoration: none;
 }
-/* line 373, ../../sass/jamifind/_custom.scss */
+/* line 361, ../../sass/jamifind/_custom.scss */
 .leaflet-container .img-responsive {
   float: left;
   margin: 0 15px 10px 0;
 }
-/* line 378, ../../sass/jamifind/_custom.scss */
+/* line 366, ../../sass/jamifind/_custom.scss */
 .leaflet-container .name {
   margin: 0 20px 10px 0;
 }
-/* line 382, ../../sass/jamifind/_custom.scss */
+/* line 370, ../../sass/jamifind/_custom.scss */
 .leaflet-container .instrument {
   clear: left;
   float: left;
@@ -8824,24 +8800,24 @@ ul {
   text-align: center;
   width: 30px;
 }
-/* line 391, ../../sass/jamifind/_custom.scss */
+/* line 379, ../../sass/jamifind/_custom.scss */
 .leaflet-container .tags {
   margin-left: 65px;
 }
-/* line 396, ../../sass/jamifind/_custom.scss */
+/* line 384, ../../sass/jamifind/_custom.scss */
 .leaflet-container .compatibility-box {
   float: right;
   margin-right: 8px;
   margin-top: 7px;
 }
-/* line 402, ../../sass/jamifind/_custom.scss */
+/* line 390, ../../sass/jamifind/_custom.scss */
 .leaflet-container a.leaflet-popup-close-button {
   height: 22px;
   padding: 4px;
   width: 22px;
 }
 
-/* line 410, ../../sass/jamifind/_custom.scss */
+/* line 398, ../../sass/jamifind/_custom.scss */
 .jcrop-holder {
   margin: 0 auto;
 }

@@ -14,6 +14,7 @@
 /* global scrollbarPlugin */
 /* global ga */
 /* global SVGInjector */
+/* global matchStart */
 
 //TODO: globals are bad, don't use globals
 var filterResults = [];
@@ -225,25 +226,29 @@ $(function() {
         }, 500);
     });
 
-    //parse genres
-    $.ajax({
-        url: Routing.generate('api_genres')
-    }).done(function( result ) {
-        $('.filter-genres').select2({
-            data: result,
-            multiple: true,
-            matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
+    $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
+        //parse genres
+        $.ajax({
+            url: Routing.generate('api_genres')
+        }).done(function( result ) {
+            $('.filter-genres').select2({
+                data: result,
+                placeholder: $('.filter-genres').attr('placeholder'),
+                multiple: true,
+                matcher: oldMatcher(matchStart)
+            });
         });
-    });
 
-    //parse instruments
-    $.ajax({
-        url: Routing.generate('api_instruments')
-    }).done(function( result ) {
-        $('.filter-instruments').select2({
-            data: result,
-            multiple: true,
-            matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())===0; }
+        //parse instruments
+        $.ajax({
+            url: Routing.generate('api_instruments')
+        }).done(function( result ) {
+            $('.filter-instruments').select2({
+                data: result,
+                placeholder: $('.filter-instruments').attr('placeholder'),
+                multiple: true,
+                matcher: oldMatcher(matchStart)
+            });
         });
     });
 

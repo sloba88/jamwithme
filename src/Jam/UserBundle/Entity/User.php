@@ -775,7 +775,14 @@ class User extends BaseUser
      */
     public function getVideos()
     {
-        return $this->videos;
+        $videos = new ArrayCollection();
+        foreach ($this->videos AS $video) {
+            if ($video->getType() == 0) {
+                $videos->add($video);
+            }
+        }
+
+        return $videos;
     }
 
     public function getProfileFulfilment()

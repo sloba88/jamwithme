@@ -5,82 +5,81 @@
 /* global addMessage */
 /* global scrollbarPlugin */
 /* global _user */
+/* global matchStart */
 
 var allInstruments = false;
 var allSkills = false;
+var oldMatcher;
 
-$.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
-    function matchStart(term, text) {
-        return text.toUpperCase().indexOf(term.toUpperCase())===0;
-    }
+$.fn.select2.amd.require(['select2/compat/matcher'], function (_oldMatcher) {
+    oldMatcher = _oldMatcher;
+});
 
-    function formatResultData (data) {
-        if (!data.id) {
-            return data.text;
-        }
-        if (data.element.selected) {
-            return;
-        }
+function formatResultData (data) {
+    if (!data.id) {
         return data.text;
     }
-
-    if ($('#fos_user_profile_form_genres').length > 0){
-
-        $.ajax({
-            url: Routing.generate('api_genres')
-        }).done(function(data) {
-            $('#fos_user_profile_form_genres').select2({
-                multiple: true,
-                data: data,
-                matcher: oldMatcher(matchStart)
-            });
-        });
+    if (data.element.selected) {
+        return;
     }
+    return data.text;
+}
 
-    if ($('#jam_instruments').length > 0){
-        $('#jam_instruments').select2({
+if ($('#fos_user_profile_form_genres').length > 0){
+
+    $.ajax({
+        url: Routing.generate('api_genres')
+    }).done(function(data) {
+        $('#fos_user_profile_form_genres').select2({
             multiple: true,
-            templateResult: formatResultData,
+            data: data,
             matcher: oldMatcher(matchStart)
-        }).on('select2:select', function (e) {
-            $(this).prepend('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
-        }).on('select2:unselect', function (e) {
-            e.params.data.element.remove();
         });
-    }
+    });
+}
 
-    function setSelect2() {
+if ($('#jam_instruments').length > 0){
+    $('#jam_instruments').select2({
+        multiple: true,
+        templateResult: formatResultData,
+        matcher: oldMatcher(matchStart)
+    }).on('select2:select', function (e) {
+        $(this).prepend('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
+    }).on('select2:unselect', function (e) {
+        e.params.data.element.remove();
+    });
+}
 
-        $('input.instrument-select').each(function(){
-            var self = $(this);
-            if (self.val()){
-                var selected = $.grep(allInstruments, function(e){ return e.id == self.val(); });
-                selected[0].disabled = true;
-            }
-        });
+function setSelect2() {
+
+    $('input.instrument-select').each(function(){
+        var self = $(this);
+        if (self.val()){
+            var selected = $.grep(allInstruments, function(e){ return e.id == self.val(); });
+            selected[0].disabled = true;
+        }
+    });
+
+    $('.instrument-select').select2({
+        data: allInstruments,
+        matcher: oldMatcher(matchStart)
+    }).on('change', function(t) {
+        var selected = $.grep(allInstruments, function(e){ return e.id == t.val; });
+        selected[0].disabled = true;
+
+        if (t.removed) {
+            var removed = $.grep(allInstruments, function (e) {
+                return e.id == t.removed.id;
+            });
+            removed[0].disabled = false;
+        }
 
         $('.instrument-select').select2({
             data: allInstruments,
             matcher: oldMatcher(matchStart)
-        }).on('change', function(t) {
-            var selected = $.grep(allInstruments, function(e){ return e.id == t.val; });
-            selected[0].disabled = true;
-
-            if (t.removed) {
-                var removed = $.grep(allInstruments, function (e) {
-                    return e.id == t.removed.id;
-                });
-                removed[0].disabled = false;
-            }
-
-            $('.instrument-select').select2({
-                data: allInstruments,
-                matcher: oldMatcher(matchStart)
-            });
         });
-    }
-
-});
+    });
+}
 
 function initInstrumentSelection() {
 
@@ -286,16 +285,16 @@ $(function() {
         $('#fos_user_profile_form_gear').select2({
             minimumInputLength: 2,
             multiple: true,
-            quietMillis: 250,
             createSearchChoice: function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
             ajax: {
+                delay: 300,
                 url: Routing.generate('api_gear'),
                 data: function (term) {
                     return {
                         q: term.term // search term
                     };
                 },
-                results: function(data) {
+                processResults: function(data) {
                     return {
                         results: $.map(data, function(item) {
                             return {
@@ -311,7 +310,7 @@ $(function() {
             }
         });
 
-        $('#fos_user_profile_form_gear').select2('container').find('ul.select2-choices').sortable({
+        $('#fos_user_profile_form_gear ul.select2-choices').sortable({
             containment: 'parent',
             start: function() { $('#fos_user_profile_form_gear').select2('onSortStart'); },
             update: function() { $('#fos_user_profile_form_gear').select2('onSortEnd'); }
@@ -332,6 +331,7 @@ $(function() {
             minimumInputLength: 2,
             multiple: true,
             ajax: {
+                delay: 200,
                 url: 'https://api.spotify.com/v1/search',
                 data: function(term) {
                     return {
