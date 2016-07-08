@@ -167,10 +167,16 @@ $(function() {
         renameCollectionNames($musiciansInstruments.find('.row'));
     });
 
+    var $jamMusicians = $('#jam_musician_instruments');
+
+    $jamMusicians.on('click', '.remove-member', function(e){
+        e.preventDefault();
+        $(this).closest('.row').remove();
+        scrollbarPlugin();
+        renameCollectionNames($jamMusicians.find('.row'));
+    });
+
     $('#add_jam_member').on('click', function(e) {
-
-        var $jamMusicians = $('#jam_musician_instruments');
-
         e.preventDefault();
         var length = $jamMusicians.find('.row').length;
         $jamMusicians.append(window.JST.jamMusicianBoxTemplate({'num': length}));

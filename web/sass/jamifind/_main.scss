@@ -1688,10 +1688,15 @@
 	}
 
 	.btn-default {
+
+		background-color: $brand-primary;
+		color: $brand-secondary;
+
 		@include transition(background 0.2s ease);
 
 		&:hover {
 			background: $brand-secondary;
+			color: $brand-primary;
 		}
 	}
 

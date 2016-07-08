@@ -11752,37 +11752,40 @@ header {
 }
 /* line 1690, ../../sass/jamifind/_main.scss */
 .location_widget .btn-default {
+  background-color: #2b2a3b;
+  color: #fabc09;
   -moz-transition: background 0.2s ease;
   -o-transition: background 0.2s ease;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
 }
-/* line 1693, ../../sass/jamifind/_main.scss */
+/* line 1697, ../../sass/jamifind/_main.scss */
 .location_widget .btn-default:hover {
   background: #fabc09;
+  color: #2b2a3b;
 }
-/* line 1698, ../../sass/jamifind/_main.scss */
+/* line 1703, ../../sass/jamifind/_main.scss */
 .location_widget .leaflet-container {
   width: 100% !important;
 }
 
-/* line 1703, ../../sass/jamifind/_main.scss */
+/* line 1708, ../../sass/jamifind/_main.scss */
 .profile-media-image-commands {
   background: #2b2a3b;
   height: 28px;
   padding: 2px 5px;
 }
-/* line 1708, ../../sass/jamifind/_main.scss */
+/* line 1713, ../../sass/jamifind/_main.scss */
 .profile-media-image-commands a {
   color: #fff;
   margin-top: 2px;
 }
-/* line 1712, ../../sass/jamifind/_main.scss */
+/* line 1717, ../../sass/jamifind/_main.scss */
 .profile-media-image-commands a:hover, .profile-media-image-commands a:focus {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 1718, ../../sass/jamifind/_main.scss */
+/* line 1723, ../../sass/jamifind/_main.scss */
 .profile-media-image-commands a[class*="remove-image"] {
   float: right;
 }

@@ -27,7 +27,7 @@
                 {# JAM INFO #}
                 <div class="view-tab is-active with-scrollbar" data-tab="jam-info">
 
-                    <div class="col-md-6">
+                    <div class="col-md-5">
 
                         {{ form_row(form.name) }}
 
@@ -43,6 +43,8 @@
                             </div>
                         </div>
 
+                        {{ form_row(form.instruments) }}
+
                         {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
 
                         <div class="form-group">
@@ -50,12 +52,10 @@
                             <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
                         </div>
 
-                        {{ form_row(form.instruments) }}
-
                         {{ form_widget(form._token) }}
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         {{ form_row(form.description) }}
 
                         <label>Current members</label>
@@ -120,6 +120,7 @@
                                     <h3 class="panel-title">{{ 'label.videos'|trans }}</h3>
                                 </div>
                                 <div class="panel-body">
+
                                     <ul id="musician_videos">
                                         {% for v in form.vars.value.videos %}
                                             <li data-id="{{ v.id }}" class="ytvideo-holder">
