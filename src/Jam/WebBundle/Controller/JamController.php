@@ -57,11 +57,20 @@ class JamController extends Controller
 
         if ($form->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+
             foreach($jam->getMembers() AS $member) {
                 $member->setJam($jam);
             }
 
-            $em = $this->getDoctrine()->getManager();
+            //assign videos
+            if ($request->get('video')) {
+                foreach($request->get('video') AS $v) {
+                    $video = $em->find('JamCoreBundle:Video', $v);
+                    $video->setJam($jam);
+                }
+            }
+            
             $em->persist($jam);
             $em->flush();
 

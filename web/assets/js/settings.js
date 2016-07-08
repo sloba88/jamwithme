@@ -250,10 +250,11 @@ $(function() {
     $musiciansVideos.on('click', '.save-video', function(){
         var url = $(this).closest('li').find('.youtube-url').val();
         var self = $(this);
+        var jam = $('#add_another_video').data('jam');
         $.ajax({
             method: 'POST',
             url: Routing.generate('video_create'),
-            data: { 'url' : url }
+            data: { 'url' : url, 'jam' :  jam}
         }).done(function(data) {
             if (data.status == 'success') {
                 self.closest('li').remove();

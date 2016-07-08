@@ -59,6 +59,13 @@ class Jam
     /**
      * @var ArrayCollection
      *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Video", mappedBy="jam", cascade={"all"} )
+     */
+    private $videos;
+
+    /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Genre", inversedBy="jams", cascade={"all"})
      * @ORM\JoinTable(
      *      name="jams_genres",
@@ -69,7 +76,7 @@ class Jam
     private $genres;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="jams", cascade={"persist"})
      * @ORM\JoinTable(
@@ -457,5 +464,40 @@ class Jam
     public function getLocation()
     {
         return $this->location;
+    }
+
+
+    /**
+     * Add video
+     *
+     * @param \Jam\CoreBundle\Entity\Video $video
+     *
+     * @return Jam
+     */
+    public function addVideo(\Jam\CoreBundle\Entity\Video $video)
+    {
+        $this->videos[] = $video;
+
+        return $this;
+    }
+
+    /**
+     * Remove video
+     *
+     * @param \Jam\CoreBundle\Entity\Video $video
+     */
+    public function removeVideo(\Jam\CoreBundle\Entity\Video $video)
+    {
+        $this->videos->removeElement($video);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

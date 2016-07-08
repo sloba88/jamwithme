@@ -27,6 +27,10 @@ class VideoController extends Controller
         $video = new Video();
         $video->setUrl($url);
 
+        if ($request->get('jam') == 1) {
+            $video->setType(1);
+        }
+
         if ($video) {
             $em->persist($video);
             $em->flush();

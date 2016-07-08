@@ -10,89 +10,146 @@
 
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
+    <div class="col-md-12">
+        <h2>Create a new Jam</h2>
+    </div>
+
+    <ul class="tabs-activate profile-tabs">
+        <li><a href="#" data-tab="jam-info" class="is-active">{{ 'label.jam.info'|trans }}</a></li>
+        <li><a href="#" data-tab="jam-music">{{ 'label.jam.music'|trans }}</a></li>
+    </ul>
+
     {{ form_start(form) }}
 
-        <div class="col-md-12">
-            <h2>Create a new Jam</h2>
-        </div>
+        <div class="view-tab-container clearfix">
+            <div class="col-md-12">
 
-        <div class="col-md-6">
+                {# JAM INFO #}
+                <div class="view-tab is-active with-scrollbar" data-tab="jam-info">
 
-            {{ form_row(form.name) }}
+                    <div class="col-md-6">
 
-            {{ form_row(form.type) }}
+                        {{ form_row(form.name) }}
 
-            {{ form_row(form.status) }}
+                        {{ form_row(form.type) }}
 
-            <div class="form-group">
-                {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
-                {{ form_errors(form.location) }}
-                <div>
-                    {{ form_widget(form.location) }}
-                </div>
-            </div>
+                        {{ form_row(form.status) }}
 
-            {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
-
-            <div class="form-group">
-                {{ form_label(form.artists) }}
-                <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
-            </div>
-
-            {{ form_row(form.instruments) }}
-
-            {{ form_widget(form._token) }}
-
-
-            <div class="form-group">
-                <button type="submit" id="jam_save" name="jam[save]" class="btn btn-primary"><i class="fa fa-check"></i> {{ 'button.save'|trans }}</button>
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-            {{ form_row(form.description) }}
-
-            <label>Current members</label>
-
-            <ul id="jam_musician_instruments">
-
-                {% for f in form.members %}
-                    <li class="row">
-
-                        <div class="col-md-6">
-                            {% if f.musician.vars.value == app.user.id %}
-                                {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
-                            {% else %}
-                                {{ form_widget(f.musician) }}
-                            {% endif %}
+                        <div class="form-group">
+                            {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                            {{ form_errors(form.location) }}
+                            <div>
+                                {{ form_widget(form.location) }}
+                            </div>
                         </div>
 
-                        <div class="col-md-6 add-invitee hidden">
-                            {{ form_widget(f.invitee) }}
+                        {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
+
+                        <div class="form-group">
+                            {{ form_label(form.artists) }}
+                            <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
                         </div>
 
-                        <div class="col-md-5">
-                            {{ form_widget(f.instrument) }}
+                        {{ form_row(form.instruments) }}
+
+                        {{ form_widget(form._token) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form_row(form.description) }}
+
+                        <label>Current members</label>
+
+                        <ul id="jam_musician_instruments">
+
+                            {% for f in form.members %}
+                                <li class="row">
+
+                                    <div class="col-md-6">
+                                        {% if f.musician.vars.value == app.user.id %}
+                                            {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
+                                        {% else %}
+                                            {{ form_widget(f.musician) }}
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-6 add-invitee hidden">
+                                        {{ form_widget(f.invitee) }}
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        {{ form_widget(f.instrument) }}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        <br />
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <a href="" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="" class="btn btn-primary" id="invite_jam_member" style="width: 220px"><i class="fa fa-users" aria-hidden="true"></i> Invite new member</a>
+                            </div>
                         </div>
-                    </li>
-                {% endfor %}
-            </ul>
 
-            <br />
+                        <br /><br />
 
-            <div class="form-group">
-                <div class="col-md-6">
-                    <a href="" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
+                        <div class="alert alert-info" role="alert">If you can't find the user in the database you can add him quickly.</div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <a href="" class="btn btn-primary" id="invite_jam_member" style="width: 220px"><i class="fa fa-users" aria-hidden="true"></i> Invite new member</a>
+
+                {# MUSIC INFO #}
+                <div class="view-tab with-scrollbar" data-tab="jam-music">
+
+                    {# VIDEOS #}
+                    <div class="col-md-6">
+                        <div class="col-md-4 col-xs-12">
+                            <a href="#" id="add_another_video" data-jam="1" class="btn btn-primary add-another-video">
+                                <i class="fa fa-youtube-play"></i>
+                                {{ 'label.add.video'|trans }}
+                            </a>
+                        </div>
+                        <br /><br />
+
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{ 'label.videos'|trans }}</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    {% if form.vars.value.videos|length == 0 %}
+                                        <p class="no-images-yet">{{ 'label.no.videos'|trans }}</p>
+                                    {% endif %}
+
+                                    <ul id="musician_videos">
+                                        {% for v in form.vars.value.videos %}
+                                            <li data-id="{{ v.id }}" class="ytvideo-holder">
+                                                <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                                    <span class="play-icon"></span>
+                                                    <img src="" height="160" width="260" />
+                                                </a>
+                                                <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> {{ 'label.remove'|trans }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
+                <div class="form-group col-md-3">
+                    <button type="submit" id="jam_save" name="jam[save]" class="btn btn-primary"><i class="fa fa-check"></i> {{ 'button.request.submit'|trans }}</button>
+                </div>
+
             </div>
 
-            <br /><br />
-
-            <div class="alert alert-info" role="alert">If you can't find the user in the database you can add him quickly.</div>
         </div>
     </form>
 

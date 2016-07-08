@@ -410,6 +410,8 @@ __p += '<li data-id="' +
 __e( rc.id ) +
 '" class="ytvideo-holder">\n    <a class="ytvideo" rel="group" href="' +
 __e( rc.url ) +
-'&autoplay=1&showinfo=0&controls=1">\n        <span class="play-icon"></span>\n        <img src="" height="140" width="260" />\n    </a>\n    <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>\n</li>';
+'&autoplay=1&showinfo=0&controls=1">\n        <span class="play-icon"></span>\n        <img src="" height="160" width="260" />\n    </a>\n    <input type="hidden" name="video[]" value="' +
+__e( rc.id ) +
+'" />\n    <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>\n</li>';
 return __p
 };

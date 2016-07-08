@@ -46,45 +46,45 @@ class JamType extends AbstractType
 
             ->add('location', LocationType::class, array(
                 'data' => $jam->getLocation()
-            ));
+            ))
 
-        $builder->add('genres', EntityType::class, array(
-            'required' => false,
-            'label' => 'Genres',
-            'multiple' => true,
-            'expanded' => false,
-            'class' => 'Jam\CoreBundle\Entity\Genre',
-            'choice_label' => 'name'
-        ));
+            ->add('genres', EntityType::class, array(
+                'required' => false,
+                'label' => 'Genres',
+                'multiple' => true,
+                'expanded' => false,
+                'class' => 'Jam\CoreBundle\Entity\Genre',
+                'choice_label' => 'name'
+            ))
 
-        $builder->add('instruments', 'jam_instrument_type', array(
-            'required' => true,
-            'mapped' => false,
-            'label' => 'Looking for',
-            'multiple' => true,
-            'expanded' => false,
-            'allow_extra_fields' => true,
-            'jam' => $jam,
-            'property' => 'name'
-        ));
+            ->add('instruments', 'jam_instrument_type', array(
+                'required' => true,
+                'mapped' => false,
+                'label' => 'Looking for',
+                'multiple' => true,
+                'expanded' => false,
+                'allow_extra_fields' => true,
+                'jam' => $jam,
+                'property' => 'name'
+            ))
 
-        $builder->add('members', CollectionType::class, array(
-            'type' => 'jam_musician_instrument_type',
-            'required' => true,
-            'label' => 'Looking for',
-            'allow_add' => true,
-            'by_reference' => false,
-            'allow_delete' => true,
-            'options' => array(
-                'jam' => $jam
-            )
-        ));
+            ->add('members', CollectionType::class, array(
+                'type' => 'jam_musician_instrument_type',
+                'required' => true,
+                'label' => 'Looking for',
+                'allow_add' => true,
+                'by_reference' => false,
+                'allow_delete' => true,
+                'options' => array(
+                    'jam' => $jam
+                )
+            ))
 
-        $builder->add('artists', 'artist_type', array(
-            'label' => 'Sounds like'
-        ))
+            ->add('artists', 'artist_type', array(
+                'label' => 'Sounds like'
+            ))
 
-       ->add('save', 'submit');
+            ->add('save', 'submit');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

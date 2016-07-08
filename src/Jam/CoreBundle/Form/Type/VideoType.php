@@ -26,24 +26,6 @@ class VideoType extends AbstractType
             ),
             'label' => false
         ));
-
-        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-            $user = $this->securityContext->getToken()->getUser();
-            $musicianVideo = $event->getForm()->getData();
-
-            if ($musicianVideo){
-                $musicianVideo->setCreator($user);
-                $musicianVideo->setUrl($musicianVideo->getUrl());
-            }
-
-            /*
-            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $musicianVideo->getUrl(), $match)) {
-                $video_id = $match[1];
-                $musicianVideo->setUrl('//www.youtube.com/embed/'.$video_id);
-            }
-            */
-
-        });
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

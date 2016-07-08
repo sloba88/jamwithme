@@ -8,9 +8,11 @@
 
         <div class="col-md-6">
 
+            <p>Created at: {{ jam.createdAt | date('Y-m-d') }}</p>
+
             <h3>{{ 'text.description'|trans }}:</h3>
 
-            <p>{{ jam.description }}</p>
+            <p>{{ jam.description|default('text.no.description'|trans) }}</p>
 
             <div class="clearfix"></div>
 
@@ -45,13 +47,27 @@
         <div class="col-md-6">
             <h3>Current members</h3>
 
-            <ul>
-                {% for j in jam.members %}
-                    {% if j.musician is not null %}
-                        <li><a href="{{ path('musician_profile', { 'username': j.musician.username }) }}">{{ j.musician.fullName }}</a> - <span>{{ j.instrument.name }}</span></li>
+            <ul class="members-list">
+                {% for m in jam.members %}
+                    {% if m.musician is not null %}
+                        <li class="member">
+                            <ul class="tags">
+                                <li>{{ m.instrument.name }}</li>
+                            </ul>
+                            <a href="{{ path('musician_profile', { 'username': m.musician.username }) }}">
+                                <img src="{{ m.musician.avatar | imagine_filter('my_thumb') }}" />
+                                {{ m.musician.fullName }}</a>
+                        </li>
                     {% endif %}
-                    {% if j.invitee is not null %}
-                        <li>{{ j.invitee.firstName }} {{ j.invitee.lastName }} - <span>{{ j.instrument.name }}</span></li>
+                    {% if m.invitee is not null %}
+                        <li class="member invited-member">
+                            <ul class="tags">
+                                <li>{{ m.instrument.name }}</li>
+                            </ul>
+                            <a href="#">
+                                <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_thumb') }}" />
+                                {{ m.invitee.firstName }} {{ m.invitee.lastName }}</a>
+                        </li>
                     {% endif %}
                 {% endfor %}
             </ul>
