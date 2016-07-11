@@ -178,7 +178,14 @@
 
                         {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
 
-                        {{ form_row(form.artists, { 'id' : 'fos_user_profile_form_artists' }) }}
+                        <div class="form-group">
+                            {{ form_label(form.artists) }}
+                            <select id="fos_user_profile_form_artists" name="fos_user_profile_form[artists][]" class="form-control" multiple>
+                                {% for i in form.vars.value.artists %}
+                                    <option value="{{ i.name }}" selected="selected">{{ i.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
 
                         {{ form_row(form.gear) }}
 

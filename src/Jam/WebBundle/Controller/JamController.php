@@ -39,6 +39,7 @@ class JamController extends Controller
         $jamMember = new JamMusicianInstrument();
         $jamMember->setJam($jam);
         $jamMember->setMusician($this->getUser());
+        $this->getUser()->getInstruments()->first() ? $jamMember->setInstrument($this->getUser()->getInstruments()->first()->getInstrument()) : false;
         $jam->addMember($jamMember);
 
         //pre-set user location
@@ -75,6 +76,32 @@ class JamController extends Controller
             $em->flush();
 
             //send invites to members here!
+
+            foreach($jam->getMembers() AS $member) {
+                if ($member->getInvitee()) {
+                    /* @var $invitation \Jam\UserBundle\Entity\Invitation */
+                    $invitation = $member->getInvitee();
+
+                    $messageBody = $this->renderView('JamWebBundle:Email:jamInvitation.html.twig', array(
+                        'from' => $this->getUser(),
+                        'invitation' => $invitation,
+                        'jam' => $jam,
+                        'member' => $member
+                    ));
+
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject("You have been invited to join Jamifind")
+                        ->setFrom('noreply@jamifind.com')
+                        ->setTo($invitation->getEmail())
+                        ->setBody($messageBody, 'text/html');
+
+                    if ($this->get('mailer')->send($message)) {
+                        $invitation->setSent(true);
+                    }
+                }
+            }
+
+            $em->flush();
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.created.successfully'));
 
@@ -136,81 +163,6 @@ class JamController extends Controller
         if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
         return array('jam' => $jam);
-    }
-
-    /**
-     * @Route("/jam/{slug}/join", name="join_jam_request")
-     * @Template()
-     */
-    public function joinJamAction($slug)
-    {
-        $jam = $this->getDoctrine()
-            ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('slug' => $slug));
-
-        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
-
-        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            $musician = $this->container->get('security.context')->getToken()->getUser();
-            if ($musician->isJamMember($jam)) {
-                throw $this->createNotFoundException($this->get('translator')->trans('excpetion.you.are.already.in.the.jam'));
-            } else {
-
-                if ($musician->isJamMemberRequested($jam)) {
-                    $this->get('session')->getFlashBag()->set('error', $this->get('translator')->trans('message.request.already.sent'));
-                    return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
-                }
-
-                $jam->addMemberRequest($musician);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($jam);
-                $em->flush();
-
-                $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.request.sent.successfully'));
-            }
-        } else {
-            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
-        }
-
-        return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
-    }
-
-    /**
-     * @Route("/jam/{slug}/accept/{user_id}", name="jam_accept")
-     * @Template()
-     */
-    public function jamAcceptAction($slug, $user_id)
-    {
-        $musician = $this->getDoctrine()
-            ->getRepository('JamUserBundle:User')
-            ->find($user_id);
-
-        $jam = $this->getDoctrine()
-            ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('slug' => $slug));
-
-        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
-
-        if ($this->container->get('security.context')->isGranted('ROLE_USER')) {
-            if ($musician->isJamMember($jam)) {
-                throw $this->createNotFoundException($this->get('translator')->trans('excpetion.you.are.already.in.the.jam'));
-            } else {
-
-                $jam->removeMemberRequest($musician);
-                $jam->addMember($musician);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($jam);
-                $em->flush();
-
-                $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.request.accepted.successfully'));
-            }
-        } else {
-            throw $this->createNotFoundException($this->get('translator')->trans('exception.you.shall.not.pass'));
-        }
-
-        return $this->redirect($this->generateUrl('view_jam', array('slug' => $slug)));
     }
 
     /**
