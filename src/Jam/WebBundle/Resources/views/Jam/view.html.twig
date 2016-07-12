@@ -44,19 +44,41 @@
 
                 <h3>{{ 'text.genres'|trans }}:</h3>
 
-                <ul class="tags">
-                    {% for j in jam.genres %}
-                        <li>{{ j.name }}</li>
-                    {% endfor %}
-                </ul>
+                {% if jam.genres|length > 0 %}
+                    <ul class="tags">
+                        {% for j in jam.genres %}
+                            <li>{{ j.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ 'text.none'|trans }}
+                {% endif %}
 
                 <h3>{{ 'text.sounds.like'|trans }}:</h3>
 
-                <ul class="tags">
-                    {% for j in jam.artists %}
-                        <li>{{ j.name }}</li>
-                    {% endfor %}
-                </ul>
+                {% if jam.artists|length > 0 %}
+                    <ul class="tags">
+                        {% for j in jam.artists %}
+                            <li>{{ j.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ 'text.none'|trans }}
+                {% endif %}
+
+                <hr />
+
+                {% if is_granted("ROLE_USER") and app.user != jam.creator %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="" class="btn btn-default"><i class="fa fa-thumbs-up" aria-hidden="true"></i> INTERESTED</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="btn btn-primary open-conversation" data-user-id="{{ jam.creator.id }}" data-user="{{ jam.creator.username }}"><i class="glyphicon glyphicon-envelope"></i><span>{{ 'button.message'|trans }}</span></a>
+                        </div>
+                    </div>
+                {% endif %}
+
             </div>
 
             <div class="col-md-6">
