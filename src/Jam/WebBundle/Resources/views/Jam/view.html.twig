@@ -101,7 +101,7 @@
                                     </li>
                                 {% endif %}
                                 {% if m.invitee is not null %}
-                                    <li class="member invited-member">
+                                    <li class="member invited-member" data-toggle="tooltip" title="Pending invitation" data-placement="right">
                                         <ul class="tags">
                                             <li>{{ m.instrument.name }}</li>
                                         </ul>
