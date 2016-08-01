@@ -43,11 +43,9 @@ class JamType extends AbstractType
                 'choices' => $this->jamTypeChoices,
                 'attr' => array('placeholder' => 'In which phase is the project?')
             ))
-
             ->add('location', LocationType::class, array(
                 'data' => $jam->getLocation()
             ))
-
             ->add('genres', EntityType::class, array(
                 'required' => false,
                 'label' => 'Genres',
@@ -56,7 +54,6 @@ class JamType extends AbstractType
                 'class' => 'Jam\CoreBundle\Entity\Genre',
                 'choice_label' => 'name'
             ))
-
             ->add('instruments', 'jam_instrument_type', array(
                 'required' => true,
                 'mapped' => false,
@@ -67,7 +64,6 @@ class JamType extends AbstractType
                 'jam' => $jam,
                 'property' => 'name'
             ))
-
             ->add('members', CollectionType::class, array(
                 'type' => 'jam_musician_instrument_type',
                 'required' => true,
@@ -79,7 +75,6 @@ class JamType extends AbstractType
                     'jam' => $jam
                 )
             ))
-
             ->add('artists', 'artist_type', array(
                 'label' => 'Sounds like'
             ))
