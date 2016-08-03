@@ -25,7 +25,32 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:Jam')
             ->findBy(array(), array('id' => 'DESC'));
 
-        return array('jams' => $jams);
+        return array(
+            'jams' => $jams,
+            'headline' => 'Jams'
+        );
+    }
+
+    /**
+     * @Route("/my-jams", name="my_jams")
+     * @Template("JamWebBundle:Jam:index.html.twig")
+     */
+    public function myJamsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT j
+                FROM JamCoreBundle:Jam j
+                JOIN j.members m
+                JOIN m.musician u
+                WHERE u = :me
+                ORDER BY j.createdAt ASC'
+        )->setParameter('me', $this->getUser());
+
+        return array(
+            'jams' => $query->getResult(),
+            'headline' => 'My Jams'
+        );
     }
 
     /**

@@ -2,13 +2,12 @@
 
 {% block main_content %}
 
-    <div class="row messages-header">
-        <div class="col-xs-12">
-            <h1 class="title">Jams</h1>
-
-            <div class="col-md-3 pull-right">
-                <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3"><i class="fa fa-rocket" aria-hidden="true"></i> Start new jam</a>
-            </div>
+    <div class="row">
+        <div class="filters-heading col-xs-12">
+            <h1 class="filters-title">{{ headline }}</h1>
+        </div>
+        <div class="col-md-3 pull-right">
+            <a href="{{ path('start_jam') }}" class="btn btn-primary col-md-3"><i class="fa fa-rocket" aria-hidden="true"></i> Start new jam</a>
         </div>
     </div>
 
