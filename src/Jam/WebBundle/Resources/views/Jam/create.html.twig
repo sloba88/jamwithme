@@ -11,7 +11,7 @@
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
     <div class="col-md-12">
-        <h2 class="title">Create a new Jam</h2>
+        <h2 class="title">{{ headline }}</h2>
     </div>
 
     <ul class="tabs-activate profile-tabs">
@@ -51,7 +51,8 @@
 
                             <div class="form-group">
                                 {{ form_label(form.artists) }}
-                                <select id="fos_user_profile_form_artists" name="jam[artists][]" class="form-control" multiple></select>
+                                {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists'}) }}
+                                {{ form_errors(form.artists) }}
                             </div>
 
                             {{ form_widget(form._token) }}
@@ -66,22 +67,23 @@
 
                                 {% for f in form.members %}
                                     <li class="row">
+                                        {% if f.musician.vars.value is not empty %}
+                                            <div class="col-md-6">
+                                                {% if f.musician.vars.value == app.user.id %}
+                                                    {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
+                                                {% else %}
+                                                    {{ form_widget(f.musician) }}
+                                                {% endif %}
+                                            </div>
 
-                                        <div class="col-md-6">
-                                            {% if f.musician.vars.value == app.user.id %}
-                                                {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
-                                            {% else %}
-                                                {{ form_widget(f.musician) }}
-                                            {% endif %}
-                                        </div>
+                                            <div class="col-md-6 add-invitee hidden">
+                                                {{ form_widget(f.invitee) }}
+                                            </div>
 
-                                        <div class="col-md-6 add-invitee hidden">
-                                            {{ form_widget(f.invitee) }}
-                                        </div>
-
-                                        <div class="col-md-5">
-                                            {{ form_widget(f.instrument) }}
-                                        </div>
+                                            <div class="col-md-5">
+                                                {{ form_widget(f.instrument) }}
+                                            </div>
+                                        {% endif %}
                                     </li>
                                 {% endfor %}
                             </ul>

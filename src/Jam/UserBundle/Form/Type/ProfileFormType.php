@@ -2,16 +2,24 @@
 
 namespace Jam\UserBundle\Form\Type;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Jam\CoreBundle\Entity\Artist;
 use Jam\LocationBundle\Form\Type\LocationType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class ProfileFormType extends BaseType
 {
+    private $em;
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+
 
         // add your custom field
         $builder->add('firstName', 'text', array(
@@ -89,9 +97,47 @@ class ProfileFormType extends BaseType
             'label' => 'label.what.gear.do.you.own'
         ));
 
-        $builder->add('artists', 'artist_type', array(
-            'label' => 'Your Favourite Music Artists That Influenced You'
-        ));
+        $builder->add('artists', EntityType::class, array(
+            'label' => 'Sounds like',
+            'class' => 'Jam\CoreBundle\Entity\Artist',
+            'multiple' => true,
+            'choice_value' => 'name',
+            'property' => 'name',
+            'required' => false
+        ))
+
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+                $data = $event->getData();
+                $form = $event->getForm();
+
+                if (!$data) {
+                    return;
+                }
+
+                foreach($data['artists'] AS $d) {
+                    $artist = $this->em
+                        ->getRepository('JamCoreBundle:Artist')
+                        ->findOneBy(array('name' => $d));
+
+                    if (null === $artist){
+                        $artist = new Artist();
+                        $artist->setName($d);
+
+                        $this->em->persist($artist);
+                        $this->em->flush();
+                    }
+                }
+
+                $form->remove('artists');
+                $form->add('artists', EntityType::class, array(
+                    'label' => 'Sounds like',
+                    'multiple' => true,
+                    'class' => 'Jam\CoreBundle\Entity\Artist',
+                    'choice_value' => 'name',
+                    'property' => 'name',
+                    'required' => false
+                ));
+            });
 
         $builder->add('location', new LocationType());
 
@@ -151,6 +197,10 @@ class ProfileFormType extends BaseType
             'required' => false
         ));
 
+    }
+
+    public function setEntityManager(EntityManager $em) {
+        $this->em = $em;
     }
 
     public function getName()

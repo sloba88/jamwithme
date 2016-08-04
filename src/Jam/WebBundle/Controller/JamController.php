@@ -133,35 +133,34 @@ class JamController extends Controller
             return $this->redirect($this->generateUrl('jams'));
         }
 
-        return array('form' => $form->createView());
+        return array(
+            'form' => $form->createView(),
+            'headline' => 'Create a new Jam'
+        );
     }
 
     /**
      * @Route("/jam/edit/{slug}", name="edit_jam")
-     * @Template()
+     * @Template("JamWebBundle:Jam:create.html.twig")
      */
     public function editAction($slug)
     {
-        $musician = $this->container->get('security.context')->getToken()->getUser();
+        $me = $this->getUser();
         $request = $this->get('request_stack')->getCurrentRequest();
 
         $jam = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findOneBy(array('slug' => $slug, 'creator' => $musician));
+            ->findOneBy(array('slug' => $slug, 'creator' => $me));
 
         if (!$jam) {
             throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
         }
 
-        $form = $this->createForm(new JamType(), $jam);
+        $form = $this->createForm(JamType::class, $jam);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            foreach($jam->getJamMembers() as $j){
-                $j->setJam($jam);
-            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);
@@ -169,10 +168,13 @@ class JamController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.updated.successfully'));
 
-            return $this->redirect($this->generateUrl('home'));
+            return $this->redirect($this->generateUrl('jams'));
         }
 
-        return array('form' => $form->createView());
+        return array(
+            'form' => $form->createView(),
+            'headline' => 'Edit a Jam'
+        );
     }
 
     /**

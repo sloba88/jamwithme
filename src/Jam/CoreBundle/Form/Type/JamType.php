@@ -1,12 +1,16 @@
 <?php
 namespace Jam\CoreBundle\Form\Type;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Jam\CoreBundle\Entity\Artist;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class JamType extends AbstractType
@@ -15,16 +19,24 @@ class JamType extends AbstractType
 
     private $jamTypeChoices;
 
-    public function __construct(array $jamStatusChoices, array $jamTypeChoices)
+    private $em;
+
+    public function __construct(EntityManager $em, array $jamStatusChoices, array $jamTypeChoices)
     {
         $this->jamStatusChoices = $jamStatusChoices;
 
         $this->jamTypeChoices = $jamTypeChoices;
+
+        $this->em = $em;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $jam = $builder->getData();
+
+        $instruments = $jam->getInstruments();
+
+        $artists = $jam->getArtists();
 
         $builder
             ->add('name', 'text', array(
@@ -50,7 +62,6 @@ class JamType extends AbstractType
                 'required' => false,
                 'label' => 'Genres',
                 'multiple' => true,
-                'expanded' => false,
                 'class' => 'Jam\CoreBundle\Entity\Genre',
                 'choice_label' => 'name'
             ))
@@ -62,7 +73,8 @@ class JamType extends AbstractType
                 'expanded' => false,
                 'allow_extra_fields' => true,
                 'jam' => $jam,
-                'property' => 'name'
+                'property' => 'name',
+                'data' => $instruments
             ))
             ->add('members', CollectionType::class, array(
                 'type' => 'jam_musician_instrument_type',
@@ -75,9 +87,49 @@ class JamType extends AbstractType
                     'jam' => $jam
                 )
             ))
-            ->add('artists', 'artist_type', array(
-                'label' => 'Sounds like'
+            ->add('artists', EntityType::class, array(
+                'label' => 'Sounds like',
+                'class' => 'Jam\CoreBundle\Entity\Artist',
+                'multiple' => true,
+                'choice_value' => 'name',
+                'data' => $artists,
+                'choices' => $artists,
+                'property' => 'name',
+                'required' => false
             ))
+
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+                $data = $event->getData();
+                $form = $event->getForm();
+
+                if (!$data) {
+                    return;
+                }
+
+                foreach($data['artists'] AS $d) {
+                    $artist = $this->em
+                        ->getRepository('JamCoreBundle:Artist')
+                        ->findOneBy(array('name' => $d));
+
+                    if (null === $artist){
+                        $artist = new Artist();
+                        $artist->setName($d);
+
+                        $this->em->persist($artist);
+                        $this->em->flush();
+                    }
+                }
+
+                $form->remove('artists');
+                $form->add('artists', EntityType::class, array(
+                    'label' => 'Sounds like',
+                    'multiple' => true,
+                    'class' => 'Jam\CoreBundle\Entity\Artist',
+                    'choice_value' => 'name',
+                    'property' => 'name',
+                    'required' => false
+                ));
+            })
 
             ->add('save', 'submit');
     }

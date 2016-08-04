@@ -17,6 +17,9 @@
         <service id="jam_user.profile.form.type" class="Jam\UserBundle\Form\Type\ProfileFormType">
             <tag name="form.type" alias="jam_user_profile" />
             <argument>%fos_user.model.user.class%</argument>
+            <call method="setEntityManager">
+                <argument type="service" id="doctrine.orm.entity_manager"></argument>
+            </call>
         </service>
 
         <service id="jam_user.profile.setup.form.type" class="Jam\UserBundle\Form\Type\ProfileSetupFormType">
@@ -28,16 +31,13 @@
             <tag name="form.type_extension" alias="file" />
         </service>
 
-        <service id="jam_user.artist.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\ArtistTransform">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
-        </service>
-
         <service id="jam_user.gear.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\GearTransform">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
 
         <service id="jam.form.type" class="Jam\CoreBundle\Form\Type\JamType">
             <tag name="form.type" />
+            <argument type="service" id="doctrine.orm.entity_manager"/>
             <argument>%jam_statuses%</argument>
             <argument>%jam_types%</argument>
         </service>
@@ -52,11 +52,6 @@
 
         <service id="jam_instrument.genre.form.data_transformer" class="Jam\CoreBundle\Form\DataTransformer\JamInstrumentTransform">
             <argument type="service" id="doctrine.orm.entity_manager"/>
-        </service>
-
-        <service id="artist.form.type" class="Jam\CoreBundle\Form\Type\ArtistType">
-            <argument type="service" id="jam_user.artist.form.data_transformer"/>
-            <tag name="form.type" alias="artist_type" />
         </service>
 
         <service id="gear.form.type" class="Jam\CoreBundle\Form\Type\GearType">

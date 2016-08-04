@@ -33,13 +33,7 @@ class JamInstrumentTransform implements DataTransformerInterface
             return array();
         }
 
-        $genre = array();
-        foreach ($instruments AS $k => $a){
-            $genre[] = $a->getInstrument()->getId();
-
-        }
-
-        return $genre;
+        return $instruments;
     }
 
     /**

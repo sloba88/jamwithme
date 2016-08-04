@@ -500,4 +500,15 @@ class Jam
     {
         return $this->videos;
     }
+
+    public function getInstruments()
+    {
+        $instruments = new ArrayCollection();
+        foreach ($this->members as $member) {
+            if ($member->getMusician() == NULL ) {
+                $instruments->add($member->getInstrument());
+            }
+        }
+        return $instruments;
+    }
 }
