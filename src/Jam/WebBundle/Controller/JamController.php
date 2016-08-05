@@ -3,6 +3,7 @@
 namespace Jam\WebBundle\Controller;
 
 use Jam\CoreBundle\Entity\Jam;
+use Jam\CoreBundle\Entity\JamInterest;
 use Jam\CoreBundle\Entity\JamMusicianInstrument;
 use Jam\CoreBundle\Form\Type\JamType;
 use Jam\LocationBundle\Entity\Location;
@@ -281,6 +282,34 @@ class JamController extends Controller
         $response = new JsonResponse();
         $response->setData(array(
             'status' => 'success'
+        ));
+
+        return $response;
+    }
+
+    /**
+     * @Route("/jam/{id}/add-to-interest", name="jam_add_interest", options={"expose"=true})
+     * @Template()
+     */
+    public function addInterestAction($id)
+    {
+        $jam = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:Jam')
+            ->find($id);
+
+        if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
+
+        $interest = new JamInterest();
+        $interest->setJam($jam);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($interest);
+        $em->flush();
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'status' => 'success',
+            'message' => 'Jam added to interests successfully'
         ));
 
         return $response;
