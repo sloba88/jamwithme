@@ -15,17 +15,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class JamType extends AbstractType
 {
-    private $jamStatusChoices;
+    private $jamStageChoices;
 
     private $jamTypeChoices;
 
     private $em;
 
-    public function __construct(EntityManager $em, array $jamStatusChoices, array $jamTypeChoices)
+    public function __construct(EntityManager $em, array $jamStageChoices, array $jamTypeChoices, array $jamStatusChoices)
     {
-        $this->jamStatusChoices = $jamStatusChoices;
+        $this->jamStageChoices = $jamStageChoices;
 
         $this->jamTypeChoices = $jamTypeChoices;
+
+        $this->jamStatusChoices = $jamStatusChoices;
 
         $this->em = $em;
     }
@@ -47,13 +49,14 @@ class JamType extends AbstractType
                     'rows' => 4
                 )
             ))
-            ->add('status', 'choice', array(
-                'choices' => $this->jamStatusChoices,
-                'attr' => array('placeholder' => 'Select Type')
+            ->add('stage', 'choice', array(
+                'choices' => $this->jamStageChoices
             ))
             ->add('type', 'choice', array(
-                'choices' => $this->jamTypeChoices,
-                'attr' => array('placeholder' => 'In which phase is the project?')
+                'choices' => $this->jamTypeChoices
+            ))
+            ->add('status', 'choice', array(
+                'choices' => $this->jamStatusChoices
             ))
             ->add('location', LocationType::class, array(
                 'data' => $jam->getLocation()

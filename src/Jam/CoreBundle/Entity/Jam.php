@@ -45,16 +45,23 @@ class Jam
     /**
      * @var string
      *
-     * @ORM\Column(name="type", type="string", length=100)
+     * @ORM\Column(name="type", type="smallint", )
      */
     private $type;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=100)
+     * @ORM\Column(name="stage", type="smallint")
      */
-    private $status;
+    private $stage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="smallint")
+     */
+    private $status = 1;
 
     /**
      * @var ArrayCollection
@@ -242,30 +249,6 @@ class Jam
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set status
-     *
-     * @param string $status
-     *
-     * @return Jam
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
@@ -522,5 +505,53 @@ class Jam
             }
         }
         return $instruments;
+    }
+
+    /**
+     * Set stage
+     *
+     * @param string $stage
+     *
+     * @return Jam
+     */
+    public function setStage($stage)
+    {
+        $this->stage = $stage;
+
+        return $this;
+    }
+
+    /**
+     * Get stage
+     *
+     * @return string
+     */
+    public function getStage()
+    {
+        return $this->stage;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     *
+     * @return Jam
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

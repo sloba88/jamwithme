@@ -274,7 +274,11 @@ parameters:
         1: Band
         2: Jam session
         3: Temporary replacement
-    jam_statuses:
+    jam_stages:
         1: Just an idea
         2: Idea with some material ready (music, lyrics)
         3: Established band (had gigs before)
+    jam_statuses:
+        1: Active
+        2: Obsolite
+        3: Success

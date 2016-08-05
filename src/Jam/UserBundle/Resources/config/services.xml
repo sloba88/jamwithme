@@ -38,8 +38,9 @@
         <service id="jam.form.type" class="Jam\CoreBundle\Form\Type\JamType">
             <tag name="form.type" />
             <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument>%jam_statuses%</argument>
+            <argument>%jam_stages%</argument>
             <argument>%jam_types%</argument>
+            <argument>%jam_statuses%</argument>
         </service>
 
         <service id="invitation.form.type" class="Jam\CoreBundle\Form\Type\InvitationType">
