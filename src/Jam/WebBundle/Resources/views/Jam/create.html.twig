@@ -66,8 +66,8 @@
                             <ul id="jam_musician_instruments">
 
                                 {% for f in form.members %}
-                                    <li class="row">
-                                        {% if f.musician.vars.value is not empty %}
+                                    {% if f.musician.vars.value is not empty %}
+                                        <li class="row">
                                             <div class="col-md-6">
                                                 {% if f.musician.vars.value == app.user.id %}
                                                     {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
@@ -83,8 +83,8 @@
                                             <div class="col-md-5">
                                                 {{ form_widget(f.instrument) }}
                                             </div>
-                                        {% endif %}
-                                    </li>
+                                        </li>
+                                    {% endif %}
                                 {% endfor %}
                             </ul>
 

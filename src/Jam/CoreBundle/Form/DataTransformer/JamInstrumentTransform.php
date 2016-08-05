@@ -51,7 +51,17 @@ class JamInstrumentTransform implements DataTransformerInterface
             return $musicianInstrumentCollection;
         }
 
+        //first clear all the instruments
+
         foreach($ids AS $k=>$id){
+
+            $mInstrument = $this->entityManager
+                ->getRepository('JamCoreBundle:JamMusicianInstrument')
+                ->findOneBy(array('instrument' => $id, 'musician' => null, 'jam' => $this->jam));
+
+            if ($mInstrument) {
+                $this->entityManager->remove($mInstrument);
+            }
 
             $jamInstrument = new JamMusicianInstrument();
 
@@ -69,10 +79,8 @@ class JamInstrumentTransform implements DataTransformerInterface
             $jamInstrument->setInstrument($instrument);
             $jamInstrument->setMusician(null);
             $jamInstrument->setJam($this->jam);
-
             $this->entityManager->persist($jamInstrument);
 
-            $musicianInstrumentCollection[] = $jamInstrument;
         }
 
         return $ids;

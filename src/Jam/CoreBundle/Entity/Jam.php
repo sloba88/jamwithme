@@ -419,6 +419,18 @@ class Jam
     }
 
     /**
+     * Set members
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function setMembers(ArrayCollection $members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
      * Set creator
      *
      * @param \Jam\UserBundle\Entity\User $creator
