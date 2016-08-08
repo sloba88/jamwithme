@@ -55,6 +55,28 @@ class JamController extends Controller
     }
 
     /**
+     * @Route("/my-interest-jams", name="my_interest_jams")
+     * @Template("JamWebBundle:Jam:index.html.twig")
+     */
+    public function myInterestJamsAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT j
+                FROM JamCoreBundle:Jam j
+                JOIN j.interests i
+                JOIN i.musican u
+                WHERE u = :me
+                ORDER BY j.createdAt ASC'
+        )->setParameter('me', $this->getUser());
+
+        return array(
+            'jams' => $query->getResult(),
+            'headline' => 'My Interest Jams'
+        );
+    }
+
+    /**
      * @Route("/start-jam", name="start_jam")
      * @Template()
      */
