@@ -26,7 +26,7 @@ class JamInterest
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Jam", inversedBy="members")
+     * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Jam", inversedBy="interests")
      * @ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)
      */
     private $jam;

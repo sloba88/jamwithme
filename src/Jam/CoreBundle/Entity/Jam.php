@@ -102,6 +102,13 @@ class Jam
     private $members;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\JamInterest", mappedBy="jam", cascade={"all"}, orphanRemoval=true )
+     */
+    private $interests;
+
+    /**
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
@@ -553,5 +560,39 @@ class Jam
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Add interest
+     *
+     * @param \Jam\CoreBundle\Entity\JamInterest $interest
+     *
+     * @return Jam
+     */
+    public function addInterest(\Jam\CoreBundle\Entity\JamInterest $interest)
+    {
+        $this->interests[] = $interest;
+
+        return $this;
+    }
+
+    /**
+     * Remove interest
+     *
+     * @param \Jam\CoreBundle\Entity\JamInterest $interest
+     */
+    public function removeInterest(\Jam\CoreBundle\Entity\JamInterest $interest)
+    {
+        $this->interests->removeElement($interest);
+    }
+
+    /**
+     * Get interests
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInterests()
+    {
+        return $this->interests;
     }
 }

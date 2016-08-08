@@ -77,6 +77,12 @@
 
             <hr />
 
+            <div class="row">
+                <div class="col-md-12">
+                    {{ jam.interests|length }} people interested
+                </div>
+            </div>
+            <br />
             {% if is_granted("ROLE_USER") and app.user != jam.creator %}
                 <div class="row">
                     <div class="col-md-4">
@@ -84,7 +90,6 @@
                     </div>
                 </div>
             {% endif %}
-
         </div>
 
         <div class="col-md-6">
