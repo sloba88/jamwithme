@@ -109,13 +109,6 @@ function renameCollectionNames($selection) {
     });
 }
 
-function setTabsHeight() {
-    if ($(window).width() > 992) {
-        $('.page-settings .view-tab.with-scrollbar').height($(window).height() - 250);
-    }
-    return true;
-}
-
 function showLearnOptions() {
     //if the form element is changed or the form element doesnt exist as on setup page
     if ($('#fos_user_profile_form_isVisitor').prop('checked') || ($('#fos_user_profile_form_isVisitor').length === 0 && _user.isVisitor)) {
@@ -448,6 +441,4 @@ $(function() {
     }
 
     showLearnOptions();
-
-    setTabsHeight();
 });

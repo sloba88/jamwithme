@@ -185,6 +185,10 @@ class JamController extends Controller
 
         if ($form->isValid()) {
 
+            foreach($jam->getMembers() AS $member) {
+                $member->setJam($jam);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($jam);
             $em->flush();

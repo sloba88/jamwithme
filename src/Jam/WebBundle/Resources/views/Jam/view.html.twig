@@ -3,15 +3,20 @@
 {% block main_content %}
 
     <div class="row messages-header">
+
         <div class="col-xs-12">
-            <h1 class="title">{{ jam.name }}</h1>
+            <span class="jam-type">{{ jam.type|jam_type_to_string }}</span>
+
+            {% if jam.creator == app.user %}
+                <div class="col-xs-3 col-md-3 pull-right">
+                    <a href="{{ path('edit_jam', { 'slug': jam.slug }) }}" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Jam</a>
+                </div>
+            {% endif %}
         </div>
 
-        {% if jam.creator == app.user %}
-            <div class="col-xs-3 col-md-3 pull-right">
-                <a href="{{ path('edit_jam', { 'slug': jam.slug }) }}" class="btn btn-primary">Edit Jam</a>
-            </div>
-        {% endif %}
+        <div class="col-xs-12" style="margin-top: 10px;">
+            <h1 class="title">{{ jam.name }}</h1>
+        </div>
     </div>
 
     <br />
@@ -19,11 +24,7 @@
     <div class="row">
         <div class="col-md-6">
 
-            <p>Created at: {{ jam.createdAt | date('Y-m-d') }}</p>
-
-            <p>
-                <span class="badge">{{ jam.type|jam_type_to_string }}</span>
-            </p>
+            <p class="pull-right">{{ jam.createdAt | date('Y-m-d') }}</p>
 
             {% if jam.location %}
                 {% if jam.location.getAdministrativeAreaLevel3 %}
@@ -79,11 +80,11 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    {{ jam.interests|length }} people interested
+                    <i class="fa fa-users" aria-hidden="true"></i>  {{ jam.interests|length }} people interested
                 </div>
             </div>
             <br />
-            {% if is_granted("ROLE_USER") and app.user != jam.creator %}
+            {% if is_granted("ROLE_USER") and app.user != jam.creator and app.user.id not in jam.membersMusiciansIds %}
                 <div class="row">
                     <div class="col-md-4">
                         <a href="#" id="jam-add-to-interest" data-jam="{{ jam.id }}" class="btn btn-default"><i class="fa fa-thumbs-up" aria-hidden="true"></i> INTERESTED</a>
@@ -103,23 +104,24 @@
                         {% for m in jam.members %}
                             {% if m.musician is not null %}
                                 <li class="member">
-                                    <ul class="tags">
-                                        <li>{{ m.instrument.name }}</li>
-                                    </ul>
-                                    <a href="{{ path('musician_profile', { 'username': m.musician.username }) }}">
-                                        <img src="{{ m.musician.avatar | imagine_filter('my_thumb') }}" />
-                                        {{ m.musician.firstName }}<br />{{ m.musician.lastName }}</a>
                                     <a href="#" class="open-conversation" data-toggle="tooltip" title="{{ 'button.message'|trans }}" data-user-id="{{ m.musician.id }}" data-user="{{ m.musician.username }}"><i class="glyphicon glyphicon-envelope"></i></a>
+                                    <a href="{{ path('musician_profile', { 'username': m.musician.username }) }}">
+                                        <img src="{{ m.musician.avatar | imagine_filter('my_medium_1') }}" />
+                                        <h4 class="name">
+                                            {% if m.musician.firstName or m.musician.lastName %}
+                                                {{ m.musician.firstName }}<br />{{ m.musician.lastName }}
+                                        {% else %}
+                                                {{ m.musician.username }}
+                                        {% endif %}</h4></a>
+                                    <p>{{ m.instrument.name }}</p>
                                 </li>
                             {% endif %}
                             {% if m.invitee is not null %}
                                 <li class="member invited-member" data-toggle="tooltip" title="Pending invitation" data-placement="right">
-                                    <ul class="tags">
-                                        <li>{{ m.instrument.name }}</li>
-                                    </ul>
                                     <a href="#">
-                                        <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_thumb') }}" />
-                                        {{ m.invitee.firstName }} {{ m.invitee.lastName }}</a>
+                                        <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_medium_1') }}" />
+                                        <h4 class="name">{{ m.invitee.firstName }}<br />{{ m.invitee.lastName }}</h4></a>
+                                    <p>{{ m.instrument.name }}</p>
                                 </li>
                             {% endif %}
                         {% endfor %}

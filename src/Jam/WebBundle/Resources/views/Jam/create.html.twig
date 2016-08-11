@@ -24,171 +24,169 @@
         {% endif %}
     </ul>
 
+
     <div class="view-tab-container clearfix">
-        <div class="row">
 
-            <div class="col-md-12">
+        {# JAM INFO #}
+        <div class="view-tab is-active with-scrollbar" data-tab="jam-info">
+            <div class="row">
+                <div class="col-md-5">
 
-                {# JAM INFO #}
-                <div class="view-tab is-active with-scrollbar" data-tab="jam-info">
+                    {{ form_row(form.type) }}
 
-                    <div class="col-md-5">
+                    {{ form_row(form.name) }}
 
-                        {{ form_row(form.type) }}
+                    {{ form_row(form.stage) }}
 
-                        {{ form_row(form.name) }}
-
-                        {{ form_row(form.stage) }}
-
-                        <div class="form-group">
-                            {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
-                            {{ form_errors(form.location) }}
-                            <div>
-                                {{ form_widget(form.location) }}
-                            </div>
+                    <div class="form-group">
+                        {{ form_label(form.location, 'Location'|trans, {'label_attr':{'class':'control-label'}}) }}
+                        {{ form_errors(form.location) }}
+                        <div>
+                            {{ form_widget(form.location) }}
                         </div>
-
-                        {{ form_row(form.instruments) }}
-
-                        {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
-
-                        <div class="form-group">
-                            {{ form_label(form.artists) }}
-                            {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists'}) }}
-                            {{ form_errors(form.artists) }}
-                        </div>
-
-                        {% if app.request.attributes.get('_route') == 'edit_jam' %}
-                            <div class="form-group">
-                                {{ form_label(form.status) }}
-                                {{ form_widget(form.status) }}
-                            </div>
-                        {% endif %}
-
-                        {{ form_widget(form._token) }}
                     </div>
 
-                    <div class="col-md-7">
-                        {{ form_row(form.description) }}
+                    {{ form_row(form.instruments) }}
 
-                        <label>Current members</label>
+                    {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
 
-                        <ul id="jam_musician_instruments">
-
-                            {% for f in form.members %}
-                                {% if f.musician.vars.value is not empty %}
-                                    <li class="row">
-                                        <div class="col-md-6">
-                                            {% if f.musician.vars.value == app.user.id %}
-                                                {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
-                                            {% else %}
-                                                {{ form_widget(f.musician) }}
-                                            {% endif %}
-                                        </div>
-
-                                        <div class="col-md-6 add-invitee hidden">
-                                            {{ form_widget(f.invitee) }}
-                                        </div>
-
-                                        <div class="col-md-5">
-                                            {{ form_widget(f.instrument) }}
-                                        </div>
-
-                                        {% if f.musician.vars.value != app.user.id %}
-                                            <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">
-                                                <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp;
-                                            </div>
-                                        {% endif %}
-
-                                    </li>
-                                {% endif %}
-                            {% endfor %}
-                        </ul>
-
-                        <br />
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <a href="" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="" class="btn btn-primary" id="invite_jam_member"><i class="fa fa-users" aria-hidden="true"></i> Invite new member</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br /><br />
-
-                        <div class="alert alert-info" role="alert">If you can't find the user in the database you can invite him to Jamifind quickly.</div>
+                    <div class="form-group">
+                        {{ form_label(form.artists) }}
+                        {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists'}) }}
+                        {{ form_errors(form.artists) }}
                     </div>
 
-                    {% if app.request.attributes.get('_route') == 'start_jam' %}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group col-md-3">
-                                    <ul class="tabs-activate">
-                                        <a href="#" data-tab="jam-music" class="btn btn-primary"><i class="fa fa-angle-double-right"></i> {{ 'button.next'|trans }}</a>
-                                    </ul>
-                                </div>
-                            </div>
+                    {% if app.request.attributes.get('_route') == 'edit_jam' %}
+                        <div class="form-group">
+                            {{ form_label(form.status) }}
+                            {{ form_widget(form.status) }}
                         </div>
                     {% endif %}
 
+                    {{ form_widget(form._token) }}
                 </div>
 
-                {# MUSIC INFO #}
-                <div class="view-tab with-scrollbar" data-tab="jam-music">
+                <div class="col-md-7">
+                    {{ form_row(form.description) }}
+
+                    <label>Current members</label>
+
+                    <ul id="jam_musician_instruments">
+
+                        {% for f in form.members %}
+                            {% if f.musician.vars.value is not empty %}
+                                <li class="row">
+                                    <div class="col-md-6">
+                                        {% if f.musician.vars.value == app.user.id %}
+                                            {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
+                                        {% else %}
+                                            {{ form_widget(f.musician) }}
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="col-md-6 add-invitee hidden">
+                                        {{ form_widget(f.invitee) }}
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        {{ form_widget(f.instrument) }}
+                                    </div>
+
+                                    {% if f.musician.vars.value != app.user.id %}
+                                        <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">
+                                            <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp;
+                                        </div>
+                                    {% endif %}
+
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+
+                    <br />
 
                     <div class="row">
-                        {# VIDEOS #}
-                        <div class="col-md-6">
-                            <div class="col-md-4 col-xs-12">
-                                <a href="#" id="add_another_video" data-jam="1" class="btn btn-primary add-another-video">
-                                    <i class="fa fa-youtube-play"></i>
-                                    {{ 'label.add.video'|trans }}
-                                </a>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <a href="" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
                             </div>
-                            <br /><br />
-
-                            <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">{{ 'label.videos'|trans }}</h3>
-                                    </div>
-                                    <div class="panel-body">
-
-                                        <ul id="musician_videos">
-                                            {% for v in form.vars.value.videos %}
-                                                <li data-id="{{ v.id }}" class="ytvideo-holder">
-                                                    <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
-                                                        <span class="play-icon"></span>
-                                                        <img src="" height="160" width="260" />
-                                                    </a>
-                                                    <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> {{ 'label.remove'|trans }}</a>
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <a href="" class="btn btn-primary" id="invite_jam_member"><i class="fa fa-users" aria-hidden="true"></i> Invite new member</a>
                             </div>
                         </div>
                     </div>
 
-                    {% if app.request.attributes.get('_route') == 'start_jam' %}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group col-md-3">
-                                    <button type="submit" id="jam_save" name="jam[save]" class="btn btn-primary"><i class="fa fa-check"></i> {{ 'button.request.submit'|trans }}</button>
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
+                    <br /><br />
+
+                    <div class="alert alert-info" role="alert">If you can't find the user in the database you can invite him to Jamifind quickly.</div>
                 </div>
 
+                {% if app.request.attributes.get('_route') == 'start_jam' %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-md-3">
+                                <ul class="tabs-activate">
+                                    <a href="#" data-tab="jam-music" class="btn btn-primary"><i class="fa fa-angle-double-right"></i> {{ 'button.next'|trans }}</a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
+
+        {# MUSIC INFO #}
+        <div class="view-tab with-scrollbar" data-tab="jam-music">
+
+            <div class="row">
+                {# VIDEOS #}
+                <div class="col-md-6">
+                    <div class="col-md-4 col-xs-12">
+                        <a href="#" id="add_another_video" data-jam="1" class="btn btn-primary add-another-video">
+                            <i class="fa fa-youtube-play"></i>
+                            {{ 'label.add.video'|trans }}
+                        </a>
+                    </div>
+                    <br /><br />
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ 'label.videos'|trans }}</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <ul id="musician_videos">
+                                    {% for v in form.vars.value.videos %}
+                                        <li data-id="{{ v.id }}" class="ytvideo-holder">
+                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                                <span class="play-icon"></span>
+                                                <img src="" height="160" width="260" />
+                                            </a>
+                                            <a href="" class="remove-video action-confirm" title="remove"><i class="fa fa-times"></i> {{ 'label.remove'|trans }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if app.request.attributes.get('_route') == 'start_jam' %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-3">
+                            <button type="submit" id="jam_save" name="jam[save]" class="btn btn-primary"><i class="fa fa-check"></i> {{ 'button.request.submit'|trans }}</button>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
     </div>
+    </div>
+
     </form>
 
 {% endblock main_content %}

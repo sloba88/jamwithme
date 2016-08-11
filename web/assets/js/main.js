@@ -369,19 +369,6 @@ $(function() {
         });
     }
 
-    $('.perfect-scrollbar').each(function() {
-
-        var thisHeight = $(this).height(),
-            thisChildrenHeight = $this.children().height();
-
-        if (thisHeight < thisChildrenHeight) {
-            $(this).perfectScrollbar({
-                suppressScrollX: true
-            });
-        }
-
-    });
-
     //scrollbar on settings page - photos
     $('.page-profile .profile-media-wall').perfectScrollbar({
         suppressScrollX: true
@@ -717,17 +704,17 @@ $(function() {
         };
 
         this.tabHeight = function() {
-            var $viewTabContainer = $('.main-content-inner').children('.view-tab-container');
+            var $viewTab = $('.main-content-inner .view-tab');
 
             if (isMobile === false) {
 
-                $viewTabContainer.each(function(){
+                $viewTab.each(function(){
                     var $this = $(this);
 
                     $this.height(windowHeight - $this.offset().top - 10);
                 });
             } else {
-                $viewTabContainer.height('');
+                $viewTab.height('');
             }
         };
 

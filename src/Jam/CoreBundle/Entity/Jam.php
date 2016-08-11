@@ -408,6 +408,17 @@ class Jam
         return $this->members;
     }
 
+    public function getMembersMusiciansIds()
+    {
+        $ids = array();
+        foreach ($this->members AS $member){
+            if ($member->getMusician()) {
+                array_push($ids, $member->getMusician()->getId());
+            }
+        }
+        return $ids;
+    }
+
     /**
      * Set members
      *
