@@ -1,4 +1,4 @@
-{% extends 'JamWebBundle::layoutNoSidebar.html.twig' %}
+{% extends 'JamWebBundle::layout.html.twig' %}
 
 {% block main_content %}
 
@@ -67,13 +67,13 @@
                                 {% endfor %}
                             </ul>
                             {% if j.existingMembers|length > 4 %}
-                                + {{ j.existingMembers|length - 4 }} more
+                                <div class="pull-right" style="margin-top: 35px;">+ {{ j.existingMembers|length - 4 }} more</div>
                             {% endif %}
                         </div>
                     </div>
 
                     <div class="col-md-12" style="background: #F3F3F3; padding: 14px 12px;">
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <label>Looking for someone who play:</label>
                             <ul class="tags">
                                 {% for m in j.instruments %}
@@ -81,7 +81,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <p class="pull-right">
                                 <i class="fa fa-users" aria-hidden="true"></i> {{ j.interests|length }} people interested
                             </p>
@@ -92,4 +92,24 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block right_sidebar_content %}
+
+    {% include "JamWebBundle:Common:completion.html.twig" %}
+
+    {{ render(controller('JamWebBundle:Shouts:shouts' )) }}
+
+{% endblock %}
+
+{% block bottom_javascripts %}
+
+    {% javascripts
+    'assets/js/filter.js'
+    '@JamWebBundle/Resources/public/js/shout.js'
+    filter='?uglifyjs2'
+    %}
+
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

@@ -48,6 +48,12 @@ function renderGridView(data) {
 }
 
 function getFilterData() {
+
+    if ($('#main-filter-form').length === 0) {
+        //no filters form
+        return '';
+    }
+
     var data='';
 
     if ( $('input.filter-genres').val() !== '' ){
