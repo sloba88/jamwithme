@@ -408,6 +408,15 @@ class Jam
         return $this->members;
     }
 
+    public function getExistingMembers()
+    {
+        return $this->members->filter(function($member) {
+            if ($member->getMusician()) {
+                return $member;
+            }
+        });
+    }
+
     public function getMembersMusiciansIds()
     {
         $ids = array();
@@ -516,13 +525,11 @@ class Jam
 
     public function getInstruments()
     {
-        $instruments = new ArrayCollection();
-        foreach ($this->members as $member) {
-            if ($member->getMusician() == NULL ) {
-                $instruments->add($member->getInstrument());
+        return $this->members->filter(function($member) {
+            if (!$member->getMusician() && !$member->getInvitee()) {
+                return $member;
             }
-        }
-        return $instruments;
+        });
     }
 
     /**

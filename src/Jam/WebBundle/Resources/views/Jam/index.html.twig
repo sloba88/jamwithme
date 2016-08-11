@@ -40,7 +40,7 @@
                         <div class="col-md-8 jam-members-container">
                             <span class="pull-right">{{ j.createdAt | date('d M Y') }}</span>
                             <ul class="members-list">
-                                {% for m in j.members %}
+                                {% for m in j.existingMembers %}
                                     {% if loop.index < 5 %}
                                         {% if m.musician is not null %}
                                             <li class="member">
@@ -66,8 +66,8 @@
                                     {% endif %}
                                 {% endfor %}
                             </ul>
-                            {% if j.members|length > 4 %}
-                                + {{ j.members|length - 4 }} more
+                            {% if j.existingMembers|length > 4 %}
+                                + {{ j.existingMembers|length - 4 }} more
                             {% endif %}
                         </div>
                     </div>
@@ -76,10 +76,8 @@
                         <div class="col-md-4">
                             <label>Looking for someone who play:</label>
                             <ul class="tags">
-                                {% for m in j.members %}
-                                    {% if m.musician is null %}
-                                        <li>{{ m.instrument.name }}</li>
-                                    {% endif %}
+                                {% for m in j.instruments %}
+                                    <li>{{ m.instrument.name }}</li>
                                 {% endfor %}
                             </ul>
                         </div>
