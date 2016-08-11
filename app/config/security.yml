@@ -56,6 +56,7 @@ security:
         - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/soundcloud/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/m/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/jam/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/messages/, role: ROLE_USER }
         - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/send-message-email, roles: IS_AUTHENTICATED_ANONYMOUSLY, ips: [33.33.33.1, 33.33.33.100, 127.0.0.1, 95.85.33.211, 139.59.136.28] }

@@ -8,7 +8,7 @@
             <span class="jam-type">{{ jam.type|jam_type_to_string }}</span>
 
             {% if jam.creator == app.user %}
-                <div class="col-xs-3 col-md-3 pull-right">
+                <div class="col-xs-6 col-md-3 pull-right">
                     <a href="{{ path('edit_jam', { 'slug': jam.slug }) }}" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Jam</a>
                 </div>
             {% endif %}
@@ -37,7 +37,7 @@
             <h3>{{ 'text.looking.for.instruments'|trans }}:</h3>
 
             <ul class="tags jam-instrument-tags">
-                {% for m in jam.members %}
+                {% for m in jam.instruments %}
                     <li>{{ m.instrument.name }}</li>
                 {% endfor %}
             </ul>
@@ -102,7 +102,11 @@
                         {% for m in jam.members %}
                             {% if m.musician is not null %}
                                 <li class="member">
-                                    <a href="#" class="open-conversation" data-toggle="tooltip" title="{{ 'button.message'|trans }}" data-user-id="{{ m.musician.id }}" data-user="{{ m.musician.username }}"><i class="glyphicon glyphicon-envelope"></i></a>
+                                    {% if app.user and app.user != m.musician %}
+                                        <a href="#" class="open-conversation" data-toggle="tooltip" title="{{ 'button.message'|trans }}" data-user-id="{{ m.musician.id }}" data-user="{{ m.musician.username }}"><i class="glyphicon glyphicon-envelope"></i></a>
+                                    {% else %}
+                                        <br />
+                                    {% endif %}
                                     <a href="{{ path('musician_profile', { 'username': m.musician.username }) }}">
                                         <img src="{{ m.musician.avatar | imagine_filter('my_medium_1') }}" />
                                         <h4 class="name">

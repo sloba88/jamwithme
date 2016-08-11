@@ -8,18 +8,25 @@
                 <li><a href="{{ path('jams') }}" {% if app.request.attributes.get('_route') == 'jams' %}class="is-active"{% endif %}>All Jams</a></li>
                 <li><a href="{{ path('my_jams') }}" {% if app.request.attributes.get('_route') == 'my_jams' %}class="is-active"{% endif %}>My Jams</a></li>
                 <li><a href="{{ path('my_interest_jams') }}" {% if app.request.attributes.get('_route') == 'my_interest_jams' %}class="is-active"{% endif %}>Interested</a></li>
-                <li class="pull-right"><a href="{{ path('start_jam') }}" id="start-jam-btn" class="btn btn-primary"><i class="fa fa-rocket" aria-hidden="true"></i> Start new jam</a></li>
+                <li class="hidden-xs pull-right"><a href="{{ path('start_jam') }}" id="start-jam-btn" class="btn btn-primary"><i class="fa fa-rocket" aria-hidden="true"></i> Start new jam</a></li>
             </ul>
         </div>
+
+        <div class="visible-xs col-xs-12">
+            <a href="{{ path('start_jam') }}" id="start-jam-btn" class="btn btn-primary"><i class="fa fa-rocket" aria-hidden="true"></i> Start new jam</a>
+            <br /><br />
+        </div>
+
     </div>
 
     <div class="row with-scrollbar" style="height: 600px">
         <div class="clearfix">
             {% for j in jams %}
                 <div class="row single-jam-list">
-                    <div class="col-md-12" style="padding: 14px 12px;">
+                    <div class="col-md-12" style="padding: 14px 10px;">
                         <div class="col-md-4">
                             <span class="jam-type">{{ j.type|jam_type_to_string }}</span>
+                            <span class="pull-right visible-xs">{{ j.createdAt | date('d M Y') }}</span>
                             <h3><a href="{{ path('view_jam', {'slug': j.slug }) }}">{{ j.name }}</a></h3>
 
                             {% if j.location %}
@@ -37,8 +44,8 @@
                             </ul>
                         </div>
 
-                        <div class="col-md-8 jam-members-container">
-                            <span class="pull-right">{{ j.createdAt | date('d M Y') }}</span>
+                        <div class="col-md-8 jam-members-container clearfix">
+                            <span class="pull-right hidden-xs">{{ j.createdAt | date('d M Y') }}</span>
                             <ul class="members-list">
                                 {% for m in j.existingMembers %}
                                     {% if loop.index < 5 %}
@@ -72,7 +79,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12" style="background: #F3F3F3; padding: 14px 12px;">
+                    <div class="col-md-12" style="background: #F3F3F3; padding: 14px 10px;">
                         <div class="col-md-8">
                             <label>Looking for someone who play:</label>
                             <ul class="tags">

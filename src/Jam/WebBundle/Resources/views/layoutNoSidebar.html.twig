@@ -13,7 +13,7 @@
         </div>
     {% endif %}
 
-    <section class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-lg-8 no-auth{% endif %} main-content">
+    <section class="{% if is_granted("ROLE_USER") %}col-md-10{% else %}col-lg-8 no-auth{% endif %} main-content {% if app.request.attributes.get('_route') == 'view_jam' %}jam-no-auth{% endif %}">
         <div class="main-content-inner">
             {% block main_content %}{% endblock %}
             {% block fos_user_content %}{% endblock fos_user_content %}
