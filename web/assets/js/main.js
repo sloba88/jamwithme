@@ -332,7 +332,7 @@ $(function() {
 
     $('select').select2();
 
-    $('.info-popover').popover();
+    $('[data-toggle=popover]').popover();
 
     // //select plugin on dashboard updates height of main container on change
     // $('select').on('change', sidebarHeight);
