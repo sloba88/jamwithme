@@ -8231,8 +8231,8 @@ button.close {
   }
 }
 /* line 27, ../../sass/jamifind/sprite/_icons.scss */
-.icons-sprite, input[type="checkbox"] + label span, input[type="radio"] + label span, input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label span, .sidebar .sidebar-list .dashboard, .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active, .sidebar .sidebar-list .shouts, .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active, .sidebar .sidebar-list .profile, .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active, .sidebar .sidebar-list .events, .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active, .sidebar .sidebar-list .messages, .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active, .sidebar .sidebar-list .settings, .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active, .sidebar .sidebar-list .logout, .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active, .shouts-feed h3, .filters-preview .tab-grid, .filters-preview .tab-grid.is-active, .filters-preview .tab-map, .filters-preview .tab-map.is-active {
-  background: url('../images/icons-s0565b07e45.png') no-repeat;
+.icons-sprite, input[type="checkbox"] + label span, input[type="radio"] + label span, input[type="checkbox"]:checked + label span, input[type="radio"]:checked + label span, .sidebar .sidebar-list .dashboard, .sidebar .sidebar-list .dashboard:hover, .sidebar .sidebar-list .dashboard.active, .sidebar .sidebar-list .shouts, .sidebar .sidebar-list .shouts:hover, .sidebar .sidebar-list .shouts.active, .sidebar .sidebar-list .profile, .sidebar .sidebar-list .profile:hover, .sidebar .sidebar-list .profile.active, .sidebar .sidebar-list .events, .sidebar .sidebar-list .events:hover, .sidebar .sidebar-list .events.active, .sidebar .sidebar-list .messages, .sidebar .sidebar-list .messages:hover, .sidebar .sidebar-list .messages.active, .sidebar .sidebar-list .settings, .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active, .sidebar .sidebar-list .jams, .sidebar .sidebar-list .jams:hover, .sidebar .sidebar-list .jams.active, .sidebar .sidebar-list .logout, .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active, .shouts-feed h3, .filters-preview .tab-grid, .filters-preview .tab-grid.is-active, .filters-preview .tab-map, .filters-preview .tab-map.is-active {
+  background: url('../images/icons-sa3baf33045.png') no-repeat;
 }
 
 @font-face {
@@ -9006,7 +9006,7 @@ input[type="checkbox"] + label span {
 
 /* line 23, ../../sass/jamifind/_forms.scss */
 input[type="radio"] + label span {
-  background-position: 0 -1120px;
+  background-position: 0 -1166px;
   top: 1px;
 }
 
@@ -9018,7 +9018,7 @@ input[type="checkbox"]:checked + label span {
 
 /* line 33, ../../sass/jamifind/_forms.scss */
 input[type="radio"]:checked + label span {
-  background-position: 0 -1076px;
+  background-position: 0 -1122px;
 }
 
 /* line 1, ../../sass/jamifind/_header.scss */
@@ -9548,30 +9548,38 @@ header {
 }
 /* line 231, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings {
-  background-position: 0 -1030px;
+  background-position: 0 -1076px;
 }
 /* line 59, ../../../../../var/lib/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .sidebar .sidebar-list .settings:active, .sidebar .sidebar-list .settings.icon-settings-active {
-  background-position: 0 -984px;
+  background-position: 0 -1030px;
 }
 /* line 234, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .settings:hover, .sidebar .sidebar-list .settings.active {
+  background-position: 0 -1030px;
+}
+/* line 239, ../../sass/jamifind/_sidebar.scss */
+.sidebar .sidebar-list .jams {
   background-position: 0 -984px;
 }
-/* line 243, ../../sass/jamifind/_sidebar.scss */
+/* line 242, ../../sass/jamifind/_sidebar.scss */
+.sidebar .sidebar-list .jams:hover, .sidebar .sidebar-list .jams.active {
+  background-position: 0 -984px;
+}
+/* line 251, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends:hover i, .sidebar .sidebar-list .invite-friends.active i {
   color: #fabc09;
 }
-/* line 248, ../../sass/jamifind/_sidebar.scss */
+/* line 256, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends a {
   padding-left: 0;
 }
-/* line 252, ../../sass/jamifind/_sidebar.scss */
+/* line 260, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .invite-friends i {
   padding-right: 12px;
   color: #666;
 }
-/* line 258, ../../sass/jamifind/_sidebar.scss */
+/* line 266, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout {
   background-position: 0 -650px;
 }
@@ -9579,7 +9587,7 @@ header {
 .sidebar .sidebar-list .logout:active, .sidebar .sidebar-list .logout.icon-logout-active {
   background-position: 0 -606px;
 }
-/* line 261, ../../sass/jamifind/_sidebar.scss */
+/* line 269, ../../sass/jamifind/_sidebar.scss */
 .sidebar .sidebar-list .logout:hover, .sidebar .sidebar-list .logout.active {
   background-position: 0 -606px;
 }
@@ -12113,6 +12121,126 @@ header {
   .conversation-send .btn {
     margin-top: 10px;
   }
+}
+
+/* line 3, ../../sass/jamifind/_jams.scss */
+.single-jam ul.members-list li.member {
+  float: left;
+  margin: 0 10px 0 0;
+  text-align: left;
+  width: 90px;
+  height: 200px;
+}
+/* line 10, ../../sass/jamifind/_jams.scss */
+.single-jam ul.members-list li.member img {
+  display: block;
+  padding: 0;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+}
+/* line 18, ../../sass/jamifind/_jams.scss */
+.single-jam ul.members-list li.member h4 {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 5px 0;
+}
+/* line 25, ../../sass/jamifind/_jams.scss */
+.single-jam ul.members-list li.member span.tag {
+  display: block;
+}
+/* line 29, ../../sass/jamifind/_jams.scss */
+.single-jam ul.members-list li.member.invited-member {
+  opacity: .8;
+}
+/* line 35, ../../sass/jamifind/_jams.scss */
+.single-jam h3 {
+  font-size: 20px;
+  line-height: 23px;
+}
+/* line 40, ../../sass/jamifind/_jams.scss */
+.single-jam .panel.jam-members-container {
+  border: 1px solid #000;
+  border-radius: 0;
+}
+/* line 44, ../../sass/jamifind/_jams.scss */
+.single-jam .panel.jam-members-container h3 {
+  font-size: 18px;
+  margin-top: 5px;
+}
+/* line 49, ../../sass/jamifind/_jams.scss */
+.single-jam .panel.jam-members-container .panel-heading {
+  background: #fff;
+  color: #fabc09;
+  border-radius: 0;
+  border-bottom: 1px solid #000;
+}
+/* line 56, ../../sass/jamifind/_jams.scss */
+.single-jam .panel.jam-members-container .panel-body {
+  border-radius: 0;
+}
+/* line 62, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-description-container {
+  padding: 5px 15px;
+  background: #eaeaea;
+}
+/* line 67, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-videos-container {
+  border-radius: 0;
+  margin-top: 20px;
+}
+/* line 71, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-videos-container .panel-heading {
+  background: #000;
+  color: #fff;
+  border-radius: 0;
+  border-bottom: 1px solid #000;
+}
+/* line 80, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-instrument-tags li {
+  font-size: 14px;
+  color: #fff;
+  background-color: #3b385e;
+  padding: 4px 10px;
+  margin-right: 6px;
+}
+
+/* line 89, ../../sass/jamifind/_jams.scss */
+.single-jam-list {
+  border: 2px solid #000;
+  margin: 0 15px 20px;
+}
+/* line 93, ../../sass/jamifind/_jams.scss */
+.single-jam-list ul.members-list li.member {
+  height: auto;
+}
+
+/* line 98, ../../sass/jamifind/_jams.scss */
+.jam-no-auth {
+  background-color: #fff;
+}
+
+/* line 102, ../../sass/jamifind/_jams.scss */
+.jam-type {
+  text-transform: uppercase;
+  background-color: #3b385e;
+  border-radius: 0;
+  padding: 3px 10px;
+  color: #fff;
+}
+
+/* line 110, ../../sass/jamifind/_jams.scss */
+.profile-tabs > li a#start-jam-btn {
+  border: none;
+  margin-top: 5px;
+  font-weight: normal;
+  padding: 5px 35px;
+}
+
+/* line 117, ../../sass/jamifind/_jams.scss */
+.profile-tabs > li a#start-jam-btn:hover {
+  color: inherit;
 }
 
 /* line 1, ../../sass/jamifind/_login.scss */

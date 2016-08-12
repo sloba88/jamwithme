@@ -22,7 +22,7 @@
     <div class="row with-scrollbar" style="height: 600px">
         <div class="clearfix">
             {% for j in jams %}
-                <div class="row single-jam-list">
+                <div class="row single-jam single-jam-list">
                     <div class="col-md-12" style="padding: 14px 10px;">
                         <div class="col-md-4">
                             <span class="jam-type">{{ j.type|jam_type_to_string }}</span>
@@ -96,6 +96,12 @@
                     </div>
                 </div>
             {% endfor %}
+
+            {% if jams|length == 0 %}
+                <div class="col-md-12">
+                    <div class="alert alert-info" role="alert">No content in this category currently.</div>
+                </div>
+            {% endif %}
         </div>
     </div>
 

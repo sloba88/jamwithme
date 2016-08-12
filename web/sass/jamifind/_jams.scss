@@ -1,0 +1,120 @@
+.single-jam {
+
+  ul.members-list li.member {
+    float: left;
+    margin: 0 10px 0 0;
+    text-align: left;
+    width: 90px;
+    height: 200px;
+
+    img{
+      display: block;
+      padding: 0;
+      width: 80px;
+      height: 80px;
+      background-color: #fff;
+    }
+
+    h4 {
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 14px;
+      margin: 5px 0;
+    }
+
+    span.tag {
+      display: block;
+    }
+
+    &.invited-member {
+      opacity: .8;
+    }
+
+  }
+
+  h3 {
+    font-size: 20px;
+    line-height: 23px;
+  }
+
+  .panel.jam-members-container {
+    border: 1px solid #000;
+    border-radius: 0;
+
+    h3 {
+      font-size: 18px;
+      margin-top: 5px;
+    }
+
+    .panel-heading {
+      background: #fff;
+      color: #fabc09;
+      border-radius: 0;
+      border-bottom: 1px solid #000;
+    }
+
+    .panel-body{
+      border-radius: 0;
+    }
+
+  }
+
+  .jam-description-container {
+    padding: 5px 15px;
+    background: #eaeaea;
+  }
+
+  .jam-videos-container {
+    border-radius: 0;
+    margin-top: 20px;
+
+    .panel-heading{
+      background: #000;
+      color: #fff;
+      border-radius: 0;
+      border-bottom: 1px solid #000;
+    }
+
+  }
+
+  .jam-instrument-tags li {
+    font-size: 14px;
+    color: #fff;
+    background-color: #3b385e;
+    padding: 4px 10px;
+    margin-right: 6px;
+  }
+}
+
+.single-jam-list {
+  border: 2px solid #000;
+  margin: 0 15px 20px;
+
+  ul.members-list li.member {
+    height: auto;
+  }
+}
+
+.jam-no-auth {
+  background-color: #fff;
+}
+
+.jam-type{
+  text-transform: uppercase;
+  background-color: #3b385e;
+  border-radius: 0;
+  padding: 3px 10px;
+  color: #fff;
+}
+
+.profile-tabs > li a#start-jam-btn {
+  border: none;
+  margin-top: 5px;
+  font-weight: normal;
+  padding: 5px 35px;
+}
+
+.profile-tabs > li a#start-jam-btn:hover {
+  color: inherit;
+}
+

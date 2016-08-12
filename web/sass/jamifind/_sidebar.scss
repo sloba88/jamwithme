@@ -236,6 +236,14 @@
 			}
 		}
 
+		.jams {
+			@include icons-sprite(icon-rock);
+
+			&:hover, &.active {
+				@include icons-sprite(icon-rock);
+			}
+		}
+
 		.invite-friends {
 
 			&:hover, &.active {
