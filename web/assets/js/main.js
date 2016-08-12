@@ -625,6 +625,18 @@ $(function() {
             url: Routing.generate('jam_add_interest', {'id': jamId})
         }).done(function(data) {
             addMessage(data.status, data.message);
+            $('#jam-add-to-interest').hide();
+        });
+    });
+
+    $('#jam-remove-from-interest').on('click', function(e) {
+        e.preventDefault();
+        var jamId = $(this).data('jam');
+        $.ajax({
+            url: Routing.generate('jam_remove_interest', {'id': jamId})
+        }).done(function(data) {
+            addMessage(data.status, data.message);
+            $('#jam-remove-from-interest').hide();
         });
     });
 

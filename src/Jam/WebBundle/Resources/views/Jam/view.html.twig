@@ -82,10 +82,14 @@
                 </div>
             </div>
             <br />
-            {% if is_granted("ROLE_USER") and app.user != jam.creator and app.user.id not in jam.membersMusiciansIds %}
+            {% if is_granted("ROLE_USER") and app.user != jam.creator %}
                 <div class="row">
-                    <div class="col-md-4">
-                        <a href="#" id="jam-add-to-interest" data-jam="{{ jam.id }}" class="btn btn-default"><i class="fa fa-thumbs-up" aria-hidden="true"></i> INTERESTED</a>
+                    <div class="col-md-6">
+                    {% if app.user.id not in jam.membersMusiciansIds %}
+                        <a href="#" id="jam-add-to-interest" data-jam="{{ jam.id }}" class="btn btn-default"><i class="fa fa-thumbs-up" aria-hidden="true"></i> SHOW INTEREST</a>
+                    {% else %}
+                        <a href="#" id="jam-remove-from-interest" data-jam="{{ jam.id }}" class="btn btn-default"><i class="fa fa-thumbs-down" aria-hidden="true"></i> REMOVE INTEREST</a>
+                    {% endif %}
                     </div>
                 </div>
             {% endif %}

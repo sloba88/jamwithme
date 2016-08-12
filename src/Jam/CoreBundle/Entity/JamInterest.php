@@ -35,8 +35,8 @@ class JamInterest
      * @var integer
      *
      * @Gedmo\Blameable(on="create")
-     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User", cascade={"remove"})
-     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=false)
      */
     private $musican;
 

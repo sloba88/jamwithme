@@ -340,4 +340,32 @@ class JamController extends Controller
 
         return $response;
     }
+
+    /**
+     * @Route("/jam/{id}/remove-from-interest", name="jam_remove_interest", options={"expose"=true})
+     * @Template()
+     */
+    public function removeInterestAction($id)
+    {
+        $interest = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:JamInterest')
+            ->findOneBy(array(
+                'jam' => $id,
+                'musican' => $this->getUser()
+            ));
+
+        if (!$interest) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($interest);
+        $em->flush();
+
+        $response = new JsonResponse();
+        $response->setData(array(
+            'status' => 'success',
+            'message' => 'Jam removed from interests successfully'
+        ));
+
+        return $response;
+    }
 }
