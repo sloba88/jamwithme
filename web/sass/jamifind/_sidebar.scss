@@ -237,10 +237,20 @@
 		}
 
 		.jams {
-			@include icons-sprite(icon-rock);
+			svg {
+				fill: #666;
+				width: 28px;
+				height: 28px;
+				float: left;
+				position: relative;
+				top: -6px;
+				left: -5px;
+			}
 
 			&:hover, &.active {
-				@include icons-sprite(icon-rock);
+				svg {
+					fill: #fabc09;
+				}
 			}
 		}
 
