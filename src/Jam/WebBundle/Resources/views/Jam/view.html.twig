@@ -119,7 +119,7 @@
                                         {% else %}
                                                 {{ m.musician.username }}
                                         {% endif %}</h4></a>
-                                    <p>{{ m.instrument.name }}</p>
+                                    <p class="member-instrument">{{ m.instrument.name }}</p>
                                 </li>
                             {% endif %}
                             {% if m.invitee is not null %}
@@ -128,7 +128,7 @@
                                     <a href="#">
                                         <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_medium_1') }}" />
                                         <h4 class="name">{{ m.invitee.firstName }}<br />{{ m.invitee.lastName }}</h4></a>
-                                    <p>{{ m.instrument.name }}</p>
+                                    <p class="member-instrument">{{ m.instrument.name }}</p>
                                 </li>
                             {% endif %}
                         {% endfor %}

@@ -29,6 +29,10 @@
     &.invited-member {
       opacity: .8;
     }
+
+    .member-instrument{
+      line-height: 14px;
+    }
   }
 
   h3 {
@@ -55,7 +59,6 @@
     .panel-body{
       border-radius: 0;
     }
-
   }
 
   .jam-description-container {
