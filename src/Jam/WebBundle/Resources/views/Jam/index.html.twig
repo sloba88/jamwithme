@@ -19,8 +19,8 @@
 
     </div>
 
-    <div class="row with-scrollbar" style="height: 600px">
-        <div class="clearfix">
+    <div class="row view-tab is-active with-scrollbar">
+        <div>
             {% for j in jams %}
                 <div class="row single-jam single-jam-list">
                     <div class="col-md-12" style="padding: 14px 10px;">
@@ -79,8 +79,8 @@
                         </div>
                     </div>
 
-                    <div class="col-md-12" style="background: #F3F3F3; padding: 14px 10px;">
-                        <div class="col-md-8">
+                    <div class="col-md-12 col-xs-12" style="background: #F3F3F3; padding: 14px 10px;">
+                        <div class="col-md-8 col-xs-12">
                             <label>Looking for someone who play:</label>
                             <ul class="tags">
                                 {% for m in j.instruments %}
@@ -88,7 +88,7 @@
                                 {% endfor %}
                             </ul>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-xs-12">
                             <p class="pull-right">
                                 <i class="fa fa-users" aria-hidden="true"></i> {{ j.interests|length }} people interested
                             </p>

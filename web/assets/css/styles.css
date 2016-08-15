@@ -12249,6 +12249,20 @@ header {
   color: inherit;
 }
 
+/* line 120, ../../sass/jamifind/_jams.scss */
+#jam_musician_instruments .col-md-6 {
+  margin-bottoM: 10px;
+}
+/* line 124, ../../sass/jamifind/_jams.scss */
+#jam_musician_instruments li.row {
+  margin-bottom: 10px;
+}
+
+/* line 129, ../../sass/jamifind/_jams.scss */
+.add-jam-member-controls a {
+  margin-bottom: 10px;
+}
+
 /* line 1, ../../sass/jamifind/_login.scss */
 .login-page {
   background: url(../images/background-login.jpg) no-repeat;
