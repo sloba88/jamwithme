@@ -130,7 +130,8 @@ function saveMessageTo(socket, data, conversation, notify) {
             if (notify) {
                 //send email about the message
                 var mess = tagLinks(messageTo.message).substring(0, 60) + ' ...';
-                notifyUserByEmail(to, mess, messageTo.createdAt.getTime(), messageTo.from);
+                var createdAt = Math.round(messageTo.createdAt.getTime() / 1000);
+                notifyUserByEmail(to, mess, createdAt, messageTo.from);
             }
         }
 
