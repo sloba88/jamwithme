@@ -269,11 +269,34 @@ sixdays_opcache:
     web_dir:    %kernel.root_dir%/../web
     protocol:   %router.request_context.scheme%
 
+jms_translation:
+    configs:
+        app:
+            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
+            output_dir: %kernel.root_dir%/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            extractors: [alias_of_the_extractor]
+        jamCoreBundle:
+            dirs: [%kernel.root_dir%/../src]
+            output_dir: %kernel.root_dir%/../src/Jam/CoreBundle/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            extractors: [alias_of_the_extractor]
+
+services:
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
+
 parameters:
     jam_types:
-        1: Band
-        2: Jam session
-        3: Temporary replacement
+        1: label.band
+        2: label.jam.session
+        3: label.temp.replacement
     jam_stages:
         1: Just an idea
         2: Idea with some material ready (music, lyrics)

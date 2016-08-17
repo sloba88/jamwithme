@@ -19,6 +19,8 @@ class JamType extends AbstractType
 
     private $jamTypeChoices;
 
+    private $jamStatusChoices;
+
     private $em;
 
     public function __construct(EntityManager $em, array $jamStageChoices, array $jamTypeChoices, array $jamStatusChoices)
@@ -53,7 +55,8 @@ class JamType extends AbstractType
                 'choices' => $this->jamStageChoices
             ))
             ->add('type', 'choice', array(
-                'choices' => $this->jamTypeChoices
+                'choices' => $this->jamTypeChoices,
+                'translation_domain' => 'JamCoreBundle'
             ))
             ->add('status', 'choice', array(
                 'choices' => $this->jamStatusChoices

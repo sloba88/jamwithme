@@ -28,7 +28,9 @@
 
                     {{ form_row(form.type) }}
 
-                    {{ form_row(form.name, { 'attr': { 'placeholder': 'Band title for example'}}) }}
+                    {{ form_row(form.name, { 'attr': { 'placeholder': 'Band name for example'}}) }}
+
+                    {{ form_row(form.description, { 'attr': { 'placeholder': 'Some more details'}}) }}
 
                     {{ form_row(form.stage) }}
 
@@ -42,14 +44,6 @@
 
                     {{ form_row(form.instruments, { 'attr': { 'placeholder': 'Missing instruments'}}) }}
 
-                    {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres', 'attr': { 'placeholder': 'What genres do you play?'} }) }}
-
-                    <div class="form-group">
-                        {{ form_label(form.artists) }}
-                        {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists', 'attr': { 'placeholder': 'Choose artists'}}) }}
-                        {{ form_errors(form.artists) }}
-                    </div>
-
                     {% if app.request.attributes.get('_route') == 'edit_jam' %}
                         <div class="form-group">
                             {{ form_label(form.status) }}
@@ -61,7 +55,14 @@
                 </div>
 
                 <div class="col-md-7">
-                    {{ form_row(form.description, { 'attr': { 'placeholder': 'Some more details'}}) }}
+
+                    {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres', 'attr': { 'placeholder': 'What genres do you play?'} }) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.artists) }}
+                        {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists', 'attr': { 'placeholder': 'Choose artists'}}) }}
+                        {{ form_errors(form.artists) }}
+                    </div>
 
                     <label>Current members</label>
 
