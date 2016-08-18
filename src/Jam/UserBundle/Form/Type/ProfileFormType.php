@@ -62,7 +62,7 @@ class ProfileFormType extends BaseType
 
         $builder->add('hourlyRate', 'text', array(
             'required' => false,
-            'label' => 'label.hourly.rate.&.euro'
+            'label' => 'label.hourly.rate'
         ));
 
         $builder->add('isVisitor', 'checkbox', array(

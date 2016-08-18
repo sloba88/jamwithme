@@ -4,6 +4,9 @@ namespace Jam\CoreBundle\Form\Type;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Entity\Artist;
+use Jam\CoreBundle\Services\JamStages;
+use Jam\CoreBundle\Services\JamStatuses;
+use Jam\CoreBundle\Services\JamTypes;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -12,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class JamType extends AbstractType
 {
@@ -23,7 +27,8 @@ class JamType extends AbstractType
 
     private $em;
 
-    public function __construct(EntityManager $em, array $jamStageChoices, array $jamTypeChoices, array $jamStatusChoices)
+
+    public function __construct(EntityManager $em, JamTypes $jamTypeChoices, JamStages $jamStageChoices, JamStatuses $jamStatusChoices)
     {
         $this->jamStageChoices = $jamStageChoices;
 
@@ -44,29 +49,32 @@ class JamType extends AbstractType
 
         $builder
             ->add('name', 'text', array(
-                'label' => 'Title'
+                'label' => 'label.jam.name'
             ))
             ->add('description', null, array(
+                'label' => 'label.jam.description',
                 'attr' => array(
                     'rows' => 4
                 )
             ))
             ->add('stage', 'choice', array(
-                'choices' => $this->jamStageChoices
+                'label' => 'label.jam.stage',
+                'choices' => $this->jamStageChoices->getChoices()
             ))
             ->add('type', 'choice', array(
-                'choices' => $this->jamTypeChoices,
-                'translation_domain' => 'JamCoreBundle'
+                'label' => 'label.jam.type',
+                'choices' => $this->jamTypeChoices->getChoices()
             ))
             ->add('status', 'choice', array(
-                'choices' => $this->jamStatusChoices
+                'label' => 'label.jam.status',
+                'choices' => $this->jamStatusChoices->getChoices()
             ))
             ->add('location', LocationType::class, array(
                 'data' => $jam->getLocation()
             ))
             ->add('genres', EntityType::class, array(
                 'required' => false,
-                'label' => 'Genres',
+                'label' => 'label.jam.genres',
                 'multiple' => true,
                 'class' => 'Jam\CoreBundle\Entity\Genre',
                 'choice_label' => 'name'
@@ -74,7 +82,7 @@ class JamType extends AbstractType
             ->add('instruments', 'jam_instrument_type', array(
                 'required' => true,
                 'mapped' => false,
-                'label' => 'Looking for',
+                'label' => 'label.jam.looking.for',
                 'multiple' => true,
                 'expanded' => false,
                 'allow_extra_fields' => true,
@@ -94,7 +102,7 @@ class JamType extends AbstractType
                 )
             ))
             ->add('artists', EntityType::class, array(
-                'label' => 'Sounds like',
+                'label' => 'label.jam.sounds.like',
                 'class' => 'Jam\CoreBundle\Entity\Artist',
                 'multiple' => true,
                 'choice_value' => 'name',

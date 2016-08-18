@@ -28,9 +28,9 @@
 
                     {{ form_row(form.type) }}
 
-                    {{ form_row(form.name, { 'attr': { 'placeholder': 'Band name for example'}}) }}
+                    {{ form_row(form.name, { 'attr': { 'placeholder': 'placeholder.band.name.for.example'|trans}}) }}
 
-                    {{ form_row(form.description, { 'attr': { 'placeholder': 'Some more details'}}) }}
+                    {{ form_row(form.description, { 'attr': { 'placeholder': 'placeholder.some.more.details'|trans}}) }}
 
                     {{ form_row(form.stage) }}
 
@@ -56,7 +56,7 @@
 
                 <div class="col-md-7">
 
-                    {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres', 'attr': { 'placeholder': 'What genres do you play?'} }) }}
+                    {{ form_row(form.genres, { 'id' : 'fos_user_profile_form_genres' }) }}
 
                     <div class="form-group">
                         {{ form_label(form.artists) }}
@@ -64,7 +64,7 @@
                         {{ form_errors(form.artists) }}
                     </div>
 
-                    <label>Current members</label>
+                    <label>{{ 'label.jam.current.members'|trans }}</label>
 
                     <ul id="jam_musician_instruments">
 
@@ -103,10 +103,10 @@
                     <div class="row">
                         <div class="form-group add-jam-member-controls">
                             <div class="col-md-6">
-                                <a href="" data-placement="top" data-container="body" data-trigger="hover" data-content="Who else is playing?" data-toggle="popover" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> Add member</a>
+                                <a href="" data-placement="top" data-container="body" data-trigger="hover" data-content="{{ 'jam.who.else.is.playing'|trans }}" data-toggle="popover" class="btn btn-primary" id="add_jam_member"><i class="fa fa-user-plus" aria-hidden="true"></i> {{ 'button.jam.add.member'|trans }}</a>
                             </div>
                             <div class="col-md-6">
-                                <a href="" data-placement="top" data-trigger="hover" data-content="Invite member from outside of Jamifind" data-toggle="popover" class="btn btn-primary" id="invite_jam_member"><i class="fa fa-users" aria-hidden="true"></i> Invite member</a>
+                                <a href="" data-placement="top" data-trigger="hover" data-content="Invite member from outside of Jamifind" data-toggle="popover" class="btn btn-primary" id="invite_jam_member"><i class="fa fa-users" aria-hidden="true"></i> {{ 'button.jam.invite.member'|trans }}</a>
                             </div>
                         </div>
                     </div>

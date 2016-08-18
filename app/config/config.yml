@@ -291,17 +291,3 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - name: twig.extension
-
-parameters:
-    jam_types:
-        1: label.band
-        2: label.jam.session
-        3: label.temp.replacement
-    jam_stages:
-        1: Just an idea
-        2: Idea with some material ready (music, lyrics)
-        3: Established band (had gigs before)
-    jam_statuses:
-        1: Active
-        2: Obsolite
-        3: Success

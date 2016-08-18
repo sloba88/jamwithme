@@ -21,7 +21,7 @@ class EmailType extends AbstractType {
             )
         ))
         ->add('save', 'submit', array(
-            'label' => 'label.save'
+            'label' => 'button.save'
         ));
     }
 

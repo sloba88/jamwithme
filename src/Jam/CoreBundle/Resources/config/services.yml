@@ -40,10 +40,24 @@ services:
                 -  { name: kernel.event_listener, event: fos_user.profile.edit.success, method: calculate }
                 -  { name: kernel.event_listener, event: fos_user.registration.confirmed, method: calculate }
 
+    jam.types:
+        class: Jam\CoreBundle\Services\JamTypes
+        arguments: ["@translator"]
+
+    jam.statuses:
+        class: Jam\CoreBundle\Services\JamStatuses
+        arguments: ["@translator"]
+
+    jam.stages:
+        class: Jam\CoreBundle\Services\JamStages
+        arguments: ["@translator"]
+
     app.twig_extension:
         class: Jam\CoreBundle\Twig\AppExtension
         public: false
         tags:
             - { name: twig.extension }
         calls:
-            - [setJamsType, ["%jam_types%"]]
+            - [setJamTypes, ["@jam.types"]]
+            - [setJamStages, ["@jam.stages"]]
+            - [setJamStatuses, ["@jam.statuses"]]
