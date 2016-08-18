@@ -1,4 +1,6 @@
-//plugin for dinamic hover, written by Vladislav Stanic
+'use strict';
+
+//plugin for dinamic window height, written by Vladislav Stanic
 (function($) {
     $.heightsPlugin = function(element, options) {
         var settings = {};
@@ -71,7 +73,7 @@
         };
 
         this.tabHeight = function() {
-            var $viewTab = $('.main-content-inner .view-tab');
+            var $viewTab = $('.main-content-inner .view-tab-container');
 
             if (isMobile === false) {
 
@@ -79,6 +81,11 @@
                     var $this = $(this);
 
                     $this.height(windowHeight - $this.offset().top - 10);
+
+                    $viewTab.on('shown.tab', function() {
+                        console.log($this);
+                        $this.height(windowHeight - $this.offset().top - 10);
+                    });
                 });
             } else {
                 $viewTab.height('');

@@ -119,6 +119,7 @@ function tabsToggle(object) {
                     // setTimeout(function() {
                     $thisTab.fadeIn(speed).addClass('is-active');
                     $thisBtn.trigger('shown.tab');
+                    $thisTab.trigger('shown.tab');
                     // }, speed)
                 }
             });

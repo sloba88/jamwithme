@@ -35,9 +35,10 @@
     }
   }
 
-  h3 {
+  h2 {
     font-size: 20px;
     line-height: 23px;
+    text-transform: uppercase;
   }
 
   .panel.jam-members-container {
@@ -89,7 +90,7 @@
 
 .single-jam-list {
   border: 2px solid #000;
-  margin: 0 15px 20px;
+  margin: 0 20px 20px;
 
   ul.members-list li.member {
     height: auto;

@@ -166,8 +166,11 @@ $(function() {
 
     $('body').on('click', '.location-results a', function(e){
         e.preventDefault();
-        myLocationMarker.setLatLng(new L.LatLng(Number($(this).data('lat')), Number($(this).data('lng'))));
-        map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
+        myLocation = [$(this).data('lat'), $(this).data('lng')];
+        if (mapInitialized) {
+            myLocationMarker.setLatLng(new L.LatLng(Number($(this).data('lat')), Number($(this).data('lng'))));
+            map.setView(myLocationMarker.getLatLng(), 17, { animate: true });
+        }
         $('.location-results').css({'display': 'none'});
         $('.location_widget .location-input').val($(this).text());
 

@@ -15,16 +15,25 @@ use Symfony\Component\HttpFoundation\Request;
 
 class JamController extends Controller
 {
-
     /**
      * @Route("/jams", name="jams")
      * @Template()
      */
     public function indexAction()
     {
-        $jams = $this->getDoctrine()
-            ->getRepository('JamCoreBundle:Jam')
-            ->findBy(array(), array('id' => 'DESC'));
+        $em = $this->getDoctrine()->getManager();
+        $jams = array();
+
+        if ($this->getUser()->getLocation()) {
+            $query = $em->createQuery(
+                'SELECT j
+                FROM JamCoreBundle:Jam j
+                JOIN j.location jl
+                WHERE jl.country = :me
+                ORDER BY j.createdAt DESC'
+            )->setParameter('me', $this->getUser()->getLocation()->getCountry());
+            $jams = $query->getResult();
+        }
 
         return array(
             'jams' => $jams,
@@ -45,7 +54,7 @@ class JamController extends Controller
                 JOIN j.members m
                 JOIN m.musician u
                 WHERE u = :me
-                ORDER BY j.createdAt ASC'
+                ORDER BY j.createdAt DESC'
         )->setParameter('me', $this->getUser());
 
         return array(
@@ -67,7 +76,7 @@ class JamController extends Controller
                 JOIN j.interests i
                 JOIN i.musican u
                 WHERE u = :me
-                ORDER BY j.createdAt ASC'
+                ORDER BY j.createdAt DESC'
         )->setParameter('me', $this->getUser());
 
         return array(
