@@ -77,6 +77,7 @@ bundle install
 sudo gem install capistrano-symfony
 ```
 
+Exctract translations
 ```
-php app/console translation:extract en --dir=./src/ --output-dir=./app/Resources/translations
+php app/console translation:extract fi --config=app
 ```
