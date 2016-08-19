@@ -98,7 +98,7 @@ class ProfileFormType extends BaseType
         ));
 
         $builder->add('artists', EntityType::class, array(
-            'label' => 'Sounds like',
+            'label' => 'label.influences',
             'class' => 'Jam\CoreBundle\Entity\Artist',
             'multiple' => true,
             'choice_value' => 'name',
@@ -130,7 +130,7 @@ class ProfileFormType extends BaseType
 
                 $form->remove('artists');
                 $form->add('artists', EntityType::class, array(
-                    'label' => 'Sounds like',
+                    'label' => 'label.influences',
                     'multiple' => true,
                     'class' => 'Jam\CoreBundle\Entity\Artist',
                     'choice_value' => 'name',

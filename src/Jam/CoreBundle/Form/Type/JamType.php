@@ -136,7 +136,7 @@ class JamType extends AbstractType
 
                 $form->remove('artists');
                 $form->add('artists', EntityType::class, array(
-                    'label' => 'Sounds like',
+                    'label' => 'label.sounds.like',
                     'multiple' => true,
                     'class' => 'Jam\CoreBundle\Entity\Artist',
                     'choice_value' => 'name',
