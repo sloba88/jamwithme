@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-08-19T14:42:14Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-08-19T14:47:05Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -843,6 +843,11 @@
         <source>placeholder.km.around.you</source>
         <target state="new">km around you</target>
         <jms:reference-file line="31">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ba7daa786fd4a163ee060d40ff6a7e5ee33bb347" resname="placeholder.say.hello">
+        <source>placeholder.say.hello</source>
+        <target state="new">What's happening?</target>
+        <jms:reference-file line="7">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e0e6a6edd5c4989abcce6328f77adf3d9150ca5c" resname="placeholder.some.more.details">
         <source>placeholder.some.more.details</source>

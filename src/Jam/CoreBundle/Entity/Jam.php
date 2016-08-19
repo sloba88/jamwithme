@@ -85,7 +85,7 @@ class Jam
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="jams", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="jams_artists",
      *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
