@@ -342,7 +342,7 @@ $(function() {
         }
     });
 
-    $('#filter-by-distance-btn span').text($('#search_form_distance').val() + 'km around you');
+    $('#filter-by-distance-btn span').text($('#search_form_distance').val() + $('#search_form_distance').data('text'));
 
     $('.view-tab-container').on('ps-y-reach-end', function () {
         console.log('end reached');

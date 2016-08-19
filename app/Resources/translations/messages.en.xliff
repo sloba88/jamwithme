@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-08-19T12:51:01Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-08-19T14:42:14Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -31,7 +31,7 @@
         <target state="new">Location</target>
         <jms:reference-file line="115">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="105">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/setup.html.twig</jms:reference-file>
-        <jms:reference-file line="38">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
+        <jms:reference-file line="36">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9f1d74278d3e68d00f87742e436c88a139cdef2c" resname="Looking for">
         <source>Looking for</source>
@@ -42,13 +42,6 @@
         <source>Minimum 8 letters please</source>
         <target state="new">Minimum 8 letters please</target>
         <jms:reference-file line="34">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/RegistrationFormType.php</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="588359d4e654d6b102587b5fb6cc46d8b65ad170" resname="Sounds like">
-        <source>Sounds like</source>
-        <target state="new">Sounds like</target>
-        <jms:reference-file line="139">/vagrant/www/app/../src/Jam/CoreBundle/Form/Type/JamType.php</jms:reference-file>
-        <jms:reference-file line="101">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="133">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b408136ea5c79dd2b2bd07d3d17ea72e6202fe33" resname="Your Favourite Genres">
         <source>Your Favourite Genres</source>
@@ -437,6 +430,12 @@
         <jms:reference-file line="131">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="59">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="0b992e2cac98f5d101fd374d5139d6fa5b4782c6" resname="label.influences">
+        <source>label.influences</source>
+        <target state="new">label.influences</target>
+        <jms:reference-file line="101">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="133">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
       <trans-unit id="368bd668fb54c259299b5158b88a030cd48465dc" resname="label.jam">
         <source>label.jam</source>
         <target state="new">label.jam</target>
@@ -627,6 +626,7 @@
         <source>label.password</source>
         <target state="new">password</target>
         <jms:reference-file line="32">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/RegistrationFormType.php</jms:reference-file>
+        <jms:reference-file line="14">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55b15ad2bcbf41e3327ccaf2e01453f479e71f0c" resname="label.personal.info">
         <source>label.personal.info</source>
@@ -685,6 +685,11 @@
         <source>label.sounds</source>
         <target state="new">sounds</target>
         <jms:reference-file line="167">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a6121cd659f2b139835a05ed61228cfacce64b6d" resname="label.sounds.like">
+        <source>label.sounds.like</source>
+        <target state="new">label.sounds.like</target>
+        <jms:reference-file line="139">/vagrant/www/app/../src/Jam/CoreBundle/Form/Type/JamType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="be40ff74163e44cd5a6b6df4aaa63b7305f7d29c" resname="label.teach.music">
         <source>label.teach.music</source>
@@ -834,6 +839,11 @@
         <target state="new">Find by name or email</target>
         <jms:reference-file line="24">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="c010d9f4cb6e9b57e14bf07abc00f90b706e623b" resname="placeholder.km.around.you">
+        <source>placeholder.km.around.you</source>
+        <target state="new">km around you</target>
+        <jms:reference-file line="31">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="e0e6a6edd5c4989abcce6328f77adf3d9150ca5c" resname="placeholder.some.more.details">
         <source>placeholder.some.more.details</source>
         <target state="new">Some more details</target>
@@ -843,6 +853,11 @@
         <source>placeholder.url</source>
         <target state="new">Url</target>
         <jms:reference-file line="25">/vagrant/www/app/../src/Jam/CoreBundle/Form/Type/VideoType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="feb459c34406bf98c8bfc0f6b31e467edbc6da9d" resname="placeholder.username.or.email">
+        <source>placeholder.username.or.email</source>
+        <target state="new">Username or Email</target>
+        <jms:reference-file line="11">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c3474ad1b73a0d0db019eec986ee675e8afaf640" resname="resetting.request.invalid_username">
         <source>resetting.request.invalid_username</source>
