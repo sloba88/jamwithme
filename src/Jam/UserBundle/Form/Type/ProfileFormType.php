@@ -110,7 +110,7 @@ class ProfileFormType extends BaseType
                 $data = $event->getData();
                 $form = $event->getForm();
 
-                if (!$data) {
+                if (!$data || !array_key_exists('artists', $data)) {
                     return;
                 }
 

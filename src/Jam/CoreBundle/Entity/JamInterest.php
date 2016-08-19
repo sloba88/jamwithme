@@ -38,7 +38,7 @@ class JamInterest
      * @ORM\ManyToOne(targetEntity="Jam\UserBundle\Entity\User")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id", nullable=false)
      */
-    private $musican;
+    private $musician;
 
     /**
      * @var \DateTime
@@ -108,26 +108,26 @@ class JamInterest
     }
 
     /**
-     * Set musican
+     * Set musician
      *
-     * @param \Jam\UserBundle\Entity\User $musican
+     * @param \Jam\UserBundle\Entity\User $musician
      *
      * @return JamInterest
      */
-    public function setMusican(\Jam\UserBundle\Entity\User $musican)
+    public function setMusician(\Jam\UserBundle\Entity\User $musician)
     {
-        $this->musican = $musican;
+        $this->musician = $musician;
 
         return $this;
     }
 
     /**
-     * Get musican
+     * Get musician
      *
      * @return \Jam\UserBundle\Entity\User
      */
-    public function getMusican()
+    public function getMusician()
     {
-        return $this->musican;
+        return $this->musician;
     }
 }

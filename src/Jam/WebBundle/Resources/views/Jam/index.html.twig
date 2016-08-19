@@ -63,7 +63,7 @@
                                                 </li>
                                             {% endif %}
                                             {% if m.invitee is not null %}
-                                                <li class="member invited-member" data-toggle="tooltip" title="Pending invitation" data-placement="right">
+                                                <li class="member invited-member" data-toggle="tooltip" title="{{ 'label.pending.invitation'|trans }}" data-placement="right">
                                                     <a href="#">
                                                         <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_medium_1') }}" />
                                                         <h4 class="name">{{ m.invitee.firstName }}<br />{{ m.invitee.lastName }}</h4></a>

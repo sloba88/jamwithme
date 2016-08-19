@@ -36,8 +36,7 @@ class JamController extends Controller
         }
 
         return array(
-            'jams' => $jams,
-            'headline' => 'Jams'
+            'jams' => $jams
         );
     }
 
@@ -58,8 +57,7 @@ class JamController extends Controller
         )->setParameter('me', $this->getUser());
 
         return array(
-            'jams' => $query->getResult(),
-            'headline' => 'My Jams'
+            'jams' => $query->getResult()
         );
     }
 
@@ -80,8 +78,7 @@ class JamController extends Controller
         )->setParameter('me', $this->getUser());
 
         return array(
-            'jams' => $query->getResult(),
-            'headline' => 'My Interest Jams'
+            'jams' => $query->getResult()
         );
     }
 
@@ -344,7 +341,7 @@ class JamController extends Controller
         $response = new JsonResponse();
         $response->setData(array(
             'status' => 'success',
-            'message' => 'Jam added to interests successfully'
+            'message' => $this->get('translator')->trans('message.jam.added.to.interest')
         ));
 
         return $response;
@@ -360,7 +357,7 @@ class JamController extends Controller
             ->getRepository('JamCoreBundle:JamInterest')
             ->findOneBy(array(
                 'jam' => $id,
-                'musican' => $this->getUser()
+                'musician' => $this->getUser()
             ));
 
         if (!$interest) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
@@ -372,7 +369,7 @@ class JamController extends Controller
         $response = new JsonResponse();
         $response->setData(array(
             'status' => 'success',
-            'message' => 'Jam removed from interests successfully'
+            'message' => $this->get('translator')->trans('message.jam.removed.from.interest')
         ));
 
         return $response;

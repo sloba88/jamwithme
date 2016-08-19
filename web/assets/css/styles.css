@@ -12216,23 +12216,40 @@ header {
   padding: 4px 10px;
   margin-right: 6px;
 }
+/* line 90, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-interested-list {
+  margin-top: 20px;
+}
+/* line 93, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-interested-list li {
+  float: left;
+  margin-right: 10px;
+}
+/* line 97, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-interested-list li h6 {
+  font-size: 11px;
+}
+/* line 101, ../../sass/jamifind/_jams.scss */
+.single-jam .jam-interested-list li img {
+  width: 50px;
+}
 
-/* line 91, ../../sass/jamifind/_jams.scss */
+/* line 108, ../../sass/jamifind/_jams.scss */
 .single-jam-list {
   border: 2px solid #000;
   margin: 0 20px 20px;
 }
-/* line 95, ../../sass/jamifind/_jams.scss */
+/* line 112, ../../sass/jamifind/_jams.scss */
 .single-jam-list ul.members-list li.member {
   height: auto;
 }
 
-/* line 100, ../../sass/jamifind/_jams.scss */
+/* line 117, ../../sass/jamifind/_jams.scss */
 .jam-no-auth {
   background-color: #fff;
 }
 
-/* line 104, ../../sass/jamifind/_jams.scss */
+/* line 121, ../../sass/jamifind/_jams.scss */
 .jam-type {
   text-transform: uppercase;
   background-color: #3b385e;
@@ -12241,7 +12258,7 @@ header {
   color: #fff;
 }
 
-/* line 112, ../../sass/jamifind/_jams.scss */
+/* line 129, ../../sass/jamifind/_jams.scss */
 .profile-tabs > li a#start-jam-btn {
   border: none;
   margin-top: 5px;
@@ -12249,21 +12266,21 @@ header {
   padding: 5px 35px;
 }
 
-/* line 119, ../../sass/jamifind/_jams.scss */
+/* line 136, ../../sass/jamifind/_jams.scss */
 .profile-tabs > li a#start-jam-btn:hover {
   color: inherit;
 }
 
-/* line 124, ../../sass/jamifind/_jams.scss */
+/* line 141, ../../sass/jamifind/_jams.scss */
 #jam_musician_instruments .col-md-6 {
   margin-bottoM: 10px;
 }
-/* line 128, ../../sass/jamifind/_jams.scss */
+/* line 145, ../../sass/jamifind/_jams.scss */
 #jam_musician_instruments li.row {
   margin-bottom: 10px;
 }
 
-/* line 133, ../../sass/jamifind/_jams.scss */
+/* line 150, ../../sass/jamifind/_jams.scss */
 .add-jam-member-controls a {
   margin-bottom: 10px;
 }

@@ -627,6 +627,7 @@ $(function() {
         }).done(function(data) {
             addMessage(data.status, data.message);
             $('#jam-add-to-interest').hide();
+            window.location.reload();
         });
     });
 
@@ -638,6 +639,7 @@ $(function() {
         }).done(function(data) {
             addMessage(data.status, data.message);
             $('#jam-remove-from-interest').hide();
+            window.location.reload();
         });
     });
 

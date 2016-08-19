@@ -85,7 +85,7 @@ class Jam
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="jams", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="jams_artists",
      *      joinColumns={@ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)},
@@ -423,6 +423,17 @@ class Jam
         foreach ($this->members AS $member){
             if ($member->getMusician()) {
                 array_push($ids, $member->getMusician()->getId());
+            }
+        }
+        return $ids;
+    }
+
+    public function getInterestedMusiciansIds()
+    {
+        $ids = array();
+        foreach ($this->interests AS $interest){
+            if ($interest->getMusician()) {
+                array_push($ids, $interest->getMusician()->getId());
             }
         }
         return $ids;
