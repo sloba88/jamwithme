@@ -72,12 +72,12 @@
       </trans-unit>
       <trans-unit id="de272e8c666c73df86607b22ca2f7fffb7784abf" resname="button.jam.add.member">
         <source>button.jam.add.member</source>
-        <target state="new">button.jam.add.member</target>
+        <target state="new">Add member</target>
         <jms:reference-file line="106">./src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c0e8161dbab517f97b28b350e83dac3b2188102b" resname="button.jam.invite.member">
         <source>button.jam.invite.member</source>
-        <target state="new">button.jam.invite.member</target>
+        <target state="new">Invite member</target>
         <jms:reference-file line="109">./src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="abcfee3dcaccf158d515be3c8e3157c1776196ab" resname="button.login">
@@ -549,7 +549,7 @@
       </trans-unit>
       <trans-unit id="791c3f485e574255328e2de0d2f6650e86b764fd" resname="label.learn.an.instrument">
         <source>label.learn.an.instrument</source>
-        <target state="new">label.learn.an.instrument</target>
+        <target state="new">learn an instrument</target>
         <jms:reference-file line="70">./src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
         <jms:reference-file line="48">./src/Jam/UserBundle/Form/Type/RegistrationFormType.php</jms:reference-file>
       </trans-unit>
@@ -560,7 +560,7 @@
       </trans-unit>
       <trans-unit id="859e6d441fff850329b6805f4a6c21700ccedaa9" resname="label.location.info">
         <source>label.location.info</source>
-        <target state="new">label.location.info</target>
+        <target state="new">Your location helps us find people around you. You can be as specific as you like, we'll never show your full address to anybody, ever!</target>
         <jms:reference-file line="97">./src/Jam/UserBundle/Resources/views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2fcb238b9d11782a404433a756c8c10e3c95a2f6" resname="label.login.to.jamifind">

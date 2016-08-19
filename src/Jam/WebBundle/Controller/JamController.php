@@ -167,7 +167,7 @@ class JamController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'headline' => 'Create a new Jam'
+            'headline' => $this->get('translator')->trans('text.create.a.new.jam')
         );
     }
 
@@ -209,7 +209,7 @@ class JamController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'headline' => 'Edit a Jam'
+            'headline' => $this->get('translator')->trans('text.edit.a.jam')
         );
     }
 

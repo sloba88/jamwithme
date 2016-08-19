@@ -99,7 +99,6 @@
                     </ul>
 
                     <br />
-
                     <div class="row">
                         <div class="form-group add-jam-member-controls">
                             <div class="col-md-6">
@@ -113,7 +112,7 @@
 
                     <br /><br />
 
-                    <div class="alert alert-info" role="alert">If you can't find the user in the database you can invite him to Jamifind quickly.</div>
+                    <div class="alert alert-info" role="alert">{{ 'jam.invite.member.info'|trans }}</div>
                 </div>
 
                 {% if app.request.attributes.get('_route') == 'start_jam' %}
