@@ -8,6 +8,7 @@ set :repo_url,  "https://37760454bc4d8e4121e82d286c040c301c77322f:@github.com/sl
 set :scm, :git
 set :deploy_via, :remote_cache
 set :use_sudo, false
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
 set :ssh_options, {
   forward_agent: true,
