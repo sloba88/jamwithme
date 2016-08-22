@@ -214,7 +214,7 @@ __e( rc.username ) +
 __p += 'teacher';
  } ;
 __p += '" alt="' +
-__e( rc.username ) +
+__e( rc.displayName ) +
 '">\n        <img src="' +
 __e( rc.avatar ) +
 '" alt="' +
@@ -228,7 +228,7 @@ __p += ' style="font-size:11px" ';
 __p += ' style="font-size:13px" ';
  } ;
 __p += '>' +
-__e( rc.username ) +
+__e( rc.displayName ) +
 '</h3>\n                ';
  if (rc.instrument) { ;
 __p += '\n                <span class="instrument" title="' +
@@ -269,7 +269,7 @@ __e( rc.url ) +
 '"><img src="' +
 __e( rc.image ) +
 '" />\n        <p>' +
-__e( rc.username ) +
+__e( rc.displayName ) +
 '</p>\n    </a>\n    <div class="clearfix"></div>\n        <span class="musician-map-box-genres">\n            ';
  _.each( rc.genres, function(v, k){ ;
 __p += '\n                ';
@@ -298,7 +298,7 @@ __e( rc.username ) +
 '/avatar/my_thumb" alt="' +
 __e( rc.username ) +
 '" class="img-responsive" onerror="imgError(this, \'medium_thumb\');">\n        <div class="people-info">\n            <h3 class="name">' +
-__e( rc.username ) +
+__e( rc.displayName ) +
 '</h3>\n            <ul class="tags">\n                ';
  _.each( rc.genres, function(v, k){ ;
 __p += '\n                ';
@@ -383,7 +383,7 @@ __p += '\n        <h4 class="name"><a href="' +
 '/m/' +
 __e( mu.username ) +
 '">' +
-__e( mu.username ) +
+__e( mu.displayName ) +
 '</a></h4>\n        ';
  if (mu.location) { ;
 __p += '<span class="musician-box-location"><i class="glyphicon glyphicon-map-marker"></i> ' +

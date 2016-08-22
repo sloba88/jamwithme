@@ -88,7 +88,8 @@ class MusiciansController extends FOSRestController
             $avatar = $cacheManager->getBrowserPath($m->getAvatar(), 'medium_thumb');
 
             $data_array = array(
-                'username' => $m->getDisplayName(),
+                'username' => $m->getUsername(),
+                'displayName' => $m->getDisplayName(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
                 'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),

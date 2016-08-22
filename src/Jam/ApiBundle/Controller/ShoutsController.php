@@ -124,7 +124,8 @@ class ShoutsController extends FOSRestController
                 'createdAt' => $s->getCreatedAtAgo(),
                 'id' => $s->getId(),
                 'musician' => array(
-                    'username' => $m->getDisplayName(),
+                    'username' => $m->getUsername(),
+                    'displayName' => $m->getDisplayName(),
                     'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
                     'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
                     'image' => $this->get('liip_imagine.cache.manager')->getBrowserPath($m->getAvatar(), 'my_thumb'),

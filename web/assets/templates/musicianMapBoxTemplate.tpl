@@ -1,6 +1,6 @@
 <div class="musician-map-box <% if(rc.teacher){ %>teacher<% } %>">
     <a href="<%- rc.url %>"><img src="<%- rc.image %>" />
-        <p><%- rc.username %></p>
+        <p><%- rc.displayName %></p>
     </a>
     <div class="clearfix"></div>
         <span class="musician-map-box-genres">
