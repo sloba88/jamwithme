@@ -1031,6 +1031,15 @@ class User extends BaseUser
         return $this->firstName . ' ' . $this->lastName;
     }
 
+    public function getDisplayName()
+    {
+        if ($this->firstName && $this->lastName) {
+            return $this->getFullName();
+        } else {
+            return $this->username;
+        }
+    }
+
     /**
      * Set locale
      *
