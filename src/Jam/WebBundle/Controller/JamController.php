@@ -126,6 +126,8 @@ class JamController extends Controller
                 }
             }
 
+            $jam->setStatus(1);
+
             $em->persist($jam);
             $em->flush();
 
