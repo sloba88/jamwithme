@@ -6,6 +6,7 @@
 		background: #fff;
 		padding: 0;
 		height: auto;
+		line-height: inherit;
 		@extend %custom-select;
 
 		.select2-choice {
