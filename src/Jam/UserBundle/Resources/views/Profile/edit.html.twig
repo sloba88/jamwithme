@@ -280,12 +280,12 @@
                         </div>
                         <div class="panel-body">
 
-                            {% if form.vars.value.videos|length == 0 %}
+                            {% if app.user.videos|length == 0 %}
                                 <p class="no-images-yet">{{ 'label.no.videos'|trans }}</p>
                             {% endif %}
 
                             <ul id="musician_videos">
-                                {% for v in form.vars.value.videos %}
+                                {% for v in app.user.videos %}
                                     <li data-id="{{ v.id }}" class="ytvideo-holder">
                                         <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
                                             <span class="play-icon"></span>

@@ -181,12 +181,14 @@ class ProfileFormType extends BaseType
             'label' => false,
         ));
 
+        /*
         $builder->add('videos', 'collection', array(
             'type' => 'video_type',
             'allow_add'    => true,
             'delete_empty' => true,
             'allow_delete' => true
         ));
+        */
 
         $builder->add('locale', 'choice', array(
             'choices' => array(
