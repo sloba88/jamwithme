@@ -146,6 +146,7 @@ class Jam
      */
     public function __construct()
     {
+        $this->status = 1;
         $this->genres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->artists = new \Doctrine\Common\Collections\ArrayCollection();
         $this->members = new \Doctrine\Common\Collections\ArrayCollection();
