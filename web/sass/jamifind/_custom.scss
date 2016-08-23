@@ -5,6 +5,7 @@
 	.form-control {
 		background: #fff;
 		padding: 0;
+		height: auto;
 		@extend %custom-select;
 
 		.select2-choice {
