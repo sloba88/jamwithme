@@ -99,6 +99,12 @@ function getFilterData() {
 }
 
 function filterMusicians(){
+
+    if ($('#main-filter-form').length === 0) {
+        //no filters form
+        return '';
+    }
+
     if (page === 1) {
         $('.people-listing-grid').html('').addClass('loading-content');
     }
