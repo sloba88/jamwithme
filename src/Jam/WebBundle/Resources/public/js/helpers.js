@@ -77,7 +77,9 @@ function matchStart(term, text) {
     return text.toUpperCase().indexOf(term.toUpperCase())===0;
 }
 
-$.fn.select2.defaults.set('containerCssClass', 'form-control');
+if ($.fn.select2) {
+    $.fn.select2.defaults.set('containerCssClass', 'form-control');
+}
 
 function oldMatcher (matcher) {
     function wrappedMatcher (params, data) {
