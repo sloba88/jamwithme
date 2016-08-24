@@ -572,7 +572,7 @@
       </trans-unit>
       <trans-unit id="20a28536344ef8b0d6221c0d223ee976cec8f03c" resname="label.location">
         <source>label.location</source>
-        <target state="new">label.location</target>
+        <target state="new">Location</target>
         <jms:reference-file line="63">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="859e6d441fff850329b6805f4a6c21700ccedaa9" resname="label.location.info">

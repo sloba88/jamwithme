@@ -114,7 +114,7 @@ class User extends BaseUser
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"all"})
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $location;
