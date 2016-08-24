@@ -2,24 +2,30 @@
 
 namespace Jam\UserBundle\Form\Type;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
 use Jam\CoreBundle\Entity\Artist;
+use Jam\CoreBundle\Entity\MusicianGear;
+use Jam\CoreBundle\Entity\MusicianGenre;
 use Jam\LocationBundle\Form\Type\LocationType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use FOS\UserBundle\Form\Type\RegistrationFormType as BaseType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class ProfileFormType extends BaseType
 {
     private $em;
 
+    private $user;
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-
 
         // add your custom field
         $builder->add('firstName', 'text', array(
@@ -85,17 +91,87 @@ class ProfileFormType extends BaseType
             'allow_add' => true,
             'allow_delete' => true,
             'delete_empty' => true
-        ));
+        ))
 
-        $builder->add('genres', 'genre_type', array(
+        ->add('genres', EntityType::class, array(
             'required' => false,
-            'label' => 'Your Favourite Genres'
-        ));
+            'class' => 'Jam\CoreBundle\Entity\MusicianGenre',
+            'label' => 'label.jam.genres',
+            'multiple' => true,
+            'mapped' => true,
+            'choice_value' => 'genre.id',
+            'property' => 'genre.name',
+            'choices' => $this->user->getGenres(),
+        ))->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event) {
+            $form = $event->getForm();
+            $data = $event->getData();
 
-        $builder->add('gear', 'gear_type', array(
-            'required' => false,
-            'label' => 'label.what.gear.do.you.own'
-        ));
+            if (!isset($data['genres'])) {
+                return;
+            }
+
+            $newData = array();
+            foreach($data['genres'] AS $d) {
+                $genre = $this->em
+                    ->getRepository('JamCoreBundle:Genre')
+                    ->findOneBy(array('id' => $d));
+
+
+                if (null !== $genre){
+                    $mg = new MusicianGenre();
+                    $mg->setGenre($genre);
+                    array_push($newData, $mg);
+                    $this->em->persist($mg);
+                }
+            }
+
+            $form->remove('genres');
+            $form->add('genres', EntityType::class, array(
+                'class' => 'Jam\CoreBundle\Entity\MusicianGenre',
+                'multiple' => true,
+                'required' => false,
+                'choice_value' => 'genre.id',
+                'data' => $newData,
+                'property' => 'genre.name'
+            ));
+
+            });
+
+        $builder->add('gear', EntityType::class, array(
+            'label' => 'label.what.gear.do.you.own',
+            'class' => 'Jam\CoreBundle\Entity\MusicianGear',
+            'multiple' => true,
+            'choice_value' => 'name',
+            'data' => $this->user->getGear(),
+            'choices' => $this->user->getGear(),
+            'property' => 'name',
+            'required' => false
+        ))->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
+
+            if (!$data || !isset($data['gear'])) {
+                return;
+            }
+
+            foreach($data['gear'] AS $d) {
+                $gear = new MusicianGear();
+                $gear->setName($d);
+
+                $this->em->persist($gear);
+                $this->em->flush();
+            }
+
+            $form->remove('gear');
+            $form->add('gear', EntityType::class, array(
+                'label' => 'label.what.gear.do.you.own',
+                'multiple' => true,
+                'class' => 'Jam\CoreBundle\Entity\MusicianGear',
+                'choice_value' => 'name',
+                'property' => 'name',
+                'required' => false
+            ));
+        });
 
         $builder->add('artists', EntityType::class, array(
             'label' => 'label.influences',
@@ -104,40 +180,38 @@ class ProfileFormType extends BaseType
             'choice_value' => 'name',
             'property' => 'name',
             'required' => false
-        ))
+        ))->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+            $data = $event->getData();
+            $form = $event->getForm();
 
-            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-                $data = $event->getData();
-                $form = $event->getForm();
+            if (!$data || !array_key_exists('artists', $data)) {
+                return;
+            }
 
-                if (!$data || !array_key_exists('artists', $data)) {
-                    return;
+            foreach($data['artists'] AS $d) {
+                $artist = $this->em
+                    ->getRepository('JamCoreBundle:Artist')
+                    ->findOneBy(array('name' => $d));
+
+                if (null === $artist){
+                    $artist = new Artist();
+                    $artist->setName($d);
+
+                    $this->em->persist($artist);
+                    $this->em->flush();
                 }
+            }
 
-                foreach($data['artists'] AS $d) {
-                    $artist = $this->em
-                        ->getRepository('JamCoreBundle:Artist')
-                        ->findOneBy(array('name' => $d));
-
-                    if (null === $artist){
-                        $artist = new Artist();
-                        $artist->setName($d);
-
-                        $this->em->persist($artist);
-                        $this->em->flush();
-                    }
-                }
-
-                $form->remove('artists');
-                $form->add('artists', EntityType::class, array(
-                    'label' => 'label.influences',
-                    'multiple' => true,
-                    'class' => 'Jam\CoreBundle\Entity\Artist',
-                    'choice_value' => 'name',
-                    'property' => 'name',
-                    'required' => false
-                ));
-            });
+            $form->remove('artists');
+            $form->add('artists', EntityType::class, array(
+                'label' => 'label.influences',
+                'multiple' => true,
+                'class' => 'Jam\CoreBundle\Entity\Artist',
+                'choice_value' => 'name',
+                'property' => 'name',
+                'required' => false
+            ));
+        });
 
         $builder->add('location', new LocationType());
 
@@ -176,20 +250,6 @@ class ProfileFormType extends BaseType
             )
         ));
 
-        $builder->add('images', 'collection', array(
-            'type' => new ImageType(),
-            'label' => false,
-        ));
-
-        /*
-        $builder->add('videos', 'collection', array(
-            'type' => 'video_type',
-            'allow_add'    => true,
-            'delete_empty' => true,
-            'allow_delete' => true
-        ));
-        */
-
         $builder->add('locale', 'choice', array(
             'choices' => array(
                 'en' => 'English',
@@ -203,6 +263,10 @@ class ProfileFormType extends BaseType
 
     public function setEntityManager(EntityManager $em) {
         $this->em = $em;
+    }
+
+    public function setUserToken(TokenStorage $tokenStorage) {
+        $this->user = $tokenStorage->getToken()->getUser();
     }
 
     public function getName()

@@ -25,13 +25,11 @@ class GearTransform implements DataTransformerInterface
     public function transform($gears)
     {
         if (null === $gears) {
-            return "";
+            return null;
         }
-        $gear = '';
+        $gear = array();
         foreach ($gears AS $k => $a){
-            if($k!=0) $gear .= ',';
-            $gear .= $a->getName();
-
+            $gear[$a->getId()] = $a->getName();
         }
 
         return $gear;
@@ -48,13 +46,7 @@ class GearTransform implements DataTransformerInterface
     {
         $gearCollection = new ArrayCollection();
 
-        if (!$name || $name == '') {
-            return $gearCollection;
-        }
-
-        $names = explode(",", $name);
-
-        foreach($names AS $k=>$name){
+        foreach($name AS $k=>$name){
 
             $musicianGear = new MusicianGear();
 

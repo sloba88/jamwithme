@@ -18,14 +18,7 @@ class SearchController extends Controller
     {
         $request = $this->get('request_stack')->getMasterRequest();
 
-        $form = $this->get('form.factory')->createNamedBuilder('', 'search_form', null, array(
-            'method' => 'GET'
-        ))->getForm();
-
-        $form->handleRequest($request);
-
         return array(
-            'form' => $form->createView(),
             'route' => $request->get('_route')
         );
     }

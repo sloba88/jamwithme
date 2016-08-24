@@ -39,17 +39,10 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
         $this->images = new ArrayCollection();
-        $this->genres = new ArrayCollection();
-        $this->gear = new ArrayCollection();
-        $this->artists = new ArrayCollection();
+        //$this->genres = new ArrayCollection();
+        //$this->gear = new ArrayCollection();
+        //$this->artists = new ArrayCollection();
     }
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGenre", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
-     */
-    private $genres;
 
     /**
      * @var ArrayCollection
@@ -127,39 +120,46 @@ class User extends BaseUser
     private $location;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Jam\UserBundle\Entity\UserImage", mappedBy="user")
      */
     private $images;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Shout", mappedBy="creator", cascade={"all"}, orphanRemoval=true )
      */
     private $shouts;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Video", mappedBy="creator", cascade={"all"}, orphanRemoval=true )
      */
     private $videos;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianInstrument", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
     private $instruments;
 
     /**
-     * @var collection
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGear", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
      */
     private $gear;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\MusicianGenre", mappedBy="musician", cascade={"all"}, orphanRemoval=true )
+     */
+    private $genres;
 
     /**
      * @ORM\Column(type="smallint", length=1, nullable=true)
@@ -533,7 +533,22 @@ class User extends BaseUser
             return $genres;
         }else{
             foreach ($this->genres AS $g){
-                array_push($genres, $g->getGenre()->getName());
+                $genres[$g->getGenre()->getId()] = $g->getGenre()->getName();
+            }
+        }
+
+        return $genres;
+    }
+
+    public function getGenresIdsArray()
+    {
+        $genres = array();
+
+        if ($this->genres->count()==0) {
+            return $genres;
+        }else{
+            foreach ($this->genres AS $g){
+                array_push($genres, $g->getGenre()->getId());
             }
         }
 

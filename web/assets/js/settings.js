@@ -260,6 +260,7 @@ $(function() {
         $('#fos_user_profile_form_gear').select2({
             minimumInputLength: 2,
             multiple: true,
+            tags: true,
             createSearchChoice: function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
             ajax: {
                 delay: 300,

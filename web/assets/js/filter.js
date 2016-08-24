@@ -31,7 +31,7 @@ function renderGridView(data) {
         $('.people-listing-grid').append(window.JST.musicianBoxTemplate(v));
     });
 
-    if (loadMoreResults === false && ($('input.filter-genres').val() !== '' || $('input.filter-instruments').val() !== '') ){
+    if (loadMoreResults === false && ($('select.filter-genres').val() !== '' || $('select.filter-instruments').val() !== '') ){
         $('.people-listing-grid').append('<div class="subscribe-info-search"><div class="alert alert-info" role="alert">Didn\'t find what you searched for? We can let you know when people with this profile join. </div><a href="#" class="btn btn-primary" id="subscribeToSearch"><i class="fa fa-envelope"></i> Subscribe for this search criteria</a></div>');
     }
 
@@ -56,11 +56,17 @@ function getFilterData() {
 
     var data='';
 
-    if ( $('input.filter-genres').val() !== '' ){
-        data += $('.filter-genres').serialize();
+    if ( $('select.filter-genres').val() !== null ){
+        //data += $('select.filter-genres').serialize();
+
+        var result = $('select.filter-genres option:selected').map(function(i, opt) {
+            return $(opt).val();
+        }).toArray().join(',');
+
+        data += 'genres=' + result;
         data += '&';
 
-        $.each($('input.filter-genres').select2('data'), function(k, v) {
+        $.each($('select.filter-genres').select2('data'), function(k, v) {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'search',
@@ -70,11 +76,17 @@ function getFilterData() {
         });
     }
 
-    if ( $('input.filter-instruments').val() !== '' ){
-        data += $('.filter-instruments').serialize();
+    if ( $('select.filter-instruments').val() !== null ){
+        //data += $('select.filter-genres').serialize();
+
+        var result2 = $('select.filter-instruments option:selected').map(function(i, opt) {
+            return $(opt).val();
+        }).toArray().join(',');
+
+        data += 'instruments=' + result2;
         data += '&';
 
-        $.each($('input.instruments-genres').select2('data'), function(k, v) {
+        $.each($('select.filter-instruments').select2('data'), function(k, v) {
             ga('send', {
                 hitType: 'event',
                 eventCategory: 'search',

@@ -104,6 +104,7 @@ stof_doctrine_extensions:
             timestampable: true
             softdeleteable: true
             blameable: true
+            sortable: true
 
 braincrafted_bootstrap:
     output_dir:
