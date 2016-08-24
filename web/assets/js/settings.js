@@ -306,6 +306,7 @@ $(function() {
         $('#fos_user_profile_form_artists').select2({
             minimumInputLength: 2,
             multiple: true,
+            placeholder: $('#fos_user_profile_form_artists').attr('placeholder'),
             ajax: {
                 delay: 200,
                 url: 'https://api.spotify.com/v1/search',
@@ -433,7 +434,8 @@ $(function() {
         $('#jam_instruments').select2({
             multiple: true,
             templateResult: formatResultData,
-            matcher: oldMatcher(matchStart)
+            matcher: oldMatcher(matchStart),
+            placeholder: $('#jam_instruments').attr('placeholder')
         }).on('select2:select', function (e) {
             $(this).prepend('<option value="'+e.params.data.text+'">' +e.params.data.text + '</option>');
         }).on('select2:unselect', function (e) {

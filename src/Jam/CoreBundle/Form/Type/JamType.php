@@ -84,7 +84,6 @@ class JamType extends AbstractType
                 'mapped' => false,
                 'label' => 'label.jam.looking.for',
                 'multiple' => true,
-                'expanded' => false,
                 'allow_extra_fields' => true,
                 'jam' => $jam,
                 'property' => 'name',

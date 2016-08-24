@@ -12280,7 +12280,7 @@ header {
   margin-bottoM: 10px;
 }
 /* line 145, ../../sass/jamifind/_jams.scss */
-#jam_musician_instruments li.row {
+#jam_musician_instruments div.row {
   margin-bottom: 10px;
 }
 

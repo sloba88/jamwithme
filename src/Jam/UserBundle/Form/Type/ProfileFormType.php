@@ -98,7 +98,6 @@ class ProfileFormType extends BaseType
             'class' => 'Jam\CoreBundle\Entity\MusicianGenre',
             'label' => 'label.jam.genres',
             'multiple' => true,
-            'mapped' => true,
             'choice_value' => 'genre.id',
             'property' => 'genre.name',
             'choices' => $this->user->getGenres(),

@@ -166,7 +166,7 @@ class JamController extends Controller
 
         return array(
             'form' => $form->createView(),
-            'headline' => $this->get('translator')->trans('text.create.a.new.jam')
+            'headline' => $this->get('translator')->trans('text.start.new.jam')
         );
     }
 

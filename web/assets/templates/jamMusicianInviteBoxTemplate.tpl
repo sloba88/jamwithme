@@ -1,4 +1,4 @@
-<li class="row">
+<div class="row">
 
     <div class="col-md-6">
         <div id="jam_members_<%- rc.num %>_invitee">
@@ -22,4 +22,4 @@
         <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
     </div>
 
-</li>
+</div>

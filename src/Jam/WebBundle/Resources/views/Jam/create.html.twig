@@ -4,8 +4,10 @@
 
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
-    <div class="col-md-12">
-        <h2 class="title">{{ headline }}</h2>
+    <div class="row messages-header">
+        <div class="col-xs-12">
+            <h1 class="title">{{ headline }}</h1>
+        </div>
     </div>
 
     {{ form_start(form) }}
@@ -18,11 +20,10 @@
         {% endif %}
     </ul>
 
-
-    <div class="view-tab-container clearfix">
+    <div class="view-tab-container clearfix with-scrollbar">
 
         {# JAM INFO #}
-        <div class="view-tab is-active with-scrollbar" data-tab="jam-info">
+        <div class="view-tab is-active" data-tab="jam-info">
             <div class="row">
                 <div class="col-md-5">
 
@@ -42,7 +43,7 @@
 
                     {{ form_row(form.stage) }}
 
-                    {{ form_row(form.instruments, { 'attr': { 'placeholder': 'Missing instruments'}}) }}
+                    {{ form_row(form.instruments, { 'attr': { 'placeholder': 'placeholder.add.an.instrument'|trans }}) }}
 
                     {% if app.request.attributes.get('_route') == 'edit_jam' %}
                         <div class="form-group">
@@ -60,17 +61,18 @@
 
                     <div class="form-group">
                         {{ form_label(form.artists) }}
-                        {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists', 'attr': { 'placeholder': 'Choose artists'}}) }}
+                        {{ form_widget(form.artists, { 'id': 'fos_user_profile_form_artists', 'attr': { 'placeholder': 'placeholder.choose.artists'|trans}}) }}
                         {{ form_errors(form.artists) }}
                     </div>
 
                     <label>{{ 'label.jam.current.members'|trans }}</label>
 
-                    <ul id="jam_musician_instruments">
+                    <div id="jam_musician_instruments">
 
                         {% for f in form.members %}
-                            {% if f.musician.vars.value is not empty %}
-                                <li class="row">
+                            {% if f.musician.vars.value is not empty and f.invitee.vars.value is empty %}
+
+                                <div class="row">
                                     <div class="col-md-6">
                                         {% if f.musician.vars.value == app.user.id %}
                                             {{ form_widget(f.musician, { 'attr': { 'readonly' : 'true' }}) }}
@@ -92,11 +94,23 @@
                                             <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp;
                                         </div>
                                     {% endif %}
-
-                                </li>
+                                </div>
+                            {% endif %}
+                            {% if f.invitee.vars.value is not empty %}
+                                <div class="row">
+                                    <div class="col-md-6 add-invitee">
+                                        {{ form_widget(f.invitee) }}
+                                    </div>
+                                    <div class="col-md-5">
+                                        {{ form_widget(f.instrument) }}
+                                    </div>
+                                    <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">
+                                        <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp;
+                                    </div>
+                                </div>
                             {% endif %}
                         {% endfor %}
-                    </ul>
+                    </div>
 
                     <br />
                     <div class="row">
@@ -130,7 +144,7 @@
         </div>
 
         {# MUSIC INFO #}
-        <div class="view-tab with-scrollbar" data-tab="jam-music">
+        <div class="view-tab" data-tab="jam-music">
 
             <div class="row">
                 {# VIDEOS #}

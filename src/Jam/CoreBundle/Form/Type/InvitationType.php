@@ -16,15 +16,17 @@ class InvitationType extends AbstractType
     {
         $builder
             ->add('email', 'email', array(
-                'label' => 'Email*',
+                'label' => false,
                 'required' => true
             ))
 
             ->add('firstName', 'text', array(
+                'label' => false,
                 'required' => false
             ))
 
             ->add('lastName', 'text', array(
+                'label' => false,
                 'required' => false
             ));
     }

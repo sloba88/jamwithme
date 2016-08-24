@@ -27,10 +27,16 @@ class JamInstrumentTransform implements DataTransformerInterface
      * @param  Group|null $group
      * @return string
      */
-    public function transform($instruments)
+    public function transform($members)
     {
-        if (null === $instruments) {
+        if (null === $members) {
             return array();
+        }
+
+        $instruments = array();
+
+        foreach ($members AS $i) {
+            array_push($instruments, $i->getInstrument());
         }
 
         return $instruments;

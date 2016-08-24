@@ -141,7 +141,7 @@ return __p
 
 this["JST"]["jamMusicianBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
-__p += '<li class="row">\n\n    <div class="col-md-6">\n        <select id="jam_members_' +
+__p += '<div class="row">\n\n    <div class="col-md-6">\n        <select id="jam_members_' +
 __e( rc.num ) +
 '_musician" name="jam[members][' +
 __e( rc.num ) +
@@ -149,13 +149,13 @@ __e( rc.num ) +
 __e( rc.num ) +
 '_instrument" name="jam[members][' +
 __e( rc.num ) +
-'][instrument]" required="required" class="form-control member-instrument"></select>\n    </div>\n\n    <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">\n        <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n    </div>\n\n</li>';
+'][instrument]" required="required" class="form-control member-instrument"></select>\n    </div>\n\n    <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">\n        <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n    </div>\n\n</div>';
 return __p
 };
 
 this["JST"]["jamMusicianInviteBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
-__p += '<li class="row">\n\n    <div class="col-md-6">\n        <div id="jam_members_' +
+__p += '<div class="row">\n\n    <div class="col-md-6">\n        <div id="jam_members_' +
 __e( rc.num ) +
 '_invitee">\n            <div class="form-group">\n                <input type="email" id="jam_members_' +
 __e( rc.num ) +
@@ -173,7 +173,7 @@ __e( rc.num ) +
 __e( rc.num ) +
 '_instrument" name="jam[members][' +
 __e( rc.num ) +
-'][instrument]" required="required" class="form-control member-instrument"></select>\n    </div>\n\n    <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">\n        <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n    </div>\n\n</li>';
+'][instrument]" required="required" class="form-control member-instrument"></select>\n    </div>\n\n    <div class="col-md-1 col-sm-1 col-xs-1" style="padding: 10px 0 0 0">\n        <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp\n    </div>\n\n</div>';
 return __p
 };
 

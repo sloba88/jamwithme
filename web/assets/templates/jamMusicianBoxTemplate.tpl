@@ -1,4 +1,4 @@
-<li class="row">
+<div class="row">
 
     <div class="col-md-6">
         <select id="jam_members_<%- rc.num %>_musician" name="jam[members][<%- rc.num %>][musician]" required="required" class="form-control member-user"></select>
@@ -12,4 +12,4 @@
         <a href="" class="remove-member text-danger" title="remove"><i class="fa fa-times"></i></a>&nbsp
     </div>
 
-</li>
+</div>
