@@ -62,7 +62,7 @@
                                                     <p class="member-instrument">{{ m.instrument.name }}</p>
                                                 </li>
                                             {% endif %}
-                                            {% if m.invitee is not null %}
+                                            {% if m.invitee is not null and m.musician is null %}
                                                 <li class="member invited-member" data-toggle="tooltip" title="{{ 'label.pending.invitation'|trans }}" data-placement="right">
                                                     <a href="#">
                                                         <img src="{{ asset('assets/images/placeholder-user.png') | imagine_filter('my_medium_1') }}" />
