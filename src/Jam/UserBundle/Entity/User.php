@@ -57,8 +57,8 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Jam\CoreBundle\Entity\Artist", inversedBy="musicians", cascade={"persist"})
      * @ORM\JoinTable(
      *      name="musicians_artists",
-     *      joinColumns={@ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false)},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)}
+     *      joinColumns={@ORM\JoinColumn(name="musician_id", referencedColumnName="id", nullable=false)},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="artist_id", referencedColumnName="id", nullable=false)}
      * )
      */
     protected $artists;
@@ -114,7 +114,7 @@ class User extends BaseUser
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"remove"})
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $location;

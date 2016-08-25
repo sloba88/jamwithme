@@ -85,6 +85,13 @@ class RegistrationController extends ContainerAware
                         $user->setInvitedBy($invitation->getCreator());
                         $invitation->setAccepted(true);
                         $em->persist($invitation);
+
+                        //check if this use was tagged in a jam and connect him
+                        $musicianInstrument = $em->getRepository('JamCoreBundle:JamMusicianInstrument')->findOneBy(array('invitee' => $invitation));
+                        if ($musicianInstrument) {
+                            $musicianInstrument->setMusician($user);
+                            $em->persist($musicianInstrument);
+                        }
                         $em->flush();
                     }
                 }
