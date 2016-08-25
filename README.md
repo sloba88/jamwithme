@@ -79,5 +79,6 @@ sudo gem install capistrano-symfony
 
 Exctract translations
 ```
+php app/console translation:extract en --config=app
 php app/console translation:extract fi --config=app
 ```
