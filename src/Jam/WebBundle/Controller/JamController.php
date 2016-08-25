@@ -127,44 +127,9 @@ class JamController extends Controller
             }
 
             $jam->setStatus(1);
-
             $em->persist($jam);
-            $em->flush();
-
             //send invites to members here!
-
-            foreach($jam->getMembers() AS $member) {
-                if ($member->getInvitee()) {
-
-                    //check if the user with this email already exist
-                    $email = $member->getInvitee()->getEmail();
-                    $userManager = $this->get('fos_user.user_manager');
-                    $m = $userManager->findUserByEmail($email);
-                    if ($m) {
-                        $member->setMuscian($m);
-                    } else {
-                        /* @var $invitation \Jam\UserBundle\Entity\Invitation */
-                        $invitation = $member->getInvitee();
-
-                        $messageBody = $this->renderView('JamWebBundle:Email:jamInvitation.html.twig', array(
-                            'from' => $this->getUser(),
-                            'invitation' => $invitation,
-                            'jam' => $jam,
-                            'member' => $member
-                        ));
-
-                        $message = \Swift_Message::newInstance()
-                            ->setSubject("You have been invited to join Jamifind")
-                            ->setFrom('noreply@jamifind.com')
-                            ->setTo($invitation->getEmail())
-                            ->setBody($messageBody, 'text/html');
-
-                        if ($this->get('mailer')->send($message)) {
-                            $invitation->setSent(true);
-                        }
-                    }
-                }
-            }
+            $this->sendInvites($jam);
 
             $em->flush();
 
@@ -202,12 +167,22 @@ class JamController extends Controller
 
         if ($form->isValid()) {
 
+            $em = $this->getDoctrine()->getManager();
+
             foreach($jam->getMembers() AS $member) {
                 $member->setJam($jam);
             }
 
-            $em = $this->getDoctrine()->getManager();
+            //assign videos
+            if ($request->get('video')) {
+                foreach($request->get('video') AS $v) {
+                    $video = $em->find('JamCoreBundle:Video', $v);
+                    $video->setJam($jam);
+                }
+            }
+
             $em->persist($jam);
+            $this->sendInvites($jam);
             $em->flush();
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.updated.successfully'));
@@ -219,6 +194,44 @@ class JamController extends Controller
             'form' => $form->createView(),
             'headline' => $this->get('translator')->trans('text.edit.a.jam')
         );
+    }
+
+    private function sendInvites($jam)
+    {
+        foreach($jam->getMembers() AS $member) {
+            if ($member->getInvitee()) {
+
+                //check if the user with this email already exist
+                $email = $member->getInvitee()->getEmail();
+                $userManager = $this->get('fos_user.user_manager');
+                $m = $userManager->findUserByEmail($email);
+                if ($m) {
+                    $member->setMuscian($m);
+                } else {
+                    /* @var $invitation \Jam\UserBundle\Entity\Invitation */
+                    $invitation = $member->getInvitee();
+
+                    if ($invitation->getSent() == false) {
+                        $messageBody = $this->renderView('JamWebBundle:Email:jamInvitation.html.twig', array(
+                            'from' => $this->getUser(),
+                            'invitation' => $invitation,
+                            'jam' => $jam,
+                            'member' => $member
+                        ));
+
+                        $message = \Swift_Message::newInstance()
+                            ->setSubject("You have been invited to join Jamifind")
+                            ->setFrom('noreply@jamifind.com')
+                            ->setTo($invitation->getEmail())
+                            ->setBody($messageBody, 'text/html');
+
+                        if ($this->get('mailer')->send($message)) {
+                            $invitation->setSent(true);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**

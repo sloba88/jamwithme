@@ -23,6 +23,7 @@
             'vendor/select2/dist/css/select2.min.css'
             'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
             'vendor/jquery-ui/themes/base/jquery-ui.css'
+            'vendor/fancybox/source/jquery.fancybox.css'
             'vendor/leaflet-dist/leaflet.css'
             'vendor/leaflet.markercluster/dist/MarkerCluster.css'
             'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
@@ -375,7 +376,19 @@
             border: 1px solid silver;
         }
 
+        #musician_videos .remove-video {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: black;
+            padding: 2px;
+            font-size: 11px;
+            color: #fff;
+        }
 
+        #musician_videos .remove-video:hover {
+            text-decoration: none;
+        }
 
     </style>
 
@@ -553,6 +566,8 @@
         'vendor/svg-injector/dist/svg-injector.min.js'
         'vendor/underscore/underscore.js'
         'vendor/isotope/dist/isotope.pkgd.js'
+        'vendor/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'
+        'vendor/fancybox/source/jquery.fancybox.pack.js'
         'vendor/imagesloaded/imagesloaded.js'
         'vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.js'
         '@JamWebBundle/Resources/public/js/helpers.js'

@@ -70,7 +70,7 @@
                     <div id="jam_musician_instruments">
 
                         {% for f in form.members %}
-                            {% if f.musician.vars.value is not empty and f.invitee.vars.value is empty %}
+                            {% if f.musician.vars.value is not empty %}
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -96,7 +96,7 @@
                                     {% endif %}
                                 </div>
                             {% endif %}
-                            {% if f.invitee.vars.value is not empty %}
+                            {% if f.invitee.vars.value is not empty and f.musician.vars.value is empty %}
                                 <div class="row">
                                     <div class="col-md-6 add-invitee">
                                         {{ form_widget(f.invitee) }}
@@ -198,32 +198,11 @@
 
 {% endblock main_content %}
 
-{% block bottomstylesheets %}
-    {% stylesheets
-    'vendor/Jcrop/css/jquery.Jcrop.css'
-    'vendor/fancybox/source/jquery.fancybox.css'
-    filter='cssrewrite' filter='?uglifycss'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-{% endblock %}
-
 {% block bottom_javascripts %}
 
     {% javascripts
     'vendor/leaflet-dist/leaflet.js'
-    'vendor/blueimp-file-upload/js/vendor/jquery.ui.widget.js'
-    'vendor/blueimp-load-image/js/load-image.all.min.js'
-    'vendor/blueimp-canvas-to-blob/js/canvas-to-blob.js'
-    'vendor/blueimp-file-upload/js/jquery.iframe-transport.js'
-    'vendor/blueimp-file-upload/js/jquery.fileupload.js'
-    'vendor/blueimp-file-upload/js/jquery.fileupload-process.js'
-    'vendor/blueimp-file-upload/js/jquery.fileupload-image.js'
-    'vendor/Jcrop/js/jquery.Jcrop.js'
     'vendor/jquery-alphanum/jquery.alphanum.js'
-    'assets/js/upload-photos.js'
-    'vendor/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'
-    'vendor/fancybox/source/jquery.fancybox.pack.js'
     'assets/js/settings.js'
     '@JamLocationBundle/Resources/public/location.js'
     filter='?uglifyjs2'

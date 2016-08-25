@@ -333,6 +333,8 @@ $(function() {
 
     $('select').select2();
 
+    $().fancybox();
+
     $('[data-toggle=popover]').popover();
 
     // //select plugin on dashboard updates height of main container on change

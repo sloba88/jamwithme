@@ -3,7 +3,6 @@
 {% block bottomstylesheets %}
     {% stylesheets
     'vendor/Jcrop/css/jquery.Jcrop.css'
-    'vendor/fancybox/source/jquery.fancybox.css'
     filter='cssrewrite' filter='?uglifycss'
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
@@ -24,8 +23,6 @@
     'vendor/Jcrop/js/jquery.Jcrop.js'
     'vendor/jquery-alphanum/jquery.alphanum.js'
     'assets/js/upload-photos.js'
-    'vendor/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'
-    'vendor/fancybox/source/jquery.fancybox.pack.js'
     'assets/js/settings.js'
     '@JamLocationBundle/Resources/public/location.js'
     filter='?uglifyjs2'
@@ -121,8 +118,6 @@
                 getUserShouts();
 
             {% endif %}
-
-            $().fancybox();
         });
     </script>
 
