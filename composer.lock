@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9f883f2fdebbcc8f2473043f1f85c68c",
-    "content-hash": "ea258b4e3304863d9dfc7f50dddd1433",
+    "hash": "c38b0abc3253e22edf2444becd29c32a",
+    "content-hash": "3d4703f76c169440a32115aa50a3e45b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1587,6 +1587,7 @@
                 "rest",
                 "web service"
             ],
+            "abandoned": "guzzlehttp/guzzle",
             "time": "2015-03-18 18:23:50"
         },
         {
@@ -3006,6 +3007,7 @@
                 "rest",
                 "web service"
             ],
+            "abandoned": true,
             "time": "2014-12-01 08:29:51"
         },
         {
@@ -4306,6 +4308,7 @@
                 "icu",
                 "intl"
             ],
+            "abandoned": "symfony/intl",
             "time": "2014-07-25 10:00:11"
         },
         {
@@ -5971,6 +5974,56 @@
                 "webtest"
             ],
             "time": "2015-06-15 20:19:33"
+        },
+        {
+            "name": "neronmoon/scriptsdev",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/neronmoon/scriptsdev.git",
+                "reference": "ab5cec346cab353500b957de8c7e6548961d35fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neronmoon/scriptsdev/zipball/ab5cec346cab353500b957de8c7e6548961d35fe",
+                "reference": "ab5cec346cab353500b957de8c7e6548961d35fe",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0@dev"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "\\Plugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaliy Krasnoperov",
+                    "email": "alistar.neron@gmail.com"
+                }
+            ],
+            "description": "Scripts-dev behaviour for Composer",
+            "homepage": "https://github.com/neronmoon/scriptsdev",
+            "keywords": [
+                "commands",
+                "commands execution",
+                "composer",
+                "dev",
+                "scripts"
+            ],
+            "time": "2015-11-12 17:00:24"
         }
     ],
     "aliases": [],
