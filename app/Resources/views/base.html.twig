@@ -401,10 +401,11 @@
 
     {% include "::googleAnalytics.html.twig" %}
 
-    <meta property="og:title" content="Jamifind" />
+    <meta property="og:title" content="{{ og_title|default('Jamifind') }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jamifind.com" />
+    <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}" />
     <meta property="og:image" content="https://jamifind.com/landing/images/media-image.png" />
+    <meta property="og:description" content="{{ og_description|default('text.meta.description'|trans) }}" />
 
     {% if is_granted("ROLE_USER") %}
         <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>

@@ -246,7 +246,11 @@ class JamController extends Controller
 
         if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
-        return array('jam' => $jam);
+        return array(
+            'jam' => $jam,
+            'og_title' => $jam->getName(),
+            'og_description' => $jam->getDescription()
+        );
     }
 
     /**
