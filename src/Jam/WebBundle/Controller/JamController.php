@@ -187,7 +187,7 @@ class JamController extends Controller
 
             $this->get('session')->getFlashBag()->set('success', $this->get('translator')->trans('message.jam.updated.successfully'));
 
-            return $this->redirect($this->generateUrl('jams'));
+            return $this->redirect($this->generateUrl('view_jam', array( 'slug' => $jam->getSlug() )));
         }
 
         return array(
@@ -249,7 +249,8 @@ class JamController extends Controller
         return array(
             'jam' => $jam,
             'og_title' => $jam->getName(),
-            'og_description' => $jam->getDescription()
+            'og_description' => $jam->getDescription(),
+            'og_image' => $jam->getVideos()->first() ? $jam->getVideos()->first()->getThumbnail() : false
         );
     }
 

@@ -221,4 +221,12 @@ class Video
     {
         return $this->type;
     }
+
+    public function getThumbnail()
+    {
+        if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $this->url, $match)) {
+            $video_id = $match[1];
+            return 'https://img.youtube.com/vi/' . $video_id . '/0.jpg';
+        }
+    }
 }

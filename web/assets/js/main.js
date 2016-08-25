@@ -296,7 +296,7 @@ function parseYTVideoImages() {
     $('.ytvideo').each(function() {
         var src = $(this).attr('href');
         var ytId = youtubeParser(src);
-        var ytImg = 'http://img.youtube.com/vi/' + ytId + '/0.jpg';
+        var ytImg = 'https://img.youtube.com/vi/' + ytId + '/0.jpg';
         $(this).find('img').attr('src', ytImg);
     });
 }
@@ -333,7 +333,7 @@ $(function() {
 
     $('select').select2();
 
-    $().fancybox();
+
 
     $('[data-toggle=popover]').popover();
 
