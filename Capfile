@@ -7,3 +7,4 @@ require 'capistrano/deploy'
 require 'capistrano/symfony'
 
 require 'capistrano/bower'
+require 'capistrano/copy_files'
