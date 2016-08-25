@@ -185,84 +185,84 @@
                     <div class="main-content-inner">
 
                         <div class="view-tab-container teacher-text-container with-scrollbar">
+                            <div>
+                                <div class="view-tab about is-active" data-tab="about">
 
-                            <div class="view-tab about is-active" data-tab="about">
+                                    {% if user.isTeacher %}<h6>{{ 'text.overview'|trans }}</h6>{% endif %}
+                                    <p>{{ user.aboutMe|default('text.nothing.yet.here'|trans) }}</p>
 
-                                {% if user.isTeacher %}<h6>{{ 'text.overview'|trans }}</h6>{% endif %}
-                                <p>{{ user.aboutMe|default('text.nothing.yet.here'|trans) }}</p>
+                                    {% if user.isTeacher %}
+                                        <h6>{{ 'label.education'|trans }}</h6>
+                                        <p>{{ user.education|default('text.nothing.yet.here'|trans) }}</p>
 
-                                {% if user.isTeacher %}
-                                    <h6>{{ 'label.education'|trans }}</h6>
-                                    <p>{{ user.education|default('text.nothing.yet.here'|trans) }}</p>
-
-                                    {% if user.hourlyRate %}
-                                        <h6>{{ 'text.hourly.rate'|trans }}</h6>
-                                        <p>&euro;{{ user.hourlyRate }}</span></p>
-                                    {% endif %}
-
-                                {% endif %}
-                            </div>
-
-                            <div class="view-tab my-photos" data-tab="photos">
-
-                                <div class="profile-media-wall">
-
-                                    {% if user.images|length == 0 %}
-                                        <p>{{ 'label.no.images'|trans }}</p>
-                                    {% endif %}
-
-                                    {% for i in user.images %}
-                                        {% if i.fileExists %}
-                                            <div class="image-holder profile-media-wall-item">
-                                                <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
-                                            </div>
+                                        {% if user.hourlyRate %}
+                                            <h6>{{ 'text.hourly.rate'|trans }}</h6>
+                                            <p>&euro;{{ user.hourlyRate }}</span></p>
                                         {% endif %}
-                                    {% endfor %}
+
+                                    {% endif %}
                                 </div>
 
-                            </div>
-                            <!--photos ends-->
+                                <div class="view-tab my-photos" data-tab="photos">
 
-                            <div class="view-tab my-videos" data-tab="videos">
+                                    <div class="profile-media-wall">
 
-                                {% if user.videos|length == 0 %}
-                                    <p>{{ 'label.no.videos'|trans }}</p>
-                                {% endif %}
+                                        {% if user.images|length == 0 %}
+                                            <p>{{ 'label.no.images'|trans }}</p>
+                                        {% endif %}
 
-                                <ul>
-                                {% for v in user.videos %}
-                                    <div class="ytvideo-holder">
-                                        <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
-                                            <span class="play-icon"></span>
-                                            <img src="" height="160" width="260" />
-                                        </a>
+                                        {% for i in user.images %}
+                                            {% if i.fileExists %}
+                                                <div class="image-holder profile-media-wall-item">
+                                                    <a class="fancybox" rel="group" href="{{ asset(i.getWebPath) }}"><img src="{{ asset(i.getWebPath) | imagine_filter('my_medium_'~i.type) }}" /></a>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
-                                {% endfor %}
-                                </ul>
-                            </div>
-                            <!--videos ends-->
 
-                            <div class="view-tab my-sounds with-scrollbar" data-tab="sounds">
-                                {% if (user.getSoundcloudId == "") %}
-                                    <p>{{ 'label.no.sounds'|trans }}</p>
-                                {% else %}
-                                    <div></div>
-                                    <ul></ul>
-                                {% endif %}
-                            </div>
+                                </div>
+                                <!--photos ends-->
 
-                            <div class="view-tab my-jams with-scrollbar" data-tab="jams">
-                                {% if user.jams|length == 0 %}
-                                    <p>{{ 'label.no.jams'|trans }}</p>
-                                {% endif %}
+                                <div class="view-tab my-videos" data-tab="videos">
 
-                                <ul>
-                                    {% for j in user.jams %}
-                                        <li><a href="{{ path('view_jam', {'slug': j.jam.slug }) }}">{{ j.jam.name }} - {{ j.instrument.name }}</a></li>
+                                    {% if user.videos|length == 0 %}
+                                        <p>{{ 'label.no.videos'|trans }}</p>
+                                    {% endif %}
+
+                                    <ul>
+                                    {% for v in user.videos %}
+                                        <div class="ytvideo-holder">
+                                            <a class="ytvideo" rel="group" href="{{ v.url }}&autoplay=1&showinfo=0&controls=1">
+                                                <span class="play-icon"></span>
+                                                <img src="" height="160" width="260" />
+                                            </a>
+                                        </div>
                                     {% endfor %}
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
+                                <!--videos ends-->
 
+                                <div class="view-tab my-sounds" data-tab="sounds">
+                                    {% if (user.getSoundcloudId == "") %}
+                                        <p>{{ 'label.no.sounds'|trans }}</p>
+                                    {% else %}
+                                        <div></div>
+                                        <ul></ul>
+                                    {% endif %}
+                                </div>
+
+                                <div class="view-tab my-jams" data-tab="jams">
+                                    {% if user.jams|length == 0 %}
+                                        <p>{{ 'label.no.jams'|trans }}</p>
+                                    {% endif %}
+
+                                    <ul>
+                                        {% for j in user.jams %}
+                                            <li><a href="{{ path('view_jam', {'slug': j.jam.slug }) }}">{{ j.jam.name }} - {{ j.instrument.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <!--view-tab-container ends-->
                     </div>
