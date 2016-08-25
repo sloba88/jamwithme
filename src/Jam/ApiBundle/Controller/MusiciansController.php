@@ -112,7 +112,7 @@ class MusiciansController extends FOSRestController
             'status'    => 'success',
             'alreadySubscribed' => $alreadySubscribed,
             'data' => $musicians_data,
-            'finalResults' => count($musicians_data) < 20 ? true: false
+            'finalResults' => count($musicians_data) < 15 ? true: false
         ), 200);
 
         return $this->handleView($view);

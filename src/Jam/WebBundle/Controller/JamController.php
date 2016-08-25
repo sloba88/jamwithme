@@ -72,7 +72,7 @@ class JamController extends Controller
             'SELECT j
                 FROM JamCoreBundle:Jam j
                 JOIN j.interests i
-                JOIN i.musican u
+                JOIN i.musician u
                 WHERE u = :me
                 ORDER BY j.createdAt DESC'
         )->setParameter('me', $this->getUser());
