@@ -8,9 +8,9 @@
         <h6 style="font-size:14px">{{ from.username }}</h6>
     </div>
 
-    <p>You have been playing {{ member.instrument.name }} together in {{ jam.name }}. You can check it out <a target="_blank" href="{{ url('view_jam', { 'slug': jam.slug }) }}?c={{ invitation.code }}">here</a></p>
-
     <br />
+
+    <p>You have been playing {{ member.instrument.name }} together in {{ jam.name }}. You can check it out <a target="_blank" href="{{ url('view_jam', { 'slug': jam.slug }) }}?c={{ invitation.code }}">here</a></p>
 
     <p>{{ 'email.invitation.text'|trans }}</p>
 
