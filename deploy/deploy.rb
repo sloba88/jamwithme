@@ -17,7 +17,7 @@ set :ssh_options, {
 
 set :linked_files,          ["app/config/parameters.yml"]
 set :linked_dirs,           [fetch(:log_path), fetch(:web_path) + "/uploads", fetch(:web_path) + "/media"]
-set :copy_files, ['vendor', 'web/vendor']
+set :copy_files, ['vendor', 'web/vendor', 'node/node_modules']
 
 set :permission_method,     "acl"
 set :use_set_permissions,   true
