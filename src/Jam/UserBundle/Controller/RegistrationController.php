@@ -73,6 +73,8 @@ class RegistrationController extends ContainerAware
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
+                $userManager->updateUser($user);
+
                 //check for invite code
                 $inviteCode = $this->container->get('request_stack')->getMasterRequest()->getSession()->get('inviteCode');
 
@@ -90,7 +92,6 @@ class RegistrationController extends ContainerAware
                         $musicianInstrument = $em->getRepository('JamCoreBundle:JamMusicianInstrument')->findOneBy(array('invitee' => $invitation));
                         if ($musicianInstrument) {
                             $musicianInstrument->setMusician($user);
-                            //$em->persist($musicianInstrument);
                         }
                         $em->flush();
                     }
