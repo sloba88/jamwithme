@@ -90,7 +90,7 @@ class RegistrationController extends ContainerAware
                         $musicianInstrument = $em->getRepository('JamCoreBundle:JamMusicianInstrument')->findOneBy(array('invitee' => $invitation));
                         if ($musicianInstrument) {
                             $musicianInstrument->setMusician($user);
-                            $em->persist($musicianInstrument);
+                            //$em->persist($musicianInstrument);
                         }
                         $em->flush();
                     }
