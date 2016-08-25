@@ -115,7 +115,7 @@ class JamType extends AbstractType
                 $data = $event->getData();
                 $form = $event->getForm();
 
-                if (!$data) {
+                if (!$data || !array_key_exists('artists', $data)) {
                     return;
                 }
 
