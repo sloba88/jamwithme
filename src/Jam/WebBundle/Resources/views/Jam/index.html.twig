@@ -47,7 +47,7 @@
                             <div class="col-md-8 jam-members-container clearfix">
                                 <span class="pull-right hidden-xs">{{ j.createdAt | date('d M Y') }}</span>
                                 <ul class="members-list">
-                                    {% for m in j.members %}
+                                    {% for m in j.existingMembers %}
                                         {% if loop.index < 5 %}
                                             {% if m.musician is not null %}
                                                 <li class="member">

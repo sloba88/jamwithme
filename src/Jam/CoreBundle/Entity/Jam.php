@@ -411,7 +411,7 @@ class Jam
     public function getExistingMembers()
     {
         return $this->members->filter(function($member) {
-            if ($member->getMusician()) {
+            if ($member->getMusician() || $member->getInvitee()) {
                 return $member;
             }
         });
