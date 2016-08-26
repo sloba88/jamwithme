@@ -2,7 +2,7 @@
 
 namespace Jam\ApiBundle\Controller;
 
-use Elastica\Filter\Bool;
+use Elastica\Filter\BoolFilter;
 use Elastica\Filter\Term;
 use Elastica\Filter\Terms;
 use Elastica\Query\Filtered;
@@ -50,7 +50,7 @@ class ShoutsController extends FOSRestController
         }
 
         if ($request->query->get('isTeacher')){
-            $boolFilter = new Bool();
+            $boolFilter = new BoolFilter();
             $filter1 = new Term();
             $filter1->setTerm('isTeacher', '1');
             $boolFilter->addMust($filter1);

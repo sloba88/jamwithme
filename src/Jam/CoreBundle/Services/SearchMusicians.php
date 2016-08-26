@@ -2,7 +2,7 @@
 
 namespace Jam\CoreBundle\Services;
 
-use Elastica\Filter\Bool;
+use Elastica\Filter\BoolFilter;
 use Elastica\Filter\BoolNot;
 use Elastica\Filter\BoolOr;
 use Elastica\Filter\Ids;
@@ -152,7 +152,7 @@ class SearchMusicians {
         }
 
         if ($search->getIsTeacher()){
-            $boolFilter = new Bool();
+            $boolFilter = new BoolFilter();
             $filter1 = new Term();
             $filter1->setTerm('musician2.isTeacher', '1');
             $boolFilter->addMust($filter1);
@@ -193,7 +193,7 @@ class SearchMusicians {
         $elasticaQuery = new Filtered($elasticaQuery, $elasticaBool);
 
         //show my compatibilities
-        $boolFilter = new Bool();
+        $boolFilter = new BoolFilter();
         $filter1 = new Term();
         $filter1->setTerm('musician.id', $me->getId());
         $boolFilter->addMust($filter1);
