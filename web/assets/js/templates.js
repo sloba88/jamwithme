@@ -398,9 +398,29 @@ __e( rc.createdAt ) +
 return __p
 };
 
+this["JST"]["soundcloudTrackAddBoxTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape;
+__p += '<li class="add-sound-box">\n    <div class="input-group">\n        <input type="text" class="form-control soundcloud-track-url" placeholder="Paste Soundcloud link here">\n          <span class="input-group-btn">\n            <button class="btn btn-default save-track" type="button">Save</button>\n          </span>\n    </div>\n</li>';
+return __p
+};
+
+this["JST"]["soundcloudTrackBoxTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape;
+__p += '<li data-id="' +
+__e( rc.id ) +
+'" class="soundcloud-track-holder">\n\n    <iframe id="sc_track_' +
+__e( rc.id ) +
+' " width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=' +
+__e( rc.url ) +
+'"></iframe>\n\n    <input type="hidden" name="soundcloudTracks[]" value="' +
+__e( rc.id ) +
+'" />\n    <a href="" class="remove-soundcloud-track action-confirm" title="remove"><i class="fa fa-times"></i> Remove</a>\n</li>';
+return __p
+};
+
 this["JST"]["videoAddBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape;
-__p += '<li class="add-video-box">\n    <div class="input-group">\n        <input type="text" class="form-control youtube-url" placeholder="Paste Youtube link here">\n          <span class="input-group-btn">\n            <button class="btn btn-default save-video" type="button">Save</button>\n          </span>\n    </div><!-- /input-group -->\n</li>';
+__p += '<li class="add-video-box">\n    <div class="input-group">\n        <input type="text" class="form-control youtube-url" placeholder="Paste Youtube link here">\n          <span class="input-group-btn">\n            <button class="btn btn-default save-video" type="button">Save</button>\n          </span>\n    </div>\n</li>';
 return __p
 };
 

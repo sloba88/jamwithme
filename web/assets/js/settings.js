@@ -133,6 +133,7 @@ $(function() {
 
     var $musiciansInstruments = $('#musician_instruments');
     var $musiciansVideos = $('#musician_videos');
+    var $soundcloudTracks = $('#soundcloud_tracks');
 
     if ($musiciansInstruments.length > 0){
         if ($musiciansInstruments.find('.row').length === 0){
@@ -233,8 +234,29 @@ $(function() {
             if (data.status == 'success') {
                 self.closest('li').remove();
 
-                $('#musician_videos').append(window.JST.videoBoxTemplate({'id' : data.id, 'url': data.url }));
+                $musiciansVideos.append(window.JST.videoBoxTemplate({'id' : data.id, 'url': data.url }));
                 parseYTVideoImages();
+                addMessage(data.status, data.message);
+                scrollbarPlugin();
+            }
+        });
+    });
+
+    $soundcloudTracks.on('click', '.save-track', function(){
+        var url = $(this).closest('li').find('.soundcloud-track-url').val();
+        var self = $(this);
+        $.ajax({
+            method: 'POST',
+            url: Routing.generate('soundcloud_track_create'),
+            data: { 'url' : url}
+        }).done(function(data) {
+            if (data.status == 'success') {
+                self.closest('li').remove();
+
+                $soundcloudTracks.append(window.JST.soundcloudTrackBoxTemplate({'id' : data.id, 'url': data.url }));
+
+                //SC.Widget('sc_track_'+data.id);
+
                 addMessage(data.status, data.message);
                 scrollbarPlugin();
             }
@@ -247,6 +269,20 @@ $(function() {
         var id = $(this).closest('li').data('id');
         $.ajax({
            url: Routing.generate('video_remove', {'id': id})
+        }).done(function(data){
+            if (data.status == 'success') {
+                self.closest('li').remove();
+                addMessage(data.status, data.message);
+            }
+        });
+    });
+
+    $(document).on('click', '.remove-soundcloud-track', function(e){
+        e.preventDefault();
+        var self = $(this);
+        var id = $(this).closest('li').data('id');
+        $.ajax({
+            url: Routing.generate('soundcloud_track_remove', {'id': id})
         }).done(function(data){
             if (data.status == 'success') {
                 self.closest('li').remove();
@@ -344,6 +380,19 @@ $(function() {
             e.preventDefault();
             if ($('.add-video-box').length === 0) {
                 $('#musician_videos').prepend(window.JST.videoAddBoxTemplate());
+            } else {
+                $('.youtube-url').focus();
+            }
+        });
+    }
+
+    if ($('#soundcloud_tracks').length > 0){
+        $('#add_another_soundcloud_track').on('click', function(e) {
+            e.preventDefault();
+            if ($('.add-sound-box').length === 0) {
+                $('#soundcloud_tracks').prepend(window.JST.soundcloudTrackAddBoxTemplate());
+            } else {
+                $('.soundcloud-track-url').focus();
             }
         });
     }

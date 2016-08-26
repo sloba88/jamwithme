@@ -3,13 +3,16 @@
 namespace Jam\UserBundle\Controller;
 
 
+use Jam\CoreBundle\Entity\SoundcloudTrack;
 use Jam\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class SoundcloudController extends Controller {
 
@@ -59,9 +62,6 @@ class SoundcloudController extends Controller {
                 $user = $soundcloudService->setNewSoundcloudUser($soundcloudUserData, $tokenData);
             }
 
-            //$em->persist($user);
-            //$em->flush();
-
             $loginToken = new UsernamePasswordToken($user, $user->getPlainPassword(), "public", $user->getRoles());
             $securityContext->setToken($loginToken);
 
@@ -72,6 +72,58 @@ class SoundcloudController extends Controller {
         }
 
         return new RedirectResponse($redirectUrl);
+    }
+
+    /**
+     * @Route("/soundcloud-track/create", name="soundcloud_track_create", options={"expose"=true})
+     * @Template()
+     */
+    public function createAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->get('request_stack')->getCurrentRequest();
+        $url = $request->get('url');
+
+        if (!$url){
+            //throw exception
+        }
+
+        $sc_track = new SoundcloudTrack();
+        $sc_track->setUrl($url);
+
+        $em->persist($sc_track);
+        $em->flush();
+
+        return new JsonResponse(array(
+            'status' => 'success',
+            'message' => $this->get('translator')->trans('message.sc_track.added.successfully'),
+            'url' => $sc_track->getUrl(),
+            'id' => $sc_track->getId()
+        ));
+    }
+
+    /**
+     * @Route("/oundcloud-track/remove/{id}", name="soundcloud_track_remove", options={"expose"=true})
+     * @Template()
+     */
+    public function removeAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        $sc_track = $this->getDoctrine()
+            ->getRepository('JamCoreBundle:SoundcloudTrack')
+            ->findOneBy(array('id' => $id, 'creator' => $user));
+
+        if ($sc_track) {
+            $em->remove($sc_track);
+            $em->flush();
+        }
+
+        return new JsonResponse(array(
+            'status' => 'success',
+            'message' => $this->get('translator')->trans('message.sc_track.removed.successfully')
+        ));
     }
 
 }

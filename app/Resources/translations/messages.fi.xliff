@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-08-25T13:28:22Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
+  <file date="2016-08-26T10:55:22Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -24,7 +24,7 @@
       <trans-unit id="d219c68101f532de10add2cf42fb9dbeca73d3be" resname="Location">
         <source>Location</source>
         <target state="new">Sijainti</target>
-        <jms:reference-file line="115">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="101">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="105">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/setup.html.twig</jms:reference-file>
         <jms:reference-file line="37">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
@@ -56,8 +56,8 @@
       <trans-unit id="61fb451d69ef51d5c44f32eab0694c26e61ae34a" resname="button.home.login">
         <source>button.home.login</source>
         <target state="new">Sisään</target>
-        <jms:reference-file line="491">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="521">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="517">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="547">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
@@ -77,12 +77,12 @@
       <trans-unit id="56909a28bbfd1c8076ac241e646f3c45bb0adf4f" resname="button.jam.remove.interest">
         <source>button.jam.remove.interest</source>
         <target state="new">En ole enää kiinnostunut</target>
-        <jms:reference-file line="109">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="114">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c0e7ee70ae2091e3a0d8fd581b122c57029ed35a" resname="button.jam.show.interest">
         <source>button.jam.show.interest</source>
         <target state="new">Olen kiinnostunut</target>
-        <jms:reference-file line="106">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="111">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="abcfee3dcaccf158d515be3c8e3157c1776196ab" resname="button.login">
         <source>button.login</source>
@@ -111,7 +111,7 @@
         <source>button.message</source>
         <target state="new">Viesti</target>
         <jms:reference-file line="37">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
-        <jms:reference-file line="129">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="134">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4e49febd2de7216895ad397d1a1f05d8cf3ba6cc" resname="button.next">
         <source>button.next</source>
@@ -123,14 +123,14 @@
         <source>button.request.submit</source>
         <target state="new">Lähetä</target>
         <jms:reference-file line="11">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Resetting/request_content.html.twig</jms:reference-file>
-        <jms:reference-file line="189">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
+        <jms:reference-file line="220">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0dfce19eb3a921df65cf84487a8c5f6dd7d9e878" resname="button.save">
         <source>button.save</source>
         <target state="new">Tallenna</target>
         <jms:reference-file line="24">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/EmailType.php</jms:reference-file>
-        <jms:reference-file line="60">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="337">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="46">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="323">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="19">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="427681cdcf211c177224b8aa9dd1591f43ff7b85" resname="button.select.all">
@@ -191,7 +191,7 @@
       <trans-unit id="e360c037aa80f7f0bff41074a8aee2492ff7cf77" resname="exception.image.not.found">
         <source>exception.image.not.found</source>
         <target>Kuvaa ei löytynyt</target>
-        <jms:reference-file line="316">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="350">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="b77ba07ed548c6d212f96544a292078ceeac41ef" resname="exception.nonexistent.user">
         <source>The user with %email% does not exist</source>
@@ -201,12 +201,12 @@
       <trans-unit id="fda539f31ffa1350a042cfe6ffc71fe8b55ed380" resname="exception.the.jam.does.not.exist">
         <source>exception.the.jam.does.not.exist</source>
         <target>exception.the.jam.does.not.exist</target>
-        <jms:reference-file line="196">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="234">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="251">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="305">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="343">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="374">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="169">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="263">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="285">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="339">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="377">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="408">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="664755ae94dc7ff54ee4b6bcefb764bcd1c9fc17" resname="exception.there.is.no.image.with.that.id">
         <source>exception.there.is.no.image.with.that.id</source>
@@ -231,8 +231,8 @@
       <trans-unit id="37f26949ccedac3eccb254e8377ebeaf2a257ea0" resname="exception.you.are.not.this.jam.member.">
         <source>exception.you.are.not.this.jam.member.</source>
         <target>Et ole tämä käyttäjä?</target>
-        <jms:reference-file line="260">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="308">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="294">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="342">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="282726c208fb740e6b048a45abebc2027ac874a7" resname="exception.you.shall.not.pass">
         <source>exception.you.shall.not.pass</source>
@@ -242,8 +242,8 @@
         <jms:reference-file line="122">/vagrant/www/app/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
         <jms:reference-file line="183">/vagrant/www/app/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
         <jms:reference-file line="278">/vagrant/www/app/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="256">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
-        <jms:reference-file line="298">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="290">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="332">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="7f0873aab9a63cab15bbf214413b1b4eee7efa28" resname="find.compatible.musicians">
         <source>find.compatible.musicians</source>
@@ -258,29 +258,29 @@
       <trans-unit id="59051deb88c42aaede4a6dba778c55ba2d448cdb" resname="info.settings.jammer">
         <source>info.settings.jammer</source>
         <target state="new">Valitse tämä jos etsit soittoseuraa, jäseniä bändiisi tai muita musakontakteja esim. sanoittajaa, sovittajaa...</target>
-        <jms:reference-file line="142">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="128">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="70">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2444d6e6775deb25db53013180bc3592d103e9a1" resname="info.settings.location">
         <source>info.settings.location</source>
         <target state="new">Sijaintisi helpottaa meitä löytämään käyttäjiä läheltäsi. Voit laittaa tarkankin osioitteen, sillä emme koskaan näytä tarkkaa osoitettasi kenellekkään.</target>
-        <jms:reference-file line="116">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="102">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ccb928e816027c757c20ca148bd59efa0108594f" resname="info.settings.teacher">
         <source>info.settings.teacher</source>
         <target state="new">Valitse tämä jos haluat näkyä palvelussa myös/vain soitonopettajana</target>
-        <jms:reference-file line="147">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="133">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="75">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fd7cd9b4d8159bed6d5f4ff3cd972c2ac70280b1" resname="info.settings.username">
         <source>info.settings.username</source>
         <target state="new">Käyttäjätunnus ei voi sisältää erikoismerkkejä, eikä välilyöntejä.</target>
-        <jms:reference-file line="82">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="68">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="917a3b43474bac8f330257b7eab585b7e0bb1ea7" resname="info.settings.visitor">
         <source>info.settings.visitor</source>
         <target state="new">Valitse tämä jos haluat etsiä vain soitonopetusta.</target>
-        <jms:reference-file line="137">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="123">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="65">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0fe692944e5ec1a686d6b3d0a0bc91a9088c795d" resname="jam.invitation.email.you.have.been.playing">
@@ -330,12 +330,17 @@
       <trans-unit id="c9afcfcd7e736a908026c9ce1ca67d1294f30aae" resname="label.add.photos">
         <source>label.add.photos</source>
         <target state="new">Lisää kuvia</target>
-        <jms:reference-file line="216">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="202">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a99c15942c89902efcfd8931d0383788bfae806d" resname="label.add.sound">
+        <source>label.add.sound</source>
+        <target state="new">Lisää soundit</target>
+        <jms:reference-file line="190">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3ceed3b0527c8a71d0d48cdbb6a075e51fdf1a05" resname="label.add.video">
         <source>label.add.video</source>
         <target state="new">Lisää video</target>
-        <jms:reference-file line="272">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="258">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="156">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="11b95888e562d05337df1c527884760405bb9366" resname="label.available">
@@ -351,7 +356,7 @@
       <trans-unit id="4aa0fc260fc5883b6d1e2d4fa4095b9a1fae6a24" resname="label.change.password">
         <source>label.change.password</source>
         <target state="new">Vaihda salasana</target>
-        <jms:reference-file line="109">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="95">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="069807227fdad28048b2f72f37eb337e14f95412" resname="label.close.conversation">
         <source>label.close.conversation</source>
@@ -371,18 +376,18 @@
       <trans-unit id="e082550d5626d885343de4ceb789e7397364fb2e" resname="label.connect.facebook">
         <source>label.connect.facebook</source>
         <target state="new">Yhdistä Facebookkiin</target>
-        <jms:reference-file line="313">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="299">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="43bfc0405bdcb294f275e8c385bd8d9fa5c835a7" resname="label.connect.soundcloud">
         <source>label.connect.soundcloud</source>
         <target state="new">Yhdistä SoundCloudiin</target>
-        <jms:reference-file line="323">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="309">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0f063fe407802af682792db012b3b69ff33b77ef" resname="label.connected">
         <source>label.connected</source>
         <target state="new">Yhdistetty</target>
-        <jms:reference-file line="310">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="320">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="296">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="306">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d19d2b8d8364884b654aff22bccc8bee3abd489" resname="label.did.you.forgot.password">
         <source>label.did.you.forgot.password</source>
@@ -441,12 +446,12 @@
       <trans-unit id="cb0377345e0b84aa4479a40689c3d8a2fa3fa68a" resname="label.i.am.available">
         <source>label.i.am.available</source>
         <target state="new">Olen käytettävissä</target>
-        <jms:reference-file line="192">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="178">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="85c2e0c0ddfa3df5776ba2654da1a28934579339" resname="label.i.want.to">
         <source>label.i.want.to</source>
         <target state="new">Haluan</target>
-        <jms:reference-file line="131">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="117">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="59">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b992e2cac98f5d101fd374d5139d6fa5b4782c6" resname="label.influences">
@@ -467,7 +472,7 @@
         <source>label.jam.current.members</source>
         <target>Nykyiset jäsenet</target>
         <jms:reference-file line="68">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
-        <jms:reference-file line="121">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="126">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="843a5dd5ab1be657a451a82cfbd74258e7efd3f9" resname="label.jam.description">
         <source>label.jam.description</source>
@@ -600,7 +605,7 @@
       <trans-unit id="ca9f4916f04e49fb84e8fe2ba7748cfd04338fcd" resname="label.musician.info">
         <source>label.musician.info</source>
         <target state="new">Muusikkotiedot</target>
-        <jms:reference-file line="66">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="52">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="62">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/setup.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4287c5934a033741dc3cdc269aaefe0e7020cc23" resname="label.musician.info.info">
@@ -612,12 +617,12 @@
       <trans-unit id="185fdc3e9ae75305bfae9633904289913d688273" resname="label.networks">
         <source>label.networks</source>
         <target state="new">Verkostot</target>
-        <jms:reference-file line="69">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="55">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f4d50ee2d1372fa7ac1480c43f43fc4de3803886" resname="label.no.images">
         <source>label.no.images</source>
         <target state="new">Ei vielä kuvia</target>
-        <jms:reference-file line="242">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="228">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="211">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="37cf77ae10c1b91c1097fd563c0b0ea6e249b283" resname="label.no.jams">
@@ -633,9 +638,10 @@
       <trans-unit id="6bdce0a700dfdd0c29b1dc38fefe39a65ec4193a" resname="label.no.videos">
         <source>label.no.videos</source>
         <target state="new">Ei lisättyjä videoita</target>
-        <jms:reference-file line="284">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="270">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="229">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
-        <jms:reference-file line="165">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="170">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="191">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
         <source>label.password</source>
@@ -647,30 +653,30 @@
         <source>label.pending.invitation</source>
         <target state="new">Odottaa vastausta...</target>
         <jms:reference-file line="66">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/index.html.twig</jms:reference-file>
-        <jms:reference-file line="146">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="150">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="55b15ad2bcbf41e3327ccaf2e01453f479e71f0c" resname="label.personal.info">
         <source>label.personal.info</source>
         <target state="new">Käyttäjätiedot</target>
-        <jms:reference-file line="65">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="51">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c21eb710949884367a9e27abb60e8e0fc65f8ceb" resname="label.photos">
         <source>label.photos</source>
         <target state="new">Kuvat</target>
-        <jms:reference-file line="67">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="237">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="53">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="223">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="165">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd28a0018a8739560ed890683c65b18906c7df0e" resname="label.remove">
         <source>label.remove</source>
         <target state="new">Poista</target>
-        <jms:reference-file line="294">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="280">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="175">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cd80b54bc6bef9aec7232caefd621b4b42dc0d48" resname="label.remove.photo">
         <source>label.remove.photo</source>
         <target state="new">Poista kuva</target>
-        <jms:reference-file line="253">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="239">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="02424dc8f20c80b7a6e14c68f1a6e82d19e163a7" resname="label.repeat.password">
         <source>Salasana uudelleen</source>
@@ -690,12 +696,12 @@
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
         <target state="new">Etsi käyttäjiä</target>
-        <jms:reference-file line="477">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="503">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8788c0ef76fda341a55e9e406055d74357d1400e" resname="label.set.profile.photo">
         <source>label.set.profile.photo</source>
         <target state="new">Aseta profiilikuva</target>
-        <jms:reference-file line="252">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="238">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd54804fbe9d9e803b0a5f312b53040e0b024b80" resname="label.setup.your.profile">
         <source>label.setup.your.profile</source>
@@ -706,6 +712,8 @@
         <source>label.sounds</source>
         <target state="new">Soundit</target>
         <jms:reference-file line="167">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="198">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
+        <jms:reference-file line="186">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a6121cd659f2b139835a05ed61228cfacce64b6d" resname="label.sounds.like">
         <source>label.sounds.like</source>
@@ -736,7 +744,7 @@
       <trans-unit id="208e071127d52400f1ebc2d014d3366b4e61452a" resname="label.upload.all">
         <source>label.upload.all</source>
         <target state="new">Lataa kaikki</target>
-        <jms:reference-file line="224">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="210">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="05353914133c4c4be543a454c6da7e36249a974a" resname="label.username">
         <source>label.username</source>
@@ -747,11 +755,11 @@
       <trans-unit id="526fc38d5e4d5538120fffe2c453e978ee2090c0" resname="label.videos">
         <source>label.videos</source>
         <target state="new">Videot</target>
-        <jms:reference-file line="68">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="279">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="54">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="265">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="166">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="164">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
-        <jms:reference-file line="160">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="165">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6dc3ac3e6d6feec53a2cb25b1d50c51928b1c862" resname="label.want.to.learn">
         <source>label.want.to.learn</source>
@@ -794,7 +802,7 @@
       <trans-unit id="456968ba9af6660e2b2696190e830c0f876c57e2" resname="link.home.about">
         <source>link.home.about</source>
         <target state="new">Meistä</target>
-        <jms:reference-file line="498">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="524">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
@@ -809,22 +817,32 @@
       <trans-unit id="94a0af19e3069c835182069b668e11027abe0637" resname="message.jam.added.to.interest">
         <source>message.jam.added.to.interest</source>
         <target state="new">message.jam.added.to.interest</target>
-        <jms:reference-file line="355">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="389">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2c30c70311bf45b4f768e3e1543a99b3baf588f" resname="message.jam.created.successfully">
         <source>message.jam.created.successfully</source>
         <target>Jami luotu onnistuneesti!</target>
-        <jms:reference-file line="171">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="144">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="396b720eca7b6507170a9b0f680f644d7992fd88" resname="message.jam.removed.from.interest">
         <source>message.jam.removed.from.interest</source>
         <target state="new">message.jam.removed.from.interest</target>
-        <jms:reference-file line="383">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="417">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="9882cef6db906276e658a7e4a78c47d9f1207f49" resname="message.jam.updated.successfully">
         <source>message.jam.updated.successfully</source>
         <target>Päivitys onnistui</target>
-        <jms:reference-file line="213">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="204">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="979b3b3b22e728add30e643024b5860eda4302e7" resname="message.sc_track.added.successfully">
+        <source>message.sc_track.added.successfully</source>
+        <target state="new">message.sc_track.added.successfully</target>
+        <jms:reference-file line="99">/vagrant/www/app/../src/Jam/UserBundle/Controller/SoundcloudController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d39b405cdf791f380b392879058431535b40380d" resname="message.sc_track.removed.successfully">
+        <source>message.sc_track.removed.successfully</source>
+        <target state="new">message.sc_track.removed.successfully</target>
+        <jms:reference-file line="125">/vagrant/www/app/../src/Jam/UserBundle/Controller/SoundcloudController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4a7218ae13a4aadf6290c8e4b6ca5201468dcdcb" resname="message.video.added.successfully">
         <source>message.video.added.successfully</source>
@@ -978,7 +996,7 @@
       <trans-unit id="414e85c678219bc9075216593a2ce3e7f5bd5962" resname="text.edit.a.jam">
         <source>text.edit.a.jam</source>
         <target state="new">Muokkaa Jamia</target>
-        <jms:reference-file line="220">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="211">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e2a0c2400a03ef126d64467970fc6c33515aaa26" resname="text.fill.out.your.profile">
         <source>text.fill.out.your.profile</source>
@@ -1097,6 +1115,7 @@
         <source>text.meta.description</source>
         <target state="new">Haetko bändijäseniä tai soittoseuraa? Etsitkö sopivaa kitaraopettajaa? Tapaa heidät Jamifindissa.</target>
         <jms:reference-file line="7">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="420">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
         <source>text.musicians</source>
@@ -1145,7 +1164,7 @@
         <source>text.people.interested</source>
         <target>Kiinostuneet käyttäjät</target>
         <jms:reference-file line="94">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/index.html.twig</jms:reference-file>
-        <jms:reference-file line="81">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
+        <jms:reference-file line="86">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="7a626306e0b670a0333b14a0fa0180057b65a860" resname="text.profile.completion">
         <source>text.profile.completion</source>
@@ -1229,7 +1248,7 @@
       <trans-unit id="218b487f5853c7d1051e1baa3b5bd0e18baa1aac" resname="text.start.new.jam">
         <source>text.start.new.jam</source>
         <target>Luo uusi Jami</target>
-        <jms:reference-file line="178">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
+        <jms:reference-file line="151">/vagrant/www/app/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="11">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/index.html.twig</jms:reference-file>
         <jms:reference-file line="16">/vagrant/www/app/../src/Jam/WebBundle/Resources/views/Jam/index.html.twig</jms:reference-file>
       </trans-unit>

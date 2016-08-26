@@ -73,6 +73,13 @@ class Jam
     /**
      * @var ArrayCollection
      *
+     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\SoundcloudTrack", mappedBy="jam", cascade={"all"} )
+     */
+    private $soundcloudTracks;
+
+    /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Genre", inversedBy="jams", cascade={"all"})
      * @ORM\JoinTable(
      *      name="jams_genres",
@@ -623,5 +630,39 @@ class Jam
     public function getInterests()
     {
         return $this->interests;
+    }
+
+    /**
+     * Add soundcloudTrack
+     *
+     * @param \Jam\CoreBundle\Entity\SoundcloudTrack $soundcloudTrack
+     *
+     * @return Jam
+     */
+    public function addSoundcloudTrack(\Jam\CoreBundle\Entity\SoundcloudTrack $soundcloudTrack)
+    {
+        $this->soundcloudTracks[] = $soundcloudTrack;
+
+        return $this;
+    }
+
+    /**
+     * Remove soundcloudTrack
+     *
+     * @param \Jam\CoreBundle\Entity\SoundcloudTrack $soundcloudTrack
+     */
+    public function removeSoundcloudTrack(\Jam\CoreBundle\Entity\SoundcloudTrack $soundcloudTrack)
+    {
+        $this->soundcloudTracks->removeElement($soundcloudTrack);
+    }
+
+    /**
+     * Get soundcloudTracks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSoundcloudTracks()
+    {
+        return $this->soundcloudTracks;
     }
 }

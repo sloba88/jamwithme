@@ -126,6 +126,14 @@ class JamController extends Controller
                 }
             }
 
+            //assign sounds
+            if ($request->get('soundcloudTracks')) {
+                foreach($request->get('soundcloudTracks') AS $v) {
+                    $sound = $em->find('JamCoreBundle:SoundcloudTrack', $v);
+                    $sound->setJam($jam);
+                }
+            }
+
             $jam->setStatus(1);
             $em->persist($jam);
             //send invites to members here!
@@ -178,6 +186,14 @@ class JamController extends Controller
                 foreach($request->get('video') AS $v) {
                     $video = $em->find('JamCoreBundle:Video', $v);
                     $video->setJam($jam);
+                }
+            }
+
+            //assign sounds
+            if ($request->get('soundcloudTracks')) {
+                foreach($request->get('soundcloudTracks') AS $v) {
+                    $sound = $em->find('JamCoreBundle:SoundcloudTrack', $v);
+                    $sound->setJam($jam);
                 }
             }
 
