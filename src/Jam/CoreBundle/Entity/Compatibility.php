@@ -159,7 +159,19 @@ class Compatibility
             }
         }
 
-        $possibleMatches += min($user->getArtists()->count(), $me->getArtists()->count()) * $artistIndex;
+        if ($user->getArtists()) {
+            $userArtistCount = $user->getArtists()->count();
+        } else {
+            $userArtistCount = 0;
+        }
+
+        if ($me->getArtists()) {
+            $meArtistCount = $me->getArtists()->count();
+        } else {
+            $meArtistCount = 0;
+        }
+
+        $possibleMatches += min($userArtistCount, $meArtistCount) * $artistIndex;
 
         /* calculate genres */
         $matchedIndexes = array();
@@ -177,7 +189,19 @@ class Compatibility
             }
         }
 
-        $possibleMatches += min($user->getGenres()->count(), $me->getGenres()->count()) * $genresIndex;
+        if ($user->getGenres()) {
+            $userGenresCount = $user->getGenres()->count();
+        } else {
+            $userGenresCount = 0;
+        }
+
+        if ($me->getGenres()) {
+            $meGenresCount = $me->getGenres()->count();
+        } else {
+            $meGenresCount = 0;
+        }
+
+        $possibleMatches += min($userGenresCount, $meGenresCount) * $genresIndex;
 
         /* calculate availability (commitment) */
         if ($user->getCommitment() && $me->getCommitment()){
