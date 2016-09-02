@@ -333,24 +333,7 @@ $(function() {
 
     $('select').select2();
 
-
-
     $('[data-toggle=popover]').popover();
-
-    // //select plugin on dashboard updates height of main container on change
-    // $('select').on('change', sidebarHeight);
-
-    $('#form_genres, #jam_genres').select2({
-        placeholder: 'Whats music do you play?'
-    });
-
-    $('#search_form_genres').select2({
-        placeholder: 'Filter by genres'
-    });
-
-    $('#search_form_instruments').select2({
-        placeholder: 'Filter by instruments'
-    });
 
     $('input[type=checkbox]').next('label').prepend('<span></span>');
 

@@ -107,6 +107,11 @@ function getFilterData() {
         $('.shouts-listing-container h4 a').text('Shouts 50km around you');
     }
 
+    //save to local storage
+    if(typeof(Storage) !== 'undefined') {
+        localStorage.setItem('lastSearch', data);
+    }
+
     return data;
 }
 
@@ -252,65 +257,82 @@ $(function() {
 
     $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
         //parse genres
-        $.ajax({
-            url: Routing.generate('api_genres')
-        }).done(function( result ) {
-            $('.filter-genres').select2({
-                data: result,
-                placeholder: $('.filter-genres').attr('placeholder'),
-                multiple: true,
-                matcher: oldMatcher(matchStart)
-            });
-        });
 
-        //parse instruments
-        $.ajax({
-            url: Routing.generate('api_instruments')
-        }).done(function( result ) {
-            $('.filter-instruments').select2({
-                data: result,
-                placeholder: $('.filter-instruments').attr('placeholder'),
-                multiple: true,
-                matcher: oldMatcher(matchStart)
-            });
-        });
-    });
 
-    if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
-        //if there are no coordinates set try browser get position
-        getLocation(function(myBrowserLocation) {
-            myLocation = myBrowserLocation;
-            if (!myLocation) {
-                myLocation = [_user.lat, _user.lng];
-                filterMusicians();
-                filterShouts();
-            } else {
-                //save this to db and then do filters
-                $.ajax({
-                    url: Routing.generate('api_set_musician_location'),
-                    type: 'POST',
-                    data: { 'coords': myBrowserLocation.join()}
-                }).done(function( result ) {
-
-                    $('.no-location-message').fadeOut(function (){
-                        $('.no-location-message').remove();
-                    });
-
-                    addMessage(result.status, result.message);
-                    window.location.reload();
-                    //_user.temporaryLocation = '';
-                    //filterMusicians();
-                    //filterShouts();
+        $.when(
+            $.ajax({
+                url: Routing.generate('api_genres')
+            }).done(function( result ) {
+                $('.filter-genres').select2({
+                    data: result,
+                    placeholder: $('.filter-genres').attr('placeholder'),
+                    multiple: true,
+                    matcher: oldMatcher(matchStart)
                 });
+
+                var genres = getParameterByName('genres');
+
+                if (genres) {
+                    $('.filter-genres').select2('trigger', 'select', {
+                        data: { id: genres }
+                    });
+                }
+            }),
+
+            //parse instruments
+            $.ajax({
+                url: Routing.generate('api_instruments')
+            }).done(function( result ) {
+                $('.filter-instruments').select2({
+                    data: result,
+                    placeholder: $('.filter-instruments').attr('placeholder'),
+                    multiple: true,
+                    matcher: oldMatcher(matchStart)
+                });
+
+                var instruments = getParameterByName('instruments');
+
+                if (instruments) {
+                    $('.filter-instruments').select2('trigger', 'select', {
+                        data: { id: instruments }
+                    });
+                }
+            })
+
+        ).then(function() {
+            if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
+                //if there are no coordinates set, try browser get position
+                getLocation(function(myBrowserLocation) {
+                    myLocation = myBrowserLocation;
+                    if (!myLocation) {
+                        myLocation = [_user.lat, _user.lng];
+                        filterMusicians();
+                        filterShouts();
+                    } else {
+                        //save this to db and then do filters
+                        $.ajax({
+                            url: Routing.generate('api_set_musician_location'),
+                            type: 'POST',
+                            data: { 'coords': myBrowserLocation.join()}
+                        }).done(function( result ) {
+
+                            $('.no-location-message').fadeOut(function (){
+                                $('.no-location-message').remove();
+                            });
+
+                            addMessage(result.status, result.message);
+                            window.location.reload();
+                        });
+                    }
+                });
+            }else {
+                if ($('.page-shouts ').length === 0) {
+                    filterMusicians();
+                }
+                filterShouts();
             }
         });
-    }else {
-        if ($('.page-shouts ').length === 0) {
-            filterMusicians();
-        }
-
-        filterShouts();
-    }
+    });
 
     //activate tabs
     tabsToggle($('.tabs-activate'));
