@@ -30,6 +30,7 @@ class JamController extends Controller
                 FROM JamCoreBundle:Jam j
                 JOIN j.location jl
                 WHERE jl.country = :me
+                AND j.status = 1
                 ORDER BY j.createdAt DESC'
             )->setParameter('me', $this->getUser()->getLocation()->getCountry());
             $jams = $query->getResult();
@@ -74,6 +75,7 @@ class JamController extends Controller
                 JOIN j.interests i
                 JOIN i.musician u
                 WHERE u = :me
+                AND j.status = 1
                 ORDER BY j.createdAt DESC'
         )->setParameter('me', $this->getUser());
 
