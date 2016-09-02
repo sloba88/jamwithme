@@ -103,13 +103,8 @@ function getFilterData() {
     }
 
     if ($('.page-shouts ').length !== 0) {
-        data += '&distance=50';
-        $('.shouts-listing-container h4 a').text('Shouts 50km around you');
-    }
-
-    //save to local storage
-    if(typeof(Storage) !== 'undefined') {
-        localStorage.setItem('lastSearch', data);
+        data += '&distance=100';
+        $('.shouts-listing-container h4 a').text('Shouts 100km around you');
     }
 
     return data;
@@ -210,16 +205,35 @@ function filterShouts() {
     });
 }
 
-$(function() {
-
+function saveFilterForm() {
     if(typeof(Storage) !== 'undefined') {
-        // Code for localStorage/sessionStorage.
-        if (localStorage.distance) {
-            $('#search_form_distance').val(localStorage.distance);
+        localStorage.setItem('filter_genres', JSON.stringify($('select.filter-genres').val()));
+        localStorage.setItem('filter_instruments', JSON.stringify($('select.filter-instruments').val()));
+        localStorage.setItem('filter_distance', $('#search_form_distance').val());
+    }
+}
+
+function loadFilterForm() {
+    if(typeof(Storage) !== 'undefined') {
+
+        if (localStorage.filter_distance) {
+            $('#search_form_distance').val(localStorage.filter_distance).trigger('change');
+        }
+
+        if (localStorage.filter_genres && localStorage.filter_genres !== 'null') {
+            $('select.filter-genres').select2().val(JSON.parse(localStorage.filter_genres)).trigger('change');
+
+        }
+
+        if (localStorage.filter_instruments && localStorage.filter_instruments !== 'null') {
+            $('select.filter-instruments').select2().val(JSON.parse(localStorage.filter_instruments)).trigger('change');
         }
     }
+}
 
-    $('#map-view').on('click', function(){
+$(function() {
+
+    $(document).on('click', '#map-view', function(){
         delay(function(){
             if (initializedMap === false ){
                 $('#map').height($('.view-tab-container').height() - 10);
@@ -228,6 +242,7 @@ $(function() {
                 mapFilterMusicians();
             } else {
                 $('.view-tab-container').scrollTop(0);
+                mapFilterMusicians();
             }
         }, 500);
     });
@@ -244,28 +259,26 @@ $(function() {
         loadMoreResults = true;
         delay(function(){
             if ($('#map').is(':visible')) {
-                mapFilterMusicians();
+                $('#map-view').trigger('click');
             } else {
                 filterMusicians();
                 filterShouts();
                 $('.view-tab-container').scrollTop(0).perfectScrollbar('update');
                 $('.shouts-listing').scrollTop(0).perfectScrollbar('update');
             }
+            saveFilterForm();
 
         }, 500);
     });
 
     $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
         //parse genres
-
-
         $.when(
             $.ajax({
                 url: Routing.generate('api_genres')
             }).done(function( result ) {
                 $('.filter-genres').select2({
                     data: result,
-                    placeholder: $('.filter-genres').attr('placeholder'),
                     multiple: true,
                     matcher: oldMatcher(matchStart)
                 });
@@ -285,7 +298,6 @@ $(function() {
             }).done(function( result ) {
                 $('.filter-instruments').select2({
                     data: result,
-                    placeholder: $('.filter-instruments').attr('placeholder'),
                     multiple: true,
                     matcher: oldMatcher(matchStart)
                 });
@@ -300,14 +312,16 @@ $(function() {
             })
 
         ).then(function() {
+
+            loadFilterForm();
+
             if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
                 //if there are no coordinates set, try browser get position
                 getLocation(function(myBrowserLocation) {
                     myLocation = myBrowserLocation;
                     if (!myLocation) {
                         myLocation = [_user.lat, _user.lng];
-                        filterMusicians();
-                        filterShouts();
+                        $('#main-filter-form').trigger('change');
                     } else {
                         //save this to db and then do filters
                         $.ajax({
@@ -326,10 +340,7 @@ $(function() {
                     }
                 });
             }else {
-                if ($('.page-shouts ').length === 0) {
-                    filterMusicians();
-                }
-                filterShouts();
+                $('#main-filter-form').trigger('change');
             }
         });
     });
@@ -377,12 +388,19 @@ $(function() {
 
             if(typeof(Storage) !== 'undefined') {
                 // Code for localStorage/sessionStorage.
-                localStorage.setItem('distance', ui.value);
+                localStorage.setItem('filter_distance', ui.value);
             }
+        },
+        change: function() {
+            var selection = $('#filter-by-distance-slider').slider('value');
+            $('.slide-max').text(selection + 'km');
         }
     });
 
-    $('#filter-by-distance-btn span').text($('#search_form_distance').val() + $('#search_form_distance').data('text'));
+    $('#search_form_distance').on('change', function() {
+        $('#filter-by-distance-btn span').text($('#search_form_distance').val() + $('#search_form_distance').data('text'));
+        $('#filter-by-distance-slider').slider('value', $('#search_form_distance').val());
+    });
 
     $('.view-tab-container').on('ps-y-reach-end', function () {
         console.log('end reached');
