@@ -247,6 +247,10 @@ $(function() {
         }, 500);
     });
 
+    if ($('#main-filter-form').length === 0 && $('#shoutForm').length !== 0) {
+        filterShouts();
+    }
+
     $('#grid-view').on('click', function(){
         $('.people-listing-grid').html('').addClass('loading-content');
         renderGridView(filterResults);
