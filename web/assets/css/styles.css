@@ -8956,7 +8956,7 @@ body {
 
 /* line 108, ../../sass/jamifind/_layout.scss */
 .main-content-inner {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.97);
   padding-bottom: 0 !important;
   padding-top: 0 !important;
   padding-left: 20px;
@@ -12248,18 +12248,19 @@ header {
 .single-jam-list {
   border: 2px solid #000;
   margin: 0 20px 20px;
+  background-color: #fff;
 }
-/* line 118, ../../sass/jamifind/_jams.scss */
+/* line 119, ../../sass/jamifind/_jams.scss */
 .single-jam-list ul.members-list li.member {
   height: auto;
 }
 
-/* line 123, ../../sass/jamifind/_jams.scss */
+/* line 124, ../../sass/jamifind/_jams.scss */
 .jam-no-auth {
   background-color: #fff;
 }
 
-/* line 127, ../../sass/jamifind/_jams.scss */
+/* line 128, ../../sass/jamifind/_jams.scss */
 .jam-type {
   text-transform: uppercase;
   background-color: #3b385e;
@@ -12268,7 +12269,7 @@ header {
   color: #fff;
 }
 
-/* line 135, ../../sass/jamifind/_jams.scss */
+/* line 136, ../../sass/jamifind/_jams.scss */
 .profile-tabs > li a#start-jam-btn {
   border: none;
   margin-top: 5px;
@@ -12276,21 +12277,21 @@ header {
   padding: 5px 35px;
 }
 
-/* line 142, ../../sass/jamifind/_jams.scss */
+/* line 143, ../../sass/jamifind/_jams.scss */
 .profile-tabs > li a#start-jam-btn:hover {
   color: inherit;
 }
 
-/* line 147, ../../sass/jamifind/_jams.scss */
+/* line 148, ../../sass/jamifind/_jams.scss */
 #jam_musician_instruments .col-md-6 {
   margin-bottoM: 10px;
 }
-/* line 151, ../../sass/jamifind/_jams.scss */
+/* line 152, ../../sass/jamifind/_jams.scss */
 #jam_musician_instruments div.row {
   margin-bottom: 10px;
 }
 
-/* line 156, ../../sass/jamifind/_jams.scss */
+/* line 157, ../../sass/jamifind/_jams.scss */
 .add-jam-member-controls a {
   margin-bottom: 10px;
 }
