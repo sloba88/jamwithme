@@ -150,7 +150,7 @@ function fetchMapData(myLocation, city, callback){
 
                 setTimeout(function() {
                     resizeIcons();
-                }, 50);
+                }, 400);
             }
         }
     });
