@@ -405,6 +405,7 @@ a.fast-subscribe{
 	text-decoration: none;
 	text-transform: uppercase;
 	transition: all 0.2s ease;
+	white-space: nowrap;
 }
 
 a.fast-subscribe:hover {
