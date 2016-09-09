@@ -428,6 +428,10 @@ a.fast-subscribe:hover {
 		height: 1000px;
 		padding-top: 50px;
 	}
+	.social {
+		float: none;
+		text-align: center;
+	}
 	#multimedia {
 		height: auto;
 		padding-top: 80px;
@@ -531,10 +535,6 @@ a.fast-subscribe:hover {
 	.signup-page .navbar-brand,
 	.login-page .navbar-brand {
 		float: none;
-	}
-	.social {
-		float: none;
-		text-align: center;
 	}
 	.social li {
 		margin: 5px 10px;
