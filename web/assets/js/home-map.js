@@ -129,6 +129,10 @@ function initMap(){
             base: 'base'
         }).addTo(map);
 
+        map.on('moveend', function(e) {
+            resizeIcons();
+        });
+
         console.log('map initialized');
         mapInitialized = true;
     }
