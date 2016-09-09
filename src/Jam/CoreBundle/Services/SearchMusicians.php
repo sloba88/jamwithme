@@ -27,7 +27,12 @@ class SearchMusicians {
     /**
      * @var TransformedFinder
      */
-    private $elasticUserFinder;
+    private $elasticCompatibilityFinder;
+
+    /**
+     * @var TransformedFinder
+     */
+    private $elasticUsersFinder;
 
     /**
      * @var TransformedFinder
@@ -47,9 +52,17 @@ class SearchMusicians {
     /**
      * @param TransformedFinder $finder
      */
-    public function setElasticUserFinder(TransformedFinder $finder)
+    public function setElasticCompatibilityFinder(TransformedFinder $finder)
     {
-        $this->elasticUserFinder = $finder;
+        $this->elasticCompatibilityFinder = $finder;
+    }
+
+    /**
+     * @param TransformedFinder $finder
+     */
+    public function setElasticUsersFinder(TransformedFinder $finder)
+    {
+        $this->elasticUsersFinder = $finder;
     }
 
     /**
@@ -207,7 +220,36 @@ class SearchMusicians {
         //sort by compatibility here
         $query->addSort(array('musician2.isJammer' => array('order' => 'desc'), 'value' => array('order' => 'desc')));
 
-        $musicians = $this->elasticUserFinder->find($query);
+        $musicians = $this->elasticCompatibilityFinder->find($query);
+
+        return $musicians;
+    }
+
+    public function getElasticSearchPublicResult(array $location)
+    {
+        //no limit is used for map view
+        $perPage = 200;
+        $page = 1;
+        $distance = 30;
+
+        $elasticaQuery = new MatchAll();
+
+        if ($location['lat'] && $location['lng']){
+            $locationFilter = new \Elastica\Filter\GeoDistance(
+                'user.pin',
+                array('lat' => floatval($location['lat']), 'lon' => floatval($location['lng'])),
+                ($distance ? $distance : '100') . 'km'
+            );
+            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
+        }
+
+        $query = new \Elastica\Query();
+        $query->setQuery($elasticaQuery);
+        $query->setSize($perPage);
+        $query->setFrom(($page - 1) * $perPage);
+
+        //sort by compatibility here
+        $musicians = $this->elasticUsersFinder->find($query);
 
         return $musicians;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-09-02T14:15:28Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2016-09-09T10:31:20Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -46,7 +46,7 @@
       <trans-unit id="10588a9b649e63d4fddf51d014e3beb7086f8ea0" resname="button.find.out.more">
         <source>button.find.out.more</source>
         <target state="new">Find out more</target>
-        <jms:reference-file line="223">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="151">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3768ebd9deb0f606d18cfa1d01584ddbd27df024" resname="button.finish">
         <source>button.finish</source>
@@ -56,8 +56,8 @@
       <trans-unit id="61fb451d69ef51d5c44f32eab0694c26e61ae34a" resname="button.home.login">
         <source>button.home.login</source>
         <target state="new">Login</target>
-        <jms:reference-file line="517">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="547">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="524">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="554">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
@@ -369,9 +369,6 @@
         <target state="new">Compatibility</target>
         <jms:reference-file line="48">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="178">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
-        <jms:reference-file line="139">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
-        <jms:reference-file line="160">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
-        <jms:reference-file line="183">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e082550d5626d885343de4ceb789e7397364fb2e" resname="label.connect.facebook">
         <source>label.connect.facebook</source>
@@ -431,6 +428,11 @@
         <source>label.gender</source>
         <target state="new">Gender</target>
         <jms:reference-file line="226">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e8286dc15deb0c447355e307b379d4e651ac5aa1" resname="label.home.top.locations">
+        <source>label.home.top.locations</source>
+        <target state="new">Top locations</target>
+        <jms:reference-file line="121">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a22a548c2e72ab4238ee257a4036b804b1a69b95" resname="label.hourly.rate">
         <source>label.hourly.rate</source>
@@ -696,7 +698,7 @@
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
         <target state="new">search users</target>
-        <jms:reference-file line="503">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="510">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8788c0ef76fda341a55e9e406055d74357d1400e" resname="label.set.profile.photo">
         <source>label.set.profile.photo</source>
@@ -802,7 +804,7 @@
       <trans-unit id="456968ba9af6660e2b2696190e830c0f876c57e2" resname="link.home.about">
         <source>link.home.about</source>
         <target state="new">About</target>
-        <jms:reference-file line="524">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="531">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
@@ -1048,17 +1050,17 @@
       <trans-unit id="337e3721b66473a8865867f48f9affc91f3b2f39" resname="text.home.are.you.teacher">
         <source>text.home.are.you.teacher</source>
         <target state="new">Are you a music teacher looking for new students? Jamifind will help you.</target>
-        <jms:reference-file line="206">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="141">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="26310a0c1677225aa3b52d478299adfb48007129" resname="text.home.find.fellow.musicians">
         <source>text.home.find.fellow.musicians</source>
         <target state="new">Find fellow musicians or new band members near you</target>
-        <jms:reference-file line="114">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="116">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a0054ccefa5a52c4d4284758948f7304a796288e" resname="text.home.find.fellow.musicians.subtitle">
         <source>text.home.find.fellow.musicians.subtitle</source>
         <target state="new"><![CDATA[Searching for the perfect bass player for your band? Looking for the right guitar teacher? Meet them on <strong>Jamifind.</strong>]]></target>
-        <jms:reference-file line="115">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="117">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
         <source>text.hourly.rate</source>
@@ -1127,7 +1129,7 @@
         <source>text.meta.description</source>
         <target state="new">Find musicians and band members. Looking for the right guitar teacher? Meet them on Jamifind</target>
         <jms:reference-file line="7">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="420">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="424">/vagrant/www/app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
         <source>text.musicians</source>
@@ -1186,7 +1188,7 @@
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
         <target state="new">Build your musicians CV today. Share your sounds, video and images with the world and get discovered. With Jamifind you'll find the right people for your musical pursuits and before you know it you will be making new music and new friends.</target>
-        <jms:reference-file line="213">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="140">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
@@ -1195,13 +1197,13 @@
       </trans-unit>
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
         <source>text.register.find</source>
-        <target state="new">Find all the right music related contacts near you.</target>
-        <jms:reference-file line="212">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <target state="new">All the right music related contacts near you.</target>
+        <jms:reference-file line="139">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
         <target state="new">Join the Jamifind community and start your next musical journey today.</target>
-        <jms:reference-file line="220">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="148">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>

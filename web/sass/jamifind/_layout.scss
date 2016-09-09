@@ -15,7 +15,7 @@ body {
 		overflow: auto;
 	}
 	@include respond-to(handhelds) {
-		background: #fff !important;
+		//background: #fff !important;
 	}
 }
 

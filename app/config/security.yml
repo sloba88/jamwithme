@@ -55,6 +55,7 @@ security:
         - { path: ^/resetting, access: "!isAuthenticated()" }
         - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/soundcloud/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/musicians/find-public, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/m/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/jam/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/messages/, role: ROLE_USER }

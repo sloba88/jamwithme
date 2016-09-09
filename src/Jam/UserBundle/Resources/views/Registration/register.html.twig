@@ -13,7 +13,7 @@
                 <div class="col-md-6">
                     <h1>{{ 'text.register.title'|trans }}</h1>
 
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/-bsLFSZ8GZQ?rel=0&amp;showinfo=0" frameborder="1" allowfullscreen></iframe>
+                    <iframe id="ytPromoVideo" width="100%" height="315" src="https://www.youtube.com/embed/-bsLFSZ8GZQ?rel=0&amp;showinfo=0" frameborder="1" allowfullscreen></iframe>
 
                     <h4 class="subtitle">{{ 'text.register.desc'|trans }}</h4>
                 </div>
@@ -110,100 +110,27 @@
     </section>
 
     <section id="map-home">
-        <div class="container mapContent">
+        <div id="map" style="height: 580px; width: 100%; display: block; z-index: 10"></div>
+
+        <div class="mapContent">
             <h2>{{ 'text.home.find.fellow.musicians'|trans }}</h2>
             <h4 class="subtitle">{{ 'text.home.find.fellow.musicians.subtitle'|trans|raw }}</h4>
-
-            <div class="mapInteractive">
-                <div class="icon main" style="left: 42.5%; top: 116px;">
-                    <img src="{{ asset('assets/images/icon-main.png') }}" alt="Main icon">
-                </div>
-
-                <div class="icon guitar info">
-                    <img src="{{ asset('assets/images/icon-guitar.png') }}" alt="Guitar icon">
-
-                    <div class="infoBox infoBoxSmall" style="display: none;">
-                        <div class="profileImage">
-                            <img src="{{ asset('assets/images/profile-abraham-jones.png') }}" alt="Abraham Jones">
-                        </div>
-                        <div class="profileData">
-                            <h5>Anton Timonen</h5>
-                            <ul class="tags clearfix">
-                                <li>Indie Rock</li>
-                                <li>Alternative Rock</li>
-                                <li>Punk</li>
-                            </ul>
-                        </div>
-                        <div class="compatibility">
-                            <span>76%</span>
-                            {{ 'label.compatibility'|trans }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="icon drumms info">
-                    <img src="{{ asset('assets/images/icon-drumms.png') }}" alt="Drumms icon">
-
-                    <div class="infoBox infoBoxSmall" style="display: none;">
-                        <div class="profileImage"><img src="{{ asset('assets/images/drummer1.jpg') }}" alt="Alex Smith"></div>
-                        <div class="profileData">
-                            <h5>Alex Smith</h5>
-                            <ul class="tags clearfix">
-                                <li>Jazz</li>
-                                <li>Blues</li>
-                                <li>Funk</li>
-                                <li>Fusion</li>
-                            </ul>
-                        </div>
-                        <div class="compatibility">
-                            <span>86%</span>
-                            {{ 'label.compatibility'|trans }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="icon sax info">
-                    <img src="{{ asset('assets/images/icon-sax.png') }}" alt="Sax icon">
-
-                    <div class="infoBox infoBoxSmall" style="display: block;">
-                        <div class="profileImage">
-                            <img src="{{ asset('assets/images/sax.jpg') }}" alt="John Andrews">
-                        </div>
-                        <div class="profileData">
-                            <h5>John Andrews</h5>
-                            <ul class="tags clearfix">
-                                <li>Jazz</li>
-                                <li>Blues</li>
-                                <li>Soul</li>
-                                <li>Classical</li>
-                            </ul>
-                        </div>
-                        <div class="compatibility">
-                            <span>68%</span>
-                            {{ 'label.compatibility'|trans }}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="icon teacher info" style="left: 64px; top: 233px;">
-                    <img src="{{ asset('assets/images/icon-teacher.png') }}" alt="Teacher icon">
-
-                    <div class="infoBox infoBoxSmall teacher" style="display: none;">
-                        <div class="profileImage">
-                            <img src="{{ asset('assets/images/profile-jane-mcadams.png') }}" alt="Jane McAdams">
-                        </div>
-                        <div class="profileData">
-                            <h5>Jane McAdams</h5>
-                            <div class="lessons">
-                                piano lessons
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
-        <h4 class="map-text-bottom">{{ 'text.home.are.you.teacher'|trans }}</h4>
+        <div class="mapForm">
+            <form class="form-inline">
+                <label>{{ 'label.home.top.locations'|trans }}: &nbsp;
+                    <select class="form-control" id="top-locations">
+                        <option value="Helsinki">Helsinki</option>
+                        <option value="Espoo">Espoo</option>
+                        <option value="Tampere">Tampere</option>
+                        <option value="Vantaa">Vantaa</option>
+                        <option value="Oulu" >Oulu</option>
+                        <option value="Turku" >Turku</option>
+                        <option value="Jyväskylä">Jyväskylä</option>
+                    </select>
+                </label>
+            </form>
+        </div>
     </section>
 
     <section id="multimedia-home" data-type="background" data-speed="10">
@@ -211,6 +138,7 @@
             <div class="mediaText">
                 <h2>{{ 'text.register.find'|trans }}</h2>
                 <h4>{{ 'text.register.cv'|trans }}</h4>
+                <h4>{{ 'text.home.are.you.teacher'|trans }}</h4>
             </div>
         </div>
     </section>
@@ -258,4 +186,18 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block bottom_javascripts %}
+
+    {% javascripts
+    'vendor/leaflet-dist/leaflet.js'
+    'vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js'
+    'vendor/svg-injector/dist/svg-injector.min.js'
+    'assets/js/home-map.js'
+    filter='?uglifyjs2'
+    %}
+
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

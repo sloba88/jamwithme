@@ -119,6 +119,87 @@ class MusiciansController extends FOSRestController
     }
 
     /**
+     * @Get("/musicians/find-public", name="musicians_find_public")
+     */
+    public function findPublicAction()
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        if ((!$request->query->get('lat') || !$request->query->get('lng')) && !$request->query->get('city')) {
+            $view = $this->view(array(
+                'status'    => 'false',
+                'message' => 'No location sent.',
+            ), 200);
+            return $this->handleView($view);
+        }
+
+        switch ($request->query->get('city')) {
+            case "Helsinki":
+                $location['lat'] = '60.1882164';
+                $location['lng'] = '24.9212983';
+                break;
+            case "Espoo":
+                $location['lat'] = '60.1964836';
+                $location['lng'] = '24.6702005';
+                break;
+            case "Vantaa":
+                $location['lat'] = '60.291704';
+                $location['lng'] = '25.0298731';
+                break;
+            case "Oulu":
+                $location['lat'] = '65.0148883';
+                $location['lng'] = '25.4699134';
+                break;
+            case "Turku":
+                $location['lat'] = '60.456773';
+                $location['lng'] = '22.2506582';
+                break;
+            case "Tampere":
+                $location['lat'] = '61.505809';
+                $location['lng'] = '23.7496406';
+                break;
+            case "Jyväskylä":
+                $location['lat'] = '62.2469489';
+                $location['lng'] = '25.7357698';
+                break;
+            default:
+                $location['lat'] = $request->query->get('lat');
+                $location['lng'] = $request->query->get('lng');
+        }
+
+        $musicians = $this->get('search.musicians')->getElasticSearchPublicResult($location);
+
+        $musicians_data = array();
+
+        foreach($musicians AS $m){
+            /* @var $m \Jam\UserBundle\Entity\User */
+
+            $instrument = $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName();
+
+            $data_array = array(
+                'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
+                'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
+                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
+                'instrument' => $instrument,
+            );
+
+            if ($m->getIsTeacher()){
+                $data_array['teacher'] = true;
+            }
+
+            array_push($musicians_data, $data_array);
+        }
+
+        $view = $this->view(array(
+            'status'    => 'success',
+            'data' => $musicians_data,
+            'location' => $location
+        ), 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
      * @Post("/musician/location", name="api_set_musician_location")
      */
     public function setLocationAction()

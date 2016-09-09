@@ -170,5 +170,4 @@ var delay = (function(){
         clearTimeout (timer);
         timer = setTimeout(callback, ms);
     };
-
 })();

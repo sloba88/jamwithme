@@ -8847,12 +8847,6 @@ body {
     overflow: auto;
   }
 }
-@media only screen and (max-width: 767px) {
-  /* line 5, ../../sass/jamifind/_layout.scss */
-  body {
-    background: #fff !important;
-  }
-}
 
 /* line 22, ../../sass/jamifind/_layout.scss */
 .container-fluid {
@@ -9027,7 +9021,7 @@ input[type="radio"]:checked + label span {
 /* line 1, ../../sass/jamifind/_header.scss */
 header {
   background: #000;
-  height: 55px;
+  height: auto;
   left: 0;
   position: fixed;
   right: 0;
@@ -9051,8 +9045,9 @@ header {
 
 /* line 20, ../../sass/jamifind/_header.scss */
 .navbar-brand {
-  height: auto;
+  height: 55px;
   padding: 7px 14px 0 14px;
+  position: relative;
 }
 @media only screen and (max-width: 991px) {
   /* line 20, ../../sass/jamifind/_header.scss */
@@ -9060,50 +9055,56 @@ header {
     float: none;
     text-align: center;
   }
+  /* line 28, ../../sass/jamifind/_header.scss */
+  body.no-auth .navbar-brand {
+    float: left;
+  }
 }
-/* line 28, ../../sass/jamifind/_header.scss */
+@media only screen and (max-width: 767px) {
+  /* line 34, ../../sass/jamifind/_header.scss */
+  body.no-auth .navbar-brand {
+    float: none;
+  }
+}
+/* line 39, ../../sass/jamifind/_header.scss */
 .navbar-brand a {
   display: inline-block;
+  text-decoration: none;
 }
 @media only screen and (max-width: 991px) {
-  /* line 28, ../../sass/jamifind/_header.scss */
+  /* line 39, ../../sass/jamifind/_header.scss */
   .navbar-brand a {
     text-align: center;
   }
 }
-/* line 35, ../../sass/jamifind/_header.scss */
+/* line 47, ../../sass/jamifind/_header.scss */
 .navbar-brand .outer {
-  color: #a7a7af;
-  font-size: 12px;
+  color: #828286;
+  font-size: 9px;
   position: relative;
-  top: -10px;
   display: block;
   text-align: right;
-}
-@media only screen and (max-width: 991px) {
-  /* line 43, ../../sass/jamifind/_header.scss */
-  .navbar-brand .outer span {
-    display: none;
-  }
+  top: -9px;
+  right: -21px;
 }
 
-/* line 51, ../../sass/jamifind/_header.scss */
+/* line 58, ../../sass/jamifind/_header.scss */
 .navbar-toggle {
   border-radius: 0;
   float: none;
   margin: 10px 0 0;
 }
 @media only screen and (max-width: 991px) {
-  /* line 51, ../../sass/jamifind/_header.scss */
+  /* line 58, ../../sass/jamifind/_header.scss */
   .navbar-toggle {
     display: block;
   }
 }
-/* line 61, ../../sass/jamifind/_header.scss */
+/* line 68, ../../sass/jamifind/_header.scss */
 .navbar-toggle:hover .icon-bar, .navbar-toggle:focus .icon-bar, .navbar-toggle.is-active .icon-bar {
   background: #fff;
 }
-/* line 66, ../../sass/jamifind/_header.scss */
+/* line 73, ../../sass/jamifind/_header.scss */
 .navbar-toggle .icon-bar {
   background: #fabc09;
   border-radius: 0;
@@ -9111,7 +9112,7 @@ header {
   width: 16px;
 }
 
-/* line 74, ../../sass/jamifind/_header.scss */
+/* line 81, ../../sass/jamifind/_header.scss */
 .search-toggle {
   background: none;
   color: #fabc09;
@@ -9120,22 +9121,22 @@ header {
   margin: 12px 0 0;
   padding: 5px;
 }
-/* line 82, ../../sass/jamifind/_header.scss */
+/* line 89, ../../sass/jamifind/_header.scss */
 .search-toggle:hover, .search-toggle:focus, .search-toggle.is-active {
   color: #fff;
 }
-/* line 86, ../../sass/jamifind/_header.scss */
+/* line 93, ../../sass/jamifind/_header.scss */
 .search-toggle:focus {
   outline: none;
 }
 
-/* line 91, ../../sass/jamifind/_header.scss */
+/* line 98, ../../sass/jamifind/_header.scss */
 .search-block-container {
   padding-left: 0;
   padding-top: 10px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 91, ../../sass/jamifind/_header.scss */
+  /* line 98, ../../sass/jamifind/_header.scss */
   .search-block-container {
     background: #fabc09;
     bottom: -68px;
@@ -9147,12 +9148,12 @@ header {
     width: 100%;
     z-index: 20;
   }
-  /* line 105, ../../sass/jamifind/_header.scss */
+  /* line 112, ../../sass/jamifind/_header.scss */
   .search-block-container.is-opened {
     display: block;
   }
 }
-/* line 110, ../../sass/jamifind/_header.scss */
+/* line 117, ../../sass/jamifind/_header.scss */
 .search-block-container .search-block {
   -moz-transition: width 0.5s ease;
   -o-transition: width 0.5s ease;
@@ -9162,30 +9163,30 @@ header {
   width: 170px;
 }
 @media only screen and (max-width: 991px) {
-  /* line 110, ../../sass/jamifind/_header.scss */
+  /* line 117, ../../sass/jamifind/_header.scss */
   .search-block-container .search-block {
     float: none;
     width: 100%;
   }
 }
-/* line 123, ../../sass/jamifind/_header.scss */
+/* line 130, ../../sass/jamifind/_header.scss */
 .search-block-container .search-block .form-control {
   background: transparent;
 }
 @media only screen and (max-width: 991px) {
-  /* line 123, ../../sass/jamifind/_header.scss */
+  /* line 130, ../../sass/jamifind/_header.scss */
   .search-block-container .search-block .form-control {
     background: #fff;
   }
 }
-/* line 133, ../../sass/jamifind/_header.scss */
+/* line 140, ../../sass/jamifind/_header.scss */
 .search-block-container .effects-ready .btn, .search-block-container .effects-ready .ui-autocomplete-input {
   -moz-transition: background 0.3s ease;
   -o-transition: background 0.3s ease;
   -webkit-transition: background 0.3s ease;
   transition: background 0.3s ease;
 }
-/* line 138, ../../sass/jamifind/_header.scss */
+/* line 145, ../../sass/jamifind/_header.scss */
 .search-block-container .btn {
   background: transparent;
   border: none;
@@ -9197,13 +9198,13 @@ header {
   padding: 6px 12px;
   width: auto;
 }
-/* line 149, ../../sass/jamifind/_header.scss */
+/* line 156, ../../sass/jamifind/_header.scss */
 .search-block-container .btn i {
   margin: 0;
   top: 2px;
 }
 
-/* line 157, ../../sass/jamifind/_header.scss */
+/* line 164, ../../sass/jamifind/_header.scss */
 .ui-autocomplete-input {
   background: transparent;
   border: none;
@@ -9212,19 +9213,19 @@ header {
   text-transform: uppercase;
 }
 
-/* line 169, ../../sass/jamifind/_header.scss */
+/* line 176, ../../sass/jamifind/_header.scss */
 .ui-autocomplete {
   background: #fff;
   border: 2px solid #2b2a3b;
   border-radius: 0;
 }
 @media only screen and (min-width: 1200px) {
-  /* line 169, ../../sass/jamifind/_header.scss */
+  /* line 176, ../../sass/jamifind/_header.scss */
   .ui-autocomplete {
     width: 335px !important;
   }
 }
-/* line 177, ../../sass/jamifind/_header.scss */
+/* line 184, ../../sass/jamifind/_header.scss */
 .ui-autocomplete a {
   -moz-transition: color 0.2s ease;
   -o-transition: color 0.2s ease;
@@ -9237,24 +9238,24 @@ header {
   overflow: hidden;
   padding: 0 !important;
 }
-/* line 186, ../../sass/jamifind/_header.scss */
+/* line 193, ../../sass/jamifind/_header.scss */
 .ui-autocomplete a.ui-state-focus {
   background: none !important;
   color: #18152b !important;
   margin: 0 !important;
 }
-/* line 191, ../../sass/jamifind/_header.scss */
+/* line 198, ../../sass/jamifind/_header.scss */
 .ui-autocomplete a.ui-state-focus:hover {
   color: #fabc09 !important;
 }
-/* line 197, ../../sass/jamifind/_header.scss */
+/* line 204, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .ui-menu-item {
   border: none;
   margin: 0;
   overflow: hidden;
   padding: 10px 8px;
 }
-/* line 203, ../../sass/jamifind/_header.scss */
+/* line 210, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .ui-menu-item.ui-state-focus {
   -moz-transition: background 0.3s ease;
   -o-transition: background 0.3s ease;
@@ -9262,16 +9263,16 @@ header {
   transition: background 0.3s ease;
   background: #fabc09;
 }
-/* line 207, ../../sass/jamifind/_header.scss */
+/* line 214, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .ui-menu-item.ui-state-focus a {
   color: #18152b;
   font-weight: normal;
 }
-/* line 214, ../../sass/jamifind/_header.scss */
+/* line 221, ../../sass/jamifind/_header.scss */
 .ui-autocomplete img {
   float: left;
 }
-/* line 218, ../../sass/jamifind/_header.scss */
+/* line 225, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .search-text {
   display: block;
   font-family: "CooperHewitt Bold";
@@ -9281,7 +9282,7 @@ header {
   padding-left: 62px;
   text-transform: uppercase;
 }
-/* line 228, ../../sass/jamifind/_header.scss */
+/* line 235, ../../sass/jamifind/_header.scss */
 .ui-autocomplete .search-location {
   display: block;
   font-family: "Hind Medium";
@@ -12303,49 +12304,45 @@ header {
   min-height: 600px;
   overflow: auto;
 }
-/* line 7, ../../sass/jamifind/_login.scss */
-.login-page .navbar-toggle {
-  display: none;
-}
 
-/* line 12, ../../sass/jamifind/_login.scss */
+/* line 8, ../../sass/jamifind/_login.scss */
 .login-container {
   margin: 100px auto;
   width: 385px;
 }
 @media only screen and (max-width: 767px) {
-  /* line 12, ../../sass/jamifind/_login.scss */
+  /* line 8, ../../sass/jamifind/_login.scss */
   .login-container {
     margin: 30px auto;
   }
 }
 @media only screen and (max-width: 480px) {
-  /* line 12, ../../sass/jamifind/_login.scss */
+  /* line 8, ../../sass/jamifind/_login.scss */
   .login-container {
     margin: 30px 15px;
     width: auto;
   }
 }
 
-/* line 24, ../../sass/jamifind/_login.scss */
+/* line 20, ../../sass/jamifind/_login.scss */
 .login-header {
   background: rgba(43, 42, 59, 0.95);
   height: 66px;
   position: relative;
 }
 @media only screen and (max-width: 480px) {
-  /* line 24, ../../sass/jamifind/_login.scss */
+  /* line 20, ../../sass/jamifind/_login.scss */
   .login-header {
     height: 53px;
   }
 }
-/* line 32, ../../sass/jamifind/_login.scss */
+/* line 28, ../../sass/jamifind/_login.scss */
 .login-header:before, .login-header:after {
   content: '';
   position: absolute;
   z-index: 10;
 }
-/* line 38, ../../sass/jamifind/_login.scss */
+/* line 34, ../../sass/jamifind/_login.scss */
 .login-header:before {
   background: url(../images/login-header-left.png) no-repeat;
   bottom: 10px;
@@ -12354,13 +12351,13 @@ header {
   width: 53px;
 }
 @media only screen and (max-width: 480px) {
-  /* line 38, ../../sass/jamifind/_login.scss */
+  /* line 34, ../../sass/jamifind/_login.scss */
   .login-header:before {
     background-size: 100%;
     width: 33px;
   }
 }
-/* line 50, ../../sass/jamifind/_login.scss */
+/* line 46, ../../sass/jamifind/_login.scss */
 .login-header:after {
   background: url(../images/login-header-right.png) no-repeat;
   bottom: 0;
@@ -12369,14 +12366,14 @@ header {
   width: 42px;
 }
 @media only screen and (max-width: 480px) {
-  /* line 50, ../../sass/jamifind/_login.scss */
+  /* line 46, ../../sass/jamifind/_login.scss */
   .login-header:after {
     background-position: center bottom;
     background-size: 100%;
     width: 33px;
   }
 }
-/* line 63, ../../sass/jamifind/_login.scss */
+/* line 59, ../../sass/jamifind/_login.scss */
 .login-header h1 {
   color: #fff;
   font-size: 26px;
@@ -12387,51 +12384,51 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 480px) {
-  /* line 63, ../../sass/jamifind/_login.scss */
+  /* line 59, ../../sass/jamifind/_login.scss */
   .login-header h1 {
     font-size: 18px;
     padding-top: 18px;
   }
 }
 
-/* line 78, ../../sass/jamifind/_login.scss */
+/* line 74, ../../sass/jamifind/_login.scss */
 .login-body {
   background: #fff;
   padding: 15px 35px 10px;
 }
 @media only screen and (max-width: 480px) {
-  /* line 78, ../../sass/jamifind/_login.scss */
+  /* line 74, ../../sass/jamifind/_login.scss */
   .login-body {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
-/* line 86, ../../sass/jamifind/_login.scss */
+/* line 82, ../../sass/jamifind/_login.scss */
 .login-body .form-control {
   border: 2px solid #414141;
   height: 40px;
   font-size: 15px;
 }
-/* line 92, ../../sass/jamifind/_login.scss */
+/* line 88, ../../sass/jamifind/_login.scss */
 .login-body .btn-submit {
   font-size: 14px;
   padding: 9px 12px;
 }
-/* line 97, ../../sass/jamifind/_login.scss */
+/* line 93, ../../sass/jamifind/_login.scss */
 .login-body .separator {
   border-top: 2px solid #414141;
   margin-top: 25px;
   position: relative;
   text-align: center;
 }
-/* line 103, ../../sass/jamifind/_login.scss */
+/* line 99, ../../sass/jamifind/_login.scss */
 .login-body .separator img {
   background: #fff;
   padding: 0 10px;
   position: relative;
   top: -15px;
 }
-/* line 111, ../../sass/jamifind/_login.scss */
+/* line 107, ../../sass/jamifind/_login.scss */
 .login-body .select-label {
   display: block;
   font-family: "Hind Semibold";
@@ -12441,7 +12438,7 @@ header {
   text-transform: uppercase;
 }
 
-/* line 123, ../../sass/jamifind/_login.scss */
+/* line 119, ../../sass/jamifind/_login.scss */
 .login-buttons .btn {
   color: #fff;
   font-family: "Hind Semibold";
@@ -12450,21 +12447,21 @@ header {
   position: relative;
 }
 @media only screen and (max-width: 480px) {
-  /* line 123, ../../sass/jamifind/_login.scss */
+  /* line 119, ../../sass/jamifind/_login.scss */
   .login-buttons .btn {
     padding-left: 55px;
     text-align: left;
   }
 }
-/* line 134, ../../sass/jamifind/_login.scss */
+/* line 130, ../../sass/jamifind/_login.scss */
 .login-buttons .btn.facebook {
   background: #336699;
 }
-/* line 138, ../../sass/jamifind/_login.scss */
+/* line 134, ../../sass/jamifind/_login.scss */
 .login-buttons .btn.soundcloud {
   background: #f85d0f;
 }
-/* line 142, ../../sass/jamifind/_login.scss */
+/* line 138, ../../sass/jamifind/_login.scss */
 .login-buttons .btn i {
   font-size: 22px;
   left: 10px;
@@ -12472,7 +12469,7 @@ header {
   top: 5px;
 }
 
-/* line 151, ../../sass/jamifind/_login.scss */
+/* line 147, ../../sass/jamifind/_login.scss */
 .login-footer {
   background: #2b2a3b;
   color: #fff;
@@ -12482,7 +12479,7 @@ header {
   margin-top: 15px;
   text-align: center;
 }
-/* line 160, ../../sass/jamifind/_login.scss */
+/* line 156, ../../sass/jamifind/_login.scss */
 .login-footer a {
   display: inline-block;
   font-size: 15px;
@@ -12492,79 +12489,79 @@ header {
   text-transform: uppercase;
 }
 @media only screen and (max-width: 480px) {
-  /* line 160, ../../sass/jamifind/_login.scss */
+  /* line 156, ../../sass/jamifind/_login.scss */
   .login-footer a {
     font-size: 14px;
     padding-top: 14px;
   }
 }
 
-/* line 174, ../../sass/jamifind/_login.scss */
+/* line 170, ../../sass/jamifind/_login.scss */
 .checkboxes-list {
   border: 2px solid #414141;
 }
 
-/* line 178, ../../sass/jamifind/_login.scss */
+/* line 174, ../../sass/jamifind/_login.scss */
 .checkboxes-list {
   margin: 0;
   padding: 15px;
 }
-/* line 182, ../../sass/jamifind/_login.scss */
+/* line 178, ../../sass/jamifind/_login.scss */
 .checkboxes-list li:not(.last) {
   margin-bottom: 10px;
 }
-/* line 186, ../../sass/jamifind/_login.scss */
+/* line 182, ../../sass/jamifind/_login.scss */
 .checkboxes-list label {
   font-weight: normal;
   margin: 0;
   text-transform: uppercase;
 }
-/* line 192, ../../sass/jamifind/_login.scss */
+/* line 188, ../../sass/jamifind/_login.scss */
 .checkboxes-list input[type="checkbox"] + label span {
   top: 0;
 }
-/* line 196, ../../sass/jamifind/_login.scss */
+/* line 192, ../../sass/jamifind/_login.scss */
 .checkboxes-list input[type="checkbox"]:checked + label span {
   top: -3px;
 }
-/* line 200, ../../sass/jamifind/_login.scss */
+/* line 196, ../../sass/jamifind/_login.scss */
 .checkboxes-list .glyphicon {
   cursor: default;
 }
 
-/* line 206, ../../sass/jamifind/_login.scss */
+/* line 202, ../../sass/jamifind/_login.scss */
 .login-page-user {
   overflow: auto;
 }
 @media only screen and (max-width: 1199px) and (min-width: 992px) {
-  /* line 209, ../../sass/jamifind/_login.scss */
+  /* line 205, ../../sass/jamifind/_login.scss */
   .login-page-user .login-container {
     width: auto;
   }
-  /* line 213, ../../sass/jamifind/_login.scss */
+  /* line 209, ../../sass/jamifind/_login.scss */
   .login-page-user .login-container h1 {
     font-size: 20px;
   }
-  /* line 217, ../../sass/jamifind/_login.scss */
+  /* line 213, ../../sass/jamifind/_login.scss */
   .login-page-user .login-container .login-body {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
 @media only screen and (max-width: 991px) {
-  /* line 209, ../../sass/jamifind/_login.scss */
+  /* line 205, ../../sass/jamifind/_login.scss */
   .login-page-user .login-container {
     margin-bottom: 20px;
   }
 }
 @media only screen and (min-width: 992px) {
-  /* line 227, ../../sass/jamifind/_login.scss */
+  /* line 223, ../../sass/jamifind/_login.scss */
   .login-page-user .teacher-container {
     margin-top: 100px;
   }
 }
 @media only screen and (max-width: 991px) {
-  /* line 227, ../../sass/jamifind/_login.scss */
+  /* line 223, ../../sass/jamifind/_login.scss */
   .login-page-user .teacher-container {
     margin-bottom: 30px;
   }

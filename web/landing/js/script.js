@@ -130,6 +130,10 @@ $(document).ready(function(){
             });
     });
 
+    if ($(window).width() < 380) {
+        $('#ytPromoVideo').height('180');
+    }
+
 }); // document ready
 
 

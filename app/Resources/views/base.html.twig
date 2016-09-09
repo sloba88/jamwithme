@@ -36,6 +36,9 @@
         {% else %}
 
             {% stylesheets
+            'vendor/leaflet-dist/leaflet.css'
+            'vendor/leaflet.markercluster/dist/MarkerCluster.css'
+            'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
             'vendor/font-awesome/css/font-awesome.css'
             'vendor/select2/dist/css/select2.min.css'
             'landing/css/ddscrollspydemo.css'
@@ -272,10 +275,6 @@
             color: firebrick;
         }
 
-        .login-header p:lang(fi) {
-            font-size: 23px;
-        }
-
         .login-page-user .main-content {
             background-color: #fff;
             padding: 10px 0;
@@ -411,20 +410,24 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {% include "::googleAnalytics.html.twig" %}
+    {% if app.environment == 'prod' %}
+        {% include "::googleAnalytics.html.twig" %}
 
-    <meta property="og:title" content="{{ og_title|default('Jamifind') }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}" />
-    <meta property="og:image" content="{{ og_image| default('https://jamifind.com/landing/images/media-image.png') }}" />
-    <meta property="og:description" content="{{ og_description|default('text.meta.description'|trans) }}" />
+        <meta property="og:title" content="{{ og_title|default('Jamifind') }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}" />
+        <meta property="og:image" content="{{ og_image| default('https://jamifind.com/landing/images/media-image.png') }}" />
+        <meta property="og:description" content="{{ og_description|default('text.meta.description'|trans) }}" />
+    {% endif %}
 
+    <script>
+        var baseURL = '{{ app.request.getBaseURL() }}';
+    </script>
     {% if is_granted("ROLE_USER") %}
         <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/utf8/2.1.1/utf8.min.js"></script>
 
         <script>
-            var baseURL = '{{ app.request.getBaseURL() }}';
             var _user = {};
             _user.username = '{{ app.user.username }}';
             _user.id = '{{ app.user.id }}';
@@ -447,7 +450,7 @@
     {% include "::facebookPixel.html.twig" %}
 
 </head>
-<body class="{% block bodyclasses %}{% endblock %}" style="
+<body class="{% block bodyclasses %}{% endblock %} {% if not is_granted("ROLE_USER") %}no-auth{% endif %}" style="
 {% block bodystyle %}
     {% if is_granted("ROLE_USER") %}
         background-image: url({{ asset('assets/images/background-dashboard.jpg') }})
@@ -461,31 +464,35 @@
 
                 {% if is_granted("ROLE_USER") %}
                     {% if app.user.acceptedTerms %}
-                        <div class="col-xs-2 visible-xs visible-sm">
-                            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#social-header-home" aria-expanded="false" type="button">
-                                <span class="sr-only">Toggle navigation</span>
-                                <div class="navbar-open">
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </div>
-                                <div class="navbar-close">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </div>
-                            </button>
-                        </div><!--menu button-->
+                            <div class="col-xs-2 col-sm-1 visible-xs visible-sm">
+                    {% else %}
+                            <div class="hidden">
                     {% endif %}
+                {% else %}
+                    <div class="col-xs-2 visible-xs">
                 {% endif %}
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#social-header-home" aria-expanded="false" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <div class="navbar-open">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </div>
+                        <div class="navbar-close">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </div>
+                    </button>
+                </div><!--menu button-->
 
                 {% if is_granted("ROLE_USER") %}
-                <div class="col-xs-8 col-sm-8 col-md-9">
+                <div class="col-xs-8 col-sm-9 col-md-9">
                 {% else %}
                 <div class="col-xs-8 col-sm-5 col-md-5">
                 {% endif %}
                     <div class="navbar-brand">
                         <a href="{{ path('home') }}">
                             <img src="{{ asset('assets/images/logo.png') }}" alt="Logo">
-                            <span class="outer"><span>&nbsp; </span> BETA</span>
+                            <span class="outer hidden-xs">Bringing musicians together</span>
                         </a>
                     </div>
                 </div>
@@ -514,11 +521,15 @@
                     <div class="col-xs-2 hidden-sm hidden-md hidden-lg">
                         {% if status_code is defined and status_code == '404' %}
                         {% else %}
-                            <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
+                            {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}
+                                    <a href="{{ path('fos_user_registration_register') }}" class="fast-subscribe">{{ 'button.sign.up'|trans }}</a>
+                            {% else %}
+                                    <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
+                            {% endif %}
                         {% endif %}
                     </div>
 
-                    <div class="col-sm-5 col-md-5 col-md-5">
+                    <div class="col-sm-6 col-md-5">
                         <div class="collapse navbar-collapse" id="social-header-home">
                             <ul class="nav navbar-nav social">
                                 <li {% if app.request.attributes.get('_route') == 'about' %} class="active"{% endif %}"><a href="{{ path('about') }}" class="about-us-home-link">{{ 'link.home.about'|trans }}</a></li>
@@ -528,12 +539,12 @@
                                 <li class="nav-language">
                                     <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="langaugeMenuHome" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            {{ app.session.get('_locale') }}
+                                            {{ app.request.locale }}
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="langaugeMenuHome">
-                                            <li {% if app.session.get('_locale') == 'en' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route')|default('home'), app.request.attributes.get('_route_params')|default([])|merge({'lang': 'en'})) }}">English</a></li>
-                                            <li {% if app.session.get('_locale') == 'fi' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route')|default('home'), app.request.attributes.get('_route_params')|default([])|merge({'lang': 'fi'})) }}">Finnish</a></li>
+                                            <li {% if app.request.locale == 'en' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route')|default('home'), app.request.attributes.get('_route_params')|default([])|merge({'lang': 'en'})) }}">English</a></li>
+                                            <li {% if app.request.locale == 'fi' %} class="active" {% endif %}><a href="{{ path(app.request.attributes.get('_route')|default('home'), app.request.attributes.get('_route_params')|default([])|merge({'lang': 'fi'})) }}">Finnish</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -541,10 +552,14 @@
                         </div>
                     </div>
 
-                    <div class="hidden-xs col-sm-2 col-md-2">
+                    <div class="hidden-xs col-sm-1 col-md-2">
                         {% if status_code is defined and status_code == '404' %}
                         {% else %}
-                            <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
+                            {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}
+                                    <a href="{{ path('fos_user_registration_register') }}" class="fast-subscribe">{{ 'button.sign.up'|trans }}</a>
+                            {% else %}
+                                    <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 {% endif %}
@@ -611,30 +626,9 @@
 
     {% block bottom_javascripts %}{% endblock %}
 
-    <!-- Quantcast Tag -->
-    <script type="text/javascript">
-        var _qevents = _qevents || [];
-
-        (function() {
-            var elem = document.createElement('script');
-            elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-            elem.async = true;
-            elem.type = "text/javascript";
-            var scpt = document.getElementsByTagName('script')[0];
-            scpt.parentNode.insertBefore(elem, scpt);
-        })();
-
-        _qevents.push({
-            qacct:"p-q5FW1h69Qv8Dh"
-        });
-    </script>
-
-    <noscript>
-        <div style="display:none;">
-            <img src="//pixel.quantserve.com/pixel/p-q5FW1h69Qv8Dh.gif" border="0" height="1" width="1" alt="Quantcast"/>
-        </div>
-    </noscript>
-    <!-- End Quantcast tag -->
+    {% if app.environment == 'prod' %}
+        {% include "::quantCast.html.twig" %}
+    {% endif %}
 
 </body>
 </html>

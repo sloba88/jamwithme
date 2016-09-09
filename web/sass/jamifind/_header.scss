@@ -1,6 +1,6 @@
 header {
 	background: #000;
-	height: 55px;
+	height: auto;
 	left: 0;
 	position: fixed;
 	right: 0;
@@ -18,33 +18,40 @@ header {
 }
 
 .navbar-brand {
-	height: auto;
+	height: 55px;
 	padding: 7px 14px 0 14px;
+	position: relative;
 	@include respond-to(tablet) {
 		float: none;
 		text-align: center;
+
+		body.no-auth & {
+			float: left;
+		}
+	}
+
+	@include respond-to(handhelds) {
+		body.no-auth & {
+			float: none;
+		}
 	}
 
 	a {
 		display: inline-block;
+		text-decoration: none;
 		@include respond-to(tablet) {
 			text-align: center;
 		}
 	}
 
 	.outer {
-		color: #a7a7af;
-		font-size: 12px;
+		color: #828286;
+		font-size: 9px;
 		position: relative;
-		top: -10px;
 		display: block;
 		text-align: right;
-
-		span {
-			@include respond-to(tablet) {
-				display: none;
-			}
-		}
+		top: -9px;
+		right: -21px;
 	}
 }
 

@@ -347,7 +347,9 @@ $(function() {
     peopleGrid();
 
     //menu for mobile devices
-    menu();
+    if (_user) {
+        menu();
+    }
 
     if ($('.shouts-listing').length) {
         $('.shouts-listing').perfectScrollbar({
