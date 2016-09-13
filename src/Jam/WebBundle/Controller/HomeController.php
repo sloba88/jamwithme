@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
 {
@@ -54,15 +55,16 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/sitemap.{_format}", name="sample_sitemaps_sitemap", Requirements={"_format" = "xml"})
-     * @Template("JamWebBundle:Home:sitemap.xml.twig")
+     * @Route("/sitemap.xml", defaults={"_format"="xml"}, name="sitemap", Requirements={"_format" = "xml"})
+     * @Template("")
      */
-    public function sitemapAction()
+    public function sitemapAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $urls = array();
-        $hostname = $this->getRequest()->getHost();
+
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
 
         // add some urls homepage
         $urls[] = array('loc' => $this->get('router')->generate('home'), 'changefreq' => 'weekly', 'priority' => '1.0');
@@ -83,10 +85,17 @@ class HomeController extends Controller
         }
 
         foreach ($em->getRepository('JamCoreBundle:Jam')->findAll() as $jam) {
-            $urls[] = array('loc' => $this->get('router')->generate('jams',
+            $urls[] = array('loc' => $this->get('router')->generate('view_jam',
                 array('slug' => $jam->getSlug())), 'priority' => '0.5');
         }
 
-        return array('urls' => $urls, 'hostname' => $hostname);
+        $response = new Response();
+        $response->headers->set('Content-Type', 'xml');
+        return $this->render(
+            'JamWebBundle:Home:sitemap.xml.twig',
+            array('urls' => $urls, 'hostname' => $baseurl),
+            $response
+        );
+
     }
 }
