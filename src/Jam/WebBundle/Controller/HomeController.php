@@ -55,7 +55,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/sitemap.xml", defaults={"_format"="xml"}, name="sitemap", Requirements={"_format" = "xml"})
+     * @Route("/sitemapp.xml", defaults={"_format"="xml"}, name="sitemap", Requirements={"_format" = "xml"})
      * @Template("")
      */
     public function sitemapAction(Request $request)
