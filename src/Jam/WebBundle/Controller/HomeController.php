@@ -52,4 +52,41 @@ class HomeController extends Controller
     public function aboutAction(Request $request)
     {
     }
+
+    /**
+     * @Route("/sitemap.{_format}", name="sample_sitemaps_sitemap", Requirements={"_format" = "xml"})
+     * @Template("JamWebBundle:Home:sitemap.xml.twig")
+     */
+    public function sitemapAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $urls = array();
+        $hostname = $this->getRequest()->getHost();
+
+        // add some urls homepage
+        $urls[] = array('loc' => $this->get('router')->generate('home'), 'changefreq' => 'weekly', 'priority' => '1.0');
+        $urls[] = array('loc' => $this->get('router')->generate('about'), 'changefreq' => 'weekly', 'priority' => '1.0');
+
+        // multi-lang pages
+        //foreach($languages as $lang) {
+        //    $urls[] = array('loc' => $this->get('router')->generate('home_contact', array('_locale' => $lang)), 'changefreq' => 'monthly', 'priority' => '0.3');
+        //}
+
+        // urls from database
+        //$urls[] = array('loc' => $this->get('router')->generate('home_product_overview', array('_locale' => 'en')), 'changefreq' => 'weekly', 'priority' => '0.7');
+        // service
+
+        foreach ($em->getRepository('JamUserBundle:User')->findAll() as $user) {
+            $urls[] = array('loc' => $this->get('router')->generate('musician_profile',
+                array('username' => $user->getUsername())), 'priority' => '0.5');
+        }
+
+        foreach ($em->getRepository('JamCoreBundle:Jam')->findAll() as $jam) {
+            $urls[] = array('loc' => $this->get('router')->generate('jams',
+                array('slug' => $jam->getSlug())), 'priority' => '0.5');
+        }
+
+        return array('urls' => $urls, 'hostname' => $hostname);
+    }
 }
