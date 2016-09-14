@@ -347,7 +347,7 @@ $(function() {
     peopleGrid();
 
     //menu for mobile devices
-    if (_user) {
+    if (typeof _user !='undefined') {
         menu();
     }
 
