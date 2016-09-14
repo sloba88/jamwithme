@@ -264,11 +264,19 @@ class JamController extends Controller
 
         if (!$jam) throw $this->createNotFoundException($this->get('translator')->trans('exception.the.jam.does.not.exist'));
 
+        $location = $jam->getLocation() ? $jam->getLocation()->getAdministrativeAreaLevel3() : false;
+        if ($location) {
+            $title = $jam->getName() . ' - ' . $location;
+        } else {
+            $title = $jam->getName();
+        }
+
         return array(
             'jam' => $jam,
             'og_title' => $jam->getName(),
             'og_description' => $jam->getDescription(),
-            'og_image' => $jam->getVideos()->first() ? $jam->getVideos()->first()->getThumbnail() : false
+            'og_image' => $jam->getVideos()->first() ? $jam->getVideos()->first()->getThumbnail() : false,
+            'page' => array('title' => $title )
         );
     }
 
