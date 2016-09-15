@@ -39,9 +39,9 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
         $this->images = new ArrayCollection();
-        //$this->genres = new ArrayCollection();
-        //$this->gear = new ArrayCollection();
-        //$this->artists = new ArrayCollection();
+        $this->genres = new ArrayCollection();
+        $this->gear = new ArrayCollection();
+        $this->artists = new ArrayCollection();
     }
 
     /**

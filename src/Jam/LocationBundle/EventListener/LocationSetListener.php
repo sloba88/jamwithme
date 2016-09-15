@@ -42,9 +42,13 @@ class LocationSetListener {
 
                 if ($user->getLocation() == null) {
                     $location = $this->geoCheckIP($ip);
-                    $location->setIsTemporary(true);
-                    $user->setLocation($location);
-                    $this->userManager->updateUser($user);
+                    if ($location) {
+                        $location->setIsTemporary(true);
+                        $user->setLocation($location);
+                        $this->userManager->updateUser($user);
+                    } else {
+                        //couldn't find user by ip
+                    }
                 }
             } else {
                 //not authenticated
@@ -85,45 +89,19 @@ class LocationSetListener {
                 'timeout' => 5,
             )
         ));
-        /*
-
-        //contact ip-server
-        $response=@file_get_contents('http://www.netip.de/search?query='.$ip, false, $ctx);
-        if (empty($response))
-        {
-            //Error contacting Geo-IP-Server
-        }
-
-        //Array containing all regex-patterns necessary to extract ip-geoinfo from page
-        $patterns=array();
-        $patterns["domain"] = '#Domain: (.*?)&nbsp;#i';
-        $patterns["country"] = '#Country: (.*?)&nbsp;#i';
-        $patterns["state"] = '#State/Region: (.*?)<br#i';
-        $patterns["town"] = '#City: (.*?)<br#i';
-
-        //Array where results will be stored
-        $ipInfo=array();
-
-        //check response from ipserver for above patterns
-        foreach ($patterns as $key => $pattern)
-        {
-            //store the result in array
-            $ipInfo[$key] = preg_match($pattern,$response,$value) && !empty($value[1]) ? $value[1] : '';
-        }
-
-        return $this->geoCode(implode(", ", $ipInfo));
-
-        */
 
         $response = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$ip, false, $ctx));
 
-        $ipInfo[0] = $response['geoplugin_city'];
-        $ipInfo[1] = $response['geoplugin_region'];
-        $ipInfo[2] = $response['geoplugin_regionName'];
-        $ipInfo[3] = $response['geoplugin_countryName'];
+        if ($response) {
+            $ipInfo[0] = $response['geoplugin_city'];
+            $ipInfo[1] = $response['geoplugin_region'];
+            $ipInfo[2] = $response['geoplugin_regionName'];
+            $ipInfo[3] = $response['geoplugin_countryName'];
 
-        return $this->geoCode(implode(", ", $ipInfo));
-
+            return $this->geoCode(implode(", ", $ipInfo));
+        } else {
+            return null;
+        }
     }
 
     protected function geoCode($address)
@@ -139,6 +117,7 @@ class LocationSetListener {
         $jsonOutput = json_decode($response, true);
         if(!$jsonOutput) {
             //TODO exception
+            return null;
         }
         else if(count($jsonOutput)<=0) {
             return null;
