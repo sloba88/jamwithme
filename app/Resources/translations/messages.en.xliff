@@ -1338,7 +1338,7 @@
       </trans-unit>
       <trans-unit id="13237544be5e5cb36cc359cc3a172d2e5885f577" resname="value.more.than.6.hours/week">
         <source>value.more.than.6.hours/week</source>
-        <target state="new">value.more.than.6.hours/week</target>
+        <target state="new">more than 6 hours/week</target>
         <jms:reference-file line="235">/vagrant/www/app/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ea96c56a3658a4dea1ebc1e6edb9e5431370e04b" resname="value.not.available">
