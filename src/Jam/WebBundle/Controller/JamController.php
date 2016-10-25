@@ -266,14 +266,14 @@ class JamController extends Controller
 
         $location = $jam->getLocation() ? $jam->getLocation()->getAdministrativeAreaLevel3() : false;
         if ($location) {
-            $title = $jam->getName() . ' - ' . $location;
+            $title = $jam->getName() . ' (' . $location . ')';
         } else {
             $title = $jam->getName();
         }
 
         return array(
             'jam' => $jam,
-            'og_title' => $jam->getName(),
+            'og_title' => $title,
             'og_description' => $jam->getDescription(),
             'og_image' => $jam->getVideos()->first() ? $jam->getVideos()->first()->getThumbnail() : false,
             'page' => array('title' => $title )
