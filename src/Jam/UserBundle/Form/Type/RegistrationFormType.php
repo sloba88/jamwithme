@@ -24,23 +24,14 @@ class RegistrationFormType extends BaseType
                 'placeholder' => 'label.username'
             )
         ));
-        $builder->add('plainPassword', 'repeated', array(
-            'type' => 'password',
-            'invalid_message' => 'fos_user.password.mismatch',
-            'first_options' => array(
-                'attr' => array(
-                    'placeholder' => 'label.password',
-                    'pattern' => ".{8,}",
-                    'title' => 'Minimum 8 letters please',
-                    'data-toggle' => 'tooltip',
-                    'data-placement' => 'top',
-                    'data-trigger' => 'focus'
-                )
-            ),
-            'second_options' => array(
-                'attr' => array(
-                    'placeholder' => 'label.repeat.password'
-                )
+        $builder->add('plainPassword', 'password', array(
+            'attr' => array(
+                'placeholder' => 'label.password',
+                'pattern' => ".{8,}",
+                'title' => 'Minimum 8 letters please',
+                'data-toggle' => 'tooltip',
+                'data-placement' => 'top',
+                'data-trigger' => 'focus'
             )
         ));
         $builder->add('isVisitor', 'checkbox', array(
@@ -55,11 +46,6 @@ class RegistrationFormType extends BaseType
         $builder->add('isTeacher', 'checkbox', array(
             'required' => false,
             'label' => 'label.teach.music'
-        ));
-
-        $builder->add('acceptedTerms', 'checkbox', array(
-            'required' => true,
-            'label' => 'label.terms.checkbox'
         ));
 
         $builder->add('locale', 'hidden', array(

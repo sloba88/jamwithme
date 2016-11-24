@@ -175,8 +175,8 @@ ul.underlinemenu li {
 ul.underlinemenu li a {
 	border-radius: 50%;
 	padding: 0;
-	width: 15px;
-	height: 15px;
+	width: 18px;
+	height: 18px;
 	display: block;
 	background: #fff;
 	border: 1px solid #999;
@@ -210,7 +210,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 }
 
 .signup-page .login-container {
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .login-header p{

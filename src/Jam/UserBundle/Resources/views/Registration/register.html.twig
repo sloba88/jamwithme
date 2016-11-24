@@ -6,7 +6,7 @@
     {% form_theme form 'JamLocationBundle:Form:fields.html.twig' %}
 
     <section id="register-home" data-type="background" data-speed="10">
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="row">
 
@@ -27,33 +27,6 @@
                         <div class="login-body">
 
                             <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-
-                                <div class="form-group">
-                                    {{ form_widget(form.username) }}
-                                </div>
-
-                                {{ form_errors(form.username) }}
-
-                                <div class="form-group">
-                                    {{ form_widget(form.email) }}
-                                </div>
-
-                                {{ form_errors(form.email) }}
-
-                                {% if ((form.email.vars.errors[0] is defined) and (form.email.vars.errors[0].messageTemplate == 'fos_user.email.already_used')) %}
-                                    <a href='{{ path('fos_user_resetting_request') }}?email={{ form.vars.value.email }}'>{{ 'label.forgot.your.password'|trans }}</a>
-                                    <br /><br />
-                                {% endif %}
-
-                                <div class="form-group">
-                                    {{ form_widget(form.plainPassword.first) }}
-                                </div>
-
-                                {{ form_errors(form.plainPassword.first) }}
-
-                                <div class="form-group">
-                                    {{ form_widget(form.plainPassword.second) }}
-                                </div>
 
                                 <div class="form-group">
                                     <label class="select-label">{{ 'label.i.want.to'|trans }}:</label>
@@ -77,9 +50,33 @@
                                     </ul>
                                 </div>
 
-                                {{ form_widget(form.acceptedTerms) }}
-                                <label class="control-label required fos_user_registration_form_acceptedTerms_label" for="fos_user_registration_form_acceptedTerms">{{ 'label.I.accept'|trans }}
-                                    <a href="#" data-toggle="modal" data-target="#termsModal" style="text-decoration: underline">{{ 'label.terms.and.condtions'|trans }}</a></label>
+                                <div class="form-group">
+                                    {{ form_widget(form.username) }}
+                                </div>
+
+                                {{ form_errors(form.username) }}
+
+                                <div class="form-group">
+                                    {{ form_widget(form.email) }}
+                                </div>
+
+                                {{ form_errors(form.email) }}
+
+                                {% if ((form.email.vars.errors[0] is defined) and (form.email.vars.errors[0].messageTemplate == 'fos_user.email.already_used')) %}
+                                    <a href='{{ path('fos_user_resetting_request') }}?email={{ form.vars.value.email }}'>{{ 'label.forgot.your.password'|trans }}</a>
+                                    <br /><br />
+                                {% endif %}
+
+                                <div class="form-group">
+                                    {{ form_widget(form.plainPassword) }}
+                                </div>
+
+                                {{ form_errors(form.plainPassword) }}
+
+                                <label class="control-label required fos_user_registration_form_acceptedTerms_label" for="fos_user_registration_form_acceptedTerms">
+                                    {{ 'label.I.accept'|trans }}
+                                    <a href="#" data-toggle="modal" data-target="#termsModal" style="text-decoration: underline">{{ 'label.terms.and.condtions'|trans }}</a>
+                                </label>
 
                                 {{ form_widget(form.locale, { 'value' : app.request.locale | default('en')}) }}
 
@@ -134,7 +131,7 @@
     </section>
 
     <section id="multimedia-home" data-type="background" data-speed="10">
-        <div class="container clearfix">
+        <div class="container-fluid clearfix">
             <div class="mediaText">
                 <h2>{{ 'text.register.find'|trans }}</h2>
                 <h4>{{ 'text.register.cv'|trans }}</h4>
@@ -144,7 +141,7 @@
     </section>
 
     <section id="subscribe-home" data-type="background" data-speed="10">
-        <div class="container">
+        <div class="container-fluid">
             <h2>{{ 'text.register.join.community'|trans }}</h2>
 
             <div class="col-md-4 center-block" style="float: none; margin-top: 35px;">
@@ -157,10 +154,10 @@
 
     <section class="pageHelpers">
         <ul id="horizontalmenu" class="underlinemenu">
-            <li><a href="#register-home" title="Register"></a></li>
-            <li><a href="#map-home" title="Map"></a></li>
-            <li><a href="#multimedia-home" title="Multimedia"></a></li>
-            <li><a href="#subscribe-home" title="Subscribe"></a></li>
+            <li><a href="#register-home" title="Sign Up"></a></li>
+            <li><a href="#map-home" title="Musicians around you"></a></li>
+            <li><a href="#multimedia-home" title="Musicians CV"></a></li>
+            <li><a href="#subscribe-home" title="Find out more"></a></li>
         </ul>
     </section>
 
@@ -171,17 +168,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h5 class="modal-title" id="myModalLabel">Jamifind Terms and Conditions</h5>
                 </div>
-                <div class="modal-body" style="max-height: 500px; overflow-y: scroll">
-
-                </div>
-                <div class="modal-footer">
-                    <div class="col-md-4">
-                        <button type="button" class="btn btn-primary" id="acceptTerms" data-dismiss="modal"><i class="fa fa-thumbs-o-up"></i> Accept</button>
-                    </div>
-                    <div class="col-md-4 pull-right">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                <div class="modal-body" style="max-height: 500px; overflow-y: scroll"></div>
             </div>
         </div>
     </div>

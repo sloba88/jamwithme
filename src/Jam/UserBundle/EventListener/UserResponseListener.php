@@ -42,19 +42,6 @@ class UserResponseListener {
                         $event->setResponse($response);
                     }
                 }
-
-                if ($user->getAcceptedTerms() == 0) {
-                    $route = 'terms';
-
-                    if (in_array($event->getRequest()->get('_route'), [$route, 'accept-terms'])) {
-                        return;
-                    }
-
-                    //if user didn't accept terms and conditions redirect him to terms page
-                    $response = new RedirectResponse($this->router->generate($route));
-                    $event->setResponse($response);
-                }
-
             }
         }
 
