@@ -258,7 +258,7 @@
 
                                     <ul>
                                         {% for j in user.jams %}
-                                            <li><a href="{{ path('view_jam', {'slug': j.jam.slug }) }}">{{ j.jam.name }} - {{ j.instrument.name }}</a></li>
+                                            <li style="{% if j.jam.status != 1 %}opacity: .5{% endif %}" ><a href="{{ path('view_jam', {'slug': j.jam.slug }) }}">{{ j.jam.name }} - {{ j.instrument.name }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>

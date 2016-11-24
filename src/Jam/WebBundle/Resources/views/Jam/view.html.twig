@@ -5,17 +5,22 @@
     <div class="row messages-header">
 
         <div class="col-xs-12">
-            <span class="jam-type">{{ jam.type|jam_type_to_string }}</span>
+            <div class="col-md-2 col-xs-12 jam-type">
+                {{ jam.type|jam_type_to_string }}
+            </div>
+            <div class="col-md-3 col-xs-12 jam-status jam-status-{{ jam.status }}">
+                {{ jam.status|jam_status_to_string }}
+            </div>
 
             {% if jam.creator == app.user %}
-                <div class="col-xs-6 col-md-3 pull-right">
+                <div class="col-xs-12 col-md-3 pull-right">
                     <a href="{{ path('edit_jam', { 'slug': jam.slug }) }}" class="btn btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ 'button.edit.jam'|trans }}</a>
                 </div>
             {% endif %}
         </div>
 
         <div class="col-xs-12" style="margin-top: 20px;">
-            <h1 class="title">{{ jam.name }}</h1>
+            <h1 class="title">{{ jam.name }} </h1>
         </div>
     </div>
 
@@ -104,7 +109,7 @@
                     {% endif %}
                 </div>
                 <br />
-                {% if is_granted("ROLE_USER") and app.user != jam.creator %}
+                {% if is_granted("ROLE_USER") and app.user != jam.creator and jam.status == 1 %}
                     <div class="row">
                         <div class="col-md-6">
                             {% if app.user.id not in jam.membersMusiciansIds and app.user.id not in jam.interestedMusiciansIds  %}
