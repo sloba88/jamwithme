@@ -311,7 +311,7 @@
       </trans-unit>
       <trans-unit id="22f5a1381e3cfc549c1f49be9707d4714729fda2" resname="label.I.accept">
         <source>label.I.accept</source>
-        <target state="new">Hyväksyn</target>
+        <target state="new">Luomalla tilin hyväksyn</target>
         <jms:reference-file line="77">/vagrant/www/app/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e11c16aba8efd7c6504fc9c0eb3c2101ed5107e8" resname="label.about">
