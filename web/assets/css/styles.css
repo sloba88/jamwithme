@@ -12265,7 +12265,7 @@ header {
 .jam-type {
   text-transform: uppercase;
   background-color: #3b385e;
-  padding: 3px 0;
+  padding: 3px 10px;
   color: #fff;
   margin: 0 10px 10px 0;
   text-align: center;
