@@ -27,4 +27,4 @@ parameters:
     router.request_context.host: jamifind.com
     router.request_context.scheme: https
     router.request_context.base_url: /
-    confirm_account_email: true
+    confirm_account_email: false
