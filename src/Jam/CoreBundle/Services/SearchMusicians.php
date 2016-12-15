@@ -3,17 +3,13 @@
 namespace Jam\CoreBundle\Services;
 
 use Elastica\Filter\BoolFilter;
-use Elastica\Filter\BoolNot;
 use Elastica\Filter\BoolOr;
 use Elastica\Filter\Ids;
-use Elastica\Filter\Nested;
-use Elastica\Filter\Term;
 use Elastica\Filter\Terms;
 use Elastica\Query;
 use Elastica\Query\Filtered;
 use Elastica\Query\Match;
 use Elastica\Query\MatchAll;
-use Elastica\QueryBuilder\DSL\Filter;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Happyr\Google\AnalyticsBundle\Service\Tracker;
 use Jam\CoreBundle\Entity\Search;
@@ -26,11 +22,6 @@ class SearchMusicians {
      * @var TokenStorage
      */
     private $tokenStorage;
-
-    /**
-     * @var TransformedFinder
-     */
-    private $elasticCompatibilityFinder;
 
     /**
      * @var TransformedFinder
@@ -51,14 +42,6 @@ class SearchMusicians {
      * @var Tracker
      */
     private $tracker;
-
-    /**
-     * @param TransformedFinder $finder
-     */
-    public function setElasticCompatibilityFinder(TransformedFinder $finder)
-    {
-        $this->elasticCompatibilityFinder = $finder;
-    }
 
     /**
      * @param TransformedFinder $finder

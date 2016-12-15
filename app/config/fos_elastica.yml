@@ -42,48 +42,6 @@ fos_elastica:
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
-                compatibility:
-                    indexable_callback: 'isEnabled'
-                    mappings:
-                        musician:
-                            type: "object"
-                            properties:
-                                id: ~
-                        value:
-                            type: "integer"
-                        musician2:
-                            type: "nested"
-                            properties:
-                                id: ~
-                                username: ~
-                                firstName: ~
-                                lastName: ~
-                                pin: { type: geo_point }
-                                created_at: { type: date }
-                                genres:
-                                    type: "object"
-                                    properties:
-                                        genre.id: ~
-                                        genre.category.id: ~
-                                instruments:
-                                    type: "object"
-                                    properties:
-                                        instrument.id:
-                                        instrument.category.id: ~
-                                isTeacher:
-                                    type: "boolean"
-                                isJammer:
-                                    type: "boolean"
-                                isVisitor:
-                                    type: "boolean"
-                    persistence:
-                        driver: orm
-                        model: Jam\CoreBundle\Entity\Compatibility
-                        provider: ~
-                        listener: ~
-                        finder: ~
-                        elastica_to_model_transformer:
-                            ignore_missing: true
                 shout:
                     mappings:
                         creator:
