@@ -410,9 +410,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    {% if app.environment == 'prod' %}
-        {% include "::googleAnalytics.html.twig" %}
+    {% include "::googleAnalytics.html.twig" %}
 
+    {% if app.environment == 'prod' %}
         <!-- Hotjar Tracking Code for https://jamifind.com -->
         <script>
             (function(h,o,t,j,a,r){

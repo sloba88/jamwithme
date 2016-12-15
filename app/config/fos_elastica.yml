@@ -15,11 +15,18 @@ fos_elastica:
                         genres:
                             type: "object"
                             properties:
-                                genre.id: ~
+                                genre.id: { boost: 1.3 }
+                                genre.category.id: { boost : 1.1 }
                         instruments:
                             type: "object"
                             properties:
                                 instrument.id:
+                        artists:
+                            type: "object"
+                            properties:
+                                id: { boost: 1.6 }
+                        commitment: { boost: 0.3 }
+                        age: { boost: 0.2 }
                         isTeacher:
                             type: "boolean"
                         isJammer:
@@ -42,7 +49,8 @@ fos_elastica:
                             type: "object"
                             properties:
                                 id: ~
-                        value: ~
+                        value:
+                            type: "integer"
                         musician2:
                             type: "nested"
                             properties:

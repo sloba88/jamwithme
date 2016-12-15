@@ -453,11 +453,11 @@ class User extends BaseUser
     /**
      * Get age
      *
-     * @return \DateTime
+     * @return integer
      */
     public function getAge()
     {
-        if ($this->birthDate == null) return false;
+        if ($this->birthDate == null) return 0;
 
         $now = new \DateTime();
         $diff = $now->diff($this->birthDate);

@@ -136,7 +136,6 @@ class Compatibility
 
         $compatibility = 0;
         $possibleMatches = 0;
-        $totalMatches = 0;
 
         $artistIndex = 8;
         $genresIndex = 5;
@@ -150,7 +149,6 @@ class Compatibility
                 if (in_array($k2, $matchedIndexes)) continue;
                 if ($v1->getId() == $v2->getId()){
                     $compatibility += $artistIndex;
-                    $totalMatches ++;
                     //if matched skip it next time
                     array_push($matchedIndexes, $k2);
                 }else{
@@ -180,7 +178,6 @@ class Compatibility
                 if (in_array($k2, $matchedIndexes)) continue;
                 if ($v1->getGenre()->getId() == $v2->getGenre()->getId()){
                     $compatibility += $genresIndex;
-                    $totalMatches ++;
                     //if matched skip it next time
                     array_push($matchedIndexes, $k2);
                 }else{
@@ -208,7 +205,6 @@ class Compatibility
             $commitmentDiff = abs(intval($user->getCommitment()) - intval($me->getCommitment()));
             if ($commitmentDiff < 2){
                 $compatibility += $commitmentIndex;
-                $totalMatches ++;
             }
         }
 
@@ -219,7 +215,6 @@ class Compatibility
             $ageDiff = abs(intval($user->getAge()) - intval($me->getAge()));
             if ($ageDiff < 5){
                 $compatibility += $ageIndex;
-                $totalMatches ++;
             }
         }
 

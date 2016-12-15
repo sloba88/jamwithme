@@ -69,8 +69,8 @@ class MusiciansController extends FOSRestController
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
 
         foreach($musicians AS $mus){
-            $m = $mus->getMusician2();
-            $value = $mus->getValue();
+            $m = $mus->getTransformed();
+            $value = round($mus->getResult()->getScore(), 2);
             /* @var $m \Jam\UserBundle\Entity\User */
 
             if ($m->getLocation()){
