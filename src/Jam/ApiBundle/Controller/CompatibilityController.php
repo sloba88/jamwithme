@@ -12,8 +12,21 @@ class CompatibilityController extends FOSRestController
      */
     public function getCompatibilityAction($id)
     {
-        //TODO: get compatibility from ELASTICSEARCH
-        $view = $this->view(1, 200);
+        $me = $this->getUser();
+
+        $musician = $this->get('search.musicians')->getOneMusician($id, $me);
+
+        $score = round($musician[0]->getResult()->getScore(), 2);
+
+        if ($score >= 1.5 ) {
+            $compatibility = 'high';
+        } else if ($score >= 0.5 ) {
+            $compatibility = 'medium';
+        } else {
+            $compatibility = 'low';
+        }
+
+        $view = $this->view($compatibility, 200);
 
         return $this->handleView($view);
     }

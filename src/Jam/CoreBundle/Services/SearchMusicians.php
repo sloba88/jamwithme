@@ -223,15 +223,69 @@ class SearchMusicians {
         //kick me out of result set
         $idsFilter = new Ids();
         $idsFilter->setIds(array($me->getId()));
-        $boolFilter = new BoolFilter();
-        $boolFilter->addMustNot($idsFilter);
+        $elasticaQuery->addMustNot(new Filtered(null, $idsFilter));
 
-        //filtered connects queries with filters
-        $filtered = new Filtered($elasticaQuery, $boolFilter);
-
-        $query = new Query($filtered);
+        $query = new Query($elasticaQuery);
         $query->setSize($perPage);
         $query->setFrom(($page - 1) * $perPage);
+
+        return $this->elasticUsersFinder->findHybrid($query);
+    }
+
+    public function getOneMusician($userId, $me)
+    {
+        $q = new Query();
+        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery->addMust(new MatchAll());
+
+        $functionScore = new Query\FunctionScore();
+        $functionScore->addFunction('gauss', array(
+            'pin' => array(
+                'origin' => array(
+                    'lat' => $me->getLat(),
+                    'lon' => $me->getLon()
+                ),
+                'offset' => '2km',
+                'scale' => '3km'
+            )
+        ));
+        $elasticaQuery->addShould($functionScore);
+
+        //prefer matches with my other genres
+        if (count($me->getGenresIdsArray()) > 0) {
+            $elasticaQuery->addShould(new Query\Terms('genres.genre.id', $me->getGenresIdsArray()));
+
+            $genresCategories = $me->getGenres()->map(function($genre){
+                return $genre->getGenre()->getCategory()->getId();
+            })->toArray();
+
+            //also check genre categories
+            $elasticaQuery->addShould(new Query\Terms('genres.genre.category.id', $genresCategories));
+        }
+
+        //add artists to the mix
+        if ($me->getArtists()->count() > 0) {
+            $ids = $me->getArtists()->map(function($artist){
+                return $artist->getId();
+            })->toArray();
+
+            $elasticaQuery->addShould(new Query\Terms('artists.id', $ids));
+        }
+
+        //add commitment to the list
+        if ($me->getCommitment() > 0) {
+            $elasticaQuery->addShould(new Match('commitment', array('query' => $me->getCommitment())));
+        }
+
+        if ($me->getAge() > 0) {
+            $elasticaQuery->addShould(new Match('age', array('query' => $me->getAge())));
+        }
+
+        $idsFilter = new Ids();
+        $idsFilter->setIds(array($userId));
+        $elasticaQuery->addMust(new Filtered(null, $idsFilter));
+
+        $query = new Query($elasticaQuery);
 
         return $this->elasticUsersFinder->findHybrid($query);
     }

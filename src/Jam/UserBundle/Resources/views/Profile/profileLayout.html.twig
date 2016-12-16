@@ -110,7 +110,7 @@
                     $.ajax({
                         url: Routing.generate('api_compatibility', { id: '{{ user.getId }}' }),
                         success: function(data) {
-                            $('.compatibility span').text(data + '%');
+                            $('.compatibility span').addClass('compatibility-' + data).text(data);
                         }
                     });
                 }

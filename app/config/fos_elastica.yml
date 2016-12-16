@@ -15,8 +15,8 @@ fos_elastica:
                         genres:
                             type: "object"
                             properties:
-                                genre.id: { boost: 1.3 }
-                                genre.category.id: { boost : 1.1 }
+                                genre.id: ~
+                                genre.category.id: ~
                         instruments:
                             type: "object"
                             properties:
@@ -37,8 +37,6 @@ fos_elastica:
                         driver: orm
                         model: Jam\UserBundle\Entity\User
                         provider: ~
-                        listener:
-                            immediate: ~
                         finder: ~
                         elastica_to_model_transformer:
                             ignore_missing: true
