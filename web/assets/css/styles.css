@@ -9714,17 +9714,18 @@ header {
   color: #fff;
   font-size: 16px;
   padding: 2px 0 2px 30px;
+  margin-top: 0;
 }
-/* line 112, ../../sass/jamifind/_shouts.scss */
+/* line 113, ../../sass/jamifind/_shouts.scss */
 .shouts-feed textarea {
   margin-bottom: 10px;
 }
 
-/* line 117, ../../sass/jamifind/_shouts.scss */
+/* line 118, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container {
   padding: 7px 0 0 10px;
 }
-/* line 121, ../../sass/jamifind/_shouts.scss */
+/* line 122, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shouts {
   color: #fff;
   font-size: 16px;
@@ -9732,30 +9733,30 @@ header {
   text-align: right;
   text-transform: uppercase;
 }
-/* line 129, ../../sass/jamifind/_shouts.scss */
+/* line 130, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shouts-listing {
   clear: both;
   overflow: auto;
   position: relative;
 }
-/* line 134, ../../sass/jamifind/_shouts.scss */
+/* line 135, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shouts-listing h5 {
   margin: 7px 0 10px;
 }
-/* line 139, ../../sass/jamifind/_shouts.scss */
+/* line 140, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shout-box {
   margin-bottom: 20px;
   margin-right: 13px;
   position: relative;
 }
-/* line 144, ../../sass/jamifind/_shouts.scss */
+/* line 145, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shout-box img {
   left: 0;
   position: absolute;
   top: 0;
   background-color: #fff;
 }
-/* line 151, ../../sass/jamifind/_shouts.scss */
+/* line 152, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shout-box .remove-shout {
   -moz-transition: color 0.2s ease;
   -o-transition: color 0.2s ease;
@@ -9768,12 +9769,12 @@ header {
   right: 5px;
   top: 5px;
 }
-/* line 160, ../../sass/jamifind/_shouts.scss */
+/* line 161, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shout-box .remove-shout:hover {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 166, ../../sass/jamifind/_shouts.scss */
+/* line 167, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shout-box .shout-text {
   background: #fff;
   border-top: 4px solid #fabc09;
@@ -9782,7 +9783,7 @@ header {
   position: relative;
   z-index: 10;
 }
-/* line 174, ../../sass/jamifind/_shouts.scss */
+/* line 175, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .shout-box .shout-text:after {
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
@@ -9794,11 +9795,11 @@ header {
   top: 25px;
   width: 0;
 }
-/* line 188, ../../sass/jamifind/_shouts.scss */
+/* line 189, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .name {
   margin: 0 20px 5px 0;
 }
-/* line 191, ../../sass/jamifind/_shouts.scss */
+/* line 192, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .name a {
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
@@ -9809,50 +9810,50 @@ header {
   font-size: 14px;
   text-transform: uppercase;
 }
-/* line 198, ../../sass/jamifind/_shouts.scss */
+/* line 199, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .name a:hover, .shouts-listing-container .name a:focus {
   color: #fabc09;
   text-decoration: none;
 }
-/* line 205, ../../sass/jamifind/_shouts.scss */
+/* line 206, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .time {
   color: #878595;
   font-size: 12px;
   margin-bottom: 5px;
 }
-/* line 210, ../../sass/jamifind/_shouts.scss */
+/* line 211, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container .time span {
   margin-right: 3px;
 }
-/* line 215, ../../sass/jamifind/_shouts.scss */
+/* line 216, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container p {
   line-height: 18px;
 }
-/* line 218, ../../sass/jamifind/_shouts.scss */
+/* line 219, ../../sass/jamifind/_shouts.scss */
 .shouts-listing-container p:last-child {
   margin-bottom: 5px;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 234, ../../sass/jamifind/_shouts.scss */
+  /* line 235, ../../sass/jamifind/_shouts.scss */
   .page-shouts {
     background: #2b2a3b !important;
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 239, ../../sass/jamifind/_shouts.scss */
+  /* line 240, ../../sass/jamifind/_shouts.scss */
   .page-shouts .main-content {
     padding: 0;
   }
 }
 @media only screen and (max-width: 991px) {
-  /* line 239, ../../sass/jamifind/_shouts.scss */
+  /* line 240, ../../sass/jamifind/_shouts.scss */
   .page-shouts .main-content {
     padding: 0;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 248, ../../sass/jamifind/_shouts.scss */
+  /* line 249, ../../sass/jamifind/_shouts.scss */
   .page-shouts .main-content-inner {
     background: rgba(43, 42, 59, 0.95);
     border-left: 1px solid #41404f;
@@ -9861,48 +9862,48 @@ header {
   }
 }
 @media only screen and (max-width: 767px) {
-  /* line 248, ../../sass/jamifind/_shouts.scss */
+  /* line 249, ../../sass/jamifind/_shouts.scss */
   .page-shouts .main-content-inner {
     background: #2b2a3b;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 261, ../../sass/jamifind/_shouts.scss */
+  /* line 262, ../../sass/jamifind/_shouts.scss */
   .page-shouts .shouts-feed {
     float: left;
     min-height: 183px;
     width: 50%;
   }
 }
-/* line 268, ../../sass/jamifind/_shouts.scss */
+/* line 269, ../../sass/jamifind/_shouts.scss */
 .page-shouts .shouts-feed h3 {
   margin-top: 0;
 }
 @media only screen and (max-width: 767px) {
-  /* line 272, ../../sass/jamifind/_shouts.scss */
+  /* line 273, ../../sass/jamifind/_shouts.scss */
   .page-shouts .shouts-feed textarea {
     height: 55px;
   }
 }
-/* line 279, ../../sass/jamifind/_shouts.scss */
+/* line 280, ../../sass/jamifind/_shouts.scss */
 .page-shouts .shouts-listing-container {
   clear: both;
 }
 @media only screen and (min-width: 768px) {
-  /* line 283, ../../sass/jamifind/_shouts.scss */
+  /* line 284, ../../sass/jamifind/_shouts.scss */
   .page-shouts .shouts {
     margin-right: 25px;
     text-align: left;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 290, ../../sass/jamifind/_shouts.scss */
+  /* line 291, ../../sass/jamifind/_shouts.scss */
   .page-shouts .shout-box {
     float: left;
     margin-right: 25px;
     width: 46.5%;
   }
-  /* line 296, ../../sass/jamifind/_shouts.scss */
+  /* line 297, ../../sass/jamifind/_shouts.scss */
   .page-shouts .shout-box:nth-child(2n+2) {
     float: right;
   }
