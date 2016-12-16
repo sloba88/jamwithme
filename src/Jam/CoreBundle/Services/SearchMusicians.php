@@ -210,7 +210,7 @@ class SearchMusicians {
         }
 
         if ($search->getIsTeacher()){
-            $elasticaQuery->addMust(new Query\Term(array('isTeacher' => 1)));
+            $elasticaQuery->addMust(new Match('isTeacher', array('query' => 1, 'boost' => 0)));
 
             $data = array(
                 'uid'=> $me->getId(),
