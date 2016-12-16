@@ -251,9 +251,11 @@ __e( v ) +
  } ;
 __p += '\n                ';
  }); ;
-__p += '\n            </ul>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span>' +
+__p += '\n            </ul>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span class="compatibility-' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +
-'%</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a>\n</div>';
+'">' +
+((__t = ( rc.compatibility )) == null ? '' : __t) +
+'</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a>\n</div>';
 return __p
 };
 
@@ -319,9 +321,11 @@ __e( rc.instrument ) +
  } ;
 __p += '\n                    ' +
 ((__t = ( rc.teacherIcon )) == null ? '' : __t) +
-'\n                </span>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span>' +
+'\n                </span>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span class="compatibility-' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +
-'%</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a><!--people-grid ends-->\n</div>';
+'">' +
+((__t = ( rc.compatibility )) == null ? '' : __t) +
+'</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a><!--people-grid ends-->\n</div>';
 return __p
 };
 

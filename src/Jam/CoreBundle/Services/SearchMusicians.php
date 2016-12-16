@@ -233,7 +233,6 @@ class SearchMusicians {
         $query->setSize($perPage);
         $query->setFrom(($page - 1) * $perPage);
 
-
         return $this->elasticUsersFinder->findHybrid($query);
     }
 

@@ -439,7 +439,7 @@
 		bottom: 0;
 		color: #fff;
 		left: 0;
-		padding: 10px 35px 5px 10px;
+		padding: 5px 35px 5px 10px;
 		position: absolute;
 		right: 0;
 		min-height: 50%;
@@ -455,20 +455,22 @@
 		// }
 		@include respond-to(handhelds) {
 			height: 120px;
+
+			.compatibility-box {
+				bottom: 5px;
+			}
 		}
 
 		.compatibility-box {
-			bottom: 5px;
+			bottom: 0;
 			display: none;
 			// left: 10px;
 			position: absolute;
 			@include respond-to(tablet) {
 				display: block!important;
-				position: relative;
 			}
 			.touch-device & {
 				display: block!important;
-				position: relative;
 			}
 		}
 
@@ -564,11 +566,23 @@
 		margin: 2px 0 0;
 		text-transform: uppercase;
 
+		.compatibility-high {
+			color: firebrick;
+		}
+
+		.compatibility-medium {
+			color: orange;
+		}
+
+		.compatibility-low {
+			color: #3843f3;
+		}
+
 		span {
 			// display: block;
-			font-size: 13px;
+			font-size: 12px;
 			@include respond-to(handhelds) {
-				font-size: 12px;
+				font-size: 11px;
 			}
 		}
 	}
@@ -599,7 +613,7 @@
 	overflow: hidden;
 	@include respond-to(tablet) {
 		display: block!important;
-		margin: 10px 0 15px;
+		margin: 5px 0 15px;
 	}
 
 	> li {

@@ -68,9 +68,18 @@ class MusiciansController extends FOSRestController
         $musicians_data = array();
         $cacheManager = $this->container->get('liip_imagine.cache.manager');
 
-        foreach($musicians AS $mus){
+        foreach($musicians AS $k=> $mus){
             $m = $mus->getTransformed();
-            $value = round($mus->getResult()->getScore(), 2);
+            $score = round($mus->getResult()->getScore(), 2);
+
+            if ($score >= 1.5 ) {
+                $compatibility = 'high';
+            } else if ($score >= 0.5 ) {
+                $compatibility = 'medium';
+            } else {
+                $compatibility = 'low';
+            }
+
             /* @var $m \Jam\UserBundle\Entity\User */
 
             if ($m->getLocation()){
@@ -97,7 +106,7 @@ class MusiciansController extends FOSRestController
                 'genres' => $m->getGenresNamesArray(),
                 'instrument' => $instrument,
                 'location' => $location,
-                'compatibility' => $value,
+                'compatibility' => $compatibility,
                 'avatar' => $avatar
             );
 

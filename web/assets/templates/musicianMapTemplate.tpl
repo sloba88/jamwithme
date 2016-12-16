@@ -16,7 +16,7 @@
                 </span>
             <ul class="compatibility-box">
                 <li class="compatibility">
-                    <span><%= rc.compatibility %>%</span>
+                    <span class="compatibility-<%= rc.compatibility %>"><%= rc.compatibility %></span>
                     compatibility
                 </li>
             </ul>
