@@ -326,6 +326,25 @@ function getUserShouts() {
     });
 }
 
+function getUserSimilarUsers() {
+    $('.similar-users-listing').html('');
+    var username = $('.shouts-sidebar').data('username');
+
+    $.ajax({
+        url: Routing.generate('musicians_similar', {'username': username})
+    }).done(function( result ) {
+        if (result.status == 'success'){
+            $.each(result.data, function(k, v){
+                $( '.similar-users-listing' ).prepend(window.JST.similarUsersBoxTemplate(v));
+            });
+
+            if (result.data.length === 0) {
+                $( '.similar-users-listing' ).html('<h5>No similar users found.</h5>');
+            }
+        }
+    });
+}
+
 $(function() {
 
     //checks if touch device

@@ -372,7 +372,7 @@ __p += '">\n    <a href="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( mu.username ) +
-'" class="musician-box-image-link img-circle">\n        <img src="' +
+'" class="musician-box-image-link">\n        <img src="' +
 ((__t = ( baseURL )) == null ? '' : __t) +
 '/m/' +
 __e( mu.username ) +
@@ -399,6 +399,31 @@ __e( rc.createdAt ) +
 ' </span>\n        </div>\n        <p>' +
 ((__t = ( rc.text )) == null ? '' : __t) +
 '</p>\n    </div>\n</article>';
+return __p
+};
+
+this["JST"]["similarUsersBoxTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+__p += '<li>\r\n    <a href="' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.username ) +
+'" class="musician-box-image-link">\r\n        <img src="' +
+((__t = ( baseURL )) == null ? '' : __t) +
+'/m/' +
+__e( rc.username ) +
+'/avatar" class="" width="50" />\r\n        <h4 class="name">';
+ if (rc.firstName) { ;
+__p +=
+__e( rc.firstName ) +
+'<br />' +
+__e(rc.lastName );
+ }else{ ;
+__p +=
+__e( rc.username );
+ } ;
+__p += '</h4>\r\n    </a>\r\n</li>';
 return __p
 };
 

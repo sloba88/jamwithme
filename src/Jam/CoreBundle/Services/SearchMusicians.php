@@ -314,8 +314,25 @@ class SearchMusicians {
         $query->setFrom(($page - 1) * $perPage);
 
         //sort by compatibility here
-        $musicians = $this->elasticUsersFinder->find($query);
+        return $this->elasticUsersFinder->find($query);
+    }
 
-        return $musicians;
+    public function getElasticSimilarUsersResult($user)
+    {
+        $query = new Query();;
+
+        $query->setSize(5);
+        $query->setFrom(0);
+
+        $mltQuery = new Query\MoreLikeThis();
+        $mltQuery->setFields(array('instruments.instrument.id', 'artists.id', 'genres.genre.id', 'genres.genre.category.id', 'age', 'pin'));
+
+        $like = array('ids' => array($user->getId()), 'min_term_freq' => 1, 'max_query_terms' => 12);
+
+        $mltQuery->setLike($like);
+
+        $query->setQuery($mltQuery);
+
+        return $this->elasticUsersFinder->find($query);
     }
 }

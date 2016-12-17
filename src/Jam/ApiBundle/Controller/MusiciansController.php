@@ -209,6 +209,40 @@ class MusiciansController extends FOSRestController
     }
 
     /**
+     * @Get("/musicians/similar", name="musicians_similar")
+     */
+    public function findSimilarAction()
+    {
+        $request = $this->get('request_stack')->getCurrentRequest();
+        $username = $request->query->get('username');
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        $musicians = $this->get('search.musicians')->getElasticSimilarUsersResult($user);
+
+        $musicians_data = array();
+
+        foreach($musicians AS $m){
+            /* @var $m \Jam\UserBundle\Entity\User */
+
+            $data_array = array(
+                'username' => $m->getUsername(),
+                'firstName' => $m->getFirstName(),
+                'lastName' => $m->getLastName()
+            );
+
+            array_push($musicians_data, $data_array);
+        }
+
+        $view = $this->view(array(
+            'status'    => 'success',
+            'data' => $musicians_data,
+        ), 200);
+
+        return $this->handleView($view);
+    }
+
+    /**
      * @Post("/musician/location", name="api_set_musician_location")
      */
     public function setLocationAction()

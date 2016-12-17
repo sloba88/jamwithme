@@ -1,6 +1,6 @@
 <% mu = rc.musician %>
 <article class="shout-box clearfix <% if(mu.teacher){ %>teacher<% } %>">
-    <a href="<%= baseURL %>/m/<%- mu.username %>" class="musician-box-image-link img-circle">
+    <a href="<%= baseURL %>/m/<%- mu.username %>" class="musician-box-image-link">
         <img src="<%= baseURL %>/m/<%- mu.username %>/avatar" class="" width="50" />
     </a>
     <div class="shout-text">
