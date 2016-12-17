@@ -182,6 +182,22 @@ function mapFilterMusicians() {
     });
 }
 
+function mapAddServices() {
+    var data = getFilterData();
+    data += '&limit=0';
+
+    $.ajax({
+        url: Routing.generate('services_find'),
+        data: data
+    }).done(function( result ) {
+        if (result.status == 'success') {
+            if (initializedMap !== false ){
+                placeServiceMarkers(result.data);
+            }
+        }
+    });
+}
+
 function filterShouts() {
     if (shoutsPage === 1) {
         $('.shouts-listing').html('');
@@ -240,6 +256,7 @@ $(function() {
                 initializedMap = initMap();
                 setMyFilterMarker();
                 mapFilterMusicians();
+                mapAddServices();
             } else {
                 $('.view-tab-container').scrollTop(0);
                 mapFilterMusicians();

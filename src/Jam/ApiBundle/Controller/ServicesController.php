@@ -37,6 +37,9 @@ class ServicesController extends FOSRestController
 
             $data_array = array(
                 'displayName' => $s->getDisplayName(),
+                'phone' => $s->getPhone(),
+                'email' => $s->getEmail(),
+                'website' => $s->getWebsite(),
                 'lat' => $s->getLat() ? $s->getLat() : '',
                 'lng' => $s->getLon() ? $s->getLon() : ''
             );
