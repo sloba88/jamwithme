@@ -18,6 +18,12 @@ services:
             - [setTokenStorage, ["@security.token_storage"]]
             - [setTracker, ["@happyr.google.analytics.tracker"]]
 
+    search.services:
+        class: Jam\CoreBundle\Services\SearchServices
+        calls:
+            - [setElasticServiceFinder, ["@fos_elastica.finder.searches.service"]]
+            - [setTokenStorage, ["@security.token_storage"]]
+
     search.subscriber.cron:
         class: Jam\CoreBundle\Services\SearchSubscriberCron
         calls:

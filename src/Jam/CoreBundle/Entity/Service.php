@@ -59,20 +59,6 @@ class Service
     private $images;
 
     /**
-     * @var collection
-     *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Shout", mappedBy="creator", cascade={"all"} )
-     */
-    private $shouts;
-
-    /**
-     * @var collection
-     *
-     * @ORM\OneToMany(targetEntity="Jam\CoreBundle\Entity\Video", mappedBy="creator", cascade={"all"} )
-     */
-    private $videos;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      */
@@ -397,71 +383,20 @@ class Service
         return $this->images;
     }
 
-    /**
-     * Add shout
-     *
-     * @param \Jam\CoreBundle\Entity\Shout $shout
-     *
-     * @return Service
-     */
-    public function addShout(\Jam\CoreBundle\Entity\Shout $shout)
+    public function getLat()
     {
-        $this->shouts[] = $shout;
-
-        return $this;
+        return $this->location ? $this->location->getLat() : false;
     }
 
-    /**
-     * Remove shout
-     *
-     * @param \Jam\CoreBundle\Entity\Shout $shout
-     */
-    public function removeShout(\Jam\CoreBundle\Entity\Shout $shout)
+    public function getLon()
     {
-        $this->shouts->removeElement($shout);
+        return $this->location? $this->location->getLng() : false;
     }
 
-    /**
-     * Get shouts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getShouts()
+    public function getPin()
     {
-        return $this->shouts;
-    }
+        if (!$this->getLat()) return null;
 
-    /**
-     * Add video
-     *
-     * @param \Jam\CoreBundle\Entity\Video $video
-     *
-     * @return Service
-     */
-    public function addVideo(\Jam\CoreBundle\Entity\Video $video)
-    {
-        $this->videos[] = $video;
-
-        return $this;
-    }
-
-    /**
-     * Remove video
-     *
-     * @param \Jam\CoreBundle\Entity\Video $video
-     */
-    public function removeVideo(\Jam\CoreBundle\Entity\Video $video)
-    {
-        $this->videos->removeElement($video);
-    }
-
-    /**
-     * Get videos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getVideos()
-    {
-        return $this->videos;
+        return $this->getLat().','.$this->getLon();
     }
 }
