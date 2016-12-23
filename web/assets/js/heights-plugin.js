@@ -100,7 +100,7 @@
                 $shoutsListing.each(function(){
                     var $this = $(this);
 
-                    $this.height(windowHeight - $this.offset().top > 320 ? 320 : windowHeight - $this.offset().top);
+                    $this.css('max-height', windowHeight - $this.offset().top > 320 ? 320 : windowHeight - $this.offset().top);
                 });
             } else {
                 $shoutsListing.height('');
