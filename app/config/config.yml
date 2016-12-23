@@ -43,11 +43,14 @@ assetic:
     bundles:        ["JamWebBundle", "JamUserBundle", "FOSUserBundle"]
     node: %node_bin_path%/node
     filters:
-        cssrewrite: ~
+        cssrewrite:
+            apply_to: "\.css$"
         uglifycss:
             bin: %node_bin_path%/uglifycss
+            apply_to: "\.css$"
         uglifyjs2:
             bin: %node_bin_path%/uglifyjs
+            apply_to: "\.js$"
         less:
             node_paths: [%node_modules_path%/node_modules]
             apply_to: "\.less$"

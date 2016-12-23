@@ -9674,13 +9674,13 @@ header {
   border-right: none;
 }
 /* line 66, ../../sass/jamifind/_shouts.scss */
-.teacher-container .shouts-sidebar .shouts-feed {
+.teacher-container .shouts-sidebar .shouts-feed, .teacher-container .shouts-sidebar .similar-users {
   border-bottom: 4px solid #2b2a3b;
   margin: 0 10px;
   padding: 12px 5px 0;
 }
 /* line 71, ../../sass/jamifind/_shouts.scss */
-.teacher-container .shouts-sidebar .shouts-feed h3 {
+.teacher-container .shouts-sidebar .shouts-feed h3, .teacher-container .shouts-sidebar .similar-users h3 {
   color: #2b2a3b;
   font-size: 14px;
   margin-top: 12px;

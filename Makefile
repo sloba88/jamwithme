@@ -10,6 +10,7 @@ DUMP_ROUTE      = $(CONSOLE) fos:js-routing:dump
 ELASTIC_INDEX   = $(CONSOLE) fos:elastica:populate
 REDIS           = redis-cli flushall
 SCHEMA          = $(CONSOLE) doctrine:schema:update --force
+COMPASS         = cd web; compass compile; cd ..;
 
 default: help
 
@@ -17,6 +18,7 @@ cc:
 	rm -rf /dev/shm/appname/cache/*
 
 dump:
+	$(COMPASS)
 	$(ASSETIC_DEV)
 
 help:
