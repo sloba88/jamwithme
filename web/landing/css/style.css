@@ -49,7 +49,7 @@ body.login-page {
 	line-height: 50px;
 	text-shadow: 0 0 10px #000;
 	padding-top: 6%;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 }
 
 .signup-page h1:lang(it) {
@@ -245,7 +245,7 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	background: url(../images/media-bg.jpg) 50% 0 repeat fixed; 
 	background-size: cover;
 	min-height: 600px;
-	padding-top: 90px;
+	padding-top: 30px;
 }
 #subscribe-home {
 	background: url(../images/subscribe-bg.jpg) 50% 0 repeat fixed; 
@@ -253,6 +253,13 @@ ul.underlinemenu li a.selected, ul.underlinemenu li a:hover {
 	min-height: 600px;
 	padding-top: 140px;
 	position: relative;
+	text-align: center;
+}
+
+#multimedia-home p {
+	font-size: 18px;
+	padding-top: 20px;
+	line-height: 32px;
 }
 
 .copyright{
@@ -285,6 +292,31 @@ a.fast-subscribe{
 
 a.fast-subscribe:hover {
 	opacity: 1;
+}
+
+.mediaText {
+	text-align: center;
+}
+
+.mediaText p {
+	width: 98%
+}
+
+.mediaText div {
+	margin: 40px auto 0;
+	text-align: center;
+}
+
+.mediaText .desktop-image {
+	box-shadow: 5px 5px 20px #000;
+	margin: 0 auto;
+	width: 80%;
+}
+
+.mediaText .mobile-image {
+	box-shadow: 5px 5px 20px #000;
+	width: 95%;
+	display: none;
 }
 
 /*****parallax backgrounds ends*****/
@@ -374,8 +406,12 @@ a.fast-subscribe:hover {
 		float: none;
 		margin: 0 auto;
 		padding-bottom: 80px;
-		padding-right: 237px;
 	}
+
+	.mediaText .desktop-image {
+		width: 95%;
+	}
+
 	.mediaText h2 {
 		background-size: 10%;
 	}
@@ -477,6 +513,11 @@ a.fast-subscribe:hover {
 	#multimedia-home {
 		min-height: 450px;
 	}
+
+	.mediaText .desktop-image {
+		width: 98%;
+	}
+
 	#subscribe-home {
 		min-height: 450px;
 	}
@@ -588,6 +629,13 @@ a.fast-subscribe:hover {
 	.mediaText {
 		float: left;
 		padding: 0;
+		padding-bottom: 20px;
+	}
+	.mediaText .mobile-image {
+		display: block;
+	}
+	.mediaText .desktop-image {
+		display: none;
 	}
 	.mediaImage {
 		width: 100%;
@@ -604,6 +652,11 @@ a.fast-subscribe:hover {
 	}
 }
 @media all and (max-width: 480px) {
+
+	.mediaText {
+		text-align: left;
+	}
+
 	.login-header p {
 		font-size: 20px;
 		padding-top: 14px;

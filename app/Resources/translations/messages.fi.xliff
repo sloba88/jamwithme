@@ -1053,12 +1053,13 @@
       </trans-unit>
       <trans-unit id="26310a0c1677225aa3b52d478299adfb48007129" resname="text.home.find.fellow.musicians">
         <source>text.home.find.fellow.musicians</source>
-        <target state="new">Löydä läheltäsi soittoseuraa ja jäseniä bändiisi.</target>
+        <target state="new">Löydä soittoseuraa, bändiin jäseniä ja soitonopetusta läheltäsi!</target>
         <jms:reference-file line="113">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a0054ccefa5a52c4d4284758948f7304a796288e" resname="text.home.find.fellow.musicians.subtitle">
         <source>text.home.find.fellow.musicians.subtitle</source>
-        <target state="new">Etsitkö bändillesi sitä oikeaa basistia? Haetko juuri sinulle sopivaa soitonopetusta? Se onnistuu Jamifindilla.</target>
+        <target state="new">Etsitkö musiikinopetusta tai haluatko opettaa muita tarjoamalla
+                            vaikka piano- tai kitaratunteja? Anna Jamifindin auttaa.</target>
         <jms:reference-file line="114">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
@@ -1187,27 +1188,32 @@
       </trans-unit>
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
-        <target state="new">Luo muusikon CV:si tänään. Jaa ääntä, videoita, kuvia ja tule huomatuksi. Jamifindin avulla löydät juuri sinulle sopivimmat musakontaktit ja ennen kuin huomaatkaan olet luomassa uusia musaprojekteja ja löytämässä uusia ystäviä.  </target>
+        <target state="new">Luo Jamifind-profiili ja tuo muusikon CV:si tähän päivään.
+                            Jaa ääntä, videoita, kuvia ja tule huomatuksi.
+                            Jamifindin avulla verkostoidut ja etsit juuri sinulle sopivimmat
+                            musiikkikontaktit. Jamifindista löydät myös kätevästi kaikki lähialueesi keikat. </target>
         <jms:reference-file line="137">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
-        <target state="new">Etsitkö uusia jäseniä bändiisi, sanoittajaa melodioillesi tai sopivaa äänittäjää studiosessioon? Haetko soitonopetusta itsellesi tai lapsillesi?  Vai kaipaatko vaan samanhenkistä musadiggaria, jonka kanssa mennä vaikka oluelle? Meidän avulla se onnistuu!</target>
+        <target state="new">Jamifindin avulla löydät lähialueesi muusikot, soitonopettajat,
+                            muut musiikkialan osaajat sekä kaikki Suomen keikat.
+                            Etsitpä bändiin laulajaa, kitaristia, rumpalia, basistia, pianistia tai muun instrumentin taitajaa, Jamifindin avulla se on helppoa.</target>
         <jms:reference-file line="18">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
         <source>text.register.find</source>
-        <target state="new">Löydä oikeat musakontaktit läheltäsi!</target>
+        <target state="new">Jamifind on muusikoiden perustama nettipalvelu muusikoille.</target>
         <jms:reference-file line="136">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
-        <target state="new">Liity Jamifindiin tänään ja aloita seuraava musaseikkailusi!</target>
+        <target state="new">Rekisteröidy ilmaiseksi Jamifindiin jo tänään!</target>
         <jms:reference-file line="145">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>
-        <target state="new">Jamifind auttaa kaikentasoisia musiikinharrastajia löytämään uusia kontakteja maksutta.</target>
+        <target state="new">Jamifind on maksuton kaikentasoisten muusikoiden verkostoitumispalvelu</target>
         <jms:reference-file line="14">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae049d1bbd992f9554b6f65eb322a322798c94a" resname="text.send.us.a.message">

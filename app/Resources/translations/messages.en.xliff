@@ -1055,12 +1055,12 @@
       </trans-unit>
       <trans-unit id="26310a0c1677225aa3b52d478299adfb48007129" resname="text.home.find.fellow.musicians">
         <source>text.home.find.fellow.musicians</source>
-        <target state="new">Find fellow musicians or new band members near you</target>
+        <target state="new">Place musician classifieds and find local band members</target>
         <jms:reference-file line="113">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a0054ccefa5a52c4d4284758948f7304a796288e" resname="text.home.find.fellow.musicians.subtitle">
         <source>text.home.find.fellow.musicians.subtitle</source>
-        <target state="new"><![CDATA[Searching for the perfect bass player for your band? Looking for the right guitar teacher? Meet them on <strong>Jamifind.</strong>]]></target>
+        <target state="new"><![CDATA[Searching a piano teacher? Want to learn how to play guitar? Want to give private music lessons? Let <strong>Jamifind</strong> help you.]]></target>
         <jms:reference-file line="114">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
@@ -1189,27 +1189,33 @@
       </trans-unit>
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
-        <target state="new">Build your musicians CV today. Share your sounds, video and images with the world and get discovered. With Jamifind you'll find the right people for your musical pursuits and before you know it you will be making new music and new friends.</target>
+        <target state="new">Jamifind is created for musicians by musicians.
+                            Create a Jamifind profile and build your musician's CV today.
+                            Share your sounds, video and images with others and get discovered.
+                            Connect with hundreds of local musicians and music teachers and find
+                            the right people for your musical pursuits.  </target>
         <jms:reference-file line="137">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
-        <target state="new">Whether you're looking for new members to your band, a lyricist for your compositions, the right recording engineer for your studio sessions, the perfect guitar teacher for you or your kids, or just someone to have a pint with who also likes David Bowie and Radiohead, we're here to help.</target>
+        <target state="new">Join a band, find band members, create musicians wanted ads
+                            or search for the perfect music teacher.
+                            Whether you're seeking for guitarist, singer, drummer, bass or keyboard player or other instrumentalists to your band, or the right people for a random jam session, Jamifind makes it easy.</target>
         <jms:reference-file line="18">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
         <source>text.register.find</source>
-        <target state="new">All the right music related contacts near you.</target>
+        <target state="new">Find the right musicians!</target>
         <jms:reference-file line="136">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
-        <target state="new">Join the Jamifind community and start your next musical journey today.</target>
+        <target state="new">Register and join Jamifind for free!</target>
         <jms:reference-file line="145">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>
-        <target state="new">Jamifind is a free platform for all musicians to find new collaboration partners.</target>
+        <target state="new">Jamifind is a free platform for all level musicians to find band members and music lessons.</target>
         <jms:reference-file line="14">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae049d1bbd992f9554b6f65eb322a322798c94a" resname="text.send.us.a.message">
