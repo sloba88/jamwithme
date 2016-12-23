@@ -1060,7 +1060,7 @@
       </trans-unit>
       <trans-unit id="a0054ccefa5a52c4d4284758948f7304a796288e" resname="text.home.find.fellow.musicians.subtitle">
         <source>text.home.find.fellow.musicians.subtitle</source>
-        <target state="new"><![CDATA[Searching a piano teacher? Want to learn how to play guitar? Want to give private music lessons? Let <strong>Jamifind</strong> help you.]]></target>
+        <target state="new"><![CDATA[Searching for a piano teacher? Want to learn how to play guitar? Want to give private music lessons? Let <strong>Jamifind</strong> help you.]]></target>
         <jms:reference-file line="114">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
@@ -1189,8 +1189,7 @@
       </trans-unit>
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
-        <target state="new">Jamifind is created for musicians by musicians.
-                            Create a Jamifind profile and build your musician's CV today.
+        <target state="new">Jamifind is designed by musicians for musicians. Create a Jamifind profile and build your musician's CV today.
                             Share your sounds, video and images with others and get discovered.
                             Connect with hundreds of local musicians and music teachers and find
                             the right people for your musical pursuits.  </target>
@@ -1200,7 +1199,10 @@
         <source>text.register.desc</source>
         <target state="new">Join a band, find band members, create musicians wanted ads
                             or search for the perfect music teacher.
-                            Whether you're seeking for guitarist, singer, drummer, bass or keyboard player or other instrumentalists to your band, or the right people for a random jam session, Jamifind makes it easy.</target>
+                            Whether you're seeking a guitarist, singer, drummer,
+                            bass or keyboard player or other instrumentalists for your band,
+                            or the right people for a random jam session,
+                            Jamifind makes it easy.</target>
         <jms:reference-file line="18">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
