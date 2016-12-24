@@ -1266,7 +1266,7 @@
       </trans-unit>
       <trans-unit id="ebeb7b5a5ae8a3879498e4b8b89bf07873771b82" resname="text.similar.users">
         <source>text.similar.users</source>
-        <target state="new">Similar users</target>
+        <target state="new">Similar people</target>
         <jms:reference-file line="286">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="59793f453dbce12774a90cc4c7b35c9b1c88c2fe" resname="text.sounds.like">
