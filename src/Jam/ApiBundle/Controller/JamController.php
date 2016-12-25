@@ -41,7 +41,7 @@ class JamController extends FOSRestController
     {
         $jams = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
-            ->findAll();
+            ->findBy(array('status' => 1));
 
         $totalEmails = 0;
         foreach ($jams AS $jam) {
