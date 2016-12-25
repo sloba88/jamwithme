@@ -43,6 +43,7 @@ class JamController extends FOSRestController
             ->getRepository('JamCoreBundle:Jam')
             ->findBy(array('status' => 1));
 
+        //TODO: count only unique emails and for every user send only one email about all potential jams
         $totalEmails = 0;
         foreach ($jams AS $jam) {
             $musicians = $this->get('search.musicians')->getMusiciansByJam($jam);
