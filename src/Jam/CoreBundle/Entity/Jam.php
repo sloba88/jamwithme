@@ -347,6 +347,13 @@ class Jam
         return $this->genres;
     }
 
+    public function getGenresIds()
+    {
+        return $this->genres->map(function($genre) {
+           return $genre->getId();
+        })->toArray();
+    }
+
     /**
      * Add artist
      *
@@ -548,6 +555,13 @@ class Jam
                 return $member;
             }
         });
+    }
+
+    public function getInstrumentsIds()
+    {
+        return $this->getInstruments()->map(function($instrument) {
+           return $instrument->getInstrumentId();
+        })->toArray();
     }
 
     /**

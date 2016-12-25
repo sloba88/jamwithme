@@ -256,4 +256,51 @@ class MusiciansController extends FOSRestController
 
         return $this->handleView($view);
     }
+
+    /**
+     * @Get("/musicians/current-search", name="musicians_current_search")
+     */
+    public function getCurrentSearchAction()
+    {
+        $searchId = 3611;
+        $position = 2;
+        $userId = 16;
+
+        $position = [
+            'limit' => 5,
+            'offset' => 0
+        ];
+
+        $em = $this->getDoctrine()->getManager();
+
+        $search = $em->getRepository('JamCoreBundle:Search')->find($searchId);
+
+        $musicians = $this->get('search.musicians')->getElasticSearchResult($search, $position);
+
+        $musicians_data = array();
+
+        foreach($musicians AS $mus) {
+            $m = $mus->getTransformed();
+            /* @var $m \Jam\UserBundle\Entity\User */
+
+            $data_array = array(
+                'username' => $m->getUsername(),
+                'firstName' => $m->getFirstName(),
+                'lastName' => $m->getLastName(),
+                'userId' => $m->getId(),
+            );
+
+            $userId == $m->getId() ? $data_array['currentUser'] = true : false;
+
+            array_push($musicians_data, $data_array);
+        }
+
+        $view = $this->view(array(
+            'status'    => 'success',
+            'data' => $musicians_data,
+        ), 200);
+
+        return $this->handleView($view);
+
+    }
 }

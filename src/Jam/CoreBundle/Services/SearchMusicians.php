@@ -192,7 +192,6 @@ class SearchMusicians {
                 ($distance ? $distance : '100') . 'km'
             );
 
-            //figure out how to add must here
             $elasticaQuery->addMust(new Filtered(null, $locationFilter));
 
             //also query on the same filter to get points
@@ -333,6 +332,38 @@ class SearchMusicians {
         $mltQuery->setLike($like);
 
         $query->setQuery($mltQuery);
+
+        return $this->elasticUsersFinder->find($query);
+    }
+
+    public function getMusiciansByJam($jam)
+    {
+        /* @var $jam \Jam\CoreBundle\Entity\Jam */
+
+        $q = new Query();
+        $elasticaQuery = new Query\BoolQuery($q);
+
+        if ($jam->getLocation()){
+            $locationFilter = new \Elastica\Filter\GeoDistance(
+                'user.pin',
+                array('lat' => floatval($jam->getLocation()->getLat()), 'lon' => floatval($jam->getLocation()->getLng())),
+                100 . 'km'
+            );
+            $elasticaQuery->addMust(new Filtered(null, $locationFilter));
+        }
+
+        $boolFilter = new BoolOr();
+        $boolFilter->addFilter(new Terms('instruments.instrument.id', $jam->getInstrumentsIds()));
+        $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+
+        $boolFilter = new BoolOr();
+        $boolFilter->addFilter(new Terms('genres.genre.id', $jam->getGenresIds()));
+        $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+
+        $query = new Query($elasticaQuery);
+
+        $query->setSize(100);
+        $query->setFrom(0);
 
         return $this->elasticUsersFinder->find($query);
     }

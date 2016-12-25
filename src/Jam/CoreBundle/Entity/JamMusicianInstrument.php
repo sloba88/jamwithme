@@ -24,7 +24,7 @@ class JamMusicianInstrument
     private $id;
 
     /**
-     * @var integer
+     * @var Jam $jam
      *
      * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Jam", inversedBy="members")
      * @ORM\JoinColumn(name="jam_id", referencedColumnName="id", nullable=false)
@@ -40,7 +40,7 @@ class JamMusicianInstrument
     private $musician;
 
     /**
-     * @var integer
+     * @var Instrument $instrument
      *
      * @ORM\ManyToOne(targetEntity="Jam\CoreBundle\Entity\Instrument")
      * @ORM\JoinColumn(name="instrument_id", referencedColumnName="id", nullable=false)
@@ -159,5 +159,10 @@ class JamMusicianInstrument
     public function getInvitee()
     {
         return $this->invitee;
+    }
+
+    public function getInstrumentId()
+    {
+        return $this->instrument->getId();
     }
 }
