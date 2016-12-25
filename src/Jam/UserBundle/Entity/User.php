@@ -5,6 +5,7 @@ namespace Jam\UserBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Jam\LocationBundle\Entity\Location;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -112,7 +113,7 @@ class User extends BaseUser
     protected $education;
 
     /**
-     * @var integer
+     * @var Location
      *
      * @ORM\ManyToOne(targetEntity="Jam\LocationBundle\Entity\Location", cascade={"all"})
      * @ORM\JoinColumn(name="location_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
@@ -518,6 +519,19 @@ class User extends BaseUser
         return $this->location? $this->location->getLng() : false;
     }
 
+    public function getDisplayLocation()
+    {
+        if ($this->location){
+            if ($this->location->getNeighborhood() != ""){
+                return $this->location->getNeighborhood(). ', '.$this->location->getAdministrativeAreaLevel3();
+            }else{
+                return $this->location->getAdministrativeAreaLevel3();
+            }
+        }else{
+            return false;
+        }
+    }
+
     public function getPin()
     {
         if (!$this->getLat()) return null;
@@ -701,6 +715,14 @@ class User extends BaseUser
     public function getInstruments()
     {
         return $this->instruments;
+    }
+
+    /*
+     * custom
+     */
+    public function getMainInstrumentAsString()
+    {
+        return $this->getInstruments()->isEmpty() ? '' : $this->getInstruments()->first()->getInstrument()->getCategory()->getName();
     }
 
     /**

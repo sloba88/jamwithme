@@ -33,13 +33,13 @@ class MusiciansController extends FOSRestController
         }
 
         //save the search at first
+        //todo: put this in event
         if ($request->query->get('page') == '' || $request->query->get('page') == '1') {
             $search = new Search();
-            $search->setDistance($request->query->get('distance'));
+            $search->setDistance($request->query->get('distance') ? $request->query->get('distance') : 100);
             $search->setGenres($request->query->get('genres'));
             $search->setInstruments($request->query->get('instruments'));
-            $search->setIsTeacher($request->query->get('isTeacher'));
-
+            $search->setIsTeacher($request->query->get('isTeacher') ? 1 : 0);
             $em->persist($search);
             $em->flush();
             $request->getSession()->set('searchId', $search->getId());
@@ -51,6 +51,7 @@ class MusiciansController extends FOSRestController
         $musicians = $this->get('search.musicians')->getElasticSearchResult($search, $request->query->all());
 
         //todo: if there are no results check if he already subscribed to this before showing him subscribe button
+        //todo: do this in separate controller
         if (count($musicians) == 0) {
             $search = $em->getRepository('JamCoreBundle:Search')->findOneBy(array(
                 'creator' => $me,
@@ -71,7 +72,6 @@ class MusiciansController extends FOSRestController
         foreach($musicians AS $k=> $mus){
             $m = $mus->getTransformed();
             $score = round($mus->getResult()->getScore(), 2);
-
             if ($score >= 1.5 ) {
                 $compatibility = 'high';
             } else if ($score >= 0.5 ) {
@@ -81,18 +81,6 @@ class MusiciansController extends FOSRestController
             }
 
             /* @var $m \Jam\UserBundle\Entity\User */
-
-            if ($m->getLocation()){
-                if ($m->getLocation()->getNeighborhood() != ""){
-                    $location = $m->getLocation()->getNeighborhood(). ', '.$m->getLocation()->getAdministrativeAreaLevel3();
-                }else{
-                    $location = $m->getLocation()->getAdministrativeAreaLevel3();
-                }
-            }else{
-                $location = false;
-            }
-
-            $instrument = $m->getInstruments()->isEmpty() ? '' : $m->getInstruments()->first()->getInstrument()->getCategory()->getName();
 
             $avatar = $cacheManager->getBrowserPath($m->getAvatar(), 'medium_thumb');
 
@@ -104,8 +92,8 @@ class MusiciansController extends FOSRestController
                 'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
                 'me' => $me == $m->getUsername() ? true : false,
                 'genres' => $m->getGenresNamesArray(),
-                'instrument' => $instrument,
-                'location' => $location,
+                'instrument' => $m->getMainInstrumentAsString(),
+                'location' => $m->getDisplayLocation(),
                 'compatibility' => $compatibility,
                 'avatar' => $avatar
             );

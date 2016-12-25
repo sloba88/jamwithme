@@ -110,6 +110,7 @@ class SearchMusicians {
             'el'=> $distance . 'km',
             'ev'=> $distance
         );
+
         $this->tracker->send($data, 'event');
 
         $q = new Query();
