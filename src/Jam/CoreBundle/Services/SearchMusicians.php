@@ -344,12 +344,18 @@ class SearchMusicians {
         $elasticaQuery = new Query\BoolQuery($q);
 
         if ($jam->getLocation()){
-            $locationFilter = new \Elastica\Filter\GeoDistance(
-                'user.pin',
-                array('lat' => floatval($jam->getLocation()->getLat()), 'lon' => floatval($jam->getLocation()->getLng())),
-                100 . 'km'
-            );
-            $elasticaQuery->addMust(new Filtered(null, $locationFilter));
+            if ($jam->getLocation()->getLat() && $jam->getLocation()->getLng()) {
+                $locationFilter = new \Elastica\Filter\GeoDistance(
+                    'user.pin',
+                    array('lat' => floatval($jam->getLocation()->getLat()), 'lon' => floatval($jam->getLocation()->getLng())),
+                    100 . 'km'
+                );
+                $elasticaQuery->addMust(new Filtered(null, $locationFilter));
+            } else {
+                if ($jam->getLocation()->getAdministrativeAreaLevel3()) {
+                    $elasticaQuery->addMust(new Match('location.administrative_area_level_3', array('query' => $jam->getLocation()->getAdministrativeAreaLevel3())));
+                }
+            }
         }
 
         $boolFilter = new BoolOr();

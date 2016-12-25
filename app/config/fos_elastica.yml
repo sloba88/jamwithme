@@ -12,6 +12,10 @@ fos_elastica:
                         firstName: ~
                         lastName: ~
                         pin: { type: geo_point }
+                        location:
+                            type: "object"
+                            properties:
+                                administrative_area_level_3: ~
                         genres:
                             type: "object"
                             properties:
