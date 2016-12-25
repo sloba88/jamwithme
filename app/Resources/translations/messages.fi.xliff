@@ -1074,7 +1074,7 @@
       </trans-unit>
       <trans-unit id="e5c6ec759835133b364b7b9b542c3fd6e46d6f5d" resname="text.interested">
         <source>text.interested</source>
-        <target>Kinnostunut</target>
+        <target>Kiinnostunut</target>
         <jms:reference-file line="10">/../src/Jam/WebBundle/Resources/views/Jam/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9fe39c2463b7c701afd64ca672e24341d6134595" resname="text.invite.contacts">
@@ -1177,7 +1177,7 @@
       </trans-unit>
       <trans-unit id="a44240ea73b552cd4432a0caf0e2d8076de6fddd" resname="text.people.interested">
         <source>text.people.interested</source>
-        <target>Kiinostuneet käyttäjät</target>
+        <target>kiinnostuneet käyttäjät</target>
         <jms:reference-file line="94">/../src/Jam/WebBundle/Resources/views/Jam/index.html.twig</jms:reference-file>
         <jms:reference-file line="91">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
