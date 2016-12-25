@@ -356,9 +356,12 @@ class SearchMusicians {
         $boolFilter->addFilter(new Terms('instruments.instrument.id', $jam->getInstrumentsIds()));
         $elasticaQuery->addMust(new Filtered(null, $boolFilter));
 
-        $boolFilter = new BoolOr();
-        $boolFilter->addFilter(new Terms('genres.genre.id', $jam->getGenresIds()));
-        $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+        if (count($jam->getGenresIds()) > 0) {
+            $boolFilter = new BoolOr();
+            $boolFilter->addFilter(new Terms('genres.genre.id', $jam->getGenresIds()));
+            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+        }
+
 
         $query = new Query($elasticaQuery);
 
