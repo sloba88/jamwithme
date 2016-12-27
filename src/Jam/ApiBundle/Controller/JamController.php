@@ -38,7 +38,7 @@ class JamController extends FOSRestController
      * @Get("/jam/find-all-matching-musicians", name="jam_find_all_matching_musicians")
      */
     public function getAllMatchingMusicians()
-    { 
+    {
         $jams = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
             ->findBy(array('status' => 1));
