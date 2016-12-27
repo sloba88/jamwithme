@@ -38,23 +38,35 @@ class JamController extends FOSRestController
      * @Get("/jam/find-all-matching-musicians", name="jam_find_all_matching_musicians")
      */
     public function getAllMatchingMusicians()
-    {
+    { 
         $jams = $this->getDoctrine()
             ->getRepository('JamCoreBundle:Jam')
             ->findBy(array('status' => 1));
 
         //TODO: count only unique emails and for every user send only one email about all potential jams
         $totalEmails = 0;
+        $allMusicians = array();
         foreach ($jams AS $jam) {
             $musicians = $this->get('search.musicians')->getMusiciansByJam($jam);
+            array_push($allMusicians, $musicians);
 
-            echo $jam->getName() . ' - ' . count($musicians) . '<br />';
 
-            $totalEmails += count($musicians);
+        }
+
+        $uniqeMusicians = array();
+        foreach ($allMusicians AS $musician) {
+
+            $uniqeMusicians[$musician->getId()];
+            foreach ($jams AS $jam) {
+                array_push($uniqeMusicians[$musicians->getId()], $jam->getName());
+            }
         }
 
         echo '<br /><br />';
         echo $totalEmails;
+
+        print_r($uniqeMusicians);
+        exit;
 
         exit;
     }
