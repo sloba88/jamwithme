@@ -427,7 +427,7 @@
       </trans-unit>
       <trans-unit id="b8db3affa3f2551aaa37adb5ab00819870e3fc66" resname="label.forgot.your.password">
         <source>label.forgot.your.password</source>
-        <target state="new">Did you forgot your password?</target>
+        <target state="new">Did you forget your password?</target>
         <jms:reference-file line="66">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="42">/../src/Jam/UserBundle/Resources/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
