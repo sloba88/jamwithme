@@ -41,7 +41,7 @@ class DefaultController extends Controller
             'userTracks' => json_encode($tracks),
             'page' => array(
                 'title' => $user->getDisplayName() . ' | ' . $user->getDisplayLocation(),
-                'description' => $user->getMainInstrumentAsCSV() . ' | ' . $user->getGenresAsCSV()
+                'description' => $user->getMainInstrumentAsCSV() || $user->getGenresAsCSV() ? $user->getMainInstrumentAsCSV() . ' | ' . $user->getGenresAsCSV() : false
             )
         );
     }
