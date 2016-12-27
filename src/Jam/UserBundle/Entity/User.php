@@ -569,6 +569,19 @@ class User extends BaseUser
         return $genres;
     }
 
+    public function getGenresAsCSV() {
+        if ($this->genres->count() > 0) {
+            $genres = '';
+            foreach ($this->genres AS $k=>$g) {
+                if ($k > 0) $genres .= ', ';
+                $genres .= $g->getGenre()->getName();
+            }
+            return $genres;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Set facebook_id
      *
@@ -723,6 +736,23 @@ class User extends BaseUser
     public function getMainInstrumentAsString()
     {
         return $this->getInstruments()->isEmpty() ? '' : $this->getInstruments()->first()->getInstrument()->getCategory()->getName();
+    }
+
+    public function getMainInstrumentAsCSV()
+    {
+        if (!$this->getInstruments()->isEmpty()) {
+            $instruments = '';
+            foreach ($this->getInstruments() AS $k => $instrument) {
+                if ($k > 0) {
+                    $instruments .= ', ';
+                }
+                $instruments .= $instrument->getInstrument()->getName();
+            }
+
+            return $instruments;
+        }
+
+        return false;
     }
 
     /**

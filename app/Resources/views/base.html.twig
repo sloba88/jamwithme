@@ -4,7 +4,7 @@
     <title>{{ page.title|default('text.title'|trans) }}</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="{{ 'text.meta.description'|trans }}">
+    <meta name="description" content="{{ page.description|default('text.meta.description'|trans) }}">
 
     <!--mobile-->
     <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">

@@ -39,7 +39,10 @@ class DefaultController extends Controller
         return array(
             'user' => $user,
             'userTracks' => json_encode($tracks),
-            'page' => array('title' => $user->getUsername() ? $user->getUsername() : $user->getFullName())
+            'page' => array(
+                'title' => $user->getDisplayName() . ' | ' . $user->getDisplayLocation(),
+                'description' => $user->getMainInstrumentAsCSV() . ' | ' . $user->getGenresAsCSV()
+            )
         );
     }
 
