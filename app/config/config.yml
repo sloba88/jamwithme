@@ -138,7 +138,10 @@ liip_imagine:
     resolvers:
        default:
           web_path: ~
-
+    loaders:
+       default:
+          filesystem:
+             data_root: '%uploads_data_root%'
     filter_sets:
         cache: ~
         my_thumb:
