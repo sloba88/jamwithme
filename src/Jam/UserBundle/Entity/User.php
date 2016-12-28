@@ -779,9 +779,9 @@ class User extends BaseUser
             return 'uploads/avatars/'.$this->avatar;
         }else{
             if ($this->getGender() == 2) {
-                return 'assets/images/placeholder-user-girl.png';
+                return 'uploads/placeholders/placeholder-user-girl.png';
             } else {
-                return 'assets/images/placeholder-user.png';
+                return 'uploads/placeholders/placeholder-user.png';
             }
         }
     }
