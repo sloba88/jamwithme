@@ -12,8 +12,7 @@
 .idea/*
 *.php~
 /web/media/*
-/web/uploads/images/*
-/web/uploads/avatars/*
+/web/uploads/*
 /node/node_modules/*
 .DS_Store
 .sass-cache/*

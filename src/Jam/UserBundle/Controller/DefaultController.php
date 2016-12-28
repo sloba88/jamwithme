@@ -84,7 +84,7 @@ class DefaultController extends Controller
         return $imagine
             ->filterAction(
                 $this->get('request_stack')->getCurrentRequest(),         // http request
-                'uploads/placeholders/placeholder-user.png',      // original image you want to apply a filter to
+                'uploads/placeholder-user.png',      // original image you want to apply a filter to
                 $size             // filter defined in config.yml
             );
 
