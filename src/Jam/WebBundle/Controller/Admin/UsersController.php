@@ -28,6 +28,19 @@ class UsersController extends Controller
             ->getRepository('JamUserBundle:User')
             ->findAll();
 
-        return array('musicians' => $musicians);
+        $repository = $this->getDoctrine()
+            ->getRepository('JamUserBundle:User');
+
+        $query = $repository->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->where('u.isTeacher = 1')
+            ->getQuery();
+
+        $teachersCount = $query->getSingleScalarResult();
+
+        return array(
+            'musicians' => $musicians,
+            'teachersCount' => $teachersCount
+        );
     }
 }
