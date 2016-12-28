@@ -117,7 +117,6 @@ class SearchMusicians {
         $elasticaQuery = new Query\BoolQuery($q);
         $elasticaQuery->addMust(new MatchAll());
 
-
         if ($search->getGenres() != ''){
             //search by selected filter genres
             $genres = $this->genreFinder->find(str_replace("genres", "id", $search->getGenres()));

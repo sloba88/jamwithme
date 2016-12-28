@@ -61,15 +61,15 @@ class DefaultController extends Controller
             $user = $userManager->findUserByUsername($username);
         }
 
-        //make logic to check if it is external image here!
-        //store to Mongo or Redis maybe to fetch it faster?
-        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+        $imagine = $this->container->get('liip_imagine.controller');
 
-        if ($user) {
-            return $this->redirect($cacheManager->getBrowserPath($user->getAvatar(), $size));
-        } else {
-            return $this->redirect($cacheManager->getBrowserPath('assets/images/placeholder-user.png', $size));
-        }
+        /** @var RedirectResponse */
+        return $imagine
+            ->filterAction(
+                $this->get('request_stack')->getCurrentRequest(),         // http request
+                $user->getAvatar(),      // original image you want to apply a filter to
+                $size             // filter defined in config.yml
+            );
     }
 
     /**
