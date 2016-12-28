@@ -78,8 +78,16 @@ class DefaultController extends Controller
      */
     public function defaultAvatarAction($size = 'my_thumb')
     {
-        $cacheManager = $this->container->get('liip_imagine.cache.manager');
-        return $this->redirect($cacheManager->getBrowserPath('assets/images/placeholder-user.png', $size));
+        $imagine = $this->container->get('liip_imagine.controller');
+
+        /** @var RedirectResponse */
+        return $imagine
+            ->filterAction(
+                $this->get('request_stack')->getCurrentRequest(),         // http request
+                'assets/images/placeholder-user.png',      // original image you want to apply a filter to
+                $size             // filter defined in config.yml
+            );
+
     }
 
     /**
