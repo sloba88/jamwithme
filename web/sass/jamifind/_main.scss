@@ -524,6 +524,7 @@
 		}
 
 		.tags {
+			display: none;
 			height: 44px;
 			@include respond-to(handhelds) {
 				height: 42px;
