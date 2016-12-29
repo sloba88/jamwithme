@@ -12,6 +12,15 @@
                 <div class="teacher-info-inner">
                     <div class="profile-picture-box">
                         <img src="{{ path('musician_avatar', { 'username': user.id, 'size' : 'my_medium_1' }) }}" alt="{% if user.firstName %} {{ user.firstName }} {% endif %}{% if user.lastName %} {{ user.lastName }} {% endif %}" class="profile-picture">
+
+                        {% if user.isTeacher %}
+                            <ul class="text-header clearfix hidden-lg hidden-md hidden-sm visible-xs-block">
+                                <li class="first">
+                                    <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook" class="icon-teacher">
+                                    {{ 'text.teacher'|trans }}
+                                </li>
+                            </ul>
+                        {% endif %}
                     </div>
 
                     <div class="info">
@@ -55,12 +64,12 @@
                     </div>
                 </div>
 
-                <div class="instruments-profile-icons">
+                <div class="instruments-profile-icons hidden-xs">
                     {% render(controller('JamWebBundle:Musicians:getUniqueIcons', {'username': user.username })) %}
                 </div>
 
                 {% if user.isTeacher %}
-                    <ul class="text-header clearfix">
+                    <ul class="text-header clearfix hidden-xs">
                         <li class="first">
                             <img src="{{ asset('assets/images/icon-notebook.png') }}" alt="Notebook" class="icon-teacher">
                             {{ 'text.teacher'|trans }}

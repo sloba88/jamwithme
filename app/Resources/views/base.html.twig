@@ -61,18 +61,6 @@
             color: #3b385e;
         }
 
-        .people-grid .people-info {
-            padding: 10px 10px 5px 10px;
-        }
-
-        .people-grid .people-info .tags{
-            height: 44px;
-        }
-
-        .people-grid .people-info .name{
-            padding-right: 20px;
-        }
-
         .ytvideo:hover {
             text-decoration: none;
         }
@@ -524,7 +512,7 @@
                         {% if status_code is defined and status_code == '404' %}
                         {% else %}
                             {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}
-                                    <a href="{{ path('fos_user_registration_register') }}" class="fast-subscribe">{{ 'button.sign.up'|trans }}</a>
+                                    <a href="{{ path('fos_user_registration_register') }}" class="fast-subscribe {% if app.request.locale == 'fi' %} hidden-xs{% endif %}">{{ 'button.sign.up'|trans }}</a>
                             {% else %}
                                     <a href="{{ path('fos_user_security_login') }}" class="fast-subscribe">{{ 'button.home.login'|trans }}</a>
                             {% endif %}
