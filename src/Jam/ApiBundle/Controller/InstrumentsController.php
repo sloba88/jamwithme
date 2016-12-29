@@ -17,7 +17,7 @@ class InstrumentsController extends FOSRestController
         $request->getSession()->save();
         $query = $this->getDoctrine()->getManager()
             ->createQuery(
-                "SELECT i.id, i.name AS text FROM JamCoreBundle:Instrument i"
+                "SELECT i.id, i.name AS text FROM JamCoreBundle:Instrument i ORDER BY i.name"
             );
 
         $query->setHint(
@@ -30,6 +30,18 @@ class InstrumentsController extends FOSRestController
         );
 
         $data = $query->getResult();
+
+        //TODO: fix this in query!
+        $results = array();
+        foreach ($data as $key => $row)
+        {
+            $results[$key] = array(
+                'id' => $row['id'],
+                'text' => $row['text']
+            );
+        }
+        array_multisort($results, SORT_ASC, $data);
+
         $view = $this->view($data, 200);
 
         return $this->handleView($view);
