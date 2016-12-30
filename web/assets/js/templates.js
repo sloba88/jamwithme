@@ -365,6 +365,12 @@ function print() { __p += __j.call(arguments, '') }
 __p += '<div class="service-map-box-container">\n    <h3 class="name">' +
 __e( rc.displayName ) +
 '</h3>\n    ';
+ if (rc.address) { ;
+__p += '<p>Address: ' +
+__e( rc.address ) +
+'</p>';
+ } ;
+__p += '\n    ';
  if (rc.phone) { ;
 __p += '<p>Phone: ' +
 __e( rc.phone ) +

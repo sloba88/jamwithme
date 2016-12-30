@@ -39,6 +39,7 @@ class ServicesController extends FOSRestController
                 'phone' => $s->getPhone(),
                 'email' => $s->getEmail(),
                 'website' => $s->getWebsite(),
+                'address' => $s->getLocation()->getAddress(),
                 'lat' => $s->getLat() ? $s->getLat() : '',
                 'lng' => $s->getLon() ? $s->getLon() : ''
             );

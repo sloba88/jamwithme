@@ -44,7 +44,7 @@ function setMyFilterMarker() {
 function initMap(){
     map = L.map('map');
 
-    L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+    L.tileLayer('https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
         attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
         subdomains: '1234',
         mapID: 'newest',
@@ -73,7 +73,7 @@ function resizeIcons(){
     $('.mapIcon >, .mapIcon').css({'width': iconSize, 'height': iconSize});
 }
 
-function drawRadius(){
+function drawRadius() {
 
     if (circle){
         map.removeLayer(circle);
@@ -135,14 +135,15 @@ function placeMarkers() {
             fragment.appendChild(img);
             SVGInjector(fragment.childNodes, {}, function(){
                 iconSource = fragment.childNodes[0].outerHTML;
-                createIcon(iconSource, v);
+                createIcon(iconSource, v, 80);
             });
         }
     });
 
-    function createIcon(iconSource, v) {
+    function createIcon(iconSource, v, size) {
+        var iconSize = size ? size : 50;
         var i = L.divIcon({
-            iconSize:     [50, 50],
+            iconSize:     [iconSize, iconSize],
             className: 'mapIcon map-icon-' + v.instrument,
             html: iconSource
         });
@@ -181,14 +182,21 @@ function placeServiceMarkers(data) {
     });
 
     $.each(data, function(k, v) {
+        v.instrument = 'Store';
         var iconSource;
-        iconSource = '<div class="no-icon"></div>';
-        createIcon(iconSource, v);
+        var fragment = document.createDocumentFragment();
+        var img = new Image();
+        img.src = '/assets/images/icons-svg/Store.svg';
+        fragment.appendChild(img);
+        SVGInjector(fragment.childNodes, {}, function(){
+            iconSource = fragment.childNodes[0].outerHTML;
+            createIcon(iconSource, v);
+        });
     });
 
     function createIcon(iconSource, v) {
         var i = L.divIcon({
-            iconSize:     [50, 50],
+            iconSize: [50, 50],
             className: 'mapIcon map-icon-' + v.instrument,
             html: iconSource
         });
