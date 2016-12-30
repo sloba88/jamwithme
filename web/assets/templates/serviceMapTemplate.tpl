@@ -1,6 +1,6 @@
-<div class="musician-map-box-container">
+<div class="service-map-box-container">
     <h3 class="name"><%- rc.displayName %></h3>
-    <p>Phone: <%- rc.phone %></p>
+    <% if (rc.phone) { %><p>Phone: <%- rc.phone %></p><% } %>
     <p>Email: <%- rc.email %></p>
-    <p>Website: <%- rc.website %></p>
+    <p>Website: <a target="_blank" href="<%- rc.website %>"><%- rc.website %></a></p>
 </div>

@@ -14,7 +14,6 @@ class ServicesController extends FOSRestController
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $me = $this->getUser();
-        $em = $this->getDoctrine()->getManager();
 
         if (!$me->getLocation()) {
             $view = $this->view(array(
