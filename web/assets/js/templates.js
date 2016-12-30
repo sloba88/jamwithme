@@ -359,6 +359,27 @@ __e( rc.fullName ) +
 return __p
 };
 
+this["JST"]["serviceMapTemplate"] = function(rc) {
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+__p += '<div class="service-map-box-container">\n    <h3 class="name">' +
+__e( rc.displayName ) +
+'</h3>\n    ';
+ if (rc.phone) { ;
+__p += '<p>Phone: ' +
+__e( rc.phone ) +
+'</p>';
+ } ;
+__p += '\n    <p>Email: ' +
+__e( rc.email ) +
+'</p>\n    <p>Website: <a target="_blank" href="' +
+__e( rc.website ) +
+'">' +
+__e( rc.website ) +
+'</a></p>\n</div>';
+return __p
+};
+
 this["JST"]["shoutBoxTemplate"] = function(rc) {
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }

@@ -16,7 +16,8 @@ var myLocation = [_user.lat, _user.lng],
     outterCircle = false,
     innerCircle = false,
     myLocationMarker,
-    markers = new L.FeatureGroup();
+    markers = new L.FeatureGroup(),
+    services = new L.FeatureGroup();
 
 //http://wiki.openstreetmap.org/wiki/Zoom_levels
 var zoomToMeters = {
@@ -159,6 +160,52 @@ function placeMarkers() {
     }
 
     map.addLayer(markers);
+    resizeIcons();
+
+    SVGInjector(document.querySelectorAll('img.inject-me'));
+}
+
+function placeServiceMarkers(data) {
+
+    map.removeLayer(services);
+    services = new L.markerClusterGroup({
+        maxClusterRadius: 5
+    });
+
+    services.on('animationend', function () {
+        resizeIcons();
+    });
+
+    services.on('spiderfied', function () {
+        resizeIcons();
+    });
+
+    $.each(data, function(k, v) {
+        var iconSource;
+        iconSource = '<div class="no-icon"></div>';
+        createIcon(iconSource, v);
+    });
+
+    function createIcon(iconSource, v) {
+        var i = L.divIcon({
+            iconSize:     [50, 50],
+            className: 'mapIcon map-icon-' + v.instrument,
+            html: iconSource
+        });
+
+        var marker = L.marker([v.lat, v.lng], {icon: i});
+
+        var popup = L.popup({
+            'minWidth': 200
+        }).setContent(window.JST.serviceMapTemplate(v));
+
+        marker.data = v;
+        marker.bindPopup(popup);
+
+        services.addLayer(marker);
+    }
+
+    map.addLayer(services);
     resizeIcons();
 
     SVGInjector(document.querySelectorAll('img.inject-me'));
