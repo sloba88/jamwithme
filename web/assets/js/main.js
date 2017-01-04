@@ -679,7 +679,7 @@ $(function() {
 
                 var $this = $(e.currentTarget);
 
-                if(_visitingUser.sc_id !== ''){
+                if(_visitingUser.sc_id !== '') {
 
                     if(tracks.length > 0){
 

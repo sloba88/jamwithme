@@ -39,9 +39,7 @@ class ProfileController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user
-        ));
+        return new RedirectResponse($this->generateUrl('musician_profile', array('username' => $user->getUsername())));
     }
 
     /**

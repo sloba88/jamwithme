@@ -258,7 +258,7 @@
                                 <!--videos ends-->
 
                                 <div class="view-tab my-sounds" data-tab="sounds">
-                                    {% if (user.getSoundcloudId == "") %}
+                                    {% if (userTracks|length == 0) %}
                                         <p>{{ 'label.no.sounds'|trans }}</p>
                                     {% else %}
                                         <div></div>
@@ -319,7 +319,7 @@
 
     <script type="text/javascript">
         var sc_client_id = '{{ soundcloud_app_id }}';
-        var tracks = {{ userTracks|raw }};
+        var tracks = {{ userTracks|json_encode|raw }};
         var _visitingUser = {};
         _visitingUser.sc_id = '{{ user.getSoundcloudId }}';
         _visitingUser.id = '{{ user.getId }}';

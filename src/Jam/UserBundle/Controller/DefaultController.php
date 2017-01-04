@@ -38,7 +38,7 @@ class DefaultController extends Controller
 
         return array(
             'user' => $user,
-            'userTracks' => json_encode($tracks),
+            'userTracks' => $tracks,
             'page' => array(
                 'title' => $user->getDisplayName() . ' | ' . $user->getDisplayLocation(). ' - '. $this->get('translator')->trans('text.title'),
                 'description' => $user->getMainInstrumentAsCSV() || $user->getGenresAsCSV() ? $user->getMainInstrumentAsCSV() . ' | ' . $user->getGenresAsCSV() : false
