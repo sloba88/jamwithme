@@ -4,18 +4,22 @@
 
 {% block main_content %}
 
-    {{ render(controller('JamWebBundle:Search:filter' )) }}
+    {{ render(controller('JamWebBundle:Search:filter', { 'originalRequest' : app.request } )) }}
 
 {% endblock %}
 
 {% block bottom_javascripts %}
-    {% javascripts
-    'vendor/leaflet-dist/leaflet.js'
-    'vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js'
-    'assets/js/filter.js'
-    'assets/js/map.js'
-    filter='?uglifyjs2'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+
+    {% if is_granted("ROLE_USER") %}
+        {# if user is logged in show map #}
+        {% javascripts
+        'vendor/leaflet-dist/leaflet.js'
+        'vendor/leaflet.markercluster/dist/leaflet.markercluster-src.js'
+        'assets/js/filter.js'
+        'assets/js/map.js'
+        filter='?uglifyjs2'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endif %}
 {% endblock %}

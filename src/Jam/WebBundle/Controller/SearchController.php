@@ -16,10 +16,11 @@ class SearchController extends Controller
      */
     public function filterAction()
     {
-        $request = $this->get('request_stack')->getMasterRequest();
+        $masterRequest = $this->get('request_stack')->getMasterRequest();
 
         return array(
-            'route' => $request->get('_route')
+            'route' => $masterRequest->get('_route'),
+            'searchParams' => $masterRequest->attributes->all()
         );
     }
 }

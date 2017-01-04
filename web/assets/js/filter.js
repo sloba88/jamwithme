@@ -125,8 +125,10 @@ function filterMusicians(){
         return false;
     }
 
-    if (_user.temporaryLocation === '1'){
-        return false;
+    if (typeof _user !='undefined') {
+        if (_user.temporaryLocation === '1'){
+            return false;
+        }
     }
 
     filterRunning = $.ajax({
@@ -310,6 +312,17 @@ $(function() {
                     $('.filter-genres').select2('trigger', 'select', {
                         data: { id: genres }
                     });
+                } else {
+                    if ($('.filter-genres').data('value')) {
+
+                        var res = $.grep(result, function(e){ return e.text.toLowerCase() == $('.filter-genres').data('value').toLowerCase(); });
+                        if (res.length === 1) {
+                            $('.filter-genres').select2('trigger', 'select', {
+                                data: { id : res[0].id }
+                            });
+                        }
+
+                    }
                 }
             }),
 
@@ -329,6 +342,17 @@ $(function() {
                     $('.filter-instruments').select2('trigger', 'select', {
                         data: { id: instruments }
                     });
+                } else {
+                    if ($('.filter-instruments').data('value')) {
+
+                        var res = $.grep(result, function(e){ return e.text.toLowerCase() == $('.filter-instruments').data('value').toLowerCase(); });
+                        if (res.length === 1) {
+                            $('.filter-instruments').select2('trigger', 'select', {
+                                data: { id : res[0].id }
+                            });
+                        }
+
+                    }
                 }
             })
 
@@ -336,32 +360,34 @@ $(function() {
 
             loadFilterForm();
 
-            if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
-                //if there are no coordinates set, try browser get position
-                getLocation(function(myBrowserLocation) {
-                    myLocation = myBrowserLocation;
-                    if (!myLocation) {
-                        myLocation = [_user.lat, _user.lng];
-                        $('#main-filter-form').trigger('change');
-                    } else {
-                        //save this to db and then do filters
-                        $.ajax({
-                            url: Routing.generate('api_set_musician_location'),
-                            type: 'POST',
-                            data: { 'coords': myBrowserLocation.join()}
-                        }).done(function( result ) {
+            if (typeof _user !='undefined') {
+                if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
+                    //if there are no coordinates set, try browser get position
+                    getLocation(function(myBrowserLocation) {
+                        myLocation = myBrowserLocation;
+                        if (!myLocation) {
+                            myLocation = [_user.lat, _user.lng];
+                            $('#main-filter-form').trigger('change');
+                        } else {
+                            //save this to db and then do filters
+                            $.ajax({
+                                url: Routing.generate('api_set_musician_location'),
+                                type: 'POST',
+                                data: { 'coords': myBrowserLocation.join()}
+                            }).done(function( result ) {
 
-                            $('.no-location-message').fadeOut(function (){
-                                $('.no-location-message').remove();
+                                $('.no-location-message').fadeOut(function (){
+                                    $('.no-location-message').remove();
+                                });
+
+                                addMessage(result.status, result.message);
+                                window.location.reload();
                             });
-
-                            addMessage(result.status, result.message);
-                            window.location.reload();
-                        });
-                    }
-                });
-            }else {
-                $('#main-filter-form').trigger('change');
+                        }
+                    });
+                }else {
+                    $('#main-filter-form').trigger('change');
+                }
             }
         });
     });

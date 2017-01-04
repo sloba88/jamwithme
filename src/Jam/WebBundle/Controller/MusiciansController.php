@@ -18,6 +18,15 @@ class MusiciansController extends Controller
         return array();
     }
 
+    /**
+     * @Route("/musicians/{genre}-{instrument}-{location}", name="musicians_gil")
+     * @Template("JamWebBundle:Musicians:index.html.twig")
+     */
+    public function searchAction()
+    {
+        return array();
+    }
+
     public function getUniqueIconsAction($username)
     {
         $userManager = $this->get('fos_user.user_manager');

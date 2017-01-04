@@ -5,12 +5,8 @@
 /* global filterResults */
 /* global SVGInjector */
 
-var myLocation = [_user.lat, _user.lng],
-    myIcon = L.divIcon({
-        html: '<img src="'+_user.avatar+'" />',
-        iconSize: [50, 50],
-        className: 'mapIcon myIconAvatar'
-    }),
+var myLocation,
+    myIcon,
     map,
     circle = false,
     outterCircle = false,
@@ -18,6 +14,16 @@ var myLocation = [_user.lat, _user.lng],
     myLocationMarker,
     markers = new L.FeatureGroup(),
     services = new L.FeatureGroup();
+
+if (typeof _user != 'undefined') {
+    myLocation = [_user.lat, _user.lng];
+
+    myIcon = L.divIcon({
+        html: '<img src="'+_user.avatar+'" />',
+        iconSize: [50, 50],
+        className: 'mapIcon myIconAvatar'
+    });
+}
 
 //http://wiki.openstreetmap.org/wiki/Zoom_levels
 var zoomToMeters = {

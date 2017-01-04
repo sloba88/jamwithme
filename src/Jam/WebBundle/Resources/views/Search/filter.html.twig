@@ -6,18 +6,18 @@
 
 <div class="filters-area">
     <div class="filters-heading clearfix">
-        <h1 class="filters-title">{{ filterTitle }}</h1>
+        <h1 class="filters-title">{{ filterTitle }} {{ app.request.get('genre') }}</h1>
     </div>
 
     <form id="main-filter-form">
         <div class="filters-by in row">
 
             <div class="col-sm-4 col-lg-4">
-                <select id="instruments" name="instruments" class="filter-instruments form-control" data-placeholder="{{ 'placeholder.filter.by.instruments'|trans }}"></select>
+                <select id="instruments" name="instruments" data-value="{{ searchParams.instrument | default('') }}" class="filter-instruments form-control" data-placeholder="{{ 'placeholder.filter.by.instruments'|trans }}"></select>
             </div>
 
             <div class="col-sm-4 col-lg-4">
-                <select id="genres" name="genres" class="filter-genres form-control" data-placeholder="{{ 'placeholder.filter.by.genres'|trans }}"></select>
+                <select id="genres" data-value="{{ searchParams.genre | default('') }}" name="genres" class="filter-genres form-control" data-placeholder="{{ 'placeholder.filter.by.genres'|trans }}"></select>
             </div>
 
             <div class="col-sm-4 col-lg-4">
@@ -37,12 +37,16 @@
             </div>
         </div>
 
-        <div class="tabs-activate filters-preview">
-            <ul class="clearfix">
-                <li><a href="#" data-tab="grid" id="grid-view" class="tab-grid is-active">{{ 'text.grid'|trans }}</a></li>
-                <li><a href="#" data-tab="map" id="map-view" class="tab-map">{{ 'text.map'|trans }}</a></li>
-            </ul>
-        </div>
+        {% if is_granted("ROLE_USER") %}
+
+            <div class="tabs-activate filters-preview">
+                <ul class="clearfix">
+                    <li><a href="#" data-tab="grid" id="grid-view" class="tab-grid is-active">{{ 'text.grid'|trans }}</a></li>
+                    <li><a href="#" data-tab="map" id="map-view" class="tab-map">{{ 'text.map'|trans }}</a></li>
+                </ul>
+            </div>
+
+        {% endif %}
     </form>
 
 </div>
@@ -50,7 +54,9 @@
 <div class="view-tab-container with-scrollbar">
     <div class="view-tab people-listing-grid row is-active loading-content" data-tab="grid"></div>
 
-    <div class="view-tab map" data-tab="map">
-        <div id="map"></div>
-    </div>
+    {% if is_granted("ROLE_USER") %}
+        <div class="view-tab map" data-tab="map">
+            <div id="map"></div>
+        </div>
+    {% endif %}
 </div>

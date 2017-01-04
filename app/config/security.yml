@@ -56,7 +56,9 @@ security:
         - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/soundcloud/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/musicians/find-public, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/shouts, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/m/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/musicians/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/jam/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/sitemapp.xml$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/messages/, role: ROLE_USER }
@@ -65,5 +67,3 @@ security:
         - { path: ^/api/send-message-email, role: ROLE_NO_ACCESS }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/*, role: ROLE_USER }
-
-
