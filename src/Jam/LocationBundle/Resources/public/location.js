@@ -3,8 +3,10 @@
 /* global _user */
 /* global L */
 
-var myLocation = [_user.lat, _user.lng],
-    map,
+if (typeof _user != 'undefined') {
+    var myLocation = [_user.lat, _user.lng];
+}
+var map,
     mapInitialized = false,
     waitAutocomplete,
     myLocationMarker,
