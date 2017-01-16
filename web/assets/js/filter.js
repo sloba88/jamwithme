@@ -457,6 +457,8 @@ $(function() {
         }
     });
 
+    localStorage.setItem('filter_distance', $('#search_form_distance').val());
+
     $('#search_form_distance').on('change', function() {
         $('#filter-by-distance-btn span').text($('#search_form_distance').val() + $('#search_form_distance').data('text'));
         $('#filter-by-distance-slider').slider('value', $('#search_form_distance').val());
