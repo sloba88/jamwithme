@@ -125,6 +125,14 @@ function getParameterByName(name) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 }
 
+var delay = (function(){
+    var timer = 0;
+    return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+    };
+})();
+
 $(function() {
     $(document).on('click', '.action-confirm', function(e){
         e.stopImmediatePropagation();

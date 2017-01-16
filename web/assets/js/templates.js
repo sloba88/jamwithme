@@ -251,11 +251,15 @@ __e( v ) +
  } ;
 __p += '\n                ';
  }); ;
-__p += '\n            </ul>\n            <ul class="compatibility-box">\n                <li class="compatibility">\n                    <span class="compatibility-' +
+__p += '\n            </ul>\n            ';
+ if (rc.compatibility) { ;
+__p += '\n                <ul class="compatibility-box">\n                    <li class="compatibility">\n                        <span class="compatibility-' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +
 '">' +
 ((__t = ( rc.compatibility )) == null ? '' : __t) +
-'</span>\n                    compatibility\n                </li>\n            </ul>\n        </div>\n    </a>\n</div>';
+'</span>\n                        compatibility\n                    </li>\n                </ul>\n            ';
+ } ;
+__p += '\n        </div>\n    </a>\n</div>';
 return __p
 };
 

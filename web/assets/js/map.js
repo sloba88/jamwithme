@@ -224,11 +224,3 @@ function placeServiceMarkers(data) {
 
     SVGInjector(document.querySelectorAll('img.inject-me'));
 }
-
-var delay = (function(){
-    var timer = 0;
-    return function(callback, ms){
-        clearTimeout (timer);
-        timer = setTimeout(callback, ms);
-    };
-})();

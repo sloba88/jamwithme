@@ -492,5 +492,9 @@ $(function() {
         });
     }
 
-    showLearnOptions();
+    if (typeof _user != 'undefined') {
+        //todo: fix this poor hack
+        showLearnOptions();
+    }
+
 });

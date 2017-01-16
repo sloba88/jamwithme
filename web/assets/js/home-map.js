@@ -140,7 +140,7 @@ function initMap(){
 
 function fetchMapData(myLocation, city, callback){
     $.ajax({
-        url: Routing.generate('musicians_find_public') + '?city=' + city + '&lat=' + myLocation[0] + '&lng=' + myLocation[1]
+        url: Routing.generate('musicians_find_map') + '?city=' + city + '&lat=' + myLocation[0] + '&lng=' + myLocation[1]
     }).done(function( result ) {
         if (result.status === 'success') {
             filterResults = result.data;

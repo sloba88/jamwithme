@@ -19,7 +19,7 @@ class MusiciansController extends Controller
     }
 
     /**
-     * @Route("/musicians/{genre}-{instrument}-{location}", name="musicians_gil")
+     * @Route("/musicians/{query}", name="musicians_gil")
      * @Template("JamWebBundle:Musicians:index.html.twig")
      */
     public function searchAction()

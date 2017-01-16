@@ -3,13 +3,18 @@
 /* global _user */
 /* global L */
 
-var myLocation = [_user.lat, _user.lng],
+var myLocation = [],
     map,
     mapInitialized = false,
     waitAutocomplete,
     myLocationMarker,
     circle = false;
     L.Icon.Default.imagePath = '/vendor/leaflet-dist/images';
+
+
+if (typeof _user != 'undefined') {
+    myLocation = [_user.lat, _user.lng];
+}
 
 function setMyMarker() {
     myLocationMarker = L.marker(myLocation, {

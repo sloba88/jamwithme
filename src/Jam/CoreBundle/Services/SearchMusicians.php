@@ -96,22 +96,11 @@ class SearchMusicians {
             $page = isset($request['page']) ? intval($request['page']) : 1;
         }
 
-        $distance = intval($search->getDistance());
-
-        if ($distance > 100) {
+        if ($search->getDistance() > 100) {
             $distance = 100;
+        } else {
+            $distance = $search->getDistance();
         }
-
-        /* send data to GA */
-        $data = array(
-            'uid'=> $me->getId(),
-            'ec'=> 'search',
-            'ea'=> 'distance',
-            'el'=> $distance . 'km',
-            'ev'=> $distance
-        );
-
-        $this->tracker->send($data, 'event');
 
         $q = new Query();
         $elasticaQuery = new Query\BoolQuery($q);
@@ -206,6 +195,11 @@ class SearchMusicians {
                 )
             ));
             $elasticaQuery->addShould($functionScore);
+        } else {
+            //get based on city
+            if ($search->getAdministrativeAreaLevel3()) {
+                $elasticaQuery->addMust(new Match('location.administrative_area_level_3', array('query' => $search->getAdministrativeAreaLevel3())));
+            }
         }
 
         if ($search->getIsTeacher()){
@@ -229,6 +223,72 @@ class SearchMusicians {
         $query->setFrom(($page - 1) * $perPage);
 
         return $this->elasticUsersFinder->findHybrid($query);
+    }
+
+    public function getElasticSearchPublicResult($request = array())
+    {
+        //no limit is used for map view
+        if (isset($request['limit']) && $request['limit'] === '0') {
+            $perPage = 5000;
+            $page = 1;
+        } else {
+            $perPage = 20;
+            $page = isset($request['page']) ? intval($request['page']) : 1;
+        }
+
+        $q = new Query();
+        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery->addMust(new MatchAll());
+
+        if (isset($request['genres']) && $request['genres'] != ''){
+
+
+            $genres = $this->genreFinder->find($request['genres']);
+            $boolFilter = new BoolOr();
+            foreach($genres AS $d) {
+                if ($d->getCategory()->getName() == $d->getName()) {
+                    //if its also the name of category check category
+                    $boolFilter->addFilter(new Terms('genres.genre.category.id', array($d->getCategory()->getId())));
+                }
+            }
+
+            $boolFilter->addFilter(new Terms('genres.genre.id', explode(",", $request['genres'])));
+            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+        }
+
+        if (isset($request['instruments']) && $request['instruments'] != ''){
+            $instruments = $this->instrumentFinder->find($request['instruments']);
+            $boolFilter = new BoolOr();
+
+            foreach($instruments AS $d) {
+                if ($d->getCategory()->getName() == $d->getName() || ($d->getCategory()->getId() == 1 && $d->getId() == 37)) {
+                    //if its also the name of category check category
+                    $boolFilter->addFilter(new Terms('instruments.instrument.category.id', array($d->getCategory()->getId())));
+                }
+
+                if ($d->getId() == 263) {
+                    //if its also the name of category check category
+                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(26)));
+                }
+            }
+
+            $boolFilter->addFilter(new Terms('instruments.instrument.id', explode(",", $request['instruments'])));
+            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+        }
+
+        if (isset($request['locations']) && $request['locations'] != '') {
+            $elasticaQuery->addMust(new Match('location.administrative_area_level_3', array('query' => $request['locations'])));
+        }
+
+        if (isset($request['isTeacher']) && $request['isTeacher']){
+            $elasticaQuery->addMust(new Match('isTeacher', array('query' => 1, 'boost' => 0)));
+        }
+
+        $query = new Query($elasticaQuery);
+        $query->setSize($perPage);
+        $query->setFrom(($page - 1) * $perPage);
+
+        return $this->elasticUsersFinder->find($query);
     }
 
     public function getOneMusician($userId, $me)
@@ -289,7 +349,7 @@ class SearchMusicians {
         return $this->elasticUsersFinder->findHybrid($query);
     }
 
-    public function getElasticSearchPublicResult(array $location)
+    public function getElasticSearchPublicResultMap(array $location)
     {
         //no limit is used for map view
         $perPage = 200;

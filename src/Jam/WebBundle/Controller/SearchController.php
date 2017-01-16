@@ -18,9 +18,13 @@ class SearchController extends Controller
     {
         $masterRequest = $this->get('request_stack')->getMasterRequest();
 
+        $query = $masterRequest->attributes->get('query');
+
+        $elements = explode('-', $query);
+
         return array(
             'route' => $masterRequest->get('_route'),
-            'searchParams' => $masterRequest->attributes->all()
+            'searchParams' => $elements
         );
     }
 }

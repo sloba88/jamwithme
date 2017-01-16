@@ -55,7 +55,11 @@ security:
         - { path: ^/resetting, access: "!isAuthenticated()" }
         - { path: ^/connect, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/soundcloud/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/musicians/find-public, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/musicians/find, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/musicians/find-public-map, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/instruments, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/genres, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/locations, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/shouts, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/m/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/musicians/, role: IS_AUTHENTICATED_ANONYMOUSLY }

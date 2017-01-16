@@ -57,7 +57,6 @@ function getFilterData() {
     var data='';
 
     if ( $('select.filter-genres').val() !== null ){
-        //data += $('select.filter-genres').serialize();
 
         var result = $('select.filter-genres option:selected').map(function(i, opt) {
             return $(opt).val();
@@ -65,19 +64,9 @@ function getFilterData() {
 
         data += 'genres=' + result;
         data += '&';
-
-        $.each($('select.filter-genres').select2('data'), function(k, v) {
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'search',
-                eventAction: 'genres',
-                eventLabel: v.text
-            });
-        });
     }
 
     if ( $('select.filter-instruments').val() !== null ){
-        //data += $('select.filter-genres').serialize();
 
         var result2 = $('select.filter-instruments option:selected').map(function(i, opt) {
             return $(opt).val();
@@ -85,15 +74,11 @@ function getFilterData() {
 
         data += 'instruments=' + result2;
         data += '&';
+    }
 
-        $.each($('select.filter-instruments').select2('data'), function(k, v) {
-            ga('send', {
-                hitType: 'event',
-                eventCategory: 'search',
-                eventAction: 'instruments',
-                eventLabel: v.text
-            });
-        });
+    if ( $('select.filter-locations').val() !== null ){
+        data += 'locations=' + $('select.filter-locations').val();
+        data += '&';
     }
 
     data += 'isTeacher='+$('body.page-teachers').length;
@@ -295,8 +280,11 @@ $(function() {
     });
 
     $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
-        //parse genres
+
+        var queryParams = $('#main-filter-form').length > 0 ?  $('#main-filter-form').data('value') : '';
+
         $.when(
+            //parse genres
             $.ajax({
                 url: Routing.generate('api_genres')
             }).done(function( result ) {
@@ -306,26 +294,21 @@ $(function() {
                     matcher: oldMatcher(matchStart)
                 });
 
-                var genres = getParameterByName('genres');
-
-                if (genres) {
-                    $('.filter-genres').select2('trigger', 'select', {
-                        data: { id: genres }
-                    });
+                if (queryParams !== '') {
+                    result.filter(function(e){ if (queryParams.indexOf(e.text.toLowerCase()) != '-1') {
+                        $('.filter-genres').select2('trigger', 'select', {
+                            data: {id: e.id}
+                        });
+                    } });
                 } else {
-                    if ($('.filter-genres').data('value')) {
-
-                        var res = $.grep(result, function(e){ return e.text.toLowerCase() == $('.filter-genres').data('value').toLowerCase(); });
-                        if (res.length === 1) {
-                            $('.filter-genres').select2('trigger', 'select', {
-                                data: { id : res[0].id }
-                            });
-                        }
-
+                    var genres = getParameterByName('genres');
+                    if (genres) {
+                        $('.filter-genres').select2('trigger', 'select', {
+                            data: { id: genres }
+                        });
                     }
                 }
             }),
-
             //parse instruments
             $.ajax({
                 url: Routing.generate('api_instruments')
@@ -336,60 +319,75 @@ $(function() {
                     matcher: oldMatcher(matchStart)
                 });
 
-                var instruments = getParameterByName('instruments');
+                if (queryParams !== '') {
+                    result.filter(function(e){ if (queryParams.indexOf(e.text.toLowerCase()) != '-1') {
+                        $('.filter-instruments').select2('trigger', 'select', {
+                            data: {id: e.id}
+                        });
+                    } });
+                } else {
+                    var instruments = getParameterByName('instruments');
 
-                if (instruments) {
                     $('.filter-instruments').select2('trigger', 'select', {
                         data: { id: instruments }
                     });
-                } else {
-                    if ($('.filter-instruments').data('value')) {
-
-                        var res = $.grep(result, function(e){ return e.text.toLowerCase() == $('.filter-instruments').data('value').toLowerCase(); });
-                        if (res.length === 1) {
-                            $('.filter-instruments').select2('trigger', 'select', {
-                                data: { id : res[0].id }
-                            });
-                        }
-
-                    }
                 }
-            })
+            }).then(function() {
+                if ($('.filter-locations').length > 0) {
+                    $.ajax({
+                        url: Routing.generate('api_locations')
+                    }).done(function( result ) {
+                        $('.filter-locations').select2({
+                            data: result,
+                            multiple: false,
+                            matcher: oldMatcher(matchStart)
+                        });
 
-        ).then(function() {
-
-            loadFilterForm();
-
-            if (typeof _user !='undefined') {
-                if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
-                    //if there are no coordinates set, try browser get position
-                    getLocation(function(myBrowserLocation) {
-                        myLocation = myBrowserLocation;
-                        if (!myLocation) {
-                            myLocation = [_user.lat, _user.lng];
-                            $('#main-filter-form').trigger('change');
-                        } else {
-                            //save this to db and then do filters
-                            $.ajax({
-                                url: Routing.generate('api_set_musician_location'),
-                                type: 'POST',
-                                data: { 'coords': myBrowserLocation.join()}
-                            }).done(function( result ) {
-
-                                $('.no-location-message').fadeOut(function (){
-                                    $('.no-location-message').remove();
+                        if (queryParams !== '') {
+                            result.filter(function(e){ if (queryParams.indexOf(e.text.toLowerCase()) != '-1') {
+                                $('.filter-locations').select2('trigger', 'select', {
+                                    data: {id: e.id}
                                 });
-
-                                addMessage(result.status, result.message);
-                                window.location.reload();
-                            });
+                            } });
                         }
                     });
-                }else {
-                    $('#main-filter-form').trigger('change');
                 }
-            }
-        });
+            })).then(function() {
+
+                if (queryParams === '') {
+                    loadFilterForm();
+                }
+
+                if (typeof _user !='undefined') {
+                    if (_user.lat === '' || _user.lng === '' || _user.temporaryLocation == '1') {
+                        //if there are no coordinates set, try browser get position
+                        getLocation(function(myBrowserLocation) {
+                            myLocation = myBrowserLocation;
+                            if (!myLocation) {
+                                myLocation = [_user.lat, _user.lng];
+                                $('#main-filter-form').trigger('change');
+                            } else {
+                                //save this to db and then do filters
+                                $.ajax({
+                                    url: Routing.generate('api_set_musician_location'),
+                                    type: 'POST',
+                                    data: { 'coords': myBrowserLocation.join()}
+                                }).done(function( result ) {
+
+                                    $('.no-location-message').fadeOut(function (){
+                                        $('.no-location-message').remove();
+                                    });
+
+                                    addMessage(result.status, result.message);
+                                    window.location.reload();
+                                });
+                            }
+                        });
+                    }else {
+                        $('#main-filter-form').trigger('change');
+                    }
+                }
+            });
     });
 
     //activate tabs

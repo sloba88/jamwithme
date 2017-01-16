@@ -13,12 +13,14 @@
                 <% if (k < 3){ %><li <% if (rc.genres.length > 3){ %>style="font-size:10px"<% } %>><%- v %></li><% } %>
                 <% }); %>
             </ul>
-            <ul class="compatibility-box">
-                <li class="compatibility">
-                    <span class="compatibility-<%= rc.compatibility %>"><%= rc.compatibility %></span>
-                    compatibility
-                </li>
-            </ul>
+            <% if (rc.compatibility) { %>
+                <ul class="compatibility-box">
+                    <li class="compatibility">
+                        <span class="compatibility-<%= rc.compatibility %>"><%= rc.compatibility %></span>
+                        compatibility
+                    </li>
+                </ul>
+            <% } %>
         </div>
     </a>
 </div>

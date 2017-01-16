@@ -9,32 +9,42 @@
         <h1 class="filters-title">{{ filterTitle }} {{ app.request.get('genre') }}</h1>
     </div>
 
-    <form id="main-filter-form">
+    <form id="main-filter-form" data-value="{{ searchParams|json_encode|raw | default('') }}">
         <div class="filters-by in row">
 
             <div class="col-sm-4 col-lg-4">
-                <select id="instruments" name="instruments" data-value="{{ searchParams.instrument | default('') }}" class="filter-instruments form-control" data-placeholder="{{ 'placeholder.filter.by.instruments'|trans }}"></select>
+                <select id="instruments" name="instruments" class="filter-instruments form-control" data-placeholder="{{ 'placeholder.filter.by.instruments'|trans }}"></select>
             </div>
 
             <div class="col-sm-4 col-lg-4">
-                <select id="genres" data-value="{{ searchParams.genre | default('') }}" name="genres" class="filter-genres form-control" data-placeholder="{{ 'placeholder.filter.by.genres'|trans }}"></select>
+                <select id="genres" name="genres" class="filter-genres form-control" data-placeholder="{{ 'placeholder.filter.by.genres'|trans }}"></select>
             </div>
 
-            <div class="col-sm-4 col-lg-4">
-                <div class="dropdown filter-by-distance">
-                    <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                        <span>{{ 'text.filter.by.distance'|trans }}</span>
-                        <div><b></b></div>
-                    </a>
-                    <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
-                        <label>{{ 'text.set.distance'|trans }}</label>
-                        <input type="hidden" name="distance" value="20" data-text="{{ 'placeholder.km.around.you'|trans }}" id="search_form_distance" />
-                        <div id="filter-by-distance-slider"></div>
-                        <span class="result slide-min pull-left">{{ 'text.5.kilometers'|trans }}</span>
-                        <span class="result slide-max pull-right"></span>
+            {% if searchParams is defined %}
+
+                <div class="col-sm-4 col-lg-4">
+                    <select id="locations" name="locations" class="filter-locations form-control" data-placeholder="{{ 'placeholder.filter.by.location'|trans }}"></select>
+                </div>
+
+            {% else %}
+
+                <div class="col-sm-4 col-lg-4">
+                    <div class="dropdown filter-by-distance">
+                        <a id="filter-by-distance-btn" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                            <span>{{ 'text.filter.by.distance'|trans }}</span>
+                            <div><b></b></div>
+                        </a>
+                        <div class="dropdown-menu dropdown-filter-by-distance" role="menu" aria-labelledby="dLabel">
+                            <label>{{ 'text.set.distance'|trans }}</label>
+                            <input type="hidden" name="distance" value="20" data-text="{{ 'placeholder.km.around.you'|trans }}" id="search_form_distance" />
+                            <div id="filter-by-distance-slider"></div>
+                            <span class="result slide-min pull-left">{{ 'text.5.kilometers'|trans }}</span>
+                            <span class="result slide-max pull-right"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            {% endif %}
         </div>
 
         {% if is_granted("ROLE_USER") %}

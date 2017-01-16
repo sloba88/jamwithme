@@ -62,9 +62,16 @@ class Search
     /**
      * @var integer
      *
-     * @ORM\Column(name="distance", type="integer")
+     * @ORM\Column(name="distance", type="integer", nullable=true)
      */
     private $distance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="administrative_area_level_3", type="text", nullable=true)
+     */
+    private $administrative_area_level_3;
 
     /**
      * @var \DateTime
@@ -323,5 +330,29 @@ class Search
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * Set administrativeAreaLevel3
+     *
+     * @param string $administrativeAreaLevel3
+     *
+     * @return Search
+     */
+    public function setAdministrativeAreaLevel3($administrativeAreaLevel3)
+    {
+        $this->administrative_area_level_3 = $administrativeAreaLevel3;
+
+        return $this;
+    }
+
+    /**
+     * Get administrativeAreaLevel3
+     *
+     * @return string
+     */
+    public function getAdministrativeAreaLevel3()
+    {
+        return $this->administrative_area_level_3;
     }
 }

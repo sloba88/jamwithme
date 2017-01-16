@@ -19,6 +19,11 @@ class MusiciansController extends FOSRestController
     {
         $request = $this->get('request_stack')->getCurrentRequest();
         $me = $this->getUser();
+
+        if (!$me) {
+            return $this->findPublicAction($request);
+        }
+
         $em = $this->getDoctrine()->getManager();
         $alreadySubscribed = false;
 
@@ -36,10 +41,11 @@ class MusiciansController extends FOSRestController
         //todo: put this in event
         if ($request->query->get('page') == '' || $request->query->get('page') == '1') {
             $search = new Search();
-            $search->setDistance($request->query->get('distance') ? $request->query->get('distance') : 100);
+            $search->setDistance($request->query->get('distance'));
             $search->setGenres($request->query->get('genres'));
             $search->setInstruments($request->query->get('instruments'));
             $search->setIsTeacher($request->query->get('isTeacher') ? 1 : 0);
+            $search->setAdministrativeAreaLevel3($request->query->get('locations'));
             $em->persist($search);
             $em->flush();
             $request->getSession()->set('searchId', $search->getId());
@@ -115,10 +121,51 @@ class MusiciansController extends FOSRestController
         return $this->handleView($view);
     }
 
+    private function findPublicAction($request)
+    {
+        $musicians = $this->get('search.musicians')->getElasticSearchPublicResult($request->query->all());
+
+        $musicians_data = array();
+        $cacheManager = $this->container->get('liip_imagine.cache.manager');
+
+        foreach($musicians AS $k=> $m){
+
+            /* @var $m \Jam\UserBundle\Entity\User */
+
+            $avatar = $cacheManager->getBrowserPath($m->getAvatar(), 'medium_thumb');
+
+            $data_array = array(
+                'username' => $m->getUsername(),
+                'displayName' => $m->getDisplayName(),
+                'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
+                'lng' => $m->getLocation() ? $m->getLocation()->getLng() : '',
+                'url' => $this->generateUrl('musician_profile', array('username' => $m->getUsername())),
+                'genres' => $m->getGenresNamesArray(),
+                'instrument' => $m->getMainInstrumentAsString(),
+                'location' => $m->getDisplayLocation(),
+                'avatar' => $avatar
+            );
+
+            if ($m->getIsTeacher()){
+                $data_array['teacher'] = true;
+            }
+
+            array_push($musicians_data, $data_array);
+        }
+
+        $view = $this->view(array(
+            'status'    => 'success',
+            'data' => $musicians_data,
+            'finalResults' => count($musicians_data) < 15 ? true: false
+        ), 200);
+
+        return $this->handleView($view);
+    }
+
     /**
-     * @Get("/musicians/find-public", name="musicians_find_public")
+     * @Get("/musicians/find-public-map", name="musicians_find_map")
      */
-    public function findPublicAction()
+    public function findPublicMapAction()
     {
         $request = $this->get('request_stack')->getCurrentRequest();
 
@@ -164,7 +211,7 @@ class MusiciansController extends FOSRestController
                 $location['lng'] = $request->query->get('lng');
         }
 
-        $musicians = $this->get('search.musicians')->getElasticSearchPublicResult($location);
+        $musicians = $this->get('search.musicians')->getElasticSearchPublicResultMap($location);
 
         $musicians_data = array();
 
