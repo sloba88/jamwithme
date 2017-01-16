@@ -9,7 +9,7 @@
         <h1 class="filters-title">{{ filterTitle }} {{ app.request.get('genre') }}</h1>
     </div>
 
-    <form id="main-filter-form" data-value="{{ searchParams|json_encode|raw | default('') }}">
+    <form id="main-filter-form" data-value='{{ searchParams ? searchParams|json_encode|raw : '' }}'>
         <div class="filters-by in row">
 
             <div class="col-sm-4 col-lg-4">
@@ -20,7 +20,7 @@
                 <select id="genres" name="genres" class="filter-genres form-control" data-placeholder="{{ 'placeholder.filter.by.genres'|trans }}"></select>
             </div>
 
-            {% if searchParams is defined %}
+            {% if not is_granted("ROLE_USER") %}
 
                 <div class="col-sm-4 col-lg-4">
                     <select id="locations" name="locations" class="filter-locations form-control" data-placeholder="{{ 'placeholder.filter.by.location'|trans }}"></select>

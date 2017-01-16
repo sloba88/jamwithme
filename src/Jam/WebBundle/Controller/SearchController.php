@@ -20,7 +20,11 @@ class SearchController extends Controller
 
         $query = $masterRequest->attributes->get('query');
 
-        $elements = explode('-', $query);
+        if ($query) {
+            $elements = explode('-', $query);
+        } else {
+            $elements = false;
+        }
 
         return array(
             'route' => $masterRequest->get('_route'),

@@ -306,6 +306,8 @@ $(function() {
                         $('.filter-genres').select2('trigger', 'select', {
                             data: { id: genres }
                         });
+
+                        localStorage.setItem('filter_genres', JSON.stringify(genres));
                     }
                 }
             }),
@@ -328,9 +330,14 @@ $(function() {
                 } else {
                     var instruments = getParameterByName('instruments');
 
-                    $('.filter-instruments').select2('trigger', 'select', {
-                        data: { id: instruments }
-                    });
+                    if (instruments) {
+                        $('.filter-instruments').select2('trigger', 'select', {
+                            data: { id: instruments }
+                        });
+
+                        localStorage.setItem('filter_instruments', JSON.stringify(instruments));
+                    }
+
                 }
             }).then(function() {
                 if ($('.filter-locations').length > 0) {
