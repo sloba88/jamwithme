@@ -168,17 +168,17 @@
             </section>
         </div>
 
-        {% if is_granted("ROLE_USER") %}
 
-            <div class="row">
-                <section class="col-sm-8 main-content">
+        <div class="row">
+            <section class="col-sm-8 main-content">
 
-                    <ul class="tabs-activate profile-tabs">
-                        <li><a href="#" data-tab="about" class="is-active">{{ 'label.about'|trans }}</a></li>
-                        <li><a href="#" data-tab="photos" class="my-photos">{{ 'label.photos'|trans }}</a></li>
-                        <li><a href="#" data-tab="videos" class="my-videos">{{ 'label.videos'|trans }}</a></li>
-                        <li><a href="#" data-tab="sounds" class="my-sounds">{{ 'label.sounds'|trans }}</a></li>
-                        <li><a href="#" data-tab="jams" class="my-jams">{{ 'label.jams'|trans }}</a></li>
+                <ul class="tabs-activate profile-tabs">
+                    <li><a href="#" data-tab="about" class="is-active">{{ 'label.about'|trans }}</a></li>
+                    <li><a href="#" data-tab="photos" class="my-photos">{{ 'label.photos'|trans }}</a></li>
+                    <li><a href="#" data-tab="videos" class="my-videos">{{ 'label.videos'|trans }}</a></li>
+                    <li><a href="#" data-tab="sounds" class="my-sounds">{{ 'label.sounds'|trans }}</a></li>
+                    <li><a href="#" data-tab="jams" class="my-jams">{{ 'label.jams'|trans }}</a></li>
+                    {% if is_granted("ROLE_USER") %}
                         <li class="last hidden-xs">
                             {% if app.user != user %}
                                 <ul class="compatibility-box">
@@ -193,7 +193,10 @@
                                 </ul>
                             {% endif %}
                         </li>
-                    </ul>
+                    {% endif %}
+                </ul>
+
+                {% if is_granted("ROLE_USER") %}
 
                     <div class="main-content-inner">
 
@@ -255,7 +258,7 @@
                                 <!--videos ends-->
 
                                 <div class="view-tab my-sounds" data-tab="sounds">
-                                    {% if (user.getSoundcloudId == "") %}
+                                    {% if (userTracks|length == 0) %}
                                         <p>{{ 'label.no.sounds'|trans }}</p>
                                     {% else %}
                                         <div></div>
@@ -280,19 +283,24 @@
                         </div>
                         <!--view-tab-container ends-->
                     </div>
-                </section>
-                <!--main-content ends-->
+                {% else %}
+                    <p>Please <a href="{{ path('fos_user_registration_register') }}">sign up</a> to see more.</p>
+                {% endif %}
+            </section>
+            <!--main-content ends-->
 
-                <section class="col-sm-4 hidden-xs shouts-sidebar" data-username="{{ user.username }}">
-                    <div class="sidebar-inner">
+            <section class="col-sm-4 hidden-xs shouts-sidebar" data-username="{{ user.username }}">
+                <div class="sidebar-inner">
 
-                        <div class="shouts-feed">
-                            <h3>{{ 'text.shouts.feed'|trans }}</h3>
-                        </div>
+                    <div class="shouts-feed">
+                        <h3>{{ 'text.shouts.feed'|trans }}</h3>
+                    </div>
 
-                        <div class="shouts-listing-container">
-                            <div class="shouts-listing shouts-listing-feed"></div>
-                        </div>
+                    <div class="shouts-listing-container">
+                        <div class="shouts-listing shouts-listing-feed"></div>
+                    </div>
+
+                    {% if is_granted("ROLE_USER") %}
 
                         <div class="similar-users">
                             <h3>{{ 'text.similar.users'|trans }}</h3>
@@ -302,10 +310,19 @@
                             <ul class="similar-users-listing"></ul>
                         </div>
 
-                    </div>
-                </section>
-            </div>
-        {% endif %}
+                    {% endif %}
+
+                </div>
+            </section>
+        </div>
     </div>
+
+    <script type="text/javascript">
+        var sc_client_id = '{{ soundcloud_app_id }}';
+        var tracks = {{ userTracks|json_encode|raw }};
+        var _visitingUser = {};
+        _visitingUser.sc_id = '{{ user.getSoundcloudId }}';
+        _visitingUser.id = '{{ user.getId }}';
+    </script>
 
 {% endblock fos_user_content %}

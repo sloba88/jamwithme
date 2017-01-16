@@ -5,6 +5,9 @@
 /* global checkCanShout */
 /* global addMessage */
 /* global openedConversation */
+/* global sc_client_id */
+/* global tracks */
+/* global SC */
 
 var isMobile = false; //initiate as false
 // device detection
@@ -648,6 +651,84 @@ $(function() {
             window.location.reload();
         });
     });
+
+    if ($('body.page-profile').length > 0) {
+        getUserShouts();
+
+        if (typeof _user !='undefined') {
+            if ($('.compatibility').length > 0){
+                $.ajax({
+                    url: Routing.generate('api_compatibility', { id: _visitingUser.id }),
+                    success: function(data) {
+                        $('.compatibility span').addClass('compatibility-' + data).text(data);
+                    }
+                });
+            }
+
+            var mySoundsLoaded = false;
+
+            SC.initialize({
+                client_id: sc_client_id
+            });
+
+            $('body').on('click', 'a.my-sounds', function(e) {
+
+                if (mySoundsLoaded === true) {
+                    return false;
+                }
+
+                var $this = $(e.currentTarget);
+
+                if(_visitingUser.sc_id !== '') {
+
+                    if(tracks.length > 0){
+
+                        $('div[data-tab="'+$this.attr('data-tab')+'"] > div').html('');
+
+                        for(var i = 0; i < tracks.length; i++){
+                            var track = tracks[i];
+                            if (i === 0) {
+                                var iframe = $('<iframe />', {
+                                    id: 'iframe'+track.id,
+                                    width: '100%',
+                                    height: '166',
+                                    scrolling: 'no',
+                                    frameborder: 'no',
+                                    src: 'https://w.soundcloud.com/player/?url='+track.uri
+                                });
+                                $('div[data-tab="'+ $this.attr('data-tab')+'"] div').html(iframe);
+                                SC.Widget(iframe[0]);
+                            }
+
+                            var trackLink = $('<li><a href="#" class="soundcloud-track-play" data-index="'+i+'" ><i class="fa fa-play-circle" aria-hidden="true"></i> '+track.title+'</a></li>');
+
+                            $('div[data-tab="'+$this.attr('data-tab')+'"] ul').append(trackLink);
+                        }
+
+                        mySoundsLoaded = true;
+                    }
+                }
+            });
+
+            if (window.location.hash == '#sounds') {
+                $('a.my-sounds').trigger('click');
+            }
+
+            $('body').on('click', '.my-sounds .soundcloud-track-play', function(e) {
+                e.preventDefault();
+                var index = $(this).data('index');
+
+
+                SC.Widget($('.my-sounds iframe')[0]).load(tracks[index].uri, {
+                    'autoplay' : true
+                });
+
+            });
+
+            getUserSimilarUsers();
+        }
+
+    }
 
 });
 
