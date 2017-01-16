@@ -62,7 +62,7 @@ security:
         - { path: ^/api/locations, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/shouts, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/m/, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/musicians/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/musicians, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/jam/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/sitemapp.xml$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/messages/, role: ROLE_USER }

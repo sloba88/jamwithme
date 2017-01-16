@@ -341,13 +341,21 @@ $(function() {
                 }
             }).then(function() {
                 if ($('.filter-locations').length > 0) {
+                    var placeholder = $('.filter-locations').data('placeholder');
                     $.ajax({
                         url: Routing.generate('api_locations')
                     }).done(function( result ) {
+                        result.push({id : '', text: ''});
+
                         $('.filter-locations').select2({
                             data: result,
-                            multiple: false,
-                            matcher: oldMatcher(matchStart)
+                            matcher: oldMatcher(matchStart),
+                            allowClear: true,
+                            placeholder: placeholder
+                        });
+
+                        $('.filter-locations').select2('trigger', 'select', {
+                            data: { id: ''}
                         });
 
                         if (queryParams !== '') {
