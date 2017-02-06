@@ -861,7 +861,7 @@ class User extends BaseUser
 
     public function getProfileFulfilment()
     {
-        $percentage = 20;
+        $percentage = 10;
 
         if ($this->gear->count() > 0){
             $percentage += 10;
@@ -884,11 +884,15 @@ class User extends BaseUser
         }
 
         if ($this->gender){
-            $percentage += 10;
+            $percentage += 5;
         }
 
         if ($this->location){
             $percentage += 20;
+        }
+
+        if ($this->avatar) {
+            $percentage += 15;
         }
 
         return $percentage;

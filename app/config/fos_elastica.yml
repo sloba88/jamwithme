@@ -12,6 +12,7 @@ fos_elastica:
                         firstName: ~
                         lastName: ~
                         pin: { type: geo_point }
+                        profileFulfilment: ~
                         location:
                             type: "object"
                             properties:

@@ -288,6 +288,8 @@ class SearchMusicians {
         $query->setSize($perPage);
         $query->setFrom(($page - 1) * $perPage);
 
+        $query->addSort(array('profileFulfilment' => array('order' => 'desc')));
+
         return $this->elasticUsersFinder->find($query);
     }
 
