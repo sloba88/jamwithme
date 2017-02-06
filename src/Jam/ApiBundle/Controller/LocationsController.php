@@ -22,8 +22,9 @@ class LocationsController extends FOSRestController
                 "SELECT g.administrative_area_level_3 AS id, g.administrative_area_level_3 AS text
                 FROM JamLocationBundle:Location g
                 WHERE g.administrative_area_level_3 != ''
-                GROUP BY g.country, text
-                ORDER BY text ASC"
+                GROUP BY text
+                HAVING COUNT(g.id) > 4
+                ORDER BY g.country, text ASC"
             )
             ->useResultCache(true);
 
