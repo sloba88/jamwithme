@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2016-12-23T08:42:48Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
+  <file date="2017-02-06T19:31:31Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -46,12 +46,12 @@
       <trans-unit id="99e92d742ab4c3c1d97a89e41681f57f3ef9f4d2" resname="button.edit.profile">
         <source>button.edit.profile</source>
         <target state="new">Muokkaa profiilia</target>
-        <jms:reference-file line="39">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="49">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="10588a9b649e63d4fddf51d014e3beb7086f8ea0" resname="button.find.out.more">
         <source>button.find.out.more</source>
         <target state="new">Tutustu tarkemmin</target>
-        <jms:reference-file line="148">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="156">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3768ebd9deb0f606d18cfa1d01584ddbd27df024" resname="button.finish">
         <source>button.finish</source>
@@ -61,8 +61,8 @@
       <trans-unit id="61fb451d69ef51d5c44f32eab0694c26e61ae34a" resname="button.home.login">
         <source>button.home.login</source>
         <target state="new">Sisään</target>
-        <jms:reference-file line="529">/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="563">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="530">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="564">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
@@ -115,7 +115,7 @@
       <trans-unit id="4ecd9c38578a9a814133c133266c1d667c932598" resname="button.message">
         <source>button.message</source>
         <target state="new">Viesti</target>
-        <jms:reference-file line="37">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="46">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="139">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4e49febd2de7216895ad397d1a1f05d8cf3ba6cc" resname="button.next">
@@ -154,8 +154,13 @@
         <target state="new">Rekisteröidy</target>
         <jms:reference-file line="86">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="38">/../src/Jam/UserBundle/Resources/views/Security/login_content.html.twig</jms:reference-file>
-        <jms:reference-file line="527">/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="561">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="528">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="562">/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6ada0d20a0a48fd122222a99c85384682f7343a6" resname="button.try.it.out">
+        <source>button.try.it.out</source>
+        <target state="new">kokeile</target>
+        <jms:reference-file line="144">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d2951fc2f2bef90fce999a1d0604198a5e2977e" resname="email.accept.invitation">
         <source>email.accept.invitation</source>
@@ -193,7 +198,7 @@
       <trans-unit id="17faad85a87a3e84000ba3dbeb09d219118d36e4" resname="exception.file.not.sent">
         <source>exception.file.not.sent</source>
         <target state="new">Tiedostoa ei lähetetty</target>
-        <jms:reference-file line="138">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="149">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e360c037aa80f7f0bff41074a8aee2492ff7cf77" resname="exception.image.not.found">
         <source>exception.image.not.found</source>
@@ -218,7 +223,7 @@
       <trans-unit id="664755ae94dc7ff54ee4b6bcefb764bcd1c9fc17" resname="exception.there.is.no.image.with.that.id">
         <source>exception.there.is.no.image.with.that.id</source>
         <target state="new">Hakemaasi kuvaa ei löydy</target>
-        <jms:reference-file line="194">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="205">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="49bf409d86c4843754d867e9801429d982d5988a" resname="exception.this.user.does.not.have.access.to.this.section">
         <source>exception.this.user.does.not.have.access.to.this.section</source>
@@ -245,10 +250,10 @@
         <source>exception.you.shall.not.pass</source>
         <target state="new">Pääsy evätty!</target>
         <jms:reference-file line="216">/../src/Jam/ApiBundle/Controller/ShoutsController.php</jms:reference-file>
-        <jms:reference-file line="123">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="184">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="279">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="93">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="104">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="134">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="195">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="290">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
         <jms:reference-file line="300">/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="342">/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
@@ -322,7 +327,7 @@
       <trans-unit id="e11c16aba8efd7c6504fc9c0eb3c2101ed5107e8" resname="label.about">
         <source>label.about</source>
         <target state="new">Minusta / Etsin</target>
-        <jms:reference-file line="166">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="176">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4f1669620c8a5c9b11de0150a98c5fe707bb705e" resname="label.about.me">
         <source>label.about.me</source>
@@ -353,7 +358,7 @@
       <trans-unit id="11b95888e562d05337df1c527884760405bb9366" resname="label.available">
         <source>label.available</source>
         <target state="new">Käytettävissä</target>
-        <jms:reference-file line="32">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="41">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="dea3ca21225b4d5b3aa7647e47edb408286d0a1a" resname="label.birth.date">
         <source>label.birth.date</source>
@@ -374,8 +379,8 @@
       <trans-unit id="503a6f181802ea8c9d241a9a28face75fb91ce55" resname="label.compatibility">
         <source>label.compatibility</source>
         <target state="new">Yhteensopivuus</target>
-        <jms:reference-file line="180">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
-        <jms:reference-file line="50">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="191">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="61">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e082550d5626d885343de4ceb789e7397364fb2e" resname="label.connect.facebook">
         <source>label.connect.facebook</source>
@@ -407,7 +412,7 @@
         <source>label.education</source>
         <target state="new">Koulutus</target>
         <jms:reference-file line="66">/../src/Jam/UserBundle/Form/Type/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="197">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="211">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fc8413fdfd53e23e0f6ad278406aa827b4548642" resname="label.email">
         <source>label.email</source>
@@ -583,7 +588,7 @@
       <trans-unit id="283d3df1a6e6f332e01deb0f6650a6b62db12a12" resname="label.jams">
         <source>label.jams</source>
         <target state="new">Jamit</target>
-        <jms:reference-file line="170">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="180">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a5e2feb18f76a79eec37da32ae84a08594af242f" resname="label.last.name">
         <source>label.last.name</source>
@@ -632,24 +637,24 @@
         <source>label.no.images</source>
         <target state="new">Ei vielä kuvia</target>
         <jms:reference-file line="228">/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="212">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="226">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="37cf77ae10c1b91c1097fd563c0b0ea6e249b283" resname="label.no.jams">
         <source>label.no.jams</source>
         <target state="new">Ei aktiivisia Jameja</target>
-        <jms:reference-file line="257">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="271">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="75589666400c1dd80f3b78625aa5e8c7147fb748" resname="label.no.sounds">
         <source>label.no.sounds</source>
         <target state="new">Ei vielä soundeja</target>
-        <jms:reference-file line="248">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="262">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="196">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6bdce0a700dfdd0c29b1dc38fefe39a65ec4193a" resname="label.no.videos">
         <source>label.no.videos</source>
         <target state="new">Ei lisättyjä videoita</target>
         <jms:reference-file line="270">/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="230">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="244">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="175">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
@@ -673,7 +678,7 @@
         <target state="new">Kuvat</target>
         <jms:reference-file line="223">/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="53">/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="167">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="177">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd28a0018a8739560ed890683c65b18906c7df0e" resname="label.remove">
         <source>label.remove</source>
@@ -699,7 +704,7 @@
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
         <target state="new">Etsi käyttäjiä</target>
-        <jms:reference-file line="514">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="515">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8788c0ef76fda341a55e9e406055d74357d1400e" resname="label.set.profile.photo">
         <source>label.set.profile.photo</source>
@@ -714,7 +719,7 @@
       <trans-unit id="4cd08fde3006777d4c023f2f69fba29a0af24a22" resname="label.sounds">
         <source>label.sounds</source>
         <target state="new">Soundit</target>
-        <jms:reference-file line="169">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="179">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="198">/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
         <jms:reference-file line="191">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
@@ -755,7 +760,7 @@
         <target state="new">Videot</target>
         <jms:reference-file line="265">/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
         <jms:reference-file line="54">/../src/Jam/UserBundle/Resources/views/Profile/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="168">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="178">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="164">/../src/Jam/WebBundle/Resources/views/Jam/create.html.twig</jms:reference-file>
         <jms:reference-file line="170">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
@@ -800,17 +805,17 @@
       <trans-unit id="456968ba9af6660e2b2696190e830c0f876c57e2" resname="link.home.about">
         <source>link.home.about</source>
         <target state="new">Tutustu tarkemmin</target>
-        <jms:reference-file line="537">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="538">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
         <target state="new">Profiilikuva vaihdettu onnistuneesti</target>
-        <jms:reference-file line="312">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="323">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae26a7b2b4b91e62745ad264586ea433a76b3e7" resname="message.image.removed.successfully">
         <source>message.image.removed.successfully</source>
         <target state="new">Kuva poistettu onnistuneesti</target>
-        <jms:reference-file line="212">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="223">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="94a0af19e3069c835182069b668e11027abe0637" resname="message.jam.added.to.interest">
         <source>message.jam.added.to.interest</source>
@@ -892,6 +897,11 @@
         <target state="new">Suodata instrumenteittäin</target>
         <jms:reference-file line="16">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="84a832e2978f282687fb83175a883251a675a2d8" resname="placeholder.filter.by.location">
+        <source>placeholder.filter.by.location</source>
+        <target state="new">Rajaa sijainnin perusteella</target>
+        <jms:reference-file line="26">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="8c32d1e2e0999e1d2c2ce9c66dcd46a0cea15eef" resname="placeholder.find.by.name.or.email">
         <source>placeholder.find.by.name.or.email</source>
         <target>Löydä nimellä tai sähköpostilla</target>
@@ -900,7 +910,7 @@
       <trans-unit id="c010d9f4cb6e9b57e14bf07abc00f90b706e623b" resname="placeholder.km.around.you">
         <source>placeholder.km.around.you</source>
         <target state="new">kilometrin säteellä</target>
-        <jms:reference-file line="31">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="39">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cfee392e19e633b7680a6880ee06266d1297f27a" resname="placeholder.password">
         <source>placeholder.password</source>
@@ -935,7 +945,7 @@
       <trans-unit id="14362b865cfa14897827d1c8c2501e1ef98c5687" resname="text.5.kilometers">
         <source>text.5.kilometers</source>
         <target>5 km</target>
-        <jms:reference-file line="33">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="41">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9c2dd80217d300d4dd3221533382e2887497b80c" resname="text.about.us.page">
         <source>text.about.us.page</source>
@@ -1019,7 +1029,7 @@
       <trans-unit id="7bd742f37dc0bb0c05e5a8b20159b71d5374e7f7" resname="text.filter.by.distance">
         <source>text.filter.by.distance</source>
         <target>Rajaa etäisyyttä</target>
-        <jms:reference-file line="26">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="34">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3cfaa3918f2d91f26905fe7417eefb96e53c15b1" resname="text.find.music.teachers.nearby">
         <source>text.find.music.teachers.nearby</source>
@@ -1029,7 +1039,7 @@
       <trans-unit id="b955e740a3b2e2b5c576049581c1a51cb481dc90" resname="text.gear">
         <source>text.gear</source>
         <target state="new">Laitteisto</target>
-        <jms:reference-file line="146">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="157">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="40ff1dd02d4ecf6311a87a1ef1c7255b2ad7c14b" resname="text.genres">
         <source>text.genres</source>
@@ -1044,12 +1054,7 @@
       <trans-unit id="3ad66780fc07852422141e9c5d2973e1f6942d48" resname="text.grid">
         <source>text.grid</source>
         <target>Ruudukko</target>
-        <jms:reference-file line="42">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="337e3721b66473a8865867f48f9affc91f3b2f39" resname="text.home.are.you.teacher">
-        <source>text.home.are.you.teacher</source>
-        <target state="new">Oletko soitonopettaja ja haluat lisää oppilaita? Anna Jamifindin auttaa.</target>
-        <jms:reference-file line="138">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="54">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="26310a0c1677225aa3b52d478299adfb48007129" resname="text.home.find.fellow.musicians">
         <source>text.home.find.fellow.musicians</source>
@@ -1058,19 +1063,19 @@
       </trans-unit>
       <trans-unit id="a0054ccefa5a52c4d4284758948f7304a796288e" resname="text.home.find.fellow.musicians.subtitle">
         <source>text.home.find.fellow.musicians.subtitle</source>
-        <target state="new">Etsitkö musiikinopetusta tai haluatko opettaa muita tarjoamalla
+        <target xml:space="preserve" state="new">Etsitkö musiikinopetusta tai haluatko opettaa muita tarjoamalla
                             vaikka piano- tai kitaratunteja? Anna Jamifindin auttaa.</target>
         <jms:reference-file line="114">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1052c5453a5ca682e5d2e7c2f8b8642bb50415" resname="text.hourly.rate">
         <source>text.hourly.rate</source>
         <target state="new">Tuntitaksa</target>
-        <jms:reference-file line="201">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="215">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ecacd72464b6c917c203c4a7fbfba7bbd30b050" resname="text.influencers">
         <source>text.influencers</source>
         <target state="new">Vaikutteet</target>
-        <jms:reference-file line="133">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="144">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e5c6ec759835133b364b7b9b542c3fd6e46d6f5d" resname="text.interested">
         <source>text.interested</source>
@@ -1112,12 +1117,12 @@
       <trans-unit id="e36c68c715a8d2e7cff7ed8b28894106a09e7f6f" resname="text.main">
         <source>text.main</source>
         <target state="new">Pääsoitin</target>
-        <jms:reference-file line="87">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="98">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0bf01c17fb6b42805e77957dd0f00097d64e9a79" resname="text.map">
         <source>text.map</source>
         <target>Kartta</target>
-        <jms:reference-file line="43">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="55">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="15d3eb05e679ae62f394d20c3aac1bcf971e4e74" resname="text.messages">
         <source>text.messages</source>
@@ -1128,7 +1133,7 @@
       <trans-unit id="767163315825668c13c0c8a21256765361d5ac49" resname="text.meta.description">
         <source>text.meta.description</source>
         <target state="new">Haetko bändijäseniä tai soittoseuraa? Etsitkö sopivaa kitaraopettajaa? Tapaa heidät Jamifindissa.</target>
-        <jms:reference-file line="430">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="431">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="7">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
@@ -1149,31 +1154,31 @@
       <trans-unit id="dd9dc66b90ac8b145304356de037fcd33ce44bd6" resname="text.no.genres.yet">
         <source>text.no.genres.yet</source>
         <target state="new">Ei valittuja genrejä</target>
-        <jms:reference-file line="117">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="128">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9870347989ce44d3b0c7be6d6dfb6f760c4fd0ce" resname="text.no.instruments.yet">
         <source>text.no.instruments.yet</source>
         <target state="new">Ei valittuja soittimia</target>
-        <jms:reference-file line="78">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="89">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c30c7e4fb4f2610e518069cd3866462bba38e1d6" resname="text.none">
         <source>text.none</source>
         <target state="new">Ei mitään</target>
-        <jms:reference-file line="134">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
-        <jms:reference-file line="147">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="145">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="158">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="67">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
         <jms:reference-file line="79">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c7c856ea746bb625aecea2d1eaf59ac74bc12160" resname="text.nothing.yet.here">
         <source>text.nothing.yet.here</source>
         <target state="new">Ei vielä sisältöä</target>
-        <jms:reference-file line="194">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
-        <jms:reference-file line="198">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="208">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="212">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="772be84a289a7cb2f7c205a35cc92b9640489c13" resname="text.overview">
         <source>text.overview</source>
         <target state="new">Yleiskatsaus</target>
-        <jms:reference-file line="193">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="207">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a44240ea73b552cd4432a0caf0e2d8076de6fddd" resname="text.people.interested">
         <source>text.people.interested</source>
@@ -1188,7 +1193,7 @@
       </trans-unit>
       <trans-unit id="2150e495dd998654e831b9c4c889e691859fd060" resname="text.register.cv">
         <source>text.register.cv</source>
-        <target state="new">Luo Jamifind-profiili ja tuo muusikon CV:si tähän päivään.
+        <target xml:space="preserve" state="new">Luo Jamifind-profiili ja tuo muusikon CV:si tähän päivään.
                             Jaa ääntä, videoita, kuvia ja tule huomatuksi.
                             Jamifindin avulla verkostoidut ja etsit juuri sinulle sopivimmat
                             musiikkikontaktit. Jamifindista löydät myös kätevästi kaikki lähialueesi keikat. </target>
@@ -1196,7 +1201,7 @@
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
-        <target state="new">Jamifindin avulla löydät lähialueesi muusikot, soitonopettajat,
+        <target xml:space="preserve" state="new">Jamifindin avulla löydät lähialueesi muusikot, soitonopettajat,
                             muut musiikkialan osaajat sekä kaikki Suomen keikat.
                             Etsitpä bändiin laulajaa, kitaristia, rumpalia, basistia, pianistia tai muun instrumentin taitajaa, Jamifindin avulla se on helppoa.</target>
         <jms:reference-file line="18">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
@@ -1209,7 +1214,7 @@
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
         <target state="new">Rekisteröidy ilmaiseksi Jamifindiin jo tänään!</target>
-        <jms:reference-file line="145">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="153">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>
@@ -1224,7 +1229,7 @@
       <trans-unit id="fb6941fbd7c233f8d51c3c69b7e0ee3c67a75ab4" resname="text.set.distance">
         <source>text.set.distance</source>
         <target>Aseta etäisyys</target>
-        <jms:reference-file line="30">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
+        <jms:reference-file line="38">/../src/Jam/WebBundle/Resources/views/Search/filter.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9532cb76a483e419f51638af02671369c7b614eb" resname="text.settings">
         <source>text.settings</source>
@@ -1251,7 +1256,7 @@
       <trans-unit id="e7c3913da6a4bb5c3310146b7cde2283b4df9a09" resname="text.shouts.feed">
         <source>text.shouts.feed</source>
         <target state="new">Shoutbox</target>
-        <jms:reference-file line="279">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="296">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="2">/../src/Jam/WebBundle/Resources/views/Shouts/shouts.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cbe5975526ce5dcbcecc4e8c9dc65969248c8a20" resname="text.sign.up.to.jamifind">
@@ -1263,7 +1268,7 @@
       <trans-unit id="ebeb7b5a5ae8a3879498e4b8b89bf07873771b82" resname="text.similar.users">
         <source>text.similar.users</source>
         <target state="new">Samankaltaisia käyttäjiä</target>
-        <jms:reference-file line="287">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="306">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="59793f453dbce12774a90cc4c7b35c9b1c88c2fe" resname="text.sounds.like">
         <source>text.sounds.like</source>
@@ -1280,7 +1285,8 @@
       <trans-unit id="2fec9859a69131cb02cf1c5c002bc73f504720c3" resname="text.teacher">
         <source>text.teacher</source>
         <target state="new">Musamaikka</target>
-        <jms:reference-file line="66">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="20">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="77">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1de14c07b898ddef52dc5bd4f9b61044d4fa763a" resname="text.teachers">
         <source>text.teachers</source>
@@ -1290,12 +1296,13 @@
       <trans-unit id="ce15567ae7d412c970cca0fe2c56e29239e09693" resname="text.title">
         <source>text.title</source>
         <target state="new">Jamifind - maksuton palvelu soittoseuranhakuun</target>
+        <jms:reference-file line="43">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
         <jms:reference-file line="4">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6b7cc5ab625a26401b804c3f5f47c5269f714841" resname="user.age">
         <source>%user.age% years old</source>
         <target state="new">Ikä %user.age%</target>
-        <jms:reference-file line="28">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
+        <jms:reference-file line="37">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8daf2dfd1b8bdbad584847be53794dd3f6f17f5f" resname="value.1-2.hours/week">
         <source>value.1-2.hours/week</source>
@@ -1315,17 +1322,17 @@
       <trans-unit id="35d7093fd6e8a27a096daf95d03f4521857c445b" resname="value.advanced">
         <source>value.advanced</source>
         <target state="new">Edistynyt</target>
-        <jms:reference-file line="56">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <jms:reference-file line="68">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0822862cbb4137e9b700a72f70c06fb0df615b82" resname="value.average">
         <source>value.average</source>
         <target state="new">Keskiverto</target>
-        <jms:reference-file line="52">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <jms:reference-file line="64">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="6a9224e672d112a827f2ff0a97126e1e192da6e5" resname="value.beginner">
         <source>value.beginner</source>
         <target state="new">Aloittelija</target>
-        <jms:reference-file line="48">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <jms:reference-file line="60">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="130fd4a1e337ac6b52068217125cd7b123c2644d" resname="value.day">
         <source>value.day</source>
@@ -1360,17 +1367,17 @@
       <trans-unit id="1b4467c106cc858f5f6ea2125e65a4234ab56cdf" resname="value.professional">
         <source>value.professional</source>
         <target state="new">Ammattilainen</target>
-        <jms:reference-file line="64">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <jms:reference-file line="76">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="cc3690e6ed871d14d4a626d7efb60fd7c80d63b9" resname="value.semi-professional">
         <source>value.semi-professional</source>
         <target state="new">Puoliammattilainen</target>
-        <jms:reference-file line="60">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <jms:reference-file line="72">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="d3127788fa6bfd72a5305ca9c0f2d10d263dc023" resname="value.teacher">
         <source>value.teacher</source>
         <target state="new">Opettaja</target>
-        <jms:reference-file line="71">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
+        <jms:reference-file line="83">/../src/Jam/ApiBundle/Controller/InstrumentsController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="1a1442c3317998c8e5a5b27f66f99f85b3653e52" resname="value.won't.say">
         <source>value.won't.say</source>
