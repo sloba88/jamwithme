@@ -165,11 +165,10 @@ $(function() {
     getLocation(function(myBrowserLocation) {
         myLocation = myBrowserLocation;
         if (!myLocation) {
-            myLocation = [60.1573302, 24.8772532];
             initMap();
-            fetchMapData(myLocation, false, function() {
-                map.setView(L.latLng(myLocation[0], myLocation[1]), 12, { animate: true });
-            });
+            setTimeout(function() {
+                $('#top-locations').trigger('change');
+            }, 500);
         } else {
             initMap();
             fetchMapData(myLocation, false, function() {

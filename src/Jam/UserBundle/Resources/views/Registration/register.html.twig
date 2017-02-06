@@ -117,13 +117,20 @@
             <form class="form-inline">
                 <label>{{ 'label.home.top.locations'|trans }}: &nbsp;
                     <select class="form-control" id="top-locations" style="width: 100px">
+                        {% if app.request.locale == 'en' %}
+                            <option value="London" selected="selected">London</option>
+                            <option value="Birmingham">Birmingham</option>
+                        {% endif %}
                         <option value="Helsinki">Helsinki</option>
-                        <option value="Espoo">Espoo</option>
-                        <option value="Tampere">Tampere</option>
-                        <option value="Vantaa">Vantaa</option>
-                        <option value="Oulu" >Oulu</option>
-                        <option value="Turku" >Turku</option>
-                        <option value="Jyväskylä">Jyväskylä</option>
+
+                        {% if app.request.locale == 'fi' %}
+                            <option value="Espoo">Espoo</option>
+                            <option value="Tampere">Tampere</option>
+                            <option value="Vantaa">Vantaa</option>
+                            <option value="Oulu" >Oulu</option>
+                            <option value="Turku" >Turku</option>
+                            <option value="Jyväskylä">Jyväskylä</option>
+                        {% endif %}
                     </select>
                 </label>
             </form>
