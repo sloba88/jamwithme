@@ -867,8 +867,10 @@ class User extends BaseUser
             $percentage += 10;
         }
 
-        if ($this->instruments->count() > 0){
-            $percentage += 10;
+        if ($this->instruments != NULL) {
+            if ($this->instruments->count() > 0){
+                $percentage += 10;
+            }
         }
 
         if ($this->genres->count() > 0){
