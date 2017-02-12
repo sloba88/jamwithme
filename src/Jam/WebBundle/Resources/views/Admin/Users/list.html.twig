@@ -42,7 +42,6 @@
                 <th>Created At</th>
                 <th>Last Login</th>
                 <th>Location</th>
-                <th>Profile Fulfillment</th>
             </tr>
             </thead>
 
@@ -57,7 +56,6 @@
                     <td>{{ m.createdAt | date ('Y-m-d h:i') }}</td>
                     <td>{{ m.lastLogin | date ('Y-m-d h:i') }}</td>
                     <td>{{ m.displayLocation }}</td>
-                    <td>{{ m.profileFulfilment }}%</td>
                 </tr>
             {% endfor %}
         </table>

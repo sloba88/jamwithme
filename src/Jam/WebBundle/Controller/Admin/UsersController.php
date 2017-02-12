@@ -30,11 +30,12 @@ class UsersController extends Controller
         $musicians = $this->getDoctrine()
             ->getRepository('JamUserBundle:User')
             ->createQueryBuilder('m')
+            ->leftJoin('m.location', 'location')
             ->where('m.isTeacher = ' .$onlyTeachers);
 
         if ($location) {
-            $musicians = $musicians->leftJoin('m.location', 'l')
-                ->andWhere('l.administrative_area_level_3 = ?1')
+            $musicians = $musicians
+                ->andWhere('location.administrative_area_level_3 = ?1')
                 ->setParameter(1, $location);
         }
 
