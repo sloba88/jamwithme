@@ -465,7 +465,6 @@ $(function() {
     });
 
     $('.view-tab-container').on('ps-y-reach-end', function () {
-        console.log('end reached');
         if (loadMoreResults === true) {
             loadMoreResults = false;
             filterMusicians();
@@ -473,7 +472,6 @@ $(function() {
     });
 
     $('.shouts-listing-filter').on('ps-y-reach-end', function () {
-        console.log('shouts end reached');
         if (loadMoreShoutsResults === true) {
             loadMoreShoutsResults = false;
             filterShouts();

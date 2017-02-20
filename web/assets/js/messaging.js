@@ -1,13 +1,19 @@
 'use strict';
 
-/* global socket */
+/* global io */
+/* global nodeServer */
 /* global scrollToBottom */
 /* global addMessage */
 /* global scrollbarPlugin */
 /* global isMobile */
 /* global screenfull */
+/* global utf8 */
 
 var openedConversation = {};
+
+var socket = new io.connect(nodeServer, {
+    'reconnection' : false
+});
 
 function sendMessage(self) {
     var value = self.val();
@@ -32,6 +38,11 @@ function htmlEncode(value){
 }
 
 if (typeof socket != 'undefined'){
+
+    socket.on('registerConnectedUser', function () {
+        socket.emit('registerUserData', { 'sessionId': _user.sessionId });
+    });
+
     socket.on('ourConversation', function(data) {
         console.log(data);
         openedConversation.id = data.conversation._id;

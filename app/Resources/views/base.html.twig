@@ -6,9 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="{{ page.description|default('text.meta.description'|trans) }}">
 
-    <!--mobile-->
     <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!--mobile ends-->
 
     <link rel="shortcut icon" href="{{ asset('landing/images/favicon.ico')}}" type="image/x-icon">
     <link rel="icon" href="{{ asset('landing/images/favicon.ico')}}" type="image/x-icon">
@@ -43,6 +41,7 @@
             'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
             'landing/css/ddscrollspydemo.css'
             'assets/css/styles.css'
+            'landing/css/style.css'
             %}
             <link rel="stylesheet" href="{{ asset_url }}">
             {% endstylesheets %}
@@ -51,9 +50,6 @@
 
     {% endblock %}
 
-    {% if not is_granted('ROLE_USER') %}
-        <link href="{{ asset('landing/css/style.css')}}" rel="stylesheet">
-    {% endif %}
 
     <style>
         {# TODO: move this to css files#}
@@ -412,17 +408,7 @@
     {% include "::googleAnalytics.html.twig" %}
 
     {% if app.environment == 'prod' %}
-        <!-- Hotjar Tracking Code for https://jamifind.com -->
-        <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:340369,hjsv:5};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                a.appendChild(r);
-            })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
+        {% include "::hotJar.html.twig" %}
 
         <meta property="og:title" content="{{ og_title|default('Jamifind') }}" />
         <meta property="og:type" content="website" />
@@ -434,10 +420,8 @@
     <script>
         var baseURL = '{{ app.request.getBaseURL() }}';
     </script>
-    {% if is_granted("ROLE_USER") %}
-        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/utf8/2.1.1/utf8.min.js"></script>
 
+    {% if is_granted("ROLE_USER") %}
         <script>
             var _user = {};
             _user.username = '{{ app.user.username }}';
@@ -447,14 +431,8 @@
             _user.temporaryLocation = '{{ app.user.location.isTemporary|default('') }}';
             _user.isVisitor = '{{ app.user.isVisitor }}';
             _user.avatar = '{{ path('musician_avatar', { 'username': app.user.username, 'size': 'my_thumb' }) }}';
-
-            var socket = new io.connect('{{ node_server }}', {
-                'reconnection' : false
-            });
-
-            socket.on('registerConnectedUser', function () {
-                socket.emit('registerUserData', { 'sessionId': '{{ app.session.id }}' });
-            });
+            _user.sessionId = '{{ app.session.id }}';
+            var nodeServer = '{{ node_server }}';
         </script>
     {% endif %}
 
@@ -595,6 +573,8 @@
         'vendor/jquery-ui/ui/minified/jquery.ui.slider.min.js'
         'vendor/jquery-ui/ui/minified/jquery.ui.menu.min.js'
         'vendor/svg-injector/dist/svg-injector.min.js'
+        'vendor/socket.io-client/socket.io.js'
+        'vendor/utf8/utf8.js'
         'vendor/underscore/underscore.js'
         'vendor/isotope/dist/isotope.pkgd.js'
         'vendor/fancybox/lib/jquery.mousewheel-3.0.6.pack.js'
@@ -617,6 +597,7 @@
         <script src="https://w.soundcloud.com/player/api.js"></script>
 
     {% endblock %}
+
 
     {% for fm in app.session.flashbag.get('success') %}
         <script> $(function () { addMessage('success', '{{ fm }}'); });</script>

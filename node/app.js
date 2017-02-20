@@ -10,6 +10,11 @@ var ssl = {
     ca: fs.readFileSync('/etc/letsencrypt/live/jamifind.com/chain.pem')
 };
 
+/*
+key: fs.readFileSync('/etc/ssl/privkey.pem'),
+cert: fs.readFileSync('/etc/ssl/cacert.pem')
+*/
+
 var mongoose = require('mongoose'),
     express = require('express'),
     redis = require('redis'),
