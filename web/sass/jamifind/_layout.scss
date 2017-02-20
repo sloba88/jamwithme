@@ -14,9 +14,10 @@ body {
 	@include respond-to(tablet) {
 		overflow: auto;
 	}
-	@include respond-to(handhelds) {
-		//background: #fff !important;
-	}
+}
+
+a {
+	color: #3b385e;
 }
 
 .container-fluid {
@@ -103,6 +104,14 @@ body {
 			}
 		}
 	}
+}
+
+.page-profile.no-auth .main-content-inner{
+	background: none;
+}
+
+.page-profile .no-auth.main-content {
+	margin-top: 25px;
 }
 
 .main-content-inner {

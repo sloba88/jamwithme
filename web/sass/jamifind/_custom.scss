@@ -89,6 +89,10 @@
 	margin-top: 5px;
 }
 
+.select2-container .select2-selection--single .select2-selection__clear {
+	right: 30px;
+}
+
 //tooltip
 .tooltip {
 
@@ -236,6 +240,12 @@
     opacity: 0.95;
 }
 
+.signup-page .fixed-alerts-container{
+	max-width: 320px;
+	margin: 0 auto;
+	opacity: .9;
+}
+
 //autocomplete
 .ui-helper-hidden-accessible {
 	display: none;
@@ -270,19 +280,51 @@
 //map
 #map {
 	height: 400px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	width: 100%;
 	clear: both;
-}
 
-#map .mapIcon {
-	border-radius: 20px;
-	opacity: 0.9;
-	background-color: #fff;
-	text-align: center;
-	border: 2px solid #fff;
-	overflow: hidden;
+	.mapIcon {
+		border-radius: 20px;
+		opacity: 0.9;
+		background-color: #fff;
+		text-align: center;
+		border: 2px solid #fff;
+		overflow: hidden;
+
+		&.map-icon-Strings{
+			background-color: #874E99;
+		}
+
+		&.map-icon-Percussions{
+			background-color: #d03111;
+		}
+
+		&.map-icon-Keys{
+			background-color: #0bb6ca;
+		}
+
+		&.map-icon-Vocals{
+			background-color: #CC9900;
+		}
+
+		&.map-icon-Wind{
+			background-color: #FFCC00;
+		}
+
+		&.map-icon-Store {
+			background-color: #fff;
+		}
+
+		&.map-icon-Store path {
+			fill: firebrick;
+		}
+
+		path{
+			fill: #fff;
+		}
+	}
 }
 
 #map .mapIcon svg, #map .mapIcon img, #_location_map .mapIcon img{

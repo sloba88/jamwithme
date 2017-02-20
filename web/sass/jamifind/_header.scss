@@ -6,6 +6,7 @@ header {
 	right: 0;
 	top: 0;
 	z-index: 100;
+	border-bottom: 2px solid #FBBC09;
 	@include respond-to(tablet) {
 		@include transition(left 0.1s linear);
 		// height: 78px;
@@ -15,6 +16,35 @@ header {
 			left: 159px;
 		}
 	}
+
+	&.is-active {
+
+		.navbar-open{
+			display: none;
+		}
+
+		.navbar-close{
+			display: inline-block;
+
+			span{
+				background: #2b2a3b;
+				padding: 5px;
+			}
+		}
+
+		.navbar-toggle{
+			padding: 0;
+		}
+	}
+
+	.navbar-close{
+		display: none;
+		color: #fff;
+		font-size: 27px;
+		position: relative;
+		left: -16px;
+	}
+
 }
 
 .navbar-brand {
@@ -237,5 +267,40 @@ header {
 		font-family: "Hind Medium";
 		font-size: 11px;
 		text-transform: none;
+	}
+}
+
+.nav-language {
+	position: relative;
+	top: -4px;
+
+	#langaugeMenuHome{
+		font-size: 12px;
+		background: none;
+		color: #a7a7af;
+	}
+
+	ul.dropdown-menu {
+		background-color: #000;
+		padding: 0;
+		min-width: auto;
+
+		li{
+			margin: 0;
+			display: block;
+			padding: 2px 10px;
+
+			a {
+				font-size: 14px;
+				color: #a7a7af;
+			}
+		}
+	}
+
+	.dropdown-menu > .active > a,
+	.dropdown-menu > .active > a:hover,
+	.dropdown-menu > .active > a:focus {
+		background: none;
+		color: #fff;
 	}
 }
