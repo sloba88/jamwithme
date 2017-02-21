@@ -143,6 +143,7 @@ class LocationSetListener {
         $ret->setLat($result['lat']);
         $ret->setLng($result['lon']);
         $ret->setAddress($result['display_name']);
+        $ret->setIsTemporary(false);
 
         return $ret;
     }
