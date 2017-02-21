@@ -17,8 +17,8 @@
     {% block stylesheets %}
         {% if is_granted('ROLE_USER') %}
             {% stylesheets
-            'vendor/font-awesome/css/font-awesome.css'
             'vendor/select2/dist/css/select2.min.css'
+            'vendor/font-awesome/css/font-awesome.css'
             'vendor/perfect-scrollbar/css/perfect-scrollbar.css'
             'vendor/jquery-ui/themes/base/jquery-ui.css'
             'vendor/fancybox/source/jquery.fancybox.css'
@@ -27,7 +27,7 @@
             'vendor/leaflet.markercluster/dist/MarkerCluster.Default.css'
             'assets/css/styles.css'
             %}
-            <link rel="stylesheet" href="{{ asset_url }}">
+            <link rel="stylesheet" href="{{ asset_url }}?1">
             {% endstylesheets %}
 
         {% else %}
@@ -43,7 +43,7 @@
             'assets/css/styles.css'
             'landing/css/style.css'
             %}
-            <link rel="stylesheet" href="{{ asset_url }}">
+            <link rel="stylesheet" href="{{ asset_url }}?2">
             {% endstylesheets %}
 
         {% endif %}
