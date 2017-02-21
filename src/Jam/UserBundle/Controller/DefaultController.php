@@ -63,6 +63,15 @@ class DefaultController extends Controller
 
         $imagine = $this->container->get('liip_imagine.controller');
 
+        if (is_null($user)) {
+            return $imagine
+                ->filterAction(
+                    $this->get('request_stack')->getCurrentRequest(),         // http request
+                    'uploads/placeholder-user.png',      // original image you want to apply a filter to
+                    $size             // filter defined in config.yml
+                );
+        }
+
         /** @var RedirectResponse */
         return $imagine
             ->filterAction(
