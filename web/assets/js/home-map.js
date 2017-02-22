@@ -57,7 +57,7 @@ function placeMarkers() {
             var img = new Image();
             img.src = '/assets/images/icons-svg/' + v.instrument + '.svg';
             fragment.appendChild(img);
-            SVGInjector(fragment.childNodes, {}, function(){
+            SVGInjector(fragment.childNodes, {}, function() {
                 iconSource = fragment.childNodes[0].outerHTML;
                 createIcon(iconSource, v);
             });
@@ -118,7 +118,8 @@ function drawRadius(myLocation){
 function initMap(){
     if (!mapInitialized){
 
-        map = L.map('map', { scrollWheelZoom: false, zoomControl:false, doubleClickZoom: false });
+        map = L.map('map', { scrollWheelZoom: false, zoomControl: true, doubleClickZoom: false });
+        map.zoomControl.setPosition('bottomleft');
 
         L.tileLayer('https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
             attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
@@ -129,7 +130,7 @@ function initMap(){
             base: 'base'
         }).addTo(map);
 
-        map.on('moveend', function(e) {
+        map.on('moveend', function() {
             resizeIcons();
         });
 
@@ -173,7 +174,7 @@ $(function() {
             initMap();
             fetchMapData(myLocation, false, function() {
                 setMyMarker();
-                map.setView(L.latLng(myLocation[0], myLocation[1]), 12, { animate: true });
+                map.setView(L.latLng(myLocation[0], myLocation[1]), 11, { animate: true });
             });
         }
     });

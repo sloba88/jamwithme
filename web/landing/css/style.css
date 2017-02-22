@@ -142,7 +142,8 @@ body.login-page {
 	bottom: 10px;
 	z-index: 9999;
 	text-align: center;
-	width: 100%;
+	width: 95%;
+	left: 37px;
 }
 
 .mapForm label {
