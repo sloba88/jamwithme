@@ -137,6 +137,16 @@ class SearchMusicians {
                     //if its also the name of category check category
                     $boolFilter->addFilter(new Terms('instruments.instrument.id', array(26)));
                 }
+
+                if ($d->getId() == 289) {
+                    //if its keyboard check synthesizer and vice versa
+                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(178)));
+                }
+
+                if ($d->getId() == 178) {
+                    //if its keyboard check synthesizer and vice versa
+                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(289)));
+                }
             }
 
             $boolFilter->addFilter(new Terms('instruments.instrument.id', explode(",", $search->getInstruments())));
