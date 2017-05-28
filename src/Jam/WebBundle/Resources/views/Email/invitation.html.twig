@@ -16,5 +16,7 @@
         <h6 style="font-size:14px">{{ from.username }}</h6>
     </div>
 
+    <br /><br />
+
     <a href="{{ url('home') }}?c={{ invitation.code }}" style="text-decoration: none; background-color: #FBBC09; color: #fff; padding: 5px 10px; font-size: 14px;">{{ 'email.accept.invitation'|trans }}</a>
 {% endblock %}
