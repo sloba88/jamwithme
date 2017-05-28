@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-02-06T19:31:16Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-05-28T17:51:05Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -51,7 +51,7 @@
       <trans-unit id="10588a9b649e63d4fddf51d014e3beb7086f8ea0" resname="button.find.out.more">
         <source>button.find.out.more</source>
         <target state="new">Find out more</target>
-        <jms:reference-file line="156">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="163">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3768ebd9deb0f606d18cfa1d01584ddbd27df024" resname="button.finish">
         <source>button.finish</source>
@@ -61,13 +61,13 @@
       <trans-unit id="61fb451d69ef51d5c44f32eab0694c26e61ae34a" resname="button.home.login">
         <source>button.home.login</source>
         <target state="new">Login</target>
-        <jms:reference-file line="530">/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="564">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="160">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="194">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
         <target state="new">invite selected</target>
-        <jms:reference-file line="17">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="25">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="de272e8c666c73df86607b22ca2f7fffb7784abf" resname="button.jam.add.member">
         <source>button.jam.add.member</source>
@@ -141,7 +141,7 @@
       <trans-unit id="427681cdcf211c177224b8aa9dd1591f43ff7b85" resname="button.select.all">
         <source>button.select.all</source>
         <target state="new">Select all</target>
-        <jms:reference-file line="20">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="28">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eb9e2376af2e391ea0e1e9e484f9a7704272bff6" resname="button.send">
         <source>button.send</source>
@@ -154,25 +154,30 @@
         <target state="new">Sign up</target>
         <jms:reference-file line="86">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="38">/../src/Jam/UserBundle/Resources/views/Security/login_content.html.twig</jms:reference-file>
-        <jms:reference-file line="528">/Resources/views/base.html.twig</jms:reference-file>
-        <jms:reference-file line="562">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="158">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="192">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ada0d20a0a48fd122222a99c85384682f7343a6" resname="button.try.it.out">
         <source>button.try.it.out</source>
         <target state="new">Try it out</target>
-        <jms:reference-file line="144">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="151">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6d2951fc2f2bef90fce999a1d0604198a5e2977e" resname="email.accept.invitation">
         <source>email.accept.invitation</source>
         <target state="new">Accept invitation</target>
-        <jms:reference-file line="15">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
+        <jms:reference-file line="19">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
         <jms:reference-file line="17">/../src/Jam/WebBundle/Resources/views/Email/jamInvitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eab0ce4518fb01dcd7532e1a48d515de8d15526e" resname="email.invitation.text">
         <source>email.invitation.text</source>
-        <target state="new">Jamifind is a free platform for all musicians to find new collaboration partners. Join the revolution!</target>
-        <jms:reference-file line="13">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
+        <target state="new">Jamifind is a free platform for all musicians to find band members, music teachers or people to jam with. Join the revolution!</target>
+        <jms:reference-file line="8">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
         <jms:reference-file line="15">/../src/Jam/WebBundle/Resources/views/Email/jamInvitation.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="dce16599330153e02c549dd8caa4b63b17e2167f" resname="email.invitation.text.invited.by">
+        <source>email.invitation.text.invited.by</source>
+        <target state="new">You’ve been invited by</target>
+        <jms:reference-file line="12">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ead925b97147d5ea08bd220f3d979af2fcbf259c" resname="email.see.all.messages">
         <source>email.see.all.messages</source>
@@ -186,7 +191,7 @@
       </trans-unit>
       <trans-unit id="918afa5c6cdf8b9375ba036691f27829d7209fee" resname="email.you.have.been.invited">
         <source>email.you.have.been.invited</source>
-        <target state="new">You have been invited to join Jamifind by:</target>
+        <target state="new">Welcome to Jamifind!</target>
         <jms:reference-file line="4">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
         <jms:reference-file line="4">/../src/Jam/WebBundle/Resources/views/Email/jamInvitation.html.twig</jms:reference-file>
       </trans-unit>
@@ -198,7 +203,7 @@
       <trans-unit id="17faad85a87a3e84000ba3dbeb09d219118d36e4" resname="exception.file.not.sent">
         <source>exception.file.not.sent</source>
         <target state="new">exception.file.not.sent</target>
-        <jms:reference-file line="149">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="158">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="e360c037aa80f7f0bff41074a8aee2492ff7cf77" resname="exception.image.not.found">
         <source>exception.image.not.found</source>
@@ -223,7 +228,7 @@
       <trans-unit id="664755ae94dc7ff54ee4b6bcefb764bcd1c9fc17" resname="exception.there.is.no.image.with.that.id">
         <source>exception.there.is.no.image.with.that.id</source>
         <target state="new">exception.there.is.no.image.with.that.id</target>
-        <jms:reference-file line="205">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="214">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="49bf409d86c4843754d867e9801429d982d5988a" resname="exception.this.user.does.not.have.access.to.this.section">
         <source>exception.this.user.does.not.have.access.to.this.section</source>
@@ -250,10 +255,10 @@
         <source>exception.you.shall.not.pass</source>
         <target state="new">exception.you.shall.not.pass</target>
         <jms:reference-file line="216">/../src/Jam/ApiBundle/Controller/ShoutsController.php</jms:reference-file>
-        <jms:reference-file line="104">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="134">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="195">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
-        <jms:reference-file line="290">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="113">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="143">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="204">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="299">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
         <jms:reference-file line="300">/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
         <jms:reference-file line="342">/../src/Jam/WebBundle/Controller/JamController.php</jms:reference-file>
       </trans-unit>
@@ -704,7 +709,7 @@
       <trans-unit id="aae9b576a53cc536781bd10b80bc13a6c6ef8d54" resname="label.search.users">
         <source>label.search.users</source>
         <target state="new">search users</target>
-        <jms:reference-file line="515">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="145">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8788c0ef76fda341a55e9e406055d74357d1400e" resname="label.set.profile.photo">
         <source>label.set.profile.photo</source>
@@ -805,17 +810,27 @@
       <trans-unit id="456968ba9af6660e2b2696190e830c0f876c57e2" resname="link.home.about">
         <source>link.home.about</source>
         <target state="new">Find out more</target>
-        <jms:reference-file line="538">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="168">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9416764810fe1a1d70f9b43d2737cfde699b847d" resname="message.avatar.changed.successfully.">
         <source>message.avatar.changed.successfully.</source>
         <target state="new">Profile photo changed successfully.</target>
-        <jms:reference-file line="323">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="332">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4ecca5284e1f0abb2bfae6fc83a7fa35d04cf364" resname="message.email.invited.title">
+        <source>message.email.invited.title</source>
+        <target state="new">Your friend has invited you to Jamifind!</target>
+        <jms:reference-file line="88">/../src/Jam/ApiBundle/Controller/InviteController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae26a7b2b4b91e62745ad264586ea433a76b3e7" resname="message.image.removed.successfully">
         <source>message.image.removed.successfully</source>
         <target state="new">Image removed successfully.</target>
-        <jms:reference-file line="223">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+        <jms:reference-file line="232">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0a67fbaa65bf540d35093531015e06848967ddac" resname="message.invitation.sent">
+        <source>message.invitation.sent</source>
+        <target state="new">Congratulations, your invites were sent successfully!</target>
+        <jms:reference-file line="102">/../src/Jam/ApiBundle/Controller/InviteController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="94a0af19e3069c835182069b668e11027abe0637" resname="message.jam.added.to.interest">
         <source>message.jam.added.to.interest</source>
@@ -905,7 +920,7 @@
       <trans-unit id="8c32d1e2e0999e1d2c2ce9c66dcd46a0cea15eef" resname="placeholder.find.by.name.or.email">
         <source>placeholder.find.by.name.or.email</source>
         <target state="new">Find by name or email</target>
-        <jms:reference-file line="24">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="32">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c010d9f4cb6e9b57e14bf07abc00f90b706e623b" resname="placeholder.km.around.you">
         <source>placeholder.km.around.you</source>
@@ -1102,7 +1117,7 @@
         <source>text.like.our.page</source>
         <target state="new">Follow us on Facebook</target>
         <jms:reference-file line="25">/../src/Jam/WebBundle/Resources/views/Events/index.html.twig</jms:reference-file>
-        <jms:reference-file line="48">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="56">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="01a932aabb85e7ec7ea4b670009e8206889ca522" resname="text.logout">
         <source>text.logout</source>
@@ -1134,7 +1149,7 @@
       <trans-unit id="767163315825668c13c0c8a21256765361d5ac49" resname="text.meta.description">
         <source>text.meta.description</source>
         <target state="new">Find musicians and band members. Looking for the right guitar teacher? Meet them on Jamifind</target>
-        <jms:reference-file line="431">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="69">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="7">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8873f1f7fbc7b069f1fa0d1394b3882fc8714a88" resname="text.musicians">
@@ -1198,7 +1213,7 @@
                             Share your sounds, video and images with others and get discovered.
                             Connect with hundreds of local musicians and music teachers and find
                             the right people for your musical pursuits.  </target>
-        <jms:reference-file line="137">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="144">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6c237c71d243abbe872b810686ab9e9b02db664c" resname="text.register.desc">
         <source>text.register.desc</source>
@@ -1213,12 +1228,12 @@
       <trans-unit id="f992e037aa3c062e872354e861023eb63b3f65e2" resname="text.register.find">
         <source>text.register.find</source>
         <target state="new">Find the right musicians!</target>
-        <jms:reference-file line="136">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="143">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="662b9d32a53d05b8afc734582d9c140f98655ab8" resname="text.register.join.community">
         <source>text.register.join.community</source>
         <target state="new">Register and join Jamifind for free!</target>
-        <jms:reference-file line="153">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="160">/../src/Jam/UserBundle/Resources/views/Registration/register.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="20dd7d2a0066a7764bdeca24bf264e870b8edc8f" resname="text.register.title">
         <source>text.register.title</source>
@@ -1244,7 +1259,7 @@
         <source>text.share.us.on.facebook</source>
         <target state="new">Spread the word on Facebook</target>
         <jms:reference-file line="18">/../src/Jam/WebBundle/Resources/views/Events/index.html.twig</jms:reference-file>
-        <jms:reference-file line="41">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
+        <jms:reference-file line="49">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="625c2310e20ed85364204bcb8a6f47c0b6e0f188" resname="text.shout.again.in">
         <source>text.shout.again.in</source>

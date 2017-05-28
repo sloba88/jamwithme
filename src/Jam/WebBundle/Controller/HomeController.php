@@ -28,6 +28,18 @@ class HomeController extends Controller
      */
     public function inviteAction(Request $request)
     {
+        $totalInvitationsCount = count($this->getDoctrine()
+            ->getRepository('JamUserBundle:Invitation')
+            ->findBy(
+                array(
+                    'creator' => $this->getUser(),
+                    'accepted' => true
+                ))
+        );
+
+        return array(
+            'totalInvitationsCount' => $totalInvitationsCount
+        );
     }
 
     /**

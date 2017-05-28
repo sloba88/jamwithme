@@ -85,7 +85,7 @@ class InviteController extends FOSRestController
             ));
 
             $message = \Swift_Message::newInstance()
-                ->setSubject("You have been invited to join Jamifind")
+                ->setSubject($this->get('translator')->trans('message.email.invited.title'))
                 ->setFrom('noreply@jamifind.com')
                 ->setTo($email)
                 ->setBody($messageBody, 'text/html');
@@ -99,7 +99,7 @@ class InviteController extends FOSRestController
 
             $response->setData(array(
                 'status' => 'success',
-                'message' => 'Invitations sent successfully.',
+                'message' => $this->get('translator')->trans('message.invitation.sent'),
             ));
 
             return $response;

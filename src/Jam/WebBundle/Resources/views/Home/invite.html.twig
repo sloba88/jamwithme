@@ -12,6 +12,14 @@
         </div>
     </div>
 
+    <div class="importContactsFromGmailHolder">
+        <button class="btn btn-default" style="width:280px" id="importContactsFromGmail">Import contacts from Gmail &nbsp; <img src="{{ asset('assets/images/Gmail_Icon.png') }}" style="position: relative; top: -1px;" /></button>
+    </div>
+    <div>
+        <br />
+        <p>Total invitations accepted: <strong>{{ totalInvitationsCount }}</strong></p>
+    </div>
+
     <div class="row invite-commands hidden" style="margin-bottom: 20px;">
         <div class="col-md-3 pull-left">
             <button class="btn btn-primary" id="send-invites"><i class="fa fa-envelope-o"></i> {{ 'button.invite.selected'|trans }}</button>
@@ -27,7 +35,7 @@
 
     <div class="view-tab-container with-scrollbar">
         <form id="send-invites-form">
-             <div class="view-tab people-listing-grid row is-active loading-content"></div>
+             <div class="view-tab people-listing-grid row is-active"></div>
         </form>
     </div>
 

@@ -2,17 +2,24 @@
 
 /* global gapi */
 /* global scrollbarPlugin */
+/* global $ */
 
 function gapiLoad() {
+
+}
+
+$('body').on('click', '#importContactsFromGmail', function(e) {
+    e.preventDefault();
     var config = {
         'client_id': '429745829616-l08gihug3r9o9fvj76oh0jdts3sq4g6j.apps.googleusercontent.com',
-        'scope': 'https://www.google.com/m8/feeds'
+        'scope': 'https://www.google.com/m8/feeds',
+        'immediate': false
     };
 
     gapi.auth.authorize(config, function() {
         fetch(gapi.auth.getToken());
     });
-}
+});
 
 function fetch(token) {
     $.ajax({
@@ -25,6 +32,7 @@ function fetch(token) {
             });
 
             $('.invite-commands').removeClass('hidden');
+            $('.importContactsFromGmailHolder').addClass('hidden');
 
             scrollbarPlugin();
         }
