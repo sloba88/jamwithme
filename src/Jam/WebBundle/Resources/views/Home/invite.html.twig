@@ -13,11 +13,11 @@
     </div>
 
     <div class="importContactsFromGmailHolder">
-        <button class="btn btn-default" style="width:280px" id="importContactsFromGmail">Import contacts from Gmail &nbsp; <img src="{{ asset('assets/images/Gmail_Icon.png') }}" style="position: relative; top: -1px;" /></button>
+        <button class="btn btn-default" style="width:280px" id="importContactsFromGmail">{{ 'button.import.contacts.from'|trans }} Gmail &nbsp; <img src="{{ asset('assets/images/Gmail_Icon.png') }}" style="position: relative; top: -1px;" /></button>
     </div>
     <div>
         <br />
-        <p>Total invitations accepted: <strong>{{ totalInvitationsCount }}</strong></p>
+        <p>{{ 'label.number.of.invitations'|trans }}: <strong>{{ totalInvitationsCount }}</strong></p>
     </div>
 
     <div class="row invite-commands hidden" style="margin-bottom: 20px;">

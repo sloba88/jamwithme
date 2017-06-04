@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-05-28T17:51:55Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
+  <file date="2017-06-04T18:01:15Z" source-language="en" target-language="fi" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -63,6 +63,11 @@
         <target state="new">Sisään</target>
         <jms:reference-file line="160">/Resources/views/base.html.twig</jms:reference-file>
         <jms:reference-file line="194">/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="be09abcd6fe153eda988b881b44a4ee14866f0d5" resname="button.import.contacts.from">
+        <source>button.import.contacts.from</source>
+        <target state="new">Tuo yhteystietoja</target>
+        <jms:reference-file line="16">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b8ad83c2fec18d599c7e5e1f1709d5bed501f30e" resname="button.invite.selected">
         <source>button.invite.selected</source>
@@ -165,7 +170,7 @@
       <trans-unit id="6d2951fc2f2bef90fce999a1d0604198a5e2977e" resname="email.accept.invitation">
         <source>email.accept.invitation</source>
         <target>Hyväksy kutsu</target>
-        <jms:reference-file line="19">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
+        <jms:reference-file line="21">/../src/Jam/WebBundle/Resources/views/Email/invitation.html.twig</jms:reference-file>
         <jms:reference-file line="17">/../src/Jam/WebBundle/Resources/views/Email/jamInvitation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eab0ce4518fb01dcd7532e1a48d515de8d15526e" resname="email.invitation.text">
@@ -662,6 +667,11 @@
         <jms:reference-file line="244">/../src/Jam/UserBundle/Resources/views/Profile/show.html.twig</jms:reference-file>
         <jms:reference-file line="175">/../src/Jam/WebBundle/Resources/views/Jam/view.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="100accda31da952299dbe4f0de25f1bbe06c27c7" resname="label.number.of.invitations">
+        <source>label.number.of.invitations</source>
+        <target state="new">Hyväksytyt kutsut yhteensä</target>
+        <jms:reference-file line="20">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="cfa8968dae7b2e10025cf371de43768dea0fa1ef" resname="label.password">
         <source>label.password</source>
         <target state="new">Salasana</target>
@@ -820,6 +830,7 @@
       <trans-unit id="4ecca5284e1f0abb2bfae6fc83a7fa35d04cf364" resname="message.email.invited.title">
         <source>message.email.invited.title</source>
         <target state="new">Ystäväsi kutsui sinut Jamifindiin!</target>
+        <jms:reference-file line="36">/../src/Jam/ApiBundle/Controller/InviteController.php</jms:reference-file>
         <jms:reference-file line="88">/../src/Jam/ApiBundle/Controller/InviteController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ae26a7b2b4b91e62745ad264586ea433a76b3e7" resname="message.image.removed.successfully">
@@ -831,6 +842,7 @@
         <source>message.invitation.sent</source>
         <target state="new">Onnittelut, kutsujen lähetys onnistui!</target>
         <jms:reference-file line="102">/../src/Jam/ApiBundle/Controller/InviteController.php</jms:reference-file>
+        <jms:reference-file line="52">/../src/Jam/ApiBundle/Controller/InviteController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="94a0af19e3069c835182069b668e11027abe0637" resname="message.jam.added.to.interest">
         <source>message.jam.added.to.interest</source>
