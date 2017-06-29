@@ -3,10 +3,8 @@
 /* global gapi */
 /* global scrollbarPlugin */
 /* global $ */
-
-function gapiLoad() {
-
-}
+/* global Routing */
+/* global addMessage */
 
 $('body').on('click', '#importContactsFromGmail', function(e) {
     e.preventDefault();
@@ -18,6 +16,22 @@ $('body').on('click', '#importContactsFromGmail', function(e) {
 
     gapi.auth.authorize(config, function() {
         fetch(gapi.auth.getToken());
+    });
+});
+
+$('body').on('click', '#inviteByEmailBtn', function(e) {
+    e.preventDefault();
+    var email = $('#inviteByEmailEmail').val();
+    $.ajax({
+        url: Routing.generate('send_invite_email'),
+        type: 'POST',
+        data: { 'email': email },
+        success: function(result) {
+            if (result.status === 'success') {
+                addMessage(result.status, result.message);
+                $('#inviteByEmailEmail').val('');
+            }
+        }
     });
 });
 
