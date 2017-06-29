@@ -82,3 +82,8 @@ Exctract translations
 php app/console translation:extract en --config=app
 php app/console translation:extract fi --config=app
 ```
+
+Compile sass
+```
+cd web; compass compile; cd ..;
+```
