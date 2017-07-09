@@ -110,4 +110,16 @@ class HomeController extends Controller
         );
 
     }
+
+    /**
+     * @Route("/win-a-gift-card-to-music-store", name="chance_to_win", options={"expose"=true})
+     * @Template
+     */
+    public function competeAction(Request $request)
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->redirect($this->generateUrl('home'));
+        }
+    }
+
 }

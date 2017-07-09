@@ -7,6 +7,7 @@
 <div class="filters-area">
     <div class="filters-heading clearfix">
         <h1 class="filters-title">{{ filterTitle }} {{ app.request.get('genre') }}</h1>
+        {% if is_granted('ROLE_ADMIN') %}{{ 'compete.text.filter'|trans|raw }}{% endif %}
     </div>
 
     <form id="main-filter-form" data-value='{{ searchParams ? searchParams|json_encode|raw : '' }}'>
