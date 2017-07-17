@@ -189,6 +189,9 @@
                         All people living in EU can participate in the competition / raffle (UK included).
                     </li>
                     <li>
+                        You can participate in the raffle on Facebook by liking and commenting the <a href="https://www.facebook.com/jamifind/" target="_blank">post</a>.
+                    </li>
+                    <li>
                         You can participate in the raffle on Facebook by liking and commenting the post (link).
                     </li>
                     <li>
@@ -231,10 +234,10 @@
         <target state="new"><![CDATA[
         
             <p>
-                <h4>Invite friends to Jamifind, win a gift card and high end headphones!</h4>
+                <h4>Invite friends to Jamifind, win a gift card and high-end headphones!</h4>
             </p>
             <p>
-                Three people that send the most invites to new users via our platform, Jamifind, will win a gift card to F-music’s online store! </p>
+                Three people that send the most invites to new users via our platform, Jamifind, will win a gift card to <a href="https://www.f-musiikki.fi/" target="_blank">F-Musiikki's online store</a>! </p>
 
                 <ul>
                     <li>1st. place 200€</li>
@@ -242,7 +245,7 @@
                     <li>3rd. place 50€</li>
                 </ul>
             <br />
-            <p>We will also raffle Beyerdynamic headphones (RRP 179€) between all the people that have liked and commented the post about this competition on our Facebook page. The competition ends on July 31st 2017.</p>
+            <p>We will also raffle Beyerdynamic headphones (RRP 179€) between all the people that have liked and commented the post about this competition on our <a href="https://www.facebook.com/jamifind/" target="_blank">Facebook page</a>. The competition ends on July 31st 2017.</p>
         
         ]]></target>
         <jms:reference-file line="12">/../src/Jam/WebBundle/Resources/views/Home/compete.html.twig</jms:reference-file>
