@@ -242,7 +242,7 @@
                             <li>3. sija 50€</li>
                         </ul>
                     <br />
-                    <p>Arvomme myös Beyerdynamic kuulokkeet (sh. 179€) kaikkien tätä kisaa koskevaa <a href="https://www.facebook.com/jamifind/" target="_blank">facebook-postausta</a> tykänneiden ja kommentoineiden kesken. Kilpailu päättyy 31.7.2017</p>
+                    <p>Arvomme myös Beyerdynamic kuulokkeet (sh. 179€) kaikkien tätä kisaa koskevaa <a href="https://www.facebook.com/jamifind/" target="_blank">facebook-postausta</a> tykänneiden ja kommentoineiden kesken. Kilpailu päättyy 15.8.2017</p>
 
                 ]]></target>
         <jms:reference-file line="12">/../src/Jam/WebBundle/Resources/views/Home/compete.html.twig</jms:reference-file>

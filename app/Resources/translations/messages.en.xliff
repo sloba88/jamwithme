@@ -242,7 +242,7 @@
                     <li>3rd. place 50€</li>
                 </ul>
             <br />
-            <p>We will also raffle Beyerdynamic headphones (RRP 179€) between all the people that have liked and commented the post about this competition on our <a href="https://www.facebook.com/jamifind/" target="_blank">Facebook page</a>. The competition ends on July 31st 2017.</p>
+            <p>We will also raffle Beyerdynamic headphones (RRP 179€) between all the people that have liked and commented the post about this competition on our <a href="https://www.facebook.com/jamifind/" target="_blank">Facebook page</a>. The competition ends on August 15th 2017.</p>
         
         ]]></target>
         <jms:reference-file line="12">/../src/Jam/WebBundle/Resources/views/Home/compete.html.twig</jms:reference-file>
