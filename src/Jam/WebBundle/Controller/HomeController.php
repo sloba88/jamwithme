@@ -117,9 +117,6 @@ class HomeController extends Controller
      */
     public function competeAction(Request $request)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->redirect($this->generateUrl('home'));
-        }
     }
 
 }

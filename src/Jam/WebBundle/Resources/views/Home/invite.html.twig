@@ -12,16 +12,13 @@
         </div>
     </div>
 
-    {% if is_granted('ROLE_ADMIN') %}
-        <h2 style="font-size: 26px; margin-top: 0;">{{ 'title.compete'|trans|raw }}</h2>
+    <h2 style="font-size: 26px; margin-top: 0;">{{ 'title.compete'|trans|raw }}</h2>
 
-        {{ 'compete.text'|trans|raw }}
+    {{ 'compete.text'|trans|raw }}
 
-        <a href="{{ path('chance_to_win') }}" style="text-decoration: underline">{{ 'button.find.out.more'|trans }}</a>
+    <a href="{{ path('chance_to_win') }}" style="text-decoration: underline">{{ 'button.find.out.more'|trans }}</a>
 
-        <br /><br />
-
-    {% endif %}
+    <br /><br />
 
     <div class="inviteByEmail row" style="margin-bottom: 10px">
         <div class="col-md-8">
