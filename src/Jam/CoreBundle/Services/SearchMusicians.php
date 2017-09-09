@@ -2,13 +2,11 @@
 
 namespace Jam\CoreBundle\Services;
 
-use Elastica\Filter\BoolFilter;
-use Elastica\Filter\BoolOr;
-use Elastica\Filter\Ids;
-use Elastica\Filter\Terms;
+use Elastica\Query\Ids;
+use Elastica\Query\Terms;
 use Elastica\Query;
-use Elastica\Query\Filtered;
 use Elastica\Query\Match;
+use Elastica\Query\BoolQuery;
 use Elastica\Query\MatchAll;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
 use Happyr\Google\AnalyticsBundle\Service\Tracker;
@@ -103,66 +101,64 @@ class SearchMusicians {
         }
 
         $q = new Query();
-        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery = new BoolQuery($q);
         $elasticaQuery->addMust(new MatchAll());
 
         if ($search->getGenres() != ''){
             //search by selected filter genres
             $genres = $this->genreFinder->find(str_replace("genres", "id", $search->getGenres()));
-            $boolFilter = new BoolOr();
 
             foreach($genres AS $d) {
                 if ($d->getCategory()->getName() == $d->getName()) {
                     //if its also the name of category check category
-                    $boolFilter->addFilter(new Terms('genres.genre.category.id', array($d->getCategory()->getId())));
+                    $elasticaQuery->addShould(new Terms('genres.genre.category.id', array($d->getCategory()->getId())));
                 }
             }
 
-            $boolFilter->addFilter(new Terms('genres.genre.id', explode(",", $search->getGenres())));
-            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+            $elasticaQuery->addMust(new Terms('genres.genre.id', explode(",", $search->getGenres())));
         }
 
         if ($search->getInstruments() != ''){
 
             $instruments = $this->instrumentFinder->find(str_replace("instruments", "id", $search->getInstruments()));
-            $boolFilter = new BoolOr();
+            $q = new BoolQuery();
 
             foreach($instruments AS $d) {
                 if ($d->getCategory()->getName() == $d->getName() || ($d->getCategory()->getId() == 1 && $d->getId() == 37)) {
                     //if its also the name of category check category
-                    $boolFilter->addFilter(new Terms('instruments.instrument.category.id', array($d->getCategory()->getId())));
+                    $q->addShould(new Terms('instruments.instrument.category.id', array($d->getCategory()->getId())));
                 }
 
                 if ($d->getId() == 263) {
                     //if its also the name of category check category
-                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(26)));
+                    $q->addShould(new Terms('instruments.instrument.id', array(26)));
                 }
 
                 if ($d->getId() == 289) {
                     //if its keyboard check synthesizer and vice versa
-                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(178)));
+                    $q->addShould(new Terms('instruments.instrument.id', array(178)));
                 }
 
                 if ($d->getId() == 178) {
                     //if its keyboard check synthesizer and vice versa
-                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(289)));
+                    $q->addShould(new Terms('instruments.instrument.id', array(289)));
                 }
             }
 
-            $boolFilter->addFilter(new Terms('instruments.instrument.id', explode(",", $search->getInstruments())));
-            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+            $q->addShould(new Terms('instruments.instrument.id', explode(",", $search->getInstruments())));
+            $elasticaQuery->addMust($q);
         }
 
         //prefer matches with my other genres
         if (count($me->getGenresIdsArray()) > 0) {
-            $elasticaQuery->addShould(new Query\Terms('genres.genre.id', $me->getGenresIdsArray()));
+            $elasticaQuery->addShould(new Terms('genres.genre.id', $me->getGenresIdsArray()));
 
             $genresCategories = $me->getGenres()->map(function($genre){
                 return $genre->getGenre()->getCategory()->getId();
             })->toArray();
 
             //also check genre categories
-            $elasticaQuery->addShould(new Query\Terms('genres.genre.category.id', $genresCategories));
+            $elasticaQuery->addShould(new Terms('genres.genre.category.id', $genresCategories));
         }
 
         //add artists to the mix
@@ -171,7 +167,7 @@ class SearchMusicians {
                 return $artist->getId();
             })->toArray();
 
-            $elasticaQuery->addShould(new Query\Terms('artists.id', $ids));
+            $elasticaQuery->addShould(new Terms('artists.id', $ids));
         }
 
         //add commitment to the list
@@ -184,13 +180,13 @@ class SearchMusicians {
         }
 
         if ($distance && $me->getLat()){
-            $locationFilter = new \Elastica\Filter\GeoDistance(
+            $locationFilter = new \Elastica\Query\GeoDistance(
                 'pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
                 ($distance ? $distance : '100') . 'km'
             );
 
-            $elasticaQuery->addMust(new Filtered(null, $locationFilter));
+            $elasticaQuery->addMust($locationFilter);
 
             //also query on the same filter to get points
             $functionScore = new Query\FunctionScore();
@@ -224,9 +220,9 @@ class SearchMusicians {
         }
 
         //kick me out of result set
-        $idsFilter = new Ids();
+        $idsFilter = new Query\Ids();
         $idsFilter->setIds(array($me->getId()));
-        $elasticaQuery->addMustNot(new Filtered(null, $idsFilter));
+        $elasticaQuery->addMustNot($idsFilter);
 
         $query = new Query($elasticaQuery);
         $query->setSize($perPage);
@@ -247,43 +243,41 @@ class SearchMusicians {
         }
 
         $q = new Query();
-        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery = new BoolQuery($q);
         $elasticaQuery->addMust(new MatchAll());
 
         if (isset($request['genres']) && $request['genres'] != ''){
 
-
             $genres = $this->genreFinder->find($request['genres']);
-            $boolFilter = new BoolOr();
             foreach($genres AS $d) {
                 if ($d->getCategory()->getName() == $d->getName()) {
                     //if its also the name of category check category
-                    $boolFilter->addFilter(new Terms('genres.genre.category.id', array($d->getCategory()->getId())));
+                    $elasticaQuery->addShould(new Terms('genres.genre.category.id', array($d->getCategory()->getId())));
                 }
             }
 
-            $boolFilter->addFilter(new Terms('genres.genre.id', explode(",", $request['genres'])));
-            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+            $elasticaQuery->addMust(new Terms('genres.genre.id', explode(",", $request['genres'])));
         }
 
         if (isset($request['instruments']) && $request['instruments'] != ''){
             $instruments = $this->instrumentFinder->find($request['instruments']);
-            $boolFilter = new BoolOr();
+
+            $q = new BoolQuery();
 
             foreach($instruments AS $d) {
                 if ($d->getCategory()->getName() == $d->getName() || ($d->getCategory()->getId() == 1 && $d->getId() == 37)) {
                     //if its also the name of category check category
-                    $boolFilter->addFilter(new Terms('instruments.instrument.category.id', array($d->getCategory()->getId())));
+                    $elasticaQuery->addShould(new Terms('instruments.instrument.category.id', array($d->getCategory()->getId())));
                 }
 
                 if ($d->getId() == 263) {
                     //if its also the name of category check category
-                    $boolFilter->addFilter(new Terms('instruments.instrument.id', array(26)));
+                    $q->addShould(new Terms('instruments.instrument.id', array(26)));
                 }
             }
 
-            $boolFilter->addFilter(new Terms('instruments.instrument.id', explode(",", $request['instruments'])));
-            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+            $q->addShould(new Terms('instruments.instrument.id', explode(",", $request['instruments'])));
+            $elasticaQuery->addMust($q);
         }
 
         if (isset($request['locations']) && $request['locations'] != '') {
@@ -306,7 +300,7 @@ class SearchMusicians {
     public function getOneMusician($userId, $me)
     {
         $q = new Query();
-        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery = new BoolQuery($q);
         $elasticaQuery->addMust(new MatchAll());
 
         $functionScore = new Query\FunctionScore();
@@ -354,7 +348,7 @@ class SearchMusicians {
 
         $idsFilter = new Ids();
         $idsFilter->setIds(array($userId));
-        $elasticaQuery->addMust(new Filtered(null, $idsFilter));
+        $elasticaQuery->addMust($idsFilter);
 
         $query = new Query($elasticaQuery);
 
@@ -368,15 +362,17 @@ class SearchMusicians {
         $page = 1;
         $distance = 30;
 
-        $elasticaQuery = new MatchAll();
+        $q = new Query();
+        $elasticaQuery = new BoolQuery($q);
+        $elasticaQuery->addMust(new MatchAll());
 
         if ($location['lat'] && $location['lng']){
-            $locationFilter = new \Elastica\Filter\GeoDistance(
-                'user.pin',
+            $locationFilter = new \Elastica\Query\GeoDistance(
+                'pin',
                 array('lat' => floatval($location['lat']), 'lon' => floatval($location['lng'])),
                 ($distance ? $distance : '100') . 'km'
             );
-            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
+            $elasticaQuery->addMust($locationFilter);
         }
 
         $query = new \Elastica\Query();
@@ -396,11 +392,11 @@ class SearchMusicians {
         $query->setFrom(0);
 
         $mltQuery = new Query\MoreLikeThis();
-        $mltQuery->setFields(array('instruments.instrument.id', 'artists.id', 'genres.genre.id', 'genres.genre.category.id', 'age', 'pin'));
+        $mltQuery->setFields(array('instruments.instrument.id', 'artists.id', 'genres.genre.id', 'genres.genre.category.id', 'age', 'location.administrative_area_level_3'));
+        $mltQuery->setMinTermFrequency(1);
+        $mltQuery->setMaxQueryTerms(12);
 
-        $like = array('ids' => array($user->getId()), 'min_term_freq' => 1, 'max_query_terms' => 12);
-
-        $mltQuery->setLike($like);
+        $mltQuery->setLike(array(array('_id' => $user->getId())));
 
         $query->setQuery($mltQuery);
 
@@ -412,16 +408,16 @@ class SearchMusicians {
         /* @var $jam \Jam\CoreBundle\Entity\Jam */
 
         $q = new Query();
-        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery = new BoolQuery($q);
 
         if ($jam->getLocation()){
             if ($jam->getLocation()->getLat() && $jam->getLocation()->getLng()) {
-                $locationFilter = new \Elastica\Filter\GeoDistance(
-                    'user.pin',
+                $locationFilter = new \Elastica\Query\GeoDistance(
+                    'pin',
                     array('lat' => floatval($jam->getLocation()->getLat()), 'lon' => floatval($jam->getLocation()->getLng())),
                     100 . 'km'
                 );
-                $elasticaQuery->addMust(new Filtered(null, $locationFilter));
+                $elasticaQuery->addMust($locationFilter);
             } else {
                 if ($jam->getLocation()->getAdministrativeAreaLevel3()) {
                     $elasticaQuery->addMust(new Match('location.administrative_area_level_3', array('query' => $jam->getLocation()->getAdministrativeAreaLevel3())));
@@ -429,16 +425,11 @@ class SearchMusicians {
             }
         }
 
-        $boolFilter = new BoolOr();
-        $boolFilter->addFilter(new Terms('instruments.instrument.id', $jam->getInstrumentsIds()));
-        $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+        $elasticaQuery->addMust(new Terms('instruments.instrument.id', $jam->getInstrumentsIds()));
 
         if (count($jam->getGenresIds()) > 0) {
-            $boolFilter = new BoolOr();
-            $boolFilter->addFilter(new Terms('genres.genre.id', $jam->getGenresIds()));
-            $elasticaQuery->addMust(new Filtered(null, $boolFilter));
+            $elasticaQuery->addMust(new Terms('genres.genre.id', $jam->getGenresIds()));
         }
-
 
         $query = new Query($elasticaQuery);
 

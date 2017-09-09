@@ -12,7 +12,8 @@ fos_elastica:
                         firstName: ~
                         lastName: ~
                         pin: { type: geo_point }
-                        profileFulfilment: ~
+                        profileFulfilment:
+                            type: "keyword"
                         location:
                             type: "object"
                             properties:
@@ -29,9 +30,9 @@ fos_elastica:
                         artists:
                             type: "object"
                             properties:
-                                id: { boost: 1.6 }
-                        commitment: { boost: 0.3 }
-                        age: { boost: 0.2 }
+                                id: { boost: 1.6, type: "text" }
+                        commitment: { boost: 0.3, type: "text" }
+                        age: { boost: 0.2, type: "text" }
                         isTeacher:
                             type: "boolean"
                         isJammer:

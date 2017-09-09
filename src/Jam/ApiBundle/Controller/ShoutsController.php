@@ -2,10 +2,9 @@
 
 namespace Jam\ApiBundle\Controller;
 
-use Elastica\Filter\BoolFilter;
-use Elastica\Filter\Term;
-use Elastica\Filter\Terms;
-use Elastica\Query\Filtered;
+use Elastica\Query;
+use Elastica\Query\Term;
+use Elastica\Query\Terms;
 use Elastica\Query\MatchAll;
 use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -37,33 +36,34 @@ class ShoutsController extends FOSRestController
         }
 
         $finder = $this->container->get('fos_elastica.finder.searches.shout');
-        $elasticaQuery = new MatchAll();
+        $q = new Query();
+        $elasticaQuery = new Query\BoolQuery($q);
+        $elasticaQuery->addMust(new MatchAll());
 
         if ($genres!=''){
             $categoryQuery = new Terms('genres.genre.id', explode(",", $genres));
-            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
+            $elasticaQuery->addMust($categoryQuery);
         }
 
         if ($instruments!=''){
             $categoryQuery = new Terms('instruments.instrument.id', explode(",", $instruments));
-            $elasticaQuery = new Filtered($elasticaQuery, $categoryQuery);
+            $elasticaQuery->addMust($categoryQuery);
         }
 
         if ($request->query->get('isTeacher')){
-            $boolFilter = new BoolFilter();
             $filter1 = new Term();
             $filter1->setTerm('isTeacher', '1');
-            $boolFilter->addMust($filter1);
-            $elasticaQuery = new Filtered($elasticaQuery, $boolFilter);
+            $elasticaQuery->addMust($filter1);
         }
 
         if ($request->query->get('distance') && $me->getLat()){
-            $locationFilter = new \Elastica\Filter\GeoDistance(
-                'pin',
+            $locationFilter = new \Elastica\Query\GeoDistance(
+                'creator.pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
-                (intval($distance) ? intval($distance) : '20') . 'km'
+                ($distance ? $distance : '100') . 'km'
             );
-            $elasticaQuery = new Filtered($elasticaQuery, $locationFilter);
+
+            $elasticaQuery->addMust($locationFilter);
         }
 
         $query = new \Elastica\Query();
