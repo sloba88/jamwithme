@@ -17,7 +17,8 @@ fos_elastica:
                         location:
                             type: "object"
                             properties:
-                                administrative_area_level_3: ~
+                                administrative_area_level_3:
+                                    type: keyword
                         genres:
                             type: "object"
                             properties:
