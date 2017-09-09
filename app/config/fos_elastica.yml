@@ -22,18 +22,21 @@ fos_elastica:
                             type: "object"
                             properties:
                                 genre.id: ~
-                                genre.name: ~
+                                genre.name:
+                                    type: keyword
                                 genre.category.id: ~
                         instruments:
                             type: "object"
                             properties:
                                 instrument.id: ~
                                 instrument.name:
+                                    type: keyword
                         artists:
                             type: "object"
                             properties:
                                 id: { boost: 1.6, type: "text" }
-                                name: ~
+                                name:
+                                    type: keyword
                         commitment: { boost: 0.3, type: "text" }
                         age: { boost: 0.2, type: "text" }
                         isTeacher:
