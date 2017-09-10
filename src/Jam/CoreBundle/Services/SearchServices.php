@@ -3,10 +3,8 @@
 namespace Jam\CoreBundle\Services;
 
 use Elastica\Query;
-use Elastica\Query\Filtered;
 use Elastica\Query\MatchAll;
 use FOS\ElasticaBundle\Finder\TransformedFinder;
-use Jam\CoreBundle\Entity\Search;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class SearchServices {
@@ -53,13 +51,13 @@ class SearchServices {
         $elasticaQuery->addMust(new MatchAll());
 
         if ($distance && $me->getLat()){
-            $locationFilter = new \Elastica\Filter\GeoDistance(
+            $locationFilter = new \Elastica\Query\GeoDistance(
                 'pin',
                 array('lat' => floatval($me->getLat()), 'lon' => floatval($me->getLon())),
                 ($distance ? $distance : '100') . 'km'
             );
 
-            $elasticaQuery->addMust(new Filtered(null, $locationFilter));
+            $elasticaQuery->addMust($locationFilter);
         }
 
         $query = new Query($elasticaQuery);
