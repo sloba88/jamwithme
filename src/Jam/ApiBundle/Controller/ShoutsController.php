@@ -111,11 +111,13 @@ class ShoutsController extends FOSRestController
 
             $location = '';
 
-            if ($m->getLocation()->getAdministrativeAreaLevel3()) {
-                if ($m->getLocation()->getNeighborhood()) {
-                    $location = $m->getLocation()->getNeighborhood() . ', ' . $m->getLocation()->getAdministrativeAreaLevel3();
-                } else {
-                    $location = $m->getLocation()->getAdministrativeAreaLevel3();
+            if ($m->getLocation()) {
+                if ($m->getLocation()->getAdministrativeAreaLevel3()) {
+                    if ($m->getLocation()->getNeighborhood()) {
+                        $location = $m->getLocation()->getNeighborhood() . ', ' . $m->getLocation()->getAdministrativeAreaLevel3();
+                    } else {
+                        $location = $m->getLocation()->getAdministrativeAreaLevel3();
+                    }
                 }
             }
 
