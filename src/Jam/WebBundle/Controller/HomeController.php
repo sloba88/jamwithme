@@ -110,13 +110,4 @@ class HomeController extends Controller
         );
 
     }
-
-    /**
-     * @Route("/win-a-gift-card-to-music-store", name="chance_to_win", options={"expose"=true})
-     * @Template
-     */
-    public function competeAction(Request $request)
-    {
-    }
-
 }

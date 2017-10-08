@@ -1421,12 +1421,6 @@
         <jms:reference-file line="43">/../src/Jam/UserBundle/Controller/DefaultController.php</jms:reference-file>
         <jms:reference-file line="4">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="6ce90b14e473560638a22c8137846a4191332c32" resname="title.compete">
-        <source>title.compete</source>
-        <target state="new">Summer Competition with F-Musiikki</target>
-        <jms:reference-file line="10">/../src/Jam/WebBundle/Resources/views/Home/compete.html.twig</jms:reference-file>
-        <jms:reference-file line="16">/../src/Jam/WebBundle/Resources/views/Home/invite.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="6b7cc5ab625a26401b804c3f5f47c5269f714841" resname="user.age">
         <source>%user.age% years old</source>
         <target state="new">%user.age% years old</target>
