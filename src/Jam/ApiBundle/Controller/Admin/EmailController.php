@@ -15,16 +15,12 @@ class EmailController extends FOSRestController
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-        $emails = array();
         foreach($users AS $user) {
             $compatibility = $user->getProfileFulfilment();
             if ($compatibility < 80) {
-                array_push($emails, $user->getEmail());
+                echo $user->getEmail() . ', ';
             }
         }
-
-        $view = $this->view($emails, 200);
-
-        return $this->handleView($view);
+        exit;
     }
 }
