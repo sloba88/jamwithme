@@ -18,9 +18,9 @@ class CompatibilityController extends FOSRestController
 
         $score = round($musician[0]->getResult()->getScore(), 2);
 
-        if ($score >= 1.5 ) {
+        if ($score >= 1 ) {
             $compatibility = 'high';
-        } else if ($score >= 0.5 ) {
+        } else if ($score >= 0.4 ) {
             $compatibility = 'medium';
         } else {
             $compatibility = 'low';

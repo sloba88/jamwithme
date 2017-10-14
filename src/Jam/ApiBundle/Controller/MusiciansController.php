@@ -78,9 +78,9 @@ class MusiciansController extends FOSRestController
         foreach($musicians AS $k=> $mus){
             $m = $mus->getTransformed();
             $score = round($mus->getResult()->getScore(), 2);
-            if ($score >= 1.5 ) {
+            if ($score >= 1 ) {
                 $compatibility = 'high';
-            } else if ($score >= 0.5 ) {
+            } else if ($score >= 0.4 ) {
                 $compatibility = 'medium';
             } else {
                 $compatibility = 'low';
@@ -91,6 +91,7 @@ class MusiciansController extends FOSRestController
             $avatar = $cacheManager->getBrowserPath($m->getAvatar(), 'medium_thumb');
 
             $data_array = array(
+                'score' => $mus->getResult()->getScore(),
                 'username' => $m->getUsername(),
                 'displayName' => $m->getDisplayName(),
                 'lat' => $m->getLocation() ? $m->getLocation()->getLat() : '',
