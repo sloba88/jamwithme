@@ -5,6 +5,11 @@ fos_elastica:
         searches:
             client: default
             index_name: app_%kernel.environment%
+            settings:
+                index:
+                    similarity:
+                        default:
+                            type: classic
             types:
                 user:
                     mappings:
