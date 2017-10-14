@@ -11,6 +11,8 @@ fos_elastica:
                         username: ~
                         firstName: ~
                         lastName: ~
+                        email: ~
+                        createdAt: { type: date }
                         pin: { type: geo_point }
                         profileFulfilment:
                             type: "keyword"
