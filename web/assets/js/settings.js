@@ -7,6 +7,7 @@
 /* global _user */
 /* global matchStart */
 /* global oldMatcher */
+/* global spotifyToken */
 
 var allInstruments = false;
 var allSkills = false;
@@ -346,6 +347,9 @@ $(function() {
             ajax: {
                 delay: 200,
                 url: 'https://api.spotify.com/v1/search',
+                headers: {
+                    'Authorization': 'Bearer ' + spotifyToken
+                },
                 data: function(term) {
                     return {
                         results: 12,

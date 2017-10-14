@@ -13,6 +13,10 @@
 
     {% if is_granted("ROLE_USER") %}
 
+        <script>
+            var spotifyToken ="{{ spotifyToken|default('') }}";
+        </script>
+
         {% javascripts
         'vendor/leaflet-dist/leaflet.js'
         'vendor/blueimp-file-upload/js/vendor/jquery.ui.widget.js'

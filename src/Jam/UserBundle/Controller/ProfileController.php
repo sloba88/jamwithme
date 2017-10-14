@@ -90,8 +90,35 @@ class ProfileController extends Controller
         }
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'spotifyToken' => $this->getSpotifyToken()
         ));
+    }
+
+    private function getSpotifyToken() {
+        /* spotify token */
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://accounts.spotify.com/api/token');
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, 'grant_type=client_credentials');
+        $headers = array(
+            'Authorization: Basic '. base64_encode("821adc24f1684cf89b7ef538d8808b8a:fd394e186ddc4a6f9cc61a79dba62622")
+        );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $server_output = curl_exec ($ch);
+
+        curl_close ($ch);
+
+        $server_output = json_decode($server_output, true);
+
+        // further processing ....
+        if ($server_output['access_token']) {
+            return $server_output['access_token'];
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -141,7 +168,8 @@ class ProfileController extends Controller
         }
 
         return $this->render('FOSUserBundle:Profile:setup.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'spotifyToken' => $this->getSpotifyToken()
         ));
     }
 
