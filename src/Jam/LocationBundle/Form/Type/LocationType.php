@@ -52,7 +52,8 @@ class LocationType extends AbstractType
                     'required'      => false
                     ))
                 ->add('isTemporary', 'hidden', array(
-                    'required'      => false
+                    'required'      => false,
+                    'data' => 0
                 ));
         
     }
