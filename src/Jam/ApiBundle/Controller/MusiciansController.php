@@ -215,6 +215,18 @@ class MusiciansController extends FOSRestController
                 $location['lat'] = '52.486685';
                 $location['lng'] = '-1.890460';
                 break;
+            case "Manchester":
+                $location['lat'] = '53.4808';
+                $location['lng'] = '-2.2426';
+                break;
+            case "Liverpool":
+                $location['lat'] = '53.4084';
+                $location['lng'] = '-2.9916';
+                break;
+            case "Sheffield":
+                $location['lat'] = '53.3811';
+                $location['lng'] = '-1.4701';
+                break;
             default:
                 $location['lat'] = $request->query->get('lat');
                 $location['lng'] = $request->query->get('lng');
