@@ -34,7 +34,7 @@ monolog:
             handler: swift
         swift:
             type:       swift_mailer
-            from_email: noreply@jamifind.com
+            from_email: pleasedonotreply@jamifind.com
             to_email:   stanic.slobodan88@gmail.com
             subject:    Jamifind: An Error Occurred!
             level:      debug

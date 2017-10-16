@@ -239,7 +239,7 @@ class JamController extends Controller
 
                         $message = \Swift_Message::newInstance()
                             ->setSubject("You have been invited to join Jamifind")
-                            ->setFrom('noreply@jamifind.com')
+                            ->setFrom('pleasedonotreply@jamifind.com')
                             ->setTo($invitation->getEmail())
                             ->setBody($messageBody, 'text/html');
 

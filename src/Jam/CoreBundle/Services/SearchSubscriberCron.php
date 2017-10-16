@@ -169,7 +169,7 @@ class SearchSubscriberCron {
 
         $message = \Swift_Message::newInstance()
             ->setSubject('Jamifind user suggestions')
-            ->setFrom('noreply@jamifind.com')
+            ->setFrom('pleasedonotreply@jamifind.com')
             ->setTo($search->getCreator()->getEmail())
             ->setBody($emailBody, 'text/html');
 

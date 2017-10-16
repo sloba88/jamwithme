@@ -34,7 +34,7 @@ class InviteController extends FOSRestController
 
                 $message = \Swift_Message::newInstance()
                     ->setSubject($this->get('translator')->trans('message.email.invited.title'))
-                    ->setFrom('noreply@jamifind.com')
+                    ->setFrom('pleasedonotreply@jamifind.com')
                     ->setTo($email)
                     ->setBody($messageBody, 'text/html');
 

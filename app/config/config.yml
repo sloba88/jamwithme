@@ -86,7 +86,7 @@ fos_user:
         mailer: fos_user.mailer.twig_swift
     user_class: Jam\UserBundle\Entity\User
     from_email:
-        address:        noreply@jamifind.com
+        address:        pleasedonotreply@jamifind.com
         sender_name:    Jamifind - bringing musicians together
     registration:
             form:

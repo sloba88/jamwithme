@@ -95,7 +95,7 @@ class MessagesController extends FOSRestController
 
         $message = \Swift_Message::newInstance()
             ->setSubject("You just got new message on Jamifind")
-            ->setFrom('noreply@jamifind.com')
+            ->setFrom('pleasedonotreply@jamifind.com')
             ->setTo($user->getEmail())
             ->setBody($messageBody, 'text/html');
 
