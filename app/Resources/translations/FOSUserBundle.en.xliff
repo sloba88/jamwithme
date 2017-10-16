@@ -25,7 +25,7 @@
       </trans-unit>
       <trans-unit id="40c1a483571045e24d606bf00361cfd4d021ba05" resname="resetting.check_email">
         <source>resetting.check_email</source>
-        <target state="new">An email has been sent to %email%. It contains a link you must click to reset your password.</target>
+        <target state="new">An email has been sent to %email%. It contains a link you must click to reset your password. Please also check spam/junk folder.</target>
         <jms:reference-file line="7">/../src/Jam/UserBundle/Resources/views/Resetting/checkEmail.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="70c8836a0e3b8dadb494b8de56ebed18939359b5" resname="resetting.email.message">
